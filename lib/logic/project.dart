@@ -41,70 +41,45 @@ class ProjectProperties {
     for (var architecturalFloor in architecturalFloors) {
       switch(architecturalFloor.floorType) {
         case ArchitecturalFloorType.b3 : structuralFloors.add(
-            StructuralFloor(
-                ceilingAreaM2: architecturalFloor.floorAreaM2,
-                lengthM: architecturalFloor.lengthM,
-                floorToFloorHeightM: architecturalFloor.floorToCeilingHeightM + 0.2,
-                floorType: StructuralFloorType.b3
-            )
+          StructuralFloor(
+            ceilingAreaM2: architecturalFloor.floorAreaM2,
+            lengthM: architecturalFloor.lengthM,
+            floorToFloorHeightM: architecturalFloor.floorToCeilingHeightM + Constants.basementSlabThicknessM,
+            floorType: architecturalFloor.floorType.toStructuralFloorType
+          )
         );
         case ArchitecturalFloorType.b2 : structuralFloors.add(
-            StructuralFloor(
-                ceilingAreaM2: architecturalFloor.floorAreaM2,
-                lengthM: architecturalFloor.lengthM,
-                floorToFloorHeightM: architecturalFloor.floorToCeilingHeightM + 0.2,
-                floorType: StructuralFloorType.b2
-            )
+          StructuralFloor(
+            ceilingAreaM2: architecturalFloor.floorAreaM2,
+            lengthM: architecturalFloor.lengthM,
+            floorToFloorHeightM: architecturalFloor.floorToCeilingHeightM + Constants.basementSlabThicknessM,
+            floorType: architecturalFloor.floorType.toStructuralFloorType
+          )
         );
         case ArchitecturalFloorType.b1 : structuralFloors.add(
-            StructuralFloor(
-                ceilingAreaM2: architecturalFloor.floorAreaM2,
-                lengthM: architecturalFloor.lengthM,
-                floorToFloorHeightM: architecturalFloor.floorToCeilingHeightM + 0.2,
-                floorType: StructuralFloorType.b1
-            )
+          StructuralFloor(
+            ceilingAreaM2: architecturalFloor.floorAreaM2,
+            lengthM: architecturalFloor.lengthM,
+            floorToFloorHeightM: architecturalFloor.floorToCeilingHeightM + Constants.basementSlabThicknessM,
+            floorType: architecturalFloor.floorType.toStructuralFloorType
+          )
         );
         case ArchitecturalFloorType.z : structuralFloors.add(
-            StructuralFloor(
-                ceilingAreaM2: firstNormalFloor.floorAreaM2,
-                lengthM: architecturalFloor.lengthM,
-                floorToFloorHeightM: architecturalFloor.floorToCeilingHeightM + 0.3,
-                floorType: StructuralFloorType.z
-            )
+          StructuralFloor(
+            ceilingAreaM2: firstNormalFloor.floorAreaM2,
+            lengthM: architecturalFloor.lengthM,
+            floorToFloorHeightM: architecturalFloor.floorToCeilingHeightM + Constants.slabThicknessM,
+            floorType: architecturalFloor.floorType.toStructuralFloorType
+          )
         );
-        case ArchitecturalFloorType.k1 : structuralFloors.add(
-            StructuralFloor(
-                ceilingAreaM2: architecturalFloor.floorAreaM2,
-                lengthM: architecturalFloor.lengthM,
-                floorToFloorHeightM: architecturalFloor.floorToCeilingHeightM + 0.3,
-                floorType: StructuralFloorType.k1
-            )
+        default : structuralFloors.add(
+          StructuralFloor(
+            ceilingAreaM2: architecturalFloor.floorAreaM2,
+            lengthM: architecturalFloor.lengthM,
+            floorToFloorHeightM: architecturalFloor.floorToCeilingHeightM + Constants.slabThicknessM,
+            floorType: architecturalFloor.floorType.toStructuralFloorType
+          )
         );
-        case ArchitecturalFloorType.k2 : structuralFloors.add(
-            StructuralFloor(
-                ceilingAreaM2: architecturalFloor.floorAreaM2,
-                lengthM: architecturalFloor.lengthM,
-                floorToFloorHeightM: architecturalFloor.floorToCeilingHeightM + 0.3,
-                floorType: StructuralFloorType.k2
-            )
-        );
-        case ArchitecturalFloorType.k3 : structuralFloors.add(
-            StructuralFloor(
-                ceilingAreaM2: architecturalFloor.floorAreaM2,
-                lengthM: architecturalFloor.lengthM,
-                floorToFloorHeightM: architecturalFloor.floorToCeilingHeightM + 0.3,
-                floorType: StructuralFloorType.k3
-            )
-        );
-        case ArchitecturalFloorType.k4 : structuralFloors.add(
-            StructuralFloor(
-                ceilingAreaM2: architecturalFloor.floorAreaM2,
-                lengthM: architecturalFloor.lengthM,
-                floorToFloorHeightM: architecturalFloor.floorToCeilingHeightM + 0.3,
-                floorType: StructuralFloorType.k4
-            )
-        );
-        default :
       }
     }
 
