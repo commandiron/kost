@@ -1,10 +1,9 @@
 import 'package:kost/constants.dart';
-import 'package:kost/logic/cost_item/price.dart';
 
 abstract class CostItem {
   String name;
   String explanation;
-  Price? unitPrice;
+  UnitPrice unitPrice;
   double quantity;
   double liraDollarRate;
   Price totalPriceLira;
@@ -13,15 +12,69 @@ abstract class CostItem {
     {
       required this.name,
       required this.explanation,
-      this.unitPrice,
+      required this.unitPrice,
       this.quantity = 0,
       this.liraDollarRate = Constants.currentLiraDollarRate,
     }
   ) : totalPriceLira = Price(
-    amount: unitPrice != null
-      ? (unitPrice.amount * (unitPrice.currency == Currency.dollar ? liraDollarRate : 1) * quantity)
-      : 0,
-    currency: Currency.nan,
-    unit: unitPrice != null ? unitPrice.unit : Unit.nan
+    amount: unitPrice.amount * (unitPrice.currency == Currency.dollar ? liraDollarRate : 1) * quantity,
+    currency: unitPrice.currency,
   );
+}
+
+class UnitPrice {
+  double amount;
+  Currency currency;
+  Unit unit;
+  UnitPrice(
+    {
+      required this.amount,
+      this.currency = Currency.lira,
+      required this.unit,
+    }
+  );
+}
+
+class Price {
+  double amount;
+  Currency currency;
+  Price(
+    {
+      required this.amount,
+      this.currency = Currency.lira,
+    }
+  );
+}
+
+enum Unit {
+  nan, meter, squareMeters, cubicMeters, piece, hour, lumpSum, apartment
+}
+extension UnitExtension on Unit {
+  String get symbol {
+    switch(this) {
+      case Unit.nan : return "NaN";
+      case Unit.meter : return "m";
+      case Unit.squareMeters : return "m²";
+      case Unit.cubicMeters : return "m³";
+      case Unit.piece : return "adet";
+      case Unit.hour : return "saat";
+      case Unit.lumpSum : return "gtr";
+      case Unit.apartment : return "daire";
+      default : throw Exception();
+    }
+  }
+}
+
+enum Currency {
+  nan, lira, dollar,
+}
+extension CurrencyExtension on Currency {
+  String get symbol {
+    switch(this) {
+      case Currency.nan : return "NaN";
+      case Currency.lira : return "₺";
+      case Currency.dollar : return "\$";
+      default : throw Exception();
+    }
+  }
 }
