@@ -1,58 +1,80 @@
 import 'package:kost/constants.dart';
 
+class Iksa extends CostItem {
+  Iksa(
+    {
+      super.name = "İksa Yapılması",
+      super.explanation = "Shutcreate",
+      super.unitPrice = 1540,
+      super.currency = Currency.lira,
+      super.unit = Unit.squareMeters,
+      super.currencyRates,
+      super.quantity,
+    }
+  );
+}
+
 abstract class CostItem {
   String name;
   String explanation;
-  UnitPrice unitPrice;
+  double unitPrice;
+  Currency currency;
+  Unit unit;
   double quantity;
-  double liraDollarRate;
-  Price totalPriceLira;
+  CurrencyRates? currencyRates;
+  double totalPriceTRY;
 
   CostItem(
     {
       required this.name,
       required this.explanation,
       required this.unitPrice,
-      this.quantity = 0,
-      this.liraDollarRate = Constants.currentLiraDollarRate,
-    }
-  ) : totalPriceLira = Price(
-    amount: unitPrice.amount * (unitPrice.currency == Currency.dollar ? liraDollarRate : 1) * quantity,
-    currency: unitPrice.currency,
-  );
-}
-
-class UnitPrice {
-  double amount;
-  Currency currency;
-  Unit unit;
-  UnitPrice(
-    {
-      required this.amount,
-      this.currency = Currency.lira,
+      required this.currency,
       required this.unit,
+      this.currencyRates,
+      this.quantity = 0,
     }
-  );
+  ) : totalPriceTRY = unitPrice * quantity * currency.toLiraRate(currencyRates);
 }
 
-class Price {
-  double amount;
-  Currency currency;
-  Price(
-    {
-      required this.amount,
-      this.currency = Currency.lira,
+enum Currency {
+  lira, dollar, euro
+}
+extension CurrencyExtension on Currency {
+  String get symbol {
+    switch(this) {
+      case Currency.lira : return "₺";
+      case Currency.dollar : return "\$";
+      case Currency.euro : return "€";
+      default : throw Exception();
     }
-  );
+  }
+  double toLiraRate(CurrencyRates? currencyRates) {
+    switch(this) {
+      case Currency.lira: return 1;
+      case Currency.dollar : return currencyRates?.USDTRY ?? Constants.USDTRY;
+      case Currency.euro : return currencyRates?.EURTRY ?? Constants.EURTRY;
+    }
+  }
+}
+
+class CurrencyRates {
+  double USDTRY;
+  double EURTRY;
+  CurrencyRates(
+      {
+        required this.USDTRY,
+        required this.EURTRY,
+      }
+      );
 }
 
 enum Unit {
-  nan, meter, squareMeters, cubicMeters, piece, hour, lumpSum, apartment
+  meter, squareMeters, cubicMeters, piece, hour, lumpSum, apartment
 }
 extension UnitExtension on Unit {
   String get symbol {
     switch(this) {
-      case Unit.nan : return "NaN";
       case Unit.meter : return "m";
       case Unit.squareMeters : return "m²";
       case Unit.cubicMeters : return "m³";
@@ -60,20 +82,6 @@ extension UnitExtension on Unit {
       case Unit.hour : return "saat";
       case Unit.lumpSum : return "gtr";
       case Unit.apartment : return "daire";
-      default : throw Exception();
-    }
-  }
-}
-
-enum Currency {
-  nan, lira, dollar,
-}
-extension CurrencyExtension on Currency {
-  String get symbol {
-    switch(this) {
-      case Currency.nan : return "NaN";
-      case Currency.lira : return "₺";
-      case Currency.dollar : return "\$";
       default : throw Exception();
     }
   }
