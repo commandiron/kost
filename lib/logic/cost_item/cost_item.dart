@@ -13,6 +13,19 @@ class Iksa extends CostItem {
     }
   );
 }
+class Hafriyat extends CostItem {
+  Hafriyat(
+    {
+      super.name = "Kazı yapılması ve şantiye dışına gönderilmesi",
+      super.explanation = "Hafriyat",
+      super.unitPrice = 450,
+      super.currency = Currency.lira,
+      super.unit = Unit.cubicMeters,
+      super.currencyRates,
+      super.quantity,
+    }
+  );
+}
 
 abstract class CostItem {
   String name;
