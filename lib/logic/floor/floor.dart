@@ -1,4 +1,4 @@
-import 'package:kost/logic/constants.dart';
+import 'package:kost/constants.dart';
 
 class ArchitecturalFloor {
   double floorAreaM2;
