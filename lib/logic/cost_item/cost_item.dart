@@ -1,7 +1,7 @@
 import 'package:kost/constants.dart';
 
-class Iksa extends CostItem {
-  Iksa(
+class Shoring extends CostItem {
+  Shoring(
     {
       super.name = "İksa Yapılması",
       super.explanation = "Shutcreate",
@@ -13,8 +13,8 @@ class Iksa extends CostItem {
     }
   );
 }
-class Hafriyat extends CostItem {
-  Hafriyat(
+class Excavation extends CostItem {
+  Excavation(
     {
       super.name = "Kazı yapılması ve şantiye dışına gönderilmesi",
       super.explanation = "Hafriyat",
@@ -26,8 +26,21 @@ class Hafriyat extends CostItem {
     }
   );
 }
+class Breaker extends CostItem {
+  Breaker(
+    {
+      super.name = "Kırıcı Çalıştırılması",
+      super.explanation = "Kırıcı",
+      super.unitPrice = 1500,
+      super.currency = Currency.lira,
+      super.unit = Unit.hour,
+      super.currencyRates,
+      super.quantity,
+    }
+);
+}
 
-abstract class CostItem {
+class CostItem {
   String name;
   String explanation;
   double unitPrice;
