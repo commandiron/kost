@@ -3,7 +3,8 @@ import 'package:kost/constants.dart';
 class Shoring extends CostItem {
   Shoring(
     {
-      super.name = "İksa Yapılması",
+      super.index = 0,
+      super.name = "İksa yapılması",
       super.explanation = "Shutcreate",
       super.unitPrice = 1540,
       super.currency = Currency.lira,
@@ -16,7 +17,8 @@ class Shoring extends CostItem {
 class Excavation extends CostItem {
   Excavation(
     {
-      super.name = "Kazı yapılması ve şantiye dışına gönderilmesi",
+      super.index = 1,
+      super.name = "Kazı yapılması ve molozun şantiye dışına gönderilmesi",
       super.explanation = "Hafriyat",
       super.unitPrice = 450,
       super.currency = Currency.lira,
@@ -29,6 +31,7 @@ class Excavation extends CostItem {
 class Breaker extends CostItem {
   Breaker(
     {
+      super.index = 2,
       super.name = "Kırıcı Çalıştırılması",
       super.explanation = "Kırıcı",
       super.unitPrice = 1500,
@@ -41,6 +44,7 @@ class Breaker extends CostItem {
 }
 
 class CostItem {
+  int index;
   String name;
   String explanation;
   double unitPrice;
@@ -52,6 +56,7 @@ class CostItem {
 
   CostItem(
     {
+      required this.index,
       required this.name,
       required this.explanation,
       required this.unitPrice,
