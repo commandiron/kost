@@ -22,26 +22,8 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
       state.buildingStructureProp.structuralFloors.addAll(
         [
           StructuralFloor(
-              area: 300,
-              height: 0.45,
-              structuralFloorType: StructuralFloorType.subFoundation
-          ),
-          StructuralFloor(
-              area: 300,
-              height: 1,
-              structuralFloorType: StructuralFloorType.foundation
-          ),
-          StructuralFloor(
-              area: 250,
-              structuralFloorType: StructuralFloorType.b2
-          ),
-          StructuralFloor(
-              area: 250,
-              structuralFloorType: StructuralFloorType.b1
-          ),
-          StructuralFloor(
               area: 200,
-              structuralFloorType: StructuralFloorType.z
+              structuralFloorType: StructuralFloorType.k2
           ),
           StructuralFloor(
               area: 200,
@@ -49,7 +31,25 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
           ),
           StructuralFloor(
               area: 200,
-              structuralFloorType: StructuralFloorType.k2
+              structuralFloorType: StructuralFloorType.z
+          ),
+          StructuralFloor(
+              area: 250,
+              structuralFloorType: StructuralFloorType.b1
+          ),
+          StructuralFloor(
+              area: 250,
+              structuralFloorType: StructuralFloorType.b2
+          ),
+          StructuralFloor(
+              area: 300,
+              height: 1,
+              structuralFloorType: StructuralFloorType.foundation
+          ),
+          StructuralFloor(
+              area: 300,
+              height: 0.45,
+              structuralFloorType: StructuralFloorType.subFoundation
           ),
         ]
       );
