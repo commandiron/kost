@@ -5,23 +5,24 @@ import '../logic/cost_item/cost_item.dart';
 
 class ProjectState extends Equatable{
 
-  final List<CostItem> excavationCostItems;
+
   final BuildingStructureProp buildingStructureProp;
+  final List<CostItem> excavationCostItems;
 
   const ProjectState(
     {
+      required this.buildingStructureProp,
       required this.excavationCostItems,
-      required this.buildingStructureProp
     }
   );
 
   ProjectState copyWith({
+    BuildingStructureProp? buildingStructureProp,
     List<CostItem>? excavationCostItems,
-    BuildingStructureProp? buildingStructureProp
   }) {
     return ProjectState(
+      buildingStructureProp: buildingStructureProp ?? this.buildingStructureProp,
       excavationCostItems: excavationCostItems ?? this.excavationCostItems,
-      buildingStructureProp: buildingStructureProp ?? this.buildingStructureProp
     );
   }
 

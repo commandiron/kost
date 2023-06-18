@@ -8,49 +8,43 @@ import 'project_state.dart';
 class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
   ProjectBloc() : super(
     ProjectState(
-      excavationCostItems: List.empty(),
       buildingStructureProp: BuildingStructureProp(
         structuralFloors: []
-      )
+      ),
+      excavationCostItems: List.empty(),
     )
   ) {
     on<Init>((event, emit) {
-      add(const CreateBuildingStructure());
+      add(const CreateStructuralFloors());
       add(const CreateExcavationCostItems());
     });
-    on<CreateBuildingStructure>((event, emit) {
+    on<CreateStructuralFloors>((event, emit) {
       state.buildingStructureProp.structuralFloors.addAll(
         [
-          StructuralFloor(
-              area: 200,
-              structuralFloorType: StructuralFloorType.k2
+          DefaultStructuralFloor(
+            ceilingSlabArea: 249,
+            structuralFloorType: StructuralFloorType.k2
           ),
-          StructuralFloor(
-              area: 200,
-              structuralFloorType: StructuralFloorType.k1
+          DefaultStructuralFloor(
+            ceilingSlabArea: 249,
+            structuralFloorType: StructuralFloorType.k1
           ),
-          StructuralFloor(
-              area: 200,
-              structuralFloorType: StructuralFloorType.z
+          DefaultStructuralFloor(
+            ceilingSlabArea: 249,
+            structuralFloorType: StructuralFloorType.z
           ),
-          StructuralFloor(
-              area: 250,
-              structuralFloorType: StructuralFloorType.b1
+          DefaultBasementStructuralFloor(
+            ceilingSlabArea: 689,
+            structuralFloorType: StructuralFloorType.b1
           ),
-          StructuralFloor(
-              area: 250,
-              structuralFloorType: StructuralFloorType.b2
+          DefaultBasementStructuralFloor(
+            ceilingSlabArea: 689,
+            structuralFloorType: StructuralFloorType.b2
           ),
-          StructuralFloor(
-              area: 300,
-              height: 1,
-              structuralFloorType: StructuralFloorType.foundation
-          ),
-          StructuralFloor(
-              area: 300,
-              height: 0.45,
-              structuralFloorType: StructuralFloorType.subFoundation
-          ),
+          Foundation(ceilingSlabArea: 689),
+          InsulationConcrete(ceilingSlabArea: 689),
+          LeanConcrete(ceilingSlabArea: 689),
+          Stabilization(ceilingSlabArea: 689)
         ]
       );
     });
@@ -59,7 +53,7 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
         state.copyWith(
           excavationCostItems: [
             Shoring(
-              quantity: 1000 * state.buildingStructureProp.getExcavationHeight()
+              quantity: 106 * state.buildingStructureProp.excavationHeight
             ),
             Excavation(),
             Breaker()
