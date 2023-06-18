@@ -65,12 +65,4 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
   void init() {
     add(const Init());
   }
-
-  double calculateShoringQuantity() {
-    return 0;
-  }
-
-  double calculateExcavationQuantity() {
-    return 0;
-  }
 }
