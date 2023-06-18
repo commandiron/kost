@@ -1,14 +1,18 @@
 import 'package:collection/collection.dart';
 
-class BuildingPropCalculator {
+class ProjectCalculator {
+  final double excavationLength;
+  final double excavationArea;
   final List<Floor> floors;
-  final double foundationHeight;
+  double foundationHeight;
   final double insulationConcreteHeight;
   final double leanConcreteHeight;
   final double stabilizationHeight;
 
-  BuildingPropCalculator(
+  ProjectCalculator(
     {
+      required this.excavationLength,
+      required this.excavationArea,
       required this.floors,
       this.foundationHeight = 1,
       this.insulationConcreteHeight = 0.05,

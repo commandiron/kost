@@ -1,5 +1,3 @@
-import 'package:kost/constants.dart';
-
 class Shoring extends CostItem {
   Shoring(
     {
@@ -65,7 +63,7 @@ class CostItem {
       this.currencyRates,
       this.quantity = 0,
     }
-  ) : totalPriceTRY = unitPrice * quantity * currency.toLiraRate(currencyRates);
+  ) : totalPriceTRY = unitPrice * quantity * currency.toLiraRate(currencyRates ?? DefaultCurrencyRates());
 }
 
 enum Currency {
@@ -80,24 +78,28 @@ extension CurrencyExtension on Currency {
       default : throw Exception();
     }
   }
-  double toLiraRate(CurrencyRates? currencyRates) {
+  double toLiraRate(CurrencyRates currencyRates) {
     switch(this) {
       case Currency.lira: return 1;
-      case Currency.dollar : return currencyRates?.USDTRY ?? Constants.USDTRY;
-      case Currency.euro : return currencyRates?.EURTRY ?? Constants.EURTRY;
+      case Currency.dollar : return currencyRates.usdTry;
+      case Currency.euro : return currencyRates.eurTry;
     }
   }
 }
 
-class CurrencyRates {
-  double USDTRY;
-  double EURTRY;
+class DefaultCurrencyRates extends CurrencyRates {
+  DefaultCurrencyRates({super.usdTry = 23.67, super.eurTry = 25.92});
+}
+
+abstract class CurrencyRates {
+  double usdTry;
+  double eurTry;
   CurrencyRates(
-      {
-        required this.USDTRY,
-        required this.EURTRY,
-      }
-      );
+    {
+      required this.usdTry,
+      required this.eurTry,
+    }
+  );
 }
 
 enum Unit {
