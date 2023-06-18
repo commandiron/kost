@@ -1,5 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:kost/bloc/model/project_properties.dart';
+import 'package:kost/bloc/model/project_prop.dart';
 import 'package:kost/bloc/model/cost_item.dart';
 
 import 'model/floor.dart';
@@ -13,19 +13,8 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
         excavationLength: 113.71,
         excavationArea: 798.74
       ),
-      buildingProp: BuildingProp(
-        floors: [],
-      ),
-      excavationCostItems: List.empty(),
-    )
-  ) {
-    on<Init>((event, emit) {
-      add(const CreateFloors());
-      add(const CreateExcavationCostItems());
-    });
-    on<CreateFloors>((event, emit) {
-      state.buildingProp.floors.addAll(
-        [
+      buildingPropCalculator: BuildingPropCalculator(
+        floors: [
           Floor(
             area: 249,
             type: FloorType.k2,
@@ -48,19 +37,23 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
             height: 3.15,
             type: FloorType.b2,
           ),
-        ]
-      );
+        ],
+      ),
+      excavationCostItems: List.empty(),
+    )
+  ) {
+    on<Init>((event, emit) {
+      add(const CreateExcavationCostItems());
     });
     on<CreateExcavationCostItems>((event, emit) {
-      print(state.buildingProp.firstBasementFloor!.type);
       emit(
         state.copyWith(
           excavationCostItems: [
             Shoring(
-              quantity: state.projectProp.excavationLength * state.buildingProp.excavationHeight
+              quantity: state.projectProp.excavationLength * state.buildingPropCalculator.excavationHeight
             ),
             Excavation(
-              quantity: state.projectProp.excavationArea * state.buildingProp.excavationHeight
+              quantity: state.projectProp.excavationArea * state.buildingPropCalculator.excavationHeight
             ),
             Breaker()
           ]

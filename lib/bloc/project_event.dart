@@ -13,12 +13,6 @@ class Init extends ProjectEvent {
   List<Object?> get props => [];
 }
 
-class CreateFloors extends ProjectEvent {
-  const CreateFloors();
-  @override
-  List<Object?> get props => [];
-}
-
 class CreateExcavationCostItems extends ProjectEvent {
   const CreateExcavationCostItems();
   @override

@@ -1,13 +1,13 @@
 import 'package:collection/collection.dart';
 
-class BuildingProp {
+class BuildingPropCalculator {
   final List<Floor> floors;
   final double foundationHeight;
   final double insulationConcreteHeight;
   final double leanConcreteHeight;
   final double stabilizationHeight;
 
-  BuildingProp(
+  BuildingPropCalculator(
     {
       required this.floors,
       this.foundationHeight = 1,
