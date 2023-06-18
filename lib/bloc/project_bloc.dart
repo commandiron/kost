@@ -1,61 +1,67 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:kost/bloc/structural_floor.dart';
-import 'package:kost/logic/cost_item/cost_item.dart';
+import 'package:kost/bloc/model/project_properties.dart';
+import 'package:kost/bloc/model/cost_item.dart';
 
+import 'model/floor.dart';
 import 'project_event.dart';
 import 'project_state.dart';
 
 class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
   ProjectBloc() : super(
     ProjectState(
-      buildingStructureProp: BuildingStructureProp(
-        structuralFloors: []
+      projectProp: ProjectProp(
+        excavationLength: 113.71,
+        excavationArea: 798.74
+      ),
+      buildingProp: BuildingProp(
+        floors: [],
       ),
       excavationCostItems: List.empty(),
     )
   ) {
     on<Init>((event, emit) {
-      add(const CreateStructuralFloors());
+      add(const CreateFloors());
       add(const CreateExcavationCostItems());
     });
-    on<CreateStructuralFloors>((event, emit) {
-      state.buildingStructureProp.structuralFloors.addAll(
+    on<CreateFloors>((event, emit) {
+      state.buildingProp.floors.addAll(
         [
-          DefaultStructuralFloor(
-            ceilingSlabArea: 249,
-            structuralFloorType: StructuralFloorType.k2
+          Floor(
+            area: 249,
+            type: FloorType.k2,
           ),
-          DefaultStructuralFloor(
-            ceilingSlabArea: 249,
-            structuralFloorType: StructuralFloorType.k1
+          Floor(
+            area: 249,
+            type: FloorType.k1,
           ),
-          DefaultStructuralFloor(
-            ceilingSlabArea: 249,
-            structuralFloorType: StructuralFloorType.z
+          Floor(
+            area: 249,
+            type: FloorType.z,
           ),
-          DefaultBasementStructuralFloor(
-            ceilingSlabArea: 689,
-            structuralFloorType: StructuralFloorType.b1
+          Floor(
+            area: 689,
+            height: 3.15,
+            type: FloorType.b1,
           ),
-          DefaultBasementStructuralFloor(
-            ceilingSlabArea: 689,
-            structuralFloorType: StructuralFloorType.b2
+          Floor(
+            area: 689,
+            height: 3.15,
+            type: FloorType.b2,
           ),
-          Foundation(ceilingSlabArea: 689),
-          InsulationConcrete(ceilingSlabArea: 689),
-          LeanConcrete(ceilingSlabArea: 689),
-          Stabilization(ceilingSlabArea: 689)
         ]
       );
     });
     on<CreateExcavationCostItems>((event, emit) {
+      print(state.buildingProp.firstBasementFloor!.type);
       emit(
         state.copyWith(
           excavationCostItems: [
             Shoring(
-              quantity: 106 * state.buildingStructureProp.excavationHeight
+              quantity: state.projectProp.excavationLength * state.buildingProp.excavationHeight
             ),
-            Excavation(),
+            Excavation(
+              quantity: state.projectProp.excavationArea * state.buildingProp.excavationHeight
+            ),
             Breaker()
           ]
         )

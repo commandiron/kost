@@ -1,27 +1,31 @@
 import 'package:equatable/equatable.dart';
-import 'package:kost/bloc/structural_floor.dart';
+import 'package:kost/bloc/model/project_properties.dart';
 
-import '../logic/cost_item/cost_item.dart';
+import 'model/cost_item.dart';
+import 'model/floor.dart';
 
 class ProjectState extends Equatable{
 
-
-  final BuildingStructureProp buildingStructureProp;
+  final ProjectProp projectProp;
+  final BuildingProp buildingProp;
   final List<CostItem> excavationCostItems;
 
   const ProjectState(
     {
-      required this.buildingStructureProp,
+      required this.projectProp,
+      required this.buildingProp,
       required this.excavationCostItems,
     }
   );
 
   ProjectState copyWith({
-    BuildingStructureProp? buildingStructureProp,
+    ProjectProp? projectProp,
+    BuildingProp? buildingProp,
     List<CostItem>? excavationCostItems,
   }) {
     return ProjectState(
-      buildingStructureProp: buildingStructureProp ?? this.buildingStructureProp,
+      projectProp: projectProp ?? this.projectProp,
+      buildingProp: buildingProp ?? this.buildingProp,
       excavationCostItems: excavationCostItems ?? this.excavationCostItems,
     );
   }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:kost/logic/cost_item/cost_item.dart';
+import 'package:kost/bloc/model/cost_item.dart';
 
 import 'bloc/project_bloc.dart';
 import 'bloc/project_state.dart';
