@@ -1,7 +1,10 @@
 import 'package:collection/collection.dart';
+import 'package:kost/domain/calculator/project_constants.dart';
+import '../model/job_id.dart';
 import 'floor.dart';
 
-class ProjectDimCalculator {
+class QuantityCalculator {
+  final ProjectConstants projectConstants;
   final double excavationLength;
   final double excavationArea;
   final List<Floor> floors;
@@ -10,8 +13,9 @@ class ProjectDimCalculator {
   final double leanConcreteHeight;
   final double stabilizationHeight;
 
-  ProjectDimCalculator(
+  QuantityCalculator(
     {
+      required this.projectConstants,
       required this.excavationLength,
       required this.excavationArea,
       required this.floors,
@@ -49,5 +53,13 @@ class ProjectDimCalculator {
       }
     }
     return basementsHeight;
+  }
+
+  double getQuantityFromJobId(JobId jobId) {
+    switch(jobId) {
+      case JobId.shoring : return excavationLength * excavationHeight;
+      case JobId.excavation : return excavationArea * excavationHeight;
+      case JobId.breaker : return excavationArea * excavationHeight * projectConstants.breakerHourForOneCubicMeterExcavation;
+    }
   }
 }
