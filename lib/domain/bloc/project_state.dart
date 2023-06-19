@@ -3,11 +3,12 @@ import 'package:kost/domain/model/currency.dart';
 import '../../presentation/model/cost_item.dart';
 import '../model/cost_unit_price.dart';
 import '../calculator/quantity_calculator.dart';
+import '../model/job_id.dart';
 
 class ProjectState extends Equatable{
 
   final QuantityCalculator quantityCalculator;
-  final List<UnitPrice> unitPrices;
+  final Map<JobCategory, List<UnitPrice>> unitPrices;
   final CurrencyRates currencyRates;
   final List<CostItem> costItems;
 
@@ -22,7 +23,7 @@ class ProjectState extends Equatable{
 
   ProjectState copyWith({
     QuantityCalculator? quantityCalculator,
-    List<UnitPrice>? unitPrices,
+    Map<JobCategory, List<UnitPrice>>? unitPrices,
     CurrencyRates? currencyRates,
     List<CostItem>? costItems,
   }) {

@@ -1,3 +1,3 @@
-enum JobId {
-  shoring, excavation, breaker
+enum JobCategory {
+  shoring, excavation, breaker;
 }

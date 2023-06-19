@@ -4,7 +4,8 @@ import 'job_id.dart';
 import 'currency.dart';
 
 class UnitPrice {
-  JobId jobId;
+  JobCategory jobCategory;
+  int categoryIndex;
   String name;
   String explanation;
   double amount;
@@ -13,7 +14,8 @@ class UnitPrice {
 
   UnitPrice(
     {
-      required this.jobId,
+      required this.jobCategory,
+      required this.categoryIndex,
       required this.name,
       required this.explanation,
       required this.amount,

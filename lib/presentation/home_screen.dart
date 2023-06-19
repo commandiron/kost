@@ -22,17 +22,17 @@ class HomeScreen extends StatelessWidget {
               itemBuilder: (context, index) {
                 return Row(
                   children: [
-                    Text(items[index].jobUnitPrice.name),
+                    Text(items[index].jobUnitPrices.name),
                     SizedBox(width: 16,),
-                    Text(items[index].jobUnitPrice.explanation),
+                    Text(items[index].jobUnitPrices.explanation),
                     SizedBox(width: 16,),
-                    Text(items[index].jobUnitPrice.amount.toString()),
-                    Text(items[index].jobUnitPrice.currency.symbol),
+                    Text(items[index].jobUnitPrices.amount.toString()),
+                    Text(items[index].jobUnitPrices.currency.symbol),
                     Text("/"),
-                    Text(items[index].jobUnitPrice.unit.symbol),
+                    Text(items[index].jobUnitPrices.unit.symbol),
                     SizedBox(width: 16,),
                     Text(items[index].quantity.toString()),
-                    Text(items[index].jobUnitPrice.unit.symbol),
+                    Text(items[index].jobUnitPrices.unit.symbol),
                     SizedBox(width: 16,),
                     Text(items[index].totalPriceTRY.toString()),
                     Text("TL"),

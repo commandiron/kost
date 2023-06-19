@@ -41,7 +41,7 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
           ),
         ],
       ),
-      unitPrices: const [],
+      unitPrices: const {},
       currencyRates: DefaultCurrencyRates(),
       costItems: const []
     ),
@@ -59,11 +59,11 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
     });
     on<CreateCostItems>((event, emit) {
       List<CostItem> costItems = [];
-      for (var unitPrice in state.unitPrices) {
+      for (var unitPrice in state.unitPrices.values) {
         costItems.add(
           CostItem(
-            jobUnitPrice: unitPrice,
-            quantity: state.quantityCalculator.getQuantityFromJobId(unitPrice.jobId),
+            jobUnitPrices: unitPrice[0],
+            quantity: state.quantityCalculator.getQuantityFromJobCategory(unitPrice[0].jobCategory),
             currencyRates: state.currencyRates
           )
         );
