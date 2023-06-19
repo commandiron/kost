@@ -41,7 +41,7 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
           ),
         ],
       ),
-      unitPriceMap: const {},
+      unitPrices: const [],
       currencyRates: DefaultCurrencyRates(),
       costItems: const []
     ),
@@ -52,24 +52,22 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
       add(const CreateCostItems());
     });
     on<FetchUnitPrices>((event, emit) {
-      emit(state.copyWith(unitPriceMap: AppData.unitPrices));
+      emit(state.copyWith(unitPrices: AppData.unitPrices));
     });
     on<FetchCurrencyRates>((event, emit) {
       emit(state.copyWith(currencyRates: DefaultCurrencyRates()));
     });
     on<CreateCostItems>((event, emit) {
       List<CostItem> costItems = [];
-      for (var unitPrices in state.unitPriceMap.values) {
-        for (var unitPrice in unitPrices) {
-          costItems.add(
-            CostItem(
-              mainCategory: unitPrice.jobCategory.mainCategory,
-              unitPrice: unitPrice,
-              quantity: state.quantityCalculator.getQuantityFromJobCategory(unitPrice.jobCategory),
-              currencyRates: state.currencyRates
-            )
-          );
-        }
+      for (var unitPrice in state.unitPrices) {
+        costItems.add(
+          CostItem(
+            mainCategory: unitPrice.jobCategory.mainCategory,
+            unitPrice: unitPrice,
+            quantity: state.quantityCalculator.getQuantityFromJobCategory(unitPrice.jobCategory),
+            currencyRates: state.currencyRates
+          )
+        );
       }
       emit(state.copyWith(costItems: costItems));
     });
