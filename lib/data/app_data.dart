@@ -1,6 +1,6 @@
 import '../domain/model/cost_unit_price.dart';
 import '../domain/model/currency.dart';
-import '../domain/model/job_id.dart';
+import '../domain/model/job_category.dart';
 import '../domain/model/unit.dart';
 
 class AppData {

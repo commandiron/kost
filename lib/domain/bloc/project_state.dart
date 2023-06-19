@@ -3,7 +3,7 @@ import 'package:kost/domain/model/currency.dart';
 import '../../presentation/model/cost_item.dart';
 import '../model/cost_unit_price.dart';
 import '../calculator/quantity_calculator.dart';
-import '../model/job_id.dart';
+import '../model/job_category.dart';
 
 class ProjectState extends Equatable{
 

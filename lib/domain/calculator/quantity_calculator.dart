@@ -1,6 +1,6 @@
 import 'package:collection/collection.dart';
 import 'package:kost/domain/calculator/project_constants.dart';
-import '../model/job_id.dart';
+import '../model/job_category.dart';
 import 'floor.dart';
 
 class QuantityCalculator {

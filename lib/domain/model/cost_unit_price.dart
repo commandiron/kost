@@ -1,6 +1,6 @@
 import 'package:kost/domain/model/unit.dart';
 
-import 'job_id.dart';
+import 'job_category.dart';
 import 'currency.dart';
 
 class UnitPrice {
