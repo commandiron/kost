@@ -1,6 +1,16 @@
-enum JobCategory {
-  shoring, excavation, breaker;
+enum MainCategory {
+  shoring, excavation, breaker,
 }
+
+enum JobCategory {
+  shutcrete(MainCategory.shoring), boredPile(MainCategory.shoring), excavation(MainCategory.excavation), breaker(MainCategory.breaker);
+
+  const JobCategory(this.mainCategory);
+  final MainCategory mainCategory;
+}
+
+
+
 
 
 //Bu kategoriler yetmedi çünkü alt kategorileri de var bu fiyatların, mesela shoring shutcrete veya fore kazık fiyatı gelebilir.

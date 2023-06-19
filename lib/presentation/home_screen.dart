@@ -20,22 +20,28 @@ class HomeScreen extends StatelessWidget {
             child: ListView.builder(
               itemCount: items.length,
               itemBuilder: (context, index) {
-                return Row(
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(items[index].jobUnitPrices.name),
-                    SizedBox(width: 16,),
-                    Text(items[index].jobUnitPrices.explanation),
-                    SizedBox(width: 16,),
-                    Text(items[index].jobUnitPrices.amount.toString()),
-                    Text(items[index].jobUnitPrices.currency.symbol),
-                    Text("/"),
-                    Text(items[index].jobUnitPrices.unit.symbol),
-                    SizedBox(width: 16,),
-                    Text(items[index].quantity.toString()),
-                    Text(items[index].jobUnitPrices.unit.symbol),
-                    SizedBox(width: 16,),
-                    Text(items[index].totalPriceTRY.toString()),
-                    Text("TL"),
+                    Text(items[index].mainCategory.name),
+                    Row(
+                      children: [
+                        Text(items[index].unitPrice.name),
+                        SizedBox(width: 16,),
+                        Text(items[index].unitPrice.explanation),
+                        SizedBox(width: 16,),
+                        Text(items[index].unitPrice.amount.toString()),
+                        Text(items[index].unitPrice.currency.symbol),
+                        Text("/"),
+                        Text(items[index].unitPrice.unit.symbol),
+                        SizedBox(width: 16,),
+                        Text(items[index].quantity.toString()),
+                        Text(items[index].unitPrice.unit.symbol),
+                        SizedBox(width: 16,),
+                        Text(items[index].totalPriceTRY.toString()),
+                        Text("TL"),
+                      ],
+                    ),
                   ],
                 );
               },

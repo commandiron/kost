@@ -1,6 +1,6 @@
 import 'package:collection/collection.dart';
 import 'package:kost/domain/calculator/project_constants.dart';
-import '../model/job_category.dart';
+import '../model/category.dart';
 import 'floor.dart';
 
 class QuantityCalculator {
@@ -57,7 +57,8 @@ class QuantityCalculator {
 
   double getQuantityFromJobCategory(JobCategory jobCategory) {
     switch(jobCategory) {
-      case JobCategory.shoring : return excavationLength * excavationHeight;
+      case JobCategory.shutcrete : return excavationLength * excavationHeight;
+      case JobCategory.boredPile : return 0;
       case JobCategory.excavation : return excavationArea * excavationHeight;
       case JobCategory.breaker : return excavationArea * excavationHeight * projectConstants.breakerHourForOneCubicMeterExcavation;
     }
