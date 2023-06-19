@@ -4,15 +4,15 @@ import '../../domain/model/currency.dart';
 class CostItem {
   final UnitPrice jobUnitPrice;
   final double quantity;
-  final CurrencyRates? currencyRates;
+  final CurrencyRates currencyRates;
   final double totalPriceTRY;
 
   CostItem(
     {
       required this.jobUnitPrice,
       required this.quantity,
-      this.currencyRates,
+      required this.currencyRates,
     }
-  ) : totalPriceTRY = jobUnitPrice.amount * quantity * jobUnitPrice.currency.toLiraRate(currencyRates ?? DefaultCurrencyRates());
+  ) : totalPriceTRY = jobUnitPrice.amount * quantity * jobUnitPrice.currency.toLiraRate(currencyRates);
 }
 
