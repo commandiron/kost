@@ -1,6 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kost/data/app_data.dart';
 import 'package:kost/domain/calculator/project_constants.dart';
+import 'package:kost/domain/model/currency.dart';
 
 import '../../presentation/model/cost_item.dart';
 import '../calculator/floor.dart';
@@ -41,15 +42,20 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
         ],
       ),
       unitPrices: const [],
+      currencyRates: DefaultCurrencyRates(),
       costItems: const []
     ),
   ){
     on<Init>((event, emit) {
       add(const FetchUnitPrices());
+      add(const FetchCurrencyRates());
       add(const CreateCostItems());
     });
     on<FetchUnitPrices>((event, emit) {
       emit(state.copyWith(unitPrices: AppData.unitPrices));
+    });
+    on<FetchCurrencyRates>((event, emit) {
+      emit(state.copyWith(currencyRates: DefaultCurrencyRates())); //Fetch currency rates.
     });
     on<CreateCostItems>((event, emit) {
       List<CostItem> costItems = [];
@@ -57,7 +63,8 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
         costItems.add(
           CostItem(
             jobUnitPrice: unitPrice,
-            quantity: state.quantityCalculator.getQuantityFromJobId(unitPrice.jobId)
+            quantity: state.quantityCalculator.getQuantityFromJobId(unitPrice.jobId),
+            currencyRates: state.currencyRates
           )
         );
       }

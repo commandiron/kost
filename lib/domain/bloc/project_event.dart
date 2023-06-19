@@ -19,6 +19,12 @@ class FetchUnitPrices extends ProjectEvent {
   List<Object?> get props => [];
 }
 
+class FetchCurrencyRates extends ProjectEvent {
+  const FetchCurrencyRates();
+  @override
+  List<Object?> get props => [];
+}
+
 class CreateCostItems extends ProjectEvent {
   const CreateCostItems();
   @override
