@@ -1,6 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kost/bloc/model/project_constants.dart';
-import 'package:kost/bloc/model/cost_item.dart';
 
 import 'model/floor.dart';
 import 'project_event.dart';
@@ -9,8 +8,8 @@ import 'project_state.dart';
 class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
   ProjectBloc() : super(
     ProjectState(
-      projectConstants: ProjectConstants(),
       projectCalculator: ProjectCalculator(
+        projectConstants: ProjectConstants(),
         excavationLength: 113.71,
         excavationArea: 798.74,
         floors: [
@@ -38,31 +37,10 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
           ),
         ],
       ),
-      excavationCostItems: List.empty(),
     )
-  ) {
-    on<Init>((event, emit) {
-      add(const CreateExcavationCostItems());
-    });
-    on<CreateExcavationCostItems>((event, emit) {
-      emit(
-        state.copyWith(
-          excavationCostItems: [
-            Shoring(
-              quantity: state.projectCalculator.excavationLength * state.projectCalculator.excavationHeight
-            ),
-            Excavation(
-              quantity: state.projectCalculator.excavationArea * state.projectCalculator.excavationHeight
-            ),
-            Breaker(
-              quantity: state.projectCalculator.excavationArea * state.projectCalculator.excavationHeight * state.projectConstants.breakerHourForOneCubicMeterExcavation
-            )
-          ]
-        )
-      );
-    });
-  }
+  );
+
   void init() {
-    add(const Init());
+
   }
 }

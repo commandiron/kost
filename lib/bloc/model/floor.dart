@@ -1,6 +1,10 @@
 import 'package:collection/collection.dart';
+import 'package:kost/bloc/model/project_constants.dart';
+
+import 'cost_item.dart';
 
 class ProjectCalculator {
+  final ProjectConstants projectConstants;
   final double excavationLength;
   final double excavationArea;
   final List<Floor> floors;
@@ -11,6 +15,7 @@ class ProjectCalculator {
 
   ProjectCalculator(
     {
+      required this.projectConstants,
       required this.excavationLength,
       required this.excavationArea,
       required this.floors,
@@ -48,6 +53,20 @@ class ProjectCalculator {
       }
     }
     return basementsHeight;
+  }
+
+  List<CostItem> get excavationCostItems {
+    return [
+      Shoring(
+          quantity: excavationLength *excavationHeight
+      ),
+      Excavation(
+          quantity: excavationArea * excavationHeight
+      ),
+      Breaker(
+          quantity: excavationArea * excavationHeight * projectConstants.breakerHourForOneCubicMeterExcavation
+      )
+    ];
   }
 }
 

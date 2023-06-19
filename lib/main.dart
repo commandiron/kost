@@ -40,26 +40,27 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       body: BlocBuilder<ProjectBloc, ProjectState>(
         builder: (context, state) {
+          final projectCalc = state.projectCalculator;
           return Container(
             alignment: Alignment.center,
             child: ListView.builder(
-              itemCount: state.excavationCostItems.length,
+              itemCount: projectCalc.excavationCostItems.length,
               itemBuilder: (context, index) {
                 return Row(
                   children: [
-                    Text(state.excavationCostItems[index].name),
+                    Text(projectCalc.excavationCostItems[index].name),
                     SizedBox(width: 16,),
-                    Text(state.excavationCostItems[index].explanation),
+                    Text(projectCalc.excavationCostItems[index].explanation),
                     SizedBox(width: 16,),
-                    Text(state.excavationCostItems[index].unitPrice.toString()),
-                    Text(state.excavationCostItems[index].currency.symbol),
+                    Text(projectCalc.excavationCostItems[index].unitPrice.toString()),
+                    Text(projectCalc.excavationCostItems[index].currency.symbol),
                     Text("/"),
-                    Text(state.excavationCostItems[index].unit.symbol),
+                    Text(projectCalc.excavationCostItems[index].unit.symbol),
                     SizedBox(width: 16,),
-                    Text(state.excavationCostItems[index].quantity.toString()),
-                    Text(state.excavationCostItems[index].unit.symbol),
+                    Text(projectCalc.excavationCostItems[index].quantity.toString()),
+                    Text(projectCalc.excavationCostItems[index].unit.symbol),
                     SizedBox(width: 16,),
-                    Text(state.excavationCostItems[index].totalPriceTRY.toString()),
+                    Text(projectCalc.excavationCostItems[index].totalPriceTRY.toString()),
                     Text(Currency.lira.symbol),
                   ],
                 );
