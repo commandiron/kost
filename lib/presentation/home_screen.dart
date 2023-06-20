@@ -15,40 +15,28 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       body: BlocBuilder<ProjectBloc, ProjectState>(
         builder: (context, state) {
-          final mainCategories = state.groupedCostItems.keys;
           return Container(
             alignment: Alignment.center,
             child: ListView.builder(
-              itemCount: mainCategories.length,
+              itemCount: state.costItems.length,
               itemBuilder: (context, index) {
-                final mainCategory = mainCategories.toList()[index];
-                final costItems = state.groupedCostItems[mainCategory] ?? [];
-                return Column(
+                final costItem = state.costItems[index];
+                return Row(
                   children: [
-                    Text(mainCategory.name),
-                    ListView.builder(
-                      shrinkWrap: true,
-                      itemCount: costItems.length,
-                      itemBuilder: (context, costItemIndex) {
-                        final costItem = costItems[costItemIndex];
-                        return Row(
-                          children: [
-                            Text(costItem.jobCategory.name),
-                            SizedBox(width: 16,),
-                            Text(costItem.unitPrice.amount.toString()),
-                            Text(costItem.unitPrice.currency.symbol),
-                            Text("/"),
-                            Text(costItem.unitPrice.unit.symbol),
-                            SizedBox(width: 16,),
-                            Text(costItem.quantity.toString()),
-                            Text(costItem.unitPrice.unit.symbol),
-                            SizedBox(width: 16,),
-                            Text(costItem.totalPriceTRY.toString()),
-                            Text("TL"),
-                          ],
-                        );
-                      },
-                    )
+                    Text(costItem.jobCategory.mainCategory.name),
+                    SizedBox(width: 16,),
+                    Text(costItem.jobCategory.name),
+                    SizedBox(width: 16,),
+                    Text(costItem.unitPrice.amount.toString()),
+                    Text(costItem.unitPrice.currency.symbol),
+                    Text("/"),
+                    Text(costItem.unitPrice.unit.symbol),
+                    SizedBox(width: 16,),
+                    Text(costItem.quantity.toString()),
+                    Text(costItem.unitPrice.unit.symbol),
+                    SizedBox(width: 16,),
+                    Text(costItem.totalPriceTRY.toString()),
+                    Text("TL"),
                   ],
                 );
               },
