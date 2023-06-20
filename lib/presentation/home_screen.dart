@@ -17,29 +17,42 @@ class HomeScreen extends StatelessWidget {
         builder: (context, state) {
           return Container(
             alignment: Alignment.center,
-            child: ListView.builder(
-              itemCount: state.costItems.length,
-              itemBuilder: (context, index) {
-                final costItem = state.costItems[index];
-                return Row(
+            child: Column(
+              children: [
+                ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: state.costItems.length,
+                  itemBuilder: (context, index) {
+                    final costItem = state.costItems[index];
+                    return Row(
+                      children: [
+                        Text(costItem.jobCategory.mainCategory.name),
+                        SizedBox(width: 16,),
+                        Text(costItem.jobCategory.name),
+                        SizedBox(width: 16,),
+                        Text(costItem.unitPrice.amount.toString()),
+                        Text(costItem.unitPrice.currency.symbol),
+                        Text("/"),
+                        Text(costItem.unitPrice.unit.symbol),
+                        SizedBox(width: 16,),
+                        Text(costItem.quantity.toString()),
+                        Text(costItem.unitPrice.unit.symbol),
+                        SizedBox(width: 16,),
+                        Text(costItem.totalPriceTRY.toString()),
+                        SizedBox(width: 4,),
+                        Text("TL"),
+                      ],
+                    );
+                  },
+                ),
+                Row(
                   children: [
-                    Text(costItem.jobCategory.mainCategory.name),
-                    SizedBox(width: 16,),
-                    Text(costItem.jobCategory.name),
-                    SizedBox(width: 16,),
-                    Text(costItem.unitPrice.amount.toString()),
-                    Text(costItem.unitPrice.currency.symbol),
-                    Text("/"),
-                    Text(costItem.unitPrice.unit.symbol),
-                    SizedBox(width: 16,),
-                    Text(costItem.quantity.toString()),
-                    Text(costItem.unitPrice.unit.symbol),
-                    SizedBox(width: 16,),
-                    Text(costItem.totalPriceTRY.toString()),
+                    Text(state.grandTotalTRY.toString()),
+                    SizedBox(width: 4,),
                     Text("TL"),
                   ],
-                );
-              },
+                ),
+              ],
             ),
           );
         },

@@ -12,6 +12,7 @@ class ProjectState extends Equatable{
   final CurrencyRates currencyRates;
   final List<JobCategory> enabledJobCategories;
   final List<CostItem> costItems;
+  final double grandTotalTRY;
 
   const ProjectState(
     {
@@ -20,6 +21,7 @@ class ProjectState extends Equatable{
       required this.currencyRates,
       required this.enabledJobCategories,
       required this.costItems,
+      required this.grandTotalTRY,
     }
   );
 
@@ -29,6 +31,7 @@ class ProjectState extends Equatable{
     CurrencyRates? currencyRates,
     List<JobCategory>? enabledJobCategories,
     List<CostItem>? costItems,
+    double? grandTotalTRY,
   }) {
     return ProjectState(
       quantityCalculator: quantityCalculator ?? this.quantityCalculator,
@@ -36,9 +39,10 @@ class ProjectState extends Equatable{
       currencyRates: currencyRates ?? this.currencyRates,
       enabledJobCategories: enabledJobCategories ?? this.enabledJobCategories,
       costItems: costItems ?? this.costItems,
+      grandTotalTRY: grandTotalTRY ?? this.grandTotalTRY
     );
   }
 
   @override
-  List<Object?> get props => [quantityCalculator, unitPrices, currencyRates, costItems, enabledJobCategories];
+  List<Object?> get props => [quantityCalculator, unitPrices, currencyRates, costItems, enabledJobCategories, grandTotalTRY];
 }

@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kost/data/app_data.dart';
 import 'package:kost/domain/calculator/project_constants.dart';
-import 'package:kost/domain/model/category.dart';
+import 'package:kost/domain/model/cost_template.dart';
 import 'package:kost/domain/model/currency.dart';
 
 import '../../presentation/model/cost_item.dart';
@@ -45,14 +45,14 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
       unitPrices: const [],
       currencyRates: DefaultCurrencyRates(),
       enabledJobCategories: const [],
-      costItems: const []
+      costItems: const [],
+      grandTotalTRY: 0
     ),
   ){
     on<Init>((event, emit) {
       add(const FetchUnitPrices());
       add(const FetchCurrencyRates());
       add(const FetchEnabledJobCategories());
-      add(const CreateGroupedCostItems());
     });
     on<FetchUnitPrices>((event, emit) {
       emit(state.copyWith(unitPrices: AppData.unitPrices));
@@ -61,25 +61,8 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
       emit(state.copyWith(currencyRates: DefaultCurrencyRates()));
     });
     on<FetchEnabledJobCategories>((event, emit) {
-      emit(
-        state.copyWith(
-          enabledJobCategories: [
-            JobCategory.shutcrete,
-            JobCategory.excavation,
-            JobCategory.breaker,
-          ]
-        )
-      );
-    });
-    on<ReplaceJobCategory>((event, emit) {
-      for (var enabledJobCategory in state.enabledJobCategories) {
-        if(enabledJobCategory.mainCategory == event.jobCategory.mainCategory) {
-          state.enabledJobCategories.remove(enabledJobCategory);
-          state.enabledJobCategories.add(event.jobCategory);
-        }
-      }
-      emit(state);
-      add(const CreateGroupedCostItems());
+      emit(state.copyWith(enabledJobCategories: RoughConstructionTemplate().jobCategories));
+      _refresh();
     });
     on<CreateGroupedCostItems>((event, emit) {
       List<CostItem> costItems = [];
@@ -97,7 +80,29 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
       }
       emit(state.copyWith(costItems: costItems));
     });
+    on<ReplaceJobCategory>((event, emit) {
+      for (var enabledJobCategory in state.enabledJobCategories) {
+        if(enabledJobCategory.mainCategory == event.jobCategory.mainCategory) {
+          state.enabledJobCategories.remove(enabledJobCategory);
+          state.enabledJobCategories.add(event.jobCategory);
+        }
+      }
+      _refresh();
+    });
+    on<CalculateGrandTotal>((event, emit) {
+      double grandTotalTRY = 0;
+      for (var costItem in state.costItems) {
+        grandTotalTRY += costItem.totalPriceTRY;
+      }
+      emit(state.copyWith(grandTotalTRY: grandTotalTRY));
+    });
   }
+
+  void _refresh() {
+    add(const CreateGroupedCostItems());
+    add(const CalculateGrandTotal());
+  }
+
   void init() {
     add(const Init());
   }

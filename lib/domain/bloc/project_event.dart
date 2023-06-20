@@ -33,6 +33,12 @@ class FetchEnabledJobCategories extends ProjectEvent {
   List<Object?> get props => [];
 }
 
+class CreateGroupedCostItems extends ProjectEvent {
+  const CreateGroupedCostItems();
+  @override
+  List<Object?> get props => [];
+}
+
 class ReplaceJobCategory extends ProjectEvent {
   final JobCategory jobCategory;
   const ReplaceJobCategory(this.jobCategory);
@@ -40,8 +46,8 @@ class ReplaceJobCategory extends ProjectEvent {
   List<Object?> get props => [jobCategory];
 }
 
-class CreateGroupedCostItems extends ProjectEvent {
-  const CreateGroupedCostItems();
+class CalculateGrandTotal extends ProjectEvent {
+  const CalculateGrandTotal();
   @override
   List<Object?> get props => [];
 }
