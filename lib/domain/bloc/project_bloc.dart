@@ -44,7 +44,7 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
       ),
       unitPrices: const [],
       currencyRates: DefaultCurrencyRates(),
-      enabledJobCategories: [],
+      enabledJobCategories: const [],
       costItems: const []
     ),
   ){
@@ -82,28 +82,23 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
       add(const CreateGroupedCostItems());
     });
     on<CreateGroupedCostItems>((event, emit) {
-      final costItems = _createCostItemsFromUnitPrices();
+      List<CostItem> costItems = [];
+      for (var unitPrice in state.unitPrices) {
+        if(state.enabledJobCategories.contains(unitPrice.jobCategory)) {
+          costItems.add(
+            CostItem(
+              jobCategory: unitPrice.jobCategory,
+              unitPrice: unitPrice,
+              quantity: state.quantityCalculator.getQuantityFromJobCategory(unitPrice.jobCategory),
+              currencyRates: state.currencyRates
+            )
+          );
+        }
+      }
       emit(state.copyWith(costItems: costItems));
     });
   }
   void init() {
     add(const Init());
-  }
-
-  List<CostItem> _createCostItemsFromUnitPrices() {
-    List<CostItem> costItems = [];
-    for (var unitPrice in state.unitPrices) {
-      if(state.enabledJobCategories.contains(unitPrice.jobCategory)) {
-        costItems.add(
-          CostItem(
-            jobCategory: unitPrice.jobCategory,
-            unitPrice: unitPrice,
-            quantity: state.quantityCalculator.getQuantityFromJobCategory(unitPrice.jobCategory),
-            currencyRates: state.currencyRates
-          )
-        );
-      }
-    }
-    return costItems;
   }
 }
