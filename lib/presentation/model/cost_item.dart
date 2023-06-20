@@ -4,7 +4,7 @@ import '../../domain/model/unit_price.dart';
 import '../../domain/model/currency.dart';
 
 class CostItem {
-  final MainCategory mainCategory;
+  final JobCategory jobCategory;
   final UnitPrice unitPrice;
   final double quantity;
   final CurrencyRates currencyRates;
@@ -12,7 +12,7 @@ class CostItem {
 
   CostItem(
     {
-      required this.mainCategory,
+      required this.jobCategory,
       required this.unitPrice,
       required this.quantity,
       required this.currencyRates,

@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kost/data/app_data.dart';
 import 'package:kost/domain/calculator/project_constants.dart';
@@ -43,7 +44,7 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
       ),
       unitPrices: const [],
       currencyRates: DefaultCurrencyRates(),
-      costItems: const []
+      groupedCostItems: const {}
     ),
   ){
     on<Init>((event, emit) {
@@ -62,14 +63,17 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
       for (var unitPrice in state.unitPrices) {
         costItems.add(
           CostItem(
-            mainCategory: unitPrice.jobCategory.mainCategory,
+            jobCategory: unitPrice.jobCategory,
             unitPrice: unitPrice,
             quantity: state.quantityCalculator.getQuantityFromJobCategory(unitPrice.jobCategory),
             currencyRates: state.currencyRates
           )
         );
       }
-      emit(state.copyWith(costItems: costItems));
+
+      final groupedCostItems = costItems.groupListsBy((element) => element.jobCategory.mainCategory,);
+
+      emit(state.copyWith(groupedCostItems: groupedCostItems));
     });
   }
   void init() {
