@@ -58,7 +58,6 @@ class QuantityCalculator {
   double getQuantityFromJobCategory(JobCategory jobCategory) {
     switch(jobCategory) {
       case JobCategory.shutcrete : return excavationLength * excavationHeight;
-      case JobCategory.boredPile : return 0;
       case JobCategory.excavation : return excavationArea * excavationHeight;
       case JobCategory.breaker : return excavationArea * excavationHeight * projectConstants.breakerHourForOneCubicMeterExcavation;
     }

@@ -2,6 +2,7 @@ import 'package:collection/collection.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kost/data/app_data.dart';
 import 'package:kost/domain/calculator/project_constants.dart';
+import 'package:kost/domain/model/category.dart';
 import 'package:kost/domain/model/currency.dart';
 
 import '../../presentation/model/cost_item.dart';
@@ -44,13 +45,15 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
       ),
       unitPrices: const [],
       currencyRates: DefaultCurrencyRates(),
+      enabledJobCategories: [],
       groupedCostItems: const {}
     ),
   ){
     on<Init>((event, emit) {
       add(const FetchUnitPrices());
       add(const FetchCurrencyRates());
-      add(const CreateCostItems());
+      add(const FetchEnabledJobCategories());
+      add(const CreateGroupedCostItems());
     });
     on<FetchUnitPrices>((event, emit) {
       emit(state.copyWith(unitPrices: AppData.unitPrices));
@@ -58,9 +61,44 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
     on<FetchCurrencyRates>((event, emit) {
       emit(state.copyWith(currencyRates: DefaultCurrencyRates()));
     });
-    on<CreateCostItems>((event, emit) {
-      List<CostItem> costItems = [];
-      for (var unitPrice in state.unitPrices) {
+    on<FetchEnabledJobCategories>((event, emit) {
+      emit(
+        state.copyWith(
+          enabledJobCategories: [
+            JobCategory.shutcrete,
+            JobCategory.excavation,
+            JobCategory.breaker,
+          ]
+        )
+      );
+    });
+    on<ReplaceJobCategory>((event, emit) {
+      for (var enabledJobCategory in state.enabledJobCategories) {
+        if(enabledJobCategory.mainCategory == event.jobCategory.mainCategory) {
+          state.enabledJobCategories.remove(enabledJobCategory);
+          state.enabledJobCategories.add(event.jobCategory);
+        }
+      }
+      emit(state);
+      add(const CreateGroupedCostItems());
+    });
+    on<CreateGroupedCostItems>((event, emit) {
+
+      final costItems = _createCostItemsFromUnitPrices();
+
+      final groupedCostItems = costItems.groupListsBy((element) => element.jobCategory.mainCategory,);
+
+      emit(state.copyWith(groupedCostItems: groupedCostItems));
+    });
+  }
+  void init() {
+    add(const Init());
+  }
+
+  List<CostItem> _createCostItemsFromUnitPrices() {
+    List<CostItem> costItems = [];
+    for (var unitPrice in state.unitPrices) {
+      if(state.enabledJobCategories.contains(unitPrice.jobCategory)) {
         costItems.add(
           CostItem(
             jobCategory: unitPrice.jobCategory,
@@ -70,13 +108,7 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
           )
         );
       }
-
-      final groupedCostItems = costItems.groupListsBy((element) => element.jobCategory.mainCategory,);
-
-      emit(state.copyWith(groupedCostItems: groupedCostItems));
-    });
-  }
-  void init() {
-    add(const Init());
+    }
+    return costItems;
   }
 }

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:kost/domain/model/category.dart';
+import 'package:kost/domain/model/currency.dart';
+import 'package:kost/domain/model/unit.dart';
 
 import '../domain/bloc/project_bloc.dart';
 import '../domain/bloc/project_state.dart';
@@ -23,8 +26,28 @@ class HomeScreen extends StatelessWidget {
                 return Column(
                   children: [
                     Text(mainCategory.name),
-                    Row(
-                      children: costItems.map((e) => Text(e.jobCategory.name)).toList(),
+                    ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: costItems.length,
+                      itemBuilder: (context, costItemIndex) {
+                        final costItem = costItems[costItemIndex];
+                        return Row(
+                          children: [
+                            Text(costItem.jobCategory.name),
+                            SizedBox(width: 16,),
+                            Text(costItem.unitPrice.amount.toString()),
+                            Text(costItem.unitPrice.currency.symbol),
+                            Text("/"),
+                            Text(costItem.unitPrice.unit.symbol),
+                            SizedBox(width: 16,),
+                            Text(costItem.quantity.toString()),
+                            Text(costItem.unitPrice.unit.symbol),
+                            SizedBox(width: 16,),
+                            Text(costItem.totalPriceTRY.toString()),
+                            Text("TL"),
+                          ],
+                        );
+                      },
                     )
                   ],
                 );

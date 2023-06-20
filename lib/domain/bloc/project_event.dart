@@ -1,5 +1,7 @@
 import 'package:equatable/equatable.dart';
 
+import '../model/category.dart';
+
 abstract class ProjectEvent extends Equatable {
   const ProjectEvent();
 
@@ -25,8 +27,21 @@ class FetchCurrencyRates extends ProjectEvent {
   List<Object?> get props => [];
 }
 
-class CreateCostItems extends ProjectEvent {
-  const CreateCostItems();
+class FetchEnabledJobCategories extends ProjectEvent {
+  const FetchEnabledJobCategories();
+  @override
+  List<Object?> get props => [];
+}
+
+class ReplaceJobCategory extends ProjectEvent {
+  final JobCategory jobCategory;
+  const ReplaceJobCategory(this.jobCategory);
+  @override
+  List<Object?> get props => [jobCategory];
+}
+
+class CreateGroupedCostItems extends ProjectEvent {
+  const CreateGroupedCostItems();
   @override
   List<Object?> get props => [];
 }
