@@ -8,6 +8,7 @@ class UnitPrice {
   double amount;
   Currency currency;
   Unit unit;
+  DateTime dateTime;
 
   UnitPrice(
     {
@@ -15,6 +16,7 @@ class UnitPrice {
       required this.amount,
       required this.currency,
       required this.unit,
+      required this.dateTime,
     }
   );
 }
