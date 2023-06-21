@@ -19,7 +19,7 @@ class HomeScreen extends StatelessWidget {
             alignment: Alignment.center,
             child: Column(
               children: [
-                ElevatedButton(onPressed: () => context.read<ProjectBloc>().add(ReplaceUnitPriceCategory(UnitPriceCategory.c35Concrete)), child: Text("selam")),
+                ElevatedButton(onPressed: () => context.read<ProjectBloc>().add(const ReplaceUnitPriceCategory(UnitPriceCategory.c35Concrete)), child: const Text("selam")),
                 ListView.builder(
                   shrinkWrap: true,
                   itemCount: mainCategories.length,
@@ -39,13 +39,13 @@ class HomeScreen extends StatelessWidget {
                                 Row(
                                   children: [
                                     Text(uiCostItem.jobName),
-                                    SizedBox(width: 16,),
+                                    const SizedBox(width: 16,),
                                     Text(uiCostItem.unitPriceName),
-                                    SizedBox(width: 16,),
+                                    const SizedBox(width: 16,),
                                     Text(uiCostItem.formattedUnitPrice),
-                                    SizedBox(width: 16,),
+                                    const SizedBox(width: 16,),
                                     Text(uiCostItem.formattedQuantity),
-                                    SizedBox(width: 16,),
+                                    const SizedBox(width: 16,),
                                     Text(uiCostItem.formattedTotalPriceTRY),
                                   ],
                                 ),
