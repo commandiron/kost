@@ -28,7 +28,6 @@ class CostItem {
   }
 }
 
-
 class UiCostItem {
   String jobName;
   String unitPriceName;
@@ -53,4 +52,3 @@ class UiCostItem {
     );
   }
 }
-
