@@ -11,7 +11,7 @@ class ProjectState extends Equatable{
   final List<UnitPrice> unitPrices;
   final CurrencyRates currencyRates;
   final List<UnitPriceCategory> enabledUnitPriceCategories;
-  final List<UiCostItem> uiCostItems;
+  final Map<MainCategory, List<UiCostItem>> groupedUiCostItems;
   final String formattedGrandTotalTRY;
 
   const ProjectState(
@@ -20,7 +20,7 @@ class ProjectState extends Equatable{
       required this.unitPrices,
       required this.currencyRates,
       required this.enabledUnitPriceCategories,
-      required this.uiCostItems,
+      required this.groupedUiCostItems,
       required this.formattedGrandTotalTRY,
     }
   );
@@ -30,7 +30,7 @@ class ProjectState extends Equatable{
     List<UnitPrice>? unitPrices,
     CurrencyRates? currencyRates,
     List<UnitPriceCategory>? enabledUnitPriceCategories,
-    List<UiCostItem>? uiCostItems,
+    Map<MainCategory, List<UiCostItem>>? groupedUiCostItems,
     String? formattedGrandTotalTRY,
 
   }) {
@@ -39,11 +39,11 @@ class ProjectState extends Equatable{
       unitPrices: unitPrices ?? this.unitPrices,
       currencyRates: currencyRates ?? this.currencyRates,
       enabledUnitPriceCategories: enabledUnitPriceCategories ?? this.enabledUnitPriceCategories,
-      uiCostItems: uiCostItems ?? this.uiCostItems,
+      groupedUiCostItems: groupedUiCostItems ?? this.groupedUiCostItems,
       formattedGrandTotalTRY: formattedGrandTotalTRY ?? this.formattedGrandTotalTRY
     );
   }
 
   @override
-  List<Object?> get props => [quantityCalculator, unitPrices, currencyRates, enabledUnitPriceCategories, uiCostItems, formattedGrandTotalTRY];
+  List<Object?> get props => [quantityCalculator, unitPrices, currencyRates, enabledUnitPriceCategories, groupedUiCostItems, formattedGrandTotalTRY];
 }

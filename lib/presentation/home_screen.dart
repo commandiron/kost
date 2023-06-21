@@ -14,6 +14,7 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       body: BlocBuilder<ProjectBloc, ProjectState>(
         builder: (context, state) {
+          final mainCategories =  state.groupedUiCostItems.keys.toList();
           return Container(
             alignment: Alignment.center,
             child: Column(
@@ -21,22 +22,35 @@ class HomeScreen extends StatelessWidget {
                 ElevatedButton(onPressed: () => context.read<ProjectBloc>().add(ReplaceUnitPriceCategory(UnitPriceCategory.c35Concrete)), child: Text("selam")),
                 ListView.builder(
                   shrinkWrap: true,
-                  itemCount: state.uiCostItems.length,
-                  itemBuilder: (context, index) {
-                    final uiCostItem = state.uiCostItems[index];
+                  itemCount: mainCategories.length,
+                  itemBuilder: (context, categoryIndex) {
+                    final mainCategory = mainCategories[categoryIndex];
+                    final uiCostItems = state.groupedUiCostItems[mainCategory] ?? [];
                     return Column(
                       children: [
-                        Row(
-                          children: [
-                            Text(uiCostItem.jobName),
-                            SizedBox(width: 16,),
-                            Text(uiCostItem.unitPriceName),
-                            SizedBox(width: 16,),
-                            Text(uiCostItem.formattedUnitPrice),
-                            SizedBox(width: 16,),
-                            Text(uiCostItem.formattedTotalPriceTRY),
-                          ],
-                        ),
+                        Text(mainCategory.nameTr),
+                        ListView.builder(
+                          shrinkWrap: true,
+                          itemCount: uiCostItems.length,
+                          itemBuilder: (context, index) {
+                            final uiCostItem = uiCostItems[index];
+                            return Column(
+                              children: [
+                                Row(
+                                  children: [
+                                    Text(uiCostItem.jobName),
+                                    SizedBox(width: 16,),
+                                    Text(uiCostItem.unitPriceName),
+                                    SizedBox(width: 16,),
+                                    Text(uiCostItem.formattedUnitPrice),
+                                    SizedBox(width: 16,),
+                                    Text(uiCostItem.formattedTotalPriceTRY),
+                                  ],
+                                ),
+                              ],
+                            );
+                          },
+                        )
                       ],
                     );
                   },
