@@ -71,7 +71,7 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
         UnitPriceCategory.c30Concrete,
       ]));
     });
-    on<CreateGroupedCostItems>((event, emit) {
+    on<CreateCostItems>((event, emit) {
       List<CostItem> costItems = [];
       for (var unitPrice in state.unitPrices) {
         if(state.enabledUnitPriceCategories.contains(unitPrice.category)) {
@@ -105,7 +105,7 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
   }
 
   void _refresh() {
-    add(const CreateGroupedCostItems());
+    add(const CreateCostItems());
     add(const CalculateGrandTotal());
   }
 

@@ -33,8 +33,8 @@ class FetchEnabledUnitPriceCategories extends ProjectEvent {
   List<Object?> get props => [];
 }
 
-class CreateGroupedCostItems extends ProjectEvent {
-  const CreateGroupedCostItems();
+class CreateCostItems extends ProjectEvent {
+  const CreateCostItems();
   @override
   List<Object?> get props => [];
 }
