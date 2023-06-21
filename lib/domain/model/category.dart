@@ -20,7 +20,7 @@ extension MainCategoryExtension on MainCategory {
 
 
 enum JobCategory {
-  shoring, excavation, breaker, foundationStabilization, subFoundationConcrete, pouringConcrete
+  shoring, excavation, breaker, foundationStabilization, subFoundationConcrete, pouringConcrete, rebar,
 }
 
 extension JobCategoryExtension on JobCategory {
@@ -32,6 +32,7 @@ extension JobCategoryExtension on JobCategory {
       case JobCategory.foundationStabilization : return "Temel altına stabilizasyon malzemesinin serilmesi";
       case JobCategory.subFoundationConcrete : return "Temel altı grobeton ve yalıtım koruma betonu atılması";
       case JobCategory.pouringConcrete : return "Betonarme betonu temini ve dökülmesi";
+      case JobCategory.rebar : return "Ø8-32 mm çapında betonarme çeliği temini ve döşenmesi";
     }
   }
 }
@@ -43,7 +44,8 @@ enum UnitPriceCategory {
   foundationStabilizationGravel(MainCategory.roughConstructionJobs, JobCategory.foundationStabilization),
   c16Concrete(MainCategory.roughConstructionJobs, JobCategory.subFoundationConcrete),
   c30Concrete(MainCategory.roughConstructionJobs, JobCategory.pouringConcrete),
-  c35Concrete(MainCategory.roughConstructionJobs, JobCategory.pouringConcrete);
+  c35Concrete(MainCategory.roughConstructionJobs, JobCategory.pouringConcrete),
+  s420Steel(MainCategory.roughConstructionJobs, JobCategory.rebar);
 
   const UnitPriceCategory(this.mainCategory, this.jobCategory);
   final MainCategory mainCategory;
@@ -60,6 +62,7 @@ extension UnitPriceCategoryExtension on UnitPriceCategory {
       case UnitPriceCategory.c16Concrete : return "C16 Beton";
       case UnitPriceCategory.c30Concrete : return "C30 Beton";
       case UnitPriceCategory.c35Concrete : return "C35 Beton";
+      case UnitPriceCategory.s420Steel : return "S420 Nervürlü İnşaat Demiri";
     }
   }
 }

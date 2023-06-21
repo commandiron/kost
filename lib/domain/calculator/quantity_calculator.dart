@@ -64,6 +64,7 @@ class QuantityCalculator {
       case UnitPriceCategory.c16Concrete : return excavationArea * (leanConcreteHeight + insulationConcreteHeight);
       case UnitPriceCategory.c30Concrete : return excavationArea * 100; //Yanlış düzeltilecek
       case UnitPriceCategory.c35Concrete : return excavationArea * 500; //Yanlış düzeltilecek
+      case UnitPriceCategory.s420Steel : return excavationArea * 500; // Yanlış düzeltilecek
     }
   }
 }

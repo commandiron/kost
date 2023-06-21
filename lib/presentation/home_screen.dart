@@ -44,6 +44,8 @@ class HomeScreen extends StatelessWidget {
                                     SizedBox(width: 16,),
                                     Text(uiCostItem.formattedUnitPrice),
                                     SizedBox(width: 16,),
+                                    Text(uiCostItem.formattedQuantity),
+                                    SizedBox(width: 16,),
                                     Text(uiCostItem.formattedTotalPriceTRY),
                                   ],
                                 ),

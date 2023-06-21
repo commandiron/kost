@@ -54,5 +54,12 @@ class AppData {
       unit: Unit.cubicMeters,
       dateTime: DateTime(2023, 01)
     ),
+    UnitPrice(
+      category: UnitPriceCategory.s420Steel,
+      amount: 15930,
+      currency: Currency.lira,
+      unit: Unit.ton,
+      dateTime: DateTime(2023, 01)
+    ),
   ];
 }

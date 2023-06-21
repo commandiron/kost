@@ -25,6 +25,7 @@ class CostItem {
       jobName: unitPrice.category.jobCategory.nameTr,
       unitPriceName: unitPrice.category.nameTr,
       formattedUnitPrice: "${unitPrice.amount} ${unitPrice.currency.symbol}/${unitPrice.unit.symbol}",
+      formattedQuantity: "${NumberFormat("#,##0.00", "tr_TR").format(quantity)} ${unitPrice.unit.symbol}",
       formattedTotalPriceTRY: "${NumberFormat("#,##0.00", "tr_TR").format(totalPriceTRY)} TL"
     );
   }
@@ -35,6 +36,7 @@ class UiCostItem {
   String jobName;
   String unitPriceName;
   String formattedUnitPrice;
+  String formattedQuantity;
   String formattedTotalPriceTRY;
 
   UiCostItem(
@@ -43,17 +45,8 @@ class UiCostItem {
       required this.jobName,
       required this.unitPriceName,
       required this.formattedUnitPrice,
+      required this.formattedQuantity,
       required this.formattedTotalPriceTRY,
     }
   );
-
-  UiCostItem fromCostItem(CostItem costItem) {
-    return UiCostItem(
-      mainCategory: mainCategory,
-      jobName: jobName,
-      unitPriceName: unitPriceName,
-      formattedUnitPrice: formattedUnitPrice,
-      formattedTotalPriceTRY: formattedTotalPriceTRY
-    );
-  }
 }
