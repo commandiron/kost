@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kost/data/app_data.dart';
 import 'package:kost/domain/calculator/project_constants.dart';
-import 'package:kost/domain/model/cost_template.dart';
+import 'package:kost/domain/model/category.dart';
 import 'package:kost/domain/model/currency.dart';
 
 import '../../presentation/model/cost_item.dart';
@@ -53,6 +53,7 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
       add(const FetchUnitPrices());
       add(const FetchCurrencyRates());
       add(const FetchEnabledUnitPriceCategories());
+      _refresh();
     });
     on<FetchUnitPrices>((event, emit) {
       emit(state.copyWith(unitPrices: AppData.unitPrices));
@@ -61,8 +62,14 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
       emit(state.copyWith(currencyRates: DefaultCurrencyRates()));
     });
     on<FetchEnabledUnitPriceCategories>((event, emit) {
-      emit(state.copyWith(enabledUnitPriceCategories: RoughConstructionTemplate().unitPriceCategories));
-      _refresh();
+      emit(state.copyWith(enabledUnitPriceCategories: [
+        UnitPriceCategory.shutcrete,
+        UnitPriceCategory.excavation,
+        UnitPriceCategory.breaker,
+        UnitPriceCategory.foundationStabilizationGravel,
+        UnitPriceCategory.c16Concrete,
+        UnitPriceCategory.c30Concrete,
+      ]));
     });
     on<CreateGroupedCostItems>((event, emit) {
       List<CostItem> costItems = [];

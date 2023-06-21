@@ -61,6 +61,9 @@ class QuantityCalculator {
       case UnitPriceCategory.excavation : return excavationArea * excavationHeight;
       case UnitPriceCategory.breaker : return excavationArea * excavationHeight * projectConstants.breakerHourForOneCubicMeterExcavation;
       case UnitPriceCategory.foundationStabilizationGravel : return excavationArea * stabilizationHeight;
+      case UnitPriceCategory.c16Concrete : return excavationArea * (leanConcreteHeight + insulationConcreteHeight);
+      case UnitPriceCategory.c30Concrete : return excavationArea * 100; //Yanlış düzeltilecek
+      case UnitPriceCategory.c35Concrete : return excavationArea * 500; //Yanlış düzeltilecek
     }
   }
 }

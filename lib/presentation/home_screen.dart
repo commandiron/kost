@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:kost/domain/bloc/project_event.dart';
 import 'package:kost/domain/model/category.dart';
 import 'package:kost/domain/model/currency.dart';
 import 'package:kost/domain/model/unit.dart';
@@ -19,6 +20,7 @@ class HomeScreen extends StatelessWidget {
             alignment: Alignment.center,
             child: Column(
               children: [
+                ElevatedButton(onPressed: () => context.read<ProjectBloc>().add(ReplaceUnitPriceCategory(UnitPriceCategory.c35Concrete)), child: Text("selam")),
                 ListView.builder(
                   shrinkWrap: true,
                   itemCount: state.costItems.length,

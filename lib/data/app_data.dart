@@ -28,6 +28,24 @@ class AppData {
       amount: 450,
       currency: Currency.lira,
       unit: Unit.cubicMeters,
-    )
+    ),
+    UnitPrice(
+      category: UnitPriceCategory.c16Concrete,
+      amount: 1800,
+      currency: Currency.lira,
+      unit: Unit.cubicMeters,
+    ),
+    UnitPrice(
+      category: UnitPriceCategory.c30Concrete,
+      amount: 1750,
+      currency: Currency.lira,
+      unit: Unit.cubicMeters,
+    ),
+    UnitPrice(
+      category: UnitPriceCategory.c35Concrete,
+      amount: 1850,
+      currency: Currency.lira,
+      unit: Unit.cubicMeters,
+    ),
   ];
 }

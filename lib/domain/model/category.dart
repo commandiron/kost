@@ -20,7 +20,7 @@ extension MainCategoryExtension on MainCategory {
 
 
 enum JobCategory {
-  shoring, excavation, breaker, foundationStabilization
+  shoring, excavation, breaker, foundationStabilization, subFoundationConcrete, pouringConcrete
 }
 
 extension JobCategoryExtension on JobCategory {
@@ -30,6 +30,8 @@ extension JobCategoryExtension on JobCategory {
       case JobCategory.excavation : return "Kazı yapılması ve çıkan molozun şantiye dışına gönderilmesi";
       case JobCategory.breaker : return "Kırıcı çalıştırılması";
       case JobCategory.foundationStabilization : return "Temel altına stabilizasyon malzemesinin serilmesi";
+      case JobCategory.subFoundationConcrete : return "Temel altı grobeton ve yalıtım koruma betonu atılması";
+      case JobCategory.pouringConcrete : return "Betonarme betonu temini ve dökülmesi";
     }
   }
 }
@@ -38,7 +40,10 @@ enum UnitPriceCategory {
   shutcrete(MainCategory.excavationJobs, JobCategory.shoring),
   excavation(MainCategory.excavationJobs, JobCategory.excavation),
   breaker(MainCategory.excavationJobs, JobCategory.breaker),
-  foundationStabilizationGravel(MainCategory.roughConstructionJobs, JobCategory.foundationStabilization);
+  foundationStabilizationGravel(MainCategory.roughConstructionJobs, JobCategory.foundationStabilization),
+  c16Concrete(MainCategory.roughConstructionJobs, JobCategory.subFoundationConcrete),
+  c30Concrete(MainCategory.roughConstructionJobs, JobCategory.pouringConcrete),
+  c35Concrete(MainCategory.roughConstructionJobs, JobCategory.pouringConcrete);
 
   const UnitPriceCategory(this.mainCategory, this.jobCategory);
   final MainCategory mainCategory;
@@ -52,6 +57,9 @@ extension UnitPriceCategoryExtension on UnitPriceCategory {
       case UnitPriceCategory.excavation : return "Hafriyat";
       case UnitPriceCategory.breaker : return "Kırıcı";
       case UnitPriceCategory.foundationStabilizationGravel : return "Mıcır";
+      case UnitPriceCategory.c16Concrete : return "C16 Beton";
+      case UnitPriceCategory.c30Concrete : return "C30 Beton";
+      case UnitPriceCategory.c35Concrete : return "C35 Beton";
     }
   }
 }
