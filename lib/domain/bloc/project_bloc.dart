@@ -69,6 +69,11 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
     on<CreateCostItems>((event, emit) {
       List<CostItem> costItems = [];
       double grandTotalTRY = 0;
+
+      if(!_isAllEnabledUnitPriceCategoriesInUnitPrices) {
+        throw Exception("All enabled unit prices in the template are NOT included in fetched unit prices.");
+      }
+
       for (var unitPrice in state.unitPrices) {
         if(state.costTemplate.enabledUnitPriceCategories.contains(unitPrice.category)) {
           final costItem = CostItem(
@@ -98,6 +103,15 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
 
   void _refresh() {
     add(const CreateCostItems());
+  }
+
+  bool get _isAllEnabledUnitPriceCategoriesInUnitPrices  {
+    for (var enabledUnitPriceCategory in state.costTemplate.enabledUnitPriceCategories) {
+      if(!state.unitPrices.map((e) => e.category).toList().contains(enabledUnitPriceCategory)) {
+        return false;
+      }
+    }
+    return true;
   }
 
   void init() {
