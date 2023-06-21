@@ -80,6 +80,13 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
       }
       emit(state.copyWith(costItems: costItems));
     });
+    on<CalculateGrandTotal>((event, emit) {
+      double grandTotalTRY = 0;
+      for (var costItem in state.costItems) {
+        grandTotalTRY += costItem.totalPriceTRY;
+      }
+      emit(state.copyWith(grandTotalTRY: grandTotalTRY));
+    });
     on<ReplaceJobCategory>((event, emit) {
       for (var enabledJobCategory in state.enabledJobCategories) {
         if(enabledJobCategory.mainCategory == event.jobCategory.mainCategory) {
@@ -88,13 +95,6 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
         }
       }
       _refresh();
-    });
-    on<CalculateGrandTotal>((event, emit) {
-      double grandTotalTRY = 0;
-      for (var costItem in state.costItems) {
-        grandTotalTRY += costItem.totalPriceTRY;
-      }
-      emit(state.copyWith(grandTotalTRY: grandTotalTRY));
     });
   }
 

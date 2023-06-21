@@ -10,5 +10,6 @@ class RoughConstructionTemplate extends CostTemplate {
     JobCategory.shutcrete,
     JobCategory.excavation,
     JobCategory.breaker,
+    JobCategory.foundationStabilizationGravel
   ];
 }

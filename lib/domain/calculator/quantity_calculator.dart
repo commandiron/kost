@@ -60,6 +60,7 @@ class QuantityCalculator {
       case JobCategory.shutcrete : return excavationLength * excavationHeight;
       case JobCategory.excavation : return excavationArea * excavationHeight;
       case JobCategory.breaker : return excavationArea * excavationHeight * projectConstants.breakerHourForOneCubicMeterExcavation;
+      case JobCategory.foundationStabilizationGravel : return excavationArea * stabilizationHeight;
     }
   }
 }

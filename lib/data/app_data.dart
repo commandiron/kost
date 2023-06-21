@@ -22,6 +22,12 @@ class AppData {
       amount: 1500,
       currency: Currency.lira,
       unit: Unit.hour,
+    ),
+    UnitPrice(
+      jobCategory: JobCategory.foundationStabilizationGravel,
+      amount: 450,
+      currency: Currency.lira,
+      unit: Unit.cubicMeters,
     )
   ];
 }
