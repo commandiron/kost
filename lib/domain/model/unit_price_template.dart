@@ -23,7 +23,8 @@ class BuildingCostTemplate extends CostTemplate {
       UnitPriceCategory.foundationStabilizationGravel,
       UnitPriceCategory.c16Concrete,
       UnitPriceCategory.c30Concrete,
-      UnitPriceCategory.s420Steel
+      UnitPriceCategory.s420Steel,
+      UnitPriceCategory.plywood
     ];
   }
 }

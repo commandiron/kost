@@ -1,11 +1,11 @@
 class Floor {
-  final double area;
+  final double ceilingArea;
   final double height;
   final FloorType type;
 
   Floor (
     {
-      required this.area,
+      required this.ceilingArea,
       this.height = 3.3,
       required this.type
     }

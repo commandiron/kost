@@ -61,5 +61,12 @@ class AppData {
       unit: Unit.ton,
       dateTime: DateTime(2023, 01)
     ),
+    UnitPrice(
+      category: UnitPriceCategory.plywood,
+      amount: 600,
+      currency: Currency.lira,
+      unit: Unit.squareMeters,
+      dateTime: DateTime(2023, 01)
+    ),
   ];
 }

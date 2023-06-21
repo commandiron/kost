@@ -21,24 +21,24 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
         excavationArea: 798.74,
         floors: [
           Floor(
-            area: 249,
+            ceilingArea: 249,
             type: FloorType.k2,
           ),
           Floor(
-            area: 249,
+            ceilingArea: 249,
             type: FloorType.k1,
           ),
           Floor(
-            area: 249,
+            ceilingArea: 249,
             type: FloorType.z,
           ),
           Floor(
-            area: 689,
+            ceilingArea: 689,
             height: 3.15,
             type: FloorType.b1,
           ),
           Floor(
-            area: 689,
+            ceilingArea: 689,
             height: 3.15,
             type: FloorType.b2,
           ),

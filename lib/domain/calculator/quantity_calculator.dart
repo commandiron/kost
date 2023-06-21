@@ -8,10 +8,11 @@ class QuantityCalculator {
   final double excavationLength;
   final double excavationArea;
   final List<Floor> floors;
-  double foundationHeight;
+  final double foundationHeight;
   final double insulationConcreteHeight;
   final double leanConcreteHeight;
   final double stabilizationHeight;
+  final double elevationTowerArea;
 
   QuantityCalculator(
     {
@@ -23,6 +24,7 @@ class QuantityCalculator {
       this.insulationConcreteHeight = 0.05,
       this.leanConcreteHeight = 0.10,
       this.stabilizationHeight = 0.30,
+      this.elevationTowerArea = 30,
     }
   );
 
@@ -42,6 +44,12 @@ class QuantityCalculator {
 
     return null;
   }
+  Floor? get groundFloor {
+    return floors.firstWhereOrNull((e) => e.type == FloorType.z);
+  }
+  Floor? get firstFloor {
+    return floors.firstWhereOrNull((e) => e.type == FloorType.k1);
+  }
   List<Floor>? get basementFloors => floors.where((floor) => floor.type == FloorType.b3 || floor.type == FloorType.b2 || floor.type == FloorType.b1).toList();
 
   double get excavationHeight => stabilizationHeight + leanConcreteHeight + insulationConcreteHeight + foundationHeight + basementsHeight;
@@ -54,6 +62,27 @@ class QuantityCalculator {
     }
     return basementsHeight;
   }
+  double get roughConstructionArea {
+    double roughConstructionArea = 0;
+    roughConstructionArea += firstBasementFloor?.ceilingArea ?? 0; //Foundation
+    for (var floor in floors) {
+      roughConstructionArea += floor.ceilingArea;
+    }
+    roughConstructionArea += elevationTowerArea;
+    return roughConstructionArea;
+  }
+
+  double get totalFormWorkArea {
+    return roughConstructionArea;
+  }
+
+  double get totalStructuralConcrete {
+    return totalFormWorkArea * projectConstants.concreteCubicMeterForOneSquareMeterFormWork;
+  }
+
+  double get totalStructuralSteel {
+    return totalStructuralConcrete * projectConstants.rebarTonForOneCubicMeterConcrete;
+  }
 
   double getQuantityFromUnitPriceCategory(UnitPriceCategory unitPriceCategory) {
     switch(unitPriceCategory) {
@@ -62,9 +91,10 @@ class QuantityCalculator {
       case UnitPriceCategory.breaker : return excavationArea * excavationHeight * projectConstants.breakerHourForOneCubicMeterExcavation;
       case UnitPriceCategory.foundationStabilizationGravel : return excavationArea * stabilizationHeight;
       case UnitPriceCategory.c16Concrete : return excavationArea * (leanConcreteHeight + insulationConcreteHeight);
-      case UnitPriceCategory.c30Concrete : return excavationArea * 100; //Yanlış düzeltilecek
-      case UnitPriceCategory.c35Concrete : return excavationArea * 500; //Yanlış düzeltilecek
-      case UnitPriceCategory.s420Steel : return excavationArea * 500; // Yanlış düzeltilecek
+      case UnitPriceCategory.c30Concrete : return totalStructuralConcrete;
+      case UnitPriceCategory.c35Concrete : return totalStructuralConcrete;
+      case UnitPriceCategory.s420Steel : return totalStructuralSteel;
+      case UnitPriceCategory.plywood : return totalFormWorkArea;
     }
   }
 }
