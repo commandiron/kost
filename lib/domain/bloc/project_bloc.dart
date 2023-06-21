@@ -44,7 +44,7 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
       ),
       unitPrices: const [],
       currencyRates: DefaultCurrencyRates(),
-      enabledJobCategories: const [],
+      enabledUnitPriceCategories: const [],
       costItems: const [],
       grandTotalTRY: 0
     ),
@@ -52,7 +52,7 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
     on<Init>((event, emit) {
       add(const FetchUnitPrices());
       add(const FetchCurrencyRates());
-      add(const FetchEnabledJobCategories());
+      add(const FetchEnabledUnitPriceCategories());
     });
     on<FetchUnitPrices>((event, emit) {
       emit(state.copyWith(unitPrices: AppData.unitPrices));
@@ -60,19 +60,18 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
     on<FetchCurrencyRates>((event, emit) {
       emit(state.copyWith(currencyRates: DefaultCurrencyRates()));
     });
-    on<FetchEnabledJobCategories>((event, emit) {
-      emit(state.copyWith(enabledJobCategories: RoughConstructionTemplate().jobCategories));
+    on<FetchEnabledUnitPriceCategories>((event, emit) {
+      emit(state.copyWith(enabledUnitPriceCategories: RoughConstructionTemplate().unitPriceCategories));
       _refresh();
     });
     on<CreateGroupedCostItems>((event, emit) {
       List<CostItem> costItems = [];
       for (var unitPrice in state.unitPrices) {
-        if(state.enabledJobCategories.contains(unitPrice.jobCategory)) {
+        if(state.enabledUnitPriceCategories.contains(unitPrice.category)) {
           costItems.add(
             CostItem(
-              jobCategory: unitPrice.jobCategory,
               unitPrice: unitPrice,
-              quantity: state.quantityCalculator.getQuantityFromJobCategory(unitPrice.jobCategory),
+              quantity: state.quantityCalculator.getQuantityFromUnitPriceCategory(unitPrice.category),
               currencyRates: state.currencyRates
             )
           );
@@ -87,11 +86,11 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
       }
       emit(state.copyWith(grandTotalTRY: grandTotalTRY));
     });
-    on<ReplaceJobCategory>((event, emit) {
-      for (var enabledJobCategory in state.enabledJobCategories) {
-        if(enabledJobCategory.mainCategory == event.jobCategory.mainCategory) {
-          state.enabledJobCategories.remove(enabledJobCategory);
-          state.enabledJobCategories.add(event.jobCategory);
+    on<ReplaceUnitPriceCategory>((event, emit) {
+      for (var enabledUnitPriceCategory in state.enabledUnitPriceCategories) {
+        if(enabledUnitPriceCategory.jobCategory == event.unitPriceCategory.jobCategory) {
+          state.enabledUnitPriceCategories.remove(enabledUnitPriceCategory);
+          state.enabledUnitPriceCategories.add(event.unitPriceCategory);
         }
       }
       _refresh();

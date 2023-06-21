@@ -6,25 +6,25 @@ import '../domain/model/unit.dart';
 class AppData {
   static List<UnitPrice> unitPrices = [
     UnitPrice(
-      jobCategory: JobCategory.shutcrete,
+      category: UnitPriceCategory.shutcrete,
       amount: 1540,
       currency: Currency.lira,
       unit: Unit.squareMeters,
     ),
     UnitPrice(
-      jobCategory: JobCategory.excavation,
+      category: UnitPriceCategory.excavation,
       amount: 450,
       currency: Currency.lira,
       unit: Unit.cubicMeters,
     ),
     UnitPrice(
-      jobCategory: JobCategory.breaker,
+      category: UnitPriceCategory.breaker,
       amount: 1500,
       currency: Currency.lira,
       unit: Unit.hour,
     ),
     UnitPrice(
-      jobCategory: JobCategory.foundationStabilizationGravel,
+      category: UnitPriceCategory.foundationStabilizationGravel,
       amount: 450,
       currency: Currency.lira,
       unit: Unit.cubicMeters,

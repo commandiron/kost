@@ -27,8 +27,8 @@ class FetchCurrencyRates extends ProjectEvent {
   List<Object?> get props => [];
 }
 
-class FetchEnabledJobCategories extends ProjectEvent {
-  const FetchEnabledJobCategories();
+class FetchEnabledUnitPriceCategories extends ProjectEvent {
+  const FetchEnabledUnitPriceCategories();
   @override
   List<Object?> get props => [];
 }
@@ -45,9 +45,9 @@ class CalculateGrandTotal extends ProjectEvent {
   List<Object?> get props => [];
 }
 
-class ReplaceJobCategory extends ProjectEvent {
-  final JobCategory jobCategory;
-  const ReplaceJobCategory(this.jobCategory);
+class ReplaceUnitPriceCategory extends ProjectEvent {
+  final UnitPriceCategory unitPriceCategory;
+  const ReplaceUnitPriceCategory(this.unitPriceCategory);
   @override
-  List<Object?> get props => [jobCategory];
+  List<Object?> get props => [unitPriceCategory];
 }

@@ -55,12 +55,12 @@ class QuantityCalculator {
     return basementsHeight;
   }
 
-  double getQuantityFromJobCategory(JobCategory jobCategory) {
-    switch(jobCategory) {
-      case JobCategory.shutcrete : return excavationLength * excavationHeight;
-      case JobCategory.excavation : return excavationArea * excavationHeight;
-      case JobCategory.breaker : return excavationArea * excavationHeight * projectConstants.breakerHourForOneCubicMeterExcavation;
-      case JobCategory.foundationStabilizationGravel : return excavationArea * stabilizationHeight;
+  double getQuantityFromUnitPriceCategory(UnitPriceCategory unitPriceCategory) {
+    switch(unitPriceCategory) {
+      case UnitPriceCategory.shutcrete : return excavationLength * excavationHeight;
+      case UnitPriceCategory.excavation : return excavationArea * excavationHeight;
+      case UnitPriceCategory.breaker : return excavationArea * excavationHeight * projectConstants.breakerHourForOneCubicMeterExcavation;
+      case UnitPriceCategory.foundationStabilizationGravel : return excavationArea * stabilizationHeight;
     }
   }
 }

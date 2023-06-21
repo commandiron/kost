@@ -28,9 +28,9 @@ class HomeScreen extends StatelessWidget {
                       children: [
                         Row(
                           children: [
-                            Text(costItem.jobCategory.mainCategory.name),
+                            Text(costItem.unitPrice.category.jobCategory.name),
                             SizedBox(width: 16,),
-                            Text(costItem.jobCategory.name),
+                            Text(costItem.unitPrice.category.name),
                             SizedBox(width: 16,),
                             Text(costItem.unitPrice.amount.toString()),
                             Text(costItem.unitPrice.currency.symbol),

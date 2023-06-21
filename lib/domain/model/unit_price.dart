@@ -4,14 +4,14 @@ import 'category.dart';
 import 'currency.dart';
 
 class UnitPrice {
-  JobCategory jobCategory;
+  UnitPriceCategory category;
   double amount;
   Currency currency;
   Unit unit;
 
   UnitPrice(
     {
-      required this.jobCategory,
+      required this.category,
       required this.amount,
       required this.currency,
       required this.unit,

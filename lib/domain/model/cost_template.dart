@@ -1,15 +1,15 @@
 import 'category.dart';
 
 abstract class CostTemplate {
-  late final List<JobCategory> jobCategories;
+  late final List<UnitPriceCategory> unitPriceCategories;
 }
 
 class RoughConstructionTemplate extends CostTemplate {
   @override
-  List<JobCategory> get jobCategories => [
-    JobCategory.shutcrete,
-    JobCategory.excavation,
-    JobCategory.breaker,
-    JobCategory.foundationStabilizationGravel
+  List<UnitPriceCategory> get unitPriceCategories => [
+    UnitPriceCategory.shutcrete,
+    UnitPriceCategory.excavation,
+    UnitPriceCategory.breaker,
+    UnitPriceCategory.foundationStabilizationGravel
   ];
 }
