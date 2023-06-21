@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:kost/domain/model/currency.dart';
+import 'package:kost/domain/model/unit_price_template.dart';
 import '../../presentation/model/cost_item.dart';
 import '../model/category.dart';
 import '../model/unit_price.dart';
@@ -10,7 +11,7 @@ class ProjectState extends Equatable{
   final QuantityCalculator quantityCalculator;
   final List<UnitPrice> unitPrices;
   final CurrencyRates currencyRates;
-  final List<UnitPriceCategory> enabledUnitPriceCategories;
+  final CostTemplate costTemplate;
   final Map<MainCategory, List<UiCostItem>> groupedUiCostItems;
   final String formattedGrandTotalTRY;
 
@@ -19,7 +20,7 @@ class ProjectState extends Equatable{
       required this.quantityCalculator,
       required this.unitPrices,
       required this.currencyRates,
-      required this.enabledUnitPriceCategories,
+      required this.costTemplate,
       required this.groupedUiCostItems,
       required this.formattedGrandTotalTRY,
     }
@@ -29,7 +30,7 @@ class ProjectState extends Equatable{
     QuantityCalculator? quantityCalculator,
     List<UnitPrice>? unitPrices,
     CurrencyRates? currencyRates,
-    List<UnitPriceCategory>? enabledUnitPriceCategories,
+    CostTemplate? costTemplate,
     Map<MainCategory, List<UiCostItem>>? groupedUiCostItems,
     String? formattedGrandTotalTRY,
 
@@ -38,12 +39,12 @@ class ProjectState extends Equatable{
       quantityCalculator: quantityCalculator ?? this.quantityCalculator,
       unitPrices: unitPrices ?? this.unitPrices,
       currencyRates: currencyRates ?? this.currencyRates,
-      enabledUnitPriceCategories: enabledUnitPriceCategories ?? this.enabledUnitPriceCategories,
+      costTemplate: costTemplate ?? this.costTemplate,
       groupedUiCostItems: groupedUiCostItems ?? this.groupedUiCostItems,
       formattedGrandTotalTRY: formattedGrandTotalTRY ?? this.formattedGrandTotalTRY
     );
   }
 
   @override
-  List<Object?> get props => [quantityCalculator, unitPrices, currencyRates, enabledUnitPriceCategories, groupedUiCostItems, formattedGrandTotalTRY];
+  List<Object?> get props => [quantityCalculator, unitPrices, currencyRates, costTemplate, groupedUiCostItems, formattedGrandTotalTRY];
 }

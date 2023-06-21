@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:kost/data/app_data.dart';
 import 'package:kost/domain/calculator/project_constants.dart';
-import 'package:kost/domain/model/category.dart';
 import 'package:kost/domain/model/currency.dart';
+import 'package:kost/domain/model/unit_price_template.dart';
 
 import '../../presentation/model/cost_item.dart';
 import '../calculator/floor.dart';
@@ -46,7 +46,7 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
       ),
       unitPrices: const [],
       currencyRates: DefaultCurrencyRates(),
-      enabledUnitPriceCategories: const [],
+      costTemplate: EmptyCostTemplate(),
       groupedUiCostItems: const {},
       formattedGrandTotalTRY: ""
     ),
@@ -54,7 +54,7 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
     on<Init>((event, emit) {
       add(const FetchUnitPrices());
       add(const FetchCurrencyRates());
-      add(const FetchEnabledUnitPriceCategories());
+      add(const FetchCostTemplate());
       _refresh();
     });
     on<FetchUnitPrices>((event, emit) {
@@ -63,21 +63,14 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
     on<FetchCurrencyRates>((event, emit) {
       emit(state.copyWith(currencyRates: DefaultCurrencyRates()));
     });
-    on<FetchEnabledUnitPriceCategories>((event, emit) {
-      emit(state.copyWith(enabledUnitPriceCategories: [
-        UnitPriceCategory.shutcrete,
-        UnitPriceCategory.excavation,
-        UnitPriceCategory.breaker,
-        UnitPriceCategory.foundationStabilizationGravel,
-        UnitPriceCategory.c16Concrete,
-        UnitPriceCategory.c30Concrete,
-      ]));
+    on<FetchCostTemplate>((event, emit) {
+      emit(state.copyWith(costTemplate: BuildingCostTemplate()));
     });
     on<CreateCostItems>((event, emit) {
       List<CostItem> costItems = [];
       double grandTotalTRY = 0;
       for (var unitPrice in state.unitPrices) {
-        if(state.enabledUnitPriceCategories.contains(unitPrice.category)) {
+        if(state.costTemplate.enabledUnitPriceCategories.contains(unitPrice.category)) {
           final costItem = CostItem(
             unitPrice: unitPrice,
             quantity: state.quantityCalculator.getQuantityFromUnitPriceCategory(unitPrice.category),
@@ -93,10 +86,10 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
       emit(state.copyWith(groupedUiCostItems: groupedUiCostItems, formattedGrandTotalTRY: formattedGrandTotalTRY));
     });
     on<ReplaceUnitPriceCategory>((event, emit) {
-      for (var enabledUnitPriceCategory in state.enabledUnitPriceCategories) {
+      for (var enabledUnitPriceCategory in state.costTemplate.enabledUnitPriceCategories) {
         if(enabledUnitPriceCategory.jobCategory == event.unitPriceCategory.jobCategory) {
-          state.enabledUnitPriceCategories.remove(enabledUnitPriceCategory);
-          state.enabledUnitPriceCategories.add(event.unitPriceCategory);
+          state.costTemplate.enabledUnitPriceCategories.remove(enabledUnitPriceCategory);
+          state.costTemplate.enabledUnitPriceCategories.add(event.unitPriceCategory);
         }
       }
       _refresh();

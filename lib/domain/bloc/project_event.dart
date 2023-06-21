@@ -27,8 +27,8 @@ class FetchCurrencyRates extends ProjectEvent {
   List<Object?> get props => [];
 }
 
-class FetchEnabledUnitPriceCategories extends ProjectEvent {
-  const FetchEnabledUnitPriceCategories();
+class FetchCostTemplate extends ProjectEvent {
+  const FetchCostTemplate();
   @override
   List<Object?> get props => [];
 }
