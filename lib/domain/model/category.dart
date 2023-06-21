@@ -39,7 +39,7 @@ extension JobCategoryExtension on JobCategory {
 }
 
 enum UnitPriceCategory {
-  shutcrete(MainCategory.excavationJobs, JobCategory.shoring),
+  shutCrete(MainCategory.excavationJobs, JobCategory.shoring),
   excavation(MainCategory.excavationJobs, JobCategory.excavation),
   breaker(MainCategory.excavationJobs, JobCategory.breaker),
   foundationStabilizationGravel(MainCategory.roughConstructionJobs, JobCategory.foundationStabilization),
@@ -57,7 +57,7 @@ enum UnitPriceCategory {
 extension UnitPriceCategoryExtension on UnitPriceCategory {
   String get nameTr {
     switch(this) {
-      case UnitPriceCategory.shutcrete : return "Shutcrete";
+      case UnitPriceCategory.shutCrete : return "Shutcrete";
       case UnitPriceCategory.excavation : return "Hafriyat";
       case UnitPriceCategory.breaker : return "Kırıcı";
       case UnitPriceCategory.foundationStabilizationGravel : return "Mıcır";

@@ -17,7 +17,7 @@ class EmptyCostTemplate extends CostTemplate {
 class BuildingCostTemplate extends CostTemplate {
   BuildingCostTemplate(){
     enabledUnitPriceCategories = [
-      UnitPriceCategory.shutcrete,
+      UnitPriceCategory.shutCrete,
       UnitPriceCategory.excavation,
       UnitPriceCategory.breaker,
       UnitPriceCategory.foundationStabilizationGravel,

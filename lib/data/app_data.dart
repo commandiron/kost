@@ -6,7 +6,7 @@ import '../domain/model/unit.dart';
 class AppData {
   static List<UnitPrice> unitPrices = [
     UnitPrice(
-      category: UnitPriceCategory.shutcrete,
+      category: UnitPriceCategory.shutCrete,
       amount: 1540,
       currency: Currency.lira,
       unit: Unit.squareMeters,

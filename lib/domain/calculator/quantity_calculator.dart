@@ -62,6 +62,7 @@ class QuantityCalculator {
     }
     return basementsHeight;
   }
+
   double get roughConstructionArea {
     double roughConstructionArea = 0;
     roughConstructionArea += firstBasementFloor?.ceilingArea ?? 0; //Foundation
@@ -86,7 +87,7 @@ class QuantityCalculator {
 
   double getQuantityFromUnitPriceCategory(UnitPriceCategory unitPriceCategory) {
     switch(unitPriceCategory) {
-      case UnitPriceCategory.shutcrete : return excavationLength * excavationHeight;
+      case UnitPriceCategory.shutCrete : return excavationLength * excavationHeight;
       case UnitPriceCategory.excavation : return excavationArea * excavationHeight;
       case UnitPriceCategory.breaker : return excavationArea * excavationHeight * projectConstants.breakerHourForOneCubicMeterExcavation;
       case UnitPriceCategory.foundationStabilizationGravel : return excavationArea * stabilizationHeight;
