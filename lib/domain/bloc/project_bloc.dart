@@ -1,4 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 import 'package:kost/data/app_data.dart';
 import 'package:kost/domain/calculator/project_constants.dart';
 import 'package:kost/domain/model/category.dart';
@@ -46,7 +47,7 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
       currencyRates: DefaultCurrencyRates(),
       enabledUnitPriceCategories: const [],
       uiCostItems: const [],
-      grandTotalTRY: 0
+      formattedGrandTotalTRY: ""
     ),
   ){
     on<Init>((event, emit) {
@@ -86,7 +87,8 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
         }
       }
       final uiCostItems = costItems.map((costItem) => costItem.toUiCostItem()).toList();
-      emit(state.copyWith(uiCostItems: uiCostItems, grandTotalTRY: grandTotalTRY));
+      final formattedGrandTotalTRY = "${NumberFormat("#,##0.00", "tr_TR").format(grandTotalTRY)} TL";
+      emit(state.copyWith(uiCostItems: uiCostItems, formattedGrandTotalTRY: formattedGrandTotalTRY));
     });
     on<ReplaceUnitPriceCategory>((event, emit) {
       for (var enabledUnitPriceCategory in state.enabledUnitPriceCategories) {

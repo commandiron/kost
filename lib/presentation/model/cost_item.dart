@@ -3,6 +3,7 @@ import 'package:kost/domain/model/unit.dart';
 
 import '../../domain/model/unit_price.dart';
 import '../../domain/model/currency.dart';
+import 'package:intl/intl.dart';
 
 class CostItem {
   final UnitPrice unitPrice;
@@ -23,7 +24,7 @@ class CostItem {
       jobName: unitPrice.category.jobCategory.nameTr,
       unitPriceName: unitPrice.category.nameTr,
       formattedUnitPrice: "${unitPrice.amount} ${unitPrice.currency.symbol}/${unitPrice.unit.symbol}",
-      formattedTotalPrice: "$totalPriceTRY TL"
+      formattedTotalPriceTRY: "${NumberFormat("#,##0.00", "tr_TR").format(totalPriceTRY)} TL"
     );
   }
 }
@@ -32,14 +33,14 @@ class UiCostItem {
   String jobName;
   String unitPriceName;
   String formattedUnitPrice;
-  String formattedTotalPrice;
+  String formattedTotalPriceTRY;
 
   UiCostItem(
     {
       required this.jobName,
       required this.unitPriceName,
       required this.formattedUnitPrice,
-      required this.formattedTotalPrice,
+      required this.formattedTotalPriceTRY,
     }
   );
 
@@ -48,7 +49,7 @@ class UiCostItem {
       jobName: jobName,
       unitPriceName: unitPriceName,
       formattedUnitPrice: formattedUnitPrice,
-      formattedTotalPrice: formattedTotalPrice
+      formattedTotalPriceTRY: formattedTotalPriceTRY
     );
   }
 }

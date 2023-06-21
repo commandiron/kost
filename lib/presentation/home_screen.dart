@@ -34,7 +34,7 @@ class HomeScreen extends StatelessWidget {
                             SizedBox(width: 16,),
                             Text(uiCostItem.formattedUnitPrice),
                             SizedBox(width: 16,),
-                            Text(uiCostItem.formattedTotalPrice),
+                            Text(uiCostItem.formattedTotalPriceTRY),
                           ],
                         ),
                       ],
@@ -43,9 +43,7 @@ class HomeScreen extends StatelessWidget {
                 ),
                 Row(
                   children: [
-                    Text(state.grandTotalTRY.toString()),
-                    SizedBox(width: 4,),
-                    Text("TL"),
+                    Text(state.formattedGrandTotalTRY),
                   ],
                 ),
               ],
