@@ -45,7 +45,7 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
       unitPrices: const [],
       currencyRates: DefaultCurrencyRates(),
       enabledUnitPriceCategories: const [],
-      costItems: const [],
+      uiCostItems: const [],
       grandTotalTRY: 0
     ),
   ){
@@ -73,25 +73,20 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
     });
     on<CreateCostItems>((event, emit) {
       List<CostItem> costItems = [];
+      double grandTotalTRY = 0;
       for (var unitPrice in state.unitPrices) {
         if(state.enabledUnitPriceCategories.contains(unitPrice.category)) {
-          costItems.add(
-            CostItem(
-              unitPrice: unitPrice,
-              quantity: state.quantityCalculator.getQuantityFromUnitPriceCategory(unitPrice.category),
-              currencyRates: state.currencyRates
-            )
+          final costItem = CostItem(
+            unitPrice: unitPrice,
+            quantity: state.quantityCalculator.getQuantityFromUnitPriceCategory(unitPrice.category),
+            currencyRates: state.currencyRates
           );
+          costItems.add(costItem);
+          grandTotalTRY += costItem.totalPriceTRY;
         }
       }
-      emit(state.copyWith(costItems: costItems));
-    });
-    on<CalculateGrandTotal>((event, emit) {
-      double grandTotalTRY = 0;
-      for (var costItem in state.costItems) {
-        grandTotalTRY += costItem.totalPriceTRY;
-      }
-      emit(state.copyWith(grandTotalTRY: grandTotalTRY));
+      final uiCostItems = costItems.map((costItem) => costItem.toUiCostItem()).toList();
+      emit(state.copyWith(uiCostItems: uiCostItems, grandTotalTRY: grandTotalTRY));
     });
     on<ReplaceUnitPriceCategory>((event, emit) {
       for (var enabledUnitPriceCategory in state.enabledUnitPriceCategories) {
@@ -106,7 +101,6 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
 
   void _refresh() {
     add(const CreateCostItems());
-    add(const CalculateGrandTotal());
   }
 
   void init() {

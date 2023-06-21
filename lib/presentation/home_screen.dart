@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kost/domain/bloc/project_event.dart';
 import 'package:kost/domain/model/category.dart';
-import 'package:kost/domain/model/currency.dart';
-import 'package:kost/domain/model/unit.dart';
 
 import '../domain/bloc/project_bloc.dart';
 import '../domain/bloc/project_state.dart';
@@ -23,28 +21,20 @@ class HomeScreen extends StatelessWidget {
                 ElevatedButton(onPressed: () => context.read<ProjectBloc>().add(ReplaceUnitPriceCategory(UnitPriceCategory.c35Concrete)), child: Text("selam")),
                 ListView.builder(
                   shrinkWrap: true,
-                  itemCount: state.costItems.length,
+                  itemCount: state.uiCostItems.length,
                   itemBuilder: (context, index) {
-                    final costItem = state.costItems[index];
+                    final uiCostItem = state.uiCostItems[index];
                     return Column(
                       children: [
                         Row(
                           children: [
-                            Text(costItem.unitPrice.category.jobCategory.name),
+                            Text(uiCostItem.jobName),
                             SizedBox(width: 16,),
-                            Text(costItem.unitPrice.category.name),
+                            Text(uiCostItem.unitPriceName),
                             SizedBox(width: 16,),
-                            Text(costItem.unitPrice.amount.toString()),
-                            Text(costItem.unitPrice.currency.symbol),
-                            Text("/"),
-                            Text(costItem.unitPrice.unit.symbol),
+                            Text(uiCostItem.formattedUnitPrice),
                             SizedBox(width: 16,),
-                            Text(costItem.quantity.toString()),
-                            Text(costItem.unitPrice.unit.symbol),
-                            SizedBox(width: 16,),
-                            Text(costItem.totalPriceTRY.toString()),
-                            SizedBox(width: 4,),
-                            Text("TL"),
+                            Text(uiCostItem.formattedTotalPrice),
                           ],
                         ),
                       ],

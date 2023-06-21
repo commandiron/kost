@@ -39,12 +39,6 @@ class CreateCostItems extends ProjectEvent {
   List<Object?> get props => [];
 }
 
-class CalculateGrandTotal extends ProjectEvent {
-  const CalculateGrandTotal();
-  @override
-  List<Object?> get props => [];
-}
-
 class ReplaceUnitPriceCategory extends ProjectEvent {
   final UnitPriceCategory unitPriceCategory;
   const ReplaceUnitPriceCategory(this.unitPriceCategory);

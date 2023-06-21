@@ -3,7 +3,7 @@ enum MainCategory {
 }
 
 extension MainCategoryExtension on MainCategory {
-  String get name {
+  String get nameTr {
     switch(this) {
       case MainCategory.excavationJobs : return "Hafriyat İşleri";
       case MainCategory.roughConstructionJobs : return "Kaba Yapı İşleri";
@@ -24,7 +24,7 @@ enum JobCategory {
 }
 
 extension JobCategoryExtension on JobCategory {
-  String get name {
+  String get nameTr {
     switch(this) {
       case JobCategory.shoring : return "İksa yapılması";
       case JobCategory.excavation : return "Kazı yapılması ve çıkan molozun şantiye dışına gönderilmesi";
@@ -51,7 +51,7 @@ enum UnitPriceCategory {
 }
 
 extension UnitPriceCategoryExtension on UnitPriceCategory {
-  String get name {
+  String get nameTr {
     switch(this) {
       case UnitPriceCategory.shutcrete : return "Shutcrete";
       case UnitPriceCategory.excavation : return "Hafriyat";
