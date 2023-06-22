@@ -33,6 +33,7 @@ class QuantityCalculator {
     }
   );
 
+  //Calculations
   Floor get bottomMostBasementFloor {
 
     final List<FloorType> basementTypes = [
