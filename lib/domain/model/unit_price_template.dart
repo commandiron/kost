@@ -24,7 +24,8 @@ class BuildingCostTemplate extends CostTemplate {
       UnitPriceCategory.c16Concrete,
       UnitPriceCategory.c30Concrete,
       UnitPriceCategory.s420Steel,
-      UnitPriceCategory.plywood
+      UnitPriceCategory.plywood,
+      UnitPriceCategory.eps
     ];
   }
 }

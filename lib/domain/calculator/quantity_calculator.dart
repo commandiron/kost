@@ -13,6 +13,7 @@ class QuantityCalculator {
   final double leanConcreteHeight;
   final double stabilizationHeight;
   final double elevationTowerArea;
+  final double hollowFillingThickness;
 
   QuantityCalculator(
     {
@@ -25,6 +26,7 @@ class QuantityCalculator {
       this.leanConcreteHeight = 0.10,
       this.stabilizationHeight = 0.30,
       this.elevationTowerArea = 30,
+      this.hollowFillingThickness = 0.2
     }
   );
 
@@ -96,6 +98,7 @@ class QuantityCalculator {
       case UnitPriceCategory.c35Concrete : return totalStructuralConcrete;
       case UnitPriceCategory.s420Steel : return totalStructuralSteel;
       case UnitPriceCategory.plywood : return totalFormWorkArea;
+      case UnitPriceCategory.eps: return projectConstants.hollowAreaForOneSquareMeterConstructionArea * roughConstructionArea * hollowFillingThickness;
     }
   }
 }

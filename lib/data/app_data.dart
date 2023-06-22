@@ -68,5 +68,12 @@ class AppData {
       unit: Unit.squareMeters,
       dateTime: DateTime(2023, 01)
     ),
+    UnitPrice(
+      category: UnitPriceCategory.eps,
+      amount: 815,
+      currency: Currency.lira,
+      unit: Unit.cubicMeters,
+      dateTime: DateTime(2023, 01)
+    ),
   ];
 }
