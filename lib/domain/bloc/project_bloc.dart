@@ -47,7 +47,7 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
       unitPrices: const [],
       currencyRates: DefaultCurrencyRates(),
       costTemplate: EmptyCostTemplate(),
-      groupedUiCostItems: const {},
+      uiCostItems: const [],
       formattedGrandTotalTRY: ""
     ),
   ){
@@ -93,10 +93,8 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
       }
 
       final uiCostItems = costItems.map((costItem) => costItem.toUiCostItem()).toList();
-      final groupedUiCostItems = uiCostItems.groupListsBy((uiCostItem) => uiCostItem.mainCategory,);
-      final grandTotalTRY = _calculateGrandTotal(costItems);
-      final formattedGrandTotalTRY = "${NumberFormat("#,##0.00", "tr_TR").format(grandTotalTRY)} TL";
-      emit(state.copyWith(groupedUiCostItems: groupedUiCostItems, formattedGrandTotalTRY: formattedGrandTotalTRY));
+      final formattedGrandTotalTRY = "${NumberFormat("#,##0.00", "tr_TR").format(_calculateGrandTotal(costItems))} TL";
+      emit(state.copyWith(uiCostItems: uiCostItems, formattedGrandTotalTRY: formattedGrandTotalTRY));
     });
     on<ReplaceUnitPriceCategory>((event, emit) {
       for (var enabledUnitPriceCategory in state.costTemplate.enabledUnitPriceCategories) {

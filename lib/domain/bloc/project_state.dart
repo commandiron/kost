@@ -2,7 +2,6 @@ import 'package:equatable/equatable.dart';
 import 'package:kost/domain/model/currency.dart';
 import 'package:kost/domain/model/unit_price_template.dart';
 import '../../presentation/model/cost_item.dart';
-import '../model/category.dart';
 import '../model/unit_price.dart';
 import '../calculator/quantity_calculator.dart';
 
@@ -12,7 +11,7 @@ class ProjectState extends Equatable{
   final List<UnitPrice> unitPrices;
   final CurrencyRates currencyRates;
   final CostTemplate costTemplate;
-  final Map<MainCategory, List<UiCostItem>> groupedUiCostItems;
+  final List<UiCostItem> uiCostItems;
   final String formattedGrandTotalTRY;
 
   const ProjectState(
@@ -21,7 +20,7 @@ class ProjectState extends Equatable{
       required this.unitPrices,
       required this.currencyRates,
       required this.costTemplate,
-      required this.groupedUiCostItems,
+      required this.uiCostItems,
       required this.formattedGrandTotalTRY,
     }
   );
@@ -31,7 +30,7 @@ class ProjectState extends Equatable{
     List<UnitPrice>? unitPrices,
     CurrencyRates? currencyRates,
     CostTemplate? costTemplate,
-    Map<MainCategory, List<UiCostItem>>? groupedUiCostItems,
+    List<UiCostItem>? uiCostItems,
     String? formattedGrandTotalTRY,
 
   }) {
@@ -40,11 +39,11 @@ class ProjectState extends Equatable{
       unitPrices: unitPrices ?? this.unitPrices,
       currencyRates: currencyRates ?? this.currencyRates,
       costTemplate: costTemplate ?? this.costTemplate,
-      groupedUiCostItems: groupedUiCostItems ?? this.groupedUiCostItems,
+      uiCostItems: uiCostItems ?? this.uiCostItems,
       formattedGrandTotalTRY: formattedGrandTotalTRY ?? this.formattedGrandTotalTRY
     );
   }
 
   @override
-  List<Object?> get props => [quantityCalculator, unitPrices, currencyRates, costTemplate, groupedUiCostItems, formattedGrandTotalTRY];
+  List<Object?> get props => [quantityCalculator, unitPrices, currencyRates, costTemplate, uiCostItems, formattedGrandTotalTRY];
 }
