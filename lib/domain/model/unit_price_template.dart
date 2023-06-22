@@ -2,20 +2,30 @@ import 'category.dart';
 
 abstract class CostTemplate {
   List<UnitPriceCategory> enabledUnitPriceCategories;
+  final String name;
 
   CostTemplate(
     {
       this.enabledUnitPriceCategories = const [],
+      required this.name
     }
   );
 }
 
 class EmptyCostTemplate extends CostTemplate {
-  EmptyCostTemplate();
+  EmptyCostTemplate(
+    {
+      super.name = "Boş Taslak"
+    }
+  );
 }
 
 class BuildingCostTemplate extends CostTemplate {
-  BuildingCostTemplate(){
+  BuildingCostTemplate(
+    {
+      super.name = "Apartman Maliyeti"
+    }
+  ){
     enabledUnitPriceCategories = [
       UnitPriceCategory.shutCrete,
       UnitPriceCategory.excavation,

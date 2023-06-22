@@ -101,6 +101,10 @@ class QuantityCalculator {
     return totalStructuralConcrete * projectConstants.rebarTonForOneCubicMeterConcrete;
   }
 
+  double get totalHollowVolume {
+    return projectConstants.hollowAreaForOneSquareMeterConstructionArea * roughConstructionArea * hollowFillingThickness;
+  }
+
   double get foundationWetArea {
     return foundationArea + (foundationLength * (foundationHeight));
   }
@@ -124,7 +128,7 @@ class QuantityCalculator {
       case UnitPriceCategory.c35Concrete : return totalStructuralConcrete;
       case UnitPriceCategory.s420Steel : return totalStructuralSteel;
       case UnitPriceCategory.plywood : return totalFormWorkArea;
-      case UnitPriceCategory.eps : return projectConstants.hollowAreaForOneSquareMeterConstructionArea * roughConstructionArea * hollowFillingThickness;
+      case UnitPriceCategory.eps : return totalHollowVolume;
       case UnitPriceCategory.doubleLayerBitumenMembrane : return foundationWetArea;
       case UnitPriceCategory.bitumenSliding : return basementCurtainArea + wetAreaAboveBasement;
     }

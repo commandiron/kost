@@ -17,8 +17,8 @@ class HomeScreen extends StatelessWidget {
       body: BlocBuilder<ProjectBloc, ProjectState>(
         builder: (context, state) {
           return Column(
-            crossAxisAlignment: CrossAxisAlignment.end,
             children: [
+              Text(state.costTemplate.name, style: const TextStyle(fontSize: 26),),
               ElevatedButton(onPressed: () => context.read<ProjectBloc>().add(const ReplaceUnitPriceCategory(UnitPriceCategory.c35Concrete)), child: const Text("selam")),
               GroupedListView<UiCostItem, String>(
                 shrinkWrap: true,
