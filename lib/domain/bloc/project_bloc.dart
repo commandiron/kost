@@ -15,7 +15,7 @@ import 'project_state.dart';
 class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
   ProjectBloc() : super(
     ProjectState(
-      quantityCalculator: QuantityCalculator(
+      quantityCalculator: DetailedQuantityCalculator(
         projectConstants: ProjectConstants(),
         excavationLength: 113.71,
         excavationArea: 798.74,

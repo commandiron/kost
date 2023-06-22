@@ -2,7 +2,44 @@ import 'package:kost/domain/calculator/project_constants.dart';
 import '../model/category.dart';
 import 'floor.dart';
 
-class QuantityCalculator {
+abstract class QuantityCalculator {
+  double get _totalExcavationSurfaceArea;
+  double get _totalExcavationVolume;
+  double get _totalBreakerHour;
+  double get _totalStabilizationVolume;
+  double get _totalFillingConcrete;
+  double get _totalStructuralConcrete;
+  double get _totalStructuralSteel;
+  double get _totalFormWorkArea;
+  double get _totalHollowVolume;
+  double get _foundationWetArea;
+  double get _totalBasementsWetSurfaceArea;
+  double get _basementCurtainArea;
+  double get _totalWallVolume;
+  double get _totalWallArea;
+
+  double getQuantityFromUnitPriceCategory(UnitPriceCategory unitPriceCategory) {
+    switch(unitPriceCategory) {
+      case UnitPriceCategory.shutCrete : return _totalExcavationSurfaceArea;
+      case UnitPriceCategory.excavation : return _totalExcavationVolume;
+      case UnitPriceCategory.breaker : return _totalBreakerHour;
+      case UnitPriceCategory.foundationStabilizationGravel : return _totalStabilizationVolume;
+      case UnitPriceCategory.c16Concrete : return _totalFillingConcrete;
+      case UnitPriceCategory.c30Concrete : return _totalStructuralConcrete;
+      case UnitPriceCategory.c35Concrete : return _totalStructuralConcrete;
+      case UnitPriceCategory.s420Steel : return _totalStructuralSteel;
+      case UnitPriceCategory.plywood : return _totalFormWorkArea;
+      case UnitPriceCategory.eps : return _totalHollowVolume;
+      case UnitPriceCategory.doubleLayerBitumenMembrane : return _foundationWetArea;
+      case UnitPriceCategory.bitumenSliding : return _totalBasementsWetSurfaceArea;
+      case UnitPriceCategory.drainPlate : return _basementCurtainArea;
+      case UnitPriceCategory.aeratedConcreteMaterial : return _totalWallVolume;
+      case UnitPriceCategory.aeratedConcreteWorkmanShip : return _totalWallArea;
+    }
+  }
+}
+
+class DetailedQuantityCalculator extends QuantityCalculator {
   final ProjectConstants projectConstants;
   final double excavationLength;
   final double excavationArea;
@@ -16,7 +53,7 @@ class QuantityCalculator {
   final double elevationTowerArea;
   final double hollowFillingThickness;
 
-  QuantityCalculator(
+  DetailedQuantityCalculator(
     {
       required this.projectConstants,
       required this.excavationLength,
@@ -34,23 +71,7 @@ class QuantityCalculator {
   );
 
   //Calculations
-  Floor get bottomMostBasementFloor {
-
-    final List<FloorType> basementTypes = [
-      FloorType.b3,
-      FloorType.b2,
-      FloorType.b1,
-    ];
-
-    for (var basementType in basementTypes) {
-      if(floors.any((floor) => floor.type == basementType)) {
-        return floors.firstWhere((floor) => floor.type == basementType);
-      }
-    }
-
-    throw Exception("No bottom Most Basement.");
-  }
-  Floor get topMostBasementFloor {
+  Floor get _topMostBasementFloor {
 
     final List<FloorType> basementTypes = [
       FloorType.b1,
@@ -66,23 +87,23 @@ class QuantityCalculator {
 
     throw Exception("No top most basement.");
   }
-  Floor get groundFloor {
+  Floor get _groundFloor {
     return floors.firstWhere((e) => e.type == FloorType.z);
   }
-  List<Floor> get basementFloors {
+  List<Floor> get _basementFloors {
     return floors.where((floor) => floor.type == FloorType.b3 || floor.type == FloorType.b2 || floor.type == FloorType.b1).toList();
   }
-  double get excavationHeight {
-    return stabilizationHeight + leanConcreteHeight + insulationConcreteHeight + foundationHeight + basementsHeight;
+  double get _excavationHeight {
+    return stabilizationHeight + leanConcreteHeight + insulationConcreteHeight + foundationHeight + _basementsHeight;
   }
-  double get basementsHeight {
+  double get _basementsHeight {
     double basementsHeight = 0;
-    for (var basementFloor in basementFloors) {
+    for (var basementFloor in _basementFloors) {
       basementsHeight += basementFloor.height;
     }
     return basementsHeight;
   }
-  double get roughConstructionArea {
+  double get _roughConstructionArea {
     double roughConstructionArea = 0;
     roughConstructionArea += foundationArea;
     for (var floor in floors) {
@@ -91,83 +112,77 @@ class QuantityCalculator {
     roughConstructionArea += elevationTowerArea;
     return roughConstructionArea;
   }
-  double get wetAreaAboveBasement {
-    return topMostBasementFloor.ceilingArea - groundFloor.area;
+  double get _wetAreaAboveBasement {
+    return _topMostBasementFloor.ceilingArea - _groundFloor.area;
   }
-  double get outerWallArea {
+  double get _outerWallArea {
     return floors.map((e) => e.outerWallLength * e.height).toList().fold(0.0, (p, c) => p + c);
   }
-  double get outerWallVolume {
-    return outerWallArea * projectConstants.outerWallThickness;
+  double get _outerWallVolume {
+    return _outerWallArea * projectConstants.outerWallThickness;
   }
-  double get innerWallArea {
+  double get _innerWallArea {
     return floors.map((e) => e.innerWallLength * e.height).toList().fold(0.0, (p, c) => p + c);
   }
-  double get innerWallVolume {
-    return innerWallArea * projectConstants.innerWallThickness;
+  double get _innerWallVolume {
+    return _innerWallArea * projectConstants.innerWallThickness;
   }
 
   //Final Results
-  double get totalExcavationSurfaceArea {
-    return excavationLength * excavationHeight;
+  @override
+  double get _totalExcavationSurfaceArea {
+    return excavationLength * _excavationHeight;
   }
-  double get totalExcavationVolume {
-    return excavationArea * excavationHeight;
+  @override
+  double get _totalExcavationVolume {
+    return excavationArea * _excavationHeight;
   }
-  double get totalBreakerHour {
-    return excavationArea * excavationHeight * projectConstants.breakerHourForOneCubicMeterExcavation;
+  @override
+  double get _totalBreakerHour {
+    return excavationArea * _excavationHeight * projectConstants.breakerHourForOneCubicMeterExcavation;
   }
-  double get totalStabilizationVolume {
+  @override
+  double get _totalStabilizationVolume {
     return excavationArea * stabilizationHeight;
   }
-  double get totalFillingConcrete {
+  @override
+  double get _totalFillingConcrete {
     return excavationArea * (leanConcreteHeight + insulationConcreteHeight);
   }
-  double get totalStructuralConcrete {
-    return totalFormWorkArea * projectConstants.concreteCubicMeterForOneSquareMeterFormWork;
+  @override
+  double get _totalStructuralConcrete {
+    return _totalFormWorkArea * projectConstants.concreteCubicMeterForOneSquareMeterFormWork;
   }
-  double get totalStructuralSteel {
-    return totalStructuralConcrete * projectConstants.rebarTonForOneCubicMeterConcrete;
+  @override
+  double get _totalStructuralSteel {
+    return _totalStructuralConcrete * projectConstants.rebarTonForOneCubicMeterConcrete;
   }
-  double get totalFormWorkArea {
-    return roughConstructionArea;
+  @override
+  double get _totalFormWorkArea {
+    return _roughConstructionArea;
   }
-  double get totalHollowVolume {
-    return projectConstants.hollowAreaForOneSquareMeterConstructionArea * roughConstructionArea * hollowFillingThickness;
+  @override
+  double get _totalHollowVolume {
+    return projectConstants.hollowAreaForOneSquareMeterConstructionArea * _roughConstructionArea * hollowFillingThickness;
   }
-  double get foundationWetArea {
+  @override
+  double get _foundationWetArea {
     return foundationArea + (foundationLength * (foundationHeight));
   }
-  double get totalBasementsWetSurfaceArea {
-    return basementCurtainArea + wetAreaAboveBasement;
+  @override
+  double get _totalBasementsWetSurfaceArea {
+    return _basementCurtainArea + _wetAreaAboveBasement;
   }
-  double get basementCurtainArea {
-    return basementFloors.map((e) => e.height * e.ceilingLength).toList().fold(0.0, (p, c) => p + c);
+  @override
+  double get _basementCurtainArea {
+    return _basementFloors.map((e) => e.height * e.ceilingLength).toList().fold(0.0, (p, c) => p + c);
   }
-  double get totalWallVolume {
-    return outerWallVolume + innerWallVolume;
+  @override
+  double get _totalWallVolume {
+    return _outerWallVolume + _innerWallVolume;
   }
-  double get totalWallArea {
-    return outerWallArea + innerWallArea;
-  }
-
-  double getQuantityFromUnitPriceCategory(UnitPriceCategory unitPriceCategory) {
-    switch(unitPriceCategory) {
-      case UnitPriceCategory.shutCrete : return totalExcavationSurfaceArea;
-      case UnitPriceCategory.excavation : return totalExcavationVolume;
-      case UnitPriceCategory.breaker : return totalBreakerHour;
-      case UnitPriceCategory.foundationStabilizationGravel : return totalStabilizationVolume;
-      case UnitPriceCategory.c16Concrete : return totalFillingConcrete;
-      case UnitPriceCategory.c30Concrete : return totalStructuralConcrete;
-      case UnitPriceCategory.c35Concrete : return totalStructuralConcrete;
-      case UnitPriceCategory.s420Steel : return totalStructuralSteel;
-      case UnitPriceCategory.plywood : return totalFormWorkArea;
-      case UnitPriceCategory.eps : return totalHollowVolume;
-      case UnitPriceCategory.doubleLayerBitumenMembrane : return foundationWetArea;
-      case UnitPriceCategory.bitumenSliding : return totalBasementsWetSurfaceArea;
-      case UnitPriceCategory.drainPlate : return basementCurtainArea;
-      case UnitPriceCategory.aeratedConcreteMaterial : return totalWallVolume;
-      case UnitPriceCategory.aeratedConcreteWorkmanShip : return totalWallArea;
-    }
+  @override
+  double get _totalWallArea {
+    return _outerWallArea + _innerWallArea;
   }
 }
