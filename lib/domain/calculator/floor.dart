@@ -14,7 +14,7 @@ class Floor {
       required this.ceilingLength,
       required this.area,
       required this.length,
-      this.height = 3.3,
+      required this.height,
       required this.outerWallLength,
       required this.innerWallLength,
       required this.type
