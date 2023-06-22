@@ -33,8 +33,8 @@ class FetchCostTemplate extends ProjectEvent {
   List<Object?> get props => [];
 }
 
-class CreateCostItems extends ProjectEvent {
-  const CreateCostItems();
+class CreateCostTable extends ProjectEvent {
+  const CreateCostTable();
   @override
   List<Object?> get props => [];
 }

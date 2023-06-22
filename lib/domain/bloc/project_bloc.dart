@@ -66,9 +66,8 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
     on<FetchCostTemplate>((event, emit) {
       emit(state.copyWith(costTemplate: BuildingCostTemplate()));
     });
-    on<CreateCostItems>((event, emit) {
+    on<CreateCostTable>((event, emit) {
       List<CostItem> costItems = [];
-      double grandTotalTRY = 0;
 
       if(!_isAllEnabledUnitPriceCategoriesInUnitPrices) {
         throw Exception("All enabled unit prices in the template are NOT included in fetched unit prices.");
@@ -90,12 +89,12 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
           } else {
             costItems.add(costItem);
           }
-
-          grandTotalTRY += costItem.totalPriceTRY;
         }
       }
+
       final uiCostItems = costItems.map((costItem) => costItem.toUiCostItem()).toList();
       final groupedUiCostItems = uiCostItems.groupListsBy((uiCostItem) => uiCostItem.mainCategory,);
+      final grandTotalTRY = _calculateGrandTotal(costItems.map((costItem) => costItem.totalPriceTRY).toList());
       final formattedGrandTotalTRY = "${NumberFormat("#,##0.00", "tr_TR").format(grandTotalTRY)} TL";
       emit(state.copyWith(groupedUiCostItems: groupedUiCostItems, formattedGrandTotalTRY: formattedGrandTotalTRY));
     });
@@ -111,16 +110,20 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
   }
 
   void _refresh() {
-    add(const CreateCostItems());
+    add(const CreateCostTable());
   }
 
-  bool get _isAllEnabledUnitPriceCategoriesInUnitPrices  {
+  bool get _isAllEnabledUnitPriceCategoriesInUnitPrices {
     for (var enabledUnitPriceCategory in state.costTemplate.enabledUnitPriceCategories) {
       if(!state.unitPrices.map((e) => e.category).toList().contains(enabledUnitPriceCategory)) {
         return false;
       }
     }
     return true;
+  }
+
+  double _calculateGrandTotal(List<double> totalPricesTRY) {
+    return totalPricesTRY.fold(0, (p, c) => p + c);
   }
 
 
