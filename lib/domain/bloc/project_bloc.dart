@@ -81,7 +81,16 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
             quantity: state.quantityCalculator.getQuantityFromUnitPriceCategory(unitPrice.category),
             currencyRates: state.currencyRates
           );
-          costItems.add(costItem);
+          final sameCategoryCostItem = costItems.firstWhereOrNull((costItem) => costItem.unitPrice.category == unitPrice.category);
+          if(sameCategoryCostItem != null) {
+            if(sameCategoryCostItem.unitPrice.dateTime.isBefore(unitPrice.dateTime)) {
+              costItems.remove(sameCategoryCostItem);
+              costItems.add(costItem);
+            }
+          } else {
+            costItems.add(costItem);
+          }
+
           grandTotalTRY += costItem.totalPriceTRY;
         }
       }
@@ -113,6 +122,8 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
     }
     return true;
   }
+
+
 
   void init() {
     add(const Init());
