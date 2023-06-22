@@ -75,5 +75,19 @@ class AppData {
       unit: Unit.cubicMeters,
       dateTime: DateTime(2023, 01)
     ),
+    UnitPrice(
+      category: UnitPriceCategory.doubleLayerBitumenMembrane,
+      amount: 180,
+      currency: Currency.lira,
+      unit: Unit.squareMeters,
+      dateTime: DateTime(2023, 01)
+    ),
+    UnitPrice(
+      category: UnitPriceCategory.bitumenSliding,
+      amount: 155,
+      currency: Currency.lira,
+      unit: Unit.squareMeters,
+      dateTime: DateTime(2023, 01)
+    ),
   ];
 }

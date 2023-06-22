@@ -20,7 +20,7 @@ extension MainCategoryExtension on MainCategory {
 
 
 enum JobCategory {
-  shoring, excavation, breaker, foundationStabilization, subFoundationConcrete, pouringConcrete, rebarWork, concreteFormWork, hollowFloorFilling
+  shoring, excavation, breaker, foundationStabilization, subFoundationConcrete, pouringConcrete, rebarWork, concreteFormWork, hollowFloorFilling, foundationWaterproofing, curtainWaterproofing
 }
 
 extension JobCategoryExtension on JobCategory {
@@ -35,6 +35,8 @@ extension JobCategoryExtension on JobCategory {
       case JobCategory.rebarWork : return "Ø8-32 mm çapında betonarme çeliği temini ve döşenmesi";
       case JobCategory.concreteFormWork : return "Plywood ile düz yüzeyli beton ve betonarme kalıbı yapılması (Düz Ölçü)";
       case JobCategory.hollowFloorFilling : return "Asmolen döşeme dolgusunun yapılması";
+      case JobCategory.foundationWaterproofing : return "Temel altı su yalıtımı yapılması";
+      case JobCategory.curtainWaterproofing : return "Perde su yalıtımının yapılması";
     }
   }
 }
@@ -49,7 +51,9 @@ enum UnitPriceCategory {
   c35Concrete(MainCategory.roughConstructionJobs, JobCategory.pouringConcrete),
   s420Steel(MainCategory.roughConstructionJobs, JobCategory.rebarWork),
   plywood(MainCategory.roughConstructionJobs, JobCategory.concreteFormWork),
-  eps(MainCategory.roughConstructionJobs, JobCategory.hollowFloorFilling);
+  eps(MainCategory.roughConstructionJobs, JobCategory.hollowFloorFilling),
+  doubleLayerBitumenMembrane(MainCategory.roughConstructionJobs, JobCategory.foundationWaterproofing),
+  bitumenSliding(MainCategory.roughConstructionJobs, JobCategory.curtainWaterproofing);
 
   const UnitPriceCategory(this.mainCategory, this.jobCategory);
   final MainCategory mainCategory;
@@ -69,6 +73,8 @@ extension UnitPriceCategoryExtension on UnitPriceCategory {
       case UnitPriceCategory.s420Steel : return "S420 Nervürlü İnşaat Demiri";
       case UnitPriceCategory.plywood : return "Plywood";
       case UnitPriceCategory.eps : return "Eps";
+      case UnitPriceCategory.doubleLayerBitumenMembrane : return "Bitüm Esaslı Membran (Çift Kat)";
+      case UnitPriceCategory.bitumenSliding : return "Bitüm Esaslı Sürme İzolasyon";
     }
   }
 }
