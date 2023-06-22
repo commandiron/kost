@@ -2,13 +2,13 @@ import 'package:collection/collection.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:kost/data/app_data.dart';
-import 'package:kost/domain/calculator/project_constants.dart';
+import 'package:kost/domain/calculator/detailed/detailed_quantity_calculator.dart';
+import 'package:kost/domain/calculator/detailed/project_constants.dart';
 import 'package:kost/domain/model/currency.dart';
 import 'package:kost/domain/model/unit_price_template.dart';
 
 import '../../presentation/model/cost_item.dart';
-import '../calculator/floor.dart';
-import '../calculator/quantity_calculator.dart';
+import '../calculator/detailed/floor.dart';
 import 'project_event.dart';
 import 'project_state.dart';
 
