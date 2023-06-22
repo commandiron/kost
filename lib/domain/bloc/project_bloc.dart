@@ -94,7 +94,7 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
 
       final uiCostItems = costItems.map((costItem) => costItem.toUiCostItem()).toList();
       final groupedUiCostItems = uiCostItems.groupListsBy((uiCostItem) => uiCostItem.mainCategory,);
-      final grandTotalTRY = _calculateGrandTotal(costItems.map((costItem) => costItem.totalPriceTRY).toList());
+      final grandTotalTRY = _calculateGrandTotal(costItems);
       final formattedGrandTotalTRY = "${NumberFormat("#,##0.00", "tr_TR").format(grandTotalTRY)} TL";
       emit(state.copyWith(groupedUiCostItems: groupedUiCostItems, formattedGrandTotalTRY: formattedGrandTotalTRY));
     });
@@ -122,8 +122,8 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
     return true;
   }
 
-  double _calculateGrandTotal(List<double> totalPricesTRY) {
-    return totalPricesTRY.fold(0, (p, c) => p + c);
+  double _calculateGrandTotal(List<CostItem> costItems) {
+    return costItems.map((costItem) => costItem.totalPriceTRY).toList().fold(0, (p, c) => p + c);
   }
 
   void init() {
