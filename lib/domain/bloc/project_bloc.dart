@@ -21,6 +21,7 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
         excavationArea: 798.74,
         foundationArea: 689,
         foundationLength: 105,
+        foundationHeight: 1,
         floors: [
           Floor(
             ceilingArea: 249,

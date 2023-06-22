@@ -23,7 +23,7 @@ class QuantityCalculator {
       required this.excavationArea,
       required this.foundationArea,
       required this.foundationLength,
-      this.foundationHeight = 1,
+      required this.foundationHeight,
       required this.floors,
       this.insulationConcreteHeight = 0.05,
       this.leanConcreteHeight = 0.10,
