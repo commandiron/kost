@@ -126,8 +126,6 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
     return totalPricesTRY.fold(0, (p, c) => p + c);
   }
 
-
-
   void init() {
     add(const Init());
   }
