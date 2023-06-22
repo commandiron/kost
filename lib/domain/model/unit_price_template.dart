@@ -20,10 +20,10 @@ class EmptyCostTemplate extends CostTemplate {
   );
 }
 
-class BuildingCostTemplate extends CostTemplate {
-  BuildingCostTemplate(
+class RoughConstructionCostTemplate extends CostTemplate {
+  RoughConstructionCostTemplate(
     {
-      super.name = "Apartman Maliyeti"
+      super.name = "Kaba İnşaat Maliyeti"
     }
   ){
     enabledUnitPriceCategories = [

@@ -92,7 +92,7 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
       emit(state.copyWith(currencyRates: DefaultCurrencyRates()));
     });
     on<FetchCostTemplate>((event, emit) {
-      emit(state.copyWith(costTemplate: BuildingCostTemplate()));
+      emit(state.copyWith(costTemplate: RoughConstructionCostTemplate()));
     });
     on<CreateCostTable>((event, emit) {
       List<CostItem> costItems = [];
