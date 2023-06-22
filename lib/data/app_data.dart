@@ -42,14 +42,14 @@ class AppData {
     ),
     UnitPrice(
       category: UnitPriceCategory.c30Concrete,
-      amount: 1750,
+      amount: 1900,
       currency: Currency.lira,
       unit: Unit.cubicMeters,
       dateTime: DateTime(2023, 01)
     ),
     UnitPrice(
       category: UnitPriceCategory.c35Concrete,
-      amount: 1850,
+      amount: 2000,
       currency: Currency.lira,
       unit: Unit.cubicMeters,
       dateTime: DateTime(2023, 01)
@@ -85,6 +85,27 @@ class AppData {
     UnitPrice(
       category: UnitPriceCategory.bitumenSliding,
       amount: 155,
+      currency: Currency.lira,
+      unit: Unit.squareMeters,
+      dateTime: DateTime(2023, 01)
+    ),
+    UnitPrice(
+      category: UnitPriceCategory.drainPlate,
+      amount: 30,
+      currency: Currency.lira,
+      unit: Unit.squareMeters,
+      dateTime: DateTime(2023, 01)
+    ),
+    UnitPrice(
+      category: UnitPriceCategory.aeratedConcreteMaterial,
+      amount: 1500,
+      currency: Currency.lira,
+      unit: Unit.cubicMeters,
+      dateTime: DateTime(2023, 01)
+    ),
+    UnitPrice(
+      category: UnitPriceCategory.aeratedConcreteWorkmanShip,
+      amount: 60,
       currency: Currency.lira,
       unit: Unit.squareMeters,
       dateTime: DateTime(2023, 01)

@@ -20,7 +20,20 @@ extension MainCategoryExtension on MainCategory {
 
 
 enum JobCategory {
-  shoring, excavation, breaker, foundationStabilization, subFoundationConcrete, pouringConcrete, rebarWork, concreteFormWork, hollowFloorFilling, foundationWaterproofing, curtainWaterproofing
+  shoring,
+  excavation,
+  breaker,
+  foundationStabilization,
+  subFoundationConcrete,
+  pouringConcrete,
+  rebarWork,
+  concreteFormWork,
+  hollowFloorFilling,
+  foundationWaterproofing,
+  curtainWaterproofing,
+  curtainProtectionBeforeFilling,
+  wallMaterial,
+  wallWorkmanShip
 }
 
 extension JobCategoryExtension on JobCategory {
@@ -37,6 +50,9 @@ extension JobCategoryExtension on JobCategory {
       case JobCategory.hollowFloorFilling : return "Asmolen döşeme dolgusunun yapılması";
       case JobCategory.foundationWaterproofing : return "Temel altı su yalıtımı yapılması";
       case JobCategory.curtainWaterproofing : return "Perde su yalıtımının yapılması";
+      case JobCategory.curtainProtectionBeforeFilling : return "Geri dolgu öncesi perde yalıtımına koruyucu yapılması";
+      case JobCategory.wallMaterial : return "Duvar malzeme";
+      case JobCategory.wallWorkmanShip : return "Duvar işçilik";
     }
   }
 }
@@ -53,7 +69,10 @@ enum UnitPriceCategory {
   plywood(MainCategory.roughConstructionJobs, JobCategory.concreteFormWork),
   eps(MainCategory.roughConstructionJobs, JobCategory.hollowFloorFilling),
   doubleLayerBitumenMembrane(MainCategory.roughConstructionJobs, JobCategory.foundationWaterproofing),
-  bitumenSliding(MainCategory.roughConstructionJobs, JobCategory.curtainWaterproofing);
+  bitumenSliding(MainCategory.roughConstructionJobs, JobCategory.curtainWaterproofing),
+  drainPlate(MainCategory.roughConstructionJobs, JobCategory.curtainProtectionBeforeFilling),
+  aeratedConcreteMaterial(MainCategory.roughConstructionJobs, JobCategory.wallMaterial),
+  aeratedConcreteWorkmanShip(MainCategory.roughConstructionJobs, JobCategory.wallWorkmanShip);
 
   const UnitPriceCategory(this.mainCategory, this.jobCategory);
   final MainCategory mainCategory;
@@ -75,6 +94,9 @@ extension UnitPriceCategoryExtension on UnitPriceCategory {
       case UnitPriceCategory.eps : return "Eps";
       case UnitPriceCategory.doubleLayerBitumenMembrane : return "Bitüm Esaslı Membran (Çift Kat)";
       case UnitPriceCategory.bitumenSliding : return "Bitüm Esaslı Sürme İzolasyon";
+      case UnitPriceCategory.drainPlate : return "Drenaj Levhası";
+      case UnitPriceCategory.aeratedConcreteMaterial : return "Gazbeton Malzeme";
+      case UnitPriceCategory.aeratedConcreteWorkmanShip : return "Gazbeton İşçilik";
     }
   }
 }

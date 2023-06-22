@@ -27,6 +27,8 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
             ceilingLength: 60,
             area: 249,
             length: 60,
+            outerWallLength: 100,
+            innerWallLength: 100,
             type: FloorType.k2,
           ),
           Floor(
@@ -34,6 +36,8 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
             ceilingLength: 60,
             area: 249,
             length: 60,
+            outerWallLength: 100,
+            innerWallLength: 100,
             type: FloorType.k1,
           ),
           Floor(
@@ -41,6 +45,8 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
             ceilingLength: 60,
             area: 689,
             length: 105,
+            outerWallLength: 100,
+            innerWallLength: 100,
             type: FloorType.z,
           ),
           Floor(
@@ -49,6 +55,8 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
             area: 689,
             length: 105,
             height: 3.15,
+            outerWallLength: 100,
+            innerWallLength: 100,
             type: FloorType.b1,
           ),
           Floor(
@@ -57,6 +65,8 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
             area: 689,
             length: 105,
             height: 3.15,
+            outerWallLength: 100,
+            innerWallLength: 100,
             type: FloorType.b2,
           ),
         ],

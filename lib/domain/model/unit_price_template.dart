@@ -38,6 +38,9 @@ class BuildingCostTemplate extends CostTemplate {
       UnitPriceCategory.eps,
       UnitPriceCategory.doubleLayerBitumenMembrane,
       UnitPriceCategory.bitumenSliding,
+      UnitPriceCategory.drainPlate,
+      UnitPriceCategory.aeratedConcreteMaterial,
+      UnitPriceCategory.aeratedConcreteWorkmanShip
     ];
   }
 }

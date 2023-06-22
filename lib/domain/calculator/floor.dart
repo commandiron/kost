@@ -4,6 +4,8 @@ class Floor {
   final double area;
   final double length;
   final double height;
+  final double outerWallLength;
+  final double innerWallLength;
   final FloorType type;
 
   Floor (
@@ -13,6 +15,8 @@ class Floor {
       required this.area,
       required this.length,
       this.height = 3.3,
+      required this.outerWallLength,
+      required this.innerWallLength,
       required this.type
     }
   );
