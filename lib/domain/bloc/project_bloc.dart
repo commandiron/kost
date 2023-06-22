@@ -70,7 +70,7 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
       List<CostItem> costItems = [];
 
       if(!_isAllEnabledUnitPriceCategoriesInUnitPrices) {
-        throw Exception("All enabled unit prices in the template are NOT included in fetched unit prices.");
+        throw Exception("All enabled unit prices in the template are NOT included in fetched unit prices."); //Handle
       }
 
       for (var unitPrice in state.unitPrices) {
