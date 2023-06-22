@@ -107,7 +107,6 @@ class QuantityCalculator {
     return innerWallArea * projectConstants.innerWallThickness;
   }
 
-
   //Final Results
   double get totalExcavationSurfaceArea {
     return excavationLength * excavationHeight;
