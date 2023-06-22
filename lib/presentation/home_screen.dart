@@ -17,35 +17,43 @@ class HomeScreen extends StatelessWidget {
       body: BlocBuilder<ProjectBloc, ProjectState>(
         builder: (context, state) {
           return Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               ElevatedButton(onPressed: () => context.read<ProjectBloc>().add(const ReplaceUnitPriceCategory(UnitPriceCategory.c35Concrete)), child: const Text("selam")),
-
               GroupedListView<UiCostItem, String>(
                 shrinkWrap: true,
                 elements: state.uiCostItems,
                 groupBy: (uiCostItem) => uiCostItem.mainCategory.nameTr,
-                groupSeparatorBuilder: (String groupByValue) => Text(groupByValue),
+                groupSeparatorBuilder: (String groupByValue) => Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(groupByValue, style: const TextStyle(fontSize: 20),),
+                ),
                 itemBuilder: (context, uiCostItem) {
-                  return Row(
-                    children: [
-                      Text(uiCostItem.jobName),
-                      const SizedBox(width: 16,),
-                      Text(uiCostItem.unitPriceName),
-                      const SizedBox(width: 16,),
-                      Text(uiCostItem.formattedUnitPrice),
-                      const SizedBox(width: 16,),
-                      Text(uiCostItem.formattedQuantity),
-                      const SizedBox(width: 16,),
-                      Text(uiCostItem.formattedTotalPriceTRY),
-                    ],
+                  return Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          flex: 2,
+                          child: Text(uiCostItem.jobName)
+                        ),
+                        Expanded(
+                          child: Text(uiCostItem.unitPriceName)
+                        ),
+                        Expanded(
+                          child: Text(uiCostItem.formattedUnitPrice)
+                        ),
+                        Expanded(
+                          child: Text(uiCostItem.formattedQuantity)
+                        ),
+                        Expanded(
+                          child: Text(uiCostItem.formattedTotalPriceTRY)),
+                      ],
+                    ),
                   );
                 },
               ),
-              Row(
-                children: [
-                  Text(state.formattedGrandTotalTRY),
-                ],
-              ),
+              Text(state.formattedGrandTotalTRY),
             ],
           );
         },
