@@ -103,7 +103,7 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
         throw Exception("All enabled unit prices in the template are NOT included in fetched unit prices."); //Handle
       }
 
-      final costItems = _getFilteredCostItems();
+      final costItems = _createFilteredCostItems();
 
       final uiCostItems = costItems.map((costItem) => costItem.toUiCostItem()).toList();
       final formattedGrandTotalTRY = "${NumberFormat("#,##0.00", "tr_TR").format(_calculateGrandTotal(costItems))} TL";
@@ -133,7 +133,7 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
     return true;
   }
 
-  List<CostItem> _getFilteredCostItems() {
+  List<CostItem> _createFilteredCostItems() {
     List<CostItem> costItems = [];
 
     for (var unitPrice in state.unitPrices) {
