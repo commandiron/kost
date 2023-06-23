@@ -36,3 +36,34 @@ abstract class QuantityCalculator {
     }
   }
 }
+
+class InitialQuantityCalculator extends QuantityCalculator {
+  @override
+  double get totalBasementsCurtainArea => 0;
+  @override
+  double get totalBasementsWetSurfaceArea => 0;
+  @override
+  double get totalBreakerHour => 0;
+  @override
+  double get totalExcavationSurfaceArea => 0;
+  @override
+  double get totalExcavationVolume => 0;
+  @override
+  double get totalFillingConcreteVolume => 0;
+  @override
+  double get totalFormWorkArea => 0;
+  @override
+  double get totalFoundationWetArea => 0;
+  @override
+  double get totalHollowVolume => 0;
+  @override
+  double get totalStabilizationVolume => 0;
+  @override
+  double get totalStructuralConcreteVolume => 0;
+  @override
+  double get totalStructuralSteelWeight => 0;
+  @override
+  double get totalWallArea => 0;
+  @override
+  double get totalWallVolume => 0;
+}

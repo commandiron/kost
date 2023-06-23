@@ -15,6 +15,12 @@ class Init extends ProjectEvent {
   List<Object?> get props => [];
 }
 
+class CreateQuantityCalculator extends ProjectEvent {
+  const CreateQuantityCalculator();
+  @override
+  List<Object?> get props => [];
+}
+
 class FetchUnitPrices extends ProjectEvent {
   const FetchUnitPrices();
   @override

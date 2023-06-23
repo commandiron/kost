@@ -18,66 +18,7 @@ import 'project_state.dart';
 class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
   ProjectBloc() : super(
     ProjectState(
-      quantityCalculator: DetailedQuantityCalculator(
-        projectConstants: ProjectConstants(),
-        excavationLength: 113.71,
-        excavationArea: 798.74,
-        floors: [
-          Floor(
-            ceilingArea: 249,
-            ceilingLength: 60,
-            area: 249,
-            length: 60,
-            height: 3.3,
-            outerWallLength: 100,
-            innerWallLength: 100,
-            type: FloorType.k2,
-          ),
-          Floor(
-            ceilingArea: 249,
-            ceilingLength: 60,
-            area: 249,
-            length: 60,
-            height: 3.3,
-            outerWallLength: 100,
-            innerWallLength: 100,
-            type: FloorType.k1,
-          ),
-          Floor(
-            ceilingArea: 249,
-            ceilingLength: 60,
-            area: 689,
-            length: 105,
-            height: 3.3,
-            outerWallLength: 100,
-            innerWallLength: 100,
-            type: FloorType.z,
-          ),
-          Floor(
-            ceilingArea: 689,
-            ceilingLength: 105,
-            area: 689,
-            length: 105,
-            height: 3.15,
-            outerWallLength: 100,
-            innerWallLength: 100,
-            type: FloorType.b1,
-          ),
-          Floor(
-            ceilingArea: 689,
-            ceilingLength: 105,
-            area: 689,
-            length: 105,
-            height: 3.15,
-            outerWallLength: 100,
-            innerWallLength: 100,
-            type: FloorType.b2,
-          ),
-        ],
-        foundationArea: 689,
-        foundationLength: 105,
-        foundationHeight: 1,
-      ),
+      quantityCalculator: InitialQuantityCalculator(),
       unitPrices: const [],
       currencyRates: DefaultCurrencyRates(),
       costTemplate: EmptyCostTemplate(),
@@ -86,10 +27,77 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
     ),
   ){
     on<Init>((event, emit) {
+      add(const CreateQuantityCalculator());
       add(const FetchUnitPrices());
       add(const FetchCurrencyRates());
       add(const FetchCostTemplate());
       _refresh();
+    });
+    on<CreateQuantityCalculator>((event, emit) {
+      final quantityCalculator = DetailedQuantityCalculator(
+        projectConstants: ProjectConstants(),
+        excavationLength: 103.07,
+        excavationArea: 581.47,
+        floors: [
+          ..._duplicateFloors(
+            Floor(
+              ceilingArea: 190,
+              ceilingLength: 62.8,
+              area: 188.75,
+              length: 62.8,
+              height: 3.3,
+              outerWallLength: 100,
+              innerWallLength: 100,
+              type: FloorType.k3,
+            ),
+            9
+          ),
+          Floor(
+            ceilingArea: 188.75,
+            ceilingLength: 62.8,
+            area: 188,
+            length: 62.3,
+            height: 3.3,
+            outerWallLength: 100,
+            innerWallLength: 100,
+            type: FloorType.k2,
+          ),
+          Floor(
+            ceilingArea: 188,
+            ceilingLength: 62.3,
+            area: 177.15,
+            length: 61.3,
+            height: 3.3,
+            outerWallLength: 100,
+            innerWallLength: 100,
+            type: FloorType.k1,
+          ),
+          Floor(
+            ceilingArea: 177.15,
+            ceilingLength: 61.3,
+            area: 177.15,
+            length: 61.3,
+            height: 3.3,
+            outerWallLength: 100,
+            innerWallLength: 100,
+            type: FloorType.z,
+          ),
+          Floor(
+            ceilingArea: 477,
+            ceilingLength: 94.42,
+            area: 477,
+            length: 94.42,
+            height: 3.15,
+            outerWallLength: 100,
+            innerWallLength: 100,
+            type: FloorType.b1,
+          ),
+        ],
+        foundationArea: 477,
+        foundationLength: 94.42,
+        foundationHeight: 1,
+      );
+      emit(state.copyWith(quantityCalculator: quantityCalculator));
     });
     on<FetchUnitPrices>((event, emit) {
       emit(state.copyWith(unitPrices: AppData.unitPrices));
@@ -130,6 +138,14 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
 
   void _refresh() {
     add(const CreateCostTable());
+  }
+
+  List<Floor> _duplicateFloors(Floor floor, int count) {
+    final List<Floor> duplicatedFloors = [];
+    for(var i = 1 ; i <= count; i++ ) {
+      duplicatedFloors.add(floor);
+    }
+    return duplicatedFloors;
   }
 
   bool get _isAllEnabledUnitPriceCategoriesInUnitPrices {
