@@ -98,30 +98,12 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
       emit(state.copyWith(costTemplate: RoughConstructionCostTemplate()));
     });
     on<CreateCostTable>((event, emit) {
-      List<CostItem> costItems = [];
 
       if(!_isAllEnabledUnitPriceCategoriesInUnitPrices) {
         throw Exception("All enabled unit prices in the template are NOT included in fetched unit prices."); //Handle
       }
 
-      for (var unitPrice in state.unitPrices) {
-        if(state.costTemplate.enabledUnitPriceCategories.contains(unitPrice.category)) {
-          final costItem = CostItem(
-            unitPrice: unitPrice,
-            quantity: state.quantityCalculator.getQuantityFromUnitPriceCategory(unitPrice.category),
-            currencyRates: state.currencyRates
-          );
-          final sameCategoryCostItem = costItems.firstWhereOrNull((costItem) => costItem.unitPrice.category == unitPrice.category);
-          if(sameCategoryCostItem != null) {
-            if(sameCategoryCostItem.unitPrice.dateTime.isBefore(unitPrice.dateTime)) {
-              costItems.remove(sameCategoryCostItem);
-              costItems.add(costItem);
-            }
-          } else {
-            costItems.add(costItem);
-          }
-        }
-      }
+      final costItems = _getFilteredCostItems();
 
       final uiCostItems = costItems.map((costItem) => costItem.toUiCostItem()).toList();
       final formattedGrandTotalTRY = "${NumberFormat("#,##0.00", "tr_TR").format(_calculateGrandTotal(costItems))} TL";
@@ -149,6 +131,31 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
       }
     }
     return true;
+  }
+
+  List<CostItem> _getFilteredCostItems() {
+    List<CostItem> costItems = [];
+
+    for (var unitPrice in state.unitPrices) {
+      if(state.costTemplate.enabledUnitPriceCategories.contains(unitPrice.category)) {
+        final costItem = CostItem(
+          unitPrice: unitPrice,
+          quantity: state.quantityCalculator.getQuantityFromUnitPriceCategory(unitPrice.category),
+          currencyRates: state.currencyRates
+        );
+        final sameCategoryCostItem = costItems.firstWhereOrNull((costItem) => costItem.unitPrice.category == unitPrice.category);
+        if(sameCategoryCostItem != null) {
+          if(sameCategoryCostItem.unitPrice.dateTime.isBefore(unitPrice.dateTime)) {
+            costItems.remove(sameCategoryCostItem);
+            costItems.add(costItem);
+          }
+        } else {
+          costItems.add(costItem);
+        }
+      }
+    }
+
+    return costItems;
   }
 
   double _calculateGrandTotal(List<CostItem> costItems) {
