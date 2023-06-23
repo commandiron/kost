@@ -19,9 +19,6 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
         projectConstants: ProjectConstants(),
         excavationLength: 113.71,
         excavationArea: 798.74,
-        foundationArea: 689,
-        foundationLength: 105,
-        foundationHeight: 1,
         floors: [
           Floor(
             ceilingArea: 249,
@@ -74,6 +71,9 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
             type: FloorType.b2,
           ),
         ],
+        foundationArea: 689,
+        foundationLength: 105,
+        foundationHeight: 1,
       ),
       unitPrices: const [],
       currencyRates: DefaultCurrencyRates(),

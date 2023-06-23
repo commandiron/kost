@@ -7,10 +7,10 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   final ProjectConstants projectConstants;
   final double excavationLength;
   final double excavationArea;
+  final List<Floor> floors;
   final double foundationArea;
   final double foundationLength;
   final double foundationHeight;
-  final List<Floor> floors;
   final double insulationConcreteHeight;
   final double leanConcreteHeight;
   final double stabilizationHeight;
@@ -22,10 +22,10 @@ class DetailedQuantityCalculator extends QuantityCalculator {
         required this.projectConstants,
         required this.excavationLength,
         required this.excavationArea,
+        required this.floors,
         required this.foundationArea,
         required this.foundationLength,
         required this.foundationHeight,
-        required this.floors,
         this.insulationConcreteHeight = 0.05,
         this.leanConcreteHeight = 0.10,
         this.stabilizationHeight = 0.30,
