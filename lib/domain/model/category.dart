@@ -1,3 +1,5 @@
+import 'package:kost/domain/model/unit.dart';
+
 enum MainCategory {
   excavationJobs, roughConstructionJobs, facadeJobs, interiorJobs, finishingJobs, landscapeJobs, technicalSpecification, projectAndLicenseJobs, generalExpenses
 }
@@ -58,25 +60,26 @@ extension JobCategoryExtension on JobCategory {
 }
 
 enum UnitPriceCategory {
-  shutCrete(MainCategory.excavationJobs, JobCategory.shoring),
-  excavation(MainCategory.excavationJobs, JobCategory.excavation),
-  breaker(MainCategory.excavationJobs, JobCategory.breaker),
-  foundationStabilizationGravel(MainCategory.roughConstructionJobs, JobCategory.foundationStabilization),
-  c16Concrete(MainCategory.roughConstructionJobs, JobCategory.subFoundationConcrete),
-  c30Concrete(MainCategory.roughConstructionJobs, JobCategory.pouringConcrete),
-  c35Concrete(MainCategory.roughConstructionJobs, JobCategory.pouringConcrete),
-  s420Steel(MainCategory.roughConstructionJobs, JobCategory.rebarWork),
-  plywood(MainCategory.roughConstructionJobs, JobCategory.concreteFormWork),
-  eps(MainCategory.roughConstructionJobs, JobCategory.hollowFloorFilling),
-  doubleLayerBitumenMembrane(MainCategory.roughConstructionJobs, JobCategory.foundationWaterproofing),
-  bitumenSliding(MainCategory.roughConstructionJobs, JobCategory.curtainWaterproofing),
-  drainPlate(MainCategory.roughConstructionJobs, JobCategory.curtainProtectionBeforeFilling),
-  aeratedConcreteMaterial(MainCategory.roughConstructionJobs, JobCategory.wallMaterial),
-  aeratedConcreteWorkmanShip(MainCategory.roughConstructionJobs, JobCategory.wallWorkmanShip);
+  shutCrete(MainCategory.excavationJobs, JobCategory.shoring, Unit.squareMeters,),
+  excavation(MainCategory.excavationJobs, JobCategory.excavation, Unit.cubicMeters,),
+  breaker(MainCategory.excavationJobs, JobCategory.breaker, Unit.hour),
+  foundationStabilizationGravel(MainCategory.roughConstructionJobs, JobCategory.foundationStabilization, Unit.cubicMeters),
+  c16Concrete(MainCategory.roughConstructionJobs, JobCategory.subFoundationConcrete, Unit.cubicMeters),
+  c30Concrete(MainCategory.roughConstructionJobs, JobCategory.pouringConcrete, Unit.cubicMeters),
+  c35Concrete(MainCategory.roughConstructionJobs, JobCategory.pouringConcrete, Unit.cubicMeters),
+  s420Steel(MainCategory.roughConstructionJobs, JobCategory.rebarWork, Unit.ton),
+  plywood(MainCategory.roughConstructionJobs, JobCategory.concreteFormWork, Unit.squareMeters),
+  eps(MainCategory.roughConstructionJobs, JobCategory.hollowFloorFilling, Unit.cubicMeters),
+  doubleLayerBitumenMembrane(MainCategory.roughConstructionJobs, JobCategory.foundationWaterproofing, Unit.squareMeters),
+  bitumenSliding(MainCategory.roughConstructionJobs, JobCategory.curtainWaterproofing, Unit.squareMeters),
+  drainPlate(MainCategory.roughConstructionJobs, JobCategory.curtainProtectionBeforeFilling, Unit.squareMeters),
+  aeratedConcreteMaterial(MainCategory.roughConstructionJobs, JobCategory.wallMaterial, Unit.cubicMeters),
+  aeratedConcreteWorkmanShip(MainCategory.roughConstructionJobs, JobCategory.wallWorkmanShip, Unit.squareMeters);
 
-  const UnitPriceCategory(this.mainCategory, this.jobCategory);
+  const UnitPriceCategory(this.mainCategory, this.jobCategory, this.unit,);
   final MainCategory mainCategory;
   final JobCategory jobCategory;
+  final Unit unit;
 }
 
 extension UnitPriceCategoryExtension on UnitPriceCategory {
