@@ -18,21 +18,21 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   final double hollowFillingThickness;
 
   DetailedQuantityCalculator(
-      {
-        required this.projectConstants,
-        required this.excavationLength,
-        required this.excavationArea,
-        required this.floors,
-        required this.foundationArea,
-        required this.foundationLength,
-        required this.foundationHeight,
-        this.insulationConcreteHeight = 0.05,
-        this.leanConcreteHeight = 0.10,
-        this.stabilizationHeight = 0.30,
-        this.elevationTowerArea = 30,
-        this.hollowFillingThickness = 0.2
-      }
-      );
+    {
+      required this.projectConstants,
+      required this.excavationLength,
+      required this.excavationArea,
+      required this.floors,
+      required this.foundationArea,
+      required this.foundationLength,
+      required this.foundationHeight,
+      this.insulationConcreteHeight = 0.05,
+      this.leanConcreteHeight = 0.10,
+      this.stabilizationHeight = 0.30,
+      this.elevationTowerArea = 30,
+      this.hollowFillingThickness = 0.2
+    }
+  );
 
   //Calculations
   Floor get _topMostBasementFloor {
