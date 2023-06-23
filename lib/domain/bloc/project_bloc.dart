@@ -4,11 +4,14 @@ import 'package:intl/intl.dart';
 import 'package:kost/data/app_data.dart';
 import 'package:kost/domain/calculator/detailed/detailed_quantity_calculator.dart';
 import 'package:kost/domain/calculator/detailed/project_constants.dart';
+import 'package:kost/domain/calculator/quantity_calculator.dart';
 import 'package:kost/domain/model/currency.dart';
 import 'package:kost/domain/model/unit_price_template.dart';
 
 import '../../presentation/model/cost_item.dart';
 import '../calculator/detailed/floor.dart';
+import '../model/category.dart';
+import '../model/unit_price.dart';
 import 'project_event.dart';
 import 'project_state.dart';
 
@@ -103,7 +106,12 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
         throw Exception("All enabled unit prices in the template are NOT included in fetched unit prices."); //Handle
       }
 
-      final costItems = _createFilteredCostItems();
+      final costItems = _createFilteredCostItems(
+        unitPrices: state.unitPrices,
+        enabledUnitPriceCategories: state.costTemplate.enabledUnitPriceCategories,
+        quantityCalculator: state.quantityCalculator,
+        currencyRates: state.currencyRates
+      );
 
       final uiCostItems = costItems.map((costItem) => costItem.toUiCostItem()).toList();
       final formattedGrandTotalTRY = "${NumberFormat("#,##0.00", "tr_TR").format(_calculateGrandTotal(costItems))} TL";
@@ -133,15 +141,22 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
     return true;
   }
 
-  List<CostItem> _createFilteredCostItems() {
+  List<CostItem> _createFilteredCostItems(
+    {
+      required List<UnitPrice> unitPrices,
+      required List<UnitPriceCategory> enabledUnitPriceCategories,
+      required QuantityCalculator quantityCalculator,
+      required CurrencyRates currencyRates,
+    }
+  ) {
     List<CostItem> costItems = [];
 
-    for (var unitPrice in state.unitPrices) {
-      if(state.costTemplate.enabledUnitPriceCategories.contains(unitPrice.category)) {
+    for (var unitPrice in unitPrices) {
+      if(enabledUnitPriceCategories.contains(unitPrice.category)) {
         final costItem = CostItem(
           unitPrice: unitPrice,
-          quantity: state.quantityCalculator.getQuantityFromUnitPriceCategory(unitPrice.category),
-          currencyRates: state.currencyRates
+          quantity: quantityCalculator.getQuantityFromUnitPriceCategory(unitPrice.category),
+          currencyRates: currencyRates
         );
         final sameCategoryCostItem = costItems.firstWhereOrNull((costItem) => costItem.unitPrice.category == unitPrice.category);
         if(sameCategoryCostItem != null) {
