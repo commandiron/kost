@@ -110,16 +110,16 @@ class DetailedQuantityCalculator extends QuantityCalculator {
     return excavationArea * stabilizationHeight;
   }
   @override
-  double get totalFillingConcrete {
+  double get totalFillingConcreteVolume {
     return excavationArea * (leanConcreteHeight + insulationConcreteHeight);
   }
   @override
-  double get totalStructuralConcrete {
+  double get totalStructuralConcreteVolume {
     return totalFormWorkArea * projectConstants.concreteCubicMeterForOneSquareMeterFormWork;
   }
   @override
-  double get totalStructuralSteel {
-    return totalStructuralConcrete * projectConstants.rebarTonForOneCubicMeterConcrete;
+  double get totalStructuralSteelWeight {
+    return totalStructuralConcreteVolume * projectConstants.rebarTonForOneCubicMeterConcrete;
   }
   @override
   double get totalFormWorkArea {
@@ -130,15 +130,15 @@ class DetailedQuantityCalculator extends QuantityCalculator {
     return projectConstants.hollowAreaForOneSquareMeterConstructionArea * _roughConstructionArea * hollowFillingThickness;
   }
   @override
-  double get foundationWetArea {
+  double get totalFoundationWetArea {
     return foundationArea + (foundationLength * (foundationHeight));
   }
   @override
   double get totalBasementsWetSurfaceArea {
-    return basementCurtainArea + _wetAreaAboveBasement;
+    return totalBasementsCurtainArea + _wetAreaAboveBasement;
   }
   @override
-  double get basementCurtainArea {
+  double get totalBasementsCurtainArea {
     return _basementFloors.map((e) => e.height * e.ceilingLength).toList().fold(0.0, (p, c) => p + c);
   }
   @override
