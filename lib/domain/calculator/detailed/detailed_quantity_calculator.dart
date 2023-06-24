@@ -102,13 +102,13 @@ class DetailedQuantityCalculator extends QuantityCalculator {
     return _topMostBasementFloor.ceilingArea - _groundFloor.area;
   }
   double get _outerWallArea {
-    return floors.map((e) => e.outerWallLength * e.fullHeight).toList().fold(0.0, (p, c) => p + c);
+    return floors.map((e) => e.outerWallLength * e.heightWithoutSlab).toList().fold(0.0, (p, c) => p + c);
   }
   double get _outerWallVolume {
     return _outerWallArea * projectConstants.outerWallThickness;
   }
   double get _innerWallArea {
-    return floors.map((e) => e.innerWallLength * e.fullHeight).toList().fold(0.0, (p, c) => p + c);
+    return floors.map((e) => e.innerWallLength * e.heightWithoutSlab).toList().fold(0.0, (p, c) => p + c);
   }
   double get _innerWallVolume {
     return _innerWallArea * projectConstants.innerWallThickness;
