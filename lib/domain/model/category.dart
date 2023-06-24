@@ -65,10 +65,10 @@ enum UnitPriceCategory {
   breaker(MainCategory.excavationJobs, JobCategory.breaker, Unit.hour),
   foundationStabilizationGravel(MainCategory.roughConstructionJobs, JobCategory.foundationStabilization, Unit.cubicMeters),
   c16Concrete(MainCategory.roughConstructionJobs, JobCategory.subFoundationConcrete, Unit.cubicMeters),
+  plywood(MainCategory.roughConstructionJobs, JobCategory.concreteFormWork, Unit.squareMeters),
   c30Concrete(MainCategory.roughConstructionJobs, JobCategory.pouringConcrete, Unit.cubicMeters),
   c35Concrete(MainCategory.roughConstructionJobs, JobCategory.pouringConcrete, Unit.cubicMeters),
   s420Steel(MainCategory.roughConstructionJobs, JobCategory.rebarWork, Unit.ton),
-  plywood(MainCategory.roughConstructionJobs, JobCategory.concreteFormWork, Unit.squareMeters),
   eps(MainCategory.roughConstructionJobs, JobCategory.hollowFloorFilling, Unit.cubicMeters),
   doubleLayerBitumenMembrane(MainCategory.roughConstructionJobs, JobCategory.foundationWaterproofing, Unit.squareMeters),
   bitumenSliding(MainCategory.roughConstructionJobs, JobCategory.curtainWaterproofing, Unit.squareMeters),
@@ -90,10 +90,10 @@ extension UnitPriceCategoryExtension on UnitPriceCategory {
       case UnitPriceCategory.breaker : return "Kırıcı";
       case UnitPriceCategory.foundationStabilizationGravel : return "Mıcır";
       case UnitPriceCategory.c16Concrete : return "C16 Beton";
+      case UnitPriceCategory.plywood : return "Plywood";
       case UnitPriceCategory.c30Concrete : return "C30 Beton";
       case UnitPriceCategory.c35Concrete : return "C35 Beton";
       case UnitPriceCategory.s420Steel : return "S420 Nervürlü İnşaat Demiri";
-      case UnitPriceCategory.plywood : return "Plywood";
       case UnitPriceCategory.eps : return "Eps";
       case UnitPriceCategory.doubleLayerBitumenMembrane : return "Bitüm Esaslı Membran (Çift Kat)";
       case UnitPriceCategory.bitumenSliding : return "Bitüm Esaslı Sürme İzolasyon";

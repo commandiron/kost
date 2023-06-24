@@ -35,6 +35,12 @@ class AppData {
       dateTime: DateTime(2023, 01)
     ),
     UnitPrice(
+      category: UnitPriceCategory.plywood,
+      amount: 600,
+      currency: Currency.lira,
+      dateTime: DateTime(2023, 01)
+    ),
+    UnitPrice(
       category: UnitPriceCategory.c30Concrete,
       amount: 1900,
       currency: Currency.lira,
@@ -49,12 +55,6 @@ class AppData {
     UnitPrice(
       category: UnitPriceCategory.s420Steel,
       amount: 15930,
-      currency: Currency.lira,
-      dateTime: DateTime(2023, 01)
-    ),
-    UnitPrice(
-      category: UnitPriceCategory.plywood,
-      amount: 600,
       currency: Currency.lira,
       dateTime: DateTime(2023, 01)
     ),

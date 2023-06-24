@@ -168,6 +168,15 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   }
 
   @override
+  double get totalFormWorkArea {
+    return _roughConstructionArea + _coreCurtainArea + _curtainsExceeding1MeterArea + _basementsOuterCurtainAreaWithoutSlab;
+  }
+  @override
+  String get totalFormWorkAreaExplanation {
+    return "Kaba inşaat alanı: $_roughConstructionArea + Çekirdek perdesi alanı: $_coreCurtainArea + 1 metreyi geçen perdelerin alanı: $_curtainsExceeding1MeterArea + Bodrum dış perdeleri alanı: $_basementsOuterCurtainAreaWithoutSlab";
+  }
+
+  @override
   double get totalStructuralConcreteVolume {
     return totalFormWorkArea * projectConstants.concreteCubicMeterForOneSquareMeterFormWork;
   }
@@ -183,15 +192,6 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   @override
   String get totalStructuralSteelWeightExplanation {
     return "Beton hacmi: $totalStructuralConcreteVolume x 1 m3 beton için ton biriminde demir ağırlığı: ${projectConstants.rebarTonForOneCubicMeterConcrete}";
-  }
-
-  @override
-  double get totalFormWorkArea {
-    return _roughConstructionArea + _coreCurtainArea + _curtainsExceeding1MeterArea + _basementsOuterCurtainAreaWithoutSlab;
-  }
-  @override
-  String get totalFormWorkAreaExplanation {
-    return "Kaba inşaat alanı: $_roughConstructionArea + Çekirdek perdesi alanı: $_coreCurtainArea + 1 metreyi geçen perdelerin alanı: $_curtainsExceeding1MeterArea + Bodrum dış perdeleri alanı: $_basementsOuterCurtainAreaWithoutSlab";
   }
 
   @override
