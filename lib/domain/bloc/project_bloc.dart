@@ -173,6 +173,7 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
         final costItem = CostItem(
           unitPrice: unitPrice,
           quantity: quantityCalculator.getQuantityFromUnitPriceCategory(unitPrice.category),
+          quantityExplanation: quantityCalculator.getQuantityExplanationFromUnitPriceCategory(unitPrice.category),
           currencyRates: currencyRates
         );
         final sameCategoryCostItem = costItems.firstWhereOrNull((costItem) => costItem.unitPrice.category == unitPrice.category);

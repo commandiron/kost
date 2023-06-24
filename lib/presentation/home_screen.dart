@@ -44,7 +44,16 @@ class HomeScreen extends StatelessWidget {
                           child: Text(uiCostItem.formattedUnitPrice)
                         ),
                         Expanded(
-                          child: Text(uiCostItem.formattedQuantity)
+                          child: Row(
+                            children: [
+                              Tooltip(
+                                message: uiCostItem.quantityExplanation,
+                                child: Icon(Icons.info),
+                              ),
+                              SizedBox(width: 8,),
+                              Text(uiCostItem.formattedQuantity),
+                            ],
+                          )
                         ),
                         Expanded(
                           child: Text(uiCostItem.formattedTotalPriceTRY)),

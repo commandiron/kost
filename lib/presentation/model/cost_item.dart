@@ -8,6 +8,7 @@ import 'package:intl/intl.dart';
 class CostItem {
   final UnitPrice unitPrice;
   final double quantity;
+  final String quantityExplanation;
   final CurrencyRates currencyRates;
   final double totalPriceTRY;
 
@@ -15,6 +16,7 @@ class CostItem {
     {
       required this.unitPrice,
       required this.quantity,
+      required this.quantityExplanation,
       required this.currencyRates,
     }
   ) : totalPriceTRY = unitPrice.amount * quantity * unitPrice.currency.toLiraRate(currencyRates);
@@ -26,6 +28,7 @@ class CostItem {
       unitPriceName: unitPrice.category.nameTr,
       formattedUnitPrice: "${unitPrice.amount} ${unitPrice.currency.symbol}/${unitPrice.category.unit.symbol}",
       formattedQuantity: "${NumberFormat("#,##0.00", "tr_TR").format(quantity)} ${unitPrice.category.unit.symbol}",
+      quantityExplanation: quantityExplanation,
       formattedTotalPriceTRY: "${NumberFormat("#,##0.00", "tr_TR").format(totalPriceTRY)} TL"
     );
   }
@@ -37,6 +40,7 @@ class UiCostItem {
   String unitPriceName;
   String formattedUnitPrice;
   String formattedQuantity;
+  String quantityExplanation;
   String formattedTotalPriceTRY;
 
   UiCostItem(
@@ -46,6 +50,7 @@ class UiCostItem {
       required this.unitPriceName,
       required this.formattedUnitPrice,
       required this.formattedQuantity,
+      required this.quantityExplanation,
       required this.formattedTotalPriceTRY,
     }
   );
