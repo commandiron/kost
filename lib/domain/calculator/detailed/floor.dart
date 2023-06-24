@@ -23,11 +23,15 @@ class Floor {
     }
   );
 
-  static const List<FloorType> types = [
+  static const List<FloorType> basementTypes = [
     FloorType.b3,
     FloorType.b2,
     FloorType.b1,
-    FloorType.z,
+  ];
+
+  static const FloorType groundType = FloorType.z;
+
+  static const List<FloorType> normalTypes = [
     FloorType.k1,
     FloorType.k2,
     FloorType.k3,
@@ -48,6 +52,12 @@ class Floor {
     FloorType.k18,
     FloorType.k19,
     FloorType.k20,
+  ];
+
+  static const List<FloorType> types = [
+    ...basementTypes,
+    groundType,
+    ...normalTypes
   ];
 
   static List<Floor> duplicateFloors(Floor floor, int count) {

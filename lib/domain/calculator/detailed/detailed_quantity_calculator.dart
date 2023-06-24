@@ -42,14 +42,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
 
   //Calculations
   Floor get _topMostBasementFloor {
-
-    final List<FloorType> basementTypes = [
-      FloorType.b1,
-      FloorType.b2,
-      FloorType.b3,
-    ];
-
-    for (var basementType in basementTypes) {
+    for (var basementType in Floor.basementTypes) {
       if(floors.any((floor) => floor.type == basementType)) {
         return floors.firstWhere((floor) => floor.type == basementType);
       }
@@ -58,32 +51,10 @@ class DetailedQuantityCalculator extends QuantityCalculator {
     throw Exception("No top most basement.");
   }
   Floor get _groundFloor {
-    return floors.firstWhere((e) => e.type == FloorType.z);
+    return floors.firstWhere((e) => e.type == Floor.groundType);
   }
   Floor get _topFloor {
-    final List<FloorType> normalFloorTypes = [
-      FloorType.k20,
-      FloorType.k19,
-      FloorType.k18,
-      FloorType.k17,
-      FloorType.k16,
-      FloorType.k15,
-      FloorType.k14,
-      FloorType.k13,
-      FloorType.k12,
-      FloorType.k11,
-      FloorType.k10,
-      FloorType.k9,
-      FloorType.k8,
-      FloorType.k7,
-      FloorType.k6,
-      FloorType.k5,
-      FloorType.k4,
-      FloorType.k3,
-      FloorType.k2,
-      FloorType.k1,
-    ];
-
+    final List<FloorType> normalFloorTypes = Floor.normalTypes.reversed.toList();
     for (var normalFloorType in normalFloorTypes) {
       if(floors.any((floor) => floor.type == normalFloorType)) {
         return floors.firstWhere((floor) => floor.type == normalFloorType);
