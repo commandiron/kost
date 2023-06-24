@@ -42,4 +42,3 @@ class CreateCostTable extends ProjectEvent {
   @override
   List<Object?> get props => [];
 }
-
