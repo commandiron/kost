@@ -49,6 +49,11 @@ class Floor {
   ];
 
   static List<Floor> duplicateFloors(Floor floor, int count) {
+
+    if(floor.type == FloorType.b3 || floor.type == FloorType.b2 || floor.type == FloorType.b3) {
+      throw(Exception("Basements cannot be duplicate"));
+    }
+
     int floorIndex = Floor.types.firstWhere((element) => element == floor.type).index;
     final List<Floor> duplicatedFloors = [];
     for(var i = 1 ; i <= count; i++ ) {
@@ -56,7 +61,7 @@ class Floor {
       final floorTypeIndex = floorIndex + (i - 1);
 
       if(floorTypeIndex > Floor.types.length - 1) {
-        throw(Exception("Exceed maximum floor size (>k20)"));
+        throw(Exception("Exceed maximum floor type (>FloorType.k20)"));
       }
 
       duplicatedFloors.add(
