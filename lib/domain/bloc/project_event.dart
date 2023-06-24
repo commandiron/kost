@@ -1,7 +1,5 @@
 import 'package:equatable/equatable.dart';
 
-import '../model/category.dart';
-
 abstract class ProjectEvent extends Equatable {
   const ProjectEvent();
 
@@ -45,9 +43,3 @@ class CreateCostTable extends ProjectEvent {
   List<Object?> get props => [];
 }
 
-class ReplaceUnitPriceCategory extends ProjectEvent {
-  final UnitPriceCategory unitPriceCategory;
-  const ReplaceUnitPriceCategory(this.unitPriceCategory);
-  @override
-  List<Object?> get props => [unitPriceCategory];
-}

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:grouped_list/grouped_list.dart';
-import 'package:kost/domain/bloc/project_event.dart';
 import 'package:kost/domain/model/category.dart';
 import 'package:kost/presentation/model/cost_item.dart';
 
@@ -19,7 +18,6 @@ class HomeScreen extends StatelessWidget {
           return Column(
             children: [
               Text(state.costTemplate.name, style: const TextStyle(fontSize: 26),),
-              ElevatedButton(onPressed: () => context.read<ProjectBloc>().add(const ReplaceUnitPriceCategory(UnitPriceCategory.c35Concrete)), child: const Text("selam")),
               GroupedListView<UiCostItem, String>(
                 shrinkWrap: true,
                 elements: state.uiCostItems,
@@ -28,6 +26,9 @@ class HomeScreen extends StatelessWidget {
                   padding: const EdgeInsets.all(8.0),
                   child: Text(groupByValue, style: const TextStyle(fontSize: 20),),
                 ),
+                itemComparator: (element1, element2) {
+                  return 0;
+                },
                 itemBuilder: (context, uiCostItem) {
                   return Padding(
                     padding: const EdgeInsets.all(8.0),

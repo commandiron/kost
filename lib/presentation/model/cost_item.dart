@@ -29,6 +29,7 @@ class CostItem {
       formattedUnitPrice: "${unitPrice.amount} ${unitPrice.currency.symbol}/${unitPrice.category.unit.symbol}",
       formattedQuantity: "${NumberFormat("#,##0.00", "tr_TR").format(quantity)} ${unitPrice.category.unit.symbol}",
       quantityExplanation: quantityExplanation,
+      totalPriceTRY: totalPriceTRY,
       formattedTotalPriceTRY: "${NumberFormat("#,##0.00", "tr_TR").format(totalPriceTRY)} TL"
     );
   }
@@ -41,6 +42,7 @@ class UiCostItem {
   String formattedUnitPrice;
   String formattedQuantity;
   String quantityExplanation;
+  double totalPriceTRY;
   String formattedTotalPriceTRY;
 
   UiCostItem(
@@ -51,6 +53,7 @@ class UiCostItem {
       required this.formattedUnitPrice,
       required this.formattedQuantity,
       required this.quantityExplanation,
+      required this.totalPriceTRY,
       required this.formattedTotalPriceTRY,
     }
   );

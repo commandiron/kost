@@ -134,15 +134,6 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
       final formattedGrandTotalTRY = "${NumberFormat("#,##0.00", "tr_TR").format(_calculateGrandTotal(costItems))} TL";
       emit(state.copyWith(uiCostItems: uiCostItems, formattedGrandTotalTRY: formattedGrandTotalTRY));
     });
-    on<ReplaceUnitPriceCategory>((event, emit) {
-      for (var enabledUnitPriceCategory in state.costTemplate.enabledUnitPriceCategories) {
-        if(enabledUnitPriceCategory.jobCategory == event.unitPriceCategory.jobCategory) {
-          state.costTemplate.enabledUnitPriceCategories.remove(enabledUnitPriceCategory);
-          state.costTemplate.enabledUnitPriceCategories.add(event.unitPriceCategory);
-        }
-      }
-      _refresh();
-    });
   }
 
   void init() {
