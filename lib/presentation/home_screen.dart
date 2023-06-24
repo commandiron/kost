@@ -49,9 +49,9 @@ class HomeScreen extends StatelessWidget {
                               Tooltip(
                                 message: uiCostItem.quantityExplanation,
                                 verticalOffset: -12,
-                                child: Icon(Icons.info_outlined),
+                                child: const Icon(Icons.info_outlined),
                               ),
-                              SizedBox(width: 8,),
+                              const SizedBox(width: 8,),
                               Text(uiCostItem.formattedQuantity),
                             ],
                           )
