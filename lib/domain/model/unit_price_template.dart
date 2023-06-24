@@ -45,3 +45,42 @@ class RoughConstructionCostTemplate extends CostTemplate {
   }
 }
 
+class RoofingCostTemplate extends CostTemplate {
+  RoofingCostTemplate(
+      {
+        super.name = "Çatı Maliyeti"
+      }
+      ){
+    enabledUnitPriceCategories = [
+
+    ];
+  }
+}
+
+
+
+class InteriorCostTemplate extends CostTemplate {
+  InteriorCostTemplate(
+      {
+        super.name = "İç İmalat Maliyeti"
+      }
+      ){
+    enabledUnitPriceCategories = [
+
+    ];
+  }
+}
+
+class BuildingCostTemplate extends CostTemplate {
+  BuildingCostTemplate(
+      {
+        super.name = "Apartman Maliyeti"
+      }
+      ){
+    enabledUnitPriceCategories = [
+      ...RoughConstructionCostTemplate().enabledUnitPriceCategories,
+      ...RoofingCostTemplate().enabledUnitPriceCategories,
+      ...InteriorCostTemplate().enabledUnitPriceCategories,
+    ];
+  }
+}
