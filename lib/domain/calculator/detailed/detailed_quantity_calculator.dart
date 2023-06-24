@@ -236,7 +236,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   }
   @override
   String get totalWallVolumeExplanation {
-    return "Dış perde hacmi: $_outerWallVolume + İç perde hacmi: $_innerWallVolume";
+    return "Dış duvar hacmi (kalınlık: ${projectConstants.outerWallThickness}): $_outerWallVolume + İç duvar hacmi(kalınlık: ${projectConstants.innerWallThickness}): $_innerWallVolume";
   }
 
   @override
@@ -245,6 +245,6 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   }
   @override
   String get totalWallAreaExplanation {
-    return "Dış perde alanı: $_outerWallArea + İç perde alanı: $_innerWallArea";
+    return "Dış duvar alanı: $_outerWallArea + İç duvar alanı: $_innerWallArea";
   }
 }
