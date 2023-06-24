@@ -60,6 +60,9 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   Floor get _groundFloor {
     return floors.firstWhere((e) => e.type == FloorType.z);
   }
+  Floor get _topFloor {
+    return floors.first;
+  }
   List<Floor> get _basementFloors {
     return floors.where((floor) => floor.type == FloorType.b3 || floor.type == FloorType.b2 || floor.type == FloorType.b1).toList();
   }
@@ -246,5 +249,14 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   @override
   String get totalWallAreaExplanation {
     return "Dış duvar alanı: $_outerWallArea + İç duvar alanı: $_innerWallArea";
+  }
+
+  @override
+  double get totalRoofArea {
+   return _topFloor.ceilingArea;
+  }
+  @override
+  String get totalRoofAreaExplanation {
+   return "En üst kat tavan alanı: ${_topFloor.ceilingArea}";
   }
 }

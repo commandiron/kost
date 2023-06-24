@@ -52,12 +52,10 @@ class RoofingCostTemplate extends CostTemplate {
       }
       ){
     enabledUnitPriceCategories = [
-
+      UnitPriceCategory.roofing
     ];
   }
 }
-
-
 
 class InteriorCostTemplate extends CostTemplate {
   InteriorCostTemplate(

@@ -43,6 +43,9 @@ abstract class QuantityCalculator {
   double get totalWallArea;
   String get totalWallAreaExplanation;
 
+  double get totalRoofArea;
+  String get totalRoofAreaExplanation;
+
   double getQuantityFromUnitPriceCategory(UnitPriceCategory unitPriceCategory) {
     switch(unitPriceCategory) {
       case UnitPriceCategory.shutCrete : return totalExcavationSurfaceArea;
@@ -60,6 +63,7 @@ abstract class QuantityCalculator {
       case UnitPriceCategory.drainPlate : return totalBasementsWetCurtainArea;
       case UnitPriceCategory.aeratedConcreteMaterial : return totalWallVolume;
       case UnitPriceCategory.aeratedConcreteWorkmanShip : return totalWallArea;
+      case UnitPriceCategory.roofing : return totalRoofArea;
     }
   }
 
@@ -80,6 +84,7 @@ abstract class QuantityCalculator {
       case UnitPriceCategory.drainPlate : return totalBasementsWetCurtainAreaExplanation;
       case UnitPriceCategory.aeratedConcreteMaterial : return totalWallVolumeExplanation;
       case UnitPriceCategory.aeratedConcreteWorkmanShip : return totalWallAreaExplanation;
+      case UnitPriceCategory.roofing : return totalRoofAreaExplanation;
     }
   }
 }
@@ -155,4 +160,9 @@ class InitialQuantityCalculator extends QuantityCalculator {
   double get totalWallArea => 0;
   @override
   String get totalWallAreaExplanation => "";
+
+  @override
+  double get totalRoofArea => 0;
+  @override
+  String get totalRoofAreaExplanation => "";
 }
