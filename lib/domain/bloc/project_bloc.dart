@@ -39,7 +39,7 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
         excavationLength: 103.07,
         excavationArea: 581.47,
         floors: [
-          ..._duplicateFloors(
+          ...Floor.duplicateFloors(
             Floor(
               ceilingArea: 190,
               ceilingLength: 62.8,
@@ -136,16 +136,8 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
     });
   }
 
-  void _refresh() {
-    add(const CreateCostTable());
-  }
-
-  List<Floor> _duplicateFloors(Floor floor, int count) {
-    final List<Floor> duplicatedFloors = [];
-    for(var i = 1 ; i <= count; i++ ) {
-      duplicatedFloors.add(floor);
-    }
-    return duplicatedFloors;
+  void init() {
+    add(const Init());
   }
 
   bool get _isAllEnabledUnitPriceCategoriesInUnitPrices {
@@ -193,7 +185,7 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
     return costItems.map((costItem) => costItem.totalPriceTRY).toList().fold(0, (p, c) => p + c);
   }
 
-  void init() {
-    add(const Init());
+  void _refresh() {
+    add(const CreateCostTable());
   }
 }

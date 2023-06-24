@@ -20,6 +20,60 @@ class Floor {
       required this.type
     }
   );
+
+  static const List<FloorType> types = [
+    FloorType.b3,
+    FloorType.b2,
+    FloorType.b1,
+    FloorType.z,
+    FloorType.k1,
+    FloorType.k2,
+    FloorType.k3,
+    FloorType.k4,
+    FloorType.k5,
+    FloorType.k6,
+    FloorType.k7,
+    FloorType.k8,
+    FloorType.k9,
+    FloorType.k10,
+    FloorType.k11,
+    FloorType.k12,
+    FloorType.k13,
+    FloorType.k14,
+    FloorType.k15,
+    FloorType.k16,
+    FloorType.k17,
+    FloorType.k18,
+    FloorType.k19,
+    FloorType.k20,
+  ];
+
+  static List<Floor> duplicateFloors(Floor floor, int count) {
+    int floorIndex = Floor.types.firstWhere((element) => element == floor.type).index;
+    final List<Floor> duplicatedFloors = [];
+    for(var i = 1 ; i <= count; i++ ) {
+
+      final floorTypeIndex = floorIndex + (i - 1);
+
+      if(floorTypeIndex > Floor.types.length - 1) {
+        throw(Exception("Exceed maximum floor size (>k20)"));
+      }
+
+      duplicatedFloors.add(
+          Floor(
+              ceilingArea: floor.ceilingArea,
+              ceilingLength: floor.ceilingLength,
+              area: floor.area,
+              length: floor.length,
+              height: floor.height,
+              outerWallLength: floor.outerWallLength,
+              innerWallLength: floor.innerWallLength,
+              type: Floor.types[floorTypeIndex]
+          )
+      );
+    }
+    return duplicatedFloors;
+  }
 }
 
 enum FloorType {
