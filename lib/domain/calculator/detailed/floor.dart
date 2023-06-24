@@ -65,16 +65,16 @@ class Floor {
       }
 
       duplicatedFloors.add(
-          Floor(
-              ceilingArea: floor.ceilingArea,
-              ceilingLength: floor.ceilingLength,
-              area: floor.area,
-              length: floor.length,
-              height: floor.height,
-              outerWallLength: floor.outerWallLength,
-              innerWallLength: floor.innerWallLength,
-              type: Floor.types[floorTypeIndex]
-          )
+        Floor(
+          ceilingArea: floor.ceilingArea,
+          ceilingLength: floor.ceilingLength,
+          area: floor.area,
+          length: floor.length,
+          height: floor.height,
+          outerWallLength: floor.outerWallLength,
+          innerWallLength: floor.innerWallLength,
+          type: Floor.types[floorTypeIndex]
+        )
       );
     }
     return duplicatedFloors;
