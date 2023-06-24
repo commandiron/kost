@@ -61,7 +61,36 @@ class DetailedQuantityCalculator extends QuantityCalculator {
     return floors.firstWhere((e) => e.type == FloorType.z);
   }
   Floor get _topFloor {
-    return floors.first;
+    final List<FloorType> normalFloorTypes = [
+      FloorType.k20,
+      FloorType.k19,
+      FloorType.k18,
+      FloorType.k17,
+      FloorType.k16,
+      FloorType.k15,
+      FloorType.k14,
+      FloorType.k13,
+      FloorType.k12,
+      FloorType.k11,
+      FloorType.k10,
+      FloorType.k9,
+      FloorType.k8,
+      FloorType.k7,
+      FloorType.k6,
+      FloorType.k5,
+      FloorType.k4,
+      FloorType.k3,
+      FloorType.k2,
+      FloorType.k1,
+    ];
+
+    for (var normalFloorType in normalFloorTypes) {
+      if(floors.any((floor) => floor.type == normalFloorType)) {
+        return floors.firstWhere((floor) => floor.type == normalFloorType);
+      }
+    }
+
+    throw Exception("No top floor.");
   }
   List<Floor> get _basementFloors {
     return floors.where((floor) => floor.type == FloorType.b3 || floor.type == FloorType.b2 || floor.type == FloorType.b1).toList();
