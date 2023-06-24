@@ -9,6 +9,8 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   final double excavationArea;
   final double coreCurtainLength;
   final double curtainsExceeding1MeterLength;
+  final double elevationTowerArea;
+  final double elevationTowerHeightWithoutSlab;
   final List<Floor> floors;
   final double foundationArea;
   final double foundationLength;
@@ -16,8 +18,6 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   final double insulationConcreteHeight;
   final double leanConcreteHeight;
   final double stabilizationHeight;
-  final double elevationTowerArea;
-  final double elevationTowerHeightWithoutSlab;
   final double hollowFillingThickness;
 
   DetailedQuantityCalculator(
@@ -27,6 +27,8 @@ class DetailedQuantityCalculator extends QuantityCalculator {
       required this.excavationArea,
       required this.coreCurtainLength,
       required this.curtainsExceeding1MeterLength,
+      required this.elevationTowerArea,
+      required this.elevationTowerHeightWithoutSlab,
       required this.floors,
       required this.foundationArea,
       required this.foundationLength,
@@ -34,8 +36,6 @@ class DetailedQuantityCalculator extends QuantityCalculator {
       this.insulationConcreteHeight = 0.05,
       this.leanConcreteHeight = 0.10,
       this.stabilizationHeight = 0.30,
-      this.elevationTowerArea = 30,
-      this.elevationTowerHeightWithoutSlab = 3,
       this.hollowFillingThickness = 0.2
     }
   );

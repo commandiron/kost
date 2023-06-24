@@ -40,6 +40,8 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
         excavationArea: 581.47,
         coreCurtainLength: 30,
         curtainsExceeding1MeterLength: 10,
+        elevationTowerArea: 30,
+        elevationTowerHeightWithoutSlab: 3,
         floors: [
           ...Floor.duplicateFloors(
             Floor(
