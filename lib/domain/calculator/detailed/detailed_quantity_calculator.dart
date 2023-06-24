@@ -145,7 +145,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   }
   @override
   double get totalFormWorkArea {
-    return _roughConstructionArea + _coreCurtainArea + _curtainsExceeding1MeterArea + _basementsOuterCurtainArea; //Toplam Perde alanı eklenecek.
+    return _roughConstructionArea + _coreCurtainArea + _curtainsExceeding1MeterArea + _basementsOuterCurtainArea;
   }
   @override
   double get totalHollowVolume {
