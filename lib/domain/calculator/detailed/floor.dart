@@ -1,9 +1,10 @@
 class Floor {
   final double ceilingArea;
   final double ceilingLength;
+  final double fullHeight;
   final double area;
   final double length;
-  final double height;
+  final double heightWithoutSlab;
   final double outerWallLength;
   final double innerWallLength;
   final FloorType type;
@@ -12,9 +13,10 @@ class Floor {
     {
       required this.ceilingArea,
       required this.ceilingLength,
+      required this.fullHeight,
       required this.area,
       required this.length,
-      required this.height,
+      required this.heightWithoutSlab,
       required this.outerWallLength,
       required this.innerWallLength,
       required this.type
@@ -68,9 +70,10 @@ class Floor {
         Floor(
           ceilingArea: floor.ceilingArea,
           ceilingLength: floor.ceilingLength,
+          fullHeight: floor.fullHeight,
           area: floor.area,
           length: floor.length,
-          height: floor.height,
+          heightWithoutSlab: floor.heightWithoutSlab,
           outerWallLength: floor.outerWallLength,
           innerWallLength: floor.innerWallLength,
           type: Floor.types[floorTypeIndex]

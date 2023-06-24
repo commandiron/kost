@@ -7,6 +7,8 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   final ProjectConstants projectConstants;
   final double excavationLength;
   final double excavationArea;
+  final double coreCurtainLength;
+  final double curtainsExceeding1MeterLength;
   final List<Floor> floors;
   final double foundationArea;
   final double foundationLength;
@@ -15,6 +17,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   final double leanConcreteHeight;
   final double stabilizationHeight;
   final double elevationTowerArea;
+  final double elevationTowerHeightWithoutSlab;
   final double hollowFillingThickness;
 
   DetailedQuantityCalculator(
@@ -22,6 +25,8 @@ class DetailedQuantityCalculator extends QuantityCalculator {
       required this.projectConstants,
       required this.excavationLength,
       required this.excavationArea,
+      required this.coreCurtainLength,
+      required this.curtainsExceeding1MeterLength,
       required this.floors,
       required this.foundationArea,
       required this.foundationLength,
@@ -30,6 +35,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
       this.leanConcreteHeight = 0.10,
       this.stabilizationHeight = 0.30,
       this.elevationTowerArea = 30,
+      this.elevationTowerHeightWithoutSlab = 3,
       this.hollowFillingThickness = 0.2
     }
   );
@@ -63,7 +69,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   double get _basementsHeight {
     double basementsHeight = 0;
     for (var basementFloor in _basementFloors) {
-      basementsHeight += basementFloor.height;
+      basementsHeight += basementFloor.fullHeight;
     }
     return basementsHeight;
   }
@@ -76,17 +82,33 @@ class DetailedQuantityCalculator extends QuantityCalculator {
     roughConstructionArea += elevationTowerArea;
     return roughConstructionArea;
   }
+  double get _buildingHeightWithoutSlabs {
+    return floors.map((e) => e.heightWithoutSlab).toList().fold(0.0, (p, c) => p + c);
+  }
+  double get _coreCurtainArea {
+    return coreCurtainLength * (_buildingHeightWithoutSlabs + elevationTowerHeightWithoutSlab);
+  }
+  double get _curtainsExceeding1MeterArea {
+    return curtainsExceeding1MeterLength * _buildingHeightWithoutSlabs;
+  }
+  double get _basementsOuterCurtainArea {
+    double resultArea = 0;
+    for (var basementFloor in _basementFloors) {
+      resultArea += basementFloor.length * basementFloor.heightWithoutSlab;
+    }
+    return resultArea;
+  }
   double get _wetAreaAboveBasement {
     return _topMostBasementFloor.ceilingArea - _groundFloor.area;
   }
   double get _outerWallArea {
-    return floors.map((e) => e.outerWallLength * e.height).toList().fold(0.0, (p, c) => p + c);
+    return floors.map((e) => e.outerWallLength * e.fullHeight).toList().fold(0.0, (p, c) => p + c);
   }
   double get _outerWallVolume {
     return _outerWallArea * projectConstants.outerWallThickness;
   }
   double get _innerWallArea {
-    return floors.map((e) => e.innerWallLength * e.height).toList().fold(0.0, (p, c) => p + c);
+    return floors.map((e) => e.innerWallLength * e.fullHeight).toList().fold(0.0, (p, c) => p + c);
   }
   double get _innerWallVolume {
     return _innerWallArea * projectConstants.innerWallThickness;
@@ -123,7 +145,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   }
   @override
   double get totalFormWorkArea {
-    return _roughConstructionArea; //Toplam Perde alanı eklenecek.
+    return _roughConstructionArea + _coreCurtainArea + _curtainsExceeding1MeterArea + _basementsOuterCurtainArea; //Toplam Perde alanı eklenecek.
   }
   @override
   double get totalHollowVolume {
@@ -131,7 +153,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   }
   @override
   double get totalFoundationWetArea {
-    return foundationArea + (foundationLength * (foundationHeight));
+    return foundationArea + (foundationLength * foundationHeight);
   }
   @override
   double get totalBasementsWetSurfaceArea {
@@ -139,7 +161,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   }
   @override
   double get totalBasementsCurtainArea {
-    return _basementFloors.map((e) => e.height * e.ceilingLength).toList().fold(0.0, (p, c) => p + c);
+    return _basementFloors.map((e) => e.fullHeight * e.ceilingLength).toList().fold(0.0, (p, c) => p + c);
   }
   @override
   double get totalWallVolume {
