@@ -12,62 +12,70 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: BlocBuilder<ProjectBloc, ProjectState>(
-        builder: (context, state) {
-          return Column(
-            children: [
-              Text(state.costTemplate.name, style: const TextStyle(fontSize: 26),),
-              GroupedListView<UiCostItem, String>(
-                shrinkWrap: true,
-                elements: state.uiCostItems,
-                groupBy: (uiCostItem) => uiCostItem.mainCategory.nameTr,
-                groupSeparatorBuilder: (String groupByValue) => Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(groupByValue, style: const TextStyle(fontSize: 20),),
-                ),
-                itemComparator: (element1, element2) {
-                  return 0;
-                },
-                itemBuilder: (context, uiCostItem) {
-                  return Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Row(
-                      children: [
-                        Expanded(
-                          flex: 2,
-                          child: Text(uiCostItem.jobName)
+    return SafeArea(
+      child: Scaffold(
+        body: BlocBuilder<ProjectBloc, ProjectState>(
+          builder: (context, state) {
+            return CustomScrollView(
+              slivers: [
+                SliverToBoxAdapter(
+                  child: Column(
+                    children: [
+                      Text(state.costTemplate.name, style: const TextStyle(fontSize: 26),),
+                      GroupedListView<UiCostItem, String>(
+                        shrinkWrap: true,
+                        elements: state.uiCostItems,
+                        groupBy: (uiCostItem) => uiCostItem.mainCategory.nameTr,
+                        groupSeparatorBuilder: (String groupByValue) => Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(groupByValue, style: const TextStyle(fontSize: 20),),
                         ),
-                        Expanded(
-                          child: Text(uiCostItem.unitPriceName)
-                        ),
-                        Expanded(
-                          child: Text(uiCostItem.formattedUnitPrice)
-                        ),
-                        Expanded(
-                          child: Row(
-                            children: [
-                              Tooltip(
-                                message: uiCostItem.quantityExplanation,
-                                verticalOffset: -12,
-                                child: const Icon(Icons.info_outlined),
-                              ),
-                              const SizedBox(width: 8,),
-                              Text(uiCostItem.formattedQuantity),
-                            ],
-                          )
-                        ),
-                        Expanded(
-                          child: Text(uiCostItem.formattedTotalPriceTRY)),
-                      ],
-                    ),
-                  );
-                },
-              ),
-              Text(state.formattedGrandTotalTRY),
-            ],
-          );
-        },
+                        itemComparator: (element1, element2) {
+                          return 0;
+                        },
+                        itemBuilder: (context, uiCostItem) {
+                          return Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Row(
+                              children: [
+                                Expanded(
+                                    flex: 2,
+                                    child: Text(uiCostItem.jobName)
+                                ),
+                                Expanded(
+                                    child: Text(uiCostItem.unitPriceName)
+                                ),
+                                Expanded(
+                                    child: Text(uiCostItem.formattedUnitPrice)
+                                ),
+                                Expanded(
+                                    child: Row(
+                                      children: [
+                                        Tooltip(
+                                          message: uiCostItem.quantityExplanation,
+                                          verticalOffset: -12,
+                                          child: const Icon(Icons.info_outlined),
+                                        ),
+                                        const SizedBox(width: 8,),
+                                        Text(uiCostItem.formattedQuantity),
+                                      ],
+                                    )
+                                ),
+                                Expanded(
+                                    child: Text(uiCostItem.formattedTotalPriceTRY)),
+                              ],
+                            ),
+                          );
+                        },
+                      ),
+                      Text(state.formattedGrandTotalTRY),
+                    ],
+                  ),
+                )
+              ],
+            );
+          },
+        ),
       ),
     );
   }
