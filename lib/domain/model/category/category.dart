@@ -1,4 +1,4 @@
-import 'package:kost/domain/model/unit.dart';
+import 'package:kost/domain/model/category/unit.dart';
 
 enum MainCategory {
   excavationJobs, roughConstructionJobs, roofJobs, facadeJobs, interiorJobs, finishingJobs, landscapeJobs, technicalSpecification, projectAndLicenseJobs, generalExpenses

@@ -1,4 +1,4 @@
-import 'category.dart';
+import '../category/category.dart';
 
 abstract class CostTemplate {
   List<UnitPriceCategory> enabledUnitPriceCategories;

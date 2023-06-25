@@ -1,8 +1,8 @@
-import 'package:kost/domain/model/category.dart';
-import 'package:kost/domain/model/unit.dart';
+import 'package:kost/domain/model/category/category.dart';
+import 'package:kost/domain/model/category/unit.dart';
 
-import '../../domain/model/unit_price.dart';
-import '../../domain/model/currency.dart';
+import '../../domain/model/unit_price/unit_price.dart';
+import '../../domain/model/unit_price/currency.dart';
 import 'package:intl/intl.dart';
 
 class CostItem {

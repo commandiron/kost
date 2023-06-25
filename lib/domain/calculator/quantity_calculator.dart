@@ -1,4 +1,4 @@
-import '../model/category.dart';
+import '../model/category/category.dart';
 
 abstract class QuantityCalculator {
   double get totalExcavationSurfaceArea;

@@ -1,4 +1,4 @@
-import 'category.dart';
+import '../category/category.dart';
 import 'currency.dart';
 
 class UnitPrice {
