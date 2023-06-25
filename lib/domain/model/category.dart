@@ -37,7 +37,7 @@ enum JobCategory {
   curtainProtectionBeforeFilling,
   wallMaterial,
   wallWorkmanShip,
-  steelConstructionBraasRoof
+  roofing
 }
 
 extension JobCategoryExtension on JobCategory {
@@ -57,7 +57,7 @@ extension JobCategoryExtension on JobCategory {
       case JobCategory.curtainProtectionBeforeFilling : return "Geri dolgu öncesi perde yalıtımına koruyucu yapılması";
       case JobCategory.wallMaterial : return "Duvar malzeme";
       case JobCategory.wallWorkmanShip : return "Duvar işçilik";
-      case JobCategory.steelConstructionBraasRoof : return "Çelik konstrüksiyon Braas Çatı";
+      case JobCategory.roofing : return "Çatı Yapılması";
     }
   }
 }
@@ -78,7 +78,7 @@ enum UnitPriceCategory {
   drainPlate(MainCategory.roughConstructionJobs, JobCategory.curtainProtectionBeforeFilling, Unit.squareMeters),
   aeratedConcreteMaterial(MainCategory.roughConstructionJobs, JobCategory.wallMaterial, Unit.cubicMeters),
   aeratedConcreteWorkmanShip(MainCategory.roughConstructionJobs, JobCategory.wallWorkmanShip, Unit.squareMeters),
-  roofing(MainCategory.roofJobs, JobCategory.steelConstructionBraasRoof, Unit.squareMeters);
+  steelConstructionBraasRoof(MainCategory.roofJobs, JobCategory.roofing, Unit.squareMeters);
 
   const UnitPriceCategory(this.mainCategory, this.jobCategory, this.unit,);
   final MainCategory mainCategory;
@@ -104,7 +104,7 @@ extension UnitPriceCategoryExtension on UnitPriceCategory {
       case UnitPriceCategory.drainPlate : return "Drenaj Levhası";
       case UnitPriceCategory.aeratedConcreteMaterial : return "Gazbeton Malzeme";
       case UnitPriceCategory.aeratedConcreteWorkmanShip : return "Gazbeton İşçilik";
-      case UnitPriceCategory.roofing : return "Çatı Yapılması";
+      case UnitPriceCategory.steelConstructionBraasRoof : return "Çelik konstrüksiyon Braas Çatı";
     }
   }
 }

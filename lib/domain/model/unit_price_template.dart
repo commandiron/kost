@@ -52,7 +52,7 @@ class RoofingCostTemplate extends CostTemplate {
       }
       ){
     enabledUnitPriceCategories = [
-      UnitPriceCategory.roofing
+      UnitPriceCategory.steelConstructionBraasRoof
     ];
   }
 }

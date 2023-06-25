@@ -95,7 +95,7 @@ class AppData {
       dateTime: DateTime(2023, 01)
     ),
     UnitPrice(
-      category: UnitPriceCategory.roofing,
+      category: UnitPriceCategory.steelConstructionBraasRoof,
       amount: 3000,
       currency: Currency.lira,
       dateTime: DateTime(2023, 01)

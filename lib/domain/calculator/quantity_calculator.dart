@@ -63,7 +63,7 @@ abstract class QuantityCalculator {
       case UnitPriceCategory.drainPlate : return totalBasementsWetCurtainArea;
       case UnitPriceCategory.aeratedConcreteMaterial : return totalWallVolume;
       case UnitPriceCategory.aeratedConcreteWorkmanShip : return totalWallArea;
-      case UnitPriceCategory.roofing : return totalRoofArea;
+      case UnitPriceCategory.steelConstructionBraasRoof : return totalRoofArea;
     }
   }
 
@@ -84,7 +84,7 @@ abstract class QuantityCalculator {
       case UnitPriceCategory.drainPlate : return totalBasementsWetCurtainAreaExplanation;
       case UnitPriceCategory.aeratedConcreteMaterial : return totalWallVolumeExplanation;
       case UnitPriceCategory.aeratedConcreteWorkmanShip : return totalWallAreaExplanation;
-      case UnitPriceCategory.roofing : return totalRoofAreaExplanation;
+      case UnitPriceCategory.steelConstructionBraasRoof : return totalRoofAreaExplanation;
     }
   }
 }
