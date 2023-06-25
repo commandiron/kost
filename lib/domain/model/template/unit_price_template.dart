@@ -57,6 +57,18 @@ class RoofingCostTemplate extends CostTemplate {
   }
 }
 
+class FacadeCostTemplate extends CostTemplate {
+  FacadeCostTemplate(
+      {
+        super.name = "Cephe Maliyeti"
+      }
+      ){
+    enabledUnitPriceCategories = [
+      UnitPriceCategory.steelScaffolding
+    ];
+  }
+}
+
 class InteriorCostTemplate extends CostTemplate {
   InteriorCostTemplate(
       {
@@ -74,11 +86,12 @@ class BuildingCostTemplate extends CostTemplate {
       {
         super.name = "Apartman Maliyeti"
       }
-      ){
+  ){
     enabledUnitPriceCategories = [
       ...RoughConstructionCostTemplate().enabledUnitPriceCategories,
       ...RoofingCostTemplate().enabledUnitPriceCategories,
       ...InteriorCostTemplate().enabledUnitPriceCategories,
+      ...FacadeCostTemplate().enabledUnitPriceCategories,
     ];
   }
 }

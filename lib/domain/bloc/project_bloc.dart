@@ -183,7 +183,6 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
         }
       }
     }
-
     return costItems;
   }
 

@@ -66,6 +66,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   List<Floor> get _basementFloors {
     return floors.where((floor) => floor.type == FloorType.b3 || floor.type == FloorType.b2 || floor.type == FloorType.b1).toList();
   }
+
   double get _excavationHeight {
     return stabilizationHeight + leanConcreteHeight + insulationConcreteHeight + foundationHeight + _basementsHeight;
   }
@@ -130,6 +131,9 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   }
   double get _thinWallVolume {
     return _thinWallArea * projectConstants.thinWallThickness;
+  }
+  double get _totalFacadeArea {
+    return floors.map((e) => e.perimeter * e.fullHeight).toList().fold(0.0, (p, c) => p + c);
   }
 
   //Final Results
@@ -266,5 +270,14 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   @override
   String get totalRoofAreaExplanation {
    return "En üst kat tavan alanı: ${_topFloor.ceilingArea}";
+  }
+
+  @override
+  double get totalFacadeArea {
+    return _totalFacadeArea;
+  }
+  @override
+  String get totalFacadeAreaExplanation {
+   return "Toplam cephe alanı: $_totalFacadeArea";
   }
 }

@@ -26,12 +26,11 @@ class HomeScreen extends StatelessWidget {
                         shrinkWrap: true,
                         elements: state.uiCostItems,
                         groupBy: (uiCostItem) => uiCostItem.mainCategory.nameTr,
-                        groupSeparatorBuilder: (String groupByValue) => Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(groupByValue, style: const TextStyle(fontSize: 20),),
-                        ),
-                        itemComparator: (element1, element2) {
-                          return 0;
+                        groupSeparatorBuilder: (String groupByValue) {
+                          return Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(groupByValue, style: const TextStyle(fontSize: 20),),
+                          );
                         },
                         itemBuilder: (context, uiCostItem) {
                           return Padding(
