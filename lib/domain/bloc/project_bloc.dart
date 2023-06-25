@@ -53,6 +53,7 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
               heightWithoutSlab: 3,
               outerWallLength: 100,
               innerWallLength: 100,
+              isCeilingHollowSlab: true,
               type: FloorType.k3,
             ),
             9
@@ -66,6 +67,7 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
             heightWithoutSlab: 3,
             outerWallLength: 100,
             innerWallLength: 100,
+            isCeilingHollowSlab: true,
             type: FloorType.k2,
           ),
           Floor(
@@ -77,6 +79,7 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
             heightWithoutSlab: 3,
             outerWallLength: 100,
             innerWallLength: 100,
+            isCeilingHollowSlab: true,
             type: FloorType.k1,
           ),
           Floor(
@@ -88,6 +91,7 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
             heightWithoutSlab: 3,
             outerWallLength: 100,
             innerWallLength: 100,
+            isCeilingHollowSlab: true,
             type: FloorType.z,
           ),
           Floor(
@@ -99,6 +103,7 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
             heightWithoutSlab: 3,
             outerWallLength: 100,
             innerWallLength: 100,
+            isCeilingHollowSlab: false,
             type: FloorType.b1,
           ),
         ],

@@ -7,6 +7,7 @@ class Floor {
   final double heightWithoutSlab;
   final double outerWallLength;
   final double innerWallLength;
+  final bool isCeilingHollowSlab;
   final FloorType type;
 
   Floor (
@@ -19,6 +20,7 @@ class Floor {
       required this.heightWithoutSlab,
       required this.outerWallLength,
       required this.innerWallLength,
+      required this.isCeilingHollowSlab,
       required this.type
     }
   );
@@ -86,6 +88,7 @@ class Floor {
           heightWithoutSlab: floor.heightWithoutSlab,
           outerWallLength: floor.outerWallLength,
           innerWallLength: floor.innerWallLength,
+          isCeilingHollowSlab: floor.isCeilingHollowSlab,
           type: Floor.types[floorTypeIndex]
         )
       );
