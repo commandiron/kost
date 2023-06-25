@@ -32,6 +32,7 @@ class HomeScreen extends StatelessWidget {
                             child: Text(groupByValue, style: const TextStyle(fontSize: 20),),
                           );
                         },
+                        sort: false,
                         itemBuilder: (context, uiCostItem) {
                           return Padding(
                             padding: const EdgeInsets.all(8.0),
