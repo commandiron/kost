@@ -3,8 +3,8 @@ class ProjectConstants {
   final double concreteCubicMeterForOneSquareMeterFormWork;
   final double rebarTonForOneCubicMeterConcrete;
   final double hollowAreaForOneSquareMeterConstructionArea;
-  final double outerWallThickness;
-  final double innerWallThickness;
+  final double thickWallThickness;
+  final double thinWallThickness;
 
   ProjectConstants(
     {
@@ -12,8 +12,8 @@ class ProjectConstants {
       this.concreteCubicMeterForOneSquareMeterFormWork = 0.35,
       this.rebarTonForOneCubicMeterConcrete = 0.16,
       this.hollowAreaForOneSquareMeterConstructionArea = 0.40,
-      this.outerWallThickness = 0.135,
-      this.innerWallThickness = 0.085
+      this.thickWallThickness = 0.135,
+      this.thinWallThickness = 0.085
     }
   );
 }

@@ -5,7 +5,7 @@ import 'floor.dart';
 
 class DetailedQuantityCalculator extends QuantityCalculator {
   final ProjectConstants projectConstants;
-  final double excavationLength;
+  final double excavationPerimeter;
   final double excavationArea;
   final double coreCurtainLength;
   final double curtainsExceeding1MeterLength;
@@ -13,7 +13,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   final double elevationTowerHeightWithoutSlab;
   final List<Floor> floors;
   final double foundationArea;
-  final double foundationLength;
+  final double foundationPerimeter;
   final double foundationHeight;
   final double insulationConcreteHeight;
   final double leanConcreteHeight;
@@ -23,7 +23,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   DetailedQuantityCalculator(
     {
       required this.projectConstants,
-      required this.excavationLength,
+      required this.excavationPerimeter,
       required this.excavationArea,
       required this.coreCurtainLength,
       required this.curtainsExceeding1MeterLength,
@@ -31,7 +31,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
       required this.elevationTowerHeightWithoutSlab,
       required this.floors,
       required this.foundationArea,
-      required this.foundationLength,
+      required this.foundationPerimeter,
       required this.foundationHeight,
       this.insulationConcreteHeight = 0.05,
       this.leanConcreteHeight = 0.10,
@@ -105,41 +105,41 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   double get _basementsOuterCurtainAreaWithoutSlab {
     double resultArea = 0;
     for (var basementFloor in _basementFloors) {
-      resultArea += basementFloor.length * basementFloor.heightWithoutSlab;
+      resultArea += basementFloor.perimeter * basementFloor.heightWithoutSlab;
     }
     return resultArea;
   }
   double get _basementsOuterCurtainArea {
     double resultArea = 0;
     for (var basementFloor in _basementFloors) {
-      resultArea += basementFloor.length * basementFloor.fullHeight;
+      resultArea += basementFloor.perimeter * basementFloor.fullHeight;
     }
     return resultArea;
   }
   double get _wetAreaAboveBasement {
     return _topMostBasementFloor.ceilingArea - _groundFloor.area;
   }
-  double get _outerWallArea {
-    return floors.map((e) => e.outerWallLength * e.heightWithoutSlab).toList().fold(0.0, (p, c) => p + c);
+  double get _thickWallArea {
+    return floors.map((e) => e.thickWallLength * e.heightWithoutSlab).toList().fold(0.0, (p, c) => p + c);
   }
-  double get _outerWallVolume {
-    return _outerWallArea * projectConstants.outerWallThickness;
+  double get _thickWallVolume {
+    return _thickWallArea * projectConstants.thickWallThickness;
   }
-  double get _innerWallArea {
-    return floors.map((e) => e.innerWallLength * e.heightWithoutSlab).toList().fold(0.0, (p, c) => p + c);
+  double get _thinWallArea {
+    return floors.map((e) => e.thinWallLength * e.heightWithoutSlab).toList().fold(0.0, (p, c) => p + c);
   }
-  double get _innerWallVolume {
-    return _innerWallArea * projectConstants.innerWallThickness;
+  double get _thinWallVolume {
+    return _thinWallArea * projectConstants.thinWallThickness;
   }
 
   //Final Results
   @override
   double get totalExcavationSurfaceArea {
-    return excavationLength * _excavationHeight;
+    return excavationPerimeter * _excavationHeight;
   }
   @override
   String get totalExcavationSurfaceAreaExplanation {
-    return "Hafriyat uzunluğu: $excavationLength x Hafriyat yüksekliği: $_excavationHeight";
+    return "Hafriyat çevre uzunluğu: $excavationPerimeter x Hafriyat yüksekliği: $_excavationHeight";
   }
 
   @override
@@ -216,11 +216,11 @@ class DetailedQuantityCalculator extends QuantityCalculator {
 
   @override
   double get totalFoundationWetArea {
-    return foundationArea + (foundationLength * foundationHeight);
+    return foundationArea + (foundationPerimeter * foundationHeight);
   }
   @override
   String get totalFoundationWetAreaExplanation {
-    return "Temel alanı: $foundationArea + (Temel uzunluğu: $foundationLength x Temel yüksekliği: $foundationHeight)";
+    return "Temel alanı: $foundationArea + (Temel çevre uzunluğu: $foundationPerimeter x Temel yüksekliği: $foundationHeight)";
   }
 
   @override
@@ -243,20 +243,20 @@ class DetailedQuantityCalculator extends QuantityCalculator {
 
   @override
   double get totalWallVolume {
-    return _outerWallVolume + _innerWallVolume;
+    return _thickWallVolume + _thinWallVolume;
   }
   @override
   String get totalWallVolumeExplanation {
-    return "Dış duvar hacmi (kalınlık: ${projectConstants.outerWallThickness}): $_outerWallVolume + İç duvar hacmi(kalınlık: ${projectConstants.innerWallThickness}): $_innerWallVolume";
+    return "Kalın duvar hacmi (kalınlık: ${projectConstants.thickWallThickness}): $_thickWallVolume + İnce duvar hacmi(kalınlık: ${projectConstants.thinWallThickness}): $_thinWallVolume";
   }
 
   @override
   double get totalWallArea {
-    return _outerWallArea + _innerWallArea;
+    return _thickWallArea + _thinWallArea;
   }
   @override
   String get totalWallAreaExplanation {
-    return "Dış duvar alanı: $_outerWallArea + İç duvar alanı: $_innerWallArea";
+    return "Kalın duvar alanı: $_thickWallArea + İnce duvar alanı: $_thinWallArea";
   }
 
   @override

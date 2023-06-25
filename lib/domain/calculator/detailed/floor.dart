@@ -1,25 +1,25 @@
 class Floor {
   final double ceilingArea;
-  final double ceilingLength;
+  final double ceilingPerimeter;
   final double fullHeight;
   final double area;
-  final double length;
+  final double perimeter;
   final double heightWithoutSlab;
-  final double outerWallLength;
-  final double innerWallLength;
+  final double thickWallLength;
+  final double thinWallLength;
   final bool isCeilingHollowSlab;
   final FloorType type;
 
   Floor (
     {
       required this.ceilingArea,
-      required this.ceilingLength,
+      required this.ceilingPerimeter,
       required this.fullHeight,
       required this.area,
-      required this.length,
+      required this.perimeter,
       required this.heightWithoutSlab,
-      required this.outerWallLength,
-      required this.innerWallLength,
+      required this.thickWallLength,
+      required this.thinWallLength,
       required this.isCeilingHollowSlab,
       required this.type
     }
@@ -81,13 +81,13 @@ class Floor {
       duplicatedFloors.add(
         Floor(
           ceilingArea: floor.ceilingArea,
-          ceilingLength: floor.ceilingLength,
+          ceilingPerimeter: floor.ceilingPerimeter,
           fullHeight: floor.fullHeight,
           area: floor.area,
-          length: floor.length,
+          perimeter: floor.perimeter,
           heightWithoutSlab: floor.heightWithoutSlab,
-          outerWallLength: floor.outerWallLength,
-          innerWallLength: floor.innerWallLength,
+          thickWallLength: floor.thickWallLength,
+          thinWallLength: floor.thinWallLength,
           isCeilingHollowSlab: floor.isCeilingHollowSlab,
           type: Floor.types[floorTypeIndex]
         )
