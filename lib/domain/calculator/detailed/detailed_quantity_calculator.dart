@@ -66,6 +66,16 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   List<Floor> get _basementFloors {
     return floors.where((floor) => floor.type == FloorType.b3 || floor.type == FloorType.b2 || floor.type == FloorType.b1).toList();
   }
+  List<Floor> get _normalFloors {
+    List<Floor> normalFloors = [];
+    const List<FloorType> normalFloorTypes = Floor.normalTypes;
+    for (var normalFloorType in normalFloorTypes) {
+      if(floors.any((floor) => floor.type == normalFloorType)) {
+        normalFloors.add(floors.firstWhere((floor) => floor.type == normalFloorType));
+      }
+    }
+    return normalFloors;
+  }
   double get _excavationHeight {
     return stabilizationHeight + leanConcreteHeight + insulationConcreteHeight + foundationHeight + _basementsHeight;
   }
@@ -83,6 +93,13 @@ class DetailedQuantityCalculator extends QuantityCalculator {
       roughConstructionArea += floor.ceilingArea;
     }
     roughConstructionArea += elevationTowerArea;
+    return roughConstructionArea;
+  }
+  double get _normalFloorsRoughConstructionArea {
+    double roughConstructionArea = 0;
+    for (var floor in _normalFloors) {
+      roughConstructionArea += floor.ceilingArea;
+    }
     return roughConstructionArea;
   }
   double get _buildingHeightWithoutSlabs {
@@ -199,11 +216,11 @@ class DetailedQuantityCalculator extends QuantityCalculator {
 
   @override
   double get totalHollowVolume {
-    return projectConstants.hollowAreaForOneSquareMeterConstructionArea * _roughConstructionArea * hollowFillingThickness;
+    return projectConstants.hollowAreaForOneSquareMeterConstructionArea * _normalFloorsRoughConstructionArea * hollowFillingThickness;
   }
   @override
   String get totalHollowVolumeExplanation {
-    return "1 m2 kaba inşaat alanı için m2 biriminde asmolen alanı: ${projectConstants.hollowAreaForOneSquareMeterConstructionArea} x Kaba inşaat alanı: $_roughConstructionArea x Asmolen kalınlığı: $hollowFillingThickness";
+    return "1 m2 kaba inşaat alanı için m2 biriminde asmolen alanı: ${projectConstants.hollowAreaForOneSquareMeterConstructionArea} x Normal katlar inşaat alanı: $_normalFloorsRoughConstructionArea x Asmolen kalınlığı: $hollowFillingThickness";
   }
 
   @override
