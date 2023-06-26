@@ -79,7 +79,7 @@ class InteriorCostTemplate extends CostTemplate {
       }
       ){
     enabledUnitPriceCategories = [
-
+      UnitPriceCategory.plaster,
     ];
   }
 }
@@ -93,8 +93,8 @@ class BuildingCostTemplate extends CostTemplate {
     enabledUnitPriceCategories = [
       ...RoughConstructionCostTemplate().enabledUnitPriceCategories,
       ...RoofingCostTemplate().enabledUnitPriceCategories,
-      ...InteriorCostTemplate().enabledUnitPriceCategories,
       ...FacadeCostTemplate().enabledUnitPriceCategories,
+      ...InteriorCostTemplate().enabledUnitPriceCategories,
     ];
   }
 }

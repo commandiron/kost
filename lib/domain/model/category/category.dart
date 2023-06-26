@@ -50,6 +50,7 @@ enum JobCategory {
   windows,
   facadeRails,
   facade,
+  interiorPlastering,
 }
 
 extension JobCategoryExtension on JobCategory {
@@ -74,6 +75,7 @@ extension JobCategoryExtension on JobCategory {
       case JobCategory.windows : return "Pencere ve Doğramaların yapılması";
       case JobCategory.facadeRails : return "Cephe korkuluklarının yapılması";
       case JobCategory.facade : return "Cephe kaplama sisteminin yapılması";
+      case JobCategory.interiorPlastering : return "İç mekan sıvasının yapılması (Kaba + İnce)";
     }
   }
 }
@@ -99,7 +101,8 @@ enum UnitPriceCategory {
   windowJoineryRehau(MainCategory.facadeJobs, JobCategory.windows, Unit.squareMeters),
   wroughtIronRailing(MainCategory.facadeJobs, JobCategory.facadeRails, Unit.meter),
   ceramicFacade(MainCategory.facadeJobs, JobCategory.facade, Unit.squareMeters),
-  precastFacade(MainCategory.facadeJobs, JobCategory.facade, Unit.squareMeters);
+  precastFacade(MainCategory.facadeJobs, JobCategory.facade, Unit.squareMeters),
+  plaster(MainCategory.interiorJobs, JobCategory.interiorPlastering, Unit.squareMeters);
 
   const UnitPriceCategory(this.mainCategory, this.jobCategory, this.unit,);
   final MainCategory mainCategory;
@@ -131,6 +134,7 @@ extension UnitPriceCategoryExtension on UnitPriceCategory {
       case UnitPriceCategory.wroughtIronRailing : return "Ferforje Korkuluk";
       case UnitPriceCategory.ceramicFacade : return "Seramik cephe";
       case UnitPriceCategory.precastFacade : return "Prekast cephe";
+      case UnitPriceCategory.plaster : return "Alçı sıva";
     }
   }
 }

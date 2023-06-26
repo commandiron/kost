@@ -163,6 +163,12 @@ class DetailedQuantityCalculator extends QuantityCalculator {
 
     return totalRailingLength;
   }
+  double get _totalOuterWallArea {
+    return _totalFacadeArea - _totalWindowArea;
+  }
+  double get _totalInnerWallArea {
+    return (_thickWallArea - _totalOuterWallArea + _thinWallArea);
+  }
 
   //Final Results
   @override
@@ -335,5 +341,14 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   @override
   String get totalFacadeAreaWithoutWindowsExplanation {
     return "Toplam cephe alanı: $_totalFacadeArea - Toplam pencere alanı: $_totalWindowArea";
+  }
+
+  @override
+  double get totalPlasteringArea {
+    return _basementsOuterCurtainArea + (_coreCurtainArea * 2) + (_curtainsExceeding1MeterArea * 2) + _totalOuterWallArea +  (_totalInnerWallArea * 2);
+  }
+  @override
+  String get totalPlasteringAreaExplanation {
+    return "Toplam bodrumlar dış perde alanı: $_basementsOuterCurtainAreaWithoutSlab + Çekirdek perdeleri toplam alanı: $_coreCurtainArea x 2 (Çift yüz) + Toplam 1 metreyi geçen duvar alanı: $_curtainsExceeding1MeterArea x 2 (Çift yüz) + Toplam dış duvar alanı: $_totalOuterWallArea + Toplam iç duvar alanı: $_totalInnerWallArea x 2 (Çift yüz)";
   }
 }
