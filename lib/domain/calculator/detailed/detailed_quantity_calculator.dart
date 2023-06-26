@@ -327,4 +327,13 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   String get totalRailingLengthExplanation {
     return "Toplam cephe korkuluğu uzunluğu: $_totalFacadeRailingLength";
   }
+
+  @override
+  double get totalFacadeAreaWithoutWindows {
+    return _totalFacadeArea - _totalWindowArea;
+  }
+  @override
+  String get totalFacadeAreaWithoutWindowsExplanation {
+    return "Toplam cephe alanı: $_totalFacadeArea - Toplam pencere alanı: $_totalWindowArea";
+  }
 }

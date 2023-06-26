@@ -67,6 +67,7 @@ class FacadeCostTemplate extends CostTemplate {
       UnitPriceCategory.steelScaffolding,
       UnitPriceCategory.windowJoineryRehau,
       UnitPriceCategory.wroughtIronRailing,
+      UnitPriceCategory.ceramicFacade,
     ];
   }
 }
