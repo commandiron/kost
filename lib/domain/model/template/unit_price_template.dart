@@ -66,6 +66,7 @@ class FacadeCostTemplate extends CostTemplate {
     enabledUnitPriceCategories = [
       UnitPriceCategory.steelScaffolding,
       UnitPriceCategory.windowJoineryRehau,
+      UnitPriceCategory.wroughtIronRailing,
     ];
   }
 }

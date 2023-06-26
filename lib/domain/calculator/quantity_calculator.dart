@@ -52,6 +52,9 @@ abstract class QuantityCalculator {
   double get totalWindowArea;
   String get totalWindowAreaExplanation;
 
+  double get totalRailingLength;
+  String get totalRailingLengthExplanation;
+
   double getQuantityFromUnitPriceCategory(UnitPriceCategory unitPriceCategory) {
     switch(unitPriceCategory) {
       case UnitPriceCategory.shutCrete : return totalExcavationSurfaceArea;
@@ -72,6 +75,7 @@ abstract class QuantityCalculator {
       case UnitPriceCategory.steelConstructionBraasRoof : return totalRoofArea;
       case UnitPriceCategory.steelScaffolding : return totalFacadeArea;
       case UnitPriceCategory.windowJoineryRehau : return totalWindowArea;
+      case UnitPriceCategory.wroughtIronRailing : return totalRailingLength;
     }
   }
 
@@ -95,6 +99,7 @@ abstract class QuantityCalculator {
       case UnitPriceCategory.steelConstructionBraasRoof : return totalRoofAreaExplanation;
       case UnitPriceCategory.steelScaffolding : return totalFacadeAreaExplanation;
       case UnitPriceCategory.windowJoineryRehau : return totalWindowAreaExplanation;
+      case UnitPriceCategory.wroughtIronRailing : return totalRailingLengthExplanation;
     }
   }
 }
@@ -187,4 +192,10 @@ class InitialQuantityCalculator extends QuantityCalculator {
 
   @override
   String get totalWindowAreaExplanation => "";
+
+  @override
+  double get totalRailingLength => 0;
+
+  @override
+  String get totalRailingLengthExplanation => "";
 }

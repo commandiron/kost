@@ -48,6 +48,7 @@ enum JobCategory {
   roofing,
   facadeScaffolding,
   windows,
+  facadeRails,
 }
 
 extension JobCategoryExtension on JobCategory {
@@ -70,6 +71,7 @@ extension JobCategoryExtension on JobCategory {
       case JobCategory.roofing : return "Çatı Yapılması";
       case JobCategory.facadeScaffolding : return "Cephe için iş iskelesi kurulması ve daha sonra sökülmesi (6ay)";
       case JobCategory.windows : return "Pencere ve Doğramaların yapılması";
+      case JobCategory.facadeRails : return "Cephe korkuluklarının yapılması";
     }
   }
 }
@@ -92,7 +94,8 @@ enum UnitPriceCategory {
   aeratedConcreteWorkmanShip(MainCategory.roughConstructionJobs, JobCategory.wallWorkmanShip, Unit.squareMeters),
   steelConstructionBraasRoof(MainCategory.roofJobs, JobCategory.roofing, Unit.squareMeters),
   steelScaffolding(MainCategory.facadeJobs, JobCategory.facadeScaffolding, Unit.squareMeters),
-  windowJoineryRehau(MainCategory.facadeJobs, JobCategory.windows, Unit.squareMeters);
+  windowJoineryRehau(MainCategory.facadeJobs, JobCategory.windows, Unit.squareMeters),
+  wroughtIronRailing(MainCategory.facadeJobs, JobCategory.facadeRails, Unit.meter);
 
   const UnitPriceCategory(this.mainCategory, this.jobCategory, this.unit,);
   final MainCategory mainCategory;
@@ -121,6 +124,7 @@ extension UnitPriceCategoryExtension on UnitPriceCategory {
       case UnitPriceCategory.steelConstructionBraasRoof : return "Çelik konstrüksiyon Braas Çatı";
       case UnitPriceCategory.steelScaffolding : return "Korkuluklu çelik iskele";
       case UnitPriceCategory.windowJoineryRehau : return "Rehau sürgülü, Hebeschiebe veya Volkswagen Doğrama";
+      case UnitPriceCategory.wroughtIronRailing : return "Ferforje Korkuluk";
     }
   }
 }

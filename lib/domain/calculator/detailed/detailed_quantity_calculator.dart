@@ -149,6 +149,20 @@ class DetailedQuantityCalculator extends QuantityCalculator {
 
     return totalWindowArea;
   }
+  double get _totalFacadeRailingLength {
+    if(floors.every((element) => element.windows == null)) {
+      return 0;
+    }
+
+    final floorsWithWindow = floors.where((element) => element.windows != null).toList();
+
+    double totalRailingLength = 0;
+    for (var floor in floorsWithWindow) {
+      totalRailingLength += floor.windows!.map((window) => window.hasGuard ? window.width * window.count : 0).toList().fold(0.0, (p, c) => p + c);
+    }
+
+    return totalRailingLength;
+  }
 
   //Final Results
   @override
@@ -302,5 +316,15 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   @override
   String get totalWindowAreaExplanation {
     return "Toplam pencere alanı: $_totalWindowArea";
+  }
+
+  @override
+  double get totalRailingLength {
+    return _totalFacadeRailingLength;
+  }
+
+  @override
+  String get totalRailingLengthExplanation {
+    return "Toplam cephe korkuluğu uzunluğu: $_totalFacadeRailingLength";
   }
 }
