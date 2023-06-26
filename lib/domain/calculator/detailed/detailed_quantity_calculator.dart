@@ -351,7 +351,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   @override
   double get totalPlasteringArea {
     return _basementsOuterCurtainArea + (_coreCurtainArea * 2) + (_curtainsExceeding1MeterArea * 2) + _columnsSurfaceArea + _totalOuterWallArea +  (_totalInnerWallArea * 2);
-  }
+  } //Bunu belki mimari alanları eklediğimde çekebilirim.
   @override
   String get totalPlasteringAreaExplanation {
     return "Toplam bodrumlar dış perde alanı: $_basementsOuterCurtainAreaWithoutSlab + Çekirdek perdeleri toplam alanı: $_coreCurtainArea x 2 (Çift yüz) + Toplam 1 metreyi geçen perde alanı: $_curtainsExceeding1MeterArea x 2 (Çift yüz) + Kolon yüzey alanı: $_columnsSurfaceArea + Toplam dış duvar alanı: $_totalOuterWallArea + Toplam iç duvar alanı: $_totalInnerWallArea x 2 (Çift yüz)";
