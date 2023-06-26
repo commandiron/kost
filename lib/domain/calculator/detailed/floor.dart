@@ -1,3 +1,4 @@
+import 'package:kost/domain/calculator/detailed/room.dart';
 import 'package:kost/domain/calculator/detailed/window.dart';
 
 class Floor {
@@ -11,6 +12,7 @@ class Floor {
   final double thinWallLength;
   final bool isCeilingHollowSlab;
   final List<Window>? windows;
+  final List<Room> rooms;
   final FloorType type;
 
   Floor (
@@ -25,6 +27,7 @@ class Floor {
       required this.thinWallLength,
       required this.isCeilingHollowSlab,
       this.windows,
+      required this.rooms,
       required this.type
     }
   );
@@ -94,6 +97,7 @@ class Floor {
           thinWallLength: floor.thinWallLength,
           isCeilingHollowSlab: floor.isCeilingHollowSlab,
           windows: floor.windows,
+          rooms: floor.rooms,
           type: Floor.types[floorTypeIndex]
         )
       );
