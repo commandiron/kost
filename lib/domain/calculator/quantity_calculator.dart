@@ -58,53 +58,51 @@ abstract class QuantityCalculator {
   double get totalFacadeAreaWithoutWindows;
   String get totalFacadeAreaWithoutWindowsExplanation;
 
-  double getQuantityFromUnitPriceCategory(UnitPriceCategory unitPriceCategory) {
-    switch(unitPriceCategory) {
-      case UnitPriceCategory.shutCrete : return totalExcavationSurfaceArea;
-      case UnitPriceCategory.excavation : return totalExcavationVolume;
-      case UnitPriceCategory.breaker : return totalBreakerHour;
-      case UnitPriceCategory.foundationStabilizationGravel : return totalStabilizationVolume;
-      case UnitPriceCategory.c16Concrete : return totalFillingConcreteVolume;
-      case UnitPriceCategory.plywood : return totalFormWorkArea;
-      case UnitPriceCategory.c30Concrete : return totalStructuralConcreteVolume;
-      case UnitPriceCategory.c35Concrete : return totalStructuralConcreteVolume;
-      case UnitPriceCategory.s420Steel : return totalStructuralSteelWeight;
-      case UnitPriceCategory.eps : return totalHollowVolume;
-      case UnitPriceCategory.doubleLayerBitumenMembrane : return totalFoundationWetArea;
-      case UnitPriceCategory.bitumenSliding : return totalBasementsWetSurfaceArea;
-      case UnitPriceCategory.drainPlate : return totalBasementsWetCurtainArea;
-      case UnitPriceCategory.aeratedConcreteMaterial : return totalWallVolume;
-      case UnitPriceCategory.aeratedConcreteWorkmanShip : return totalWallArea;
-      case UnitPriceCategory.steelConstructionBraasRoof : return totalRoofArea;
-      case UnitPriceCategory.steelScaffolding : return totalFacadeArea;
-      case UnitPriceCategory.windowJoineryRehau : return totalWindowArea;
-      case UnitPriceCategory.wroughtIronRailing : return totalRailingLength;
-      case UnitPriceCategory.ceramicFacade : return totalFacadeAreaWithoutWindows;
+  double getQuantityFromJobCategory(JobCategory jobCategory) {
+    switch(jobCategory) {
+      case JobCategory.shoring : return totalExcavationSurfaceArea;
+      case JobCategory.excavation : return totalExcavationVolume;
+      case JobCategory.breaker : return totalBreakerHour;
+      case JobCategory.foundationStabilization : return totalStabilizationVolume;
+      case JobCategory.subFoundationConcrete : return totalFillingConcreteVolume;
+      case JobCategory.concreteFormWork : return totalFormWorkArea;
+      case JobCategory.pouringConcrete : return totalStructuralConcreteVolume;
+      case JobCategory.rebarWork : return totalStructuralSteelWeight;
+      case JobCategory.hollowFloorFilling : return totalHollowVolume;
+      case JobCategory.foundationWaterproofing : return totalFoundationWetArea;
+      case JobCategory.curtainWaterproofing : return totalBasementsWetSurfaceArea;
+      case JobCategory.curtainProtectionBeforeFilling : return totalBasementsWetCurtainArea;
+      case JobCategory.wallMaterial : return totalWallVolume;
+      case JobCategory.wallWorkmanShip : return  totalWallArea;
+      case JobCategory.roofing : return totalRoofArea;
+      case JobCategory.facadeScaffolding : return totalFacadeArea;
+      case JobCategory.windows : return totalWindowArea;
+      case JobCategory.facadeRails : return totalRailingLength;
+      case JobCategory.facade : return totalFacadeAreaWithoutWindows;
     }
   }
 
-  String getQuantityExplanationFromUnitPriceCategory(UnitPriceCategory unitPriceCategory) {
-    switch(unitPriceCategory) {
-      case UnitPriceCategory.shutCrete : return totalExcavationSurfaceAreaExplanation;
-      case UnitPriceCategory.excavation : return totalExcavationVolumeExplanation;
-      case UnitPriceCategory.breaker : return totalBreakerHourExplanation;
-      case UnitPriceCategory.foundationStabilizationGravel : return totalStabilizationVolumeExplanation;
-      case UnitPriceCategory.c16Concrete : return totalFillingConcreteVolumeExplanation;
-      case UnitPriceCategory.plywood : return totalFormWorkAreaExplanation;
-      case UnitPriceCategory.c30Concrete : return totalStructuralConcreteVolumeExplanation;
-      case UnitPriceCategory.c35Concrete : return totalStructuralConcreteVolumeExplanation;
-      case UnitPriceCategory.s420Steel : return totalStructuralSteelWeightExplanation;
-      case UnitPriceCategory.eps : return totalHollowVolumeExplanation;
-      case UnitPriceCategory.doubleLayerBitumenMembrane : return totalFoundationWetAreaExplanation;
-      case UnitPriceCategory.bitumenSliding : return totalBasementsWetSurfaceAreaExplanation;
-      case UnitPriceCategory.drainPlate : return totalBasementsWetCurtainAreaExplanation;
-      case UnitPriceCategory.aeratedConcreteMaterial : return totalWallVolumeExplanation;
-      case UnitPriceCategory.aeratedConcreteWorkmanShip : return totalWallAreaExplanation;
-      case UnitPriceCategory.steelConstructionBraasRoof : return totalRoofAreaExplanation;
-      case UnitPriceCategory.steelScaffolding : return totalFacadeAreaExplanation;
-      case UnitPriceCategory.windowJoineryRehau : return totalWindowAreaExplanation;
-      case UnitPriceCategory.wroughtIronRailing : return totalRailingLengthExplanation;
-      case UnitPriceCategory.ceramicFacade : return totalFacadeAreaWithoutWindowsExplanation;
+  String getQuantityExplanationFromJobCategory(JobCategory jobCategory) {
+    switch(jobCategory) {
+      case JobCategory.shoring : return totalExcavationSurfaceAreaExplanation;
+      case JobCategory.excavation : return totalExcavationVolumeExplanation;
+      case JobCategory.breaker : return totalBreakerHourExplanation;
+      case JobCategory.foundationStabilization : return totalStabilizationVolumeExplanation;
+      case JobCategory.subFoundationConcrete : return totalFillingConcreteVolumeExplanation;
+      case JobCategory.concreteFormWork : return totalFormWorkAreaExplanation;
+      case JobCategory.pouringConcrete : return totalStructuralConcreteVolumeExplanation;
+      case JobCategory.rebarWork : return totalStructuralSteelWeightExplanation;
+      case JobCategory.hollowFloorFilling : return totalHollowVolumeExplanation;
+      case JobCategory.foundationWaterproofing : return totalFoundationWetAreaExplanation;
+      case JobCategory.curtainWaterproofing : return totalBasementsWetSurfaceAreaExplanation;
+      case JobCategory.curtainProtectionBeforeFilling : return totalBasementsWetCurtainAreaExplanation;
+      case JobCategory.wallMaterial : return totalWallVolumeExplanation;
+      case JobCategory.wallWorkmanShip : return  totalWallAreaExplanation;
+      case JobCategory.roofing : return totalRoofAreaExplanation;
+      case JobCategory.facadeScaffolding : return totalFacadeAreaExplanation;
+      case JobCategory.windows : return totalWindowAreaExplanation;
+      case JobCategory.facadeRails : return totalRailingLengthExplanation;
+      case JobCategory.facade : return totalFacadeAreaWithoutWindowsExplanation;
     }
   }
 }

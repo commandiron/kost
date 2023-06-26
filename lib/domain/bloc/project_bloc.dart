@@ -151,8 +151,8 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
       if(enabledUnitPriceCategories.contains(unitPrice.category)) {
         final costItem = CostItem(
           unitPrice: unitPrice,
-          quantity: quantityCalculator.getQuantityFromUnitPriceCategory(unitPrice.category),
-          quantityExplanation: quantityCalculator.getQuantityExplanationFromUnitPriceCategory(unitPrice.category),
+          quantity: quantityCalculator.getQuantityFromJobCategory(unitPrice.category.jobCategory),
+          quantityExplanation: quantityCalculator.getQuantityExplanationFromJobCategory(unitPrice.category.jobCategory),
           currencyRates: currencyRates
         );
         final sameCategoryCostItem = costItems.firstWhereOrNull((costItem) => costItem.unitPrice.category == unitPrice.category);

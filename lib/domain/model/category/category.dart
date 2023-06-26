@@ -98,7 +98,8 @@ enum UnitPriceCategory {
   steelScaffolding(MainCategory.facadeJobs, JobCategory.facadeScaffolding, Unit.squareMeters),
   windowJoineryRehau(MainCategory.facadeJobs, JobCategory.windows, Unit.squareMeters),
   wroughtIronRailing(MainCategory.facadeJobs, JobCategory.facadeRails, Unit.meter),
-  ceramicFacade(MainCategory.facadeJobs, JobCategory.facade, Unit.squareMeters);
+  ceramicFacade(MainCategory.facadeJobs, JobCategory.facade, Unit.squareMeters),
+  precastFacade(MainCategory.facadeJobs, JobCategory.facade, Unit.squareMeters);
 
   const UnitPriceCategory(this.mainCategory, this.jobCategory, this.unit,);
   final MainCategory mainCategory;
@@ -129,6 +130,7 @@ extension UnitPriceCategoryExtension on UnitPriceCategory {
       case UnitPriceCategory.windowJoineryRehau : return "Rehau sürgülü, Hebeschiebe veya Volkswagen Doğrama";
       case UnitPriceCategory.wroughtIronRailing : return "Ferforje Korkuluk";
       case UnitPriceCategory.ceramicFacade : return "Seramik cephe";
+      case UnitPriceCategory.precastFacade : return "Prekast cephe";
     }
   }
 }
