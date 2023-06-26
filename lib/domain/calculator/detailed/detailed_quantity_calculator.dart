@@ -177,7 +177,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   double get _totalCeilingArea {
     return floors.map((e) => e.ceilingArea).toList().fold(0.0, (p, c) => p + c);
   }
-  double get _totalWetFloorArea {
+  double get _totalInteriorWetFloorArea {
     double area = 0;
     for (var floor in floors) {
       for (var room in floor.rooms) {
@@ -381,10 +381,10 @@ class DetailedQuantityCalculator extends QuantityCalculator {
 
   @override
   double get totalInteriorWaterproofingArea {
-    return _totalWetFloorArea;
+    return _totalInteriorWetFloorArea;
   }
   @override
   String get totalInteriorWaterproofingAreaExplanation {
-    return "Toplam ıslak zemin alanı: $_totalWetFloorArea";
+    return "Toplam iç mekan ıslak zemin alanı: $_totalInteriorWetFloorArea";
   }
 }
