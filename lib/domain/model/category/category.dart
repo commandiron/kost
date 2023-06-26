@@ -36,9 +36,9 @@ enum JobCategory {
   breaker,
   foundationStabilization,
   subFoundationConcrete,
+  concreteFormWork,
   pouringConcrete,
   rebarWork,
-  concreteFormWork,
   hollowFloorFilling,
   foundationWaterproofing,
   curtainWaterproofing,
@@ -60,9 +60,9 @@ extension JobCategoryExtension on JobCategory {
       case JobCategory.breaker : return "Kırıcı çalıştırılması";
       case JobCategory.foundationStabilization : return "Temel altına stabilizasyon malzemesinin serilmesi";
       case JobCategory.subFoundationConcrete : return "Temel altı grobeton ve yalıtım koruma betonu atılması";
+      case JobCategory.concreteFormWork : return "Plywood ile düz yüzeyli beton ve betonarme kalıbı yapılması (Düz Ölçü)";
       case JobCategory.pouringConcrete : return "Betonarme betonu temini ve dökülmesi";
       case JobCategory.rebarWork : return "Ø8-32 mm çapında betonarme çeliği temini ve döşenmesi";
-      case JobCategory.concreteFormWork : return "Plywood ile düz yüzeyli beton ve betonarme kalıbı yapılması (Düz Ölçü)";
       case JobCategory.hollowFloorFilling : return "Asmolen döşeme dolgusunun yapılması";
       case JobCategory.foundationWaterproofing : return "Temel altı su yalıtımı yapılması";
       case JobCategory.curtainWaterproofing : return "Perde su yalıtımının yapılması";
