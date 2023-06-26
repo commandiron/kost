@@ -66,7 +66,6 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   List<Floor> get _basementFloors {
     return floors.where((floor) => floor.type == FloorType.b3 || floor.type == FloorType.b2 || floor.type == FloorType.b1).toList();
   }
-
   double get _excavationHeight {
     return stabilizationHeight + leanConcreteHeight + insulationConcreteHeight + foundationHeight + _basementsHeight;
   }
@@ -134,6 +133,21 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   }
   double get _totalFacadeArea {
     return floors.map((e) => e.perimeter * e.fullHeight).toList().fold(0.0, (p, c) => p + c);
+  }
+  double get _totalWindowArea {
+
+    if(floors.every((element) => element.windows == null)) {
+      return 0;
+    }
+
+    final floorsWithWindow = floors.where((element) => element.windows != null).toList();
+
+    double totalWindowArea = 0;
+    for (var floor in floorsWithWindow) {
+      totalWindowArea += floor.windows!.map((window) => window.width * window.height * window.count).toList().fold(0.0, (p, c) => p + c);
+    }
+
+    return totalWindowArea;
   }
 
   //Final Results
@@ -279,5 +293,14 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   @override
   String get totalFacadeAreaExplanation {
    return "Toplam cephe alanı: $_totalFacadeArea";
+  }
+
+  @override
+  double get totalWindowArea {
+    return _totalWindowArea;
+  }
+  @override
+  String get totalWindowAreaExplanation {
+    return "Toplam pencere alanı: $_totalWindowArea";
   }
 }

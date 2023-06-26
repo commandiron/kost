@@ -49,6 +49,9 @@ abstract class QuantityCalculator {
   double get totalFacadeArea;
   String get totalFacadeAreaExplanation;
 
+  double get totalWindowArea;
+  String get totalWindowAreaExplanation;
+
   double getQuantityFromUnitPriceCategory(UnitPriceCategory unitPriceCategory) {
     switch(unitPriceCategory) {
       case UnitPriceCategory.shutCrete : return totalExcavationSurfaceArea;
@@ -68,6 +71,7 @@ abstract class QuantityCalculator {
       case UnitPriceCategory.aeratedConcreteWorkmanShip : return totalWallArea;
       case UnitPriceCategory.steelConstructionBraasRoof : return totalRoofArea;
       case UnitPriceCategory.steelScaffolding : return totalFacadeArea;
+      case UnitPriceCategory.windowJoineryRehau : return totalWindowArea;
     }
   }
 
@@ -90,6 +94,7 @@ abstract class QuantityCalculator {
       case UnitPriceCategory.aeratedConcreteWorkmanShip : return totalWallAreaExplanation;
       case UnitPriceCategory.steelConstructionBraasRoof : return totalRoofAreaExplanation;
       case UnitPriceCategory.steelScaffolding : return totalFacadeAreaExplanation;
+      case UnitPriceCategory.windowJoineryRehau : return totalWindowAreaExplanation;
     }
   }
 }
@@ -176,4 +181,10 @@ class InitialQuantityCalculator extends QuantityCalculator {
 
   @override
   String get totalFacadeAreaExplanation => "";
+
+  @override
+  double get totalWindowArea => 0;
+
+  @override
+  String get totalWindowAreaExplanation => "";
 }

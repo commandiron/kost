@@ -62,9 +62,10 @@ class FacadeCostTemplate extends CostTemplate {
       {
         super.name = "Cephe Maliyeti"
       }
-      ){
+  ){
     enabledUnitPriceCategories = [
-      UnitPriceCategory.steelScaffolding
+      UnitPriceCategory.steelScaffolding,
+      UnitPriceCategory.windowJoineryRehau,
     ];
   }
 }

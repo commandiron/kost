@@ -4,6 +4,7 @@ import 'package:intl/intl.dart';
 import 'package:kost/data/app_data.dart';
 import 'package:kost/domain/calculator/detailed/detailed_quantity_calculator.dart';
 import 'package:kost/domain/calculator/detailed/project_constants.dart';
+import 'package:kost/domain/calculator/detailed/window.dart';
 import 'package:kost/domain/calculator/quantity_calculator.dart';
 import 'package:kost/domain/model/unit_price/currency.dart';
 import 'package:kost/domain/model/template/unit_price_template.dart';
@@ -54,33 +55,12 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
               thickWallLength: 100,
               thinWallLength: 100,
               isCeilingHollowSlab: true,
-              type: FloorType.k3,
+              windows: [
+                Window(width: 17, height: 2.2, hasGuard: true, count: 1),
+              ],
+              type: FloorType.k1,
             ),
-            9
-          ),
-          Floor(
-            ceilingArea: 188.75,
-            ceilingPerimeter: 62.8,
-            fullHeight: 3.3,
-            area: 188,
-            perimeter: 62.3,
-            heightWithoutSlab: 3,
-            thickWallLength: 100,
-            thinWallLength: 100,
-            isCeilingHollowSlab: true,
-            type: FloorType.k2,
-          ),
-          Floor(
-            ceilingArea: 188,
-            ceilingPerimeter: 62.3,
-            fullHeight: 3.3,
-            area: 177.15,
-            perimeter: 61.3,
-            heightWithoutSlab: 3,
-            thickWallLength: 100,
-            thinWallLength: 100,
-            isCeilingHollowSlab: true,
-            type: FloorType.k1,
+            11
           ),
           Floor(
             ceilingArea: 177.15,
@@ -92,6 +72,9 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
             thickWallLength: 100,
             thinWallLength: 100,
             isCeilingHollowSlab: true,
+            windows: [
+              Window(width: 14, height: 2.2, hasGuard: true, count: 1),
+            ],
             type: FloorType.z,
           ),
           Floor(
