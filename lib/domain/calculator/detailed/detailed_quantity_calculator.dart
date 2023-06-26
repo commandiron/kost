@@ -381,11 +381,11 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   }
 
   @override
-  double get totalWetFloor {
+  double get totalInteriorWaterproofingArea {
     return _totalWetFloorArea;
   }
   @override
-  String get totalWetFloorExplanation {
+  String get totalInteriorWaterproofingAreaExplanation {
     return "Toplam ıslak zemin alanı: $_totalWetFloorArea";
   }
 }
