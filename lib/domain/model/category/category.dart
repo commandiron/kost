@@ -52,6 +52,7 @@ enum JobCategory {
   facade,
   interiorPlastering,
   interiorPainting,
+  interiorWaterproofing
 }
 
 extension JobCategoryExtension on JobCategory {
@@ -78,6 +79,7 @@ extension JobCategoryExtension on JobCategory {
       case JobCategory.facade : return "Cephe kaplama sisteminin yapılması";
       case JobCategory.interiorPlastering : return "İç mekan sıvasının yapılması (Kaba + İnce)";
       case JobCategory.interiorPainting : return "İç mekan boyasının yapılması";
+      case JobCategory.interiorWaterproofing : return "İç mekan su yalıtımı yapılması";
     }
   }
 }
@@ -105,7 +107,8 @@ enum UnitPriceCategory {
   ceramicFacade(MainCategory.facadeJobs, JobCategory.facade, Unit.squareMeters),
   precastFacade(MainCategory.facadeJobs, JobCategory.facade, Unit.squareMeters),
   plaster(MainCategory.interiorJobs, JobCategory.interiorPlastering, Unit.squareMeters),
-  painting(MainCategory.interiorJobs, JobCategory.interiorPainting, Unit.squareMeters);
+  painting(MainCategory.interiorJobs, JobCategory.interiorPainting, Unit.squareMeters),
+  cementBasedFlexInsulation(MainCategory.interiorJobs, JobCategory.interiorWaterproofing, Unit.squareMeters);
 
   const UnitPriceCategory(this.mainCategory, this.jobCategory, this.unit,);
   final MainCategory mainCategory;
@@ -139,6 +142,7 @@ extension UnitPriceCategoryExtension on UnitPriceCategory {
       case UnitPriceCategory.precastFacade : return "Prekast cephe";
       case UnitPriceCategory.plaster : return "Alçı sıva";
       case UnitPriceCategory.painting : return "İç mekan boyası";
+      case UnitPriceCategory.cementBasedFlexInsulation : return "Çimento esaslı flex yalıtım malzemesi";
     }
   }
 }

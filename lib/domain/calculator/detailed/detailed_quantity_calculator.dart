@@ -177,6 +177,17 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   double get _totalCeilingArea {
     return floors.map((e) => e.ceilingArea).toList().fold(0.0, (p, c) => p + c);
   }
+  double get _totalWetFloorArea {
+    double area = 0;
+    for (var floor in floors) {
+      for (var room in floor.rooms) {
+        if(room.isFloorWet) {
+          area += room.area;
+        }
+      }
+    }
+    return area;
+  }
 
   //Final Results
   @override
@@ -354,7 +365,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   @override
   double get totalPlasteringArea {
     return _basementsOuterCurtainArea + (_coreCurtainArea * 2) + (_curtainsExceeding1MeterArea * 2) + _columnsSurfaceArea + _totalOuterWallArea +  (_totalInnerWallArea * 2);
-  } //Bunu belki mimari alanları eklediğimde çekebilirim.
+  }
   @override
   String get totalPlasteringAreaExplanation {
     return "Toplam bodrumlar dış perde alanı: $_basementsOuterCurtainAreaWithoutSlab + Çekirdek perdeleri toplam alanı: $_coreCurtainArea x 2 (Çift yüz) + Toplam 1 metreyi geçen perde alanı: $_curtainsExceeding1MeterArea x 2 (Çift yüz) + Kolon yüzey alanı: $_columnsSurfaceArea + Toplam dış duvar alanı: $_totalOuterWallArea + Toplam iç duvar alanı: $_totalInnerWallArea x 2 (Çift yüz)";
@@ -367,5 +378,14 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   @override
   String get totalPaintingAreaExplanation {
     return "Toplam sıva alanı: $totalPlasteringArea + Toplam tavan alanı: $_totalCeilingArea";
+  }
+
+  @override
+  double get totalWetFloor {
+    return _totalWetFloorArea;
+  }
+  @override
+  String get totalWetFloorExplanation {
+    return "Toplam ıslak zemin alanı: $_totalWetFloorArea";
   }
 }
