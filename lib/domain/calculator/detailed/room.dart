@@ -3,7 +3,8 @@ abstract class Room {
   final double perimeter;
   final FloorMaterial? floorMaterial;
   final WallMaterial wallMaterial;
-  final bool isCeilingDrywall;
+  final bool hasCeilingDrywall;
+  final bool hasCovingPlaster;
   final bool isFloorWet;
   Room(
     {
@@ -11,7 +12,8 @@ abstract class Room {
       required this.perimeter,
       required this.floorMaterial,
       required this.wallMaterial,
-      required this.isCeilingDrywall,
+      required this.hasCeilingDrywall,
+      required this.hasCovingPlaster,
       required this.isFloorWet,
     }
   );
@@ -25,37 +27,37 @@ enum WallMaterial {
 }
 
 class NormalRoom extends Room {
-  NormalRoom({required super.area, required super.perimeter, super.floorMaterial = FloorMaterial.parquet, super.wallMaterial = WallMaterial.painting, super.isCeilingDrywall = true, super.isFloorWet = false});
+  NormalRoom({required super.area, required super.perimeter, super.floorMaterial = FloorMaterial.parquet, super.wallMaterial = WallMaterial.painting, super.hasCeilingDrywall = true, super.hasCovingPlaster = true, super.isFloorWet = false,});
 }
 
 class Kitchen extends Room {
-  Kitchen({required super.area, required super.perimeter, super.floorMaterial = FloorMaterial.ceramic, super.wallMaterial = WallMaterial.painting, super.isCeilingDrywall = true, super.isFloorWet = false});
+  Kitchen({required super.area, required super.perimeter, super.floorMaterial = FloorMaterial.ceramic, super.wallMaterial = WallMaterial.painting, super.hasCeilingDrywall = true, super.hasCovingPlaster = true, super.isFloorWet = false, });
 }
 
 class Hall extends Room {
-  Hall({required super.area, required super.perimeter, super.floorMaterial = FloorMaterial.ceramic, super.wallMaterial = WallMaterial.painting, super.isCeilingDrywall = true, super.isFloorWet = false});
+  Hall({required super.area, required super.perimeter, super.floorMaterial = FloorMaterial.ceramic, super.wallMaterial = WallMaterial.painting, super.hasCeilingDrywall = true, super.hasCovingPlaster = true, super.isFloorWet = false, });
 }
 
 class Wc extends Room {
-  Wc({required super.area, required super.perimeter, super.floorMaterial = FloorMaterial.ceramic, super.wallMaterial = WallMaterial.ceramic, super.isCeilingDrywall = true, super.isFloorWet = true});
+  Wc({required super.area, required super.perimeter, super.floorMaterial = FloorMaterial.ceramic, super.wallMaterial = WallMaterial.ceramic, super.hasCeilingDrywall = true, super.hasCovingPlaster = false, super.isFloorWet = true});
 }
 
 class Bathroom extends Room {
-  Bathroom({required super.area, required super.perimeter, super.floorMaterial = FloorMaterial.ceramic, super.wallMaterial = WallMaterial.ceramic, super.isCeilingDrywall = true, super.isFloorWet = true});
+  Bathroom({required super.area, required super.perimeter, super.floorMaterial = FloorMaterial.ceramic, super.wallMaterial = WallMaterial.ceramic, super.hasCeilingDrywall = true, super.hasCovingPlaster = false, super.isFloorWet = true});
 }
 
 class Balcony extends Room {
-  Balcony({required super.area, required super.perimeter, super.floorMaterial = FloorMaterial.ceramic, super.wallMaterial = WallMaterial.painting, super.isCeilingDrywall = false, super.isFloorWet = true});
+  Balcony({required super.area, required super.perimeter, super.floorMaterial = FloorMaterial.ceramic, super.wallMaterial = WallMaterial.painting, super.hasCeilingDrywall = false, super.hasCovingPlaster = false, super.isFloorWet = true});
 }
 
 class BuildingHall extends Room {
-  BuildingHall({required super.area, required super.perimeter, super.floorMaterial = FloorMaterial.marble, super.wallMaterial = WallMaterial.painting, super.isCeilingDrywall = true, super.isFloorWet = false});
+  BuildingHall({required super.area, required super.perimeter, super.floorMaterial = FloorMaterial.marble, super.wallMaterial = WallMaterial.painting, super.hasCeilingDrywall = true, super.hasCovingPlaster = false, super.isFloorWet = false});
 }
 
 class ParkingArea extends Room {
-  ParkingArea({required super.area, required super.perimeter, super.floorMaterial = FloorMaterial.epoxy, super.wallMaterial = WallMaterial.painting, super.isCeilingDrywall = false, super.isFloorWet = false});
+  ParkingArea({required super.area, required super.perimeter, super.floorMaterial = FloorMaterial.epoxy, super.wallMaterial = WallMaterial.painting, super.hasCeilingDrywall = false, super.hasCovingPlaster = false, super.isFloorWet = false});
 }
 
 class TechnicalArea extends Room {
-  TechnicalArea({required super.area, required super.perimeter, super.floorMaterial = FloorMaterial.ceramic, super.wallMaterial = WallMaterial.painting, super.isCeilingDrywall = false, super.isFloorWet = false});
+  TechnicalArea({required super.area, required super.perimeter, super.floorMaterial = FloorMaterial.ceramic, super.wallMaterial = WallMaterial.painting, super.hasCeilingDrywall = false, super.hasCovingPlaster = false, super.isFloorWet = false});
 }
