@@ -23,9 +23,7 @@ class CostItem {
 
   UiCostItem toUiCostItem() {
     return UiCostItem(
-      mainCategory: unitPrice.category.mainCategory,
-      jobName: unitPrice.category.jobCategory.nameTr,
-      unitPriceName: unitPrice.category.nameTr,
+      unitPriceCategory: unitPrice.category,
       formattedUnitPrice: "${unitPrice.amount} ${unitPrice.currency.symbol}/${unitPrice.category.unit.symbol}",
       formattedQuantity: "${NumberFormat("#,##0.00", "tr_TR").format(quantity)} ${unitPrice.category.unit.symbol}",
       quantityExplanation: quantityExplanation,
@@ -36,9 +34,7 @@ class CostItem {
 }
 
 class UiCostItem {
-  MainCategory mainCategory;
-  String jobName;
-  String unitPriceName;
+  UnitPriceCategory unitPriceCategory;
   String formattedUnitPrice;
   String formattedQuantity;
   String quantityExplanation;
@@ -47,9 +43,7 @@ class UiCostItem {
 
   UiCostItem(
     {
-      required this.mainCategory,
-      required this.jobName,
-      required this.unitPriceName,
+      required this.unitPriceCategory,
       required this.formattedUnitPrice,
       required this.formattedQuantity,
       required this.quantityExplanation,
