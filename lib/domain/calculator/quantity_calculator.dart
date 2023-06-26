@@ -1,8 +1,8 @@
 import '../model/category/category.dart';
 
 abstract class QuantityCalculator {
-  double get totalExcavationSurfaceArea;
-  String get totalExcavationSurfaceAreaExplanation;
+  double get totalShoringArea;
+  String get totalShoringAreaExplanation;
 
   double get totalExcavationVolume;
   String get totalExcavationVolumeExplanation;
@@ -10,113 +10,113 @@ abstract class QuantityCalculator {
   double get totalBreakerHour;
   String get totalBreakerHourExplanation;
 
-  double get totalStabilizationVolume;
-  String get totalStabilizationVolumeExplanation;
+  double get totalFoundationStabilizationVolume;
+  String get totalFoundationStabilizationVolumeExplanation;
 
-  double get totalFillingConcreteVolume;
-  String get totalFillingConcreteVolumeExplanation;
+  double get totalSubFoundationConcreteVolume;
+  String get totalSubFoundationConcreteVolumeExplanation;
 
-  double get totalFormWorkArea;
-  String get totalFormWorkAreaExplanation;
+  double get totalConcreteFormWorkArea;
+  String get totalConcreteFormWorkAreaExplanation;
 
-  double get totalStructuralConcreteVolume;
-  String get totalStructuralConcreteVolumeExplanation;
+  double get totalPouringConcreteVolume;
+  String get totalPouringConcreteVolumeExplanation;
 
-  double get totalStructuralSteelWeight;
-  String get totalStructuralSteelWeightExplanation;
+  double get totalRebarWorkWeight;
+  String get totalRebarWorkWeightExplanation;
 
-  double get totalHollowVolume;
-  String get totalHollowVolumeExplanation;
+  double get totalHollowFloorFillingVolume;
+  String get totalHollowFloorFillingVolumeExplanation;
 
-  double get totalFoundationWetArea;
-  String get totalFoundationWetAreaExplanation;
+  double get totalFoundationWaterProofingArea;
+  String get totalFoundationWaterProofingAreaExplanation;
 
-  double get totalBasementsWetSurfaceArea;
-  String get totalBasementsWetSurfaceAreaExplanation;
+  double get totalCurtainWaterProofingArea;
+  String get totalCurtainWaterProofingAreaExplanation;
 
-  double get totalBasementsWetCurtainArea;
-  String get totalBasementsWetCurtainAreaExplanation;
+  double get totalCurtainProtectionBeforeFillingArea;
+  String get totalCurtainProtectionBeforeFillingAreaExplanation;
 
-  double get totalWallVolume;
-  String get totalWallVolumeExplanation;
+  double get totalWallMaterialVolume;
+  String get totalWallMaterialVolumeExplanation;
 
-  double get totalWallArea;
-  String get totalWallAreaExplanation;
+  double get totalWallWorkmanShipArea;
+  String get totalWallWorkmanShipAreaExplanation;
 
-  double get totalRoofArea;
-  String get totalRoofAreaExplanation;
+  double get totalRoofingArea;
+  String get totalRoofingAreaExplanation;
+
+  double get totalFacadeScaffoldingArea;
+  String get totalFacadeScaffoldingAreaExplanation;
+
+  double get totalWindowsArea;
+  String get totalWindowAreaExplanation;
+
+  double get totalFacadeRailsLength;
+  String get totalFacadeRailsLengthExplanation;
 
   double get totalFacadeArea;
   String get totalFacadeAreaExplanation;
 
-  double get totalWindowArea;
-  String get totalWindowAreaExplanation;
+  double get totalInteriorPlasteringArea;
+  String get totalInteriorPlasteringAreaExplanation;
 
-  double get totalRailingLength;
-  String get totalRailingLengthExplanation;
-
-  double get totalFacadeAreaWithoutWindows;
-  String get totalFacadeAreaWithoutWindowsExplanation;
-
-  double get totalPlasteringArea;
-  String get totalPlasteringAreaExplanation;
-
-  double get totalPaintingArea;
-  String get totalPaintingAreaExplanation;
+  double get totalInteriorPaintingArea;
+  String get totalInteriorPaintingAreaExplanation;
 
   double get totalInteriorWaterproofingArea;
   String get totalInteriorWaterproofingAreaExplanation;
 
   double getQuantityFromJobCategory(JobCategory jobCategory) {
     switch(jobCategory) {
-      case JobCategory.shoring : return totalExcavationSurfaceArea;
+      case JobCategory.shoring : return totalShoringArea;
       case JobCategory.excavation : return totalExcavationVolume;
       case JobCategory.breaker : return totalBreakerHour;
-      case JobCategory.foundationStabilization : return totalStabilizationVolume;
-      case JobCategory.subFoundationConcrete : return totalFillingConcreteVolume;
-      case JobCategory.concreteFormWork : return totalFormWorkArea;
-      case JobCategory.pouringConcrete : return totalStructuralConcreteVolume;
-      case JobCategory.rebarWork : return totalStructuralSteelWeight;
-      case JobCategory.hollowFloorFilling : return totalHollowVolume;
-      case JobCategory.foundationWaterproofing : return totalFoundationWetArea;
-      case JobCategory.curtainWaterproofing : return totalBasementsWetSurfaceArea;
-      case JobCategory.curtainProtectionBeforeFilling : return totalBasementsWetCurtainArea;
-      case JobCategory.wallMaterial : return totalWallVolume;
-      case JobCategory.wallWorkmanShip : return  totalWallArea;
-      case JobCategory.roofing : return totalRoofArea;
-      case JobCategory.facadeScaffolding : return totalFacadeArea;
-      case JobCategory.windows : return totalWindowArea;
-      case JobCategory.facadeRails : return totalRailingLength;
-      case JobCategory.facade : return totalFacadeAreaWithoutWindows;
-      case JobCategory.interiorPlastering : return totalPlasteringArea;
-      case JobCategory.interiorPainting : return totalPaintingArea;
+      case JobCategory.foundationStabilization : return totalFoundationStabilizationVolume;
+      case JobCategory.subFoundationConcrete : return totalSubFoundationConcreteVolume;
+      case JobCategory.concreteFormWork : return totalConcreteFormWorkArea;
+      case JobCategory.pouringConcrete : return totalPouringConcreteVolume;
+      case JobCategory.rebarWork : return totalRebarWorkWeight;
+      case JobCategory.hollowFloorFilling : return totalHollowFloorFillingVolume;
+      case JobCategory.foundationWaterproofing : return totalFoundationWaterProofingArea;
+      case JobCategory.curtainWaterproofing : return totalCurtainWaterProofingArea;
+      case JobCategory.curtainProtectionBeforeFilling : return totalCurtainProtectionBeforeFillingArea;
+      case JobCategory.wallMaterial : return totalWallMaterialVolume;
+      case JobCategory.wallWorkmanShip : return  totalWallWorkmanShipArea;
+      case JobCategory.roofing : return totalRoofingArea;
+      case JobCategory.facadeScaffolding : return totalFacadeScaffoldingArea;
+      case JobCategory.windows : return totalWindowsArea;
+      case JobCategory.facadeRails : return totalFacadeRailsLength;
+      case JobCategory.facade : return totalFacadeArea;
+      case JobCategory.interiorPlastering : return totalInteriorPlasteringArea;
+      case JobCategory.interiorPainting : return totalInteriorPaintingArea;
       case JobCategory.interiorWaterproofing : return totalInteriorWaterproofingArea;
     }
   }
 
   String getQuantityExplanationFromJobCategory(JobCategory jobCategory) {
     switch(jobCategory) {
-      case JobCategory.shoring : return totalExcavationSurfaceAreaExplanation;
+      case JobCategory.shoring : return totalShoringAreaExplanation;
       case JobCategory.excavation : return totalExcavationVolumeExplanation;
       case JobCategory.breaker : return totalBreakerHourExplanation;
-      case JobCategory.foundationStabilization : return totalStabilizationVolumeExplanation;
-      case JobCategory.subFoundationConcrete : return totalFillingConcreteVolumeExplanation;
-      case JobCategory.concreteFormWork : return totalFormWorkAreaExplanation;
-      case JobCategory.pouringConcrete : return totalStructuralConcreteVolumeExplanation;
-      case JobCategory.rebarWork : return totalStructuralSteelWeightExplanation;
-      case JobCategory.hollowFloorFilling : return totalHollowVolumeExplanation;
-      case JobCategory.foundationWaterproofing : return totalFoundationWetAreaExplanation;
-      case JobCategory.curtainWaterproofing : return totalBasementsWetSurfaceAreaExplanation;
-      case JobCategory.curtainProtectionBeforeFilling : return totalBasementsWetCurtainAreaExplanation;
-      case JobCategory.wallMaterial : return totalWallVolumeExplanation;
-      case JobCategory.wallWorkmanShip : return  totalWallAreaExplanation;
-      case JobCategory.roofing : return totalRoofAreaExplanation;
-      case JobCategory.facadeScaffolding : return totalFacadeAreaExplanation;
+      case JobCategory.foundationStabilization : return totalFoundationStabilizationVolumeExplanation;
+      case JobCategory.subFoundationConcrete : return totalSubFoundationConcreteVolumeExplanation;
+      case JobCategory.concreteFormWork : return totalConcreteFormWorkAreaExplanation;
+      case JobCategory.pouringConcrete : return totalPouringConcreteVolumeExplanation;
+      case JobCategory.rebarWork : return totalRebarWorkWeightExplanation;
+      case JobCategory.hollowFloorFilling : return totalHollowFloorFillingVolumeExplanation;
+      case JobCategory.foundationWaterproofing : return totalFoundationWaterProofingAreaExplanation;
+      case JobCategory.curtainWaterproofing : return totalCurtainWaterProofingAreaExplanation;
+      case JobCategory.curtainProtectionBeforeFilling : return totalCurtainProtectionBeforeFillingAreaExplanation;
+      case JobCategory.wallMaterial : return totalWallMaterialVolumeExplanation;
+      case JobCategory.wallWorkmanShip : return  totalWallWorkmanShipAreaExplanation;
+      case JobCategory.roofing : return totalRoofingAreaExplanation;
+      case JobCategory.facadeScaffolding : return totalFacadeScaffoldingAreaExplanation;
       case JobCategory.windows : return totalWindowAreaExplanation;
-      case JobCategory.facadeRails : return totalRailingLengthExplanation;
-      case JobCategory.facade : return totalFacadeAreaWithoutWindowsExplanation;
-      case JobCategory.interiorPlastering : return totalPlasteringAreaExplanation;
-      case JobCategory.interiorPainting : return totalPaintingAreaExplanation;
+      case JobCategory.facadeRails : return totalFacadeRailsLengthExplanation;
+      case JobCategory.facade : return totalFacadeAreaExplanation;
+      case JobCategory.interiorPlastering : return totalInteriorPlasteringAreaExplanation;
+      case JobCategory.interiorPainting : return totalInteriorPaintingAreaExplanation;
       case JobCategory.interiorWaterproofing : return totalInteriorWaterproofingAreaExplanation;
     }
   }
@@ -125,9 +125,9 @@ abstract class QuantityCalculator {
 class InitialQuantityCalculator extends QuantityCalculator {
 
   @override
-  double get totalExcavationSurfaceArea => 0;
+  double get totalShoringArea => 0;
   @override
-  String get totalExcavationSurfaceAreaExplanation => "";
+  String get totalShoringAreaExplanation => "";
 
   @override
   double get totalExcavationVolume => 0;
@@ -140,64 +140,79 @@ class InitialQuantityCalculator extends QuantityCalculator {
   String get totalBreakerHourExplanation => "";
 
   @override
-  double get totalStabilizationVolume => 0;
+  double get totalFoundationStabilizationVolume => 0;
   @override
-  String get totalStabilizationVolumeExplanation => "";
+  String get totalFoundationStabilizationVolumeExplanation => "";
 
   @override
-  double get totalFillingConcreteVolume => 0;
+  double get totalSubFoundationConcreteVolume => 0;
   @override
-  String get totalFillingConcreteVolumeExplanation => "";
+  String get totalSubFoundationConcreteVolumeExplanation => "";
 
   @override
-  double get totalFormWorkArea => 0;
+  double get totalConcreteFormWorkArea => 0;
   @override
-  String get totalFormWorkAreaExplanation => "";
+  String get totalConcreteFormWorkAreaExplanation => "";
 
   @override
-  double get totalStructuralConcreteVolume => 0;
+  double get totalPouringConcreteVolume => 0;
   @override
-  String get totalStructuralConcreteVolumeExplanation => "";
+  String get totalPouringConcreteVolumeExplanation => "";
 
   @override
-  double get totalStructuralSteelWeight => 0;
+  double get totalRebarWorkWeight => 0;
   @override
-  String get totalStructuralSteelWeightExplanation => "";
+  String get totalRebarWorkWeightExplanation => "";
 
   @override
-  double get totalHollowVolume => 0;
+  double get totalHollowFloorFillingVolume => 0;
   @override
-  String get totalHollowVolumeExplanation => "";
+  String get totalHollowFloorFillingVolumeExplanation => "";
 
   @override
-  double get totalFoundationWetArea => 0;
+  double get totalFoundationWaterProofingArea => 0;
   @override
-  String get totalFoundationWetAreaExplanation => "";
+  String get totalFoundationWaterProofingAreaExplanation => "";
 
   @override
-  double get totalBasementsWetSurfaceArea => 0;
+  double get totalCurtainWaterProofingArea => 0;
   @override
-  String get totalBasementsWetSurfaceAreaExplanation => "";
+  String get totalCurtainWaterProofingAreaExplanation => "";
 
   @override
-  double get totalBasementsWetCurtainArea => 0;
+  double get totalCurtainProtectionBeforeFillingArea => 0;
   @override
-  String get totalBasementsWetCurtainAreaExplanation => "";
+  String get totalCurtainProtectionBeforeFillingAreaExplanation => "";
 
   @override
-  double get totalWallVolume => 0;
+  double get totalWallMaterialVolume => 0;
   @override
-  String get totalWallVolumeExplanation => "";
+  String get totalWallMaterialVolumeExplanation => "";
 
   @override
-  double get totalWallArea => 0;
+  double get totalWallWorkmanShipArea => 0;
   @override
-  String get totalWallAreaExplanation => "";
+  String get totalWallWorkmanShipAreaExplanation => "";
 
   @override
-  double get totalRoofArea => 0;
+  double get totalRoofingArea => 0;
   @override
-  String get totalRoofAreaExplanation => "";
+  String get totalRoofingAreaExplanation => "";
+
+  @override
+  double get totalFacadeScaffoldingArea => 0;
+  @override
+  String get totalFacadeScaffoldingAreaExplanation => "";
+
+  @override
+  double get totalWindowsArea => 0;
+  @override
+  String get totalWindowAreaExplanation => "";
+
+  @override
+  double get totalFacadeRailsLength => 0;
+  @override
+  String get totalFacadeRailsLengthExplanation => "";
 
   @override
   double get totalFacadeArea => 0;
@@ -205,30 +220,15 @@ class InitialQuantityCalculator extends QuantityCalculator {
   String get totalFacadeAreaExplanation => "";
 
   @override
-  double get totalWindowArea => 0;
+  double get totalInteriorPlasteringArea => 0;
   @override
-  String get totalWindowAreaExplanation => "";
+  String get totalInteriorPlasteringAreaExplanation => "";
 
   @override
-  double get totalRailingLength => 0;
-  @override
-  String get totalRailingLengthExplanation => "";
+  double get totalInteriorPaintingArea => 0;
 
   @override
-  double get totalFacadeAreaWithoutWindows => 0;
-  @override
-  String get totalFacadeAreaWithoutWindowsExplanation => "";
-
-  @override
-  double get totalPlasteringArea => 0;
-  @override
-  String get totalPlasteringAreaExplanation => "";
-
-  @override
-  double get totalPaintingArea => 0;
-
-  @override
-  String get totalPaintingAreaExplanation => "";
+  String get totalInteriorPaintingAreaExplanation => "";
 
   @override
   double get totalInteriorWaterproofingArea => 0;
