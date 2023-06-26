@@ -61,6 +61,9 @@ abstract class QuantityCalculator {
   double get totalPlasteringArea;
   String get totalPlasteringAreaExplanation;
 
+  double get totalPaintingArea;
+  String get totalPaintingAreaExplanation;
+
   double getQuantityFromJobCategory(JobCategory jobCategory) {
     switch(jobCategory) {
       case JobCategory.shoring : return totalExcavationSurfaceArea;
@@ -83,6 +86,7 @@ abstract class QuantityCalculator {
       case JobCategory.facadeRails : return totalRailingLength;
       case JobCategory.facade : return totalFacadeAreaWithoutWindows;
       case JobCategory.interiorPlastering : return totalPlasteringArea;
+      case JobCategory.interiorPainting : return totalPaintingArea;
     }
   }
 
@@ -108,6 +112,7 @@ abstract class QuantityCalculator {
       case JobCategory.facadeRails : return totalRailingLengthExplanation;
       case JobCategory.facade : return totalFacadeAreaWithoutWindowsExplanation;
       case JobCategory.interiorPlastering : return totalPlasteringAreaExplanation;
+      case JobCategory.interiorPainting : return totalPaintingAreaExplanation;
     }
   }
 }
@@ -213,4 +218,10 @@ class InitialQuantityCalculator extends QuantityCalculator {
   double get totalPlasteringArea => 0;
   @override
   String get totalPlasteringAreaExplanation => "";
+
+  @override
+  double get totalPaintingArea => 0;
+
+  @override
+  String get totalPaintingAreaExplanation => "";
 }

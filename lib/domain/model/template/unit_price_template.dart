@@ -80,6 +80,7 @@ class InteriorCostTemplate extends CostTemplate {
       ){
     enabledUnitPriceCategories = [
       UnitPriceCategory.plaster,
+      UnitPriceCategory.painting,
     ];
   }
 }

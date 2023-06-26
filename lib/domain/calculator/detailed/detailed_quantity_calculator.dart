@@ -174,6 +174,9 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   double get _totalInnerWallArea {
     return (_thickWallArea - _totalOuterWallArea + _thinWallArea);
   }
+  double get _totalCeilingArea {
+    return floors.map((e) => e.ceilingArea).toList().fold(0.0, (p, c) => p + c);
+  }
 
   //Final Results
   @override
@@ -355,5 +358,14 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   @override
   String get totalPlasteringAreaExplanation {
     return "Toplam bodrumlar dış perde alanı: $_basementsOuterCurtainAreaWithoutSlab + Çekirdek perdeleri toplam alanı: $_coreCurtainArea x 2 (Çift yüz) + Toplam 1 metreyi geçen perde alanı: $_curtainsExceeding1MeterArea x 2 (Çift yüz) + Kolon yüzey alanı: $_columnsSurfaceArea + Toplam dış duvar alanı: $_totalOuterWallArea + Toplam iç duvar alanı: $_totalInnerWallArea x 2 (Çift yüz)";
+  }
+
+  @override
+  double get totalPaintingArea {
+    return totalPlasteringArea + _totalCeilingArea;
+  }
+  @override
+  String get totalPaintingAreaExplanation {
+    return "Toplam sıva alanı: $totalPlasteringArea + Toplam tavan alanı: $_totalCeilingArea";
   }
 }
