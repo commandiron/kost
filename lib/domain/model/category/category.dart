@@ -15,18 +15,18 @@ enum MainCategory {
 
 extension MainCategoryExtension on MainCategory {
   String get nameTr {
-    switch(this) {
-      case MainCategory.excavationJobs : return "Hafriyat İşleri";
-      case MainCategory.roughConstructionJobs : return "Kaba Yapı İşleri";
-      case MainCategory.roofJobs : return "Çatı İşleri";
-      case MainCategory.facadeJobs : return "Cephe İşleri";
-      case MainCategory.interiorJobs : return "İç İmalatlar";
-      case MainCategory.finishingJobs: return "Montaj İşleri";
-      case MainCategory.landscapeJobs : return "Peysaj İşleri";
-      case MainCategory.technicalSpecification : return "Teknik Şartname İlaveler";
-      case MainCategory.projectAndLicenseJobs : return "Proje ve Ruhsat İşleri";
-      case MainCategory.generalExpenses : return "Genel Giderler";
-    }
+    return switch (this) {
+      MainCategory.excavationJobs => "Hafriyat İşleri",
+      MainCategory.roughConstructionJobs => "Kaba Yapı İşleri",
+      MainCategory.roofJobs => "Çatı İşleri",
+      MainCategory.facadeJobs => "Cephe İşleri",
+      MainCategory.interiorJobs => "İç İmalatlar",
+      MainCategory.finishingJobs => "Montaj İşleri",
+      MainCategory.landscapeJobs => "Peysaj İşleri",
+      MainCategory.technicalSpecification => "Teknik Şartname İlaveler",
+      MainCategory.projectAndLicenseJobs => "Proje ve Ruhsat İşleri",
+      MainCategory.generalExpenses => "Genel Giderler"
+    };
   }
 }
 
@@ -52,65 +52,99 @@ enum JobCategory {
   facade,
   interiorPlastering,
   interiorPainting,
-  interiorWaterproofing
+  interiorWaterproofing,
+  ceilingCovering,
 }
 
 extension JobCategoryExtension on JobCategory {
   String get nameTr {
-    switch(this) {
-      case JobCategory.shoring : return "İksa yapılması";
-      case JobCategory.excavation : return "Kazı yapılması ve çıkan molozun şantiye dışına gönderilmesi";
-      case JobCategory.breaker : return "Kırıcı çalıştırılması";
-      case JobCategory.foundationStabilization : return "Temel altına stabilizasyon malzemesinin serilmesi";
-      case JobCategory.subFoundationConcrete : return "Temel altı grobeton ve yalıtım koruma betonu atılması";
-      case JobCategory.concreteFormWork : return "Plywood ile düz yüzeyli beton ve betonarme kalıbı yapılması (Düz Ölçü)";
-      case JobCategory.pouringConcrete : return "Betonarme betonu temini ve dökülmesi";
-      case JobCategory.rebar : return "Ø8-32 mm çapında betonarme çeliği temini ve döşenmesi";
-      case JobCategory.hollowFloorFilling : return "Asmolen döşeme dolgusunun yapılması";
-      case JobCategory.foundationWaterproofing : return "Temel altı su yalıtımı yapılması";
-      case JobCategory.curtainWaterproofing : return "Perde su yalıtımının yapılması";
-      case JobCategory.curtainProtectionBeforeFilling : return "Geri dolgu öncesi perde yalıtımına koruyucu yapılması";
-      case JobCategory.wallMaterial : return "Duvar malzeme";
-      case JobCategory.wallWorkmanShip : return "Duvar işçilik";
-      case JobCategory.roofing : return "Çatı Yapılması";
-      case JobCategory.facadeScaffolding : return "Cephe için iş iskelesi kurulması ve daha sonra sökülmesi (6ay)";
-      case JobCategory.windows : return "Pencere ve Doğramaların yapılması";
-      case JobCategory.facadeRails : return "Cephe korkuluklarının yapılması";
-      case JobCategory.facade : return "Cephe kaplama sisteminin yapılması";
-      case JobCategory.interiorPlastering : return "İç mekan sıvasının yapılması (Kaba + İnce)";
-      case JobCategory.interiorPainting : return "İç mekan boyasının yapılması";
-      case JobCategory.interiorWaterproofing : return "İç mekan su yalıtımı yapılması";
-    }
+    return switch (this) {
+      JobCategory.shoring => "İksa yapılması",
+      JobCategory.excavation => "Kazı yapılması ve çıkan molozun şantiye dışına gönderilmesi",
+      JobCategory.breaker => "Kırıcı çalıştırılması",
+      JobCategory.foundationStabilization => "Temel altına stabilizasyon malzemesinin serilmesi",
+      JobCategory.subFoundationConcrete => "Temel altı grobeton ve yalıtım koruma betonu atılması",
+      JobCategory.concreteFormWork => "Plywood ile düz yüzeyli beton ve betonarme kalıbı yapılması (Düz Ölçü)",
+      JobCategory.pouringConcrete => "Betonarme betonu temini ve dökülmesi",
+      JobCategory.rebar => "Ø8-32 mm çapında betonarme çeliği temini ve döşenmesi",
+      JobCategory.hollowFloorFilling => "Asmolen döşeme dolgusunun yapılması",
+      JobCategory.foundationWaterproofing => "Temel altı su yalıtımı yapılması",
+      JobCategory.curtainWaterproofing => "Perde su yalıtımının yapılması",
+      JobCategory.curtainProtectionBeforeFilling => "Geri dolgu öncesi perde yalıtımına koruyucu yapılması",
+      JobCategory.wallMaterial => "Duvar malzeme",
+      JobCategory.wallWorkmanShip => "Duvar işçilik",
+      JobCategory.roofing => "Çatı Yapılması",
+      JobCategory.facadeScaffolding => "Cephe için iş iskelesi kurulması ve daha sonra sökülmesi (6ay)",
+      JobCategory.windows => "Pencere ve Doğramaların yapılması",
+      JobCategory.facadeRails => "Cephe korkuluklarının yapılması",
+      JobCategory.facade => "Cephe kaplama sisteminin yapılması",
+      JobCategory.interiorPlastering => "İç mekan sıvasının yapılması (Kaba + İnce)",
+      JobCategory.interiorPainting => "İç mekan boyasının yapılması",
+      JobCategory.interiorWaterproofing => "İç mekan su yalıtımı yapılması",
+      JobCategory.ceilingCovering => "Tavan kaplamalarının yapılması"
+    };
   }
 }
 
 enum UnitPriceCategory {
-  shutCrete(MainCategory.excavationJobs, JobCategory.shoring, Unit.squareMeters,),
-  excavation(MainCategory.excavationJobs, JobCategory.excavation, Unit.cubicMeters,),
+  shutCrete(
+    MainCategory.excavationJobs,
+    JobCategory.shoring,
+    Unit.squareMeters,
+  ),
+  excavation(
+    MainCategory.excavationJobs,
+    JobCategory.excavation,
+    Unit.cubicMeters,
+  ),
   breaker(MainCategory.excavationJobs, JobCategory.breaker, Unit.hour),
-  foundationStabilizationGravel(MainCategory.roughConstructionJobs, JobCategory.foundationStabilization, Unit.cubicMeters),
-  c16Concrete(MainCategory.roughConstructionJobs, JobCategory.subFoundationConcrete, Unit.cubicMeters),
-  plywood(MainCategory.roughConstructionJobs, JobCategory.concreteFormWork, Unit.squareMeters),
-  c30Concrete(MainCategory.roughConstructionJobs, JobCategory.pouringConcrete, Unit.cubicMeters),
-  c35Concrete(MainCategory.roughConstructionJobs, JobCategory.pouringConcrete, Unit.cubicMeters),
+  foundationStabilizationGravel(MainCategory.roughConstructionJobs,
+      JobCategory.foundationStabilization, Unit.cubicMeters),
+  c16Concrete(MainCategory.roughConstructionJobs,
+      JobCategory.subFoundationConcrete, Unit.cubicMeters),
+  plywood(MainCategory.roughConstructionJobs, JobCategory.concreteFormWork,
+      Unit.squareMeters),
+  c30Concrete(MainCategory.roughConstructionJobs, JobCategory.pouringConcrete,
+      Unit.cubicMeters),
+  c35Concrete(MainCategory.roughConstructionJobs, JobCategory.pouringConcrete,
+      Unit.cubicMeters),
   s420Steel(MainCategory.roughConstructionJobs, JobCategory.rebar, Unit.ton),
-  eps(MainCategory.roughConstructionJobs, JobCategory.hollowFloorFilling, Unit.cubicMeters),
-  doubleLayerBitumenMembrane(MainCategory.roughConstructionJobs, JobCategory.foundationWaterproofing, Unit.squareMeters),
-  bitumenSliding(MainCategory.roughConstructionJobs, JobCategory.curtainWaterproofing, Unit.squareMeters),
-  drainPlate(MainCategory.roughConstructionJobs, JobCategory.curtainProtectionBeforeFilling, Unit.squareMeters),
-  aeratedConcreteMaterial(MainCategory.roughConstructionJobs, JobCategory.wallMaterial, Unit.cubicMeters),
-  aeratedConcreteWorkmanShip(MainCategory.roughConstructionJobs, JobCategory.wallWorkmanShip, Unit.squareMeters),
-  steelConstructionBraasRoof(MainCategory.roofJobs, JobCategory.roofing, Unit.squareMeters),
-  steelScaffolding(MainCategory.facadeJobs, JobCategory.facadeScaffolding, Unit.squareMeters),
-  windowJoineryRehau(MainCategory.facadeJobs, JobCategory.windows, Unit.squareMeters),
-  wroughtIronRailing(MainCategory.facadeJobs, JobCategory.facadeRails, Unit.meter),
+  eps(MainCategory.roughConstructionJobs, JobCategory.hollowFloorFilling,
+      Unit.cubicMeters),
+  doubleLayerBitumenMembrane(MainCategory.roughConstructionJobs,
+      JobCategory.foundationWaterproofing, Unit.squareMeters),
+  bitumenSliding(MainCategory.roughConstructionJobs,
+      JobCategory.curtainWaterproofing, Unit.squareMeters),
+  drainPlate(MainCategory.roughConstructionJobs,
+      JobCategory.curtainProtectionBeforeFilling, Unit.squareMeters),
+  aeratedConcreteMaterial(MainCategory.roughConstructionJobs,
+      JobCategory.wallMaterial, Unit.cubicMeters),
+  aeratedConcreteWorkmanShip(MainCategory.roughConstructionJobs,
+      JobCategory.wallWorkmanShip, Unit.squareMeters),
+  steelConstructionBraasRoof(
+      MainCategory.roofJobs, JobCategory.roofing, Unit.squareMeters),
+  steelScaffolding(MainCategory.facadeJobs, JobCategory.facadeScaffolding,
+      Unit.squareMeters),
+  windowJoineryRehau(
+      MainCategory.facadeJobs, JobCategory.windows, Unit.squareMeters),
+  wroughtIronRailing(
+      MainCategory.facadeJobs, JobCategory.facadeRails, Unit.meter),
   ceramicFacade(MainCategory.facadeJobs, JobCategory.facade, Unit.squareMeters),
   precastFacade(MainCategory.facadeJobs, JobCategory.facade, Unit.squareMeters),
-  plaster(MainCategory.interiorJobs, JobCategory.interiorPlastering, Unit.squareMeters),
-  painting(MainCategory.interiorJobs, JobCategory.interiorPainting, Unit.squareMeters),
-  cementBasedFlexInsulation(MainCategory.interiorJobs, JobCategory.interiorWaterproofing, Unit.squareMeters);
+  plaster(MainCategory.interiorJobs, JobCategory.interiorPlastering,
+      Unit.squareMeters),
+  painting(MainCategory.interiorJobs, JobCategory.interiorPainting,
+      Unit.squareMeters),
+  cementBasedFlexInsulation(MainCategory.interiorJobs,
+      JobCategory.interiorWaterproofing, Unit.squareMeters),
+  drywall(MainCategory.interiorJobs, JobCategory.ceilingCovering,
+      Unit.squareMeters);
 
-  const UnitPriceCategory(this.mainCategory, this.jobCategory, this.unit,);
+  const UnitPriceCategory(
+    this.mainCategory,
+    this.jobCategory,
+    this.unit,
+  );
   final MainCategory mainCategory;
   final JobCategory jobCategory;
   final Unit unit;
@@ -118,31 +152,32 @@ enum UnitPriceCategory {
 
 extension UnitPriceCategoryExtension on UnitPriceCategory {
   String get nameTr {
-    switch(this) {
-      case UnitPriceCategory.shutCrete : return "Shutcrete";
-      case UnitPriceCategory.excavation : return "Hafriyat";
-      case UnitPriceCategory.breaker : return "Kırıcı";
-      case UnitPriceCategory.foundationStabilizationGravel : return "Mıcır";
-      case UnitPriceCategory.c16Concrete : return "C16 Beton";
-      case UnitPriceCategory.plywood : return "Plywood";
-      case UnitPriceCategory.c30Concrete : return "C30 Beton";
-      case UnitPriceCategory.c35Concrete : return "C35 Beton";
-      case UnitPriceCategory.s420Steel : return "S420 Nervürlü İnşaat Demiri";
-      case UnitPriceCategory.eps : return "Eps";
-      case UnitPriceCategory.doubleLayerBitumenMembrane : return "Bitüm Esaslı Membran (Çift Kat)";
-      case UnitPriceCategory.bitumenSliding : return "Bitüm Esaslı Sürme İzolasyon";
-      case UnitPriceCategory.drainPlate : return "Drenaj Levhası";
-      case UnitPriceCategory.aeratedConcreteMaterial : return "Gazbeton Malzeme";
-      case UnitPriceCategory.aeratedConcreteWorkmanShip : return "Gazbeton İşçilik";
-      case UnitPriceCategory.steelConstructionBraasRoof : return "Çelik konstrüksiyon Braas Çatı";
-      case UnitPriceCategory.steelScaffolding : return "Korkuluklu çelik iskele";
-      case UnitPriceCategory.windowJoineryRehau : return "Rehau sürgülü, Hebeschiebe veya Volkswagen Doğrama";
-      case UnitPriceCategory.wroughtIronRailing : return "Ferforje Korkuluk";
-      case UnitPriceCategory.ceramicFacade : return "Seramik cephe";
-      case UnitPriceCategory.precastFacade : return "Prekast cephe";
-      case UnitPriceCategory.plaster : return "Alçı sıva";
-      case UnitPriceCategory.painting : return "İç mekan boyası";
-      case UnitPriceCategory.cementBasedFlexInsulation : return "Çimento esaslı flex yalıtım malzemesi";
-    }
+    return switch (this) {
+      UnitPriceCategory.shutCrete => "Shutcrete",
+      UnitPriceCategory.excavation => "Hafriyat",
+      UnitPriceCategory.breaker => "Kırıcı",
+      UnitPriceCategory.foundationStabilizationGravel => "Mıcır",
+      UnitPriceCategory.c16Concrete => "C16 Beton",
+      UnitPriceCategory.plywood => "Plywood",
+      UnitPriceCategory.c30Concrete => "C30 Beton",
+      UnitPriceCategory.c35Concrete => "C35 Beton",
+      UnitPriceCategory.s420Steel => "S420 Nervürlü İnşaat Demiri",
+      UnitPriceCategory.eps => "Eps",
+      UnitPriceCategory.doubleLayerBitumenMembrane => "Bitüm Esaslı Membran (Çift Kat)",
+      UnitPriceCategory.bitumenSliding => "Bitüm Esaslı Sürme İzolasyon",
+      UnitPriceCategory.drainPlate => "Drenaj Levhası",
+      UnitPriceCategory.aeratedConcreteMaterial => "Gazbeton Malzeme",
+      UnitPriceCategory.aeratedConcreteWorkmanShip => "Gazbeton İşçilik",
+      UnitPriceCategory.steelConstructionBraasRoof => "Çelik konstrüksiyon Braas Çatı",
+      UnitPriceCategory.steelScaffolding => "Korkuluklu çelik iskele",
+      UnitPriceCategory.windowJoineryRehau => "Rehau sürgülü, Hebeschiebe veya Volkswagen Doğrama",
+      UnitPriceCategory.wroughtIronRailing => "Ferforje Korkuluk",
+      UnitPriceCategory.ceramicFacade => "Seramik cephe",
+      UnitPriceCategory.precastFacade => "Prekast cephe",
+      UnitPriceCategory.plaster => "Alçı sıva",
+      UnitPriceCategory.painting => "İç mekan boyası",
+      UnitPriceCategory.cementBasedFlexInsulation => "Çimento esaslı flex yalıtım malzemesi",
+      UnitPriceCategory.drywall => "Alçıpan"
+    };
   }
 }

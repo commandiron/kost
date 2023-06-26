@@ -67,63 +67,67 @@ abstract class QuantityCalculator {
   double get totalInteriorWaterproofingArea;
   String get totalInteriorWaterproofingAreaExplanation;
 
+  double get totalCeilingCoveringArea;
+  String get totalCeilingCoveringAreaExplanation;
+
   double getQuantityFromJobCategory(JobCategory jobCategory) {
-    switch(jobCategory) {
-      case JobCategory.shoring : return totalShoringArea;
-      case JobCategory.excavation : return totalExcavationVolume;
-      case JobCategory.breaker : return totalBreakerHour;
-      case JobCategory.foundationStabilization : return totalFoundationStabilizationVolume;
-      case JobCategory.subFoundationConcrete : return totalSubFoundationConcreteVolume;
-      case JobCategory.concreteFormWork : return totalConcreteFormWorkArea;
-      case JobCategory.pouringConcrete : return totalPouringConcreteVolume;
-      case JobCategory.rebar : return totalRebarWeight;
-      case JobCategory.hollowFloorFilling : return totalHollowFloorFillingVolume;
-      case JobCategory.foundationWaterproofing : return totalFoundationWaterProofingArea;
-      case JobCategory.curtainWaterproofing : return totalCurtainWaterProofingArea;
-      case JobCategory.curtainProtectionBeforeFilling : return totalCurtainProtectionBeforeFillingArea;
-      case JobCategory.wallMaterial : return totalWallMaterialVolume;
-      case JobCategory.wallWorkmanShip : return  totalWallWorkmanShipArea;
-      case JobCategory.roofing : return totalRoofingArea;
-      case JobCategory.facadeScaffolding : return totalFacadeScaffoldingArea;
-      case JobCategory.windows : return totalWindowsArea;
-      case JobCategory.facadeRails : return totalFacadeRailsLength;
-      case JobCategory.facade : return totalFacadeArea;
-      case JobCategory.interiorPlastering : return totalInteriorPlasteringArea;
-      case JobCategory.interiorPainting : return totalInteriorPaintingArea;
-      case JobCategory.interiorWaterproofing : return totalInteriorWaterproofingArea;
-    }
+    return switch (jobCategory) {
+      JobCategory.shoring => totalShoringArea,
+      JobCategory.excavation => totalExcavationVolume,
+      JobCategory.breaker => totalBreakerHour,
+      JobCategory.foundationStabilization => totalFoundationStabilizationVolume,
+      JobCategory.subFoundationConcrete => totalSubFoundationConcreteVolume,
+      JobCategory.concreteFormWork => totalConcreteFormWorkArea,
+      JobCategory.pouringConcrete => totalPouringConcreteVolume,
+      JobCategory.rebar => totalRebarWeight,
+      JobCategory.hollowFloorFilling => totalHollowFloorFillingVolume,
+      JobCategory.foundationWaterproofing => totalFoundationWaterProofingArea,
+      JobCategory.curtainWaterproofing => totalCurtainWaterProofingArea,
+      JobCategory.curtainProtectionBeforeFilling => totalCurtainProtectionBeforeFillingArea,
+      JobCategory.wallMaterial => totalWallMaterialVolume,
+      JobCategory.wallWorkmanShip => totalWallWorkmanShipArea,
+      JobCategory.roofing => totalRoofingArea,
+      JobCategory.facadeScaffolding => totalFacadeScaffoldingArea,
+      JobCategory.windows => totalWindowsArea,
+      JobCategory.facadeRails => totalFacadeRailsLength,
+      JobCategory.facade => totalFacadeArea,
+      JobCategory.interiorPlastering => totalInteriorPlasteringArea,
+      JobCategory.interiorPainting => totalInteriorPaintingArea,
+      JobCategory.interiorWaterproofing => totalInteriorWaterproofingArea,
+      JobCategory.ceilingCovering => totalCeilingCoveringArea
+    };
   }
 
   String getQuantityExplanationFromJobCategory(JobCategory jobCategory) {
-    switch(jobCategory) {
-      case JobCategory.shoring : return totalShoringAreaExplanation;
-      case JobCategory.excavation : return totalExcavationVolumeExplanation;
-      case JobCategory.breaker : return totalBreakerHourExplanation;
-      case JobCategory.foundationStabilization : return totalFoundationStabilizationVolumeExplanation;
-      case JobCategory.subFoundationConcrete : return totalSubFoundationConcreteVolumeExplanation;
-      case JobCategory.concreteFormWork : return totalConcreteFormWorkAreaExplanation;
-      case JobCategory.pouringConcrete : return totalPouringConcreteVolumeExplanation;
-      case JobCategory.rebar : return totalRebarWeightExplanation;
-      case JobCategory.hollowFloorFilling : return totalHollowFloorFillingVolumeExplanation;
-      case JobCategory.foundationWaterproofing : return totalFoundationWaterProofingAreaExplanation;
-      case JobCategory.curtainWaterproofing : return totalCurtainWaterProofingAreaExplanation;
-      case JobCategory.curtainProtectionBeforeFilling : return totalCurtainProtectionBeforeFillingAreaExplanation;
-      case JobCategory.wallMaterial : return totalWallMaterialVolumeExplanation;
-      case JobCategory.wallWorkmanShip : return  totalWallWorkmanShipAreaExplanation;
-      case JobCategory.roofing : return totalRoofingAreaExplanation;
-      case JobCategory.facadeScaffolding : return totalFacadeScaffoldingAreaExplanation;
-      case JobCategory.windows : return totalWindowAreaExplanation;
-      case JobCategory.facadeRails : return totalFacadeRailsLengthExplanation;
-      case JobCategory.facade : return totalFacadeAreaExplanation;
-      case JobCategory.interiorPlastering : return totalInteriorPlasteringAreaExplanation;
-      case JobCategory.interiorPainting : return totalInteriorPaintingAreaExplanation;
-      case JobCategory.interiorWaterproofing : return totalInteriorWaterproofingAreaExplanation;
-    }
+    return switch (jobCategory) {
+      JobCategory.shoring => totalShoringAreaExplanation,
+      JobCategory.excavation => totalExcavationVolumeExplanation,
+      JobCategory.breaker => totalBreakerHourExplanation,
+      JobCategory.foundationStabilization => totalFoundationStabilizationVolumeExplanation,
+      JobCategory.subFoundationConcrete => totalSubFoundationConcreteVolumeExplanation,
+      JobCategory.concreteFormWork => totalConcreteFormWorkAreaExplanation,
+      JobCategory.pouringConcrete => totalPouringConcreteVolumeExplanation,
+      JobCategory.rebar => totalRebarWeightExplanation,
+      JobCategory.hollowFloorFilling => totalHollowFloorFillingVolumeExplanation,
+      JobCategory.foundationWaterproofing => totalFoundationWaterProofingAreaExplanation,
+      JobCategory.curtainWaterproofing => totalCurtainWaterProofingAreaExplanation,
+      JobCategory.curtainProtectionBeforeFilling => totalCurtainProtectionBeforeFillingAreaExplanation,
+      JobCategory.wallMaterial => totalWallMaterialVolumeExplanation,
+      JobCategory.wallWorkmanShip => totalWallWorkmanShipAreaExplanation,
+      JobCategory.roofing => totalRoofingAreaExplanation,
+      JobCategory.facadeScaffolding => totalFacadeScaffoldingAreaExplanation,
+      JobCategory.windows => totalWindowAreaExplanation,
+      JobCategory.facadeRails => totalFacadeRailsLengthExplanation,
+      JobCategory.facade => totalFacadeAreaExplanation,
+      JobCategory.interiorPlastering => totalInteriorPlasteringAreaExplanation,
+      JobCategory.interiorPainting => totalInteriorPaintingAreaExplanation,
+      JobCategory.interiorWaterproofing => totalInteriorWaterproofingAreaExplanation,
+      JobCategory.ceilingCovering => totalCeilingCoveringAreaExplanation
+    };
   }
 }
 
 class InitialQuantityCalculator extends QuantityCalculator {
-
   @override
   double get totalShoringArea => 0;
   @override
@@ -226,13 +230,16 @@ class InitialQuantityCalculator extends QuantityCalculator {
 
   @override
   double get totalInteriorPaintingArea => 0;
-
   @override
   String get totalInteriorPaintingAreaExplanation => "";
 
   @override
   double get totalInteriorWaterproofingArea => 0;
-
   @override
   String get totalInteriorWaterproofingAreaExplanation => "";
+  
+  @override
+  double get totalCeilingCoveringArea => 0;
+  @override
+  String get totalCeilingCoveringAreaExplanation => "";
 }
