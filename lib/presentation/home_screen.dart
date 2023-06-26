@@ -69,6 +69,7 @@ class HomeScreen extends StatelessWidget {
                         },
                       ),
                       Text(state.formattedGrandTotalTRY),
+                      const SizedBox(height: 512,)
                     ],
                   ),
                 )
