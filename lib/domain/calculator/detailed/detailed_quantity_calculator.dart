@@ -254,11 +254,11 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   }
 
   @override
-  double get totalRebarWorkWeight {
+  double get totalRebarWeight {
     return totalPouringConcreteVolume * projectConstants.rebarTonForOneCubicMeterConcrete;
   }
   @override
-  String get totalRebarWorkWeightExplanation {
+  String get totalRebarWeightExplanation {
     return "Beton hacmi: $totalPouringConcreteVolume x 1 m3 beton için ton biriminde demir ağırlığı: ${projectConstants.rebarTonForOneCubicMeterConcrete}";
   }
 

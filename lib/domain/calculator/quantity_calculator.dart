@@ -22,8 +22,8 @@ abstract class QuantityCalculator {
   double get totalPouringConcreteVolume;
   String get totalPouringConcreteVolumeExplanation;
 
-  double get totalRebarWorkWeight;
-  String get totalRebarWorkWeightExplanation;
+  double get totalRebarWeight;
+  String get totalRebarWeightExplanation;
 
   double get totalHollowFloorFillingVolume;
   String get totalHollowFloorFillingVolumeExplanation;
@@ -76,7 +76,7 @@ abstract class QuantityCalculator {
       case JobCategory.subFoundationConcrete : return totalSubFoundationConcreteVolume;
       case JobCategory.concreteFormWork : return totalConcreteFormWorkArea;
       case JobCategory.pouringConcrete : return totalPouringConcreteVolume;
-      case JobCategory.rebarWork : return totalRebarWorkWeight;
+      case JobCategory.rebar : return totalRebarWeight;
       case JobCategory.hollowFloorFilling : return totalHollowFloorFillingVolume;
       case JobCategory.foundationWaterproofing : return totalFoundationWaterProofingArea;
       case JobCategory.curtainWaterproofing : return totalCurtainWaterProofingArea;
@@ -103,7 +103,7 @@ abstract class QuantityCalculator {
       case JobCategory.subFoundationConcrete : return totalSubFoundationConcreteVolumeExplanation;
       case JobCategory.concreteFormWork : return totalConcreteFormWorkAreaExplanation;
       case JobCategory.pouringConcrete : return totalPouringConcreteVolumeExplanation;
-      case JobCategory.rebarWork : return totalRebarWorkWeightExplanation;
+      case JobCategory.rebar : return totalRebarWeightExplanation;
       case JobCategory.hollowFloorFilling : return totalHollowFloorFillingVolumeExplanation;
       case JobCategory.foundationWaterproofing : return totalFoundationWaterProofingAreaExplanation;
       case JobCategory.curtainWaterproofing : return totalCurtainWaterProofingAreaExplanation;
@@ -160,9 +160,9 @@ class InitialQuantityCalculator extends QuantityCalculator {
   String get totalPouringConcreteVolumeExplanation => "";
 
   @override
-  double get totalRebarWorkWeight => 0;
+  double get totalRebarWeight => 0;
   @override
-  String get totalRebarWorkWeightExplanation => "";
+  String get totalRebarWeightExplanation => "";
 
   @override
   double get totalHollowFloorFillingVolume => 0;

@@ -38,7 +38,7 @@ enum JobCategory {
   subFoundationConcrete,
   concreteFormWork,
   pouringConcrete,
-  rebarWork,
+  rebar,
   hollowFloorFilling,
   foundationWaterproofing,
   curtainWaterproofing,
@@ -65,7 +65,7 @@ extension JobCategoryExtension on JobCategory {
       case JobCategory.subFoundationConcrete : return "Temel altı grobeton ve yalıtım koruma betonu atılması";
       case JobCategory.concreteFormWork : return "Plywood ile düz yüzeyli beton ve betonarme kalıbı yapılması (Düz Ölçü)";
       case JobCategory.pouringConcrete : return "Betonarme betonu temini ve dökülmesi";
-      case JobCategory.rebarWork : return "Ø8-32 mm çapında betonarme çeliği temini ve döşenmesi";
+      case JobCategory.rebar : return "Ø8-32 mm çapında betonarme çeliği temini ve döşenmesi";
       case JobCategory.hollowFloorFilling : return "Asmolen döşeme dolgusunun yapılması";
       case JobCategory.foundationWaterproofing : return "Temel altı su yalıtımı yapılması";
       case JobCategory.curtainWaterproofing : return "Perde su yalıtımının yapılması";
@@ -93,7 +93,7 @@ enum UnitPriceCategory {
   plywood(MainCategory.roughConstructionJobs, JobCategory.concreteFormWork, Unit.squareMeters),
   c30Concrete(MainCategory.roughConstructionJobs, JobCategory.pouringConcrete, Unit.cubicMeters),
   c35Concrete(MainCategory.roughConstructionJobs, JobCategory.pouringConcrete, Unit.cubicMeters),
-  s420Steel(MainCategory.roughConstructionJobs, JobCategory.rebarWork, Unit.ton),
+  s420Steel(MainCategory.roughConstructionJobs, JobCategory.rebar, Unit.ton),
   eps(MainCategory.roughConstructionJobs, JobCategory.hollowFloorFilling, Unit.cubicMeters),
   doubleLayerBitumenMembrane(MainCategory.roughConstructionJobs, JobCategory.foundationWaterproofing, Unit.squareMeters),
   bitumenSliding(MainCategory.roughConstructionJobs, JobCategory.curtainWaterproofing, Unit.squareMeters),
