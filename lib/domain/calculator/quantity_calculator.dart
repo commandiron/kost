@@ -73,6 +73,9 @@ abstract class QuantityCalculator {
   double get totalCovingPlasterArea;
   String get totalCovingPlasterAreaExplanation;
 
+  double get totalScreedingArea;
+  String get totalScreedingAreaExplanation;
+
   double getQuantityFromJobCategory(JobCategory jobCategory) {
     return switch (jobCategory) {
       JobCategory.shoring => totalShoringArea,
@@ -99,6 +102,7 @@ abstract class QuantityCalculator {
       JobCategory.interiorWaterproofing => totalInteriorWaterproofingArea,
       JobCategory.ceilingCovering => totalCeilingCoveringArea,
       JobCategory.covingPlaster => totalCovingPlasterArea,
+      JobCategory.screeding => totalScreedingArea,
     };
   }
 
@@ -128,6 +132,7 @@ abstract class QuantityCalculator {
       JobCategory.interiorWaterproofing => totalInteriorWaterproofingAreaExplanation,
       JobCategory.ceilingCovering => totalCeilingCoveringAreaExplanation,
       JobCategory.covingPlaster => totalCovingPlasterAreaExplanation,
+      JobCategory.screeding => totalScreedingAreaExplanation,
     };
   }
 }
@@ -252,4 +257,9 @@ class InitialQuantityCalculator extends QuantityCalculator {
   double get totalCovingPlasterArea => 0;
   @override
   String get totalCovingPlasterAreaExplanation => "";
+
+  @override
+  double get totalScreedingArea => 0;
+  @override
+  String get totalScreedingAreaExplanation => "";
 }

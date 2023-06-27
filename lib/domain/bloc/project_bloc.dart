@@ -124,6 +124,8 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
               TechnicalArea(area: 52.6, perimeter: 33.6),
               BuildingHall(area: 11.1, perimeter: 20.9),
               BuildingHall(area: 6.07, perimeter: 11.1),
+              ElevatorShaft(area: 18.9, perimeter: 18.3),
+              ElevatorShaft(area: 8.61, perimeter: 12.8),
             ]
           ),
         ],

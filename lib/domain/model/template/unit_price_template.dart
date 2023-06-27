@@ -84,6 +84,7 @@ class InteriorCostTemplate extends CostTemplate {
       UnitPriceCategory.cementBasedFlexInsulation,
       UnitPriceCategory.drywall,
       UnitPriceCategory.covingPlaster,
+      UnitPriceCategory.screed,
     ];
   }
 }

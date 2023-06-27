@@ -261,6 +261,18 @@ class DetailedQuantityCalculator extends QuantityCalculator {
     return length;
   }
 
+  double get _totalScreedArea {
+    double area = 0;
+    for (var floor in floors) {
+      for (var room in floor.rooms) {
+        if (room.hasScreed) {
+          area += room.area;
+        }
+      }
+    }
+    return area;
+  }
+
   //Final Results
   @override
   double get totalShoringArea {
@@ -490,5 +502,15 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   @override
   String get totalCovingPlasterAreaExplanation {
     return "Toplam kartonpiyer uzunluğu: $_totalCovingPlasterLength";
+  }
+
+  @override
+  double get totalScreedingArea {
+    return _totalScreedArea;
+  }
+
+  @override
+  String get totalScreedingAreaExplanation {
+    return "Toplam şap alanı: $_totalScreedArea";
   }
 }
