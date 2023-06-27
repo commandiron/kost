@@ -56,6 +56,7 @@ enum JobCategory {
   ceilingCovering,
   covingPlaster,
   screeding,
+  marble,
 }
 
 extension JobCategoryExtension on JobCategory {
@@ -86,6 +87,7 @@ extension JobCategoryExtension on JobCategory {
       JobCategory.ceilingCovering => "Tavan kaplamalarının yapılması",
       JobCategory.covingPlaster => "Kartonpiyer yapılması",
       JobCategory.screeding => "Şap yapılması",
+      JobCategory.marble => "Mermer zemin kaplamalarının yapılması"
     };
   }
 }
@@ -144,7 +146,8 @@ enum UnitPriceCategory {
   drywall(MainCategory.interiorJobs, JobCategory.ceilingCovering,
       Unit.squareMeters),
   covingPlaster(MainCategory.interiorJobs, JobCategory.covingPlaster, Unit.meter),
-  screed(MainCategory.interiorJobs, JobCategory.screeding, Unit.squareMeters);
+  screed(MainCategory.interiorJobs, JobCategory.screeding, Unit.squareMeters),
+  marbleBilecik(MainCategory.interiorJobs, JobCategory.marble, Unit.squareMeters);
 
   const UnitPriceCategory(
     this.mainCategory,
@@ -185,7 +188,8 @@ extension UnitPriceCategoryExtension on UnitPriceCategory {
       UnitPriceCategory.cementBasedFlexInsulation => "Çimento esaslı flex yalıtım malzemesi",
       UnitPriceCategory.drywall => "Alçıpan",
       UnitPriceCategory.covingPlaster => "Kartonpiyer",
-      UnitPriceCategory.screed => "Şap"
+      UnitPriceCategory.screed => "Şap",
+      UnitPriceCategory.marbleBilecik => "Bilecik Beji"
     };
   }
 }

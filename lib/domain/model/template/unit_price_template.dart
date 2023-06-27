@@ -85,6 +85,7 @@ class InteriorCostTemplate extends CostTemplate {
       UnitPriceCategory.drywall,
       UnitPriceCategory.covingPlaster,
       UnitPriceCategory.screed,
+      UnitPriceCategory.marbleBilecik,
     ];
   }
 }

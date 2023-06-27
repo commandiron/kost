@@ -1,4 +1,5 @@
 import 'package:kost/domain/calculator/detailed/project_constants.dart';
+import 'package:kost/domain/calculator/detailed/room.dart';
 
 import '../quantity_calculator.dart';
 import 'floor.dart';
@@ -241,7 +242,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
     double area = 0;
     for (var floor in floors) {
       for (var room in floor.rooms) {
-        if (room.hasCeilingDrywall) {
+        if (room.ceilingMaterial == CeilingMaterial.drywall) {
           area += room.area;
         }
       }
@@ -266,6 +267,18 @@ class DetailedQuantityCalculator extends QuantityCalculator {
     for (var floor in floors) {
       for (var room in floor.rooms) {
         if (room.hasScreed) {
+          area += room.area;
+        }
+      }
+    }
+    return area;
+  }
+
+  double get _totalMarbleArea {
+    double area = 0;
+    for (var floor in floors) {
+      for (var room in floor.rooms) {
+        if (room.floorMaterial == FloorMaterial.marble) {
           area += room.area;
         }
       }
@@ -512,5 +525,15 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   @override
   String get totalScreedingAreaExplanation {
     return "Toplam şap alanı: $_totalScreedArea";
+  }
+
+  @override
+  double get totalMarbleArea {
+    return _totalMarbleArea;
+  }
+
+  @override
+  String get totalMarbleAreaExplanation {
+    return "Toplam mermer alanı: $_totalMarbleArea";
   }
 }
