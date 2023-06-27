@@ -31,8 +31,8 @@ enum UnitPriceCategory {
   marbleBilecik(Unit.squareMeters);
 
   const UnitPriceCategory(
-      this.unit,
-      );
+    this.unit,
+  );
   final Unit unit;
 }
 
