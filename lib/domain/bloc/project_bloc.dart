@@ -7,9 +7,9 @@ import 'package:kost/domain/calculator/detailed/room.dart';
 import 'package:kost/domain/calculator/detailed/window.dart';
 import 'package:kost/domain/calculator/quantity_calculator.dart';
 import 'package:kost/domain/model/unit_price/currency.dart';
-import 'package:kost/domain/model/template/cost_template.dart';
+import 'package:kost/domain/model/cost/cost_template.dart';
 
-import '../../presentation/model/cost_item.dart';
+import '../model/cost/cost_item.dart';
 import '../calculator/detailed/floor.dart';
 import '../model/category/category.dart';
 import '../model/unit_price/unit_price.dart';

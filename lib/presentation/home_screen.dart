@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:grouped_list/grouped_list.dart';
 import 'package:kost/domain/model/category/category.dart';
-import 'package:kost/presentation/model/cost_item.dart';
 
 import '../domain/bloc/project_bloc.dart';
 import '../domain/bloc/project_state.dart';
+import 'model/ui_cost_item.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);

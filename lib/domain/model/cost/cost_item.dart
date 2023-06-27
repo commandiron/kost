@@ -1,8 +1,9 @@
 import 'package:kost/domain/model/category/category.dart';
 import 'package:kost/domain/model/category/unit.dart';
 
-import '../../domain/model/unit_price/unit_price.dart';
-import '../../domain/model/unit_price/currency.dart';
+import '../../../presentation/model/ui_cost_item.dart';
+import '../unit_price/unit_price.dart';
+import '../unit_price/currency.dart';
 import 'package:intl/intl.dart';
 
 class CostItem {
@@ -33,24 +34,4 @@ class CostItem {
       formattedTotalPriceTRY: "${NumberFormat("#,##0.00", "tr_TR").format(totalPriceTRY)} TL"
     );
   }
-}
-
-class UiCostItem {
-  CostCategory costCategory;
-  String formattedUnitPrice;
-  String formattedQuantity;
-  String quantityExplanation;
-  double totalPriceTRY;
-  String formattedTotalPriceTRY;
-
-  UiCostItem(
-    {
-      required this.costCategory,
-      required this.formattedUnitPrice,
-      required this.formattedQuantity,
-      required this.quantityExplanation,
-      required this.totalPriceTRY,
-      required this.formattedTotalPriceTRY,
-    }
-  );
 }
