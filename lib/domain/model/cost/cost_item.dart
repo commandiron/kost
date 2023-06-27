@@ -7,7 +7,7 @@ import '../unit_price/currency.dart';
 import 'package:intl/intl.dart';
 
 class CostItem {
-  final CostCategory costCategory;
+  final CostCategory category;
   final UnitPrice unitPrice;
   final double quantity;
   final String quantityExplanation;
@@ -16,7 +16,7 @@ class CostItem {
 
   CostItem(
     {
-      required this.costCategory,
+      required this.category,
       required this.unitPrice,
       required this.quantity,
       required this.quantityExplanation,
@@ -26,7 +26,7 @@ class CostItem {
 
   UiCostItem toUiCostItem() {
     return UiCostItem(
-      costCategory: costCategory,
+      category: category,
       formattedUnitPrice: "${unitPrice.amount} ${unitPrice.currency.symbol}/${unitPrice.category.unit.symbol}",
       formattedQuantity: "${NumberFormat("#,##0.00", "tr_TR").format(quantity)} ${unitPrice.category.unit.symbol}",
       quantityExplanation: quantityExplanation,

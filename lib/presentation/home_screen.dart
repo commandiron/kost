@@ -25,7 +25,7 @@ class HomeScreen extends StatelessWidget {
                       GroupedListView<UiCostItem, String>(
                         shrinkWrap: true,
                         elements: state.uiCostItems,
-                        groupBy: (uiCostItem) => uiCostItem.costCategory.mainCategory.nameTr,
+                        groupBy: (uiCostItem) => uiCostItem.category.mainCategory.nameTr,
                         groupSeparatorBuilder: (String groupByValue) {
                           return Padding(
                             padding: const EdgeInsets.all(8.0),
@@ -40,10 +40,10 @@ class HomeScreen extends StatelessWidget {
                               children: [
                                 Expanded(
                                     flex: 2,
-                                    child: Text(uiCostItem.costCategory.jobCategory.nameTr)
+                                    child: Text(uiCostItem.category.jobCategory.nameTr)
                                 ),
                                 Expanded(
-                                    child: Text(uiCostItem.costCategory.unitPriceCategory.nameTr)
+                                    child: Text(uiCostItem.category.unitPriceCategory.nameTr)
                                 ),
                                 Expanded(
                                     child: Text(uiCostItem.formattedUnitPrice)

@@ -1,7 +1,7 @@
 import '../../domain/model/category/category.dart';
 
 class UiCostItem {
-  CostCategory costCategory;
+  CostCategory category;
   String formattedUnitPrice;
   String formattedQuantity;
   String quantityExplanation;
@@ -10,7 +10,7 @@ class UiCostItem {
 
   UiCostItem(
     {
-      required this.costCategory,
+      required this.category,
       required this.formattedUnitPrice,
       required this.formattedQuantity,
       required this.quantityExplanation,

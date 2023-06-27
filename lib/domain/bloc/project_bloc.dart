@@ -191,7 +191,7 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
       final lastDatedUnitPrice = unitPrices.reduce((current, next) => current.dateTime.isAfter(next.dateTime) ? current : next);
 
       final costItem = CostItem(
-        costCategory: enabledCostCategory,
+        category: enabledCostCategory,
         unitPrice: lastDatedUnitPrice,
         quantity: quantityCalculator.getQuantityFromJobCategory(enabledCostCategory.jobCategory),
         quantityExplanation: quantityCalculator.getQuantityExplanationFromJobCategory(enabledCostCategory.jobCategory),
