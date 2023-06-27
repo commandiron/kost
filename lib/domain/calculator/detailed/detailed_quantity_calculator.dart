@@ -16,13 +16,10 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   final double foundationArea;
   final double foundationPerimeter;
   final double foundationHeight;
-  final double insulationConcreteHeight;
-  final double leanConcreteHeight;
-  final double stabilizationHeight;
-  final double hollowFillingThickness;
 
   DetailedQuantityCalculator(
-      {required this.projectConstants,
+    {
+      required this.projectConstants,
       required this.excavationPerimeter,
       required this.excavationArea,
       required this.coreCurtainLength,
@@ -34,10 +31,8 @@ class DetailedQuantityCalculator extends QuantityCalculator {
       required this.foundationArea,
       required this.foundationPerimeter,
       required this.foundationHeight,
-      this.insulationConcreteHeight = 0.05,
-      this.leanConcreteHeight = 0.10,
-      this.stabilizationHeight = 0.30,
-      this.hollowFillingThickness = 0.2});
+    }
+  );
 
   //Calculations
   Floor get _topMostBasementFloor {
@@ -76,9 +71,9 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   }
 
   double get _excavationHeight {
-    return stabilizationHeight +
-        leanConcreteHeight +
-        insulationConcreteHeight +
+    return projectConstants.stabilizationHeight +
+        projectConstants.leanConcreteHeight +
+        projectConstants.insulationConcreteHeight +
         foundationHeight +
         _basementsHeight;
   }
@@ -298,20 +293,20 @@ class DetailedQuantityCalculator extends QuantityCalculator {
 
   @override
   double get totalFoundationStabilizationVolume {
-    return excavationArea * stabilizationHeight;
+    return excavationArea * projectConstants.stabilizationHeight;
   }
   @override
   String get totalFoundationStabilizationVolumeExplanation {
-    return "Hafriyat alanı: $excavationArea x Temel altı stabilizasyon malzemesi yüksekliği: $stabilizationHeight";
+    return "Hafriyat alanı: $excavationArea x Temel altı stabilizasyon malzemesi yüksekliği: ${projectConstants.stabilizationHeight}";
   }
 
   @override
   double get totalSubFoundationConcreteVolume {
-    return excavationArea * (leanConcreteHeight + insulationConcreteHeight);
+    return excavationArea * (projectConstants.leanConcreteHeight + projectConstants.insulationConcreteHeight);
   }
   @override
   String get totalSubFoundationConcreteVolumeExplanation {
-    return "Hafriyat alanı: $excavationArea x (Grobeton yüksekliği: $leanConcreteHeight + Yalıtım koruma betonu yüksekliği: $insulationConcreteHeight)";
+    return "Hafriyat alanı: $excavationArea x (Grobeton yüksekliği: ${projectConstants.leanConcreteHeight} + Yalıtım koruma betonu yüksekliği: ${projectConstants.insulationConcreteHeight})";
   }
 
   @override
@@ -350,11 +345,11 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   double get totalHollowFloorFillingVolume {
     return projectConstants.hollowAreaForOneSquareMeterConstructionArea *
         _hollowSlabRoughConstructionArea *
-        hollowFillingThickness;
+        projectConstants.hollowFillingThickness;
   }
   @override
   String get totalHollowFloorFillingVolumeExplanation {
-    return "1 m2 kaba inşaat alanı için m2 biriminde asmolen alanı: ${projectConstants.hollowAreaForOneSquareMeterConstructionArea} x Asmolen döşeme inşaat alanı: $_hollowSlabRoughConstructionArea x Asmolen kalınlığı: $hollowFillingThickness";
+    return "1 m2 kaba inşaat alanı için m2 biriminde asmolen alanı: ${projectConstants.hollowAreaForOneSquareMeterConstructionArea} x Asmolen döşeme inşaat alanı: $_hollowSlabRoughConstructionArea x Asmolen kalınlığı: ${projectConstants.hollowFillingThickness}";
   }
 
   @override
