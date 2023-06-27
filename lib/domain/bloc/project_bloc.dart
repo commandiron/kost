@@ -186,8 +186,10 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
     List<CostItem> costItems = [];
 
     for (var enabledCostCategory in enabledCostCategories) {
+
       final unitPrices =  unitPricePool.where((unitPrice) => unitPrice.category == enabledCostCategory.unitPriceCategory).toList();
       final lastDatedUnitPrice = unitPrices.reduce((current, next) => current.dateTime.isAfter(next.dateTime) ? current : next);
+
       final costItem = CostItem(
         costCategory: enabledCostCategory,
         unitPrice: lastDatedUnitPrice,
@@ -195,6 +197,7 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
         quantityExplanation: quantityCalculator.getQuantityExplanationFromJobCategory(enabledCostCategory.jobCategory),
         currencyRates: currencyRates
       );
+
       costItems.add(costItem);
     }
     return costItems;
