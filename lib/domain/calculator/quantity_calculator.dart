@@ -70,6 +70,9 @@ abstract class QuantityCalculator {
   double get totalCeilingCoveringArea;
   String get totalCeilingCoveringAreaExplanation;
 
+  double get totalCovingPlasterArea;
+  String get totalCovingPlasterAreaExplanation;
+
   double getQuantityFromJobCategory(JobCategory jobCategory) {
     return switch (jobCategory) {
       JobCategory.shoring => totalShoringArea,
@@ -90,11 +93,12 @@ abstract class QuantityCalculator {
       JobCategory.facadeScaffolding => totalFacadeScaffoldingArea,
       JobCategory.windows => totalWindowsArea,
       JobCategory.facadeRails => totalFacadeRailsLength,
-      JobCategory.facade => totalFacadeArea,
+      JobCategory.facadeSystem => totalFacadeArea,
       JobCategory.interiorPlastering => totalInteriorPlasteringArea,
       JobCategory.interiorPainting => totalInteriorPaintingArea,
       JobCategory.interiorWaterproofing => totalInteriorWaterproofingArea,
-      JobCategory.ceilingCovering => totalCeilingCoveringArea
+      JobCategory.ceilingCovering => totalCeilingCoveringArea,
+      JobCategory.covingPlaster => totalCovingPlasterArea,
     };
   }
 
@@ -118,11 +122,12 @@ abstract class QuantityCalculator {
       JobCategory.facadeScaffolding => totalFacadeScaffoldingAreaExplanation,
       JobCategory.windows => totalWindowAreaExplanation,
       JobCategory.facadeRails => totalFacadeRailsLengthExplanation,
-      JobCategory.facade => totalFacadeAreaExplanation,
+      JobCategory.facadeSystem => totalFacadeAreaExplanation,
       JobCategory.interiorPlastering => totalInteriorPlasteringAreaExplanation,
       JobCategory.interiorPainting => totalInteriorPaintingAreaExplanation,
       JobCategory.interiorWaterproofing => totalInteriorWaterproofingAreaExplanation,
-      JobCategory.ceilingCovering => totalCeilingCoveringAreaExplanation
+      JobCategory.ceilingCovering => totalCeilingCoveringAreaExplanation,
+      JobCategory.covingPlaster => totalCovingPlasterAreaExplanation,
     };
   }
 }
@@ -242,4 +247,9 @@ class InitialQuantityCalculator extends QuantityCalculator {
   double get totalCeilingCoveringArea => 0;
   @override
   String get totalCeilingCoveringAreaExplanation => "";
+
+  @override
+  double get totalCovingPlasterArea => 0;
+  @override
+  String get totalCovingPlasterAreaExplanation => "";
 }

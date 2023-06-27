@@ -49,11 +49,12 @@ enum JobCategory {
   facadeScaffolding,
   windows,
   facadeRails,
-  facade,
+  facadeSystem,
   interiorPlastering,
   interiorPainting,
   interiorWaterproofing,
   ceilingCovering,
+  covingPlaster,
 }
 
 extension JobCategoryExtension on JobCategory {
@@ -77,11 +78,12 @@ extension JobCategoryExtension on JobCategory {
       JobCategory.facadeScaffolding => "Cephe için iş iskelesi kurulması ve daha sonra sökülmesi (6ay)",
       JobCategory.windows => "Pencere ve Doğramaların yapılması",
       JobCategory.facadeRails => "Cephe korkuluklarının yapılması",
-      JobCategory.facade => "Cephe kaplama sisteminin yapılması",
+      JobCategory.facadeSystem => "Cephe kaplama sisteminin yapılması",
       JobCategory.interiorPlastering => "İç mekan sıvasının yapılması (Kaba + İnce)",
       JobCategory.interiorPainting => "İç mekan boyasının yapılması",
       JobCategory.interiorWaterproofing => "İç mekan su yalıtımı yapılması",
-      JobCategory.ceilingCovering => "Tavan kaplamalarının yapılması"
+      JobCategory.ceilingCovering => "Tavan kaplamalarının yapılması",
+      JobCategory.covingPlaster => "Kartonpiyer yapılması",
     };
   }
 }
@@ -129,8 +131,8 @@ enum UnitPriceCategory {
       MainCategory.facadeJobs, JobCategory.windows, Unit.squareMeters),
   wroughtIronRailing(
       MainCategory.facadeJobs, JobCategory.facadeRails, Unit.meter),
-  ceramicFacade(MainCategory.facadeJobs, JobCategory.facade, Unit.squareMeters),
-  precastFacade(MainCategory.facadeJobs, JobCategory.facade, Unit.squareMeters),
+  ceramicFacade(MainCategory.facadeJobs, JobCategory.facadeSystem, Unit.squareMeters),
+  precastFacade(MainCategory.facadeJobs, JobCategory.facadeSystem, Unit.squareMeters),
   plaster(MainCategory.interiorJobs, JobCategory.interiorPlastering,
       Unit.squareMeters),
   painting(MainCategory.interiorJobs, JobCategory.interiorPainting,
@@ -138,7 +140,8 @@ enum UnitPriceCategory {
   cementBasedFlexInsulation(MainCategory.interiorJobs,
       JobCategory.interiorWaterproofing, Unit.squareMeters),
   drywall(MainCategory.interiorJobs, JobCategory.ceilingCovering,
-      Unit.squareMeters);
+      Unit.squareMeters),
+  covingPlaster(MainCategory.interiorJobs, JobCategory.covingPlaster, Unit.meter);
 
   const UnitPriceCategory(
     this.mainCategory,
@@ -177,7 +180,8 @@ extension UnitPriceCategoryExtension on UnitPriceCategory {
       UnitPriceCategory.plaster => "Alçı sıva",
       UnitPriceCategory.painting => "İç mekan boyası",
       UnitPriceCategory.cementBasedFlexInsulation => "Çimento esaslı flex yalıtım malzemesi",
-      UnitPriceCategory.drywall => "Alçıpan"
+      UnitPriceCategory.drywall => "Alçıpan",
+      UnitPriceCategory.covingPlaster => "Kartonpiyer",
     };
   }
 }
