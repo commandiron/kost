@@ -1,4 +1,3 @@
-import 'package:collection/collection.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:kost/data/app_data.dart';
@@ -21,7 +20,7 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
   ProjectBloc() : super(
     ProjectState(
       quantityCalculator: InitialQuantityCalculator(),
-      unitPrices: const [],
+      unitPricePool: const [],
       currencyRates: DefaultCurrencyRates(),
       costTemplate: EmptyCostTemplate(),
       uiCostItems: const [],
@@ -136,7 +135,7 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
       emit(state.copyWith(quantityCalculator: quantityCalculator));
     });
     on<FetchUnitPrices>((event, emit) {
-      emit(state.copyWith(unitPrices: AppData.unitPrices));
+      emit(state.copyWith(unitPricePool: AppData.unitPrices));
     });
     on<FetchCurrencyRates>((event, emit) {
       emit(state.copyWith(currencyRates: DefaultCurrencyRates()));
@@ -146,13 +145,13 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
     });
     on<CreateCostTable>((event, emit) {
 
-      if(!_isAllEnabledUnitPriceCategoriesInUnitPrices) {
-        throw Exception("All enabled unit prices in the template are NOT included in fetched unit prices."); //Handle
+      if(!_isAllUnitPricesInCostTemplateIncludedInUnitPricePool) {
+        throw Exception("All enabled unit prices in the cost template are NOT included in fetched unit prices."); //Handle
       }
 
       final costItems = _createFilteredCostItems(
-        unitPrices: state.unitPrices,
-        enabledUnitPriceCategories: state.costTemplate.enabledUnitPriceCategories,
+        unitPricePool: state.unitPricePool,
+        enabledCostCategories: state.costTemplate.enabledCostCategories,
         quantityCalculator: state.quantityCalculator,
         currencyRates: state.currencyRates
       );
@@ -167,9 +166,9 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
     add(const Init());
   }
 
-  bool get _isAllEnabledUnitPriceCategoriesInUnitPrices {
-    for (var enabledUnitPriceCategory in state.costTemplate.enabledUnitPriceCategories) {
-      if(!state.unitPrices.map((e) => e.category).toList().contains(enabledUnitPriceCategory)) {
+  bool get _isAllUnitPricesInCostTemplateIncludedInUnitPricePool {
+    for (var enabledCostCategory in state.costTemplate.enabledCostCategories) {
+      if(!state.unitPricePool.map((e) => e.category).toList().contains(enabledCostCategory.unitPriceCategory)) {
         return false;
       }
     }
@@ -178,32 +177,25 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
 
   List<CostItem> _createFilteredCostItems(
     {
-      required List<UnitPrice> unitPrices,
-      required List<UnitPriceCategory> enabledUnitPriceCategories,
+      required List<UnitPrice> unitPricePool,
+      required List<CostCategory> enabledCostCategories,
       required QuantityCalculator quantityCalculator,
       required CurrencyRates currencyRates,
     }
   ) {
     List<CostItem> costItems = [];
 
-    for (var unitPrice in unitPrices) {
-      if(enabledUnitPriceCategories.contains(unitPrice.category)) {
-        final costItem = CostItem(
-          unitPrice: unitPrice,
-          quantity: quantityCalculator.getQuantityFromJobCategory(unitPrice.category.jobCategory),
-          quantityExplanation: quantityCalculator.getQuantityExplanationFromJobCategory(unitPrice.category.jobCategory),
-          currencyRates: currencyRates
-        );
-        final sameCategoryCostItem = costItems.firstWhereOrNull((costItem) => costItem.unitPrice.category == unitPrice.category);
-        if(sameCategoryCostItem != null) {
-          if(sameCategoryCostItem.unitPrice.dateTime.isBefore(unitPrice.dateTime)) {
-            costItems.remove(sameCategoryCostItem);
-            costItems.add(costItem);
-          }
-        } else {
-          costItems.add(costItem);
-        }
-      }
+    for (var enabledCostCategory in enabledCostCategories) {
+      final unitPrices =  unitPricePool.where((unitPrice) => unitPrice.category == enabledCostCategory.unitPriceCategory).toList();
+      final lastDatedUnitPrice = unitPrices.reduce((current, next) => current.dateTime.isAfter(next.dateTime) ? current : next);
+      final costItem = CostItem(
+        costCategory: enabledCostCategory,
+        unitPrice: lastDatedUnitPrice,
+        quantity: quantityCalculator.getQuantityFromJobCategory(enabledCostCategory.jobCategory),
+        quantityExplanation: quantityCalculator.getQuantityExplanationFromJobCategory(enabledCostCategory.jobCategory),
+        currencyRates: currencyRates
+      );
+      costItems.add(costItem);
     }
     return costItems;
   }

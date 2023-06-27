@@ -93,69 +93,38 @@ extension JobCategoryExtension on JobCategory {
 }
 
 enum UnitPriceCategory {
-  shutCrete(
-    MainCategory.excavationJobs,
-    JobCategory.shoring,
-    Unit.squareMeters,
-  ),
-  excavation(
-    MainCategory.excavationJobs,
-    JobCategory.excavation,
-    Unit.cubicMeters,
-  ),
-  breaker(MainCategory.excavationJobs, JobCategory.breaker, Unit.hour),
-  foundationStabilizationGravel(MainCategory.roughConstructionJobs,
-      JobCategory.foundationStabilization, Unit.cubicMeters),
-  c16Concrete(MainCategory.roughConstructionJobs,
-      JobCategory.subFoundationConcrete, Unit.cubicMeters),
-  plywood(MainCategory.roughConstructionJobs, JobCategory.concreteFormWork,
-      Unit.squareMeters),
-  c30Concrete(MainCategory.roughConstructionJobs, JobCategory.pouringConcrete,
-      Unit.cubicMeters),
-  c35Concrete(MainCategory.roughConstructionJobs, JobCategory.pouringConcrete,
-      Unit.cubicMeters),
-  s420Steel(MainCategory.roughConstructionJobs, JobCategory.rebar, Unit.ton),
-  eps(MainCategory.roughConstructionJobs, JobCategory.hollowFloorFilling,
-      Unit.cubicMeters),
-  doubleLayerBitumenMembrane(MainCategory.roughConstructionJobs,
-      JobCategory.foundationWaterproofing, Unit.squareMeters),
-  bitumenSliding(MainCategory.roughConstructionJobs,
-      JobCategory.curtainWaterproofing, Unit.squareMeters),
-  drainPlate(MainCategory.roughConstructionJobs,
-      JobCategory.curtainProtectionBeforeFilling, Unit.squareMeters),
-  aeratedConcreteMaterial(MainCategory.roughConstructionJobs,
-      JobCategory.wallMaterial, Unit.cubicMeters),
-  aeratedConcreteWorkmanShip(MainCategory.roughConstructionJobs,
-      JobCategory.wallWorkmanShip, Unit.squareMeters),
-  steelConstructionBraasRoof(
-      MainCategory.roofJobs, JobCategory.roofing, Unit.squareMeters),
-  steelScaffolding(MainCategory.facadeJobs, JobCategory.facadeScaffolding,
-      Unit.squareMeters),
-  windowJoineryRehau(
-      MainCategory.facadeJobs, JobCategory.windows, Unit.squareMeters),
-  wroughtIronRailing(
-      MainCategory.facadeJobs, JobCategory.facadeRails, Unit.meter),
-  ceramicFacade(MainCategory.facadeJobs, JobCategory.facadeSystem, Unit.squareMeters),
-  precastFacade(MainCategory.facadeJobs, JobCategory.facadeSystem, Unit.squareMeters),
-  plaster(MainCategory.interiorJobs, JobCategory.interiorPlastering,
-      Unit.squareMeters),
-  painting(MainCategory.interiorJobs, JobCategory.interiorPainting,
-      Unit.squareMeters),
-  cementBasedFlexInsulation(MainCategory.interiorJobs,
-      JobCategory.interiorWaterproofing, Unit.squareMeters),
-  drywall(MainCategory.interiorJobs, JobCategory.ceilingCovering,
-      Unit.squareMeters),
-  covingPlaster(MainCategory.interiorJobs, JobCategory.covingPlaster, Unit.meter),
-  screed(MainCategory.interiorJobs, JobCategory.screeding, Unit.squareMeters),
-  marbleBilecik(MainCategory.interiorJobs, JobCategory.marble, Unit.squareMeters);
+  shutCrete(Unit.squareMeters,),
+  excavation(Unit.cubicMeters,),
+  breaker(Unit.hour),
+  foundationStabilizationGravel(Unit.cubicMeters),
+  c16Concrete(Unit.cubicMeters),
+  plywood(Unit.squareMeters),
+  c30Concrete(Unit.cubicMeters),
+  c35Concrete(Unit.cubicMeters),
+  s420Steel( Unit.ton),
+  eps(Unit.cubicMeters),
+  doubleLayerBitumenMembrane(Unit.squareMeters),
+  bitumenSliding(Unit.squareMeters),
+  drainPlate(Unit.squareMeters),
+  aeratedConcreteMaterial(Unit.cubicMeters),
+  aeratedConcreteWorkmanShip(Unit.squareMeters),
+  steelConstructionBraasRoof(Unit.squareMeters),
+  steelScaffolding(Unit.squareMeters),
+  windowJoineryRehau(Unit.squareMeters),
+  wroughtIronRailing(Unit.meter),
+  ceramicFacade(Unit.squareMeters),
+  precastFacade(Unit.squareMeters),
+  plaster(Unit.squareMeters),
+  painting(Unit.squareMeters),
+  cementBasedFlexInsulation(Unit.squareMeters),
+  drywall(Unit.squareMeters),
+  covingPlaster(Unit.meter),
+  screed(Unit.squareMeters),
+  marbleBilecik(Unit.squareMeters);
 
   const UnitPriceCategory(
-    this.mainCategory,
-    this.jobCategory,
     this.unit,
   );
-  final MainCategory mainCategory;
-  final JobCategory jobCategory;
   final Unit unit;
 }
 
@@ -192,4 +161,99 @@ extension UnitPriceCategoryExtension on UnitPriceCategory {
       UnitPriceCategory.marbleBilecik => "Bilecik Beji"
     };
   }
+}
+
+enum CostCategory {
+  a1(
+    MainCategory.excavationJobs, JobCategory.excavation, UnitPriceCategory.shutCrete,
+  ),
+  a2(
+    MainCategory.excavationJobs, JobCategory.excavation, UnitPriceCategory.excavation,
+  ),
+  a3(
+    MainCategory.excavationJobs, JobCategory.breaker, UnitPriceCategory.breaker,
+  ),
+  b1(
+    MainCategory.roughConstructionJobs, JobCategory.foundationStabilization, UnitPriceCategory.foundationStabilizationGravel,
+  ),
+  b2(
+    MainCategory.roughConstructionJobs, JobCategory.subFoundationConcrete, UnitPriceCategory.c16Concrete,
+  ),
+  b3(
+    MainCategory.roughConstructionJobs, JobCategory.concreteFormWork, UnitPriceCategory.plywood,
+  ),
+  b4(
+    MainCategory.roughConstructionJobs, JobCategory.pouringConcrete, UnitPriceCategory.c30Concrete,
+  ),
+  b5(
+    MainCategory.roughConstructionJobs, JobCategory.pouringConcrete, UnitPriceCategory.c35Concrete,
+  ),
+  b6(
+    MainCategory.roughConstructionJobs, JobCategory.rebar, UnitPriceCategory.s420Steel,
+  ),
+  b7(
+    MainCategory.roughConstructionJobs, JobCategory.hollowFloorFilling, UnitPriceCategory.eps,
+  ),
+  b8(
+    MainCategory.roughConstructionJobs, JobCategory.foundationWaterproofing, UnitPriceCategory.doubleLayerBitumenMembrane,
+  ),
+  b9(
+    MainCategory.roughConstructionJobs, JobCategory.curtainWaterproofing, UnitPriceCategory.bitumenSliding,
+  ),
+  b10(
+    MainCategory.roughConstructionJobs, JobCategory.curtainProtectionBeforeFilling, UnitPriceCategory.drainPlate,
+  ),
+  b11(
+    MainCategory.roughConstructionJobs, JobCategory.wallMaterial, UnitPriceCategory.aeratedConcreteMaterial,
+  ),
+  b12(
+    MainCategory.roughConstructionJobs, JobCategory.wallWorkmanShip, UnitPriceCategory.aeratedConcreteWorkmanShip,
+  ),
+  c1(
+    MainCategory.roofJobs, JobCategory.roofing, UnitPriceCategory.steelConstructionBraasRoof,
+  ),
+  d1(
+    MainCategory.facadeJobs, JobCategory.facadeScaffolding, UnitPriceCategory.steelScaffolding,
+  ),
+  d2(
+    MainCategory.facadeJobs, JobCategory.windows, UnitPriceCategory.windowJoineryRehau,
+  ),
+  d3(
+    MainCategory.facadeJobs, JobCategory.facadeRails, UnitPriceCategory.wroughtIronRailing,
+  ),
+  d4(
+    MainCategory.facadeJobs, JobCategory.facadeSystem, UnitPriceCategory.ceramicFacade,
+  ),
+  d5(
+    MainCategory.facadeJobs, JobCategory.facadeSystem, UnitPriceCategory.precastFacade,
+  ),
+  e1(
+    MainCategory.interiorJobs, JobCategory.interiorPlastering, UnitPriceCategory.plaster,
+  ),
+  e2(
+    MainCategory.interiorJobs, JobCategory.interiorPainting, UnitPriceCategory.painting,
+  ),
+  e3(
+    MainCategory.interiorJobs, JobCategory.interiorWaterproofing, UnitPriceCategory.cementBasedFlexInsulation,
+  ),
+  e4(
+    MainCategory.interiorJobs, JobCategory.ceilingCovering, UnitPriceCategory.drywall,
+  ),
+  e5(
+    MainCategory.interiorJobs, JobCategory.covingPlaster, UnitPriceCategory.covingPlaster,
+  ),
+  e6(
+    MainCategory.interiorJobs, JobCategory.screeding, UnitPriceCategory.screed,
+  ),
+  e7(
+    MainCategory.interiorJobs, JobCategory.marble, UnitPriceCategory.marbleBilecik,
+  );
+  const CostCategory(
+    this.mainCategory,
+    this.jobCategory,
+    this.unitPriceCategory,
+  );
+  final MainCategory mainCategory;
+  final JobCategory jobCategory;
+  final UnitPriceCategory unitPriceCategory;
 }

@@ -8,7 +8,7 @@ import '../calculator/quantity_calculator.dart';
 class ProjectState extends Equatable{
 
   final QuantityCalculator quantityCalculator;
-  final List<UnitPrice> unitPrices;
+  final List<UnitPrice> unitPricePool;
   final CurrencyRates currencyRates;
   final CostTemplate costTemplate;
   final List<UiCostItem> uiCostItems;
@@ -17,7 +17,7 @@ class ProjectState extends Equatable{
   const ProjectState(
     {
       required this.quantityCalculator,
-      required this.unitPrices,
+      required this.unitPricePool,
       required this.currencyRates,
       required this.costTemplate,
       required this.uiCostItems,
@@ -27,7 +27,7 @@ class ProjectState extends Equatable{
 
   ProjectState copyWith({
     QuantityCalculator? quantityCalculator,
-    List<UnitPrice>? unitPrices,
+    List<UnitPrice>? unitPricePool,
     CurrencyRates? currencyRates,
     CostTemplate? costTemplate,
     List<UiCostItem>? uiCostItems,
@@ -36,7 +36,7 @@ class ProjectState extends Equatable{
   }) {
     return ProjectState(
       quantityCalculator: quantityCalculator ?? this.quantityCalculator,
-      unitPrices: unitPrices ?? this.unitPrices,
+      unitPricePool: unitPricePool ?? this.unitPricePool,
       currencyRates: currencyRates ?? this.currencyRates,
       costTemplate: costTemplate ?? this.costTemplate,
       uiCostItems: uiCostItems ?? this.uiCostItems,
@@ -45,5 +45,5 @@ class ProjectState extends Equatable{
   }
 
   @override
-  List<Object?> get props => [quantityCalculator, unitPrices, currencyRates, costTemplate, uiCostItems, formattedGrandTotalTRY];
+  List<Object?> get props => [quantityCalculator, unitPricePool, currencyRates, costTemplate, uiCostItems, formattedGrandTotalTRY];
 }

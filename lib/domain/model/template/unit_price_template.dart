@@ -1,12 +1,12 @@
 import '../category/category.dart';
 
 abstract class CostTemplate {
-  List<UnitPriceCategory> enabledUnitPriceCategories;
+  List<CostCategory> enabledCostCategories;
   final String name;
 
   CostTemplate(
     {
-      this.enabledUnitPriceCategories = const [],
+      this.enabledCostCategories = const [],
       required this.name
     }
   );
@@ -26,21 +26,21 @@ class RoughConstructionCostTemplate extends CostTemplate {
       super.name = "Kaba İnşaat Maliyeti"
     }
   ){
-    enabledUnitPriceCategories = [
-      UnitPriceCategory.shutCrete,
-      UnitPriceCategory.excavation,
-      UnitPriceCategory.breaker,
-      UnitPriceCategory.foundationStabilizationGravel,
-      UnitPriceCategory.c16Concrete,
-      UnitPriceCategory.plywood,
-      UnitPriceCategory.c30Concrete,
-      UnitPriceCategory.s420Steel,
-      UnitPriceCategory.eps,
-      UnitPriceCategory.doubleLayerBitumenMembrane,
-      UnitPriceCategory.bitumenSliding,
-      UnitPriceCategory.drainPlate,
-      UnitPriceCategory.aeratedConcreteMaterial,
-      UnitPriceCategory.aeratedConcreteWorkmanShip
+    enabledCostCategories = [
+      CostCategory.a1,
+      CostCategory.a2,
+      CostCategory.a3,
+      CostCategory.b1,
+      CostCategory.b2,
+      CostCategory.b3,
+      CostCategory.b4,
+      CostCategory.b6,
+      CostCategory.b7,
+      CostCategory.b8,
+      CostCategory.b9,
+      CostCategory.b10,
+      CostCategory.b11,
+      CostCategory.b12,
     ];
   }
 }
@@ -51,8 +51,8 @@ class RoofingCostTemplate extends CostTemplate {
         super.name = "Çatı Maliyeti"
       }
       ){
-    enabledUnitPriceCategories = [
-      UnitPriceCategory.steelConstructionBraasRoof
+    enabledCostCategories = [
+      CostCategory.c1,
     ];
   }
 }
@@ -63,11 +63,11 @@ class FacadeCostTemplate extends CostTemplate {
         super.name = "Cephe Maliyeti"
       }
   ){
-    enabledUnitPriceCategories = [
-      UnitPriceCategory.steelScaffolding,
-      UnitPriceCategory.windowJoineryRehau,
-      UnitPriceCategory.wroughtIronRailing,
-      UnitPriceCategory.ceramicFacade,
+    enabledCostCategories = [
+      CostCategory.d1,
+      CostCategory.d2,
+      CostCategory.d3,
+      CostCategory.d4,
     ];
   }
 }
@@ -78,14 +78,14 @@ class InteriorCostTemplate extends CostTemplate {
         super.name = "İç İmalat Maliyeti"
       }
       ){
-    enabledUnitPriceCategories = [
-      UnitPriceCategory.plaster,
-      UnitPriceCategory.painting,
-      UnitPriceCategory.cementBasedFlexInsulation,
-      UnitPriceCategory.drywall,
-      UnitPriceCategory.covingPlaster,
-      UnitPriceCategory.screed,
-      UnitPriceCategory.marbleBilecik,
+    enabledCostCategories = [
+      CostCategory.e1,
+      CostCategory.e2,
+      CostCategory.e3,
+      CostCategory.e4,
+      CostCategory.e5,
+      CostCategory.e6,
+      CostCategory.e7,
     ];
   }
 }
@@ -96,11 +96,11 @@ class BuildingCostTemplate extends CostTemplate {
         super.name = "Apartman Maliyeti"
       }
   ){
-    enabledUnitPriceCategories = [
-      ...RoughConstructionCostTemplate().enabledUnitPriceCategories,
-      ...RoofingCostTemplate().enabledUnitPriceCategories,
-      ...FacadeCostTemplate().enabledUnitPriceCategories,
-      ...InteriorCostTemplate().enabledUnitPriceCategories,
+    enabledCostCategories = [
+      ...RoughConstructionCostTemplate().enabledCostCategories,
+      ...RoofingCostTemplate().enabledCostCategories,
+      ...FacadeCostTemplate().enabledCostCategories,
+      ...InteriorCostTemplate().enabledCostCategories,
     ];
   }
 }
