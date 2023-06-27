@@ -1,10 +1,11 @@
-import 'package:kost/domain/model/category/category.dart';
-import 'package:kost/domain/model/category/unit.dart';
+import 'package:kost/domain/model/unit_price/unit.dart';
 
 import '../../../presentation/model/ui_cost_item.dart';
 import '../unit_price/unit_price.dart';
 import '../unit_price/currency.dart';
 import 'package:intl/intl.dart';
+
+import 'cost_category.dart';
 
 class CostItem {
   final CostCategory category;

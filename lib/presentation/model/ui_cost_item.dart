@@ -1,4 +1,4 @@
-import '../../domain/model/category/category.dart';
+import '../../domain/model/cost/cost_category.dart';
 
 class UiCostItem {
   CostCategory category;
