@@ -9,7 +9,6 @@ import 'package:kost/domain/calculator/quantity_calculator.dart';
 import 'package:kost/domain/model/unit_price/currency.dart';
 import 'package:kost/domain/model/cost/cost_template.dart';
 
-import '../model/cost/cost_category.dart';
 import '../model/cost/cost_item.dart';
 import '../calculator/detailed/floor.dart';
 import '../model/unit_price/unit_price.dart';
@@ -149,9 +148,9 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
         throw Exception("All enabled unit prices in the cost template are NOT included in fetched unit prices."); //Handle
       }
 
-      final costItems = _createFilteredCostItems(
+      final costItems = _createCostItemsFromTemplate(
+        costTemplate: state.costTemplate,
         unitPricePool: state.unitPricePool,
-        enabledCostCategories: state.costTemplate.enabledCostCategories,
         quantityCalculator: state.quantityCalculator,
         currencyRates: state.currencyRates
       );
@@ -175,17 +174,17 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
     return true;
   }
 
-  List<CostItem> _createFilteredCostItems(
+  List<CostItem> _createCostItemsFromTemplate(
     {
+      required CostTemplate costTemplate,
       required List<UnitPrice> unitPricePool,
-      required List<CostCategory> enabledCostCategories,
       required QuantityCalculator quantityCalculator,
       required CurrencyRates currencyRates,
     }
   ) {
     List<CostItem> costItems = [];
 
-    for (var enabledCostCategory in enabledCostCategories) {
+    for (var enabledCostCategory in costTemplate.enabledCostCategories) {
 
       final unitPrices =  unitPricePool.where((unitPrice) => unitPrice.category == enabledCostCategory.unitPriceCategory).toList();
       final lastDatedUnitPrice = unitPrices.reduce((current, next) => current.dateTime.isAfter(next.dateTime) ? current : next);
