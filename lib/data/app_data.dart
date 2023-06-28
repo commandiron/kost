@@ -167,8 +167,14 @@ class AppData {
       dateTime: DateTime(2023, 01)
     ),
     UnitPrice(
-      category: UnitPriceCategory.marbleBilecik,
+      category: UnitPriceCategory.marbleFloorBilecik,
       amount: 1000,
+      currency: Currency.lira,
+      dateTime: DateTime(2023, 01)
+    ),
+    UnitPrice(
+      category: UnitPriceCategory.marbleStepBilecik,
+      amount: 850,
       currency: Currency.lira,
       dateTime: DateTime(2023, 01)
     ),

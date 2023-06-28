@@ -84,7 +84,10 @@ enum CostCategory {
     MainCategory.interiorJobs, JobCategory.screeding, UnitPriceCategory.screed,
   ),
   e7(
-    MainCategory.interiorJobs, JobCategory.marble, UnitPriceCategory.marbleBilecik,
+    MainCategory.interiorJobs, JobCategory.marble, UnitPriceCategory.marbleFloorBilecik,
+  ),
+  e8(
+    MainCategory.interiorJobs, JobCategory.marbleStep, UnitPriceCategory.marbleStepBilecik,
   );
   const CostCategory(
       this.mainCategory,

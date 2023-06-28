@@ -79,6 +79,9 @@ abstract class QuantityCalculator {
   double get totalMarbleArea;
   String get totalMarbleAreaExplanation;
 
+  double get totalMarbleStepLength;
+  String get totalMarbleStepLengthExplanation;
+
   double getQuantityFromJobCategory(JobCategory jobCategory) {
     return switch (jobCategory) {
       JobCategory.shoring => totalShoringArea,
@@ -107,6 +110,7 @@ abstract class QuantityCalculator {
       JobCategory.covingPlaster => totalCovingPlasterArea,
       JobCategory.screeding => totalScreedingArea,
       JobCategory.marble => totalMarbleArea,
+      JobCategory.marbleStep => totalMarbleStepLength,
     };
   }
 
@@ -138,6 +142,7 @@ abstract class QuantityCalculator {
       JobCategory.covingPlaster => totalCovingPlasterAreaExplanation,
       JobCategory.screeding => totalScreedingAreaExplanation,
       JobCategory.marble => totalMarbleAreaExplanation,
+      JobCategory.marbleStep => totalMarbleStepLengthExplanation,
     };
   }
 }
@@ -273,4 +278,10 @@ class InitialQuantityCalculator extends QuantityCalculator {
 
   @override
   String get totalMarbleAreaExplanation => "";
+
+  @override
+  double get totalMarbleStepLength => 0;
+
+  @override
+  String get totalMarbleStepLengthExplanation => "";
 }

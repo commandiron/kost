@@ -71,6 +71,17 @@ class DetailedQuantityCalculator extends QuantityCalculator {
         .toList();
   }
 
+  List<Floor> get _normalFloors {
+    return floors.where((e) => Floor.normalTypes.contains(e.type)).toList();
+  }
+
+  List<Floor> get _aboveBasementFloors {
+    return [
+      ..._normalFloors,
+      _groundFloor,
+    ];
+  }
+
   double get _excavationHeight {
     return projectConstants.stabilizationHeight +
         projectConstants.leanConcreteHeight +
@@ -170,7 +181,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   }
 
   double get _totalFacadeArea {
-    return floors
+    return _aboveBasementFloors
         .map((e) => e.perimeter * e.fullHeight)
         .toList()
         .fold(0.0, (p, c) => p + c);
@@ -284,6 +295,18 @@ class DetailedQuantityCalculator extends QuantityCalculator {
       }
     }
     return area;
+  }
+
+  double get _totalBuildingStairsHeight {
+    return floors.map((e) => e.fullHeight).toList().fold(0.0, (p, e) => p + e) - _topFloor.fullHeight;
+  }
+
+  double get _totalMainStairsLength {
+    return _totalBuildingStairsHeight / projectConstants.stairStepHeight * projectConstants.mainStairsStepLength;
+  }
+
+  double get _totalFireStairsLength {
+    return _totalBuildingStairsHeight / projectConstants.stairStepHeight * projectConstants.fireStairsStepLength;
   }
 
   //Final Results
@@ -535,5 +558,15 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   @override
   String get totalMarbleAreaExplanation {
     return "Toplam mermer alanı: $_totalMarbleArea";
+  }
+
+  @override
+  double get totalMarbleStepLength {
+    return _totalMainStairsLength + _totalFireStairsLength;
+  }
+
+  @override
+  String get totalMarbleStepLengthExplanation {
+    return "Toplam ana merdiven basamak uzunluğu: $_totalMainStairsLength + Toplam yangın merdiveni basamak uzunluğu:: $_totalFireStairsLength";
   }
 }

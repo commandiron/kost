@@ -55,6 +55,7 @@ enum JobCategory {
   covingPlaster,
   screeding,
   marble,
+  marbleStep,
 }
 
 extension JobCategoryExtension on JobCategory {
@@ -85,7 +86,8 @@ extension JobCategoryExtension on JobCategory {
       JobCategory.ceilingCovering => "Tavan kaplamalarının yapılması",
       JobCategory.covingPlaster => "Kartonpiyer yapılması",
       JobCategory.screeding => "Şap yapılması",
-      JobCategory.marble => "Mermer zemin kaplamalarının yapılması"
+      JobCategory.marble => "Mermer zemin kaplamalarının yapılması",
+      JobCategory.marbleStep => "Mermer basamakların yapılması"
     };
   }
 }
