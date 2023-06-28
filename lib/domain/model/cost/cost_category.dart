@@ -3,7 +3,7 @@ import '../unit_price/unit_price_category.dart';
 
 enum CostCategory {
   a1(
-    MainCategory.excavationJobs, JobCategory.excavation, UnitPriceCategory.shutCrete,
+    MainCategory.excavationJobs, JobCategory.shoring, UnitPriceCategory.shutCrete,
   ),
   a2(
     MainCategory.excavationJobs, JobCategory.excavation, UnitPriceCategory.excavation,

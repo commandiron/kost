@@ -15,6 +15,7 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        backgroundColor: Colors.grey,
         body: BlocBuilder<ProjectBloc, ProjectState>(
           builder: (context, state) {
             return CustomScrollView(
