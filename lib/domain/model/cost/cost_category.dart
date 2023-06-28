@@ -88,6 +88,9 @@ enum CostCategory {
   ),
   e8(
     MainCategory.interiorJobs, JobCategory.marbleStep, UnitPriceCategory.marbleStepBilecik,
+  ),
+  e9(
+    MainCategory.interiorJobs, JobCategory.marbleWindowsill, UnitPriceCategory.marbleStepBilecik,
   );
   const CostCategory(
       this.mainCategory,

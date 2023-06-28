@@ -206,6 +206,25 @@ class DetailedQuantityCalculator extends QuantityCalculator {
     return totalWindowArea;
   }
 
+  double get _totalWindowLength {
+    if (floors.every((element) => element.windows == null)) {
+      return 0;
+    }
+
+    final floorsWithWindow =
+    floors.where((element) => element.windows != null).toList();
+
+    double totalWindowLength = 0;
+    for (var floor in floorsWithWindow) {
+      totalWindowLength += floor.windows!
+          .map((window) => window.width * window.count)
+          .toList()
+          .fold(0.0, (p, c) => p + c);
+    }
+
+    return totalWindowLength;
+  }
+
   double get _totalFacadeRailingLength {
     if (floors.every((element) => element.windows == null)) {
       return 0;
@@ -544,7 +563,6 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   double get totalScreedingArea {
     return _totalScreedArea;
   }
-
   @override
   String get totalScreedingAreaExplanation {
     return "Toplam şap alanı: $_totalScreedArea";
@@ -554,7 +572,6 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   double get totalMarbleArea {
     return _totalMarbleArea;
   }
-
   @override
   String get totalMarbleAreaExplanation {
     return "Toplam mermer alanı: $_totalMarbleArea";
@@ -564,9 +581,17 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   double get totalMarbleStepLength {
     return _totalMainStairsLength + _totalFireStairsLength;
   }
-
   @override
   String get totalMarbleStepLengthExplanation {
     return "Toplam ana merdiven basamak uzunluğu: $_totalMainStairsLength + Toplam yangın merdiveni basamak uzunluğu:: $_totalFireStairsLength";
+  }
+
+  @override
+  double get totalMarbleWindowsillLength {
+    return _totalWindowLength;
+  }
+  @override
+  String get totalMarbleWindowsillLengthExplanation {
+    return "Toplam pencere uzunluğu: $_totalWindowLength";
   }
 }

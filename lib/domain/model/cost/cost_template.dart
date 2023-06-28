@@ -86,7 +86,8 @@ class InteriorCostTemplate extends CostTemplate {
       CostCategory.e5,
       CostCategory.e6,
       CostCategory.e7,
-      CostCategory.e8
+      CostCategory.e8,
+      CostCategory.e9,
     ];
   }
 }
