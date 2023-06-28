@@ -1,4 +1,7 @@
 import 'package:equatable/equatable.dart';
+import 'package:kost/domain/model/unit_price/unit_price_category.dart';
+
+import '../model/cost/cost_category.dart';
 
 abstract class ProjectEvent extends Equatable {
   const ProjectEvent();
@@ -39,6 +42,14 @@ class FetchCostTemplate extends ProjectEvent {
 
 class CreateCostTable extends ProjectEvent {
   const CreateCostTable();
+  @override
+  List<Object?> get props => [];
+}
+
+class ReplaceCostItem extends ProjectEvent {
+  final CostCategory costCategory;
+  final UnitPriceCategory unitPriceCategory;
+  const ReplaceCostItem(this.costCategory, this.unitPriceCategory);
   @override
   List<Object?> get props => [];
 }

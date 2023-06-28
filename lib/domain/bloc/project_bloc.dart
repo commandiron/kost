@@ -159,6 +159,9 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
       final formattedGrandTotalTRY = "${NumberFormat("#,##0.00", "tr_TR").format(_calculateGrandTotal(costItems))} TL";
       emit(state.copyWith(uiCostItems: uiCostItems, formattedGrandTotalTRY: formattedGrandTotalTRY));
     });
+    on<ReplaceCostItem>((event, emit) {
+
+    });
   }
 
   void init() {

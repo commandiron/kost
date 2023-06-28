@@ -1,3 +1,5 @@
+import '../unit_price/unit_price_category.dart';
+
 enum MainCategory {
   excavationJobs,
   roughConstructionJobs,
@@ -29,34 +31,39 @@ extension MainCategoryExtension on MainCategory {
 }
 
 enum JobCategory {
-  shoring,
-  excavation,
-  breaker,
-  foundationStabilization,
-  subFoundationConcrete,
-  concreteFormWork,
-  pouringConcrete,
-  rebar,
-  hollowFloorFilling,
-  foundationWaterproofing,
-  curtainWaterproofing,
-  curtainProtectionBeforeFilling,
-  wallMaterial,
-  wallWorkmanShip,
-  roofing,
-  facadeScaffolding,
-  windows,
-  facadeRails,
-  facadeSystem,
-  interiorPlastering,
-  interiorPainting,
-  interiorWaterproofing,
-  ceilingCovering,
-  covingPlaster,
-  screeding,
-  marble,
-  marbleStep,
-  marbleWindowsill,
+  shoring([UnitPriceCategory.shutCrete]),
+  excavation([UnitPriceCategory.excavation]),
+  breaker([UnitPriceCategory.breaker]),
+  foundationStabilization([UnitPriceCategory.foundationStabilizationGravel]),
+  subFoundationConcrete([UnitPriceCategory.c16Concrete]),
+  concreteFormWork([UnitPriceCategory.plywood]),
+  pouringConcrete([UnitPriceCategory.c30Concrete, UnitPriceCategory.c35Concrete]),
+  rebar([UnitPriceCategory.s420Steel]),
+  hollowFloorFilling([UnitPriceCategory.eps]),
+  foundationWaterproofing([UnitPriceCategory.doubleLayerBitumenMembrane]),
+  curtainWaterproofing([UnitPriceCategory.bitumenSliding]),
+  curtainProtectionBeforeFilling([UnitPriceCategory.drainPlate]),
+  wallMaterial([UnitPriceCategory.aeratedConcreteMaterial]),
+  wallWorkmanShip([UnitPriceCategory.aeratedConcreteWorkmanShip]),
+  roofing([UnitPriceCategory.steelConstructionBraasRoof]),
+  facadeScaffolding([UnitPriceCategory.steelScaffolding]),
+  windows([UnitPriceCategory.windowJoineryRehau]),
+  facadeRails([UnitPriceCategory.wroughtIronRailing]),
+  facadeSystem([UnitPriceCategory.ceramicFacade, UnitPriceCategory.precastFacade]),
+  interiorPlastering([UnitPriceCategory.plaster]),
+  interiorPainting([UnitPriceCategory.painting]),
+  interiorWaterproofing([UnitPriceCategory.cementBasedFlexInsulation]),
+  ceilingCovering([UnitPriceCategory.drywall]),
+  covingPlaster([UnitPriceCategory.covingPlaster]),
+  screeding([UnitPriceCategory.screed]),
+  marble([UnitPriceCategory.marbleFloorBilecik]),
+  marbleStep([UnitPriceCategory.marbleStepBilecik]),
+  marbleWindowsill([UnitPriceCategory.marbleStepBilecik]);
+
+  const JobCategory(
+    this.unitPriceCategories,
+  );
+  final List<UnitPriceCategory> unitPriceCategories;
 }
 
 extension JobCategoryExtension on JobCategory {

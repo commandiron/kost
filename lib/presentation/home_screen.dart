@@ -5,6 +5,7 @@ import 'package:kost/domain/model/category/category.dart';
 import 'package:kost/domain/model/unit_price/unit_price_category.dart';
 
 import '../domain/bloc/project_bloc.dart';
+import '../domain/bloc/project_event.dart';
 import '../domain/bloc/project_state.dart';
 import 'model/ui_cost_item.dart';
 
@@ -48,7 +49,41 @@ class HomeScreen extends StatelessWidget {
                                     child: Text(uiCostItem.category.unitPriceCategory.nameTr)
                                 ),
                                 Expanded(
-                                    child: Text(uiCostItem.formattedUnitPrice)
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(uiCostItem.formattedUnitPrice),
+                                        IconButton(
+                                          onPressed: () {
+                                            showDialog(
+                                              context: context,
+                                              builder: (context) {
+                                                return AlertDialog(
+
+                                                  content: Container(
+                                                    width: 300,
+                                                    height: 300,
+                                                    child: ListView.builder(
+                                                      itemCount: uiCostItem.category.jobCategory.unitPriceCategories.length,
+                                                      itemBuilder: (context, index) {
+                                                        return TextButton(
+                                                          onPressed: () {
+                                                            context.read<ProjectBloc>().add(ReplaceCostItem(uiCostItem.category, uiCostItem.category.jobCategory.unitPriceCategories[index]));
+                                                          },
+                                                          child: Text(uiCostItem.category.jobCategory.unitPriceCategories[index].nameTr)
+                                                        );
+                                                      },
+                                                    ),
+                                                  ),
+                                                );
+                                              },
+                                            );
+                                          },
+                                          icon: const Icon(Icons.edit)
+                                        ),
+                                        const SizedBox(width: 16,)
+                                      ],
+                                    )
                                 ),
                                 Expanded(
                                     child: Row(
