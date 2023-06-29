@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:grouped_list/grouped_list.dart';
 import 'package:kost/domain/model/category/category.dart';
+import 'package:kost/domain/model/unit_price/currency.dart';
+import 'package:kost/domain/model/unit_price/unit.dart';
 import 'package:kost/domain/model/unit_price/unit_price_category.dart';
 
 import '../domain/bloc/project_bloc.dart';
@@ -55,6 +57,7 @@ class HomeScreen extends StatelessWidget {
                                         Text(uiCostItem.formattedUnitPrice),
                                         IconButton(
                                           onPressed: () {
+                                            final unitPrices = state.unitPricePool.where((element) => uiCostItem.category.jobCategory.unitPriceCategories.contains(element.category)).toList();
                                             showDialog(
                                               context: context,
                                               builder: (dialogContext) {
@@ -63,14 +66,27 @@ class HomeScreen extends StatelessWidget {
                                                     width: 300,
                                                     height: 300,
                                                     child: ListView.builder(
-                                                      itemCount: uiCostItem.category.jobCategory.unitPriceCategories.length,
+                                                      itemCount: unitPrices.length,
                                                       itemBuilder: (listContext, index) {
                                                         return TextButton(
                                                           onPressed: () {
-                                                            context.read<ProjectBloc>().add(ReplaceCostCategory(uiCostItem.category, uiCostItem.category.jobCategory.unitPriceCategories[index]));
+                                                            context.read<ProjectBloc>().add(ReplaceCostCategory(uiCostItem.category, unitPrices[index].category));
                                                             Navigator.of(context).pop();
                                                           },
-                                                          child: Text(uiCostItem.category.jobCategory.unitPriceCategories[index].nameTr)
+                                                          child: Row(
+                                                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                                            children: [
+                                                              Text(unitPrices[index].category.nameTr),
+                                                              Row(
+                                                                children: [
+                                                                  Text(unitPrices[index].amount.toString()),
+                                                                  Text(unitPrices[index].currency.symbol),
+                                                                  const Text("/"),
+                                                                  Text(unitPrices[index].category.unit.symbol),
+                                                                ],
+                                                              ),
+                                                            ],
+                                                          )
                                                         );
                                                       },
                                                     ),
@@ -86,20 +102,21 @@ class HomeScreen extends StatelessWidget {
                                     )
                                 ),
                                 Expanded(
-                                    child: Row(
-                                      children: [
-                                        Tooltip(
-                                          message: uiCostItem.quantityExplanation,
-                                          verticalOffset: -12,
-                                          child: const Icon(Icons.info_outlined),
-                                        ),
-                                        const SizedBox(width: 8,),
-                                        Text(uiCostItem.formattedQuantity),
-                                      ],
-                                    )
+                                  child: Row(
+                                    children: [
+                                      Tooltip(
+                                        message: uiCostItem.quantityExplanation,
+                                        verticalOffset: -12,
+                                        child: const Icon(Icons.info_outlined),
+                                      ),
+                                      const SizedBox(width: 8,),
+                                      Text(uiCostItem.formattedQuantity),
+                                    ],
+                                  )
                                 ),
                                 Expanded(
-                                    child: Text(uiCostItem.formattedTotalPriceTRY)),
+                                  child: Text(uiCostItem.formattedTotalPriceTRY)
+                                ),
                               ],
                             ),
                           );
