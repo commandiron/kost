@@ -46,10 +46,10 @@ class CreateCostTable extends ProjectEvent {
   List<Object?> get props => [];
 }
 
-class ReplaceCostItem extends ProjectEvent {
+class ReplaceCostCategory extends ProjectEvent {
   final CostCategory oldCostCategory;
   final UnitPriceCategory newUnitPriceCategory;
-  const ReplaceCostItem(this.oldCostCategory, this.newUnitPriceCategory);
+  const ReplaceCostCategory(this.oldCostCategory, this.newUnitPriceCategory);
   @override
   List<Object?> get props => [];
 }

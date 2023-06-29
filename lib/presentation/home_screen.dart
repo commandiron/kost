@@ -67,7 +67,7 @@ class HomeScreen extends StatelessWidget {
                                                       itemBuilder: (listContext, index) {
                                                         return TextButton(
                                                           onPressed: () {
-                                                            context.read<ProjectBloc>().add(ReplaceCostItem(uiCostItem.category, uiCostItem.category.jobCategory.unitPriceCategories[index]));
+                                                            context.read<ProjectBloc>().add(ReplaceCostCategory(uiCostItem.category, uiCostItem.category.jobCategory.unitPriceCategories[index]));
                                                             Navigator.of(context).pop();
                                                           },
                                                           child: Text(uiCostItem.category.jobCategory.unitPriceCategories[index].nameTr)
