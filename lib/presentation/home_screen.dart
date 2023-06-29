@@ -117,6 +117,12 @@ class HomeScreen extends StatelessWidget {
                                 Expanded(
                                   child: Text(uiCostItem.formattedTotalPriceTRY)
                                 ),
+                                IconButton(
+                                  onPressed: () {
+                                    context.read<ProjectBloc>().add(DeleteCostCategory(uiCostItem.category));
+                                  },
+                                  icon: const Icon(Icons.delete)
+                                )
                               ],
                             ),
                           );

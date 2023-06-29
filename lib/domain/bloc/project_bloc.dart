@@ -165,6 +165,10 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
       state.costTemplate.enabledCostCategories[replacedIndex] = CostCategory(event.oldCostCategory.mainCategory, event.oldCostCategory.jobCategory, event.newUnitPriceCategory);
       _refresh();
     });
+    on<DeleteCostCategory>((event, emit) {
+      state.costTemplate.enabledCostCategories.remove(event.costCategory);
+      _refresh();
+    });
   }
 
   void init() {

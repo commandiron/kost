@@ -53,3 +53,10 @@ class ReplaceCostCategory extends ProjectEvent {
   @override
   List<Object?> get props => [];
 }
+
+class DeleteCostCategory extends ProjectEvent {
+  final CostCategory costCategory;
+  const DeleteCostCategory(this.costCategory);
+  @override
+  List<Object?> get props => [];
+}
