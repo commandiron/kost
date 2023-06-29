@@ -57,7 +57,7 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
               thinWallLength: 39.3,
               isCeilingHollowSlab: true,
               windows: [
-                Window(width: 17, height: 2.2, hasGuard: true, count: 1),
+                Window(width: 17, height: 2.2, hasRailing: true, hasWindowsill: true, count: 1),
               ],
               rooms: [
                 NormalRoom(area: 30.87, perimeter: 32),
@@ -88,7 +88,7 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
             thinWallLength: 39.3,
             isCeilingHollowSlab: true,
             windows: [
-              Window(width: 14, height: 2.2, hasGuard: true, count: 1),
+              Window(width: 14, height: 2.2, hasRailing: true, hasWindowsill: true, count: 1),
             ],
             rooms: [
               NormalRoom(area: 33.61, perimeter: 29.3),

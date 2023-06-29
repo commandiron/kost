@@ -9,7 +9,8 @@ class ProjectConstants {
   final double hollowAreaForOneSquareMeterConstructionArea;
   final double thickWallThickness;
   final double thinWallThickness;
-  final double stairStepHeight;
+  final double stairRiserHeight;
+  final double stairTreadDepth;
   final double mainStairsStepLength;
   final double fireStairsStepLength;
 
@@ -25,7 +26,8 @@ class ProjectConstants {
       this.hollowAreaForOneSquareMeterConstructionArea = 0.40,
       this.thickWallThickness = 0.135,
       this.thinWallThickness = 0.085,
-      this.stairStepHeight = 0.18,
+      this.stairRiserHeight = 0.18,
+      this.stairTreadDepth = 0.26,
       this.mainStairsStepLength = 1,
       this.fireStairsStepLength = 1,
     }

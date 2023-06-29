@@ -20,6 +20,7 @@ enum UnitPriceCategory {
   steelScaffolding(Unit.squareMeters),
   windowJoineryRehau(Unit.squareMeters),
   wroughtIronRailing(Unit.meter),
+  aluminumRailing(Unit.meter),
   ceramicFacade(Unit.squareMeters),
   precastFacade(Unit.squareMeters),
   plaster(Unit.squareMeters),
@@ -59,6 +60,7 @@ extension UnitPriceCategoryExtension on UnitPriceCategory {
     UnitPriceCategory.steelScaffolding => "Korkuluklu çelik iskele",
     UnitPriceCategory.windowJoineryRehau => "Rehau sürgülü, Hebeschiebe veya Volkswagen Doğrama",
     UnitPriceCategory.wroughtIronRailing => "Ferforje Korkuluk",
+    UnitPriceCategory.aluminumRailing => "Alüminyum Korkuluk",
     UnitPriceCategory.ceramicFacade => "Seramik cephe",
     UnitPriceCategory.precastFacade => "Prekast cephe",
     UnitPriceCategory.plaster => "Alçı sıva",
@@ -68,7 +70,7 @@ extension UnitPriceCategoryExtension on UnitPriceCategory {
     UnitPriceCategory.covingPlaster => "Kartonpiyer",
     UnitPriceCategory.screed => "Şap",
     UnitPriceCategory.marbleFloorBilecik => "Bilecik Beji",
-    UnitPriceCategory.marbleStepBilecik => "Bilecik Beji"
+    UnitPriceCategory.marbleStepBilecik => "Bilecik Beji",
   };
   }
 }

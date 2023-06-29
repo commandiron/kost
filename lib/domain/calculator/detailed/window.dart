@@ -1,14 +1,16 @@
 class Window {
   final double width;
   final double height;
-  final bool hasGuard;
+  final bool hasRailing;
+  final bool hasWindowsill;
   final int count;
 
   Window(
     {
       required this.width,
       required this.height,
-      required this.hasGuard,
+      required this.hasRailing,
+      required this.hasWindowsill,
       required this.count,
     }
   );

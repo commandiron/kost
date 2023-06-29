@@ -206,25 +206,6 @@ class DetailedQuantityCalculator extends QuantityCalculator {
     return totalWindowArea;
   }
 
-  double get _totalWindowLength {
-    if (floors.every((element) => element.windows == null)) {
-      return 0;
-    }
-
-    final floorsWithWindow =
-    floors.where((element) => element.windows != null).toList();
-
-    double totalWindowLength = 0;
-    for (var floor in floorsWithWindow) {
-      totalWindowLength += floor.windows!
-          .map((window) => window.width * window.count)
-          .toList()
-          .fold(0.0, (p, c) => p + c);
-    }
-
-    return totalWindowLength;
-  }
-
   double get _totalFacadeRailingLength {
     if (floors.every((element) => element.windows == null)) {
       return 0;
@@ -236,7 +217,26 @@ class DetailedQuantityCalculator extends QuantityCalculator {
     double totalRailingLength = 0;
     for (var floor in floorsWithWindow) {
       totalRailingLength += floor.windows!
-          .map((window) => window.hasGuard ? window.width * window.count : 0)
+          .map((window) => window.hasRailing ? window.width * window.count : 0)
+          .toList()
+          .fold(0.0, (p, c) => p + c);
+    }
+
+    return totalRailingLength;
+  }
+
+  double get _totalWindowsillLength {
+    if (floors.every((element) => element.windows == null)) {
+      return 0;
+    }
+
+    final floorsWithWindow =
+    floors.where((element) => element.windows != null).toList();
+
+    double totalRailingLength = 0;
+    for (var floor in floorsWithWindow) {
+      totalRailingLength += floor.windows!
+          .map((window) => window.hasWindowsill ? window.width * window.count : 0)
           .toList()
           .fold(0.0, (p, c) => p + c);
     }
@@ -320,12 +320,20 @@ class DetailedQuantityCalculator extends QuantityCalculator {
     return floors.map((e) => e.fullHeight).toList().fold(0.0, (p, e) => p + e) - _topFloor.fullHeight;
   }
 
+  int get _totalMainStairsCount {
+    return _totalBuildingStairsHeight ~/ projectConstants.stairRiserHeight;
+  }
+
   double get _totalMainStairsLength {
-    return _totalBuildingStairsHeight / projectConstants.stairStepHeight * projectConstants.mainStairsStepLength;
+    return _totalMainStairsCount * projectConstants.mainStairsStepLength;
+  }
+
+  int get _totalFireStairsCount {
+    return _totalBuildingStairsHeight ~/ projectConstants.stairRiserHeight;
   }
 
   double get _totalFireStairsLength {
-    return _totalBuildingStairsHeight / projectConstants.stairStepHeight * projectConstants.fireStairsStepLength;
+    return _totalFireStairsCount * projectConstants.fireStairsStepLength;
   }
 
   //Final Results
@@ -588,10 +596,19 @@ class DetailedQuantityCalculator extends QuantityCalculator {
 
   @override
   double get totalMarbleWindowsillLength {
-    return _totalWindowLength;
+    return _totalWindowsillLength;
   }
   @override
   String get totalMarbleWindowsillLengthExplanation {
-    return "Toplam pencere uzunluğu: $_totalWindowLength";
+    return "Toplam denizlikli pencere uzunluğu: $_totalWindowsillLength";
+  }
+
+  @override
+  double get totalStairRailingsLength {
+    return (_totalMainStairsCount + _totalFireStairsCount) * projectConstants.stairTreadDepth;
+  }
+  @override
+  String get totalStairRailingsLengthExplanation {
+    return "Toplam ana merdiven ve yangın merdiveni basamak toplamı: ($_totalMainStairsCount + $_totalFireStairsCount) x Basamak genişliği: ${projectConstants.stairTreadDepth}";
   }
 }
