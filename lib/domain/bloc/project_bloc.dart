@@ -6,6 +6,7 @@ import 'package:kost/domain/calculator/detailed/project_constants.dart';
 import 'package:kost/domain/calculator/detailed/room.dart';
 import 'package:kost/domain/calculator/detailed/window.dart';
 import 'package:kost/domain/calculator/quantity_calculator.dart';
+import 'package:kost/domain/model/cost/cost_category.dart';
 import 'package:kost/domain/model/unit_price/currency.dart';
 import 'package:kost/domain/model/cost/cost_template.dart';
 
@@ -160,7 +161,9 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
       emit(state.copyWith(uiCostItems: uiCostItems, formattedGrandTotalTRY: formattedGrandTotalTRY));
     });
     on<ReplaceCostItem>((event, emit) {
-
+      final replacedIndex = state.costTemplate.enabledCostCategories.indexWhere((element) => element.jobCategory == event.oldCostCategory.jobCategory);
+      state.costTemplate.enabledCostCategories[replacedIndex] = CostCategory(event.oldCostCategory.mainCategory, event.oldCostCategory.jobCategory, event.newUnitPriceCategory);
+      _refresh();
     });
   }
 
