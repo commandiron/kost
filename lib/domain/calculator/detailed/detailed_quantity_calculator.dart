@@ -362,187 +362,187 @@ class DetailedQuantityCalculator extends QuantityCalculator {
 
   //Final Results
   @override
-  double get totalShoringArea {
+  double get shoringArea {
     return excavationPerimeter * _excavationHeight;
   }
   @override
-  String get totalShoringAreaExplanation {
+  String get shoringAreaExplanation {
     return "Hafriyat çevre uzunluğu: $excavationPerimeter x Hafriyat yüksekliği: $_excavationHeight";
   }
 
   @override
-  double get totalExcavationVolume {
+  double get excavationVolume {
     return excavationArea * _excavationHeight;
   }
   @override
-  String get totalExcavationVolumeExplanation {
+  String get excavationVolumeExplanation {
     return "Hafriyat alanı: $excavationArea x Hafriyat yüksekliği: $_excavationHeight";
   }
 
   @override
-  double get totalBreakerHour {
+  double get breakerHour {
     return excavationArea *
         _excavationHeight *
         projectConstants.breakerHourForOneCubicMeterMediumRockExcavation;
   }
   @override
-  String get totalBreakerHourExplanation {
+  String get breakerHourExplanation {
     return "Hafriyat alanı: $excavationArea x Hafriyat yüksekliği: $_excavationHeight x Bir m3 orta sertlikte kaya içeren hafriyat için kırıcı çalışma süresi: ${projectConstants.breakerHourForOneCubicMeterMediumRockExcavation}";
   }
 
   @override
-  double get totalFoundationStabilizationVolume {
+  double get foundationStabilizationVolume {
     return excavationArea * projectConstants.stabilizationHeight;
   }
   @override
-  String get totalFoundationStabilizationVolumeExplanation {
+  String get foundationStabilizationVolumeExplanation {
     return "Hafriyat alanı: $excavationArea x Temel altı stabilizasyon malzemesi yüksekliği: ${projectConstants.stabilizationHeight}";
   }
 
   @override
-  double get totalSubFoundationConcreteVolume {
+  double get subFoundationConcreteVolume {
     return excavationArea * (projectConstants.leanConcreteHeight + projectConstants.insulationConcreteHeight);
   }
   @override
-  String get totalSubFoundationConcreteVolumeExplanation {
+  String get subFoundationConcreteVolumeExplanation {
     return "Hafriyat alanı: $excavationArea x (Grobeton yüksekliği: ${projectConstants.leanConcreteHeight} + Yalıtım koruma betonu yüksekliği: ${projectConstants.insulationConcreteHeight})";
   }
 
   @override
-  double get totalConcreteFormWorkArea {
+  double get concreteFormWorkArea {
     return _roughConstructionArea +
         _coreCurtainArea +
         _curtainsExceeding1MeterArea +
         _basementsOuterCurtainAreaWithoutSlab;
   }
   @override
-  String get totalConcreteFormWorkAreaExplanation {
+  String get concreteFormWorkAreaExplanation {
     return "Kaba inşaat alanı: $_roughConstructionArea + Çekirdek perdesi alanı: $_coreCurtainArea + 1 metreyi geçen perdelerin alanı: $_curtainsExceeding1MeterArea + Bodrum dış perdeleri alanı: $_basementsOuterCurtainAreaWithoutSlab";
   }
 
   @override
-  double get totalPouringConcreteVolume {
-    return totalConcreteFormWorkArea *
+  double get pouringConcreteVolume {
+    return concreteFormWorkArea *
         projectConstants.concreteCubicMeterForOneSquareMeterFormWork;
   }
   @override
-  String get totalPouringConcreteVolumeExplanation {
-    return "Kalıp alanı (Düz ölçü): $totalConcreteFormWorkArea x 1 m2 kalıp için m3 biriminde beton hacmi: ${projectConstants.concreteCubicMeterForOneSquareMeterFormWork}";
+  String get pouringConcreteVolumeExplanation {
+    return "Kalıp alanı (Düz ölçü): $concreteFormWorkArea x 1 m2 kalıp için m3 biriminde beton hacmi: ${projectConstants.concreteCubicMeterForOneSquareMeterFormWork}";
   }
 
   @override
-  double get totalRebarWeight {
-    return totalPouringConcreteVolume *
+  double get rebarWeight {
+    return pouringConcreteVolume *
         projectConstants.rebarTonForOneCubicMeterConcrete;
   }
   @override
-  String get totalRebarWeightExplanation {
-    return "Beton hacmi: $totalPouringConcreteVolume x 1 m3 beton için ton biriminde demir ağırlığı: ${projectConstants.rebarTonForOneCubicMeterConcrete}";
+  String get rebarWeightExplanation {
+    return "Beton hacmi: $pouringConcreteVolume x 1 m3 beton için ton biriminde demir ağırlığı: ${projectConstants.rebarTonForOneCubicMeterConcrete}";
   }
 
   @override
-  double get totalHollowFloorFillingVolume {
+  double get hollowFloorFillingVolume {
     return projectConstants.hollowAreaForOneSquareMeterConstructionArea *
         _hollowSlabRoughConstructionArea *
         projectConstants.hollowFillingThickness;
   }
   @override
-  String get totalHollowFloorFillingVolumeExplanation {
+  String get hollowFloorFillingVolumeExplanation {
     return "1 m2 kaba inşaat alanı için m2 biriminde asmolen alanı: ${projectConstants.hollowAreaForOneSquareMeterConstructionArea} x Asmolen döşeme inşaat alanı: $_hollowSlabRoughConstructionArea x Asmolen kalınlığı: ${projectConstants.hollowFillingThickness}";
   }
 
   @override
-  double get totalFoundationWaterProofingArea {
+  double get foundationWaterProofingArea {
     return foundationArea + (foundationPerimeter * foundationHeight);
   }
   @override
-  String get totalFoundationWaterProofingAreaExplanation {
+  String get foundationWaterProofingAreaExplanation {
     return "Temel alanı: $foundationArea + (Temel çevre uzunluğu: $foundationPerimeter x Temel yüksekliği: $foundationHeight)";
   }
 
   @override
-  double get totalCurtainWaterProofingArea {
+  double get curtainWaterProofingArea {
     return _basementsOuterCurtainArea + _wetAreaAboveBasement;
   }
   @override
-  String get totalCurtainWaterProofingAreaExplanation {
+  String get curtainWaterProofingAreaExplanation {
     return "Bodrum dış perdesi ıslak alanı: $_basementsOuterCurtainArea + Bodrum üstü ıslak alanı: $_wetAreaAboveBasement";
   }
 
   @override
-  double get totalCurtainProtectionBeforeFillingArea {
+  double get curtainProtectionBeforeFillingArea {
     return _basementsOuterCurtainArea;
   }
   @override
-  String get totalCurtainProtectionBeforeFillingAreaExplanation {
+  String get curtainProtectionBeforeFillingAreaExplanation {
     return "Bodrum dış perdesi ıslak alanı: $_basementsOuterCurtainArea";
   }
 
   @override
-  double get totalWallMaterialVolume {
+  double get wallMaterialVolume {
     return _thickWallVolume + _thinWallVolume;
   }
   @override
-  String get totalWallMaterialVolumeExplanation {
+  String get wallMaterialVolumeExplanation {
     return "Kalın duvar hacmi (kalınlık: ${projectConstants.thickWallThickness}): $_thickWallVolume + İnce duvar hacmi(kalınlık: ${projectConstants.thinWallThickness}): $_thinWallVolume";
   }
 
   @override
-  double get totalWallWorkmanShipArea {
+  double get wallWorkmanShipArea {
     return _thickWallArea + _thinWallArea;
   }
   @override
-  String get totalWallWorkmanShipAreaExplanation {
+  String get wallWorkmanShipAreaExplanation {
     return "Kalın duvar alanı: $_thickWallArea + İnce duvar alanı: $_thinWallArea";
   }
 
   @override
-  double get totalRoofingArea {
+  double get roofingArea {
     return _topFloor.ceilingArea;
   }
   @override
-  String get totalRoofingAreaExplanation {
+  String get roofingAreaExplanation {
     return "En üst kat tavan alanı: ${_topFloor.ceilingArea}";
   }
 
   @override
-  double get totalFacadeScaffoldingArea {
+  double get facadeScaffoldingArea {
     return _totalFacadeArea;
   }
   @override
-  String get totalFacadeScaffoldingAreaExplanation {
+  String get facadeScaffoldingAreaExplanation {
     return "Toplam cephe alanı: $_totalFacadeArea";
   }
 
   @override
-  double get totalWindowsArea {
+  double get windowsArea {
     return _totalWindowArea;
   }
   @override
-  String get totalWindowAreaExplanation {
+  String get windowAreaExplanation {
     return "Toplam pencere alanı: $_totalWindowArea";
   }
 
   @override
-  double get totalFacadeRailsLength {
+  double get facadeRailsLength {
     return _totalFacadeRailingLength;
   }
   @override
-  String get totalFacadeRailsLengthExplanation {
+  String get facadeRailsLengthExplanation {
     return "Toplam cephe korkuluğu uzunluğu: $_totalFacadeRailingLength";
   }
 
   @override
-  double get totalFacadeArea {
+  double get facadeSystemArea {
     return _totalFacadeArea - _totalWindowArea;
   }
   @override
-  String get totalFacadeAreaExplanation {
+  String get facadeSystemAreaExplanation {
     return "Toplam cephe alanı: $_totalFacadeArea - Toplam pencere alanı: $_totalWindowArea";
   }
 
   @override
-  double get totalInteriorPlasteringArea {
+  double get interiorPlasteringArea {
     return _basementsOuterCurtainArea +
         (_coreCurtainArea * 2) +
         (_curtainsExceeding1MeterArea * 2) +
@@ -551,97 +551,97 @@ class DetailedQuantityCalculator extends QuantityCalculator {
         (_totalInnerWallArea * 2);
   }
   @override
-  String get totalInteriorPlasteringAreaExplanation {
+  String get interiorPlasteringAreaExplanation {
     return "Toplam bodrumlar dış perde alanı: $_basementsOuterCurtainAreaWithoutSlab + Çekirdek perdeleri toplam alanı: $_coreCurtainArea x 2 (Çift yüz) + Toplam 1 metreyi geçen perde alanı: $_curtainsExceeding1MeterArea x 2 (Çift yüz) + Kolon yüzey alanı: $_columnsSurfaceArea + Toplam dış duvar alanı: $_totalOuterWallArea + Toplam iç duvar alanı: $_totalInnerWallArea x 2 (Çift yüz)";
   }
 
   @override
-  double get totalInteriorPaintingArea {
-    return totalInteriorPlasteringArea + _totalCeilingArea;
+  double get interiorPaintingArea {
+    return interiorPlasteringArea + _totalCeilingArea;
   }
   @override
-  String get totalInteriorPaintingAreaExplanation {
-    return "Toplam sıva alanı: $totalInteriorPlasteringArea + Toplam tavan alanı: $_totalCeilingArea";
+  String get interiorPaintingAreaExplanation {
+    return "Toplam sıva alanı: $interiorPlasteringArea + Toplam tavan alanı: $_totalCeilingArea";
   }
 
   @override
-  double get totalInteriorWaterproofingArea {
+  double get interiorWaterproofingArea {
     return _totalInteriorWetFloorArea;
   }
   @override
-  String get totalInteriorWaterproofingAreaExplanation {
+  String get interiorWaterproofingAreaExplanation {
     return "Toplam iç mekan ıslak zemin alanı: $_totalInteriorWetFloorArea";
   }
 
   @override
-  double get totalCeilingCoveringArea {
+  double get ceilingCoveringArea {
     return _totalDryWallArea;
   }
   @override
-  String get totalCeilingCoveringAreaExplanation {
+  String get ceilingCoveringAreaExplanation {
     return "Toplam alçıpan alanı: $_totalDryWallArea";
   }
 
   @override
-  double get totalCovingPlasterArea {
+  double get covingPlasterArea {
     return _totalCovingPlasterLength;
   }
   @override
-  String get totalCovingPlasterAreaExplanation {
+  String get covingPlasterAreaExplanation {
     return "Toplam kartonpiyer uzunluğu: $_totalCovingPlasterLength";
   }
 
   @override
-  double get totalScreedingArea {
+  double get screedingArea {
     return _totalScreedArea;
   }
   @override
-  String get totalScreedingAreaExplanation {
+  String get screedingAreaExplanation {
     return "Toplam şap alanı: $_totalScreedArea";
   }
 
   @override
-  double get totalMarbleArea {
+  double get marbleArea {
     return _totalMarbleArea;
   }
   @override
-  String get totalMarbleAreaExplanation {
+  String get marbleAreaExplanation {
     return "Toplam mermer alanı: $_totalMarbleArea";
   }
 
   @override
-  double get totalMarbleStepLength {
+  double get marbleStepLength {
     return _totalMainStairsLength + _totalFireStairsLength;
   }
   @override
-  String get totalMarbleStepLengthExplanation {
+  String get marbleStepLengthExplanation {
     return "Toplam ana merdiven basamak uzunluğu: $_totalMainStairsLength + Toplam yangın merdiveni basamak uzunluğu:: $_totalFireStairsLength";
   }
 
   @override
-  double get totalMarbleWindowsillLength {
+  double get marbleWindowsillLength {
     return _totalWindowsillLength;
   }
   @override
-  String get totalMarbleWindowsillLengthExplanation {
+  String get marbleWindowsillLengthExplanation {
     return "Toplam denizlikli pencere uzunluğu: $_totalWindowsillLength";
   }
 
   @override
-  double get totalStairRailingsLength {
+  double get stairRailingsLength {
     return (_totalMainStairsCount + _totalFireStairsCount) * projectConstants.stairTreadDepth;
   }
   @override
-  String get totalStairRailingsLengthExplanation {
+  String get stairRailingsLengthExplanation {
     return "Toplam ana merdiven ve yangın merdiveni basamak toplamı: ($_totalMainStairsCount + $_totalFireStairsCount) x Basamak genişliği: ${projectConstants.stairTreadDepth}";
   }
 
   @override
-  double get totalCeramicTileArea {
+  double get ceramicTileArea {
     return _totalCeramicFloorArea + _totalCeramicWallArea;
   }
   @override
-  String get totalCeramicTileAreaExplanation {
+  String get ceramicTileAreaExplanation {
     return "Toplam yer seramik alanı: $_totalCeramicFloorArea + Toplam fayans alanı: $_totalCeramicWallArea";
   }
 }
