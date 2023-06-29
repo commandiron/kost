@@ -44,7 +44,7 @@ enum JobCategory {
   curtainWaterproofing([UnitPriceCategory.bitumenSliding]),
   curtainProtectionBeforeFilling([UnitPriceCategory.drainPlate]),
   wallMaterial([UnitPriceCategory.aeratedConcreteMaterial]),
-  wallWorkmanShip([UnitPriceCategory.aeratedConcreteWorkmanShip]),
+  wallWorkmanShip([UnitPriceCategory.aeratedConcreteLabor]),
   roofing([UnitPriceCategory.steelConstructionBraasRoof]),
   facadeScaffolding([UnitPriceCategory.steelScaffolding]),
   windows([UnitPriceCategory.windowJoineryRehau]),
