@@ -88,6 +88,9 @@ abstract class QuantityCalculator {
   double get totalStairRailingsLength;
   String get totalStairRailingsLengthExplanation;
 
+  double get totalCeramicTileArea;
+  String get totalCeramicTileAreaExplanation;
+
   double getQuantityFromJobCategory(JobCategory jobCategory) {
     return switch (jobCategory) {
       JobCategory.shoring => totalShoringArea,
@@ -119,6 +122,7 @@ abstract class QuantityCalculator {
       JobCategory.marbleStep => totalMarbleStepLength,
       JobCategory.marbleWindowsill => totalMarbleWindowsillLength,
       JobCategory.stairRailings => totalStairRailingsLength,
+      JobCategory.ceramicTile => totalCeramicTileArea,
     };
   }
 
@@ -153,6 +157,7 @@ abstract class QuantityCalculator {
       JobCategory.marbleStep => totalMarbleStepLengthExplanation,
       JobCategory.marbleWindowsill => totalMarbleWindowsillLengthExplanation,
       JobCategory.stairRailings => totalStairRailingsLengthExplanation,
+      JobCategory.ceramicTile => totalCeramicTileAreaExplanation,
     };
   }
 }
@@ -301,7 +306,11 @@ class InitialQuantityCalculator extends QuantityCalculator {
   @override
 
   double get totalStairRailingsLength => 0;
-
   @override
   String get totalStairRailingsLengthExplanation => "";
+
+  @override
+  double get totalCeramicTileArea => 0;
+  @override
+  String get totalCeramicTileAreaExplanation => "";
 }

@@ -336,6 +336,30 @@ class DetailedQuantityCalculator extends QuantityCalculator {
     return _totalFireStairsCount * projectConstants.fireStairsStepLength;
   }
 
+  double get _totalCeramicFloorArea {
+    double area = 0;
+    for (var floor in floors) {
+      for (var room in floor.rooms) {
+        if (room.floorMaterial == FloorMaterial.ceramic) {
+          area += room.area;
+        }
+      }
+    }
+    return area;
+  }
+
+  double get _totalCeramicWallArea {
+    double area = 0;
+    for (var floor in floors) {
+      for (var room in floor.rooms) {
+        if (room.wallMaterial == WallMaterial.ceramic) {
+          area += room.perimeter * floor.heightWithoutSlab;
+        }
+      }
+    }
+    return area;
+  }
+
   //Final Results
   @override
   double get totalShoringArea {
@@ -610,5 +634,14 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   @override
   String get totalStairRailingsLengthExplanation {
     return "Toplam ana merdiven ve yangın merdiveni basamak toplamı: ($_totalMainStairsCount + $_totalFireStairsCount) x Basamak genişliği: ${projectConstants.stairTreadDepth}";
+  }
+
+  @override
+  double get totalCeramicTileArea {
+    return _totalCeramicFloorArea + _totalCeramicWallArea;
+  }
+  @override
+  String get totalCeramicTileAreaExplanation {
+    return "Toplam yer seramik alanı: $_totalCeramicFloorArea + Toplam fayans alanı: $_totalCeramicWallArea";
   }
 }

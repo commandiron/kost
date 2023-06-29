@@ -90,7 +90,8 @@ class InteriorCostTemplate extends CostTemplate {
       CostCategory(MainCategory.interiorJobs, JobCategory.marble, UnitPriceCategory.marbleFloorBilecik,),
       CostCategory(MainCategory.interiorJobs, JobCategory.marbleStep, UnitPriceCategory.marbleStepBilecik,),
       CostCategory(MainCategory.interiorJobs, JobCategory.marbleWindowsill, UnitPriceCategory.marbleStepBilecik,),
-      CostCategory(MainCategory.interiorJobs, JobCategory.stairRailings, UnitPriceCategory.aluminumRailing,)
+      CostCategory(MainCategory.interiorJobs, JobCategory.stairRailings, UnitPriceCategory.aluminumRailing,),
+      CostCategory(MainCategory.interiorJobs, JobCategory.ceramicTile, UnitPriceCategory.ceramicTileEge)
     ];
   }
 }
