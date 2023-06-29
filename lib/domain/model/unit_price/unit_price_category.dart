@@ -31,6 +31,7 @@ enum UnitPriceCategory {
   screed(Unit.squareMeters),
   marbleFloorBilecik(Unit.squareMeters),
   marbleStepBilecik(Unit.meter),
+  marbleWindowsillBilecik(Unit.meter),
   ceramicTileEge(Unit.squareMeters);
 
   const UnitPriceCategory(
@@ -71,7 +72,8 @@ extension UnitPriceCategoryExtension on UnitPriceCategory {
     UnitPriceCategory.covingPlaster => "Kartonpiyer",
     UnitPriceCategory.screed => "Şap",
     UnitPriceCategory.marbleFloorBilecik => "Bilecik Beji",
-    UnitPriceCategory.marbleStepBilecik => "Bilecik Beji",
+    UnitPriceCategory.marbleStepBilecik => "Bilecik Beji Basamak",
+    UnitPriceCategory.marbleWindowsillBilecik => "Bilecik Beji Denizlik",
     UnitPriceCategory.ceramicTileEge => "Ege Seramik",
   };
   }
