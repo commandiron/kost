@@ -1,3 +1,4 @@
+import 'package:kost/domain/calculator/detailed/floor_area.dart';
 import 'package:kost/domain/calculator/detailed/project_constants.dart';
 import 'package:kost/domain/calculator/detailed/room.dart';
 
@@ -259,9 +260,11 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   double get _totalInteriorWetFloorArea {
     double area = 0;
     for (var floor in floors) {
-      for (var room in floor.rooms) {
-        if (room.isFloorWet) {
-          area += room.area;
+      for (var buildingArea in floor.floorAreas) {
+        for (var room in buildingArea.rooms) {
+          if (room.isFloorWet) {
+            area += room.area;
+          }
         }
       }
     }
@@ -271,9 +274,11 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   double get _totalDryWallArea {
     double area = 0;
     for (var floor in floors) {
-      for (var room in floor.rooms) {
-        if (room.ceilingMaterial == CeilingMaterial.drywall) {
-          area += room.area;
+      for (var buildingArea in floor.floorAreas) {
+        for (var room in buildingArea.rooms) {
+          if (room.ceilingMaterial == CeilingMaterial.drywall) {
+            area += room.area;
+          }
         }
       }
     }
@@ -283,9 +288,11 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   double get _totalCovingPlasterLength {
     double length = 0;
     for (var floor in floors) {
-      for (var room in floor.rooms) {
-        if (room.hasCovingPlaster) {
-          length += room.perimeter;
+      for (var buildingArea in floor.floorAreas) {
+        for (var room in buildingArea.rooms) {
+          if (room.hasCovingPlaster) {
+            length += room.perimeter;
+          }
         }
       }
     }
@@ -295,9 +302,11 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   double get _totalScreedArea {
     double area = 0;
     for (var floor in floors) {
-      for (var room in floor.rooms) {
-        if (room.hasScreed) {
-          area += room.area;
+      for (var buildingArea in floor.floorAreas) {
+        for (var room in buildingArea.rooms) {
+          if (room.hasScreed) {
+            area += room.area;
+          }
         }
       }
     }
@@ -307,9 +316,11 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   double get _totalMarbleArea {
     double area = 0;
     for (var floor in floors) {
-      for (var room in floor.rooms) {
-        if (room.floorMaterial == FloorMaterial.marble) {
-          area += room.area;
+      for (var buildingArea in floor.floorAreas) {
+        for (var room in buildingArea.rooms) {
+          if (room.floorMaterial == FloorMaterial.marble) {
+            area += room.area;
+          }
         }
       }
     }
@@ -339,9 +350,11 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   double get _totalCeramicFloorArea {
     double area = 0;
     for (var floor in floors) {
-      for (var room in floor.rooms) {
-        if (room.floorMaterial == FloorMaterial.ceramic) {
-          area += room.area;
+      for (var buildingArea in floor.floorAreas) {
+        for (var room in buildingArea.rooms) {
+          if (room.floorMaterial == FloorMaterial.ceramic) {
+            area += room.area;
+          }
         }
       }
     }
@@ -351,9 +364,11 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   double get _totalCeramicWallArea {
     double area = 0;
     for (var floor in floors) {
-      for (var room in floor.rooms) {
-        if (room.wallMaterial == WallMaterial.ceramic) {
-          area += room.perimeter * floor.heightWithoutSlab;
+      for (var buildingArea in floor.floorAreas) {
+        for (var room in buildingArea.rooms) {
+          if (room.wallMaterial == WallMaterial.ceramic) {
+            area += room.perimeter * floor.heightWithoutSlab;
+          }
         }
       }
     }
@@ -363,13 +378,27 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   double get _totalParquetFloorArea {
     double area = 0;
     for (var floor in floors) {
-      for (var room in floor.rooms) {
-        if (room.floorMaterial == FloorMaterial.parquet) {
-          area += room.area;
+      for (var buildingArea in floor.floorAreas) {
+        for (var room in buildingArea.rooms) {
+          if (room.floorMaterial == FloorMaterial.parquet) {
+            area += room.area;
+          }
         }
       }
     }
     return area;
+  }
+
+  int get _steelDoorNumber {
+    int number = 0;
+    for (var floor in floors) {
+      for (var buildingArea in floor.floorAreas) {
+        if(buildingArea is Apartment) {
+          number ++;
+        }
+      }
+    }
+    return number;
   }
 
   //Final Results
@@ -664,5 +693,15 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   @override
   String get parquetTileAreaExplanation {
     return "Toplam parke alanı: $_totalParquetFloorArea";
+  }
+
+  @override
+  double get steelDoorNumber {
+    return _steelDoorNumber.toDouble();
+  }
+
+  @override
+  String get steelDoorNumberExplanation {
+    return "Toplam çelik kapı adedi: $_steelDoorNumber";
   }
 }

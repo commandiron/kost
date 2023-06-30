@@ -202,5 +202,11 @@ class AppData {
       currency: Currency.euro,
       dateTime: DateTime(2023, 01)
     ),
+    UnitPrice(
+      category: UnitPriceCategory.steelDoorKale,
+      amount: 16000,
+      currency: Currency.lira,
+      dateTime: DateTime(2023, 01)
+    ),
   ];
 }
