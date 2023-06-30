@@ -34,7 +34,10 @@ enum UnitPriceCategory {
   marbleWindowsillBilecik(Unit.meter),
   ceramicTileEge(Unit.squareMeters),
   laminatedSerifoglu(Unit.squareMeters),
-  steelDoorKale(Unit.number);
+  steelDoorKale(Unit.number),
+  lacqueredDoor(Unit.number),
+  entranceDoor(Unit.squareMeters),
+  ironFireDoor(Unit.number);
 
   const UnitPriceCategory(
     this.unit,
@@ -79,6 +82,9 @@ extension UnitPriceCategoryExtension on UnitPriceCategory {
     UnitPriceCategory.ceramicTileEge => "Ege Seramik",
     UnitPriceCategory.laminatedSerifoglu => "Şerifoğlu marka lamine parke",
     UnitPriceCategory.steelDoorKale => "Kale Çelik Kapı",
+    UnitPriceCategory.lacqueredDoor => "Lake Ahşap Kapı",
+    UnitPriceCategory.entranceDoor => "Apartman Giriş Kapısı",
+    UnitPriceCategory.ironFireDoor => "Yangına dayanıklı, panik barlı, demir kapı"
   };
   }
 }

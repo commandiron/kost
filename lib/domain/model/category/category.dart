@@ -62,7 +62,10 @@ enum JobCategory {
   stairRailings([UnitPriceCategory.aluminumRailing]),
   ceramicTile([UnitPriceCategory.ceramicTileEge]),
   parquetTile([UnitPriceCategory.laminatedSerifoglu]),
-  steelDoor([UnitPriceCategory.steelDoorKale]);
+  steelDoor([UnitPriceCategory.steelDoorKale]),
+  woodenDoor([UnitPriceCategory.lacqueredDoor]),
+  entranceDoor([UnitPriceCategory.entranceDoor]),
+  fireDoor([UnitPriceCategory.ironFireDoor]);
 
   const JobCategory(
     this.unitPriceCategories,
@@ -105,6 +108,9 @@ extension JobCategoryExtension on JobCategory {
       JobCategory.ceramicTile => "Seramik kaplama yapılması",
       JobCategory.parquetTile => "Parke kaplama yapılması",
       JobCategory.steelDoor => "Daire çelik kapıların yapılması",
+      JobCategory.woodenDoor => "Ahşap kapıların yapılması",
+      JobCategory.entranceDoor => "Apartman giriş kapısının yapılması",
+      JobCategory.fireDoor => "Yangın kapılarının yapılması"
     };
   }
 }

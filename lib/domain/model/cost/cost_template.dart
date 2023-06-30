@@ -94,6 +94,9 @@ class InteriorCostTemplate extends CostTemplate {
       CostCategory(MainCategory.interiorJobs, JobCategory.ceramicTile, UnitPriceCategory.ceramicTileEge),
       CostCategory(MainCategory.interiorJobs, JobCategory.parquetTile, UnitPriceCategory.laminatedSerifoglu),
       CostCategory(MainCategory.interiorJobs, JobCategory.steelDoor, UnitPriceCategory.steelDoorKale),
+      CostCategory(MainCategory.interiorJobs, JobCategory.woodenDoor, UnitPriceCategory.lacqueredDoor),
+      CostCategory(MainCategory.interiorJobs, JobCategory.entranceDoor, UnitPriceCategory.entranceDoor),
+      CostCategory(MainCategory.interiorJobs, JobCategory.fireDoor, UnitPriceCategory.ironFireDoor),
     ];
   }
 }

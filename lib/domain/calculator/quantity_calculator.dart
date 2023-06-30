@@ -97,6 +97,15 @@ abstract class QuantityCalculator {
   double get steelDoorNumber;
   String get steelDoorNumberExplanation;
 
+  double get woodenDoorNumber;
+  String get woodenDoorNumberExplanation;
+
+  double get entranceDoorArea;
+  String get entranceDoorAreaExplanation;
+
+  double get fireDoorNumber;
+  String get fireDoorNumberExplanation;
+
   double getQuantityFromJobCategory(JobCategory jobCategory) {
     return switch (jobCategory) {
       JobCategory.shoring => shoringArea,
@@ -131,6 +140,9 @@ abstract class QuantityCalculator {
       JobCategory.ceramicTile => ceramicTileArea,
       JobCategory.parquetTile => parquetTileArea,
       JobCategory.steelDoor => steelDoorNumber,
+      JobCategory.woodenDoor => woodenDoorNumber,
+      JobCategory.entranceDoor => entranceDoorArea,
+      JobCategory.fireDoor => fireDoorNumber,
     };
   }
 
@@ -168,6 +180,9 @@ abstract class QuantityCalculator {
       JobCategory.ceramicTile => ceramicTileAreaExplanation,
       JobCategory.parquetTile => parquetTileAreaExplanation,
       JobCategory.steelDoor => steelDoorNumberExplanation,
+      JobCategory.woodenDoor => woodenDoorNumberExplanation,
+      JobCategory.entranceDoor => entranceDoorAreaExplanation,
+      JobCategory.fireDoor => fireDoorNumberExplanation,
     };
   }
 }
@@ -333,4 +348,19 @@ class InitialQuantityCalculator extends QuantityCalculator {
   double get steelDoorNumber => 0;
   @override
   String get steelDoorNumberExplanation => "";
+
+  @override
+  double get woodenDoorNumber => 0;
+  @override
+  String get woodenDoorNumberExplanation => "";
+
+  @override
+  double get entranceDoorArea => 0;
+  @override
+  String get entranceDoorAreaExplanation => "";
+
+  @override
+  double get fireDoorNumber => 0;
+  @override
+  String get fireDoorNumberExplanation => "";
 }

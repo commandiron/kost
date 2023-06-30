@@ -208,5 +208,23 @@ class AppData {
       currency: Currency.lira,
       dateTime: DateTime(2023, 01)
     ),
+    UnitPrice(
+      category: UnitPriceCategory.lacqueredDoor,
+      amount: 8000,
+      currency: Currency.lira,
+      dateTime: DateTime(2023, 01)
+    ),
+    UnitPrice(
+      category: UnitPriceCategory.entranceDoor,
+      amount: 9750,
+      currency: Currency.lira,
+      dateTime: DateTime(2023, 01)
+    ),
+    UnitPrice(
+      category: UnitPriceCategory.ironFireDoor,
+      amount: 4200,
+      currency: Currency.lira,
+      dateTime: DateTime(2023, 01)
+    ),
   ];
 }

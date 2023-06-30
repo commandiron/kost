@@ -13,6 +13,7 @@ class ProjectConstants {
   final double stairTreadDepth;
   final double mainStairsStepLength;
   final double fireStairsStepLength;
+  final double totalEntranceDoorArea;
 
   ProjectConstants(
     {
@@ -30,6 +31,7 @@ class ProjectConstants {
       this.stairTreadDepth = 0.26,
       this.mainStairsStepLength = 1,
       this.fireStairsStepLength = 1,
+      this.totalEntranceDoorArea = 6,
     }
   );
 }

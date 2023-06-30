@@ -401,6 +401,41 @@ class DetailedQuantityCalculator extends QuantityCalculator {
     return number;
   }
 
+  int get _woodenDoorNumber {
+    int number = 0;
+    for (var floor in floors) {
+      for (var buildingArea in floor.floorAreas) {
+        if(buildingArea is Apartment) {
+          for (var room in buildingArea.rooms) {
+            if(room is NormalRoom || room is Kitchen || room is Wc || room is Bathroom) {
+              number ++;
+            }
+          }
+        }
+      }
+    }
+    return number;
+  }
+
+  int get _fireDoorNumber {
+    int number = 0;
+    for (var floor in floors) {
+      for (var buildingArea in floor.floorAreas) {
+        if(buildingArea is Apartment) {
+          number += 2;
+        }
+        if(buildingArea is CommonArea) {
+          for (var room in buildingArea.rooms) {
+            if(room is TechnicalArea) {
+              number ++;
+            }
+          }
+        }
+      }
+    }
+    return number;
+  }
+
   //Final Results
   @override
   double get shoringArea {
@@ -699,9 +734,36 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   double get steelDoorNumber {
     return _steelDoorNumber.toDouble();
   }
-
   @override
   String get steelDoorNumberExplanation {
     return "Toplam çelik kapı adedi: $_steelDoorNumber";
+  }
+
+  @override
+  double get woodenDoorNumber {
+    return _woodenDoorNumber.toDouble();
+  }
+  @override
+  String get woodenDoorNumberExplanation {
+    return "Toplam ahşap kapı adedi: $_woodenDoorNumber";
+  }
+
+  @override
+  double get entranceDoorArea {
+    return projectConstants.totalEntranceDoorArea;
+  }
+  @override
+  String get entranceDoorAreaExplanation {
+    return "Toplam apartman giriş kapısı alanı: ${projectConstants.totalEntranceDoorArea}";
+  }
+
+  @override
+  double get fireDoorNumber {
+    return _fireDoorNumber.toDouble();
+  }
+
+  @override
+  String get fireDoorNumberExplanation {
+    return "Toplam yangın kapısı adedi: $_fireDoorNumber";
   }
 }
