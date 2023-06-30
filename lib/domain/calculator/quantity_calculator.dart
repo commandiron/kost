@@ -106,8 +106,62 @@ abstract class QuantityCalculator {
   double get fireDoorNumber;
   String get fireDoorNumberExplanation;
 
+  double get kitchenCupboardLength;
+  String get kitchenCupboardLengthExplanation;
+
+  double get kitchenCounterLength;
+  String get kitchenCounterLengthExplanation;
+
+  double get coatCabinetArea;
+  String get coatCabinetAreaExplanation;
+
+  double get bathroomCabinetArea;
+  String get bathroomCabinetAreaExplanation;
+
+  double get floorPlinthLength;
+  String get floorPlinthLengthExplanation;
+
+  double get mechanicalInfrastructureApartment;
+  String get mechanicalInfrastructureApartmentExplanation;
+
   double get airConditionerNumber;
   String get airConditionerNumberExplanation;
+
+  double get ventilationArea;
+  String get ventilationAreaExplanation;
+
+  double get waterTankLumpSum;
+  String get waterTankLumpSumExplanation;
+
+  double get elevationLumpSum;
+  String get elevationLumpSumExplanation;
+
+  double get sinkNumber;
+  String get sinkNumberExplanation;
+
+  double get sinkBatteryNumber;
+  String get sinkBatteryNumberExplanation;
+
+  double get concealedCisternNumber;
+  String get concealedCisternNumberExplanation;
+
+  double get showerNumber;
+  String get showerNumberExplanation;
+
+  double get showerBatteryNumber;
+  String get showerBatteryNumberExplanation;
+
+  double get kitchenFaucetAndSinkNumber;
+  String get kitchenFaucetAndSinkNumberExplanation;
+
+  double get electricalInfrastructureApartment;
+  String get electricalInfrastructureApartmentExplanation;
+
+  double get generatorLumpSum;
+  String get generatorLumpSumExplanation;
+
+  double get householdAppliancesLumpSum;
+  String get householdAppliancesLumpSumExplanation;
 
   double getQuantityFromJobCategory(JobCategory jobCategory) {
     return switch (jobCategory) {
@@ -143,10 +197,28 @@ abstract class QuantityCalculator {
       JobCategory.ceramicTile => ceramicTileArea,
       JobCategory.parquetTile => parquetTileArea,
       JobCategory.steelDoor => steelDoorNumber,
-      JobCategory.woodenDoor => woodenDoorNumber,
       JobCategory.entranceDoor => entranceDoorArea,
       JobCategory.fireDoor => fireDoorNumber,
+      JobCategory.woodenDoor => woodenDoorNumber,
+      JobCategory.kitchenCupboard => kitchenCupboardLength,
+      JobCategory.kitchenCounter => kitchenCounterLength,
+      JobCategory.coatCabinet => coatCabinetArea,
+      JobCategory.bathroomCabinet => bathroomCabinetArea,
+      JobCategory.floorPlinth => floorPlinthLength,
+      JobCategory.mechanicalInfrastructure => mechanicalInfrastructureApartment,
       JobCategory.airConditioner => airConditionerNumber,
+      JobCategory.ventilation => ventilationArea,
+      JobCategory.waterTank => waterTankLumpSum,
+      JobCategory.elevation => elevationLumpSum,
+      JobCategory.sink => sinkNumber,
+      JobCategory.sinkBattery => sinkBatteryNumber,
+      JobCategory.concealedCistern => concealedCisternNumber,
+      JobCategory.shower => showerNumber,
+      JobCategory.showerBattery => showerBatteryNumber,
+      JobCategory.kitchenFaucetAndSink => kitchenFaucetAndSinkNumber,
+      JobCategory.electricalInfrastructure => electricalInfrastructureApartment,
+      JobCategory.generator => generatorLumpSum,
+      JobCategory.householdAppliances => householdAppliancesLumpSum,
     };
   }
 
@@ -184,10 +256,28 @@ abstract class QuantityCalculator {
       JobCategory.ceramicTile => ceramicTileAreaExplanation,
       JobCategory.parquetTile => parquetTileAreaExplanation,
       JobCategory.steelDoor => steelDoorNumberExplanation,
-      JobCategory.woodenDoor => woodenDoorNumberExplanation,
       JobCategory.entranceDoor => entranceDoorAreaExplanation,
       JobCategory.fireDoor => fireDoorNumberExplanation,
-       JobCategory.airConditioner => airConditionerNumberExplanation,
+      JobCategory.woodenDoor => woodenDoorNumberExplanation,
+      JobCategory.kitchenCupboard => kitchenCupboardLengthExplanation,
+      JobCategory.kitchenCounter => kitchenCounterLengthExplanation,
+      JobCategory.coatCabinet => coatCabinetAreaExplanation,
+      JobCategory.bathroomCabinet => bathroomCabinetAreaExplanation,
+      JobCategory.floorPlinth => floorPlinthLengthExplanation,
+      JobCategory.mechanicalInfrastructure => mechanicalInfrastructureApartmentExplanation,
+      JobCategory.airConditioner => airConditionerNumberExplanation,
+      JobCategory.ventilation => ventilationAreaExplanation,
+      JobCategory.waterTank => waterTankLumpSumExplanation,
+      JobCategory.elevation => elevationLumpSumExplanation,
+      JobCategory.sink => sinkNumberExplanation,
+      JobCategory.sinkBattery => sinkBatteryNumberExplanation,
+      JobCategory.concealedCistern => concealedCisternNumberExplanation,
+      JobCategory.shower => showerNumberExplanation,
+      JobCategory.showerBattery => showerBatteryNumberExplanation,
+      JobCategory.kitchenFaucetAndSink => kitchenFaucetAndSinkNumberExplanation,
+      JobCategory.electricalInfrastructure => electricalInfrastructureApartmentExplanation,
+      JobCategory.generator => generatorLumpSumExplanation,
+      JobCategory.householdAppliances => householdAppliancesLumpSumExplanation,
     };
   }
 }
@@ -374,4 +464,94 @@ class InitialQuantityCalculator extends QuantityCalculator {
 
   @override
   String get airConditionerNumberExplanation => "";
+
+  @override
+  double get bathroomCabinetArea => 0;
+  @override
+  String get bathroomCabinetAreaExplanation => "";
+
+  @override
+  double get coatCabinetArea => 0;
+  @override
+  String get coatCabinetAreaExplanation => "";
+
+  @override
+  double get concealedCisternNumber => 0;
+  @override
+  String get concealedCisternNumberExplanation => "";
+
+  @override
+  double get electricalInfrastructureApartment => 0;
+  @override
+  String get electricalInfrastructureApartmentExplanation => "";
+
+  @override
+  double get elevationLumpSum => 0;
+  @override
+  String get elevationLumpSumExplanation => "";
+
+  @override
+  double get floorPlinthLength => 0;
+  @override
+  String get floorPlinthLengthExplanation => "";
+
+  @override
+  double get generatorLumpSum => 0;
+  @override
+  String get generatorLumpSumExplanation => "";
+
+  @override
+  double get householdAppliancesLumpSum => 0;
+  @override
+  String get householdAppliancesLumpSumExplanation => "";
+
+  @override
+  double get kitchenCounterLength => 0;
+  @override
+  String get kitchenCounterLengthExplanation => "";
+
+  @override
+  double get kitchenCupboardLength => 0;
+  @override
+  String get kitchenCupboardLengthExplanation => "";
+
+  @override
+  double get kitchenFaucetAndSinkNumber => 0;
+  @override
+  String get kitchenFaucetAndSinkNumberExplanation => "";
+
+  @override
+  double get mechanicalInfrastructureApartment => 0;
+  @override
+  String get mechanicalInfrastructureApartmentExplanation => "";
+
+  @override
+  double get showerBatteryNumber => 0;
+  @override
+  String get showerBatteryNumberExplanation => "";
+
+  @override
+  double get showerNumber => 0;
+  @override
+  String get showerNumberExplanation => "";
+
+  @override
+  double get sinkBatteryNumber => 0;
+  @override
+  String get sinkBatteryNumberExplanation => "";
+
+  @override
+  double get sinkNumber => 0;
+  @override
+  String get sinkNumberExplanation => "";
+
+  @override
+  double get ventilationArea => 0;
+  @override
+  String get ventilationAreaExplanation => "";
+
+  @override
+  double get waterTankLumpSum => 0;
+  @override
+  String get waterTankLumpSumExplanation => "";
 }

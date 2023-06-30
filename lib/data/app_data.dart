@@ -209,12 +209,6 @@ class AppData {
       dateTime: DateTime(2023, 01)
     ),
     UnitPrice(
-      category: UnitPriceCategory.lacqueredDoor,
-      amount: 8000,
-      currency: Currency.lira,
-      dateTime: DateTime(2023, 01)
-    ),
-    UnitPrice(
       category: UnitPriceCategory.entranceDoor,
       amount: 9750,
       currency: Currency.lira,
@@ -227,8 +221,116 @@ class AppData {
       dateTime: DateTime(2023, 01)
     ),
     UnitPrice(
+      category: UnitPriceCategory.lacqueredDoor,
+      amount: 8000,
+      currency: Currency.lira,
+      dateTime: DateTime(2023, 01)
+    ),
+    UnitPrice(
+      category: UnitPriceCategory.lacqueredKitchenCupboard,
+      amount: 8000,
+      currency: Currency.lira,
+      dateTime: DateTime(2023, 01)
+    ),
+    UnitPrice(
+      category: UnitPriceCategory.quartzCountertopCimstone,
+      amount: 3500,
+      currency: Currency.lira,
+      dateTime: DateTime(2023, 01)
+    ),
+    UnitPrice(
+      category: UnitPriceCategory.lacqueredCabinet,
+      amount: 5000,
+      currency: Currency.lira,
+      dateTime: DateTime(2023, 01)
+    ),
+    UnitPrice(
+      category: UnitPriceCategory.lacqueredFloorPlinth,
+      amount: 200,
+      currency: Currency.lira,
+      dateTime: DateTime(2023, 01)
+    ),
+    UnitPrice(
+      category: UnitPriceCategory.mechanicalInfrastructure,
+      amount: 100000,
+      currency: Currency.lira,
+      dateTime: DateTime(2023, 01)
+    ),
+    UnitPrice(
       category: UnitPriceCategory.airConditionerArcelik,
       amount: 10000,
+      currency: Currency.lira,
+      dateTime: DateTime(2023, 01)
+    ),
+    UnitPrice(
+      category: UnitPriceCategory.ventilation,
+      amount: 200,
+      currency: Currency.lira,
+      dateTime: DateTime(2023, 01)
+    ),
+    UnitPrice(
+      category: UnitPriceCategory.galvanize25TonWaterTankEsinoks,
+      amount: 110000,
+      currency: Currency.lira,
+      dateTime: DateTime(2023, 01)
+    ),
+    UnitPrice(
+      category: UnitPriceCategory.elevation10Person10StopKone,
+      amount: 900000,
+      currency: Currency.lira,
+      dateTime: DateTime(2023, 01)
+    ),
+    UnitPrice(
+      category: UnitPriceCategory.sinkVitra,
+      amount: 3000,
+      currency: Currency.lira,
+      dateTime: DateTime(2023, 01)
+    ),
+    UnitPrice(
+      category: UnitPriceCategory.sinkBatteryVitra,
+      amount: 3000,
+      currency: Currency.lira,
+      dateTime: DateTime(2023, 01)
+    ),
+    UnitPrice(
+      category: UnitPriceCategory.concealedCisternVitra,
+      amount: 3000,
+      currency: Currency.lira,
+      dateTime: DateTime(2023, 01)
+    ),
+    UnitPrice(
+      category: UnitPriceCategory.showerHuppe,
+      amount: 9000,
+      currency: Currency.lira,
+      dateTime: DateTime(2023, 01)
+    ),
+    UnitPrice(
+      category: UnitPriceCategory.showerBatteryVitra,
+      amount: 3000,
+      currency: Currency.lira,
+      dateTime: DateTime(2023, 01)
+    ),
+    UnitPrice(
+      category: UnitPriceCategory.kitchenFaucetAndSinkFranke,
+      amount: 10000,
+      currency: Currency.lira,
+      dateTime: DateTime(2023, 01)
+    ),
+    UnitPrice(
+      category: UnitPriceCategory.electricalInfrastructure,
+      amount: 85000,
+      currency: Currency.lira,
+      dateTime: DateTime(2023, 01)
+    ),
+    UnitPrice(
+      category: UnitPriceCategory.generatorAksa160,
+      amount: 400000,
+      currency: Currency.lira,
+      dateTime: DateTime(2023, 01)
+    ),
+    UnitPrice(
+      category: UnitPriceCategory.fullSetFranke,
+      amount: 41000,
       currency: Currency.lira,
       dateTime: DateTime(2023, 01)
     ),
