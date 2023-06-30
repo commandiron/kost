@@ -97,6 +97,7 @@ class InteriorCostTemplate extends CostTemplate {
       CostCategory(MainCategory.interiorJobs, JobCategory.woodenDoor, UnitPriceCategory.lacqueredDoor),
       CostCategory(MainCategory.interiorJobs, JobCategory.entranceDoor, UnitPriceCategory.entranceDoor),
       CostCategory(MainCategory.interiorJobs, JobCategory.fireDoor, UnitPriceCategory.ironFireDoor),
+      CostCategory(MainCategory.interiorJobs, JobCategory.airConditioner, UnitPriceCategory.airConditionerArcelik),
     ];
   }
 }

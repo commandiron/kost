@@ -37,7 +37,8 @@ enum UnitPriceCategory {
   steelDoorKale(Unit.number),
   lacqueredDoor(Unit.number),
   entranceDoor(Unit.squareMeters),
-  ironFireDoor(Unit.number);
+  ironFireDoor(Unit.number),
+  airConditionerArcelik(Unit.number);
 
   const UnitPriceCategory(
     this.unit,
@@ -84,7 +85,8 @@ extension UnitPriceCategoryExtension on UnitPriceCategory {
     UnitPriceCategory.steelDoorKale => "Kale Çelik Kapı",
     UnitPriceCategory.lacqueredDoor => "Lake Ahşap Kapı",
     UnitPriceCategory.entranceDoor => "Apartman Giriş Kapısı",
-    UnitPriceCategory.ironFireDoor => "Yangına dayanıklı, panik barlı, demir kapı"
+    UnitPriceCategory.ironFireDoor => "Yangına dayanıklı, panik barlı, demir kapı",
+    UnitPriceCategory.airConditionerArcelik => "Arçelik Klima"
   };
   }
 }

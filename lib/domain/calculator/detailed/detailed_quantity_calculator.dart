@@ -436,6 +436,18 @@ class DetailedQuantityCalculator extends QuantityCalculator {
     return number;
   }
 
+  int get _airConditionerNumber {
+    int number = 0;
+    for (var floor in floors) {
+      for (var buildingArea in floor.floorAreas) {
+        if(buildingArea is Apartment) {
+          number += projectConstants.airConditionerNumberForOneApartment;
+        }
+      }
+    }
+    return number;
+  }
+
   //Final Results
   @override
   double get shoringArea {
@@ -765,5 +777,14 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   @override
   String get fireDoorNumberExplanation {
     return "Toplam yangın kapısı adedi: $_fireDoorNumber";
+  }
+
+  @override
+  double get airConditionerNumber {
+    return _airConditionerNumber.toDouble();
+  }
+  @override
+  String get airConditionerNumberExplanation {
+    return "Toplam klima sayısı: $_airConditionerNumber";
   }
 }

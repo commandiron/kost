@@ -14,6 +14,7 @@ class ProjectConstants {
   final double mainStairsStepLength;
   final double fireStairsStepLength;
   final double totalEntranceDoorArea;
+  final int airConditionerNumberForOneApartment;
 
   ProjectConstants(
     {
@@ -32,6 +33,7 @@ class ProjectConstants {
       this.mainStairsStepLength = 1,
       this.fireStairsStepLength = 1,
       this.totalEntranceDoorArea = 6,
+      this.airConditionerNumberForOneApartment = 2,
     }
   );
 }

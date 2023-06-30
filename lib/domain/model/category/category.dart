@@ -65,9 +65,10 @@ enum JobCategory {
   steelDoor([UnitPriceCategory.steelDoorKale]),
   woodenDoor([UnitPriceCategory.lacqueredDoor]),
   entranceDoor([UnitPriceCategory.entranceDoor]),
-  fireDoor([UnitPriceCategory.ironFireDoor]);
+  fireDoor([UnitPriceCategory.ironFireDoor]),
+  airConditioner([UnitPriceCategory.airConditionerArcelik]);
 
-  const JobCategory(
+const JobCategory(
     this.unitPriceCategories,
   );
   final List<UnitPriceCategory> unitPriceCategories;
@@ -110,7 +111,8 @@ extension JobCategoryExtension on JobCategory {
       JobCategory.steelDoor => "Daire çelik kapıların yapılması",
       JobCategory.woodenDoor => "Ahşap kapıların yapılması",
       JobCategory.entranceDoor => "Apartman giriş kapısının yapılması",
-      JobCategory.fireDoor => "Yangın kapılarının yapılması"
+      JobCategory.fireDoor => "Yangın kapılarının yapılması",
+      JobCategory.airConditioner => "Klima işleri"
     };
   }
 }

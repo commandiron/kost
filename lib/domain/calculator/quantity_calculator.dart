@@ -106,6 +106,9 @@ abstract class QuantityCalculator {
   double get fireDoorNumber;
   String get fireDoorNumberExplanation;
 
+  double get airConditionerNumber;
+  String get airConditionerNumberExplanation;
+
   double getQuantityFromJobCategory(JobCategory jobCategory) {
     return switch (jobCategory) {
       JobCategory.shoring => shoringArea,
@@ -143,6 +146,7 @@ abstract class QuantityCalculator {
       JobCategory.woodenDoor => woodenDoorNumber,
       JobCategory.entranceDoor => entranceDoorArea,
       JobCategory.fireDoor => fireDoorNumber,
+      JobCategory.airConditioner => airConditionerNumber,
     };
   }
 
@@ -183,6 +187,7 @@ abstract class QuantityCalculator {
       JobCategory.woodenDoor => woodenDoorNumberExplanation,
       JobCategory.entranceDoor => entranceDoorAreaExplanation,
       JobCategory.fireDoor => fireDoorNumberExplanation,
+       JobCategory.airConditioner => airConditionerNumberExplanation,
     };
   }
 }
@@ -363,4 +368,10 @@ class InitialQuantityCalculator extends QuantityCalculator {
   double get fireDoorNumber => 0;
   @override
   String get fireDoorNumberExplanation => "";
+
+  @override
+  double get airConditionerNumber => 0;
+
+  @override
+  String get airConditionerNumberExplanation => "";
 }
