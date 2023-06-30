@@ -360,6 +360,18 @@ class DetailedQuantityCalculator extends QuantityCalculator {
     return area;
   }
 
+  double get _totalParquetFloorArea {
+    double area = 0;
+    for (var floor in floors) {
+      for (var room in floor.rooms) {
+        if (room.floorMaterial == FloorMaterial.parquet) {
+          area += room.area;
+        }
+      }
+    }
+    return area;
+  }
+
   //Final Results
   @override
   double get shoringArea {
@@ -643,5 +655,14 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   @override
   String get ceramicTileAreaExplanation {
     return "Toplam yer seramik alanı: $_totalCeramicFloorArea + Toplam fayans alanı: $_totalCeramicWallArea";
+  }
+
+  @override
+  double get parquetTileArea {
+    return _totalParquetFloorArea;
+  }
+  @override
+  String get parquetTileAreaExplanation {
+    return "Toplam parke alanı: $_totalParquetFloorArea";
   }
 }

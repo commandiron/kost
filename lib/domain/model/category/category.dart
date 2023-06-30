@@ -60,7 +60,8 @@ enum JobCategory {
   marbleStep([UnitPriceCategory.marbleStepBilecik]),
   marbleWindowsill([UnitPriceCategory.marbleStepBilecik]),
   stairRailings([UnitPriceCategory.aluminumRailing]),
-  ceramicTile([UnitPriceCategory.ceramicTileEge]);
+  ceramicTile([UnitPriceCategory.ceramicTileEge]),
+  parquetTile([UnitPriceCategory.laminatedSerifoglu]);
 
   const JobCategory(
     this.unitPriceCategories,
@@ -100,7 +101,8 @@ extension JobCategoryExtension on JobCategory {
       JobCategory.marbleStep => "Mermer basamakların yapılması",
       JobCategory.marbleWindowsill => "Mermer denizliklerin yapılması",
       JobCategory.stairRailings => "Merdiven korkuluklarının yapılması",
-      JobCategory.ceramicTile => "Seramik kaplamaların yapılması",
+      JobCategory.ceramicTile => "Seramik kaplama yapılması",
+      JobCategory.parquetTile => "Parke kaplama yapılması"
     };
   }
 }

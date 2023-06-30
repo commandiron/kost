@@ -196,5 +196,11 @@ class AppData {
       currency: Currency.lira,
       dateTime: DateTime(2023, 01)
     ),
+    UnitPrice(
+      category: UnitPriceCategory.laminatedSerifoglu,
+      amount: 52,
+      currency: Currency.euro,
+      dateTime: DateTime(2023, 01)
+    ),
   ];
 }
