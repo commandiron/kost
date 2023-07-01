@@ -462,6 +462,32 @@ class DetailedQuantityCalculator extends QuantityCalculator {
     return number;
   }
 
+  int get _apartmentNumber {
+    int number = 0;
+    for (var floor in floors) {
+      for (var buildingArea in floor.floorAreas) {
+        if(buildingArea is Apartment) {
+          number ++;
+        }
+      }
+    }
+    return number;
+  }
+
+  double get _totalFloorPlinthLength {
+    double length = 0;
+    for (var floor in floors) {
+      for (var buildingArea in floor.floorAreas) {
+        for (var room in buildingArea.rooms) {
+          if (room.hasFloorPlinth) {
+            length += room.perimeter;
+          }
+        }
+      }
+    }
+    return length;
+  }
+
   //Final Results
   @override
   double get shoringArea {
@@ -794,29 +820,29 @@ class DetailedQuantityCalculator extends QuantityCalculator {
 
   @override
   double get kitchenCupboardLength {
-    return 0;
+    return _apartmentNumber * projectConstants.kitchenLength * 2;
   }
   @override
   String get kitchenCupboardLengthExplanation {
-    return "";
+    return "Daire sayısı: $_apartmentNumber x Mutfak uzunluğu: ${projectConstants.kitchenLength} x 2(Alt - Üst dolap)";
   }
 
   @override
   double get kitchenCounterLength {
-    return 0;
+    return _apartmentNumber * projectConstants.kitchenLength;
   }
   @override
   String get kitchenCounterLengthExplanation {
-    return "";
+    return "Daire sayısı: $_apartmentNumber x Mutfak uzunluğu: ${projectConstants.kitchenLength}";
   }
 
   @override
   double get coatCabinetArea {
-    return 0;
+    return _apartmentNumber * projectConstants.coatCabinetArea;
   }
   @override
   String get coatCabinetAreaExplanation {
-    return "";
+    return "Daire sayısı: $_apartmentNumber x Portmanto alanı: ${projectConstants.coatCabinetArea}";
   }
 
   @override
@@ -830,11 +856,11 @@ class DetailedQuantityCalculator extends QuantityCalculator {
 
   @override
   double get floorPlinthLength {
-    return 0;
+    return _totalFloorPlinthLength;
   }
   @override
   String get floorPlinthLengthExplanation {
-    return "";
+    return "Toplam süpürgelik uzunluğu: $_totalFloorPlinthLength";
   }
 
   @override

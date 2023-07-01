@@ -246,7 +246,7 @@ class AppData {
     ),
     UnitPrice(
       category: UnitPriceCategory.lacqueredFloorPlinth,
-      amount: 200,
+      amount: 100,
       currency: Currency.lira,
       dateTime: DateTime(2023, 01)
     ),

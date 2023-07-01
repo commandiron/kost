@@ -16,6 +16,8 @@ class ProjectConstants {
   final double totalEntranceDoorArea;
   final int airConditionerNumberForOneApartment;
   final double bathroomCabinetArea;
+  final double kitchenLength;
+  final double coatCabinetArea;
 
   ProjectConstants(
     {
@@ -36,6 +38,8 @@ class ProjectConstants {
       this.totalEntranceDoorArea = 6,
       this.airConditionerNumberForOneApartment = 2,
       this.bathroomCabinetArea = 1,
+      this.kitchenLength = 5,
+      this.coatCabinetArea = 5,
     }
   );
 }
