@@ -18,6 +18,8 @@ class ProjectConstants {
   final double bathroomCabinetArea;
   final double kitchenLength;
   final double coatCabinetArea;
+  final int waterTankNumber;
+  final int elevatorNumber;
 
   ProjectConstants(
     {
@@ -40,6 +42,8 @@ class ProjectConstants {
       this.bathroomCabinetArea = 1,
       this.kitchenLength = 5,
       this.coatCabinetArea = 5,
+      this.waterTankNumber = 1,
+      this.elevatorNumber = 1,
     }
   );
 }

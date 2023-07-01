@@ -28,7 +28,7 @@ class CostItem {
   UiCostItem toUiCostItem() {
     return UiCostItem(
       category: category,
-      formattedUnitPrice: "${unitPrice.amount} ${unitPrice.currency.symbol}/${unitPrice.category.unit.symbol}",
+      formattedUnitPrice: "${NumberFormat("#,##0.00", "tr_TR").format(unitPrice.amount)} ${unitPrice.currency.symbol}/${unitPrice.category.unit.symbol}",
       formattedQuantity: "${NumberFormat("#,##0.00", "tr_TR").format(quantity)} ${unitPrice.category.unit.symbol}",
       quantityExplanation: quantityExplanation,
       totalPriceTRY: totalPriceTRY,

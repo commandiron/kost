@@ -896,20 +896,20 @@ class DetailedQuantityCalculator extends QuantityCalculator {
 
   @override
   double get waterTankLumpSum {
-    return 0;
+    return projectConstants.waterTankNumber.toDouble();
   }
   @override
   String get waterTankLumpSumExplanation {
-    return "";
+    return "Su deposu adedi: ${projectConstants.waterTankNumber}";
   }
 
   @override
   double get elevationLumpSum {
-    return 0;
+    return projectConstants.elevatorNumber.toDouble();
   }
   @override
   String get elevationLumpSumExplanation {
-    return "";
+    return "Asansör adedi: ${projectConstants.elevatorNumber}";
   }
 
   @override
