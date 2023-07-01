@@ -872,7 +872,6 @@ class DetailedQuantityCalculator extends QuantityCalculator {
     return "";
   }
 
-
   @override
   double get airConditionerNumber {
     return _airConditionerNumber.toDouble();
@@ -881,7 +880,6 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   String get airConditionerNumberExplanation {
     return "Toplam klima sayısı: $_airConditionerNumber";
   }
-
 
   @override
   double get ventilationArea {
