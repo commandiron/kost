@@ -1020,5 +1020,4 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   String get householdAppliancesApartmentExplanation {
     return "Toplam daire sayısı: $_apartmentNumber";
   }
-
 }
