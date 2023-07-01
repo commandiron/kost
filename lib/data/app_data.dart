@@ -264,7 +264,7 @@ class AppData {
     ),
     UnitPrice(
       category: UnitPriceCategory.ventilation,
-      amount: 200,
+      amount: 180,
       currency: Currency.lira,
       dateTime: DateTime(2023, 01)
     ),

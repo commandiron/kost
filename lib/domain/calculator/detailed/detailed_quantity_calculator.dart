@@ -488,6 +488,10 @@ class DetailedQuantityCalculator extends QuantityCalculator {
     return length;
   }
 
+  double get _basementsArea {
+    return _basementFloors.map((e) => e.area).toList().fold(0.0, (p, c) => p + c);
+  }
+
   //Final Results
   @override
   double get shoringArea {
@@ -865,11 +869,11 @@ class DetailedQuantityCalculator extends QuantityCalculator {
 
   @override
   double get mechanicalInfrastructureApartment {
-    return 0;
+    return _apartmentNumber.toDouble();
   }
   @override
   String get mechanicalInfrastructureApartmentExplanation {
-    return "";
+    return "Daire sayısı: $_apartmentNumber";
   }
 
   @override
@@ -883,11 +887,11 @@ class DetailedQuantityCalculator extends QuantityCalculator {
 
   @override
   double get ventilationArea {
-    return 0;
+    return _basementsArea;
   }
   @override
   String get ventilationAreaExplanation {
-    return "";
+    return "Bodrumlar toplam alanı: $_basementsArea";
   }
 
   @override
