@@ -766,15 +766,6 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   }
 
   @override
-  double get woodenDoorNumber {
-    return _woodenDoorNumber.toDouble();
-  }
-  @override
-  String get woodenDoorNumberExplanation {
-    return "Toplam ahşap kapı adedi: $_woodenDoorNumber";
-  }
-
-  @override
   double get entranceDoorArea {
     return projectConstants.totalEntranceDoorArea;
   }
@@ -787,28 +778,36 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   double get fireDoorNumber {
     return _fireDoorNumber.toDouble();
   }
-
   @override
   String get fireDoorNumberExplanation {
     return "Toplam yangın kapısı adedi: $_fireDoorNumber";
   }
 
   @override
-  double get airConditionerNumber {
-    return _airConditionerNumber.toDouble();
+  double get woodenDoorNumber {
+    return _woodenDoorNumber.toDouble();
   }
   @override
-  String get airConditionerNumberExplanation {
-    return "Toplam klima sayısı: $_airConditionerNumber";
+  String get woodenDoorNumberExplanation {
+    return "Toplam ahşap kapı adedi: $_woodenDoorNumber";
   }
 
   @override
-  double get bathroomCabinetArea {
-    return _toiletNumber * projectConstants.bathroomCabinetArea;
+  double get kitchenCupboardLength {
+    return 0;
   }
   @override
-  String get bathroomCabinetAreaExplanation {
-    return "Tuvalet sayısı: $_toiletNumber x Banyo dolabı alanı: ${projectConstants.bathroomCabinetArea}";
+  String get kitchenCupboardLengthExplanation {
+    return "";
+  }
+
+  @override
+  double get kitchenCounterLength {
+    return 0;
+  }
+  @override
+  String get kitchenCounterLengthExplanation {
+    return "";
   }
 
   @override
@@ -821,20 +820,58 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   }
 
   @override
-  double get concealedCisternNumber {
+  double get bathroomCabinetArea {
+    return _toiletNumber * projectConstants.bathroomCabinetArea;
+  }
+  @override
+  String get bathroomCabinetAreaExplanation {
+    return "Tuvalet sayısı: $_toiletNumber x Banyo dolabı alanı: ${projectConstants.bathroomCabinetArea}";
+  }
+
+  @override
+  double get floorPlinthLength {
     return 0;
   }
   @override
-  String get concealedCisternNumberExplanation {
+  String get floorPlinthLengthExplanation {
     return "";
   }
 
   @override
-  double get electricalInfrastructureApartment {
+  double get mechanicalInfrastructureApartment {
     return 0;
   }
   @override
-  String get electricalInfrastructureApartmentExplanation {
+  String get mechanicalInfrastructureApartmentExplanation {
+    return "";
+  }
+
+
+  @override
+  double get airConditionerNumber {
+    return _airConditionerNumber.toDouble();
+  }
+  @override
+  String get airConditionerNumberExplanation {
+    return "Toplam klima sayısı: $_airConditionerNumber";
+  }
+
+
+  @override
+  double get ventilationArea {
+    return 0;
+  }
+  @override
+  String get ventilationAreaExplanation {
+    return "";
+  }
+
+  @override
+  double get waterTankLumpSum {
+    return 0;
+  }
+  @override
+  String get waterTankLumpSumExplanation {
     return "";
   }
 
@@ -848,11 +885,65 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   }
 
   @override
-  double get floorPlinthLength {
+  double get sinkNumber {
     return 0;
   }
   @override
-  String get floorPlinthLengthExplanation {
+  String get sinkNumberExplanation {
+    return "";
+  }
+
+  @override
+  double get sinkBatteryNumber {
+    return 0;
+  }
+  @override
+  String get sinkBatteryNumberExplanation {
+    return "";
+  }
+
+  @override
+  double get concealedCisternNumber {
+    return 0;
+  }
+  @override
+  String get concealedCisternNumberExplanation {
+    return "";
+  }
+
+  @override
+  double get showerNumber {
+    return 0;
+  }
+  @override
+  String get showerNumberExplanation {
+    return "";
+  }
+
+  @override
+  double get showerBatteryNumber {
+    return 0;
+  }
+  @override
+  String get showerBatteryNumberExplanation {
+    return "";
+  }
+
+  @override
+  double get kitchenFaucetAndSinkNumber {
+    return 0;
+  }
+  @override
+  String get kitchenFaucetAndSinkNumberExplanation {
+    return "";
+  }
+
+  @override
+  double get electricalInfrastructureApartment {
+    return 0;
+  }
+  @override
+  String get electricalInfrastructureApartmentExplanation {
     return "";
   }
 
@@ -874,93 +965,4 @@ class DetailedQuantityCalculator extends QuantityCalculator {
     return "";
   }
 
-  @override
-  double get kitchenCounterLength {
-    return 0;
-  }
-  @override
-  String get kitchenCounterLengthExplanation {
-    return "";
-  }
-
-  @override
-  double get kitchenCupboardLength {
-    return 0;
-  }
-  @override
-  String get kitchenCupboardLengthExplanation {
-    return "";
-  }
-
-  @override
-  double get kitchenFaucetAndSinkNumber {
-    return 0;
-  }
-  @override
-  String get kitchenFaucetAndSinkNumberExplanation {
-    return "";
-  }
-
-  @override
-  double get mechanicalInfrastructureApartment {
-    return 0;
-  }
-  @override
-  String get mechanicalInfrastructureApartmentExplanation {
-    return "";
-  }
-
-  @override
-  double get showerBatteryNumber {
-    return 0;
-  }
-  @override
-  String get showerBatteryNumberExplanation {
-    return "";
-  }
-
-  @override
-  double get showerNumber {
-    return 0;
-  }
-  @override
-  String get showerNumberExplanation {
-    return "";
-  }
-
-  @override
-  double get sinkBatteryNumber {
-    return 0;
-  }
-  @override
-  String get sinkBatteryNumberExplanation {
-    return "";
-  }
-
-  @override
-  double get sinkNumber {
-    return 0;
-  }
-  @override
-  String get sinkNumberExplanation {
-    return "";
-  }
-
-  @override
-  double get ventilationArea {
-    return 0;
-  }
-  @override
-  String get ventilationAreaExplanation {
-    return "";
-  }
-
-  @override
-  double get waterTankLumpSum {
-    return 0;
-  }
-  @override
-  String get waterTankLumpSumExplanation {
-    return "";
-  }
 }

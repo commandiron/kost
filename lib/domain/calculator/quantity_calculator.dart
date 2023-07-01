@@ -97,14 +97,14 @@ abstract class QuantityCalculator {
   double get steelDoorNumber;
   String get steelDoorNumberExplanation;
 
-  double get woodenDoorNumber;
-  String get woodenDoorNumberExplanation;
-
   double get entranceDoorArea;
   String get entranceDoorAreaExplanation;
 
   double get fireDoorNumber;
   String get fireDoorNumberExplanation;
+
+  double get woodenDoorNumber;
+  String get woodenDoorNumberExplanation;
 
   double get kitchenCupboardLength;
   String get kitchenCupboardLengthExplanation;
