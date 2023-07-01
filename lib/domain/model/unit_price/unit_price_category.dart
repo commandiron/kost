@@ -45,8 +45,8 @@ enum UnitPriceCategory {
   mechanicalInfrastructure(Unit.apartment),
   airConditionerArcelik(Unit.number),
   ventilation(Unit.squareMeters),
-  galvanize25TonWaterTankEsinoks(Unit.lumpSum),
-  elevation10Person10StopKone(Unit.lumpSum),
+  galvanize25TonWaterTankEsinoks(Unit.number),
+  elevation10Person10StopKone(Unit.number),
   sinkVitra(Unit.number),
   sinkBatteryVitra(Unit.number),
   concealedCisternVitra(Unit.number),
@@ -54,8 +54,8 @@ enum UnitPriceCategory {
   showerBatteryVitra(Unit.number),
   kitchenFaucetAndSinkFranke(Unit.number),
   electricalInfrastructure(Unit.apartment),
-  generatorAksa160(Unit.lumpSum),
-  fullSetFranke(Unit.lumpSum);
+  generatorAksa160(Unit.number),
+  fullSetFranke(Unit.apartment);
 
   const UnitPriceCategory(
     this.unit,

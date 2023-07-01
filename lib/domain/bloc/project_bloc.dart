@@ -63,7 +63,7 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
               floorAreas: [
                 Apartment(
                   rooms: [
-                    NormalRoom(area: 30.87, perimeter: 32),
+                    SaloonWithKitchen(area: 30.87, perimeter: 32),
                     NormalRoom(area: 12.95, perimeter: 14.4),
                     NormalRoom(area: 8.93, perimeter: 12),
                     Bathroom(area: 3.19, perimeter: 7.5),
@@ -72,7 +72,7 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
                 ),
                 Apartment(
                   rooms: [
-                    NormalRoom(area: 33, perimeter: 30.7),
+                    SaloonWithKitchen(area: 33, perimeter: 30.7),
                     NormalRoom(area: 15.4, perimeter: 16.5),
                     NormalRoom(area: 10.88, perimeter: 13.2),
                     Bathroom(area: 3.19, perimeter: 7.5),
@@ -106,7 +106,7 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
             floorAreas: [
               Apartment(
                 rooms: [
-                  NormalRoom(area: 33.61, perimeter: 29.3),
+                  SaloonWithKitchen(area: 33.61, perimeter: 29.3),
                   NormalRoom(area: 12.6, perimeter: 14.2),
                   Bathroom(area: 3.18, perimeter: 7.5),
                   Bathroom(area: 4.13, perimeter: 8.3),
@@ -114,7 +114,7 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
               ),
               Apartment(
                 rooms: [
-                  NormalRoom(area: 33.5, perimeter: 29.2),
+                  SaloonWithKitchen(area: 33.5, perimeter: 29.2),
                   NormalRoom(area: 13.29, perimeter: 15.3),
                   Bathroom(area: 3.18, perimeter: 7.5),
                   Bathroom(area: 4.13, perimeter: 8.3),

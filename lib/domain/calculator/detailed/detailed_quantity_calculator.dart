@@ -407,7 +407,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
       for (var buildingArea in floor.floorAreas) {
         if(buildingArea is Apartment) {
           for (var room in buildingArea.rooms) {
-            if(room is NormalRoom || room is Kitchen || room is Wc || room is Bathroom) {
+            if(room is Saloon || room is SaloonWithKitchen || room is NormalRoom || room is Kitchen || room is Wc || room is Bathroom) {
               number ++;
             }
           }
@@ -442,6 +442,34 @@ class DetailedQuantityCalculator extends QuantityCalculator {
       for (var buildingArea in floor.floorAreas) {
         if(buildingArea is Apartment) {
           number += projectConstants.airConditionerNumberForOneApartment;
+        }
+      }
+    }
+    return number;
+  }
+
+  int get _kitchenNumber {
+    int number = 0;
+    for (var floor in floors) {
+      for (var buildingArea in floor.floorAreas) {
+        for (var room in buildingArea.rooms) {
+          if(room is Kitchen || room is SaloonWithKitchen) {
+            number ++;
+          }
+        }
+      }
+    }
+    return number;
+  }
+
+  int get _bathroomNumber {
+    int number = 0;
+    for (var floor in floors) {
+      for (var buildingArea in floor.floorAreas) {
+        for (var room in buildingArea.rooms) {
+          if(room is Bathroom) {
+            number ++;
+          }
         }
       }
     }
@@ -895,102 +923,102 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   }
 
   @override
-  double get waterTankLumpSum {
+  double get waterTankNumber {
     return projectConstants.waterTankNumber.toDouble();
   }
   @override
-  String get waterTankLumpSumExplanation {
+  String get waterTankNumberExplanation {
     return "Su deposu adedi: ${projectConstants.waterTankNumber}";
   }
 
   @override
-  double get elevationLumpSum {
+  double get elevationNumber {
     return projectConstants.elevatorNumber.toDouble();
   }
   @override
-  String get elevationLumpSumExplanation {
+  String get elevationNumberExplanation {
     return "Asansör adedi: ${projectConstants.elevatorNumber}";
   }
 
   @override
   double get sinkNumber {
-    return 0;
+    return _toiletNumber.toDouble();
   }
   @override
   String get sinkNumberExplanation {
-    return "";
+    return "Toplam tuvalet sayısı: $_toiletNumber";
   }
 
   @override
   double get sinkBatteryNumber {
-    return 0;
+    return _toiletNumber.toDouble();
   }
   @override
   String get sinkBatteryNumberExplanation {
-    return "";
+    return "Toplam tuvalet sayısı: $_toiletNumber";
   }
 
   @override
   double get concealedCisternNumber {
-    return 0;
+    return _toiletNumber.toDouble();
   }
   @override
   String get concealedCisternNumberExplanation {
-    return "";
+    return "Toplam tuvalet sayısı: $_toiletNumber";
   }
 
   @override
   double get showerNumber {
-    return 0;
+    return _bathroomNumber.toDouble();
   }
   @override
   String get showerNumberExplanation {
-    return "";
+    return "Toplam banyo sayısı: $_bathroomNumber";
   }
 
   @override
   double get showerBatteryNumber {
-    return 0;
+    return _bathroomNumber.toDouble();
   }
   @override
   String get showerBatteryNumberExplanation {
-    return "";
+    return "Toplam banyo sayısı: $_bathroomNumber";
   }
 
   @override
   double get kitchenFaucetAndSinkNumber {
-    return 0;
+    return _kitchenNumber.toDouble();
   }
   @override
   String get kitchenFaucetAndSinkNumberExplanation {
-    return "";
+    return "Toplam mutfak sayısı: $_kitchenNumber";
   }
 
   @override
   double get electricalInfrastructureApartment {
-    return 0;
+    return _apartmentNumber.toDouble();
   }
   @override
   String get electricalInfrastructureApartmentExplanation {
-    return "";
+    return "Toplam daire sayısı: $_apartmentNumber";
   }
 
   @override
-  double get generatorLumpSum {
-    return 0;
+  double get generatorNumber {
+    return projectConstants.generatorNumber.toDouble();
   }
   @override
-  String get generatorLumpSumExplanation {
-    return "";
+  String get generatorNumberExplanation {
+    return "Jeneratör adedi: ${projectConstants.generatorNumber}";
   }
 
   @override
-  double get householdAppliancesLumpSum {
-    return 0;
+  double get householdAppliancesApartment {
+    return _apartmentNumber.toDouble();
   }
   @override
-  String get householdAppliancesLumpSumExplanation {
-    return "";
+  String get householdAppliancesApartmentExplanation {
+    return "Toplam daire sayısı: $_apartmentNumber";
   }
 
 }

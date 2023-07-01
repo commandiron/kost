@@ -130,11 +130,11 @@ abstract class QuantityCalculator {
   double get ventilationArea;
   String get ventilationAreaExplanation;
 
-  double get waterTankLumpSum;
-  String get waterTankLumpSumExplanation;
+  double get waterTankNumber;
+  String get waterTankNumberExplanation;
 
-  double get elevationLumpSum;
-  String get elevationLumpSumExplanation;
+  double get elevationNumber;
+  String get elevationNumberExplanation;
 
   double get sinkNumber;
   String get sinkNumberExplanation;
@@ -157,11 +157,11 @@ abstract class QuantityCalculator {
   double get electricalInfrastructureApartment;
   String get electricalInfrastructureApartmentExplanation;
 
-  double get generatorLumpSum;
-  String get generatorLumpSumExplanation;
+  double get generatorNumber;
+  String get generatorNumberExplanation;
 
-  double get householdAppliancesLumpSum;
-  String get householdAppliancesLumpSumExplanation;
+  double get householdAppliancesApartment;
+  String get householdAppliancesApartmentExplanation;
 
   double getQuantityFromJobCategory(JobCategory jobCategory) {
     return switch (jobCategory) {
@@ -208,8 +208,8 @@ abstract class QuantityCalculator {
       JobCategory.mechanicalInfrastructure => mechanicalInfrastructureApartment,
       JobCategory.airConditioner => airConditionerNumber,
       JobCategory.ventilation => ventilationArea,
-      JobCategory.waterTank => waterTankLumpSum,
-      JobCategory.elevation => elevationLumpSum,
+      JobCategory.waterTank => waterTankNumber,
+      JobCategory.elevation => elevationNumber,
       JobCategory.sink => sinkNumber,
       JobCategory.sinkBattery => sinkBatteryNumber,
       JobCategory.concealedCistern => concealedCisternNumber,
@@ -217,8 +217,8 @@ abstract class QuantityCalculator {
       JobCategory.showerBattery => showerBatteryNumber,
       JobCategory.kitchenFaucetAndSink => kitchenFaucetAndSinkNumber,
       JobCategory.electricalInfrastructure => electricalInfrastructureApartment,
-      JobCategory.generator => generatorLumpSum,
-      JobCategory.householdAppliances => householdAppliancesLumpSum,
+      JobCategory.generator => generatorNumber,
+      JobCategory.householdAppliances => householdAppliancesApartment,
     };
   }
 
@@ -267,8 +267,8 @@ abstract class QuantityCalculator {
       JobCategory.mechanicalInfrastructure => mechanicalInfrastructureApartmentExplanation,
       JobCategory.airConditioner => airConditionerNumberExplanation,
       JobCategory.ventilation => ventilationAreaExplanation,
-      JobCategory.waterTank => waterTankLumpSumExplanation,
-      JobCategory.elevation => elevationLumpSumExplanation,
+      JobCategory.waterTank => waterTankNumberExplanation,
+      JobCategory.elevation => elevationNumberExplanation,
       JobCategory.sink => sinkNumberExplanation,
       JobCategory.sinkBattery => sinkBatteryNumberExplanation,
       JobCategory.concealedCistern => concealedCisternNumberExplanation,
@@ -276,8 +276,8 @@ abstract class QuantityCalculator {
       JobCategory.showerBattery => showerBatteryNumberExplanation,
       JobCategory.kitchenFaucetAndSink => kitchenFaucetAndSinkNumberExplanation,
       JobCategory.electricalInfrastructure => electricalInfrastructureApartmentExplanation,
-      JobCategory.generator => generatorLumpSumExplanation,
-      JobCategory.householdAppliances => householdAppliancesLumpSumExplanation,
+      JobCategory.generator => generatorNumberExplanation,
+      JobCategory.householdAppliances => householdAppliancesApartmentExplanation,
     };
   }
 }
@@ -486,9 +486,9 @@ class InitialQuantityCalculator extends QuantityCalculator {
   String get electricalInfrastructureApartmentExplanation => "";
 
   @override
-  double get elevationLumpSum => 0;
+  double get elevationNumber => 0;
   @override
-  String get elevationLumpSumExplanation => "";
+  String get elevationNumberExplanation => "";
 
   @override
   double get floorPlinthLength => 0;
@@ -496,14 +496,14 @@ class InitialQuantityCalculator extends QuantityCalculator {
   String get floorPlinthLengthExplanation => "";
 
   @override
-  double get generatorLumpSum => 0;
+  double get generatorNumber => 0;
   @override
-  String get generatorLumpSumExplanation => "";
+  String get generatorNumberExplanation => "";
 
   @override
-  double get householdAppliancesLumpSum => 0;
+  double get householdAppliancesApartment => 0;
   @override
-  String get householdAppliancesLumpSumExplanation => "";
+  String get householdAppliancesApartmentExplanation => "";
 
   @override
   double get kitchenCounterLength => 0;
@@ -551,7 +551,7 @@ class InitialQuantityCalculator extends QuantityCalculator {
   String get ventilationAreaExplanation => "";
 
   @override
-  double get waterTankLumpSum => 0;
+  double get waterTankNumber => 0;
   @override
-  String get waterTankLumpSumExplanation => "";
+  String get waterTankNumberExplanation => "";
 }

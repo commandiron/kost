@@ -20,6 +20,8 @@ class ProjectConstants {
   final double coatCabinetArea;
   final int waterTankNumber;
   final int elevatorNumber;
+  final int generatorNumber;
+  final int householdAppliancesNumber;
 
   ProjectConstants(
     {
@@ -44,6 +46,8 @@ class ProjectConstants {
       this.coatCabinetArea = 5,
       this.waterTankNumber = 1,
       this.elevatorNumber = 1,
+      this.generatorNumber = 1,
+      this.householdAppliancesNumber = 1,
     }
   );
 }

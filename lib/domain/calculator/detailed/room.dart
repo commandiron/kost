@@ -33,12 +33,20 @@ enum CeilingMaterial {
   none, drywall,
 }
 
-class NormalRoom extends Room {
-  NormalRoom({required super.area, required super.perimeter, super.floorMaterial = FloorMaterial.parquet, super.wallMaterial = WallMaterial.painting, super.ceilingMaterial = CeilingMaterial.drywall, super.hasCovingPlaster = true, super.hasFloorPlinth = true, super.hasScreed = true, super.isFloorWet = false,});
+class Saloon extends Room {
+  Saloon({required super.area, required super.perimeter, super.floorMaterial = FloorMaterial.parquet, super.wallMaterial = WallMaterial.painting, super.ceilingMaterial = CeilingMaterial.drywall, super.hasCovingPlaster = true, super.hasFloorPlinth = true, super.hasScreed = true, super.isFloorWet = false,});
+}
+
+class SaloonWithKitchen extends Room {
+  SaloonWithKitchen({required super.area, required super.perimeter, super.floorMaterial = FloorMaterial.ceramic, super.wallMaterial = WallMaterial.painting, super.ceilingMaterial = CeilingMaterial.drywall, super.hasCovingPlaster = true, super.hasFloorPlinth = true, super.hasScreed = true, super.isFloorWet = false, });
 }
 
 class Kitchen extends Room {
   Kitchen({required super.area, required super.perimeter, super.floorMaterial = FloorMaterial.ceramic, super.wallMaterial = WallMaterial.painting, super.ceilingMaterial = CeilingMaterial.drywall, super.hasCovingPlaster = true, super.hasFloorPlinth = true, super.hasScreed = true, super.isFloorWet = false, });
+}
+
+class NormalRoom extends Room {
+  NormalRoom({required super.area, required super.perimeter, super.floorMaterial = FloorMaterial.parquet, super.wallMaterial = WallMaterial.painting, super.ceilingMaterial = CeilingMaterial.drywall, super.hasCovingPlaster = true, super.hasFloorPlinth = true, super.hasScreed = true, super.isFloorWet = false,});
 }
 
 class Hall extends Room {
