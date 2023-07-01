@@ -32,7 +32,7 @@ class CostItem {
       formattedQuantity: "${NumberFormat("#,##0.00", "tr_TR").format(quantity)} ${unitPrice.category.unit.symbol}",
       quantityExplanation: quantityExplanation,
       totalPriceTRY: totalPriceTRY,
-      formattedTotalPriceTRY: "${NumberFormat("#,##0.00", "tr_TR").format(totalPriceTRY)} TL"
+      formattedTotalPriceTRY: "${NumberFormat("#,##0.00", "tr_TR").format(totalPriceTRY)} ₺"
     );
   }
 }
