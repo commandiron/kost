@@ -8,7 +8,6 @@ enum MainCategory {
   interiorJobs,
   mechanicalJobs,
   electricalJobs,
-  finishingJobs,
   landscapeJobs,
   projectAndLicenseJobs,
   generalExpenses
@@ -24,7 +23,6 @@ extension MainCategoryExtension on MainCategory {
       MainCategory.interiorJobs => "İç İmalatlar",
       MainCategory.mechanicalJobs => "Mekanik - Tesisat",
       MainCategory.electricalJobs => "Elektrik",
-      MainCategory.finishingJobs => "Montaj İşleri",
       MainCategory.landscapeJobs => "Peysaj İşleri",
       MainCategory.projectAndLicenseJobs => "Proje ve Ruhsat İşleri",
       MainCategory.generalExpenses => "Genel Giderler"
@@ -86,7 +84,11 @@ enum JobCategory {
   kitchenFaucetAndSink([UnitPriceCategory.kitchenFaucetAndSinkFranke]),
   electricalInfrastructure([UnitPriceCategory.electricalInfrastructure]),
   generator([UnitPriceCategory.generatorAksa160]),
-  householdAppliances([UnitPriceCategory.fullSetFranke]);
+  householdAppliances([UnitPriceCategory.fullSetFranke]),
+  landScapeGarden([UnitPriceCategory.averageGarden,]),
+  outdoorParkingTile([UnitPriceCategory.interlockingPavingStone]),
+  carLift([UnitPriceCategory.carLift2Stop]),
+  automaticBarrier([UnitPriceCategory.automaticBarrier]);
 
 const JobCategory(
     this.unitPriceCategories,
@@ -151,6 +153,10 @@ extension JobCategoryExtension on JobCategory {
       JobCategory.electricalInfrastructure => "Elektrik Altyapı",
       JobCategory.generator => "Jeneratör",
       JobCategory.householdAppliances => "Beyaz Eşya",
+      JobCategory.landScapeGarden => "Bahçe Yapımı",
+      JobCategory.outdoorParkingTile => "Açık Otopark Kaplama",
+      JobCategory.carLift => "Araç Asansörü",
+      JobCategory.automaticBarrier => "Garaj Otomatik Bariyer",
     };
   }
 }

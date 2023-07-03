@@ -55,7 +55,11 @@ enum UnitPriceCategory {
   kitchenFaucetAndSinkFranke(Unit.number),
   electricalInfrastructure(Unit.apartment),
   generatorAksa160(Unit.number),
-  fullSetFranke(Unit.apartment);
+  fullSetFranke(Unit.apartment),
+  averageGarden(Unit.squareMeters),
+  interlockingPavingStone(Unit.squareMeters),
+  carLift2Stop(Unit.number),
+  automaticBarrier(Unit.number);
 
   const UnitPriceCategory(
     this.unit,
@@ -121,6 +125,10 @@ extension UnitPriceCategoryExtension on UnitPriceCategory {
       UnitPriceCategory.electricalInfrastructure => "Elektrik Tesisat Altyapı İşleri",
       UnitPriceCategory.generatorAksa160 => "Aksa 160 Kva Jeneratör",
       UnitPriceCategory.fullSetFranke => "Franke Ankastre Beyaz Eşya Seti",
+      UnitPriceCategory.averageGarden => "Bahçe, Çim, Ağaç vs.",
+      UnitPriceCategory.interlockingPavingStone => "Kilit Taşı",
+      UnitPriceCategory.carLift2Stop => "2 Durak Araç Asansörü",
+      UnitPriceCategory.automaticBarrier => "Otomatik Bariyer",
     };
   }
 }

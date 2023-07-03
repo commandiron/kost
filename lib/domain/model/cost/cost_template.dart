@@ -120,6 +120,21 @@ class InteriorCostTemplate extends CostTemplate {
   }
 }
 
+class LandscapeCostTemplate extends CostTemplate {
+  LandscapeCostTemplate(
+      {
+        super.name = "Peysaj Maliyeti"
+      }
+      ){
+    enabledCostCategories = const [
+      CostCategory(MainCategory.landscapeJobs, JobCategory.landScapeGarden, UnitPriceCategory.averageGarden),
+      CostCategory(MainCategory.landscapeJobs, JobCategory.outdoorParkingTile, UnitPriceCategory.interlockingPavingStone),
+      CostCategory(MainCategory.landscapeJobs, JobCategory.carLift, UnitPriceCategory.carLift2Stop),
+      CostCategory(MainCategory.landscapeJobs, JobCategory.automaticBarrier, UnitPriceCategory.automaticBarrier),
+    ];
+  }
+}
+
 class BuildingCostTemplate extends CostTemplate {
   BuildingCostTemplate(
       {
@@ -131,6 +146,7 @@ class BuildingCostTemplate extends CostTemplate {
       ...RoofingCostTemplate().enabledCostCategories,
       ...FacadeCostTemplate().enabledCostCategories,
       ...InteriorCostTemplate().enabledCostCategories,
+      ...LandscapeCostTemplate().enabledCostCategories,
     ];
   }
 }

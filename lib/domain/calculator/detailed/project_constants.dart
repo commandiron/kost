@@ -22,6 +22,9 @@ class ProjectConstants {
   final int elevatorNumber;
   final int generatorNumber;
   final int householdAppliancesNumber;
+  final double gardenOutdoorParkingAreaRate;
+  final int carLiftNumber;
+  final int automaticBarrierNumber;
 
   ProjectConstants(
     {
@@ -48,6 +51,9 @@ class ProjectConstants {
       this.elevatorNumber = 1,
       this.generatorNumber = 1,
       this.householdAppliancesNumber = 1,
+      this.gardenOutdoorParkingAreaRate = 0.30,
+      this.carLiftNumber = 1,
+      this.automaticBarrierNumber = 1,
     }
   );
 }

@@ -163,6 +163,18 @@ abstract class QuantityCalculator {
   double get householdAppliancesApartment;
   String get householdAppliancesApartmentExplanation;
 
+  double get landScapeGardenArea;
+  String get landScapeGardenAreaExplanation;
+
+  double get outdoorParkingTileArea;
+  String get outdoorParkingTileAreaExplanation;
+
+  double get carLiftNumber;
+  String get carLiftNumberExplanation;
+
+  double get automaticBarrierNumber;
+  String get automaticBarrierNumberExplanation;
+
   double getQuantityFromJobCategory(JobCategory jobCategory) {
     return switch (jobCategory) {
       JobCategory.shoring => shoringArea,
@@ -219,6 +231,10 @@ abstract class QuantityCalculator {
       JobCategory.electricalInfrastructure => electricalInfrastructureApartment,
       JobCategory.generator => generatorNumber,
       JobCategory.householdAppliances => householdAppliancesApartment,
+      JobCategory.landScapeGarden => landScapeGardenArea,
+      JobCategory.outdoorParkingTile => outdoorParkingTileArea,
+      JobCategory.carLift => carLiftNumber,
+      JobCategory.automaticBarrier => automaticBarrierNumber,
     };
   }
 
@@ -278,6 +294,10 @@ abstract class QuantityCalculator {
       JobCategory.electricalInfrastructure => electricalInfrastructureApartmentExplanation,
       JobCategory.generator => generatorNumberExplanation,
       JobCategory.householdAppliances => householdAppliancesApartmentExplanation,
+      JobCategory.landScapeGarden => landScapeGardenAreaExplanation,
+      JobCategory.outdoorParkingTile => outdoorParkingTileAreaExplanation,
+      JobCategory.carLift => carLiftNumberExplanation,
+      JobCategory.automaticBarrier => automaticBarrierNumberExplanation,
     };
   }
 }
@@ -554,4 +574,24 @@ class InitialQuantityCalculator extends QuantityCalculator {
   double get waterTankNumber => 0;
   @override
   String get waterTankNumberExplanation => "";
+
+  @override
+  double get landScapeGardenArea => 0;
+  @override
+  String get landScapeGardenAreaExplanation => "";
+
+  @override
+  double get outdoorParkingTileArea => 0;
+  @override
+  String get outdoorParkingTileAreaExplanation => "";
+
+  @override
+  double get carLiftNumber => 0;
+  @override
+  String get carLiftNumberExplanation => "";
+
+  @override
+  double get automaticBarrierNumber => 0;
+  @override
+  String get automaticBarrierNumberExplanation => "";
 }

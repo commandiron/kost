@@ -1020,4 +1020,40 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   String get householdAppliancesApartmentExplanation {
     return "Toplam daire sayısı: $_apartmentNumber";
   }
+
+  @override
+  double get landScapeGardenArea {
+    return (_topMostBasementFloor.ceilingArea - _groundFloor.area) * projectConstants.gardenOutdoorParkingAreaRate;
+  }
+  @override
+  String get landScapeGardenAreaExplanation {
+    return "En üst bodrum tavan alanı: ${_topMostBasementFloor.ceilingArea} - Zemin kat alanı: ${_groundFloor.area} x Bahçe Oranı: ${projectConstants.gardenOutdoorParkingAreaRate}";
+  }
+
+  @override
+  double get outdoorParkingTileArea {
+    return (_topMostBasementFloor.ceilingArea - _groundFloor.area) * (1 - projectConstants.gardenOutdoorParkingAreaRate);
+  }
+  @override
+  String get outdoorParkingTileAreaExplanation {
+    return "En üst bodrum tavan alanı: ${_topMostBasementFloor.ceilingArea} - Zemin kat alanı: ${_groundFloor.area} x Açık otopark oranı: 1 - Bahçe Oranı: ${projectConstants.gardenOutdoorParkingAreaRate}";
+  }
+
+  @override
+  double get carLiftNumber {
+    return projectConstants.carLiftNumber.toDouble();
+  }
+  @override
+  String get carLiftNumberExplanation {
+    return "Araç asansörü adedi: ${projectConstants.carLiftNumber}";
+  }
+
+  @override
+  double get automaticBarrierNumber {
+    return projectConstants.automaticBarrierNumber.toDouble();
+  }
+  @override
+  String get automaticBarrierNumberExplanation {
+    return "Otomatik bariyer adedi: ${projectConstants.automaticBarrierNumber}";
+  }
 }
