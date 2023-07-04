@@ -175,6 +175,24 @@ abstract class QuantityCalculator {
   double get automaticBarrierNumber;
   String get automaticBarrierNumberExplanation;
 
+  double get enclosingTheLandLength;
+  String get enclosingTheLandLengthExplanation;
+
+  double get craneHour;
+  String get craneHourExplanation;
+
+  double get siteSafetyMonth;
+  String get siteSafetyMonthExplanation;
+
+  double get officeExpensesMonth;
+  String get officeExpensesMonthExplanation;
+
+  double get sergeantMonth;
+  String get sergeantMonthExplanation;
+
+  double get projectManagerMonth;
+  String get projectManagerMonthExplanation;
+
   double getQuantityFromJobCategory(JobCategory jobCategory) {
     return switch (jobCategory) {
       JobCategory.shoring => shoringArea,
@@ -235,6 +253,14 @@ abstract class QuantityCalculator {
       JobCategory.outdoorParkingTile => outdoorParkingTileArea,
       JobCategory.carLift => carLiftStop,
       JobCategory.automaticBarrier => automaticBarrierNumber,
+      JobCategory.enclosingTheLand => enclosingTheLandLength,
+      JobCategory.mobilizationDemobilization => 1,
+      JobCategory.crane => craneHour,
+      JobCategory.siteSafety => siteSafetyMonth,
+      JobCategory.siteExpenses => officeExpensesMonth,
+      JobCategory.sergeant => sergeantMonth,
+      JobCategory.projectManager => projectManagerMonth,
+      JobCategory.projectsFeesPayments => 1,
     };
   }
 
@@ -298,6 +324,14 @@ abstract class QuantityCalculator {
       JobCategory.outdoorParkingTile => outdoorParkingTileAreaExplanation,
       JobCategory.carLift => carLiftStopExplanation,
       JobCategory.automaticBarrier => automaticBarrierNumberExplanation,
+      JobCategory.enclosingTheLand => enclosingTheLandLengthExplanation,
+      JobCategory.mobilizationDemobilization => "Götürü bedel",
+      JobCategory.crane => craneHourExplanation,
+      JobCategory.siteSafety => siteSafetyMonthExplanation,
+      JobCategory.siteExpenses => officeExpensesMonthExplanation,
+      JobCategory.sergeant => sergeantMonthExplanation,
+      JobCategory.projectManager => projectManagerMonthExplanation,
+      JobCategory.projectsFeesPayments => "Götürü bedel",
     };
   }
 }
@@ -594,4 +628,35 @@ class InitialQuantityCalculator extends QuantityCalculator {
   double get automaticBarrierNumber => 0;
   @override
   String get automaticBarrierNumberExplanation => "";
+
+  @override
+  double get enclosingTheLandLength => 0;
+  @override
+  String get enclosingTheLandLengthExplanation => "";
+
+  @override
+  double get craneHour => 0;
+  @override
+  String get craneHourExplanation => "";
+
+  @override
+  double get siteSafetyMonth => 0;
+  @override
+  String get siteSafetyMonthExplanation => "";
+
+  @override
+  double get officeExpensesMonth => 0;
+  @override
+  String get officeExpensesMonthExplanation => "";
+
+  @override
+  double get sergeantMonth => 0;
+  @override
+  String get sergeantMonthExplanation => "";
+
+  @override
+
+  double get projectManagerMonth => 0;
+  @override
+  String get projectManagerMonthExplanation => "";
 }

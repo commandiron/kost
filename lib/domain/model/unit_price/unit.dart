@@ -1,5 +1,5 @@
 enum Unit {
-  meter, squareMeters, cubicMeters, ton, number, hour, apartment, stop
+  meter, squareMeters, cubicMeters, ton, number, hour, apartment, stop, month, lumpSum,
 }
 extension UnitExtension on Unit {
   String get symbol {
@@ -12,6 +12,8 @@ extension UnitExtension on Unit {
       case Unit.hour : return "saat";
       case Unit.apartment : return "daire";
       case Unit.stop : return "durak";
+      case Unit.lumpSum : return "gtr";
+      case Unit.month : return "ay";
     }
   }
 }

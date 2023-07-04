@@ -332,8 +332,8 @@ class AppData {
     ),
     UnitPrice(
       category: UnitPriceCategory.generatorAksa160,
-      amount: 400000,
-      currency: Currency.lira,
+      amount: 16282,
+      currency: Currency.euro,
       dateTime: DateTime(2023, 01)
     ),
     UnitPrice(
@@ -364,6 +364,54 @@ class AppData {
     UnitPrice(
       category: UnitPriceCategory.automaticBarrier,
       amount: 25000,
+      currency: Currency.lira,
+      dateTime: DateTime(2023, 01)
+    ),
+    UnitPrice(
+      category: UnitPriceCategory.trapezoidalSheetCurtain,
+      amount: 850,
+      currency: Currency.lira,
+      dateTime: DateTime(2023, 01)
+    ),
+    UnitPrice(
+      category: UnitPriceCategory.mobilizationDemobilization,
+      amount: 200000,
+      currency: Currency.lira,
+      dateTime: DateTime(2023, 01)
+    ),
+    UnitPrice(
+      category: UnitPriceCategory.crane10Ton,
+      amount: 5000,
+      currency: Currency.lira,
+      dateTime: DateTime(2023, 01)
+    ),
+    UnitPrice(
+      category: UnitPriceCategory.siteSafety,
+      amount: 5000,
+      currency: Currency.lira,
+      dateTime: DateTime(2023, 01)
+    ),
+    UnitPrice(
+      category: UnitPriceCategory.siteExpenses,
+      amount: 10000,
+      currency: Currency.lira,
+      dateTime: DateTime(2023, 01)
+    ),
+    UnitPrice(
+      category: UnitPriceCategory.sergeantGrossWage,
+      amount: 30000,
+      currency: Currency.lira,
+      dateTime: DateTime(2023, 01)
+    ),
+    UnitPrice(
+      category: UnitPriceCategory.projectManagerGrossWage,
+      amount: 60000,
+      currency: Currency.lira,
+      dateTime: DateTime(2023, 01)
+    ),
+    UnitPrice(
+      category: UnitPriceCategory.projectsFeesPayments,
+      amount: 1000000,
       currency: Currency.lira,
       dateTime: DateTime(2023, 01)
     ),

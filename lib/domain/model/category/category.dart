@@ -9,7 +9,6 @@ enum MainCategory {
   mechanicalJobs,
   electricalJobs,
   landscapeJobs,
-  projectAndLicenseJobs,
   generalExpenses
 }
 
@@ -24,7 +23,6 @@ extension MainCategoryExtension on MainCategory {
       MainCategory.mechanicalJobs => "Mekanik - Tesisat",
       MainCategory.electricalJobs => "Elektrik",
       MainCategory.landscapeJobs => "Peysaj İşleri",
-      MainCategory.projectAndLicenseJobs => "Proje ve Ruhsat İşleri",
       MainCategory.generalExpenses => "Genel Giderler"
     };
   }
@@ -88,7 +86,15 @@ enum JobCategory {
   landScapeGarden([UnitPriceCategory.averageGarden,]),
   outdoorParkingTile([UnitPriceCategory.interlockingPavingStone]),
   carLift([UnitPriceCategory.carLift]),
-  automaticBarrier([UnitPriceCategory.automaticBarrier]);
+  automaticBarrier([UnitPriceCategory.automaticBarrier]),
+  enclosingTheLand([UnitPriceCategory.trapezoidalSheetCurtain]),
+  mobilizationDemobilization([UnitPriceCategory.mobilizationDemobilization]),
+  crane([UnitPriceCategory.crane10Ton]),
+  siteSafety([UnitPriceCategory.siteSafety]),
+  siteExpenses([UnitPriceCategory.siteExpenses]),
+  sergeant([UnitPriceCategory.sergeantGrossWage]),
+  projectManager([UnitPriceCategory.projectManagerGrossWage]),
+  projectsFeesPayments([UnitPriceCategory.projectsFeesPayments]);
 
 const JobCategory(
     this.unitPriceCategories,
@@ -157,6 +163,14 @@ extension JobCategoryExtension on JobCategory {
       JobCategory.outdoorParkingTile => "Açık Otopark Kaplama",
       JobCategory.carLift => "Araç Asansörü",
       JobCategory.automaticBarrier => "Garaj Otomatik Bariyer",
+      JobCategory.enclosingTheLand => "Mevcut yapının etrafının kapatılması",
+      JobCategory.mobilizationDemobilization => "Mobilizasyon - Demobilizasyon",
+      JobCategory.crane => "Vinç",
+      JobCategory.siteSafety => "Şantiye güvenlik önlemleri",
+      JobCategory.siteExpenses => "Şantiye Giderleri",
+      JobCategory.sergeant => "Şantiye Çavuşu",
+      JobCategory.projectManager => "Proje Müdürü",
+      JobCategory.projectsFeesPayments => "Projelerin çizilmesi, resmi harçlar ve ödemeler",
     };
   }
 }

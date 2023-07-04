@@ -7,6 +7,8 @@ import 'floor.dart';
 
 class DetailedQuantityCalculator extends QuantityCalculator {
   final ProjectConstants projectConstants;
+  final double landArea;
+  final double landPerimeter;
   final double excavationPerimeter;
   final double excavationArea;
   final double coreCurtainLength;
@@ -22,6 +24,8 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   DetailedQuantityCalculator(
     {
       required this.projectConstants,
+      required this.landArea,
+      required this.landPerimeter,
       required this.excavationPerimeter,
       required this.excavationArea,
       required this.coreCurtainLength,
@@ -1055,5 +1059,59 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   @override
   String get automaticBarrierNumberExplanation {
     return "Otomatik bariyer adedi: ${projectConstants.automaticBarrierNumber}";
+  }
+
+  @override
+  double get enclosingTheLandLength {
+    return landPerimeter;
+  }
+  @override
+  String get enclosingTheLandLengthExplanation {
+    return "Arsa çevresi: $landPerimeter";
+  }
+
+  @override
+  double get craneHour {
+    return _roughConstructionArea * projectConstants.craneHourForOneSqareMeterRoughConstructionArea;
+  }
+  @override
+  String get craneHourExplanation {
+    return "Kaba inşaat alanı: $_roughConstructionArea x 1 metre kare kaba inşaat alanı için vinç çalışma saati: ${projectConstants.craneHourForOneSqareMeterRoughConstructionArea}";
+  }
+
+  @override
+  double get siteSafetyMonth {
+    return projectConstants.projectDurationMonth;
+  }
+  @override
+  String get siteSafetyMonthExplanation  {
+    return "Proje süresi: ${projectConstants.projectDurationMonth}";
+  }
+
+  @override
+  double get officeExpensesMonth {
+    return projectConstants.projectDurationMonth;
+  }
+  @override
+  String get officeExpensesMonthExplanation {
+    return "Proje süresi: ${projectConstants.projectDurationMonth}";
+  }
+
+  @override
+  double get sergeantMonth {
+    return projectConstants.projectDurationMonth;
+  }
+  @override
+  String get sergeantMonthExplanation {
+    return "Proje süresi: ${projectConstants.projectDurationMonth}";
+  }
+
+  @override
+  double get projectManagerMonth {
+    return projectConstants.projectDurationMonth;
+  }
+  @override
+  String get projectManagerMonthExplanation  {
+    return "Proje süresi: ${projectConstants.projectDurationMonth}";
   }
 }

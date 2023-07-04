@@ -1,4 +1,5 @@
 class ProjectConstants {
+  final double projectDurationMonth;
   final double insulationConcreteHeight;
   final double leanConcreteHeight;
   final double stabilizationHeight;
@@ -19,14 +20,14 @@ class ProjectConstants {
   final double kitchenLength;
   final double coatCabinetArea;
   final int waterTankNumber;
-  final int elevatorNumber;
   final int generatorNumber;
-  final int householdAppliancesNumber;
   final double gardenOutdoorParkingAreaRate;
   final int automaticBarrierNumber;
+  final double craneHourForOneSqareMeterRoughConstructionArea;
 
   ProjectConstants(
     {
+      this.projectDurationMonth = 14,
       this.insulationConcreteHeight = 0.05,
       this.leanConcreteHeight = 0.10,
       this.stabilizationHeight = 0.30,
@@ -47,11 +48,10 @@ class ProjectConstants {
       this.kitchenLength = 5,
       this.coatCabinetArea = 5,
       this.waterTankNumber = 1,
-      this.elevatorNumber = 1,
       this.generatorNumber = 1,
-      this.householdAppliancesNumber = 1,
       this.gardenOutdoorParkingAreaRate = 0.30,
       this.automaticBarrierNumber = 1,
+      this.craneHourForOneSqareMeterRoughConstructionArea = 0.02
     }
   );
 }

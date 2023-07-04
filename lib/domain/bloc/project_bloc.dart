@@ -38,6 +38,8 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
     on<CreateQuantityCalculator>((event, emit) {
       final quantityCalculator = DetailedQuantityCalculator(
         projectConstants: ProjectConstants(),
+        landArea: 806.24,
+        landPerimeter: 117.23,
         excavationPerimeter: 103.07,
         excavationArea: 581.47,
         coreCurtainLength: 30,

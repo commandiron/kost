@@ -136,6 +136,25 @@ class LandscapeCostTemplate extends CostTemplate {
   }
 }
 
+class GeneralExpensesCostTemplate extends CostTemplate {
+  GeneralExpensesCostTemplate(
+      {
+        super.name = "Genel Giderler"
+      }
+      ){
+    enabledCostCategories = const [
+      CostCategory(MainCategory.generalExpenses, JobCategory.enclosingTheLand, UnitPriceCategory.trapezoidalSheetCurtain),
+      CostCategory(MainCategory.generalExpenses, JobCategory.mobilizationDemobilization, UnitPriceCategory.mobilizationDemobilization),
+      CostCategory(MainCategory.generalExpenses, JobCategory.crane, UnitPriceCategory.crane10Ton),
+      CostCategory(MainCategory.generalExpenses, JobCategory.siteSafety, UnitPriceCategory.siteSafety),
+      CostCategory(MainCategory.generalExpenses, JobCategory.siteExpenses, UnitPriceCategory.siteExpenses),
+      CostCategory(MainCategory.generalExpenses, JobCategory.sergeant, UnitPriceCategory.sergeantGrossWage),
+      CostCategory(MainCategory.generalExpenses, JobCategory.projectManager, UnitPriceCategory.projectManagerGrossWage),
+      CostCategory(MainCategory.generalExpenses, JobCategory.projectsFeesPayments, UnitPriceCategory.projectsFeesPayments),
+    ];
+  }
+}
+
 class BuildingCostTemplate extends CostTemplate {
   BuildingCostTemplate(
       {
@@ -148,6 +167,7 @@ class BuildingCostTemplate extends CostTemplate {
       ...FacadeCostTemplate().enabledCostCategories,
       ...InteriorCostTemplate().enabledCostCategories,
       ...LandscapeCostTemplate().enabledCostCategories,
+      ...GeneralExpensesCostTemplate().enabledCostCategories,
     ];
   }
 }

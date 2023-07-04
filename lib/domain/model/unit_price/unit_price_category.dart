@@ -60,7 +60,15 @@ enum UnitPriceCategory {
   averageGarden(Unit.squareMeters),
   interlockingPavingStone(Unit.squareMeters),
   carLift(Unit.stop),
-  automaticBarrier(Unit.number);
+  automaticBarrier(Unit.number),
+  trapezoidalSheetCurtain(Unit.meter),
+  mobilizationDemobilization(Unit.lumpSum),
+  crane10Ton(Unit.hour),
+  siteSafety(Unit.month),
+  siteExpenses(Unit.month),
+  sergeantGrossWage(Unit.month),
+  projectManagerGrossWage(Unit.month),
+  projectsFeesPayments(Unit.lumpSum);
 
   const UnitPriceCategory(
     this.unit,
@@ -131,6 +139,14 @@ extension UnitPriceCategoryExtension on UnitPriceCategory {
       UnitPriceCategory.interlockingPavingStone => "Kilit Taşı",
       UnitPriceCategory.carLift => "Araç Asansörü",
       UnitPriceCategory.automaticBarrier => "Otomatik Bariyer",
+      UnitPriceCategory.trapezoidalSheetCurtain => "Trapez sac çevre perdesi",
+      UnitPriceCategory.mobilizationDemobilization => "Mobilizasyon - Demobilizasyon",
+      UnitPriceCategory.crane10Ton => "10 Ton Vinç",
+      UnitPriceCategory.siteSafety => "Şantiye güvenlik önlemleri",
+      UnitPriceCategory.siteExpenses => "Şantiye, Ofis, Elektrik, Su vb. Giderler",
+      UnitPriceCategory.sergeantGrossWage => "Şantiye Çavuşu Brüt Maaş",
+      UnitPriceCategory.projectManagerGrossWage => "Proje Müdürü Brüt Maaş",
+      UnitPriceCategory.projectsFeesPayments => "Projelerin çizilmesi, resmi harçlar, ödemeler",
     };
   }
 }
