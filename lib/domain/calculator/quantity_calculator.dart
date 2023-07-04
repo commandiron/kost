@@ -169,8 +169,8 @@ abstract class QuantityCalculator {
   double get outdoorParkingTileArea;
   String get outdoorParkingTileAreaExplanation;
 
-  double get carLiftNumber;
-  String get carLiftNumberExplanation;
+  double get carLiftStop;
+  String get carLiftStopExplanation;
 
   double get automaticBarrierNumber;
   String get automaticBarrierNumberExplanation;
@@ -233,7 +233,7 @@ abstract class QuantityCalculator {
       JobCategory.householdAppliances => householdAppliancesApartment,
       JobCategory.landScapeGarden => landScapeGardenArea,
       JobCategory.outdoorParkingTile => outdoorParkingTileArea,
-      JobCategory.carLift => carLiftNumber,
+      JobCategory.carLift => carLiftStop,
       JobCategory.automaticBarrier => automaticBarrierNumber,
     };
   }
@@ -296,7 +296,7 @@ abstract class QuantityCalculator {
       JobCategory.householdAppliances => householdAppliancesApartmentExplanation,
       JobCategory.landScapeGarden => landScapeGardenAreaExplanation,
       JobCategory.outdoorParkingTile => outdoorParkingTileAreaExplanation,
-      JobCategory.carLift => carLiftNumberExplanation,
+      JobCategory.carLift => carLiftStopExplanation,
       JobCategory.automaticBarrier => automaticBarrierNumberExplanation,
     };
   }
@@ -586,9 +586,9 @@ class InitialQuantityCalculator extends QuantityCalculator {
   String get outdoorParkingTileAreaExplanation => "";
 
   @override
-  double get carLiftNumber => 0;
+  double get carLiftStop => 0;
   @override
-  String get carLiftNumberExplanation => "";
+  String get carLiftStopExplanation => "";
 
   @override
   double get automaticBarrierNumber => 0;

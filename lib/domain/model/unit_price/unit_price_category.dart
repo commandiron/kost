@@ -58,7 +58,7 @@ enum UnitPriceCategory {
   fullSetFranke(Unit.apartment),
   averageGarden(Unit.squareMeters),
   interlockingPavingStone(Unit.squareMeters),
-  carLift2Stop(Unit.number),
+  carLift(Unit.stop),
   automaticBarrier(Unit.number);
 
   const UnitPriceCategory(
@@ -127,7 +127,7 @@ extension UnitPriceCategoryExtension on UnitPriceCategory {
       UnitPriceCategory.fullSetFranke => "Franke Ankastre Beyaz Eşya Seti",
       UnitPriceCategory.averageGarden => "Bahçe, Çim, Ağaç vs.",
       UnitPriceCategory.interlockingPavingStone => "Kilit Taşı",
-      UnitPriceCategory.carLift2Stop => "2 Durak Araç Asansörü",
+      UnitPriceCategory.carLift => "2 Durak Araç Asansörü",
       UnitPriceCategory.automaticBarrier => "Otomatik Bariyer",
     };
   }

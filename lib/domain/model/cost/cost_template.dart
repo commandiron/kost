@@ -129,7 +129,7 @@ class LandscapeCostTemplate extends CostTemplate {
     enabledCostCategories = const [
       CostCategory(MainCategory.landscapeJobs, JobCategory.landScapeGarden, UnitPriceCategory.averageGarden),
       CostCategory(MainCategory.landscapeJobs, JobCategory.outdoorParkingTile, UnitPriceCategory.interlockingPavingStone),
-      CostCategory(MainCategory.landscapeJobs, JobCategory.carLift, UnitPriceCategory.carLift2Stop),
+      CostCategory(MainCategory.landscapeJobs, JobCategory.carLift, UnitPriceCategory.carLift),
       CostCategory(MainCategory.landscapeJobs, JobCategory.automaticBarrier, UnitPriceCategory.automaticBarrier),
     ];
   }

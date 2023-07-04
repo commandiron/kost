@@ -347,9 +347,10 @@ class AppData {
       dateTime: DateTime(2023, 01)
     ),
     UnitPrice(
-      category: UnitPriceCategory.carLift2Stop,
-      amount: 1040000,
-      currency: Currency.lira,
+      category: UnitPriceCategory.carLift,
+      fixedAmount: 25000,
+      amount: 5000,
+      currency: Currency.euro,
       dateTime: DateTime(2023, 01)
     ),
     UnitPrice(

@@ -4,6 +4,7 @@ import 'currency.dart';
 class UnitPrice {
   UnitPriceCategory category;
   double amount;
+  double fixedAmount;
   Currency currency;
   DateTime dateTime;
 
@@ -11,6 +12,7 @@ class UnitPrice {
     {
       required this.category,
       required this.amount,
+      this.fixedAmount = 0,
       required this.currency,
       required this.dateTime,
     }

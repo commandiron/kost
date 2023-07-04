@@ -23,12 +23,14 @@ class CostItem {
       required this.quantityExplanation,
       required this.currencyRates,
     }
-  ) : totalPriceTRY = unitPrice.amount * quantity * unitPrice.currency.toLiraRate(currencyRates);
+  ) : totalPriceTRY = (unitPrice.fixedAmount * unitPrice.currency.toLiraRate(currencyRates)) + (unitPrice.amount * quantity * unitPrice.currency.toLiraRate(currencyRates));
 
   UiCostItem toUiCostItem() {
     return UiCostItem(
       category: category,
-      formattedUnitPrice: "${NumberFormat("#,##0.00", "tr_TR").format(unitPrice.amount)} ${unitPrice.currency.symbol}/${unitPrice.category.unit.symbol}",
+      formattedUnitPrice: unitPrice.fixedAmount != 0
+        ? "${NumberFormat("#,##0.00", "tr_TR").format(unitPrice.fixedAmount)} ${unitPrice.currency.symbol} + ${NumberFormat("#,##0.00", "tr_TR").format(unitPrice.amount)} ${unitPrice.currency.symbol}/${unitPrice.category.unit.symbol}"
+        : "${NumberFormat("#,##0.00", "tr_TR").format(unitPrice.amount)} ${unitPrice.currency.symbol}/${unitPrice.category.unit.symbol}",
       formattedQuantity: "${NumberFormat("#,##0.00", "tr_TR").format(quantity)} ${unitPrice.category.unit.symbol}",
       quantityExplanation: quantityExplanation,
       totalPriceTRY: totalPriceTRY,

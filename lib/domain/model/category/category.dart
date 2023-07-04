@@ -87,7 +87,7 @@ enum JobCategory {
   householdAppliances([UnitPriceCategory.fullSetFranke]),
   landScapeGarden([UnitPriceCategory.averageGarden,]),
   outdoorParkingTile([UnitPriceCategory.interlockingPavingStone]),
-  carLift([UnitPriceCategory.carLift2Stop]),
+  carLift([UnitPriceCategory.carLift]),
   automaticBarrier([UnitPriceCategory.automaticBarrier]);
 
 const JobCategory(

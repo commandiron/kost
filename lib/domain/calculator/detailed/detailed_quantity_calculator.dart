@@ -1040,12 +1040,12 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   }
 
   @override
-  double get carLiftNumber {
-    return projectConstants.carLiftNumber.toDouble();
+  double get carLiftStop {
+    return _basementFloors.length + 1;
   }
   @override
-  String get carLiftNumberExplanation {
-    return "Araç asansörü adedi: ${projectConstants.carLiftNumber}";
+  String get carLiftStopExplanation {
+    return "Bodrum kat adedi: ${_basementFloors.length} + 1(Zemin Kat)";
   }
 
   @override
