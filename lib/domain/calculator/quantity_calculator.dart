@@ -133,8 +133,8 @@ abstract class QuantityCalculator {
   double get waterTankNumber;
   String get waterTankNumberExplanation;
 
-  double get elevationNumber;
-  String get elevationNumberExplanation;
+  double get elevationStop;
+  String get elevationStopExplanation;
 
   double get sinkNumber;
   String get sinkNumberExplanation;
@@ -221,7 +221,7 @@ abstract class QuantityCalculator {
       JobCategory.airConditioner => airConditionerNumber,
       JobCategory.ventilation => ventilationArea,
       JobCategory.waterTank => waterTankNumber,
-      JobCategory.elevation => elevationNumber,
+      JobCategory.elevation => elevationStop,
       JobCategory.sink => sinkNumber,
       JobCategory.sinkBattery => sinkBatteryNumber,
       JobCategory.concealedCistern => concealedCisternNumber,
@@ -284,7 +284,7 @@ abstract class QuantityCalculator {
       JobCategory.airConditioner => airConditionerNumberExplanation,
       JobCategory.ventilation => ventilationAreaExplanation,
       JobCategory.waterTank => waterTankNumberExplanation,
-      JobCategory.elevation => elevationNumberExplanation,
+      JobCategory.elevation => elevationStopExplanation,
       JobCategory.sink => sinkNumberExplanation,
       JobCategory.sinkBattery => sinkBatteryNumberExplanation,
       JobCategory.concealedCistern => concealedCisternNumberExplanation,
@@ -506,9 +506,9 @@ class InitialQuantityCalculator extends QuantityCalculator {
   String get electricalInfrastructureApartmentExplanation => "";
 
   @override
-  double get elevationNumber => 0;
+  double get elevationStop => 0;
   @override
-  String get elevationNumberExplanation => "";
+  String get elevationStopExplanation => "";
 
   @override
   double get floorPlinthLength => 0;

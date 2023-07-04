@@ -932,12 +932,12 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   }
 
   @override
-  double get elevationNumber {
-    return projectConstants.elevatorNumber.toDouble();
+  double get elevationStop {
+    return (_basementFloors.length + 1 + _normalFloors.length).toDouble();
   }
   @override
-  String get elevationNumberExplanation {
-    return "Asansör adedi: ${projectConstants.elevatorNumber}";
+  String get elevationStopExplanation {
+    return "Bodrum kat adedi: ${_basementFloors.length} + 1(Zemin Kat) + Normal kat adedi: ${_normalFloors.length}";
   }
 
   @override

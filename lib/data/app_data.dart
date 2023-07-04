@@ -275,9 +275,17 @@ class AppData {
       dateTime: DateTime(2023, 01)
     ),
     UnitPrice(
-      category: UnitPriceCategory.elevation10Person10StopKone,
-      amount: 900000,
-      currency: Currency.lira,
+      category: UnitPriceCategory.elevation10PersonKone,
+      fixedAmount: 30000,
+      amount: 1000,
+      currency: Currency.euro,
+      dateTime: DateTime(2023, 01)
+    ),
+    UnitPrice(
+      category: UnitPriceCategory.elevation6PersonKone,
+      fixedAmount: 20000,
+      amount: 1000,
+      currency: Currency.euro,
       dateTime: DateTime(2023, 01)
     ),
     UnitPrice(

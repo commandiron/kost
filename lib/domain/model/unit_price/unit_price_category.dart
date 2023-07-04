@@ -46,7 +46,8 @@ enum UnitPriceCategory {
   airConditionerArcelik(Unit.number),
   ventilation(Unit.squareMeters),
   galvanize25TonWaterTankEsinoks(Unit.number),
-  elevation10Person10StopKone(Unit.number),
+  elevation10PersonKone(Unit.stop),
+  elevation6PersonKone(Unit.stop),
   sinkVitra(Unit.number),
   sinkBatteryVitra(Unit.number),
   concealedCisternVitra(Unit.number),
@@ -115,7 +116,8 @@ extension UnitPriceCategoryExtension on UnitPriceCategory {
       UnitPriceCategory.airConditionerArcelik => "Arçelik Klima",
       UnitPriceCategory.ventilation => "Havalandırma",
       UnitPriceCategory.galvanize25TonWaterTankEsinoks => "Esinoks 25 Ton Galvaniz Su Deposu",
-      UnitPriceCategory.elevation10Person10StopKone => "Kone 10 Kişilik Asansör 10 Durak",
+      UnitPriceCategory.elevation10PersonKone => "Kone 10 Kişilik Asansör",
+      UnitPriceCategory.elevation6PersonKone => "Kone 6 Kişilik Asansör",
       UnitPriceCategory.sinkVitra => "Vitra Lavabo",
       UnitPriceCategory.sinkBatteryVitra => "Vitra Lavabo Bataryası",
       UnitPriceCategory.concealedCisternVitra => "Vitra Gömme Rezervuar ve Tuvalet Taşı",
@@ -127,7 +129,7 @@ extension UnitPriceCategoryExtension on UnitPriceCategory {
       UnitPriceCategory.fullSetFranke => "Franke Ankastre Beyaz Eşya Seti",
       UnitPriceCategory.averageGarden => "Bahçe, Çim, Ağaç vs.",
       UnitPriceCategory.interlockingPavingStone => "Kilit Taşı",
-      UnitPriceCategory.carLift => "2 Durak Araç Asansörü",
+      UnitPriceCategory.carLift => "Araç Asansörü",
       UnitPriceCategory.automaticBarrier => "Otomatik Bariyer",
     };
   }

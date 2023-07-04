@@ -75,7 +75,7 @@ enum JobCategory {
   airConditioner([UnitPriceCategory.airConditionerArcelik]),
   ventilation([UnitPriceCategory.ventilation]),
   waterTank([UnitPriceCategory.galvanize25TonWaterTankEsinoks]),
-  elevation([UnitPriceCategory.elevation10Person10StopKone]),
+  elevation([UnitPriceCategory.elevation10PersonKone]),
   sink([UnitPriceCategory.sinkVitra]),
   sinkBattery([UnitPriceCategory.sinkBatteryVitra]),
   concealedCistern([UnitPriceCategory.concealedCisternVitra]),
