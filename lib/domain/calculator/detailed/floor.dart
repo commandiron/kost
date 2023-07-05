@@ -69,7 +69,7 @@ class Floor {
     ...normalTypes
   ];
 
-  static List<Floor> duplicateFloors(Floor floor, int count) {
+  static List<Floor> duplicateFloorsWithTypeOrdered(Floor floor, int count) {
 
     if(floor.type == FloorType.b3 || floor.type == FloorType.b2 || floor.type == FloorType.b3) {
       throw(Exception("Basements cannot be duplicate"));

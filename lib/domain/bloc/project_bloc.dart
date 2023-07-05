@@ -48,7 +48,7 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
         elevationTowerArea: 30,
         elevationTowerHeightWithoutSlab: 3,
         floors: [
-          ...Floor.duplicateFloors(
+          ...Floor.duplicateFloorsWithTypeOrdered(
             Floor(
               ceilingArea: 190,
               ceilingPerimeter: 62.8,
