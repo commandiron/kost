@@ -44,7 +44,7 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
         excavationArea: 581.47,
         coreCurtainLength: 30,
         curtainsExceeding1MeterLength: 10,
-        columnsLess1MeterLengthPerimeter: 20,
+        columnsLess1MeterPerimeter: 20,
         elevationTowerArea: 30,
         elevationTowerHeightWithoutSlab: 3,
         floors: [

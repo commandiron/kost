@@ -9,11 +9,11 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   final ProjectConstants projectConstants;
   final double landArea;
   final double landPerimeter;
-  final double excavationPerimeter;
   final double excavationArea;
+  final double excavationPerimeter;
   final double coreCurtainLength;
   final double curtainsExceeding1MeterLength;
-  final double columnsLess1MeterLengthPerimeter;
+  final double columnsLess1MeterPerimeter;
   final double elevationTowerArea;
   final double elevationTowerHeightWithoutSlab;
   final List<Floor> floors;
@@ -26,11 +26,11 @@ class DetailedQuantityCalculator extends QuantityCalculator {
       required this.projectConstants,
       required this.landArea,
       required this.landPerimeter,
-      required this.excavationPerimeter,
       required this.excavationArea,
+      required this.excavationPerimeter,
       required this.coreCurtainLength,
       required this.curtainsExceeding1MeterLength,
-      required this.columnsLess1MeterLengthPerimeter,
+      required this.columnsLess1MeterPerimeter,
       required this.elevationTowerArea,
       required this.elevationTowerHeightWithoutSlab,
       required this.floors,
@@ -140,7 +140,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   }
 
   double get _columnsSurfaceArea {
-    return columnsLess1MeterLengthPerimeter * _buildingHeightWithoutSlabs;
+    return columnsLess1MeterPerimeter * _buildingHeightWithoutSlabs;
   }
 
   double get _basementsOuterCurtainAreaWithoutSlab {
