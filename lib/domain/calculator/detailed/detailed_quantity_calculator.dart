@@ -941,7 +941,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   }
   @override
   String get elevationStopExplanation {
-    return "Bodrum kat adedi: ${_basementFloors.length} + 1(Zemin Kat) + Normal kat adedi: ${_normalFloors.length}";
+    return "Bodrum kat adedi: ${_basementFloors.length} + Zemin kat adedi: 1 + Normal kat adedi: ${_normalFloors.length}";
   }
 
   @override
@@ -1049,7 +1049,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   }
   @override
   String get carLiftStopExplanation {
-    return "Bodrum kat adedi: ${_basementFloors.length} + 1(Zemin Kat)";
+    return "Bodrum kat adedi: ${_basementFloors.length} + Zemin kat adedi: 1";
   }
 
   @override
