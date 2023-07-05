@@ -1,4 +1,3 @@
-import 'package:kost/domain/calculator/detailed/floor_area.dart';
 import 'package:kost/domain/calculator/detailed/project_constants.dart';
 import 'package:kost/domain/calculator/detailed/room.dart';
 
@@ -264,11 +263,9 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   double get _totalInteriorWetFloorArea {
     double area = 0;
     for (var floor in floors) {
-      for (var buildingArea in floor.floorAreas) {
-        for (var room in buildingArea.rooms) {
-          if (room.isFloorWet) {
-            area += room.area;
-          }
+      for (var room in floor.rooms) {
+        if (room.isFloorWet) {
+          area += room.area;
         }
       }
     }
@@ -278,11 +275,9 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   double get _totalDryWallArea {
     double area = 0;
     for (var floor in floors) {
-      for (var buildingArea in floor.floorAreas) {
-        for (var room in buildingArea.rooms) {
-          if (room.ceilingMaterial == CeilingMaterial.drywall) {
-            area += room.area;
-          }
+      for (var room in floor.rooms) {
+        if (room.ceilingMaterial == CeilingMaterial.drywall) {
+          area += room.area;
         }
       }
     }
@@ -292,11 +287,9 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   double get _totalCovingPlasterLength {
     double length = 0;
     for (var floor in floors) {
-      for (var buildingArea in floor.floorAreas) {
-        for (var room in buildingArea.rooms) {
-          if (room.hasCovingPlaster) {
-            length += room.perimeter;
-          }
+      for (var room in floor.rooms) {
+        if (room.hasCovingPlaster) {
+          length += room.perimeter;
         }
       }
     }
@@ -306,11 +299,9 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   double get _totalScreedArea {
     double area = 0;
     for (var floor in floors) {
-      for (var buildingArea in floor.floorAreas) {
-        for (var room in buildingArea.rooms) {
-          if (room.hasScreed) {
-            area += room.area;
-          }
+      for (var room in floor.rooms) {
+        if (room.hasScreed) {
+          area += room.area;
         }
       }
     }
@@ -320,11 +311,9 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   double get _totalMarbleArea {
     double area = 0;
     for (var floor in floors) {
-      for (var buildingArea in floor.floorAreas) {
-        for (var room in buildingArea.rooms) {
-          if (room.floorMaterial == FloorMaterial.marble) {
-            area += room.area;
-          }
+      for (var room in floor.rooms) {
+        if (room.floorMaterial == FloorMaterial.marble) {
+          area += room.area;
         }
       }
     }
@@ -354,11 +343,9 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   double get _totalCeramicFloorArea {
     double area = 0;
     for (var floor in floors) {
-      for (var buildingArea in floor.floorAreas) {
-        for (var room in buildingArea.rooms) {
-          if (room.floorMaterial == FloorMaterial.ceramic) {
-            area += room.area;
-          }
+      for (var room in floor.rooms) {
+        if (room.floorMaterial == FloorMaterial.ceramic) {
+          area += room.area;
         }
       }
     }
@@ -368,11 +355,9 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   double get _totalCeramicWallArea {
     double area = 0;
     for (var floor in floors) {
-      for (var buildingArea in floor.floorAreas) {
-        for (var room in buildingArea.rooms) {
-          if (room.wallMaterial == WallMaterial.ceramic) {
-            area += room.perimeter * floor.heightWithoutSlab;
-          }
+      for (var room in floor.rooms) {
+        if (room.wallMaterial == WallMaterial.ceramic) {
+          area += room.perimeter * floor.heightWithoutSlab;
         }
       }
     }
@@ -382,11 +367,9 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   double get _totalParquetFloorArea {
     double area = 0;
     for (var floor in floors) {
-      for (var buildingArea in floor.floorAreas) {
-        for (var room in buildingArea.rooms) {
-          if (room.floorMaterial == FloorMaterial.parquet) {
-            area += room.area;
-          }
+      for (var room in floor.rooms) {
+        if (room.floorMaterial == FloorMaterial.parquet) {
+          area += room.area;
         }
       }
     }
@@ -396,9 +379,13 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   int get _steelDoorNumber {
     int number = 0;
     for (var floor in floors) {
-      for (var buildingArea in floor.floorAreas) {
-        if(buildingArea is Apartment) {
-          number ++;
+      for (var room in floor.rooms) {
+        if(room.doors != null) {
+          for(var door in room.doors!) {
+            if(door.doorType == DoorType.entranceDoor) {
+              number += door.count;
+            }
+          }
         }
       }
     }
@@ -408,11 +395,11 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   int get _woodenDoorNumber {
     int number = 0;
     for (var floor in floors) {
-      for (var buildingArea in floor.floorAreas) {
-        if(buildingArea is Apartment) {
-          for (var room in buildingArea.rooms) {
-            if(room is Saloon || room is SaloonWithKitchen || room is NormalRoom || room is Kitchen || room is Wc || room is Bathroom) {
-              number ++;
+      for (var room in floor.rooms) {
+        if(room.doors != null) {
+          for(var door in room.doors!) {
+            if(door.doorType == DoorType.roomDoor) {
+              number += door.count;
             }
           }
         }
@@ -424,28 +411,13 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   int get _fireDoorNumber {
     int number = 0;
     for (var floor in floors) {
-      for (var buildingArea in floor.floorAreas) {
-        if(buildingArea is Apartment) {
-          number += 2;
-        }
-        if(buildingArea is CommonArea) {
-          for (var room in buildingArea.rooms) {
-            if(room is TechnicalArea) {
-              number ++;
+      for (var room in floor.rooms) {
+        if(room.doors != null) {
+          for(var door in room.doors!) {
+            if(door.doorType == DoorType.fireDoor) {
+              number += door.count;
             }
           }
-        }
-      }
-    }
-    return number;
-  }
-
-  int get _airConditionerNumber {
-    int number = 0;
-    for (var floor in floors) {
-      for (var buildingArea in floor.floorAreas) {
-        if(buildingArea is Apartment) {
-          number += projectConstants.airConditionerNumberForOneApartment;
         }
       }
     }
@@ -455,11 +427,9 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   int get _kitchenNumber {
     int number = 0;
     for (var floor in floors) {
-      for (var buildingArea in floor.floorAreas) {
-        for (var room in buildingArea.rooms) {
-          if(room is Kitchen || room is SaloonWithKitchen) {
-            number ++;
-          }
+      for (var room in floor.rooms) {
+        if(room is Kitchen || room is SaloonWithKitchen) {
+          number ++;
         }
       }
     }
@@ -469,11 +439,9 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   int get _bathroomNumber {
     int number = 0;
     for (var floor in floors) {
-      for (var buildingArea in floor.floorAreas) {
-        for (var room in buildingArea.rooms) {
-          if(room is Bathroom) {
-            number ++;
-          }
+      for (var room in floor.rooms) {
+        if(room is Bathroom || room is EscapeHallBathroom) {
+          number ++;
         }
       }
     }
@@ -483,22 +451,8 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   int get _toiletNumber {
     int number = 0;
     for (var floor in floors) {
-      for (var buildingArea in floor.floorAreas) {
-        for (var room in buildingArea.rooms) {
-          if(room is Bathroom || room is Wc) {
-            number ++;
-          }
-        }
-      }
-    }
-    return number;
-  }
-
-  int get _apartmentNumber {
-    int number = 0;
-    for (var floor in floors) {
-      for (var buildingArea in floor.floorAreas) {
-        if(buildingArea is Apartment) {
+      for (var room in floor.rooms) {
+        if(room is Bathroom || room is EscapeHallBathroom || room is Wc || room is EscapeHallWc) {
           number ++;
         }
       }
@@ -506,14 +460,16 @@ class DetailedQuantityCalculator extends QuantityCalculator {
     return number;
   }
 
+  int get _apartmentNumber {
+    return _steelDoorNumber;
+  }
+
   double get _totalFloorPlinthLength {
     double length = 0;
     for (var floor in floors) {
-      for (var buildingArea in floor.floorAreas) {
-        for (var room in buildingArea.rooms) {
-          if (room.hasFloorPlinth) {
-            length += room.perimeter;
-          }
+      for (var room in floor.rooms) {
+        if (room.hasFloorPlinth) {
+          length += room.perimeter;
         }
       }
     }
@@ -910,11 +866,11 @@ class DetailedQuantityCalculator extends QuantityCalculator {
 
   @override
   double get airConditionerNumber {
-    return _airConditionerNumber.toDouble();
+    return _apartmentNumber * projectConstants.airConditionerNumberForOneApartment.toDouble();
   }
   @override
   String get airConditionerNumberExplanation {
-    return "Toplam klima sayısı: $_airConditionerNumber";
+    return "Toplam daire sayısı: $_apartmentNumber x 1 daire için klima sayısı: ${projectConstants.airConditionerNumberForOneApartment}";
   }
 
   @override

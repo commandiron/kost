@@ -1,7 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:kost/data/app_data.dart';
-import 'package:kost/domain/calculator/detailed/floor_area.dart';
 import 'package:kost/domain/calculator/detailed/detailed_quantity_calculator.dart';
 import 'package:kost/domain/calculator/detailed/project_constants.dart';
 import 'package:kost/domain/calculator/detailed/room.dart';
@@ -62,31 +61,21 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
               windows: [
                 Window(width: 17, height: 2.2, hasRailing: true, hasWindowsill: true, count: 1),
               ],
-              floorAreas: [
-                Apartment(
-                  rooms: [
-                    SaloonWithKitchen(area: 30.87, perimeter: 32),
-                    NormalRoom(area: 12.95, perimeter: 14.4),
-                    NormalRoom(area: 8.93, perimeter: 12),
-                    Bathroom(area: 3.19, perimeter: 7.5),
-                    Bathroom(area: 4.38, perimeter: 8.5),
-                  ]
-                ),
-                Apartment(
-                  rooms: [
-                    SaloonWithKitchen(area: 33, perimeter: 30.7),
-                    NormalRoom(area: 15.4, perimeter: 16.5),
-                    NormalRoom(area: 10.88, perimeter: 13.2),
-                    Bathroom(area: 3.19, perimeter: 7.5),
-                    Bathroom(area: 5.08, perimeter: 9.3),
-                  ]
-                ),
-                CommonArea(
-                  rooms: [
-                    BuildingHall(area: 11.1, perimeter: 20.9),
-                    BuildingHall(area: 8.1, perimeter: 13.8),
-                  ]
-                )
+              rooms: [
+                Entree(area: 0, perimeter: 0),
+                SaloonWithKitchen(area: 30.87, perimeter: 32),
+                NormalRoom(area: 12.95, perimeter: 14.4),
+                NormalRoom(area: 8.93, perimeter: 12),
+                Bathroom(area: 3.19, perimeter: 7.5),
+                Bathroom(area: 4.38, perimeter: 8.5),
+                Entree(area: 0, perimeter: 0),
+                SaloonWithKitchen(area: 33, perimeter: 30.7),
+                NormalRoom(area: 15.4, perimeter: 16.5),
+                NormalRoom(area: 10.88, perimeter: 13.2),
+                Bathroom(area: 3.19, perimeter: 7.5),
+                Bathroom(area: 5.08, perimeter: 9.3),
+                BuildingHall(area: 11.1, perimeter: 20.9),
+                BuildingHall(area: 8.1, perimeter: 13.8),
               ],
               type: FloorType.k1,
             ),
@@ -105,29 +94,19 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
             windows: [
               Window(width: 14, height: 2.2, hasRailing: true, hasWindowsill: true, count: 1),
             ],
-            floorAreas: [
-              Apartment(
-                rooms: [
-                  SaloonWithKitchen(area: 33.61, perimeter: 29.3),
-                  NormalRoom(area: 12.6, perimeter: 14.2),
-                  Bathroom(area: 3.18, perimeter: 7.5),
-                  Bathroom(area: 4.13, perimeter: 8.3),
-                ]
-              ),
-              Apartment(
-                rooms: [
-                  SaloonWithKitchen(area: 33.5, perimeter: 29.2),
-                  NormalRoom(area: 13.29, perimeter: 15.3),
-                  Bathroom(area: 3.18, perimeter: 7.5),
-                  Bathroom(area: 4.13, perimeter: 8.3),
-                ]
-              ),
-              CommonArea(
-                rooms: [
-                  BuildingHall(area: 11.1, perimeter: 20.9),
-                  BuildingHall(area: 15.92, perimeter: 21.1),
-                ]
-              )
+            rooms: [
+              Entree(area: 0, perimeter: 0),
+              SaloonWithKitchen(area: 33.61, perimeter: 29.3),
+              NormalRoom(area: 12.6, perimeter: 14.2),
+              Bathroom(area: 3.18, perimeter: 7.5),
+              Bathroom(area: 4.13, perimeter: 8.3),
+              Entree(area: 0, perimeter: 0),
+              SaloonWithKitchen(area: 33.5, perimeter: 29.2),
+              NormalRoom(area: 13.29, perimeter: 15.3),
+              Bathroom(area: 3.18, perimeter: 7.5),
+              Bathroom(area: 4.13, perimeter: 8.3),
+              BuildingHall(area: 11.1, perimeter: 20.9),
+              BuildingHall(area: 15.92, perimeter: 21.1),
             ],
             type: FloorType.z,
           ),
@@ -141,22 +120,18 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
             thickWallLength: 75,
             thinWallLength: 0,
             isCeilingHollowSlab: false,
+            rooms: [
+              ParkingArea(area: 296.25, perimeter: 94.82),
+              TechnicalArea(area: 7.15, perimeter: 10.7),
+              TechnicalArea(area: 7.25, perimeter: 10.8),
+              TechnicalArea(area: 17, perimeter: 16.6),
+              TechnicalArea(area: 52.6, perimeter: 33.6),
+              BuildingHall(area: 11.1, perimeter: 20.9),
+              BuildingHall(area: 6.07, perimeter: 11.1),
+              ElevatorShaft(area: 18.9, perimeter: 18.3),
+              ElevatorShaft(area: 8.61, perimeter: 12.8),
+            ],
             type: FloorType.b1,
-            floorAreas: [
-              CommonArea(
-                rooms: [
-                  ParkingArea(area: 296.25, perimeter: 94.82),
-                  TechnicalArea(area: 7.15, perimeter: 10.7),
-                  TechnicalArea(area: 7.25, perimeter: 10.8),
-                  TechnicalArea(area: 17, perimeter: 16.6),
-                  TechnicalArea(area: 52.6, perimeter: 33.6),
-                  BuildingHall(area: 11.1, perimeter: 20.9),
-                  BuildingHall(area: 6.07, perimeter: 11.1),
-                  ElevatorShaft(area: 18.9, perimeter: 18.3),
-                  ElevatorShaft(area: 8.61, perimeter: 12.8),
-                ]
-              )
-            ]
           ),
         ],
         foundationArea: 477,
