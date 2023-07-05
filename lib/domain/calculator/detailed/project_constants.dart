@@ -19,8 +19,6 @@ class ProjectConstants {
   final double bathroomCabinetArea;
   final double kitchenLength;
   final double coatCabinetArea;
-  final int waterTankNumber;
-  final int generatorNumber;
   final double gardenOutdoorParkingAreaRate;
   final int automaticBarrierNumber;
   final double craneHourForOneSqareMeterRoughConstructionArea;
@@ -47,8 +45,6 @@ class ProjectConstants {
       this.bathroomCabinetArea = 1,
       this.kitchenLength = 5,
       this.coatCabinetArea = 5,
-      this.waterTankNumber = 1,
-      this.generatorNumber = 1,
       this.gardenOutdoorParkingAreaRate = 0.30,
       this.automaticBarrierNumber = 1,
       this.craneHourForOneSqareMeterRoughConstructionArea = 0.02

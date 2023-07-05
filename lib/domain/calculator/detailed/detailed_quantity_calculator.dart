@@ -927,15 +927,6 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   }
 
   @override
-  double get waterTankNumber {
-    return projectConstants.waterTankNumber.toDouble();
-  }
-  @override
-  String get waterTankNumberExplanation {
-    return "Su deposu adedi: ${projectConstants.waterTankNumber}";
-  }
-
-  @override
   double get elevationStop {
     return (_basementFloors.length + 1 + _normalFloors.length).toDouble();
   }
@@ -1005,15 +996,6 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   @override
   String get electricalInfrastructureApartmentExplanation {
     return "Toplam daire sayısı: $_apartmentNumber";
-  }
-
-  @override
-  double get generatorNumber {
-    return projectConstants.generatorNumber.toDouble();
-  }
-  @override
-  String get generatorNumberExplanation {
-    return "Jeneratör adedi: ${projectConstants.generatorNumber}";
   }
 
   @override

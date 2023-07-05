@@ -130,9 +130,6 @@ abstract class QuantityCalculator {
   double get ventilationArea;
   String get ventilationAreaExplanation;
 
-  double get waterTankNumber;
-  String get waterTankNumberExplanation;
-
   double get elevationStop;
   String get elevationStopExplanation;
 
@@ -156,9 +153,6 @@ abstract class QuantityCalculator {
 
   double get electricalInfrastructureApartment;
   String get electricalInfrastructureApartmentExplanation;
-
-  double get generatorNumber;
-  String get generatorNumberExplanation;
 
   double get householdAppliancesApartment;
   String get householdAppliancesApartmentExplanation;
@@ -238,7 +232,7 @@ abstract class QuantityCalculator {
       JobCategory.mechanicalInfrastructure => mechanicalInfrastructureApartment,
       JobCategory.airConditioner => airConditionerNumber,
       JobCategory.ventilation => ventilationArea,
-      JobCategory.waterTank => waterTankNumber,
+      JobCategory.waterTank => 1,
       JobCategory.elevation => elevationStop,
       JobCategory.sink => sinkNumber,
       JobCategory.sinkBattery => sinkBatteryNumber,
@@ -247,7 +241,7 @@ abstract class QuantityCalculator {
       JobCategory.showerBattery => showerBatteryNumber,
       JobCategory.kitchenFaucetAndSink => kitchenFaucetAndSinkNumber,
       JobCategory.electricalInfrastructure => electricalInfrastructureApartment,
-      JobCategory.generator => generatorNumber,
+      JobCategory.generator => 1,
       JobCategory.householdAppliances => householdAppliancesApartment,
       JobCategory.landScapeGarden => landScapeGardenArea,
       JobCategory.outdoorParkingTile => outdoorParkingTileArea,
@@ -309,7 +303,7 @@ abstract class QuantityCalculator {
       JobCategory.mechanicalInfrastructure => mechanicalInfrastructureApartmentExplanation,
       JobCategory.airConditioner => airConditionerNumberExplanation,
       JobCategory.ventilation => ventilationAreaExplanation,
-      JobCategory.waterTank => waterTankNumberExplanation,
+      JobCategory.waterTank => "Götürü bedel",
       JobCategory.elevation => elevationStopExplanation,
       JobCategory.sink => sinkNumberExplanation,
       JobCategory.sinkBattery => sinkBatteryNumberExplanation,
@@ -318,7 +312,7 @@ abstract class QuantityCalculator {
       JobCategory.showerBattery => showerBatteryNumberExplanation,
       JobCategory.kitchenFaucetAndSink => kitchenFaucetAndSinkNumberExplanation,
       JobCategory.electricalInfrastructure => electricalInfrastructureApartmentExplanation,
-      JobCategory.generator => generatorNumberExplanation,
+      JobCategory.generator => "Götürü bedel",
       JobCategory.householdAppliances => householdAppliancesApartmentExplanation,
       JobCategory.landScapeGarden => landScapeGardenAreaExplanation,
       JobCategory.outdoorParkingTile => outdoorParkingTileAreaExplanation,
@@ -550,11 +544,6 @@ class InitialQuantityCalculator extends QuantityCalculator {
   String get floorPlinthLengthExplanation => "";
 
   @override
-  double get generatorNumber => 0;
-  @override
-  String get generatorNumberExplanation => "";
-
-  @override
   double get householdAppliancesApartment => 0;
   @override
   String get householdAppliancesApartmentExplanation => "";
@@ -603,11 +592,6 @@ class InitialQuantityCalculator extends QuantityCalculator {
   double get ventilationArea => 0;
   @override
   String get ventilationAreaExplanation => "";
-
-  @override
-  double get waterTankNumber => 0;
-  @override
-  String get waterTankNumberExplanation => "";
 
   @override
   double get landScapeGardenArea => 0;
