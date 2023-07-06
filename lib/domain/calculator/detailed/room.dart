@@ -64,6 +64,7 @@ class Saloon extends Room {
       super.hasFloorPlinth = true,
       super.hasScreed = true,
       super.isFloorWet = false,
+      super.doors,
     }
   ){
     doors ??= [
@@ -84,11 +85,10 @@ class SaloonWithKitchen extends Room {
       super.hasFloorPlinth = true,
       super.hasScreed = true,
       super.isFloorWet = false,
+      super.doors,
     }
   ){
-    doors ??= [
-      Door(count: 2, doorType: DoorType.room)
-    ];
+    doors ??= [];
   }
 }
 
@@ -104,6 +104,7 @@ class Kitchen extends Room {
       super.hasFloorPlinth = true,
       super.hasScreed = true,
       super.isFloorWet = false,
+      super.doors,
     }
   ){
     doors ??= [
@@ -124,6 +125,7 @@ class NormalRoom extends Room {
       super.hasFloorPlinth = true,
       super.hasScreed = true,
       super.isFloorWet = false,
+      super.doors,
     }
   ){
     doors ??= [
@@ -144,6 +146,7 @@ class ApartmentEntree extends Room {
       super.hasFloorPlinth = true,
       super.hasScreed = true,
       super.isFloorWet = false,
+      super.doors,
     }
   ){
     doors ??= [
@@ -164,6 +167,7 @@ class Hall extends Room {
       super.hasFloorPlinth = true,
       super.hasScreed = true,
       super.isFloorWet = false,
+      super.doors,
     }
   );
 }
@@ -180,6 +184,7 @@ class Wc extends Room {
       super.hasFloorPlinth = false,
       super.hasScreed = true,
       super.isFloorWet = true,
+      super.doors,
     }
   ){
     doors ??= [
@@ -200,6 +205,7 @@ class EscapeHallWc extends Room {
         super.hasFloorPlinth = false,
         super.hasScreed = true,
         super.isFloorWet = true,
+        super.doors,
       }
   ){
     doors ??= [
@@ -220,6 +226,7 @@ class Bathroom extends Room {
       super.hasFloorPlinth = false,
       super.hasScreed = true,
       super.isFloorWet = true,
+      super.doors,
     }
   ){
     doors ??= [
@@ -240,6 +247,7 @@ class EscapeHallBathroom extends Room {
         super.hasFloorPlinth = false,
         super.hasScreed = true,
         super.isFloorWet = true,
+        super.doors,
       }
   ){
     doors ??= [
@@ -261,6 +269,7 @@ class Balcony extends Room {
       super.hasFloorPlinth = false,
       super.hasScreed = true,
       super.isFloorWet = true,
+      super.doors,
     }
   );
 }
@@ -277,6 +286,7 @@ class FloorHall extends Room {
       super.hasFloorPlinth = false,
       super.hasScreed = false,
       super.isFloorWet = false,
+      super.doors,
     }
   );
 }
@@ -293,6 +303,7 @@ class FireEscapeHall extends Room {
       super.hasFloorPlinth = false,
       super.hasScreed = false,
       super.isFloorWet = false,
+      super.doors,
     }
   ){
     doors ??= [
@@ -313,6 +324,7 @@ class BuildingHall extends Room {
       super.hasFloorPlinth = false,
       super.hasScreed = false,
       super.isFloorWet = false,
+      super.doors,
     }
   ){
     doors ??= [
@@ -333,6 +345,7 @@ class ParkingArea extends Room {
       super.hasFloorPlinth = false,
       super.hasScreed = false,
       super.isFloorWet = false,
+      super.doors,
     }
   );
 }
@@ -349,6 +362,7 @@ class TechnicalArea extends Room {
       super.hasFloorPlinth = false,
       super.hasScreed = true,
       super.isFloorWet = false,
+      super.doors,
     }
   ){
     doors ??= [
@@ -369,6 +383,7 @@ class ElevatorShaft extends Room {
       super.hasFloorPlinth = false,
       super.hasScreed = true,
       super.isFloorWet = true,
+      super.doors,
     }
   );
 }
@@ -385,6 +400,7 @@ class StairsShaft extends Room {
       super.hasFloorPlinth = false,
       super.hasScreed = true,
       super.isFloorWet = true,
+      super.doors,
     }
   );
 }
