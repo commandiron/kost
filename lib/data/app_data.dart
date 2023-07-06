@@ -102,9 +102,9 @@ class AppData {
     ),
     UnitPrice(
       category: UnitPriceCategory.steelScaffolding,
-      amount: 135,
+      amount: 208,
       currency: Currency.lira,
-      dateTime: DateTime(2023, 01)
+      dateTime: DateTime(2023, 07)
     ),
     UnitPrice(
       category: UnitPriceCategory.windowJoineryRehau,

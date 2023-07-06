@@ -382,7 +382,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
       for (var room in floor.rooms) {
         if(room.doors != null) {
           for(var door in room.doors!) {
-            if(door.doorType == DoorType.entranceDoor) {
+            if(door.doorType == DoorType.apartmentEntrance) {
               number += door.count;
             }
           }
@@ -398,7 +398,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
       for (var room in floor.rooms) {
         if(room.doors != null) {
           for(var door in room.doors!) {
-            if(door.doorType == DoorType.roomDoor) {
+            if(door.doorType == DoorType.room) {
               number += door.count;
             }
           }
@@ -414,7 +414,23 @@ class DetailedQuantityCalculator extends QuantityCalculator {
       for (var room in floor.rooms) {
         if(room.doors != null) {
           for(var door in room.doors!) {
-            if(door.doorType == DoorType.fireDoor) {
+            if(door.doorType == DoorType.fire) {
+              number += door.count;
+            }
+          }
+        }
+      }
+    }
+    return number;
+  }
+
+  int get _buildingEntranceDoorNumber {
+    int number = 0;
+    for (var floor in floors) {
+      for (var room in floor.rooms) {
+        if(room.doors != null) {
+          for(var door in room.doors!) {
+            if(door.doorType == DoorType.buildingEntrance) {
               number += door.count;
             }
           }
@@ -785,11 +801,11 @@ class DetailedQuantityCalculator extends QuantityCalculator {
 
   @override
   double get entranceDoorArea {
-    return projectConstants.totalEntranceDoorArea;
+    return _buildingEntranceDoorNumber * projectConstants.buildingEntranceDoorArea;
   }
   @override
   String get entranceDoorAreaExplanation {
-    return "Toplam apartman giriş kapısı alanı: ${projectConstants.totalEntranceDoorArea}";
+    return "Apartman giriş kapısı sayısı: $_buildingEntranceDoorNumber + Toplam apartman giriş kapısı alanı: ${projectConstants.buildingEntranceDoorArea}";
   }
 
   @override

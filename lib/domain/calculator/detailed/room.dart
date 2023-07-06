@@ -49,7 +49,7 @@ class Door {
 }
 
 enum DoorType {
-  roomDoor, entranceDoor, fireDoor,
+  buildingEntrance, apartmentEntrance, room, fire,
 }
 
 class Saloon extends Room {
@@ -67,7 +67,7 @@ class Saloon extends Room {
     }
   ){
     doors ??= [
-      Door(count: 2, doorType: DoorType.roomDoor)
+      Door(count: 2, doorType: DoorType.room)
     ];
   }
 }
@@ -87,7 +87,7 @@ class SaloonWithKitchen extends Room {
     }
   ){
     doors ??= [
-      Door(count: 2, doorType: DoorType.roomDoor)
+      Door(count: 2, doorType: DoorType.room)
     ];
   }
 }
@@ -107,7 +107,7 @@ class Kitchen extends Room {
     }
   ){
     doors ??= [
-      Door(count: 1, doorType: DoorType.roomDoor)
+      Door(count: 1, doorType: DoorType.room)
     ];
   }
 }
@@ -127,13 +127,13 @@ class NormalRoom extends Room {
     }
   ){
     doors ??= [
-      Door(count: 1, doorType: DoorType.roomDoor)
+      Door(count: 1, doorType: DoorType.room)
     ];
   }
 }
 
-class Entree extends Room {
-  Entree(
+class ApartmentEntree extends Room {
+  ApartmentEntree(
     {
       required super.area,
       required super.perimeter,
@@ -147,7 +147,7 @@ class Entree extends Room {
     }
   ){
     doors ??= [
-      Door(count: 1, doorType: DoorType.entranceDoor)
+      Door(count: 1, doorType: DoorType.apartmentEntrance)
     ];
   }
 }
@@ -183,7 +183,7 @@ class Wc extends Room {
     }
   ){
     doors ??= [
-      Door(count: 1, doorType: DoorType.roomDoor)
+      Door(count: 1, doorType: DoorType.room)
     ];
   }
 }
@@ -203,7 +203,7 @@ class EscapeHallWc extends Room {
       }
   ){
     doors ??= [
-      Door(count: 2, doorType: DoorType.fireDoor)
+      Door(count: 2, doorType: DoorType.fire)
     ];
   }
 }
@@ -223,7 +223,7 @@ class Bathroom extends Room {
     }
   ){
     doors ??= [
-      Door(count: 1, doorType: DoorType.roomDoor)
+      Door(count: 1, doorType: DoorType.room)
     ];
   }
 }
@@ -243,7 +243,7 @@ class EscapeHallBathroom extends Room {
       }
   ){
     doors ??= [
-      Door(count: 2, doorType: DoorType.fireDoor)
+      Door(count: 2, doorType: DoorType.fire)
     ];
   }
 }
@@ -265,6 +265,42 @@ class Balcony extends Room {
   );
 }
 
+class FloorHall extends Room {
+  FloorHall(
+    {
+      required super.area,
+      required super.perimeter,
+      super.floorMaterial = FloorMaterial.marble,
+      super.wallMaterial = WallMaterial.painting,
+      super.ceilingMaterial = CeilingMaterial.drywall,
+      super.hasCovingPlaster = false,
+      super.hasFloorPlinth = false,
+      super.hasScreed = false,
+      super.isFloorWet = false,
+    }
+  );
+}
+
+class FireEscapeHall extends Room {
+  FireEscapeHall(
+    {
+      required super.area,
+      required super.perimeter,
+      super.floorMaterial = FloorMaterial.marble,
+      super.wallMaterial = WallMaterial.painting,
+      super.ceilingMaterial = CeilingMaterial.none,
+      super.hasCovingPlaster = false,
+      super.hasFloorPlinth = false,
+      super.hasScreed = false,
+      super.isFloorWet = false,
+    }
+  ){
+    doors ??= [
+      Door(count: 2, doorType: DoorType.fire)
+    ];
+  }
+}
+
 class BuildingHall extends Room {
   BuildingHall(
     {
@@ -278,7 +314,11 @@ class BuildingHall extends Room {
       super.hasScreed = false,
       super.isFloorWet = false,
     }
-  );
+  ){
+    doors ??= [
+      Door(count: 1, doorType: DoorType.buildingEntrance)
+    ];
+  }
 }
 
 class ParkingArea extends Room {
@@ -312,27 +352,7 @@ class TechnicalArea extends Room {
     }
   ){
     doors ??= [
-      Door(count: 1, doorType: DoorType.fireDoor)
-    ];
-  }
-}
-
-class FireEscapeHall extends Room {
-  FireEscapeHall(
-    {
-      required super.area,
-      required super.perimeter,
-      super.floorMaterial = FloorMaterial.marble,
-      super.wallMaterial = WallMaterial.painting,
-      super.ceilingMaterial = CeilingMaterial.none,
-      super.hasCovingPlaster = false,
-      super.hasFloorPlinth = false,
-      super.hasScreed = false,
-      super.isFloorWet = false,
-    }
-  ){
-    doors ??= [
-      Door(count: 2, doorType: DoorType.fireDoor)
+      Door(count: 1, doorType: DoorType.fire)
     ];
   }
 }

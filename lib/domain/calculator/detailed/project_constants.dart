@@ -14,7 +14,7 @@ class ProjectConstants {
   final double stairTreadDepth;
   final double mainStairsStepLength;
   final double fireStairsStepLength;
-  final double totalEntranceDoorArea;
+  final double buildingEntranceDoorArea;
   final int airConditionerNumberForOneApartment;
   final double bathroomCabinetArea;
   final double kitchenLength;
@@ -40,7 +40,7 @@ class ProjectConstants {
       this.stairTreadDepth = 0.26,
       this.mainStairsStepLength = 1,
       this.fireStairsStepLength = 1,
-      this.totalEntranceDoorArea = 6,
+      this.buildingEntranceDoorArea = 6,
       this.airConditionerNumberForOneApartment = 2,
       this.bathroomCabinetArea = 1,
       this.kitchenLength = 5,
