@@ -9,7 +9,7 @@ import 'package:kost/domain/model/unit_price/unit_price_category.dart';
 import '../domain/bloc/project_bloc.dart';
 import '../domain/bloc/project_event.dart';
 import '../domain/bloc/project_state.dart';
-import 'model/ui_cost_item.dart';
+import '../domain/model/cost/cost_item.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -26,15 +26,22 @@ class HomeScreen extends StatelessWidget {
                 SliverToBoxAdapter(
                   child: Column(
                     children: [
-                      Text(state.costTemplate.name, style: const TextStyle(fontSize: 26),),
-                      GroupedListView<UiCostItem, String>(
+                      Text(
+                        state.costTemplate.name,
+                        style: const TextStyle(fontSize: 26),
+                      ),
+                      GroupedListView<CostItem, String>(
                         shrinkWrap: true,
-                        elements: state.uiCostItems,
-                        groupBy: (uiCostItem) => uiCostItem.category.mainCategory.nameTr,
+                        elements: state.costItems,
+                        groupBy: (uiCostItem) =>
+                            uiCostItem.category.mainCategory.nameTr,
                         groupSeparatorBuilder: (String groupByValue) {
                           return Padding(
                             padding: const EdgeInsets.all(8.0),
-                            child: Text(groupByValue, style: const TextStyle(fontSize: 20),),
+                            child: Text(
+                              groupByValue,
+                              style: const TextStyle(fontSize: 20),
+                            ),
                           );
                         },
                         sort: false,
@@ -45,91 +52,129 @@ class HomeScreen extends StatelessWidget {
                               children: [
                                 Expanded(
                                     flex: 2,
-                                    child: Text(uiCostItem.category.jobCategory.nameTr)
-                                ),
+                                    child: Text(uiCostItem
+                                        .category.jobCategory.nameTr)),
                                 Expanded(
-                                    child: Text(uiCostItem.category.unitPriceCategory.nameTr)
-                                ),
+                                    child: Text(uiCostItem
+                                        .category.unitPriceCategory.nameTr)),
                                 Expanded(
                                     child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Text(uiCostItem.formattedUnitPrice),
-                                        IconButton(
-                                          onPressed: () {
-                                            final unitPrices = state.unitPricePool.where((element) => uiCostItem.category.jobCategory.unitPriceCategories.contains(element.category)).toList();
-                                            showDialog(
-                                              context: context,
-                                              builder: (dialogContext) {
-                                                return AlertDialog(
-                                                  content: SizedBox(
-                                                    width: 300,
-                                                    height: 300,
-                                                    child: ListView.builder(
-                                                      itemCount: unitPrices.length,
-                                                      itemBuilder: (listContext, index) {
-                                                        return TextButton(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(uiCostItem.formattedUnitPrice),
+                                    IconButton(
+                                        onPressed: () {
+                                          final unitPrices = state.unitPricePool
+                                              .where((element) => uiCostItem
+                                                  .category
+                                                  .jobCategory
+                                                  .unitPriceCategories
+                                                  .contains(element.category))
+                                              .toList();
+                                          showDialog(
+                                            context: context,
+                                            builder: (dialogContext) {
+                                              return AlertDialog(
+                                                content: SizedBox(
+                                                  width: 300,
+                                                  height: 300,
+                                                  child: ListView.builder(
+                                                    itemCount:
+                                                        unitPrices.length,
+                                                    itemBuilder:
+                                                        (listContext, index) {
+                                                      return TextButton(
                                                           onPressed: () {
-                                                            context.read<ProjectBloc>().add(ReplaceCostCategory(uiCostItem.category, unitPrices[index].category));
-                                                            Navigator.of(context).pop();
+                                                            context
+                                                                .read<
+                                                                    ProjectBloc>()
+                                                                .add(ReplaceCostCategory(
+                                                                    uiCostItem
+                                                                        .category,
+                                                                    unitPrices[
+                                                                            index]
+                                                                        .category));
+                                                            Navigator.of(
+                                                                    context)
+                                                                .pop();
                                                           },
                                                           child: Row(
-                                                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .spaceEvenly,
                                                             children: [
-                                                              Text(unitPrices[index].category.nameTr),
+                                                              Text(unitPrices[
+                                                                      index]
+                                                                  .category
+                                                                  .nameTr),
                                                               Row(
                                                                 children: [
-                                                                  Text(unitPrices[index].amount.toString()),
-                                                                  Text(unitPrices[index].currency.symbol),
-                                                                  const Text("/"),
-                                                                  Text(unitPrices[index].category.unit.symbol),
+                                                                  Text(unitPrices[
+                                                                          index]
+                                                                      .amount
+                                                                      .toString()),
+                                                                  Text(unitPrices[
+                                                                          index]
+                                                                      .currency
+                                                                      .symbol),
+                                                                  const Text(
+                                                                      "/"),
+                                                                  Text(unitPrices[
+                                                                          index]
+                                                                      .category
+                                                                      .unit
+                                                                      .symbol),
                                                                 ],
                                                               ),
                                                             ],
-                                                          )
-                                                        );
-                                                      },
-                                                    ),
+                                                          ));
+                                                    },
                                                   ),
-                                                );
-                                              },
-                                            );
-                                          },
-                                          icon: const Icon(Icons.edit)
-                                        ),
-                                        const SizedBox(width: 16,)
-                                      ],
+                                                ),
+                                              );
+                                            },
+                                          );
+                                        },
+                                        icon: const Icon(Icons.edit)),
+                                    const SizedBox(
+                                      width: 16,
                                     )
-                                ),
+                                  ],
+                                )),
                                 Expanded(
-                                  child: Row(
-                                    children: [
-                                      Tooltip(
-                                        message: uiCostItem.quantityExplanation,
-                                        verticalOffset: -12,
-                                        child: const Icon(Icons.info_outlined),
-                                      ),
-                                      const SizedBox(width: 8,),
-                                      Text(uiCostItem.formattedQuantity),
-                                    ],
-                                  )
-                                ),
+                                    child: Row(
+                                  children: [
+                                    Tooltip(
+                                      message: uiCostItem.quantityExplanation,
+                                      verticalOffset: -12,
+                                      child: const Icon(Icons.info_outlined),
+                                    ),
+                                    const SizedBox(
+                                      width: 8,
+                                    ),
+                                    Text(uiCostItem.formattedQuantity),
+                                  ],
+                                )),
                                 Expanded(
-                                  child: Text(uiCostItem.formattedTotalPriceTRY)
-                                ),
+                                    child: Text(
+                                        uiCostItem.formattedTotalPriceTRY)),
                                 IconButton(
-                                  onPressed: () {
-                                    context.read<ProjectBloc>().add(DeleteCostCategory(uiCostItem.category));
-                                  },
-                                  icon: const Icon(Icons.delete)
-                                )
+                                    onPressed: () {
+                                      context.read<ProjectBloc>().add(
+                                          DeleteCostCategory(
+                                              uiCostItem.category));
+                                    },
+                                    icon: const Icon(Icons.delete))
                               ],
                             ),
                           );
                         },
                       ),
                       Text(state.formattedGrandTotalTRY),
-                      const SizedBox(height: 512,)
+                      const SizedBox(
+                        height: 512,
+                      )
                     ],
                   ),
                 )

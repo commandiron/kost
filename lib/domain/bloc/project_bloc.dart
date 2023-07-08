@@ -9,24 +9,25 @@ import 'package:kost/domain/calculator/quantity_calculator.dart';
 import 'package:kost/domain/model/cost/cost_category.dart';
 import 'package:kost/domain/model/unit_price/currency.dart';
 import 'package:kost/domain/model/cost/cost_template.dart';
+import 'package:kost/domain/model/unit_price/unit.dart';
+import 'package:kost/domain/model/cost/cost_item.dart';
 
-import '../model/cost/cost_item.dart';
 import '../calculator/detailed/floor.dart';
 import '../model/unit_price/unit_price.dart';
 import 'project_event.dart';
 import 'project_state.dart';
 
 class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
-  ProjectBloc() : super(
-    ProjectState(
-      quantityCalculator: InitialQuantityCalculator(),
-      unitPricePool: const [],
-      currencyRates: DefaultCurrencyRates(),
-      costTemplate: EmptyCostTemplate(),
-      uiCostItems: const [],
-      formattedGrandTotalTRY: ""
-    ),
-  ){
+  ProjectBloc()
+      : super(
+          ProjectState(
+              quantityCalculator: InitialQuantityCalculator(),
+              unitPricePool: const [],
+              currencyRates: DefaultCurrencyRates(),
+              costTemplate: EmptyCostTemplate(),
+              costItems: const [],
+              formattedGrandTotalTRY: ""),
+        ) {
     on<Init>((event, emit) {
       add(const CreateQuantityCalculator());
       add(const FetchUnitPrices());
@@ -48,39 +49,49 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
         elevationTowerHeightWithoutSlab: 3,
         floors: [
           ...Floor.duplicateFloorsWithTypeOrdered(
-            Floor(
-              ceilingArea: 190,
-              ceilingPerimeter: 62.8,
-              fullHeight: 3.3,
-              area: 188.75,
-              perimeter: 62.8,
-              heightWithoutSlab: 3,
-              thickWallLength: 77.05,
-              thinWallLength: 39.3,
-              isCeilingHollowSlab: true,
-              windows: [
-                Window(width: 17, height: 2.2, hasRailing: true, hasWindowsill: true, count: 1),
-              ],
-              rooms: [
-                ApartmentEntree(area: 0, perimeter: 0),
-                SaloonWithKitchen(area: 30.87, perimeter: 32,),
-                NormalRoom(area: 12.95, perimeter: 14.4),
-                NormalRoom(area: 8.93, perimeter: 12),
-                Bathroom(area: 3.19, perimeter: 7.5),
-                Bathroom(area: 4.38, perimeter: 8.5),
-                ApartmentEntree(area: 0, perimeter: 0),
-                SaloonWithKitchen(area: 33, perimeter: 30.7,),
-                NormalRoom(area: 15.4, perimeter: 16.5),
-                NormalRoom(area: 10.88, perimeter: 13.2),
-                Bathroom(area: 3.19, perimeter: 7.5),
-                Bathroom(area: 5.08, perimeter: 9.3),
-                FloorHall(area: 8.1, perimeter: 13.8),
-                FireEscapeHall(area: 11.1, perimeter: 20.9),
-              ],
-              type: FloorType.k1,
-            ),
-            11
-          ),
+              Floor(
+                ceilingArea: 190,
+                ceilingPerimeter: 62.8,
+                fullHeight: 3.3,
+                area: 188.75,
+                perimeter: 62.8,
+                heightWithoutSlab: 3,
+                thickWallLength: 77.05,
+                thinWallLength: 39.3,
+                isCeilingHollowSlab: true,
+                windows: [
+                  Window(
+                      width: 17,
+                      height: 2.2,
+                      hasRailing: true,
+                      hasWindowsill: true,
+                      count: 1),
+                ],
+                rooms: [
+                  ApartmentEntree(area: 0, perimeter: 0),
+                  SaloonWithKitchen(
+                    area: 30.87,
+                    perimeter: 32,
+                  ),
+                  NormalRoom(area: 12.95, perimeter: 14.4),
+                  NormalRoom(area: 8.93, perimeter: 12),
+                  Bathroom(area: 3.19, perimeter: 7.5),
+                  Bathroom(area: 4.38, perimeter: 8.5),
+                  ApartmentEntree(area: 0, perimeter: 0),
+                  SaloonWithKitchen(
+                    area: 33,
+                    perimeter: 30.7,
+                  ),
+                  NormalRoom(area: 15.4, perimeter: 16.5),
+                  NormalRoom(area: 10.88, perimeter: 13.2),
+                  Bathroom(area: 3.19, perimeter: 7.5),
+                  Bathroom(area: 5.08, perimeter: 9.3),
+                  FloorHall(area: 8.1, perimeter: 13.8),
+                  FireEscapeHall(area: 11.1, perimeter: 20.9),
+                ],
+                type: FloorType.k1,
+              ),
+              11),
           Floor(
             ceilingArea: 177.15,
             ceilingPerimeter: 61.3,
@@ -92,16 +103,27 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
             thinWallLength: 39.3,
             isCeilingHollowSlab: true,
             windows: [
-              Window(width: 14, height: 2.2, hasRailing: true, hasWindowsill: true, count: 1),
+              Window(
+                  width: 14,
+                  height: 2.2,
+                  hasRailing: true,
+                  hasWindowsill: true,
+                  count: 1),
             ],
             rooms: [
               ApartmentEntree(area: 0, perimeter: 0),
-              SaloonWithKitchen(area: 33.61, perimeter: 29.3,),
+              SaloonWithKitchen(
+                area: 33.61,
+                perimeter: 29.3,
+              ),
               NormalRoom(area: 12.6, perimeter: 14.2),
               Bathroom(area: 3.18, perimeter: 7.5),
               Bathroom(area: 4.13, perimeter: 8.3),
               ApartmentEntree(area: 0, perimeter: 0),
-              SaloonWithKitchen(area: 33.5, perimeter: 29.2,),
+              SaloonWithKitchen(
+                area: 33.5,
+                perimeter: 29.2,
+              ),
               NormalRoom(area: 13.29, perimeter: 15.3),
               Bathroom(area: 3.18, perimeter: 7.5),
               Bathroom(area: 4.13, perimeter: 8.3),
@@ -151,24 +173,31 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
     });
     on<CreateCostTable>((event, emit) {
 
-      if(!_isAllUnitPricesInCostTemplateIncludedInUnitPricePool) {
-        throw Exception("All enabled unit prices in the cost template are NOT included in fetched unit prices."); //Handle
+      if (!_isAllUnitPricesInCostTemplateIncludedInUnitPricePool) {
+        throw Exception(
+            "All enabled unit prices in the cost template are NOT included in fetched unit prices."); //Handle
       }
 
       final costItems = _createCostItemsFromTemplate(
-        costTemplate: state.costTemplate,
-        unitPricePool: state.unitPricePool,
-        quantityCalculator: state.quantityCalculator,
-        currencyRates: state.currencyRates
-      );
+          costTemplate: state.costTemplate,
+          unitPricePool: state.unitPricePool,
+          quantityCalculator: state.quantityCalculator,
+          currencyRates: state.currencyRates);
 
-      final uiCostItems = costItems.map((costItem) => costItem.toUiCostItem()).toList();
-      final formattedGrandTotalTRY = "${NumberFormat("#,##0.00", "tr_TR").format(_calculateGrandTotal(costItems))} TL";
-      emit(state.copyWith(uiCostItems: uiCostItems, formattedGrandTotalTRY: formattedGrandTotalTRY));
+      final formattedGrandTotalTRY =
+          "${NumberFormat("#,##0.00", "tr_TR").format(_calculateGrandTotal(costItems))} TL";
+
+      emit(state.copyWith(
+          costItems: costItems,
+          formattedGrandTotalTRY: formattedGrandTotalTRY));
     });
     on<ReplaceCostCategory>((event, emit) {
-      final replacedIndex = state.costTemplate.enabledCostCategories.indexWhere((element) => element == event.oldCostCategory);
-      state.costTemplate.enabledCostCategories[replacedIndex] = CostCategory(event.oldCostCategory.mainCategory, event.oldCostCategory.jobCategory, event.newUnitPriceCategory);
+      final replacedIndex = state.costTemplate.enabledCostCategories
+          .indexWhere((element) => element == event.oldCostCategory);
+      state.costTemplate.enabledCostCategories[replacedIndex] = CostCategory(
+          event.oldCostCategory.mainCategory,
+          event.oldCostCategory.jobCategory,
+          event.newUnitPriceCategory);
       _refresh();
     });
     on<DeleteCostCategory>((event, emit) {
@@ -183,34 +212,57 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
 
   bool get _isAllUnitPricesInCostTemplateIncludedInUnitPricePool {
     for (var enabledCostCategory in state.costTemplate.enabledCostCategories) {
-      if(!state.unitPricePool.map((e) => e.category).toList().contains(enabledCostCategory.unitPriceCategory)) {
+      if (!state.unitPricePool
+          .map((e) => e.category)
+          .toList()
+          .contains(enabledCostCategory.unitPriceCategory)) {
         return false;
       }
     }
     return true;
   }
 
-  List<CostItem> _createCostItemsFromTemplate(
-    {
-      required CostTemplate costTemplate,
-      required List<UnitPrice> unitPricePool,
-      required QuantityCalculator quantityCalculator,
-      required CurrencyRates currencyRates,
-    }
-  ) {
+  List<CostItem> _createCostItemsFromTemplate({
+    required CostTemplate costTemplate,
+    required List<UnitPrice> unitPricePool,
+    required QuantityCalculator quantityCalculator,
+    required CurrencyRates currencyRates,
+  }) {
     List<CostItem> costItems = [];
 
     for (var enabledCostCategory in costTemplate.enabledCostCategories) {
+      final unitPrices = unitPricePool
+          .where((unitPrice) =>
+              unitPrice.category == enabledCostCategory.unitPriceCategory)
+          .toList();
+      final lastDatedUnitPrice = unitPrices.reduce((current, next) =>
+          current.dateTime.isAfter(next.dateTime) ? current : next);
 
-      final unitPrices =  unitPricePool.where((unitPrice) => unitPrice.category == enabledCostCategory.unitPriceCategory).toList();
-      final lastDatedUnitPrice = unitPrices.reduce((current, next) => current.dateTime.isAfter(next.dateTime) ? current : next);
+      final formattedUnitPrice = lastDatedUnitPrice.fixedAmount != 0
+              ? "${NumberFormat("#,##0.00", "tr_TR").format(lastDatedUnitPrice.fixedAmount)} ${lastDatedUnitPrice.currency.symbol} + ${NumberFormat("#,##0.00", "tr_TR").format(lastDatedUnitPrice.amount)} ${lastDatedUnitPrice.currency.symbol}/${lastDatedUnitPrice.category.unit.symbol}"
+              : "${NumberFormat("#,##0.00", "tr_TR").format(lastDatedUnitPrice.amount)} ${lastDatedUnitPrice.currency.symbol}/${lastDatedUnitPrice.category.unit.symbol}";
+
+      final quantity = quantityCalculator.getQuantityFromJobCategory(enabledCostCategory.jobCategory);
+      final formattedQuantity = "${NumberFormat("#,##0.00", "tr_TR").format(quantity)} ${lastDatedUnitPrice.category.unit.symbol}";
+
+      final quantityExplanation =
+          quantityCalculator.getQuantityExplanationFromJobCategory(
+              enabledCostCategory.jobCategory);
+
+      final totalPriceTRY = (lastDatedUnitPrice.fixedAmount *
+              lastDatedUnitPrice.currency.toLiraRate(currencyRates)) +
+          (lastDatedUnitPrice.amount *
+              quantity *
+              lastDatedUnitPrice.currency.toLiraRate(currencyRates));
+      final formattedTotalPriceTRY = "${NumberFormat("#,##0.00", "tr_TR").format(totalPriceTRY)} ₺";
 
       final costItem = CostItem(
-        category: enabledCostCategory,
-        unitPrice: lastDatedUnitPrice,
-        quantity: quantityCalculator.getQuantityFromJobCategory(enabledCostCategory.jobCategory),
-        quantityExplanation: quantityCalculator.getQuantityExplanationFromJobCategory(enabledCostCategory.jobCategory),
-        currencyRates: currencyRates
+          category: enabledCostCategory,
+          formattedUnitPrice: formattedUnitPrice,
+          formattedQuantity: formattedQuantity,
+          quantityExplanation: quantityExplanation,
+          totalPriceTRY: totalPriceTRY,
+          formattedTotalPriceTRY: formattedTotalPriceTRY
       );
 
       costItems.add(costItem);
@@ -218,8 +270,11 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
     return costItems;
   }
 
-  double _calculateGrandTotal(List<CostItem> costItems) {
-    return costItems.map((costItem) => costItem.totalPriceTRY).toList().fold(0, (p, c) => p + c);
+  double _calculateGrandTotal(List<CostItem> uiCostItems) {
+    return uiCostItems
+        .map((costItem) => costItem.totalPriceTRY)
+        .toList()
+        .fold(0, (p, c) => p + c);
   }
 
   void _refresh() {
