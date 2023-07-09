@@ -251,7 +251,6 @@ abstract class QuantityCalculator {
   String get projectManagerMonthExplanation;
 
   setQuantity(JobCategory jobCategory, double quantity) {
-    print(jobCategory);
     switch (jobCategory) {
       case JobCategory.shoring : shoringArea = quantity;
       case JobCategory.excavation : excavationVolume = quantity;
