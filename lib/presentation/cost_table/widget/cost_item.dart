@@ -21,57 +21,54 @@ class CostItem extends StatelessWidget {
     return Row(
       children: [
         Expanded(flex: 2, child: Text(cost.category.jobCategory.nameTr)),
-        Expanded(child: Text(cost.category.unitPriceCategory.nameTr)),
         Expanded(
+          flex: 2,
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(cost.formattedUnitPrice),
+              Expanded(child: Text(cost.category.unitPriceCategory.nameTr)),
               IconButton(
-                onPressed: () {
-                  showDialog(
-                    context: context,
-                    builder: (dialogContext) {
-                      return AlertDialog(
-                        content: SizedBox(
-                          width: 300,
-                          height: 300,
-                          child: ListView.builder(
-                            itemCount:
-                            unitPrices.length,
-                            itemBuilder: (listContext, index) {
-                              return TextButton(
-                                onPressed: () {
-                                  context.read<ProjectBloc>().add(ReplaceCostCategory(cost.category, unitPrices[index].category));
-                                  Navigator.of(context).pop();
-                                },
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    Text(unitPrices[index].category.nameTr),
-                                    Row(
+                  onPressed: () {
+                    showDialog(
+                      context: context,
+                      builder: (dialogContext) {
+                        return AlertDialog(
+                          content: SizedBox(
+                            width: 300,
+                            height: 300,
+                            child: ListView.builder(
+                              itemCount:
+                              unitPrices.length,
+                              itemBuilder: (listContext, index) {
+                                return TextButton(
+                                    onPressed: () {
+                                      context.read<ProjectBloc>().add(ReplaceCostCategory(cost.category, unitPrices[index].category));
+                                      Navigator.of(context).pop();
+                                    },
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                       children: [
-                                        Text(unitPrices[index].amount.toString()),
-                                        Text(unitPrices[index].currency.symbol),
-                                        const Text("/"),
-                                        Text(unitPrices[index].category.unit.symbol),
+                                        Text(unitPrices[index].category.nameTr),
+                                        Row(
+                                          children: [
+                                            Text(unitPrices[index].amount.toString()),
+                                            Text(unitPrices[index].currency.symbol),
+                                            const Text("/"),
+                                            Text(unitPrices[index].category.unit.symbol),
+                                          ],
+                                        ),
                                       ],
-                                    ),
-                                  ],
-                                )
-                              );
-                            },
+                                    )
+                                );
+                              },
+                            ),
                           ),
-                        ),
-                      );
-                    },
-                  );
-                },
-                icon: const Icon(Icons.edit)
+                        );
+                      },
+                    );
+                  },
+                  icon: const Icon(Icons.edit)
               ),
-              const SizedBox(
-                width: 16,
-              )
+              Expanded(child: Text(cost.formattedUnitPrice)),
             ],
           )
         ),
@@ -90,13 +87,19 @@ class CostItem extends StatelessWidget {
           )
         ),
         Expanded(
-          child: Text(cost.formattedTotalPriceTRY)
+          child: Row(
+            children: [
+              Text(cost.formattedTotalPriceTRY),
+            ],
+          )
         ),
-        IconButton(
-          onPressed: () {
-            context.read<ProjectBloc>().add(DeleteCostCategory(cost.category));
-          },
-          icon: const Icon(Icons.delete)
+        Expanded(
+          child: IconButton(
+            onPressed: () {
+              context.read<ProjectBloc>().add(DeleteCostCategory(cost.category));
+            },
+            icon: const Icon(Icons.delete)
+          ),
         )
       ],
     );
