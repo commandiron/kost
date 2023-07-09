@@ -27,6 +27,7 @@ class CostTableScreen extends StatelessWidget {
                         state.costTemplate.name,
                         style: const TextStyle(fontSize: 26),
                       ),
+                      Text(state.formattedGrandTotalTRY),
                       GroupedListView<Cost, String>(
                         shrinkWrap: true,
                         elements: state.costs,
@@ -48,7 +49,6 @@ class CostTableScreen extends StatelessWidget {
                           );
                         },
                       ),
-                      Text(state.formattedGrandTotalTRY),
                       const SizedBox(
                         height: 512,
                       )

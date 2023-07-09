@@ -207,7 +207,10 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
       state.costTemplate.enabledCostCategories.remove(event.costCategory);
       _refresh();
     });
-    on<CalculateCostWithNewQuantity>((event, emit) {});
+    on<CalculateCostWithNewQuantity>((event, emit) {
+      state.quantityCalculator.setQuantity(event.jobCategory, event.quantity);
+      _refresh();
+    });
   }
 
   void init() {
@@ -249,7 +252,7 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
               ? "$formattedFixedAmount + $formattedAmount"
               : formattedAmount;
 
-      final quantity = quantityCalculator.calculateQuantity(enabledCostCategory.jobCategory) ?? 0;
+      final quantity = quantityCalculator.calculateQuantity(enabledCostCategory.jobCategory);
       final formattedQuantity = _getFormattedNumber(number: quantity, unit: lastDatedUnitPrice.category.unit.symbol);
 
       final quantityExplanation = quantityCalculator.getQuantityExplanation(enabledCostCategory.jobCategory);

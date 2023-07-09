@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:kost/domain/model/category/category.dart';
 import 'package:kost/domain/model/unit_price/unit_price_category.dart';
 
 import '../model/cost/cost_category.dart';
@@ -62,8 +63,9 @@ class DeleteCostCategory extends ProjectEvent {
 }
 
 class CalculateCostWithNewQuantity extends ProjectEvent {
+  final JobCategory jobCategory;
   final double quantity;
-  const CalculateCostWithNewQuantity(this.quantity);
+  const CalculateCostWithNewQuantity(this.jobCategory, this.quantity);
   @override
   List<Object?> get props => [quantity];
 }

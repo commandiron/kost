@@ -498,7 +498,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
 
   //Final Results
   @override
-  double get shoringArea {
+  double get calculatedShoringArea {
     return excavationPerimeter * _excavationHeight;
   }
   @override
@@ -507,7 +507,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   }
 
   @override
-  double get excavationVolume {
+  double get calculatedExcavationVolume {
     return excavationArea * _excavationHeight;
   }
   @override
@@ -516,7 +516,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   }
 
   @override
-  double get breakerHour {
+  double get calculatedBreakerHour {
     return excavationArea *
         _excavationHeight *
         projectConstants.breakerHourForOneCubicMeterMediumRockExcavation;
@@ -527,7 +527,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   }
 
   @override
-  double get foundationStabilizationVolume {
+  double get calculatedFoundationStabilizationVolume {
     return excavationArea * projectConstants.stabilizationHeight;
   }
   @override
@@ -536,7 +536,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   }
 
   @override
-  double get subFoundationConcreteVolume {
+  double get calculatedSubFoundationConcreteVolume {
     return excavationArea * (projectConstants.leanConcreteHeight + projectConstants.insulationConcreteHeight);
   }
   @override
@@ -545,7 +545,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   }
 
   @override
-  double get concreteFormWorkArea {
+  double get calculatedConcreteFormWorkArea {
     return _roughConstructionArea +
         _coreCurtainArea +
         _curtainsExceeding1MeterArea +
@@ -557,27 +557,27 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   }
 
   @override
-  double get pouringConcreteVolume {
-    return concreteFormWorkArea *
+  double get calculatedPouringConcreteVolume {
+    return calculatedConcreteFormWorkArea *
         projectConstants.concreteCubicMeterForOneSquareMeterFormWork;
   }
   @override
   String get pouringConcreteVolumeExplanation {
-    return "Kalıp alanı (Düz ölçü): $concreteFormWorkArea x 1 m2 kalıp için m3 biriminde beton hacmi: ${projectConstants.concreteCubicMeterForOneSquareMeterFormWork}";
+    return "Kalıp alanı (Düz ölçü): $calculatedConcreteFormWorkArea x 1 m2 kalıp için m3 biriminde beton hacmi: ${projectConstants.concreteCubicMeterForOneSquareMeterFormWork}";
   }
 
   @override
-  double get rebarWeight {
-    return pouringConcreteVolume *
+  double get calculatedRebarWeight {
+    return calculatedPouringConcreteVolume *
         projectConstants.rebarTonForOneCubicMeterConcrete;
   }
   @override
   String get rebarWeightExplanation {
-    return "Beton hacmi: $pouringConcreteVolume x 1 m3 beton için ton biriminde demir ağırlığı: ${projectConstants.rebarTonForOneCubicMeterConcrete}";
+    return "Beton hacmi: $calculatedPouringConcreteVolume x 1 m3 beton için ton biriminde demir ağırlığı: ${projectConstants.rebarTonForOneCubicMeterConcrete}";
   }
 
   @override
-  double get hollowFloorFillingVolume {
+  double get calculatedHollowFloorFillingVolume {
     return projectConstants.hollowAreaForOneSquareMeterConstructionArea *
         _hollowSlabRoughConstructionArea *
         projectConstants.hollowFillingThickness;
@@ -588,7 +588,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   }
 
   @override
-  double get foundationWaterProofingArea {
+  double get calculatedFoundationWaterProofingArea {
     return foundationArea + (foundationPerimeter * foundationHeight);
   }
   @override
@@ -597,7 +597,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   }
 
   @override
-  double get curtainWaterProofingArea {
+  double get calculatedCurtainWaterProofingArea {
     return _basementsOuterCurtainArea + _wetAreaAboveBasement;
   }
   @override
@@ -606,7 +606,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   }
 
   @override
-  double get curtainProtectionBeforeFillingArea {
+  double get calculatedCurtainProtectionBeforeFillingArea {
     return _basementsOuterCurtainArea;
   }
   @override
@@ -615,7 +615,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   }
 
   @override
-  double get wallMaterialVolume {
+  double get calculatedWallMaterialVolume {
     return _thickWallVolume + _thinWallVolume;
   }
   @override
@@ -624,7 +624,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   }
 
   @override
-  double get wallWorkmanShipArea {
+  double get calculatedWallWorkmanShipArea {
     return _thickWallArea + _thinWallArea;
   }
   @override
@@ -633,7 +633,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   }
 
   @override
-  double get roofingArea {
+  double get calculatedRoofingArea {
     return _topFloor.ceilingArea;
   }
   @override
@@ -642,7 +642,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   }
 
   @override
-  double get facadeScaffoldingArea {
+  double get calculatedFacadeScaffoldingArea {
     return _totalFacadeArea;
   }
   @override
@@ -651,7 +651,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   }
 
   @override
-  double get windowsArea {
+  double get calculatedWindowsArea {
     return _totalWindowArea;
   }
   @override
@@ -660,7 +660,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   }
 
   @override
-  double get facadeRailsLength {
+  double get calculatedFacadeRailsLength {
     return _totalFacadeRailingLength;
   }
   @override
@@ -669,7 +669,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   }
 
   @override
-  double get facadeSystemArea {
+  double get calculatedFacadeSystemArea {
     return _totalFacadeArea - _totalWindowArea;
   }
   @override
@@ -678,7 +678,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   }
 
   @override
-  double get interiorPlasteringArea {
+  double get calculatedInteriorPlasteringArea {
     return _basementsOuterCurtainArea +
         (_coreCurtainArea * 2) +
         (_curtainsExceeding1MeterArea * 2) +
@@ -692,16 +692,16 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   }
 
   @override
-  double get interiorPaintingArea {
-    return interiorPlasteringArea + _totalCeilingArea;
+  double get calculatedInteriorPaintingArea {
+    return calculatedInteriorPlasteringArea + _totalCeilingArea;
   }
   @override
   String get interiorPaintingAreaExplanation {
-    return "Toplam sıva alanı: $interiorPlasteringArea + Toplam tavan alanı: $_totalCeilingArea";
+    return "Toplam sıva alanı: $calculatedInteriorPlasteringArea + Toplam tavan alanı: $_totalCeilingArea";
   }
 
   @override
-  double get interiorWaterproofingArea {
+  double get calculatedInteriorWaterproofingArea {
     return _totalInteriorWetFloorArea;
   }
   @override
@@ -710,7 +710,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   }
 
   @override
-  double get ceilingCoveringArea {
+  double get calculatedCeilingCoveringArea {
     return _totalDryWallArea;
   }
   @override
@@ -719,7 +719,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   }
 
   @override
-  double get covingPlasterArea {
+  double get calculatedCovingPlasterArea {
     return _totalCovingPlasterLength;
   }
   @override
@@ -728,7 +728,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   }
 
   @override
-  double get screedingArea {
+  double get calculatedScreedingArea {
     return _totalScreedArea;
   }
   @override
@@ -737,7 +737,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   }
 
   @override
-  double get marbleArea {
+  double get calculatedMarbleArea {
     return _totalMarbleArea;
   }
   @override
@@ -746,7 +746,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   }
 
   @override
-  double get marbleStepLength {
+  double get calculatedMarbleStepLength {
     return _totalMainStairsLength + _totalFireStairsLength;
   }
   @override
@@ -755,7 +755,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   }
 
   @override
-  double get marbleWindowsillLength {
+  double get calculatedMarbleWindowsillLength {
     return _totalWindowsillLength;
   }
   @override
@@ -764,7 +764,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   }
 
   @override
-  double get stairRailingsLength {
+  double get calculatedStairRailingsLength {
     return (_totalMainStairsCount + _totalFireStairsCount) * projectConstants.stairTreadDepth;
   }
   @override
@@ -773,7 +773,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   }
 
   @override
-  double get ceramicTileArea {
+  double get calculatedCeramicTileArea {
     return _totalCeramicFloorArea + _totalCeramicWallArea;
   }
   @override
@@ -782,7 +782,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   }
 
   @override
-  double get parquetTileArea {
+  double get calculatedParquetTileArea {
     return _totalParquetFloorArea;
   }
   @override
@@ -791,7 +791,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   }
 
   @override
-  double get steelDoorNumber {
+  double get calculatedSteelDoorNumber {
     return _steelDoorNumber.toDouble();
   }
   @override
@@ -800,7 +800,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   }
 
   @override
-  double get entranceDoorArea {
+  double get calculatedEntranceDoorArea {
     return _buildingEntranceDoorNumber * projectConstants.buildingEntranceDoorArea;
   }
   @override
@@ -809,7 +809,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   }
 
   @override
-  double get fireDoorNumber {
+  double get calculatedFireDoorNumber {
     return _fireDoorNumber.toDouble();
   }
   @override
@@ -818,7 +818,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   }
 
   @override
-  double get woodenDoorNumber {
+  double get calculatedWoodenDoorNumber {
     return _woodenDoorNumber.toDouble();
   }
   @override
@@ -827,7 +827,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   }
 
   @override
-  double get kitchenCupboardLength {
+  double get calculatedKitchenCupboardLength {
     return _apartmentNumber * projectConstants.kitchenLength * 2;
   }
   @override
@@ -836,7 +836,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   }
 
   @override
-  double get kitchenCounterLength {
+  double get calculatedKitchenCounterLength {
     return _apartmentNumber * projectConstants.kitchenLength;
   }
   @override
@@ -845,7 +845,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   }
 
   @override
-  double get coatCabinetArea {
+  double get calculatedCoatCabinetArea {
     return _apartmentNumber * projectConstants.coatCabinetArea;
   }
   @override
@@ -854,7 +854,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   }
 
   @override
-  double get bathroomCabinetArea {
+  double get calculatedBathroomCabinetArea {
     return _toiletNumber * projectConstants.bathroomCabinetArea;
   }
   @override
@@ -863,7 +863,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   }
 
   @override
-  double get floorPlinthLength {
+  double get calculatedFloorPlinthLength {
     return _totalFloorPlinthLength;
   }
   @override
@@ -872,7 +872,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   }
 
   @override
-  double get mechanicalInfrastructureApartment {
+  double get calculatedMechanicalInfrastructureApartment {
     return _apartmentNumber.toDouble();
   }
   @override
@@ -881,7 +881,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   }
 
   @override
-  double get airConditionerNumber {
+  double get calculatedAirConditionerNumber {
     return _apartmentNumber * projectConstants.airConditionerNumberForOneApartment.toDouble();
   }
   @override
@@ -890,7 +890,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   }
 
   @override
-  double get ventilationArea {
+  double get calculatedVentilationArea {
     return _basementsArea;
   }
   @override
@@ -899,7 +899,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   }
 
   @override
-  double get elevationStop {
+  double get calculatedElevationStop {
     return (_basementFloors.length + 1 + _normalFloors.length).toDouble();
   }
   @override
@@ -908,7 +908,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   }
 
   @override
-  double get sinkNumber {
+  double get calculatedSinkNumber {
     return _toiletNumber.toDouble();
   }
   @override
@@ -917,7 +917,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   }
 
   @override
-  double get sinkBatteryNumber {
+  double get calculatedSinkBatteryNumber {
     return _toiletNumber.toDouble();
   }
   @override
@@ -926,7 +926,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   }
 
   @override
-  double get concealedCisternNumber {
+  double get calculatedConcealedCisternNumber {
     return _toiletNumber.toDouble();
   }
   @override
@@ -935,7 +935,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   }
 
   @override
-  double get showerNumber {
+  double get calculatedShowerNumber {
     return _bathroomNumber.toDouble();
   }
   @override
@@ -944,7 +944,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   }
 
   @override
-  double get showerBatteryNumber {
+  double get calculatedShowerBatteryNumber {
     return _bathroomNumber.toDouble();
   }
   @override
@@ -953,7 +953,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   }
 
   @override
-  double get kitchenFaucetAndSinkNumber {
+  double get calculatedKitchenFaucetAndSinkNumber {
     return _kitchenNumber.toDouble();
   }
   @override
@@ -962,7 +962,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   }
 
   @override
-  double get electricalInfrastructureApartment {
+  double get calculatedElectricalInfrastructureApartment {
     return _apartmentNumber.toDouble();
   }
   @override
@@ -971,7 +971,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   }
 
   @override
-  double get householdAppliancesApartment {
+  double get calculatedHouseholdAppliancesApartment {
     return _apartmentNumber.toDouble();
   }
   @override
@@ -980,7 +980,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   }
 
   @override
-  double get landScapeGardenArea {
+  double get calculatedLandScapeGardenArea {
     return (_topMostBasementFloor.ceilingArea - _groundFloor.area) * projectConstants.gardenOutdoorParkingAreaRate;
   }
   @override
@@ -989,7 +989,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   }
 
   @override
-  double get outdoorParkingTileArea {
+  double get calculatedOutdoorParkingTileArea {
     return (_topMostBasementFloor.ceilingArea - _groundFloor.area) * (1 - projectConstants.gardenOutdoorParkingAreaRate);
   }
   @override
@@ -998,7 +998,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   }
 
   @override
-  double get carLiftStop {
+  double get calculatedCarLiftStop {
     return _basementFloors.length + 1;
   }
   @override
@@ -1007,7 +1007,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   }
 
   @override
-  double get automaticBarrierNumber {
+  double get calculatedAutomaticBarrierNumber {
     return projectConstants.automaticBarrierNumber.toDouble();
   }
   @override
@@ -1016,7 +1016,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   }
 
   @override
-  double get enclosingTheLandLength {
+  double get calculatedEnclosingTheLandLength {
     return landPerimeter;
   }
   @override
@@ -1025,7 +1025,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   }
 
   @override
-  double get craneHour {
+  double get calculatedCraneHour {
     return _roughConstructionArea * projectConstants.craneHourForOneSqareMeterRoughConstructionArea;
   }
   @override
@@ -1034,7 +1034,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   }
 
   @override
-  double get siteSafetyMonth {
+  double get calculatedSiteSafetyMonth {
     return projectConstants.projectDurationMonth;
   }
   @override
@@ -1043,7 +1043,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   }
 
   @override
-  double get officeExpensesMonth {
+  double get calculatedOfficeExpensesMonth {
     return projectConstants.projectDurationMonth;
   }
   @override
@@ -1052,7 +1052,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   }
 
   @override
-  double get sergeantMonth {
+  double get calculatedSergeantMonth {
     return projectConstants.projectDurationMonth;
   }
   @override
@@ -1061,7 +1061,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   }
 
   @override
-  double get projectManagerMonth {
+  double get calculatedProjectManagerMonth {
     return projectConstants.projectDurationMonth;
   }
   @override
