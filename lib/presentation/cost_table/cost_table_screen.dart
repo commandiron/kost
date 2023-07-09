@@ -28,17 +28,17 @@ class CostTableScreen extends StatelessWidget {
                         style: const TextStyle(fontSize: 26),
                       ),
                       Text(state.formattedGrandTotalTRY),
-                      GroupedListView<Cost, String>(
+                      GroupedListView<Cost, MainCategory>(
                         shrinkWrap: true,
                         elements: state.costs,
-                        groupBy: (cost) => cost.category.mainCategory.nameTr,
-                        groupSeparatorBuilder: (String groupByValue) {
+                        groupBy: (cost) => cost.category.mainCategory,
+                        groupSeparatorBuilder: (MainCategory mainCategory) {
                           return Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Row(
                               children: [
-                                MainCategoryTitle(text: groupByValue),
-                                Text(state.formattedSubTotalsTRY[groupByValue]!)
+                                MainCategoryTitle(text: mainCategory.nameTr),
+                                Text(state.formattedSubTotalsTRY[mainCategory]!)
                               ],
                             ),
                           );

@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:kost/domain/model/category/category.dart';
 import 'package:kost/domain/model/unit_price/currency.dart';
 import 'package:kost/domain/model/cost/cost_template.dart';
 import '../model/cost/cost.dart';
@@ -11,7 +12,7 @@ class ProjectState extends Equatable {
   final CurrencyRates currencyRates;
   final CostTemplate costTemplate;
   final List<Cost> costs;
-  final Map<String, String> formattedSubTotalsTRY;
+  final Map<MainCategory, String> formattedSubTotalsTRY;
   final String formattedGrandTotalTRY;
 
   const ProjectState({
@@ -30,7 +31,7 @@ class ProjectState extends Equatable {
     CurrencyRates? currencyRates,
     CostTemplate? costTemplate,
     List<Cost>? costs,
-    Map<String, String>? formattedSubTotalsTRY,
+    Map<MainCategory, String>? formattedSubTotalsTRY,
     String? formattedGrandTotalTRY,
   }) {
     return ProjectState(

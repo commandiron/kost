@@ -190,10 +190,10 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
       );
 
       final mainCategorySet = costs.map((e) => e.category.mainCategory).toSet();
-      final Map<String, String> formattedSubTotalsTRY = {};
+      final Map<MainCategory, String> formattedSubTotalsTRY = {};
       for(var mainCategory in mainCategorySet) {
         final subTotal = _calculateSubTotal(costs, mainCategory);
-        formattedSubTotalsTRY.putIfAbsent(mainCategory.nameTr, () => _getFormattedNumber(number: subTotal, unit: "TL"));
+        formattedSubTotalsTRY.putIfAbsent(mainCategory, () => _getFormattedNumber(number: subTotal, unit: "TL"));
       }
 
       final formattedGrandTotalTRY = _getFormattedNumber(number: _calculateGrandTotal(costs), unit: "TL");
