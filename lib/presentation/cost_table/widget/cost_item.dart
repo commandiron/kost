@@ -28,47 +28,47 @@ class CostItem extends StatelessWidget {
             children: [
               Text(cost.formattedUnitPrice),
               IconButton(
-                  onPressed: () {
-                    showDialog(
-                      context: context,
-                      builder: (dialogContext) {
-                        return AlertDialog(
-                          content: SizedBox(
-                            width: 300,
-                            height: 300,
-                            child: ListView.builder(
-                              itemCount:
-                              unitPrices.length,
-                              itemBuilder: (listContext, index) {
-                                return TextButton(
-                                    onPressed: () {
-                                      context.read<ProjectBloc>().add(ReplaceCostCategory(cost.category, unitPrices[index].category));
-                                      Navigator.of(context).pop();
-                                    },
-                                    child: Row(
-                                      mainAxisAlignment:
-                                      MainAxisAlignment
-                                          .spaceEvenly,
+                onPressed: () {
+                  showDialog(
+                    context: context,
+                    builder: (dialogContext) {
+                      return AlertDialog(
+                        content: SizedBox(
+                          width: 300,
+                          height: 300,
+                          child: ListView.builder(
+                            itemCount:
+                            unitPrices.length,
+                            itemBuilder: (listContext, index) {
+                              return TextButton(
+                                onPressed: () {
+                                  context.read<ProjectBloc>().add(ReplaceCostCategory(cost.category, unitPrices[index].category));
+                                  Navigator.of(context).pop();
+                                },
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    Text(unitPrices[index].category.nameTr),
+                                    Row(
                                       children: [
-                                        Text(unitPrices[index].category.nameTr),
-                                        Row(
-                                          children: [
-                                            Text(unitPrices[index].amount.toString()),
-                                            Text(unitPrices[index].currency.symbol),
-                                            const Text("/"),
-                                            Text(unitPrices[index].category.unit.symbol),
-                                          ],
-                                        ),
+                                        Text(unitPrices[index].amount.toString()),
+                                        Text(unitPrices[index].currency.symbol),
+                                        const Text("/"),
+                                        Text(unitPrices[index].category.unit.symbol),
                                       ],
-                                    ));
-                              },
-                            ),
+                                    ),
+                                  ],
+                                )
+                              );
+                            },
                           ),
-                        );
-                      },
-                    );
-                  },
-                  icon: const Icon(Icons.edit)),
+                        ),
+                      );
+                    },
+                  );
+                },
+                icon: const Icon(Icons.edit)
+              ),
               const SizedBox(
                 width: 16,
               )
