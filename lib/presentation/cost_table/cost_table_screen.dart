@@ -16,7 +16,6 @@ class CostTableScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Colors.grey,
         body: BlocBuilder<ProjectBloc, ProjectState>(
           builder: (context, state) {
             return CustomScrollView(
@@ -39,13 +38,13 @@ class CostTableScreen extends StatelessWidget {
                           );
                         },
                         sort: false,
-                        itemBuilder: (context, cost) {
-                          return Padding(
-                            padding: const EdgeInsets.all(8.0),
+                        indexedItemBuilder: (context, cost, index) {
+                          return Container(
+                            color: index.isOdd ? Colors.grey.shade400 : Colors.grey.shade200,
                             child: CostItem(
                               cost: cost,
                               unitPrices: state.unitPricePool.where((element) => cost.category.jobCategory.unitPriceCategories.contains(element.category)).toList()
-                            )
+                            ),
                           );
                         },
                       ),
