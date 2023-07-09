@@ -33,8 +33,8 @@ class CostTableScreen extends StatelessWidget {
                       GroupedListView<CostItem, String>(
                         shrinkWrap: true,
                         elements: state.costItems,
-                        groupBy: (uiCostItem) =>
-                            uiCostItem.category.mainCategory.nameTr,
+                        groupBy: (costItem) =>
+                            costItem.category.mainCategory.nameTr,
                         groupSeparatorBuilder: (String groupByValue) {
                           return Padding(
                             padding: const EdgeInsets.all(8.0),
@@ -45,28 +45,28 @@ class CostTableScreen extends StatelessWidget {
                           );
                         },
                         sort: false,
-                        itemBuilder: (context, uiCostItem) {
+                        itemBuilder: (context, costItem) {
                           return Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Row(
                               children: [
                                 Expanded(
                                     flex: 2,
-                                    child: Text(uiCostItem
+                                    child: Text(costItem
                                         .category.jobCategory.nameTr)),
                                 Expanded(
-                                    child: Text(uiCostItem
+                                    child: Text(costItem
                                         .category.unitPriceCategory.nameTr)),
                                 Expanded(
                                     child: Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
-                                    Text(uiCostItem.formattedUnitPrice),
+                                    Text(costItem.formattedUnitPrice),
                                     IconButton(
                                         onPressed: () {
                                           final unitPrices = state.unitPricePool
-                                              .where((element) => uiCostItem
+                                              .where((element) => costItem
                                                   .category
                                                   .jobCategory
                                                   .unitPriceCategories
@@ -90,7 +90,7 @@ class CostTableScreen extends StatelessWidget {
                                                                 .read<
                                                                     ProjectBloc>()
                                                                 .add(ReplaceCostCategory(
-                                                                    uiCostItem
+                                                                    costItem
                                                                         .category,
                                                                     unitPrices[
                                                                             index]
@@ -146,24 +146,24 @@ class CostTableScreen extends StatelessWidget {
                                     child: Row(
                                   children: [
                                     Tooltip(
-                                      message: uiCostItem.quantityExplanation,
+                                      message: costItem.quantityExplanation,
                                       verticalOffset: -12,
                                       child: const Icon(Icons.info_outlined),
                                     ),
                                     const SizedBox(
                                       width: 8,
                                     ),
-                                    Text(uiCostItem.formattedQuantity),
+                                    Text(costItem.formattedQuantity),
                                   ],
                                 )),
                                 Expanded(
                                     child: Text(
-                                        uiCostItem.formattedTotalPriceTRY)),
+                                        costItem.formattedTotalPriceTRY)),
                                 IconButton(
                                     onPressed: () {
                                       context.read<ProjectBloc>().add(
                                           DeleteCostCategory(
-                                              uiCostItem.category));
+                                              costItem.category));
                                     },
                                     icon: const Icon(Icons.delete))
                               ],

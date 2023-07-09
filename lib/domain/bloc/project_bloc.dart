@@ -260,12 +260,12 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
       final formattedTotalPriceTRY = _getFormattedNumber(number: totalPriceTRY, unit: "TL");
 
       final costItem = CostItem(
-          category: enabledCostCategory,
-          formattedUnitPrice: formattedUnitPrice,
-          formattedQuantity: formattedQuantity,
-          quantityExplanation: quantityExplanation,
-          totalPriceTRY: totalPriceTRY,
-          formattedTotalPriceTRY: formattedTotalPriceTRY
+        category: enabledCostCategory,
+        formattedUnitPrice: formattedUnitPrice,
+        formattedQuantity: formattedQuantity,
+        quantityExplanation: quantityExplanation,
+        totalPriceTRY: totalPriceTRY,
+        formattedTotalPriceTRY: formattedTotalPriceTRY
       );
 
       costItems.add(costItem);
