@@ -51,12 +51,12 @@ class ReplaceCostCategory extends ProjectEvent {
   final UnitPriceCategory newUnitPriceCategory;
   const ReplaceCostCategory(this.oldCostCategory, this.newUnitPriceCategory);
   @override
-  List<Object?> get props => [];
+  List<Object?> get props => [oldCostCategory, newUnitPriceCategory];
 }
 
 class DeleteCostCategory extends ProjectEvent {
   final CostCategory costCategory;
   const DeleteCostCategory(this.costCategory);
   @override
-  List<Object?> get props => [];
+  List<Object?> get props => [costCategory];
 }
