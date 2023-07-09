@@ -10,7 +10,7 @@ abstract class QuantityCalculator {
   double? breakerHour;
   String get breakerHourExplanation;
 
-  double?  foundationStabilizationVolume;
+  double? foundationStabilizationVolume;
   String get foundationStabilizationVolumeExplanation;
 
   double? subFoundationConcreteVolume;

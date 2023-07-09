@@ -20,14 +20,15 @@ import 'project_state.dart';
 class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
   ProjectBloc()
       : super(
-          ProjectState(
-              quantityCalculator: InitialQuantityCalculator(),
-              unitPricePool: const [],
-              currencyRates: DefaultCurrencyRates(),
-              costTemplate: EmptyCostTemplate(),
-              costs: const [],
-              formattedGrandTotalTRY: ""),
-        ) {
+        ProjectState(
+          quantityCalculator: InitialQuantityCalculator(),
+          unitPricePool: const [],
+          currencyRates: DefaultCurrencyRates(),
+          costTemplate: EmptyCostTemplate(),
+          costs: const [],
+          formattedGrandTotalTRY: ""
+        ),
+      ) {
     on<Init>((event, emit) {
       add(const CreateQuantityCalculator());
       add(const FetchUnitPrices());
@@ -206,6 +207,7 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
       state.costTemplate.enabledCostCategories.remove(event.costCategory);
       _refresh();
     });
+    on<CalculateCostWithNewQuantity>((event, emit) {});
   }
 
   void init() {

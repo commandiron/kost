@@ -60,3 +60,10 @@ class DeleteCostCategory extends ProjectEvent {
   @override
   List<Object?> get props => [costCategory];
 }
+
+class CalculateCostWithNewQuantity extends ProjectEvent {
+  final double quantity;
+  const CalculateCostWithNewQuantity(this.quantity);
+  @override
+  List<Object?> get props => [quantity];
+}
