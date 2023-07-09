@@ -24,8 +24,7 @@ class CostItem extends StatelessWidget {
         Expanded(child: Text(cost.category.unitPriceCategory.nameTr)),
         Expanded(
           child: Row(
-            mainAxisAlignment:
-            MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(cost.formattedUnitPrice),
               IconButton(
