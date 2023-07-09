@@ -35,7 +35,12 @@ class CostTableScreen extends StatelessWidget {
                         groupSeparatorBuilder: (String groupByValue) {
                           return Padding(
                             padding: const EdgeInsets.all(8.0),
-                            child: MainCategoryTitle(text: groupByValue),
+                            child: Row(
+                              children: [
+                                MainCategoryTitle(text: groupByValue),
+                                Text(state.formattedSubTotalsTRY[groupByValue]!)
+                              ],
+                            ),
                           );
                         },
                         sort: false,

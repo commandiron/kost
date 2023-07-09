@@ -6,6 +6,7 @@ import 'package:kost/domain/calculator/detailed/project_constants.dart';
 import 'package:kost/domain/calculator/detailed/room.dart';
 import 'package:kost/domain/calculator/detailed/window.dart';
 import 'package:kost/domain/calculator/quantity_calculator.dart';
+import 'package:kost/domain/model/category/category.dart';
 import 'package:kost/domain/model/cost/cost_category.dart';
 import 'package:kost/domain/model/unit_price/currency.dart';
 import 'package:kost/domain/model/cost/cost_template.dart';
@@ -26,6 +27,7 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
           currencyRates: DefaultCurrencyRates(),
           costTemplate: EmptyCostTemplate(),
           costs: const [],
+          formattedSubTotalsTRY: const {},
           formattedGrandTotalTRY: ""
         ),
       ) {
@@ -187,12 +189,22 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
         currencyRates: state.currencyRates
       );
 
-      final formattedGrandTotalTRY =
-          "${NumberFormat("#,##0.00", "tr_TR").format(_calculateGrandTotal(costs))} TL";
+      final mainCategorySet = costs.map((e) => e.category.mainCategory).toSet();
+      final Map<String, String> formattedSubTotalsTRY = {};
+      for(var mainCategory in mainCategorySet) {
+        final subTotal = _calculateSubTotal(costs, mainCategory);
+        formattedSubTotalsTRY.putIfAbsent(mainCategory.nameTr, () => _getFormattedNumber(number: subTotal, unit: "TL"));
+      }
 
-      emit(state.copyWith(
+      final formattedGrandTotalTRY = _getFormattedNumber(number: _calculateGrandTotal(costs), unit: "TL");
+
+      emit(
+        state.copyWith(
           costs: costs,
-          formattedGrandTotalTRY: formattedGrandTotalTRY));
+          formattedSubTotalsTRY: formattedSubTotalsTRY,
+          formattedGrandTotalTRY: formattedGrandTotalTRY,
+        )
+      );
     });
     on<ReplaceCostCategory>((event, emit) {
       final replacedIndex = state.costTemplate.enabledCostCategories
@@ -283,6 +295,10 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
         .map((cost) => cost.totalPriceTRY)
         .toList()
         .fold(0, (p, c) => p + c);
+  }
+  double _calculateSubTotal(List<Cost> costs, MainCategory mainCategory) {
+    final categorizedCosts = costs.where((cost) => cost.category.mainCategory == mainCategory).toList();
+    return categorizedCosts.map((e) => e.totalPriceTRY).toList().fold(0.0, (p, c) => p + c);
   }
 
   String _getFormattedNumber({

@@ -11,6 +11,7 @@ class ProjectState extends Equatable {
   final CurrencyRates currencyRates;
   final CostTemplate costTemplate;
   final List<Cost> costs;
+  final Map<String, String> formattedSubTotalsTRY;
   final String formattedGrandTotalTRY;
 
   const ProjectState({
@@ -19,6 +20,7 @@ class ProjectState extends Equatable {
     required this.currencyRates,
     required this.costTemplate,
     required this.costs,
+    required this.formattedSubTotalsTRY,
     required this.formattedGrandTotalTRY,
   });
 
@@ -28,6 +30,7 @@ class ProjectState extends Equatable {
     CurrencyRates? currencyRates,
     CostTemplate? costTemplate,
     List<Cost>? costs,
+    Map<String, String>? formattedSubTotalsTRY,
     String? formattedGrandTotalTRY,
   }) {
     return ProjectState(
@@ -36,6 +39,7 @@ class ProjectState extends Equatable {
       currencyRates: currencyRates ?? this.currencyRates,
       costTemplate: costTemplate ?? this.costTemplate,
       costs: costs ?? this.costs,
+      formattedSubTotalsTRY: formattedSubTotalsTRY ?? this.formattedSubTotalsTRY,
       formattedGrandTotalTRY: formattedGrandTotalTRY ?? this.formattedGrandTotalTRY
     );
   }
@@ -47,6 +51,7 @@ class ProjectState extends Equatable {
         currencyRates,
         costTemplate,
         costs,
+        formattedSubTotalsTRY,
         formattedGrandTotalTRY
       ];
 }
