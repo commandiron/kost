@@ -247,7 +247,7 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
               ? "$formattedFixedAmount + $formattedAmount"
               : formattedAmount;
 
-      final quantity = quantityCalculator.calculateQuantity(enabledCostCategory.jobCategory);
+      final quantity = quantityCalculator.calculateQuantity(enabledCostCategory.jobCategory) ?? 0;
       final formattedQuantity = _getFormattedNumber(number: quantity, unit: lastDatedUnitPrice.category.unit.symbol);
 
       final quantityExplanation = quantityCalculator.getQuantityExplanation(enabledCostCategory.jobCategory);

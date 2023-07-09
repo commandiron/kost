@@ -1,193 +1,193 @@
 import '../model/category/category.dart';
 
 abstract class QuantityCalculator {
-  double get shoringArea;
+  double? shoringArea;
   String get shoringAreaExplanation;
 
-  double get excavationVolume;
+  double? excavationVolume;
   String get excavationVolumeExplanation;
 
-  double get breakerHour;
+  double? breakerHour;
   String get breakerHourExplanation;
 
-  double get foundationStabilizationVolume;
+  double?  foundationStabilizationVolume;
   String get foundationStabilizationVolumeExplanation;
 
-  double get subFoundationConcreteVolume;
+  double? subFoundationConcreteVolume;
   String get subFoundationConcreteVolumeExplanation;
 
-  double get concreteFormWorkArea;
+  double? concreteFormWorkArea;
   String get concreteFormWorkAreaExplanation;
 
-  double get pouringConcreteVolume;
+  double? pouringConcreteVolume;
   String get pouringConcreteVolumeExplanation;
 
-  double get rebarWeight;
+  double? rebarWeight;
   String get rebarWeightExplanation;
 
-  double get hollowFloorFillingVolume;
+  double? hollowFloorFillingVolume;
   String get hollowFloorFillingVolumeExplanation;
 
-  double get foundationWaterProofingArea;
+  double? foundationWaterProofingArea;
   String get foundationWaterProofingAreaExplanation;
 
-  double get curtainWaterProofingArea;
+  double? curtainWaterProofingArea;
   String get curtainWaterProofingAreaExplanation;
 
-  double get curtainProtectionBeforeFillingArea;
+  double? curtainProtectionBeforeFillingArea;
   String get curtainProtectionBeforeFillingAreaExplanation;
 
-  double get wallMaterialVolume;
+  double? wallMaterialVolume;
   String get wallMaterialVolumeExplanation;
 
-  double get wallWorkmanShipArea;
+  double? wallWorkmanShipArea;
   String get wallWorkmanShipAreaExplanation;
 
-  double get roofingArea;
+  double? roofingArea;
   String get roofingAreaExplanation;
 
-  double get facadeScaffoldingArea;
+  double? facadeScaffoldingArea;
   String get facadeScaffoldingAreaExplanation;
 
-  double get windowsArea;
+  double? windowsArea;
   String get windowAreaExplanation;
 
-  double get facadeRailsLength;
+  double? facadeRailsLength;
   String get facadeRailsLengthExplanation;
 
-  double get facadeSystemArea;
+  double? facadeSystemArea;
   String get facadeSystemAreaExplanation;
 
-  double get interiorPlasteringArea;
+  double? interiorPlasteringArea;
   String get interiorPlasteringAreaExplanation;
 
-  double get interiorPaintingArea;
+  double? interiorPaintingArea;
   String get interiorPaintingAreaExplanation;
 
-  double get interiorWaterproofingArea;
+  double? interiorWaterproofingArea;
   String get interiorWaterproofingAreaExplanation;
 
-  double get ceilingCoveringArea;
+  double? ceilingCoveringArea;
   String get ceilingCoveringAreaExplanation;
 
-  double get covingPlasterArea;
+  double? covingPlasterArea;
   String get covingPlasterAreaExplanation;
 
-  double get screedingArea;
+  double? screedingArea;
   String get screedingAreaExplanation;
 
-  double get marbleArea;
+  double? marbleArea;
   String get marbleAreaExplanation;
 
-  double get marbleStepLength;
+  double? marbleStepLength;
   String get marbleStepLengthExplanation;
 
-  double get marbleWindowsillLength;
+  double? marbleWindowsillLength;
   String get marbleWindowsillLengthExplanation;
 
-  double get stairRailingsLength;
+  double? stairRailingsLength;
   String get stairRailingsLengthExplanation;
 
-  double get ceramicTileArea;
+  double? ceramicTileArea;
   String get ceramicTileAreaExplanation;
 
-  double get parquetTileArea;
+  double? parquetTileArea;
   String get parquetTileAreaExplanation;
 
-  double get steelDoorNumber;
+  double? steelDoorNumber;
   String get steelDoorNumberExplanation;
 
-  double get entranceDoorArea;
+  double? entranceDoorArea;
   String get entranceDoorAreaExplanation;
 
-  double get fireDoorNumber;
+  double? fireDoorNumber;
   String get fireDoorNumberExplanation;
 
-  double get woodenDoorNumber;
+  double? woodenDoorNumber;
   String get woodenDoorNumberExplanation;
 
-  double get kitchenCupboardLength;
+  double? kitchenCupboardLength;
   String get kitchenCupboardLengthExplanation;
 
-  double get kitchenCounterLength;
+  double? kitchenCounterLength;
   String get kitchenCounterLengthExplanation;
 
-  double get coatCabinetArea;
+  double? coatCabinetArea;
   String get coatCabinetAreaExplanation;
 
-  double get bathroomCabinetArea;
+  double? bathroomCabinetArea;
   String get bathroomCabinetAreaExplanation;
 
-  double get floorPlinthLength;
+  double? floorPlinthLength;
   String get floorPlinthLengthExplanation;
 
-  double get mechanicalInfrastructureApartment;
+  double? mechanicalInfrastructureApartment;
   String get mechanicalInfrastructureApartmentExplanation;
 
-  double get airConditionerNumber;
+  double? airConditionerNumber;
   String get airConditionerNumberExplanation;
 
-  double get ventilationArea;
+  double? ventilationArea;
   String get ventilationAreaExplanation;
 
-  double get elevationStop;
+  double? elevationStop;
   String get elevationStopExplanation;
 
-  double get sinkNumber;
+  double? sinkNumber;
   String get sinkNumberExplanation;
 
-  double get sinkBatteryNumber;
+  double? sinkBatteryNumber;
   String get sinkBatteryNumberExplanation;
 
-  double get concealedCisternNumber;
+  double? concealedCisternNumber;
   String get concealedCisternNumberExplanation;
 
-  double get showerNumber;
+  double? showerNumber;
   String get showerNumberExplanation;
 
-  double get showerBatteryNumber;
+  double? showerBatteryNumber;
   String get showerBatteryNumberExplanation;
 
-  double get kitchenFaucetAndSinkNumber;
+  double? kitchenFaucetAndSinkNumber;
   String get kitchenFaucetAndSinkNumberExplanation;
 
-  double get electricalInfrastructureApartment;
+  double? electricalInfrastructureApartment;
   String get electricalInfrastructureApartmentExplanation;
 
-  double get householdAppliancesApartment;
+  double? householdAppliancesApartment;
   String get householdAppliancesApartmentExplanation;
 
-  double get landScapeGardenArea;
+  double? landScapeGardenArea;
   String get landScapeGardenAreaExplanation;
 
-  double get outdoorParkingTileArea;
+  double? outdoorParkingTileArea;
   String get outdoorParkingTileAreaExplanation;
 
-  double get carLiftStop;
+  double? carLiftStop;
   String get carLiftStopExplanation;
 
-  double get automaticBarrierNumber;
+  double? automaticBarrierNumber;
   String get automaticBarrierNumberExplanation;
 
-  double get enclosingTheLandLength;
+  double? enclosingTheLandLength;
   String get enclosingTheLandLengthExplanation;
 
-  double get craneHour;
+  double? craneHour;
   String get craneHourExplanation;
 
-  double get siteSafetyMonth;
+  double? siteSafetyMonth;
   String get siteSafetyMonthExplanation;
 
-  double get officeExpensesMonth;
+  double? officeExpensesMonth;
   String get officeExpensesMonthExplanation;
 
-  double get sergeantMonth;
+  double? sergeantMonth;
   String get sergeantMonthExplanation;
 
-  double get projectManagerMonth;
+  double? projectManagerMonth;
   String get projectManagerMonthExplanation;
 
-  double calculateQuantity(JobCategory jobCategory) {
+  double? calculateQuantity(JobCategory jobCategory) {
     return switch (jobCategory) {
       JobCategory.shoring => shoringArea,
       JobCategory.excavation => excavationVolume,
