@@ -271,8 +271,8 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
     return costItems;
   }
 
-  double _calculateGrandTotal(List<CostItem> uiCostItems) {
-    return uiCostItems
+  double _calculateGrandTotal(List<CostItem> costItems) {
+    return costItems
         .map((costItem) => costItem.totalPriceTRY)
         .toList()
         .fold(0, (p, c) => p + c);
