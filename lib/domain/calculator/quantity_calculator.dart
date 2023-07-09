@@ -187,7 +187,7 @@ abstract class QuantityCalculator {
   double get projectManagerMonth;
   String get projectManagerMonthExplanation;
 
-  double getQuantityFromJobCategory(JobCategory jobCategory) {
+  double calculateQuantity(JobCategory jobCategory) {
     return switch (jobCategory) {
       JobCategory.shoring => shoringArea,
       JobCategory.excavation => excavationVolume,
@@ -258,7 +258,7 @@ abstract class QuantityCalculator {
     };
   }
 
-  String getQuantityExplanationFromJobCategory(JobCategory jobCategory) {
+  String getQuantityExplanation(JobCategory jobCategory) {
     return switch (jobCategory) {
       JobCategory.shoring => shoringAreaExplanation,
       JobCategory.excavation => excavationVolumeExplanation,
