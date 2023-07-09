@@ -239,12 +239,15 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
       final lastDatedUnitPrice = unitPrices.reduce((current, next) =>
           current.dateTime.isAfter(next.dateTime) ? current : next);
 
+      final formattedFixedAmount = _getFormattedNumber(number: lastDatedUnitPrice.fixedAmount, unit: lastDatedUnitPrice.currency.symbol);
+      final formattedAmount = _getFormattedNumber(number: lastDatedUnitPrice.amount, unit: "${lastDatedUnitPrice.currency.symbol}/${lastDatedUnitPrice.category.unit.symbol}");
+
       final formattedUnitPrice = lastDatedUnitPrice.fixedAmount != 0
-              ? "${NumberFormat("#,##0.00", "tr_TR").format(lastDatedUnitPrice.fixedAmount)} ${lastDatedUnitPrice.currency.symbol} + ${NumberFormat("#,##0.00", "tr_TR").format(lastDatedUnitPrice.amount)} ${lastDatedUnitPrice.currency.symbol}/${lastDatedUnitPrice.category.unit.symbol}"
-              : "${NumberFormat("#,##0.00", "tr_TR").format(lastDatedUnitPrice.amount)} ${lastDatedUnitPrice.currency.symbol}/${lastDatedUnitPrice.category.unit.symbol}";
+              ? "$formattedFixedAmount + $formattedAmount"
+              : formattedAmount;
 
       final quantity = quantityCalculator.getQuantityFromJobCategory(enabledCostCategory.jobCategory);
-      final formattedQuantity = "${NumberFormat("#,##0.00", "tr_TR").format(quantity)} ${lastDatedUnitPrice.category.unit.symbol}";
+      final formattedQuantity = _getFormattedNumber(number: quantity, unit: lastDatedUnitPrice.category.unit.symbol);
 
       final quantityExplanation =
           quantityCalculator.getQuantityExplanationFromJobCategory(
@@ -255,7 +258,7 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
           (lastDatedUnitPrice.amount *
               quantity *
               lastDatedUnitPrice.currency.toLiraRate(currencyRates));
-      final formattedTotalPriceTRY = "${NumberFormat("#,##0.00", "tr_TR").format(totalPriceTRY)} TL";
+      final formattedTotalPriceTRY = _getFormattedNumber(number: totalPriceTRY, unit: "TL");
 
       final costItem = CostItem(
           category: enabledCostCategory,
@@ -276,6 +279,15 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
         .map((costItem) => costItem.totalPriceTRY)
         .toList()
         .fold(0, (p, c) => p + c);
+  }
+
+  String _getFormattedNumber({
+    String pattern = "#,##0.00",
+    String locale = "tr_TR",
+    required double number,
+    required String unit,
+  }) {
+    return "${NumberFormat(pattern, locale).format(number)} $unit";
   }
 
   void _refresh() {
