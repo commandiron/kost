@@ -80,7 +80,6 @@ class CostItem extends StatelessWidget {
             children: [
               Tooltip(
                 message: cost.quantityExplanation,
-                verticalOffset: -12,
                 child: const Icon(Icons.info_outlined),
               ),
               const SizedBox(
