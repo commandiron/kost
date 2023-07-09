@@ -178,11 +178,12 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
             "All enabled unit prices in the cost template are NOT included in fetched unit prices."); //Handle
       }
 
-      final costItems = _createCostItemsFromTemplate(
-          costTemplate: state.costTemplate,
-          unitPricePool: state.unitPricePool,
-          quantityCalculator: state.quantityCalculator,
-          currencyRates: state.currencyRates);
+      final costItems = _createCostItems(
+        costTemplate: state.costTemplate,
+        unitPricePool: state.unitPricePool,
+        quantityCalculator: state.quantityCalculator,
+        currencyRates: state.currencyRates
+      );
 
       final formattedGrandTotalTRY =
           "${NumberFormat("#,##0.00", "tr_TR").format(_calculateGrandTotal(costItems))} TL";
@@ -222,7 +223,7 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
     return true;
   }
 
-  List<CostItem> _createCostItemsFromTemplate({
+  List<CostItem> _createCostItems({
     required CostTemplate costTemplate,
     required List<UnitPrice> unitPricePool,
     required QuantityCalculator quantityCalculator,
@@ -254,7 +255,7 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
           (lastDatedUnitPrice.amount *
               quantity *
               lastDatedUnitPrice.currency.toLiraRate(currencyRates));
-      final formattedTotalPriceTRY = "${NumberFormat("#,##0.00", "tr_TR").format(totalPriceTRY)} ₺";
+      final formattedTotalPriceTRY = "${NumberFormat("#,##0.00", "tr_TR").format(totalPriceTRY)} TL";
 
       final costItem = CostItem(
           category: enabledCostCategory,

@@ -4,7 +4,7 @@ enum Currency {
 extension CurrencyExtension on Currency {
   String get symbol {
     switch(this) {
-      case Currency.lira : return "₺";
+      case Currency.lira : return "TL";
       case Currency.dollar : return "\$";
       case Currency.euro : return "€";
       default : throw Exception();
