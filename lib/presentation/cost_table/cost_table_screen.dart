@@ -38,7 +38,7 @@ class CostTableScreen extends StatelessWidget {
                             child: Row(
                               children: [
                                 MainCategoryTitle(text: mainCategory.nameTr),
-                                Text(state.formattedSubTotalsTRY[mainCategory]!)
+                                Text(state.formattedSubTotalsTRY[mainCategory] ?? "")
                               ],
                             ),
                           );
