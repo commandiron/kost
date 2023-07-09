@@ -61,11 +61,12 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
                 isCeilingHollowSlab: true,
                 windows: [
                   Window(
-                      width: 17,
-                      height: 2.2,
-                      hasRailing: true,
-                      hasWindowsill: true,
-                      count: 1),
+                    width: 17,
+                    height: 2.2,
+                    hasRailing: true,
+                    hasWindowsill: true,
+                    count: 1
+                  ),
                 ],
                 rooms: [
                   ApartmentEntree(area: 0, perimeter: 0),
