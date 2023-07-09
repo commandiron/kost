@@ -11,8 +11,8 @@ import '../domain/bloc/project_event.dart';
 import '../domain/bloc/project_state.dart';
 import '../domain/model/cost/cost_item.dart';
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+class CostTableScreen extends StatelessWidget {
+  const CostTableScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

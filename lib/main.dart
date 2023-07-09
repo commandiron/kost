@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:kost/presentation/home_screen.dart';
+import 'package:kost/presentation/cost_table_screen.dart';
 
 import 'domain/bloc/project_bloc.dart';
 
@@ -26,7 +26,7 @@ class MaterialChild extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => ProjectBloc()..init(),
-      child: const HomeScreen()
+      child: const CostTableScreen()
     );
   }
 }
