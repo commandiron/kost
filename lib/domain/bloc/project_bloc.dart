@@ -208,7 +208,7 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
       _refresh();
     });
     on<CalculateCostWithNewQuantity>((event, emit) {
-      state.quantityCalculator.setQuantity(event.jobCategory, event.quantity);
+      state.quantityCalculator.setQuantityManually(event.jobCategory, event.quantity);
       _refresh();
     });
   }

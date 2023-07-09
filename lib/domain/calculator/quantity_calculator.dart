@@ -250,7 +250,7 @@ abstract class QuantityCalculator {
   double? projectManagerMonth;
   String get projectManagerMonthExplanation;
 
-  setQuantity(JobCategory jobCategory, double quantity) {
+  setQuantityManually(JobCategory jobCategory, double quantity) {
     switch (jobCategory) {
       case JobCategory.shoring : shoringArea = quantity;
       case JobCategory.excavation : excavationVolume = quantity;
