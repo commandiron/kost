@@ -10,7 +10,7 @@ import 'package:kost/domain/model/cost/cost_category.dart';
 import 'package:kost/domain/model/unit_price/currency.dart';
 import 'package:kost/domain/model/cost/cost_template.dart';
 import 'package:kost/domain/model/unit_price/unit.dart';
-import 'package:kost/domain/model/cost/cost_item.dart';
+import 'package:kost/domain/model/cost/cost.dart';
 
 import '../calculator/detailed/floor.dart';
 import '../model/unit_price/unit_price.dart';
@@ -25,7 +25,7 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
               unitPricePool: const [],
               currencyRates: DefaultCurrencyRates(),
               costTemplate: EmptyCostTemplate(),
-              costItems: const [],
+              costs: const [],
               formattedGrandTotalTRY: ""),
         ) {
     on<Init>((event, emit) {
@@ -179,7 +179,7 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
             "All enabled unit prices in the cost template are NOT included in fetched unit prices."); //Handle
       }
 
-      final costItems = _createCostItems(
+      final costs = _createCosts(
         costTemplate: state.costTemplate,
         unitPricePool: state.unitPricePool,
         quantityCalculator: state.quantityCalculator,
@@ -187,10 +187,10 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
       );
 
       final formattedGrandTotalTRY =
-          "${NumberFormat("#,##0.00", "tr_TR").format(_calculateGrandTotal(costItems))} TL";
+          "${NumberFormat("#,##0.00", "tr_TR").format(_calculateGrandTotal(costs))} TL";
 
       emit(state.copyWith(
-          costItems: costItems,
+          costs: costs,
           formattedGrandTotalTRY: formattedGrandTotalTRY));
     });
     on<ReplaceCostCategory>((event, emit) {
@@ -224,13 +224,13 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
     return true;
   }
 
-  List<CostItem> _createCostItems({
+  List<Cost> _createCosts({
     required CostTemplate costTemplate,
     required List<UnitPrice> unitPricePool,
     required QuantityCalculator quantityCalculator,
     required CurrencyRates currencyRates,
   }) {
-    List<CostItem> costItems = [];
+    List<Cost> costs = [];
 
     for (var enabledCostCategory in costTemplate.enabledCostCategories) {
       final unitPrices = unitPricePool
@@ -259,7 +259,7 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
               lastDatedUnitPrice.currency.toLiraRate(currencyRates));
       final formattedTotalPriceTRY = _getFormattedNumber(number: totalPriceTRY, unit: "TL");
 
-      final costItem = CostItem(
+      final cost = Cost(
         category: enabledCostCategory,
         formattedUnitPrice: formattedUnitPrice,
         formattedQuantity: formattedQuantity,
@@ -268,14 +268,14 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
         formattedTotalPriceTRY: formattedTotalPriceTRY
       );
 
-      costItems.add(costItem);
+      costs.add(cost);
     }
-    return costItems;
+    return costs;
   }
 
-  double _calculateGrandTotal(List<CostItem> costItems) {
-    return costItems
-        .map((costItem) => costItem.totalPriceTRY)
+  double _calculateGrandTotal(List<Cost> costs) {
+    return costs
+        .map((cost) => cost.totalPriceTRY)
         .toList()
         .fold(0, (p, c) => p + c);
   }

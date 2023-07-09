@@ -5,11 +5,12 @@ import 'package:kost/domain/model/category/category.dart';
 import 'package:kost/domain/model/unit_price/currency.dart';
 import 'package:kost/domain/model/unit_price/unit.dart';
 import 'package:kost/domain/model/unit_price/unit_price_category.dart';
+import 'package:kost/presentation/cost_table/widget/main_category_title.dart';
 
-import '../domain/bloc/project_bloc.dart';
-import '../domain/bloc/project_event.dart';
-import '../domain/bloc/project_state.dart';
-import '../domain/model/cost/cost_item.dart';
+import '../../domain/bloc/project_bloc.dart';
+import '../../domain/bloc/project_event.dart';
+import '../../domain/bloc/project_state.dart';
+import '../../domain/model/cost/cost.dart';
 
 class CostTableScreen extends StatelessWidget {
   const CostTableScreen({Key? key}) : super(key: key);
@@ -30,43 +31,36 @@ class CostTableScreen extends StatelessWidget {
                         state.costTemplate.name,
                         style: const TextStyle(fontSize: 26),
                       ),
-                      GroupedListView<CostItem, String>(
+                      GroupedListView<Cost, String>(
                         shrinkWrap: true,
-                        elements: state.costItems,
-                        groupBy: (costItem) =>
-                            costItem.category.mainCategory.nameTr,
+                        elements: state.costs,
+                        groupBy: (cost) => cost.category.mainCategory.nameTr,
                         groupSeparatorBuilder: (String groupByValue) {
-                          return Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              groupByValue,
-                              style: const TextStyle(fontSize: 20),
-                            ),
-                          );
+                          return MainCategoryTitle(text: groupByValue);
                         },
                         sort: false,
-                        itemBuilder: (context, costItem) {
+                        itemBuilder: (context, cost) {
                           return Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Row(
                               children: [
                                 Expanded(
                                     flex: 2,
-                                    child: Text(costItem
+                                    child: Text(cost
                                         .category.jobCategory.nameTr)),
                                 Expanded(
-                                    child: Text(costItem
+                                    child: Text(cost
                                         .category.unitPriceCategory.nameTr)),
                                 Expanded(
                                     child: Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
-                                    Text(costItem.formattedUnitPrice),
+                                    Text(cost.formattedUnitPrice),
                                     IconButton(
                                         onPressed: () {
                                           final unitPrices = state.unitPricePool
-                                              .where((element) => costItem
+                                              .where((element) => cost
                                                   .category
                                                   .jobCategory
                                                   .unitPriceCategories
@@ -90,7 +84,7 @@ class CostTableScreen extends StatelessWidget {
                                                                 .read<
                                                                     ProjectBloc>()
                                                                 .add(ReplaceCostCategory(
-                                                                    costItem
+                                                                    cost
                                                                         .category,
                                                                     unitPrices[
                                                                             index]
@@ -146,24 +140,24 @@ class CostTableScreen extends StatelessWidget {
                                     child: Row(
                                   children: [
                                     Tooltip(
-                                      message: costItem.quantityExplanation,
+                                      message: cost.quantityExplanation,
                                       verticalOffset: -12,
                                       child: const Icon(Icons.info_outlined),
                                     ),
                                     const SizedBox(
                                       width: 8,
                                     ),
-                                    Text(costItem.formattedQuantity),
+                                    Text(cost.formattedQuantity),
                                   ],
                                 )),
                                 Expanded(
                                     child: Text(
-                                        costItem.formattedTotalPriceTRY)),
+                                        cost.formattedTotalPriceTRY)),
                                 IconButton(
                                     onPressed: () {
                                       context.read<ProjectBloc>().add(
                                           DeleteCostCategory(
-                                              costItem.category));
+                                              cost.category));
                                     },
                                     icon: const Icon(Icons.delete))
                               ],

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:kost/presentation/cost_table_screen.dart';
+import 'package:kost/presentation/cost_table/cost_table_screen.dart';
 
 import 'domain/bloc/project_bloc.dart';
 

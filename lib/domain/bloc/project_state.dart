@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:kost/domain/model/unit_price/currency.dart';
 import 'package:kost/domain/model/cost/cost_template.dart';
-import '../model/cost/cost_item.dart';
+import '../model/cost/cost.dart';
 import '../model/unit_price/unit_price.dart';
 import '../calculator/quantity_calculator.dart';
 
@@ -10,7 +10,7 @@ class ProjectState extends Equatable {
   final List<UnitPrice> unitPricePool;
   final CurrencyRates currencyRates;
   final CostTemplate costTemplate;
-  final List<CostItem> costItems;
+  final List<Cost> costs;
   final String formattedGrandTotalTRY;
 
   const ProjectState({
@@ -18,7 +18,7 @@ class ProjectState extends Equatable {
     required this.unitPricePool,
     required this.currencyRates,
     required this.costTemplate,
-    required this.costItems,
+    required this.costs,
     required this.formattedGrandTotalTRY,
   });
 
@@ -27,17 +27,17 @@ class ProjectState extends Equatable {
     List<UnitPrice>? unitPricePool,
     CurrencyRates? currencyRates,
     CostTemplate? costTemplate,
-    List<CostItem>? costItems,
+    List<Cost>? costs,
     String? formattedGrandTotalTRY,
   }) {
     return ProjectState(
-        quantityCalculator: quantityCalculator ?? this.quantityCalculator,
-        unitPricePool: unitPricePool ?? this.unitPricePool,
-        currencyRates: currencyRates ?? this.currencyRates,
-        costTemplate: costTemplate ?? this.costTemplate,
-        costItems: costItems ?? this.costItems,
-        formattedGrandTotalTRY:
-            formattedGrandTotalTRY ?? this.formattedGrandTotalTRY);
+      quantityCalculator: quantityCalculator ?? this.quantityCalculator,
+      unitPricePool: unitPricePool ?? this.unitPricePool,
+      currencyRates: currencyRates ?? this.currencyRates,
+      costTemplate: costTemplate ?? this.costTemplate,
+      costs: costs ?? this.costs,
+      formattedGrandTotalTRY: formattedGrandTotalTRY ?? this.formattedGrandTotalTRY
+    );
   }
 
   @override
@@ -46,7 +46,7 @@ class ProjectState extends Equatable {
         unitPricePool,
         currencyRates,
         costTemplate,
-        costItems,
+        costs,
         formattedGrandTotalTRY
       ];
 }

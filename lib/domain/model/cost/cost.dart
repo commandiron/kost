@@ -1,6 +1,6 @@
 import 'cost_category.dart';
 
-class CostItem {
+class Cost {
   CostCategory category;
   String formattedUnitPrice;
   String formattedQuantity;
@@ -8,7 +8,7 @@ class CostItem {
   double totalPriceTRY;
   String formattedTotalPriceTRY;
 
-  CostItem({
+  Cost({
     required this.category,
     required this.formattedUnitPrice,
     required this.formattedQuantity,
