@@ -42,7 +42,6 @@ class _QuantityTextFieldState extends State<QuantityTextField> {
           if(RegExp(r'[^\d,]').hasMatch(value)) {
             return message;
           }
-
           return null;
         },
         onFieldSubmitted: (value) {
