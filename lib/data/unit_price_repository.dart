@@ -46,7 +46,7 @@ class UnitPriceRepository {
     ),
     UnitPrice(
         category: UnitPriceCategory.c16Concrete,
-        amount: c40Concrete.amount * 0.725,
+        amount: c40Concrete.amount * 0.75,
         currency: Currency.lira,
         dateTime: DateTime(2023, 01)
     ),
@@ -58,13 +58,13 @@ class UnitPriceRepository {
     ),
     UnitPrice(
       category: UnitPriceCategory.c30Concrete,
-      amount: c40Concrete.amount * 0.835,
+      amount: c40Concrete.amount * 0.9,
       currency: Currency.lira,
       dateTime: DateTime(2023, 01)
     ),
     UnitPrice(
       category: UnitPriceCategory.c35Concrete,
-      amount: c40Concrete.amount * 0.895,
+      amount: c40Concrete.amount * 0.95,
       currency: Currency.lira,
       dateTime: DateTime(2023, 01)
     ),
