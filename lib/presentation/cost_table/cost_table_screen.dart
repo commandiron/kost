@@ -33,11 +33,14 @@ class CostTableScreen extends StatelessWidget {
                         elements: state.costs,
                         groupBy: (cost) => cost.category.mainCategory,
                         groupSeparatorBuilder: (MainCategory mainCategory) {
-                          return Padding(
-                            padding: const EdgeInsets.all(8.0),
+                          return Container(
+                            height: 80,
+                            padding: const EdgeInsets.symmetric(horizontal: 16),
                             child: Row(
                               children: [
-                                MainCategoryTitle(text: mainCategory.nameTr),
+                                Expanded(
+                                  child: MainCategoryTitle(text: mainCategory.nameTr)
+                                ),
                                 Text(state.formattedSubTotalsTRY[mainCategory] ?? "")
                               ],
                             ),
@@ -48,6 +51,7 @@ class CostTableScreen extends StatelessWidget {
                           return Container(
                             color: index.isOdd ? Colors.grey.shade400 : Colors.grey.shade200,
                             height: 80,
+                            padding: const EdgeInsets.symmetric(horizontal: 16),
                             child: CostItem(
                               cost: cost,
                               unitPrices: state.unitPricePool.where((element) => cost.category.jobCategory.unitPriceCategories.contains(element.category)).toList()

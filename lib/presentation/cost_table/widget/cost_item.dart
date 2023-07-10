@@ -21,9 +21,9 @@ class CostItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Expanded(flex: 2, child: Text(cost.category.jobCategory.nameTr)),
+        Expanded(flex: 4, child: Text(cost.category.jobCategory.nameTr)),
         Expanded(
-          flex: 2,
+          flex: 4,
           child: Row(
             children: [
               Expanded(child: Text(cost.category.unitPriceCategory.nameTr)),
@@ -74,6 +74,7 @@ class CostItem extends StatelessWidget {
           )
         ),
         Expanded(
+          flex: 2,
           child: Row(
             children: [
               Tooltip(
@@ -94,19 +95,18 @@ class CostItem extends StatelessWidget {
           )
         ),
         Expanded(
+          flex: 2,
           child: Row(
             children: [
               Text(cost.formattedTotalPriceTRY),
             ],
           )
         ),
-        Expanded(
-          child: IconButton(
-            onPressed: () {
-              context.read<ProjectBloc>().add(DeleteCostCategory(cost.category));
-            },
-            icon: const Icon(Icons.delete)
-          ),
+        IconButton(
+          onPressed: () {
+            context.read<ProjectBloc>().add(DeleteCostCategory(cost.category));
+          },
+          icon: const Icon(Icons.delete)
         )
       ],
     );
