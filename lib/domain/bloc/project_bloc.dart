@@ -196,7 +196,8 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
         formattedSubTotalsTRY.putIfAbsent(mainCategory, () => _getFormattedNumber(number: subTotal, unit: "TL"));
       }
 
-      final formattedGrandTotalTRY = _getFormattedNumber(number: _calculateGrandTotal(costs), unit: "TL");
+      final grandTotal = _calculateGrandTotal(costs);
+      final formattedGrandTotalTRY = _getFormattedNumber(number: grandTotal, unit: "TL");
 
       emit(
         state.copyWith(
