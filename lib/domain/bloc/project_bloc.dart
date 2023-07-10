@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
-import 'package:kost/data/app_data.dart';
+import 'package:kost/data/unit_price_repository.dart';
 import 'package:kost/domain/calculator/detailed/detailed_quantity_calculator.dart';
 import 'package:kost/domain/calculator/detailed/project_constants.dart';
 import 'package:kost/domain/calculator/detailed/room.dart';
@@ -167,7 +167,8 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
       emit(state.copyWith(quantityCalculator: quantityCalculator));
     });
     on<FetchUnitPrices>((event, emit) {
-      emit(state.copyWith(unitPricePool: AppData.unitPrices));
+      final unitPricePool = _unitPriceRepository.getAllUnitPrices();
+      emit(state.copyWith(unitPricePool: unitPricePool));
     });
     on<FetchCurrencyRates>((event, emit) {
       emit(state.copyWith(currencyRates: DefaultCurrencyRates()));
@@ -226,6 +227,8 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
       _refresh();
     });
   }
+
+  final UnitPriceRepository _unitPriceRepository = UnitPriceRepository();
 
   void init() {
     add(const Init());
