@@ -47,6 +47,7 @@ class CostTableScreen extends StatelessWidget {
                         indexedItemBuilder: (context, cost, index) {
                           return Container(
                             color: index.isOdd ? Colors.grey.shade400 : Colors.grey.shade200,
+                            height: 80,
                             child: CostItem(
                               cost: cost,
                               unitPrices: state.unitPricePool.where((element) => cost.category.jobCategory.unitPriceCategories.contains(element.category)).toList()

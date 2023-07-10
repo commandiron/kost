@@ -36,6 +36,9 @@ class _QuantityTextFieldState extends State<QuantityTextField> {
           if(value == null) {
             return message;
           }
+          if(value.isEmpty) {
+            return message;
+          }
           if(RegExp(r'[^\d,]').hasMatch(value)) {
             return message;
           }
