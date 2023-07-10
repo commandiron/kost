@@ -11,15 +11,8 @@ class UnitPriceRepository {
     currency: Currency.lira,
     dateTime: DateTime(2023, 01)
   );
-  static UnitPrice c30Concrete = UnitPrice(
-    category: UnitPriceCategory.c30Concrete,
-    amount: 1900,
-    currency: Currency.lira,
-    dateTime: DateTime(2023, 01)
-  );
-
-  static UnitPrice c35Concrete = UnitPrice(
-    category: UnitPriceCategory.c35Concrete,
+  static UnitPrice c40Concrete = UnitPrice(
+    category: UnitPriceCategory.c40Concrete,
     amount: 2000,
     currency: Currency.lira,
     dateTime: DateTime(2023, 01)
@@ -28,8 +21,8 @@ class UnitPriceRepository {
   static List<UnitPrice> unitPrices = [
     UnitPrice(
       category: UnitPriceCategory.shutCrete,
-      amount: (c30Concrete.amount * 0.3) + (s420Steel.amount * 0.1),
-      fixedAmount: 10000,
+      amount: (c40Concrete.amount * 0.3) + (s420Steel.amount * 0.1),
+      fixedAmount: 30000,
       currency: Currency.lira,
       dateTime: DateTime(2023, 01)
     ),
@@ -53,7 +46,7 @@ class UnitPriceRepository {
     ),
     UnitPrice(
         category: UnitPriceCategory.c16Concrete,
-        amount: 1800,
+        amount: c40Concrete.amount * 0.725,
         currency: Currency.lira,
         dateTime: DateTime(2023, 01)
     ),
@@ -63,8 +56,18 @@ class UnitPriceRepository {
         currency: Currency.lira,
         dateTime: DateTime(2023, 01)
     ),
-    c30Concrete,
-    c35Concrete,
+    UnitPrice(
+      category: UnitPriceCategory.c30Concrete,
+      amount: c40Concrete.amount * 0.835,
+      currency: Currency.lira,
+      dateTime: DateTime(2023, 01)
+    ),
+    UnitPrice(
+      category: UnitPriceCategory.c35Concrete,
+      amount: c40Concrete.amount * 0.895,
+      currency: Currency.lira,
+      dateTime: DateTime(2023, 01)
+    ),
     s420Steel,
     UnitPrice(
         category: UnitPriceCategory.eps,
