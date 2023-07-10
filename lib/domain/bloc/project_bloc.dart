@@ -220,8 +220,9 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
       state.costTemplate.enabledCostCategories.remove(event.costCategory);
       _refresh();
     });
-    on<CalculateCostWithNewQuantity>((event, emit) {
-      state.quantityCalculator.setQuantityManually(event.jobCategory, event.quantity);
+    on<ChangeQuantity>((event, emit) {
+      final quantity = _parseFormattedNumber(value: event.quantityText);
+      state.quantityCalculator.setQuantityManually(event.jobCategory, quantity);
       _refresh();
     });
   }
@@ -266,7 +267,7 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
               : formattedAmount;
 
       final quantity = quantityCalculator.calculateQuantity(enabledCostCategory.jobCategory);
-      final formattedQuantity = _getFormattedNumber(number: quantity, unit: lastDatedUnitPrice.category.unit.symbol);
+      final formattedQuantity = _getFormattedNumber(number: quantity);
 
       final quantityExplanation = quantityCalculator.getQuantityExplanation(enabledCostCategory.jobCategory);
 
@@ -306,9 +307,19 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
     String pattern = "#,##0.00",
     String locale = "tr_TR",
     required double number,
-    required String unit,
+    String unit = "",
   }) {
-    return "${NumberFormat(pattern, locale).format(number)} $unit";
+    return "${NumberFormat(pattern, locale).format(number)}${unit.isEmpty ? "": " $unit"}";
+  }
+
+  double _parseFormattedNumber(
+    {
+      String pattern = "#,##0.00",
+      String locale = "tr_TR",
+      required String value,
+    }
+  ) {
+    return NumberFormat(pattern, locale).parse(value).toDouble();
   }
 
   void _refresh() {

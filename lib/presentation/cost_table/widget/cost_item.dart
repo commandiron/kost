@@ -82,7 +82,20 @@ class CostItem extends StatelessWidget {
               const SizedBox(
                 width: 8,
               ),
-              Text(cost.formattedQuantity),
+              SizedBox(
+                width: 100,
+                child: TextField(
+                  controller: TextEditingController(
+                    text: cost.formattedQuantity
+                  ),
+                  decoration: InputDecoration(
+                    suffix: Text(cost.category.unitPriceCategory.unit.symbol)
+                  ),
+                  onSubmitted: (value) {
+                    context.read<ProjectBloc>().add(ChangeQuantity(cost.category.jobCategory, value));
+                  },
+                ),
+              )
             ],
           )
         ),
