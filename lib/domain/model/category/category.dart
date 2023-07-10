@@ -35,7 +35,7 @@ enum JobCategory {
   foundationStabilization([UnitPriceCategory.foundationStabilizationGravel]),
   subFoundationConcrete([UnitPriceCategory.c16Concrete]),
   concreteFormWork([UnitPriceCategory.plywood]),
-  pouringConcrete([UnitPriceCategory.c30Concrete, UnitPriceCategory.c35Concrete]),
+  pouringConcrete([UnitPriceCategory.c30Concrete, UnitPriceCategory.c35Concrete, UnitPriceCategory.c40Concrete]),
   rebar([UnitPriceCategory.s420Steel]),
   hollowFloorFilling([UnitPriceCategory.eps]),
   foundationWaterproofing([UnitPriceCategory.doubleLayerBitumenMembrane]),

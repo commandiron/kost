@@ -68,6 +68,7 @@ class UnitPriceRepository {
       currency: Currency.lira,
       dateTime: DateTime(2023, 01)
     ),
+    c40Concrete,
     s420Steel,
     UnitPrice(
         category: UnitPriceCategory.eps,
