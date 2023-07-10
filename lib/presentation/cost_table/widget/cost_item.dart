@@ -5,6 +5,7 @@ import 'package:kost/domain/model/cost/cost.dart';
 import 'package:kost/domain/model/unit_price/currency.dart';
 import 'package:kost/domain/model/unit_price/unit.dart';
 import 'package:kost/domain/model/unit_price/unit_price_category.dart';
+import 'package:kost/presentation/cost_table/widget/quantity_text_field.dart';
 
 import '../../../domain/bloc/project_bloc.dart';
 import '../../../domain/bloc/project_event.dart';
@@ -84,17 +85,10 @@ class CostItem extends StatelessWidget {
               ),
               SizedBox(
                 width: 100,
-                child: TextField(
-                  controller: TextEditingController(
-                    text: cost.formattedQuantity
-                  ),
-                  decoration: InputDecoration(
-                    suffix: Text(cost.category.unitPriceCategory.unit.symbol)
-                  ),
-                  onSubmitted: (value) {
-                    context.read<ProjectBloc>().add(ChangeQuantity(cost.category.jobCategory, value));
-                  },
-                ),
+                child: QuantityTextField(
+                  formattedQuantity: cost.formattedQuantity,
+                  costCategory: cost.category,
+                )
               )
             ],
           )
