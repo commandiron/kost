@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kost/presentation/cost_table/cost_table_screen.dart';
 
-import 'domain/bloc/project_bloc.dart';
+import 'domain/bloc/cost_table_bloc.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,9 +13,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: MaterialChild()
-    );
+    return const MaterialApp(home: MaterialChild());
   }
 }
 
@@ -25,8 +23,7 @@ class MaterialChild extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => ProjectBloc()..init(),
-      child: const CostTableScreen()
-    );
+        create: (context) => CostTableBloc()..init(),
+        child: const CostTableScreen());
   }
 }

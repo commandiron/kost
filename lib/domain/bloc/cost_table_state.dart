@@ -6,7 +6,7 @@ import '../model/cost/cost.dart';
 import '../model/unit_price/unit_price.dart';
 import '../calculator/quantity_calculator.dart';
 
-class ProjectState extends Equatable {
+class CostTableState extends Equatable {
   final QuantityCalculator quantityCalculator;
   final List<UnitPrice> unitPricePool;
   final CurrencyRates currencyRates;
@@ -15,7 +15,7 @@ class ProjectState extends Equatable {
   final Map<MainCategory, String> formattedSubTotalsTRY;
   final String formattedGrandTotalTRY;
 
-  const ProjectState({
+  const CostTableState({
     required this.quantityCalculator,
     required this.unitPricePool,
     required this.currencyRates,
@@ -25,7 +25,7 @@ class ProjectState extends Equatable {
     required this.formattedGrandTotalTRY,
   });
 
-  ProjectState copyWith({
+  CostTableState copyWith({
     QuantityCalculator? quantityCalculator,
     List<UnitPrice>? unitPricePool,
     CurrencyRates? currencyRates,
@@ -34,15 +34,16 @@ class ProjectState extends Equatable {
     Map<MainCategory, String>? formattedSubTotalsTRY,
     String? formattedGrandTotalTRY,
   }) {
-    return ProjectState(
-      quantityCalculator: quantityCalculator ?? this.quantityCalculator,
-      unitPricePool: unitPricePool ?? this.unitPricePool,
-      currencyRates: currencyRates ?? this.currencyRates,
-      costTemplate: costTemplate ?? this.costTemplate,
-      costs: costs ?? this.costs,
-      formattedSubTotalsTRY: formattedSubTotalsTRY ?? this.formattedSubTotalsTRY,
-      formattedGrandTotalTRY: formattedGrandTotalTRY ?? this.formattedGrandTotalTRY
-    );
+    return CostTableState(
+        quantityCalculator: quantityCalculator ?? this.quantityCalculator,
+        unitPricePool: unitPricePool ?? this.unitPricePool,
+        currencyRates: currencyRates ?? this.currencyRates,
+        costTemplate: costTemplate ?? this.costTemplate,
+        costs: costs ?? this.costs,
+        formattedSubTotalsTRY:
+            formattedSubTotalsTRY ?? this.formattedSubTotalsTRY,
+        formattedGrandTotalTRY:
+            formattedGrandTotalTRY ?? this.formattedGrandTotalTRY);
   }
 
   @override

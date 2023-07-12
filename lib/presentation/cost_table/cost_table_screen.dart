@@ -5,8 +5,8 @@ import 'package:kost/domain/model/category/category.dart';
 import 'package:kost/presentation/cost_table/widget/cost_item.dart';
 import 'package:kost/presentation/cost_table/widget/main_category_title.dart';
 
-import '../../domain/bloc/project_bloc.dart';
-import '../../domain/bloc/project_state.dart';
+import '../../domain/bloc/cost_table_bloc.dart';
+import '../../domain/bloc/cost_table_state.dart';
 import '../../domain/model/cost/cost.dart';
 
 class CostTableScreen extends StatelessWidget {
@@ -16,7 +16,7 @@ class CostTableScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: BlocBuilder<ProjectBloc, ProjectState>(
+        body: BlocBuilder<CostTableBloc, CostTableState>(
           builder: (context, state) {
             return CustomScrollView(
               slivers: [
@@ -39,9 +39,11 @@ class CostTableScreen extends StatelessWidget {
                             child: Row(
                               children: [
                                 Expanded(
-                                  child: MainCategoryTitle(text: mainCategory.nameTr)
-                                ),
-                                Text(state.formattedSubTotalsTRY[mainCategory] ?? "")
+                                    child: MainCategoryTitle(
+                                        text: mainCategory.nameTr)),
+                                Text(
+                                    state.formattedSubTotalsTRY[mainCategory] ??
+                                        "")
                               ],
                             ),
                           );
@@ -49,13 +51,18 @@ class CostTableScreen extends StatelessWidget {
                         sort: false,
                         indexedItemBuilder: (context, cost, index) {
                           return Container(
-                            color: index.isOdd ? Colors.grey.shade400 : Colors.grey.shade200,
+                            color: index.isOdd
+                                ? Colors.grey.shade400
+                                : Colors.grey.shade200,
                             height: 80,
                             padding: const EdgeInsets.symmetric(horizontal: 16),
                             child: CostItem(
-                              cost: cost,
-                              unitPrices: state.unitPricePool.where((element) => cost.category.jobCategory.unitPriceCategories.contains(element.category)).toList()
-                            ),
+                                cost: cost,
+                                unitPrices: state.unitPricePool
+                                    .where((element) => cost.category
+                                        .jobCategory.unitPriceCategories
+                                        .contains(element.category))
+                                    .toList()),
                           );
                         },
                       ),

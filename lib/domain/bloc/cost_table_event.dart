@@ -4,50 +4,50 @@ import 'package:kost/domain/model/unit_price/unit_price_category.dart';
 
 import '../model/cost/cost_category.dart';
 
-abstract class ProjectEvent extends Equatable {
-  const ProjectEvent();
+abstract class CostTableEvent extends Equatable {
+  const CostTableEvent();
 
   @override
   List<Object?> get props => [];
 }
 
-class Init extends ProjectEvent {
+class Init extends CostTableEvent {
   const Init();
   @override
   List<Object?> get props => [];
 }
 
-class CreateQuantityCalculator extends ProjectEvent {
+class CreateQuantityCalculator extends CostTableEvent {
   const CreateQuantityCalculator();
   @override
   List<Object?> get props => [];
 }
 
-class FetchUnitPrices extends ProjectEvent {
+class FetchUnitPrices extends CostTableEvent {
   const FetchUnitPrices();
   @override
   List<Object?> get props => [];
 }
 
-class FetchCurrencyRates extends ProjectEvent {
+class FetchCurrencyRates extends CostTableEvent {
   const FetchCurrencyRates();
   @override
   List<Object?> get props => [];
 }
 
-class FetchCostTemplate extends ProjectEvent {
+class FetchCostTemplate extends CostTableEvent {
   const FetchCostTemplate();
   @override
   List<Object?> get props => [];
 }
 
-class CreateCostTable extends ProjectEvent {
+class CreateCostTable extends CostTableEvent {
   const CreateCostTable();
   @override
   List<Object?> get props => [];
 }
 
-class ReplaceCostCategory extends ProjectEvent {
+class ReplaceCostCategory extends CostTableEvent {
   final CostCategory oldCostCategory;
   final UnitPriceCategory newUnitPriceCategory;
   const ReplaceCostCategory(this.oldCostCategory, this.newUnitPriceCategory);
@@ -55,14 +55,14 @@ class ReplaceCostCategory extends ProjectEvent {
   List<Object?> get props => [oldCostCategory, newUnitPriceCategory];
 }
 
-class DeleteCostCategory extends ProjectEvent {
+class DeleteCostCategory extends CostTableEvent {
   final CostCategory costCategory;
   const DeleteCostCategory(this.costCategory);
   @override
   List<Object?> get props => [costCategory];
 }
 
-class ChangeQuantity extends ProjectEvent {
+class ChangeQuantity extends CostTableEvent {
   final JobCategory jobCategory;
   final String quantityText;
   const ChangeQuantity(this.jobCategory, this.quantityText);

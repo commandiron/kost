@@ -15,22 +15,21 @@ import 'package:kost/domain/model/cost/cost.dart';
 
 import '../calculator/detailed/floor.dart';
 import '../model/unit_price/unit_price.dart';
-import 'project_event.dart';
-import 'project_state.dart';
+import 'cost_table_event.dart';
+import 'cost_table_state.dart';
 
-class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
-  ProjectBloc()
+class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
+  CostTableBloc()
       : super(
-        ProjectState(
-          quantityCalculator: InitialQuantityCalculator(),
-          unitPricePool: const [],
-          currencyRates: DefaultCurrencyRates(),
-          costTemplate: EmptyCostTemplate(),
-          costs: const [],
-          formattedSubTotalsTRY: const {},
-          formattedGrandTotalTRY: ""
-        ),
-      ) {
+          CostTableState(
+              quantityCalculator: InitialQuantityCalculator(),
+              unitPricePool: const [],
+              currencyRates: DefaultCurrencyRates(),
+              costTemplate: EmptyCostTemplate(),
+              costs: const [],
+              formattedSubTotalsTRY: const {},
+              formattedGrandTotalTRY: ""),
+        ) {
     on<Init>((event, emit) {
       add(const CreateQuantityCalculator());
       add(const FetchUnitPrices());
@@ -64,12 +63,11 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
                 isCeilingHollowSlab: true,
                 windows: [
                   Window(
-                    width: 17,
-                    height: 2.2,
-                    hasRailing: true,
-                    hasWindowsill: true,
-                    count: 1
-                  ),
+                      width: 17,
+                      height: 2.2,
+                      hasRailing: true,
+                      hasWindowsill: true,
+                      count: 1),
                 ],
                 rooms: [
                   ApartmentEntree(area: 0, perimeter: 0),
@@ -177,36 +175,34 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
       emit(state.copyWith(costTemplate: BuildingCostTemplate()));
     });
     on<CreateCostTable>((event, emit) {
-
       if (!_isAllUnitPricesInCostTemplateIncludedInUnitPricePool) {
         throw Exception(
             "All enabled unit prices in the cost template are NOT included in fetched unit prices."); //Handle
       }
 
       final costs = _createCosts(
-        costTemplate: state.costTemplate,
-        unitPricePool: state.unitPricePool,
-        quantityCalculator: state.quantityCalculator,
-        currencyRates: state.currencyRates
-      );
+          costTemplate: state.costTemplate,
+          unitPricePool: state.unitPricePool,
+          quantityCalculator: state.quantityCalculator,
+          currencyRates: state.currencyRates);
 
       final mainCategorySet = costs.map((e) => e.category.mainCategory).toSet();
       final Map<MainCategory, String> formattedSubTotalsTRY = {};
-      for(var mainCategory in mainCategorySet) {
+      for (var mainCategory in mainCategorySet) {
         final subTotal = _calculateSubTotal(costs, mainCategory);
-        formattedSubTotalsTRY.putIfAbsent(mainCategory, () => _getFormattedNumber(number: subTotal, unit: "TL"));
+        formattedSubTotalsTRY.putIfAbsent(mainCategory,
+            () => _getFormattedNumber(number: subTotal, unit: "TL"));
       }
 
       final grandTotal = _calculateGrandTotal(costs);
-      final formattedGrandTotalTRY = _getFormattedNumber(number: grandTotal, unit: "TL");
+      final formattedGrandTotalTRY =
+          _getFormattedNumber(number: grandTotal, unit: "TL");
 
-      emit(
-        state.copyWith(
-          costs: costs,
-          formattedSubTotalsTRY: formattedSubTotalsTRY,
-          formattedGrandTotalTRY: formattedGrandTotalTRY,
-        )
-      );
+      emit(state.copyWith(
+        costs: costs,
+        formattedSubTotalsTRY: formattedSubTotalsTRY,
+        formattedGrandTotalTRY: formattedGrandTotalTRY,
+      ));
     });
     on<ReplaceCostCategory>((event, emit) {
       final replacedIndex = state.costTemplate.enabledCostCategories
@@ -262,33 +258,40 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
       final lastDatedUnitPrice = unitPrices.reduce((current, next) =>
           current.dateTime.isAfter(next.dateTime) ? current : next);
 
-      final formattedFixedAmount = _getFormattedNumber(number: lastDatedUnitPrice.fixedAmount, unit: lastDatedUnitPrice.currency.symbol);
-      final formattedAmount = _getFormattedNumber(number: lastDatedUnitPrice.amount, unit: "${lastDatedUnitPrice.currency.symbol}/${lastDatedUnitPrice.category.unit.symbol}");
+      final formattedFixedAmount = _getFormattedNumber(
+          number: lastDatedUnitPrice.fixedAmount,
+          unit: lastDatedUnitPrice.currency.symbol);
+      final formattedAmount = _getFormattedNumber(
+          number: lastDatedUnitPrice.amount,
+          unit:
+              "${lastDatedUnitPrice.currency.symbol}/${lastDatedUnitPrice.category.unit.symbol}");
 
       final formattedUnitPrice = lastDatedUnitPrice.fixedAmount != 0
-              ? "$formattedFixedAmount + $formattedAmount"
-              : formattedAmount;
+          ? "$formattedFixedAmount + $formattedAmount"
+          : formattedAmount;
 
-      final quantity = quantityCalculator.calculateQuantity(enabledCostCategory.jobCategory);
+      final quantity =
+          quantityCalculator.calculateQuantity(enabledCostCategory.jobCategory);
       final formattedQuantity = _getFormattedNumber(number: quantity);
 
-      final quantityExplanation = quantityCalculator.getQuantityExplanation(enabledCostCategory.jobCategory);
+      final quantityExplanation = quantityCalculator
+          .getQuantityExplanation(enabledCostCategory.jobCategory);
 
       final totalPriceTRY = (lastDatedUnitPrice.fixedAmount *
               lastDatedUnitPrice.currency.toLiraRate(currencyRates)) +
           (lastDatedUnitPrice.amount *
               quantity *
               lastDatedUnitPrice.currency.toLiraRate(currencyRates));
-      final formattedTotalPriceTRY = _getFormattedNumber(number: totalPriceTRY, unit: "TL");
+      final formattedTotalPriceTRY =
+          _getFormattedNumber(number: totalPriceTRY, unit: "TL");
 
       final cost = Cost(
-        category: enabledCostCategory,
-        formattedUnitPrice: formattedUnitPrice,
-        formattedQuantity: formattedQuantity,
-        quantityExplanation: quantityExplanation,
-        totalPriceTRY: totalPriceTRY,
-        formattedTotalPriceTRY: formattedTotalPriceTRY
-      );
+          category: enabledCostCategory,
+          formattedUnitPrice: formattedUnitPrice,
+          formattedQuantity: formattedQuantity,
+          quantityExplanation: quantityExplanation,
+          totalPriceTRY: totalPriceTRY,
+          formattedTotalPriceTRY: formattedTotalPriceTRY);
 
       costs.add(cost);
     }
@@ -301,9 +304,15 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
         .toList()
         .fold(0, (p, c) => p + c);
   }
+
   double _calculateSubTotal(List<Cost> costs, MainCategory mainCategory) {
-    final categorizedCosts = costs.where((cost) => cost.category.mainCategory == mainCategory).toList();
-    return categorizedCosts.map((e) => e.totalPriceTRY).toList().fold(0.0, (p, c) => p + c);
+    final categorizedCosts = costs
+        .where((cost) => cost.category.mainCategory == mainCategory)
+        .toList();
+    return categorizedCosts
+        .map((e) => e.totalPriceTRY)
+        .toList()
+        .fold(0.0, (p, c) => p + c);
   }
 
   String _getFormattedNumber({
@@ -312,16 +321,14 @@ class ProjectBloc extends Bloc<ProjectEvent, ProjectState> {
     required double number,
     String unit = "",
   }) {
-    return "${NumberFormat(pattern, locale).format(number)}${unit.isEmpty ? "": " $unit"}";
+    return "${NumberFormat(pattern, locale).format(number)}${unit.isEmpty ? "" : " $unit"}";
   }
 
-  double _parseFormattedNumber(
-    {
-      String pattern = "#,##0.00",
-      String locale = "tr_TR",
-      required String value,
-    }
-  ) {
+  double _parseFormattedNumber({
+    String pattern = "#,##0.00",
+    String locale = "tr_TR",
+    required String value,
+  }) {
     return NumberFormat(pattern, locale).parse(value).toDouble();
   }
 
