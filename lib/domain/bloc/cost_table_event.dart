@@ -69,3 +69,10 @@ class ChangeQuantity extends CostTableEvent {
   @override
   List<Object?> get props => [quantityText];
 }
+
+class ExpandCollapse extends CostTableEvent {
+  final MainCategory mainCategory;
+  const ExpandCollapse(this.mainCategory);
+  @override
+  List<Object?> get props => [mainCategory];
+}

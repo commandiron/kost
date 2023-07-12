@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:kost/data/unit_price_repository.dart';
@@ -222,6 +223,19 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
       state.quantityCalculator.setQuantityManually(event.jobCategory, quantity);
       _refresh();
     });
+    on<ExpandCollapse>((event, emit) {
+      final expandCollapseIndexes = [];
+      state.costs.forEachIndexed((index, element) {
+        if (element.category.mainCategory == event.mainCategory) {
+          expandCollapseIndexes.add(index);
+        }
+      });
+      final result = state.costs;
+      for (var expandCollapseIndex in expandCollapseIndexes) {
+        result[expandCollapseIndex].hidden = true;
+      }
+      emit(state.copyWith(costs: result, formattedGrandTotalTRY: "0"));
+    });
   }
 
   final UnitPriceRepository _unitPriceRepository = UnitPriceRepository();
@@ -291,7 +305,8 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
           formattedQuantity: formattedQuantity,
           quantityExplanation: quantityExplanation,
           totalPriceTRY: totalPriceTRY,
-          formattedTotalPriceTRY: formattedTotalPriceTRY);
+          formattedTotalPriceTRY: formattedTotalPriceTRY,
+          hidden: false);
 
       costs.add(cost);
     }

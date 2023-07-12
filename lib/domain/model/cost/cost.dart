@@ -7,6 +7,7 @@ class Cost {
   String quantityExplanation;
   double totalPriceTRY;
   String formattedTotalPriceTRY;
+  bool hidden;
 
   Cost({
     required this.category,
@@ -15,5 +16,6 @@ class Cost {
     required this.quantityExplanation,
     required this.totalPriceTRY,
     required this.formattedTotalPriceTRY,
+    required this.hidden,
   });
 }

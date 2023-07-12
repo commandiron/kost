@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:grouped_list/grouped_list.dart';
+import 'package:kost/domain/bloc/cost_table_event.dart';
 import 'package:kost/domain/model/category/category.dart';
 import 'package:kost/presentation/cost_table/widget/cost_item.dart';
 import 'package:kost/presentation/cost_table/widget/main_category_title.dart';
@@ -39,31 +40,36 @@ class CostTableScreen extends StatelessWidget {
                             child: Row(
                               children: [
                                 Expanded(
+                                    flex: 5,
                                     child: MainCategoryTitle(
                                         text: mainCategory.nameTr)),
-                                Text(
-                                    state.formattedSubTotalsTRY[mainCategory] ??
-                                        "")
+                                Expanded(
+                                  child: Text(state.formattedSubTotalsTRY[
+                                          mainCategory] ??
+                                      ""),
+                                ),
+                                IconButton(
+                                  icon: const Icon(Icons.arrow_drop_down),
+                                  onPressed: () {
+                                    context
+                                        .read<CostTableBloc>()
+                                        .add(ExpandCollapse(mainCategory));
+                                  },
+                                )
                               ],
                             ),
                           );
                         },
                         sort: false,
                         indexedItemBuilder: (context, cost, index) {
-                          return Container(
-                            color: index.isOdd
-                                ? Colors.grey.shade400
-                                : Colors.grey.shade200,
-                            height: 80,
-                            padding: const EdgeInsets.symmetric(horizontal: 16),
-                            child: CostItem(
-                                cost: cost,
-                                unitPrices: state.unitPricePool
-                                    .where((element) => cost.category
-                                        .jobCategory.unitPriceCategories
-                                        .contains(element.category))
-                                    .toList()),
-                          );
+                          return CostItem(
+                              cost: cost,
+                              index: index,
+                              unitPrices: state.unitPricePool
+                                  .where((element) => cost
+                                      .category.jobCategory.unitPriceCategories
+                                      .contains(element.category))
+                                  .toList());
                         },
                       ),
                       const SizedBox(
