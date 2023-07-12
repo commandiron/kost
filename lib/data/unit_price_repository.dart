@@ -340,9 +340,9 @@ class UnitPriceRepository {
         dateTime: DateTime(2023, 01)),
     UnitPrice(
         category: UnitPriceCategory.siteSafety,
-        amount: 5000,
+        amount: 15000,
         currency: Currency.lira,
-        dateTime: DateTime(2023, 01)),
+        dateTime: DateTime(2023, 07)),
     UnitPrice(
         category: UnitPriceCategory.siteExpenses,
         amount: 10000,
