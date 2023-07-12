@@ -234,7 +234,7 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
       for (var expandCollapseIndex in expandCollapseIndexes) {
         result[expandCollapseIndex].hidden = true;
       }
-      emit(state.copyWith(costs: result, formattedGrandTotalTRY: "0"));
+      emit(state.copyWith(costs: result));
     });
   }
 
