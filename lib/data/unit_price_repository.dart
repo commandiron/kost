@@ -6,7 +6,7 @@ class UnitPriceRepository {
   //Base Prices
   static UnitPrice s420Steel = UnitPrice(
       category: UnitPriceCategory.s420Steel,
-      amount: 15930,
+      amount: 19500/1.18,
       currency: Currency.lira,
       dateTime: DateTime(2023, 07));
   static UnitPrice c40Concrete = UnitPrice(
