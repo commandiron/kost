@@ -50,9 +50,9 @@ class UnitPriceRepository {
         dateTime: DateTime(2023, 01)),
     UnitPrice(
         category: UnitPriceCategory.plywood,
-        amount: 600,
+        amount: 900,
         currency: Currency.lira,
-        dateTime: DateTime(2023, 01)),
+        dateTime: DateTime(2023, 07)),
     UnitPrice(
         category: UnitPriceCategory.c30Concrete,
         amount: c40Concrete.amount * 0.9,
