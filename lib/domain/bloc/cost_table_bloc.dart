@@ -223,7 +223,7 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
       state.quantityCalculator.setQuantityManually(event.jobCategory, quantity);
       _refresh();
     });
-    on<ExpandCollapse>((event, emit) {
+    on<HideCostCategories>((event, emit) {
       final expandCollapseIndexes = [];
       state.costs.forEachIndexed((index, element) {
         if (element.category.mainCategory == event.mainCategory) {
