@@ -1,4 +1,3 @@
-import 'package:collection/collection.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:kost/data/unit_price_repository.dart';
@@ -224,17 +223,13 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
       _refresh();
     });
     on<HideCostCategories>((event, emit) {
-      final expandCollapseIndexes = [];
-      state.costs.forEachIndexed((index, element) {
-        if (element.category.mainCategory == event.mainCategory) {
-          expandCollapseIndexes.add(index);
+      state.costs.where((element) => element.category.mainCategory == event.mainCategory).forEach(
+        (cost) {
+          cost.hidden = true;
         }
-      });
-      final result = state.costs;
-      for (var expandCollapseIndex in expandCollapseIndexes) {
-        result[expandCollapseIndex].hidden = true;
-      }
-      emit(state.copyWith(costs: result));
+      );
+      print(state.costs.map((e) => e.hidden));
+      emit(state);
     });
   }
 
