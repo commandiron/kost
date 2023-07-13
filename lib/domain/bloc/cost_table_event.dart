@@ -62,10 +62,10 @@ class DeleteCostCategory extends CostTableEvent {
   List<Object?> get props => [costCategory];
 }
 
-class ChangeQuantity extends CostTableEvent {
+class ChangeQuantityManually extends CostTableEvent {
   final JobCategory jobCategory;
   final String quantityText;
-  const ChangeQuantity(this.jobCategory, this.quantityText);
+  const ChangeQuantityManually(this.jobCategory, this.quantityText);
   @override
   List<Object?> get props => [quantityText];
 }

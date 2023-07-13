@@ -46,7 +46,7 @@ class _QuantityTextFieldState extends State<QuantityTextField> {
           if (_key.currentState!.validate()) {
             context
                 .read<CostTableBloc>()
-                .add(ChangeQuantity(widget.costCategory.jobCategory, value));
+                .add(ChangeQuantityManually(widget.costCategory.jobCategory, value));
           }
         },
       ),

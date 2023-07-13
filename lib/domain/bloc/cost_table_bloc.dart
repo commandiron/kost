@@ -218,7 +218,7 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
       state.costTemplate.enabledCostCategories.remove(event.costCategory);
       _refresh();
     });
-    on<ChangeQuantity>((event, emit) {
+    on<ChangeQuantityManually>((event, emit) {
       final quantity = _parseFormattedNumber(value: event.quantityText);
       state.quantityCalculator.setQuantityManually(event.jobCategory, quantity);
       _refresh();
