@@ -69,10 +69,3 @@ class ChangeQuantityManually extends CostTableEvent {
   @override
   List<Object?> get props => [quantityText];
 }
-
-class ShowHideCostCategories extends CostTableEvent {
-  final MainCategory mainCategory;
-  const ShowHideCostCategories(this.mainCategory);
-  @override
-  List<Object?> get props => [mainCategory];
-}
