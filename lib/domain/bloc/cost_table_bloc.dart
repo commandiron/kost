@@ -226,7 +226,7 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
       final newCosts = state.costs;
       newCosts.where((element) => element.category.mainCategory == event.mainCategory).forEach(
         (cost) {
-          cost.hidden = !cost.hidden;
+          cost.visible = !cost.visible;
         }
       );
       emit(state.copyWith(costs: []));
@@ -296,13 +296,14 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
           _getFormattedNumber(number: totalPriceTRY, unit: "TL");
 
       final cost = Cost(
-          category: enabledCostCategory,
-          formattedUnitPrice: formattedUnitPrice,
-          formattedQuantity: formattedQuantity,
-          quantityExplanation: quantityExplanation,
-          totalPriceTRY: totalPriceTRY,
-          formattedTotalPriceTRY: formattedTotalPriceTRY,
-          hidden: false);
+        category: enabledCostCategory,
+        formattedUnitPrice: formattedUnitPrice,
+        formattedQuantity: formattedQuantity,
+        quantityExplanation: quantityExplanation,
+        totalPriceTRY: totalPriceTRY,
+        formattedTotalPriceTRY: formattedTotalPriceTRY,
+        visible: true
+      );
 
       costs.add(cost);
     }

@@ -22,7 +22,7 @@ class CostItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Visibility(
-      visible: !cost.hidden,
+      visible: cost.visible,
       child: Container(
         color: index.isOdd ? Colors.grey.shade400 : Colors.grey.shade200,
         height: 80,
