@@ -222,13 +222,14 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
       state.quantityCalculator.setQuantityManually(event.jobCategory, quantity);
       _refresh();
     });
-    on<HideCostCategories>((event, emit) {
+    on<ShowHideCostCategories>((event, emit) {
       final newCosts = state.costs;
       newCosts.where((element) => element.category.mainCategory == event.mainCategory).forEach(
         (cost) {
-          cost.hidden = true;
+          cost.hidden = !cost.hidden;
         }
       );
+      emit(state.copyWith(costs: []));
       emit(state.copyWith(costs: newCosts));
     });
   }

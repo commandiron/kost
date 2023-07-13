@@ -53,7 +53,7 @@ class CostTableScreen extends StatelessWidget {
                                   onPressed: () {
                                     context
                                         .read<CostTableBloc>()
-                                        .add(HideCostCategories(mainCategory));
+                                        .add(ShowHideCostCategories(mainCategory));
                                   },
                                 )
                               ],
