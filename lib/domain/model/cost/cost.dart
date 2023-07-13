@@ -7,6 +7,7 @@ class Cost {
   String quantityExplanation;
   double totalPriceTRY;
   String formattedTotalPriceTRY;
+  bool visible;
 
   Cost({
     required this.category,
@@ -15,6 +16,7 @@ class Cost {
     required this.quantityExplanation,
     required this.totalPriceTRY,
     required this.formattedTotalPriceTRY,
+    required this.visible,
   });
 
   Cost copyWith({
@@ -24,6 +26,7 @@ class Cost {
     String? quantityExplanation,
     double? totalPriceTRY,
     String? formattedTotalPriceTRY,
+    bool? visible,
   }) {
     return Cost(
       category: category ?? this.category,
@@ -32,6 +35,7 @@ class Cost {
       quantityExplanation: quantityExplanation ?? this.quantityExplanation,
       totalPriceTRY: totalPriceTRY ?? this.totalPriceTRY,
       formattedTotalPriceTRY: formattedTotalPriceTRY ?? this.formattedTotalPriceTRY,
+      visible: visible ?? this.visible,
     );
   }
 }

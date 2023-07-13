@@ -292,6 +292,7 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
         quantityExplanation: quantityExplanation,
         totalPriceTRY: totalPriceTRY,
         formattedTotalPriceTRY: formattedTotalPriceTRY,
+        visible: true
       );
 
       costs.add(cost);

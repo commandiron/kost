@@ -7,7 +7,7 @@ import '../../../domain/model/unit_price/unit_price.dart';
 import 'cost_item.dart';
 import 'main_category_title.dart';
 
-class CustomGroupedListView extends StatefulWidget {
+class CustomGroupedListView extends StatelessWidget {
   const CustomGroupedListView({Key? key, required this.costs, required this.formattedSubTotalsTRY, required this.unitPricePool}) : super(key: key);
 
   final List<Cost> costs;
@@ -15,18 +15,10 @@ class CustomGroupedListView extends StatefulWidget {
   final List<UnitPrice> unitPricePool;
 
   @override
-  State<CustomGroupedListView> createState() => _CustomGroupedListViewState();
-}
-
-class _CustomGroupedListViewState extends State<CustomGroupedListView> {
-
-  final List<Cost> hiddenCosts = [];
-
-  @override
   Widget build(BuildContext context) {
     return GroupedListView<Cost, MainCategory>(
       shrinkWrap: true,
-      elements: widget.costs,
+      elements: costs,
       groupBy: (cost) => cost.category.mainCategory,
       groupSeparatorBuilder: (MainCategory mainCategory) {
         return Container(
@@ -38,24 +30,13 @@ class _CustomGroupedListViewState extends State<CustomGroupedListView> {
                   flex: 5,
                   child: MainCategoryTitle(text: mainCategory.nameTr)),
               Expanded(
-                child: Text(widget.formattedSubTotalsTRY[mainCategory] ?? ""),
+                child: Text(formattedSubTotalsTRY[mainCategory] ?? ""),
               ),
               IconButton(
-                icon: Icon(
-                    hiddenCosts.any((cost) => cost.category.mainCategory == mainCategory) ? Icons.arrow_right : Icons.arrow_drop_down
-                ),
                 onPressed: () {
-                  for (var cost in widget.costs) {
-                    if(cost.category.mainCategory == mainCategory) {
-                      if(hiddenCosts.contains(cost)) {
-                        hiddenCosts.remove(cost);
-                      } else {
-                        hiddenCosts.add(cost);
-                      }
-                    }
-                  }
-                  setState(() {});
+
                 },
+                icon: Icon(Icons.arrow_right)
               )
             ],
           ),
@@ -64,11 +45,11 @@ class _CustomGroupedListViewState extends State<CustomGroupedListView> {
       sort: false,
       indexedItemBuilder: (context, cost, index) {
         return Visibility(
-          visible: !hiddenCosts.contains(cost),
+          visible: cost.visible,
           child: CostItem(
               cost: cost,
               index: index,
-              unitPrices: widget.unitPricePool
+              unitPrices: unitPricePool
                   .where((element) => cost
                   .category.jobCategory.unitPriceCategories
                   .contains(element.category))
