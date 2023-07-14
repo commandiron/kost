@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:kost/domain/model/unit_price/currency.dart';
 import 'package:kost/domain/model/unit_price/unit.dart';
 import 'package:kost/domain/model/unit_price/unit_price_category.dart';
 import '../../../domain/model/unit_price/unit_price.dart';
 
 class UnitPricesAlertDialog extends StatelessWidget {
-  const UnitPricesAlertDialog({Key? key, required this.unitPrices, required this.onPressed,}) : super(key: key);
+  const UnitPricesAlertDialog({Key? key, required this.unitPrices, required this.onUnitPriceSelect,}) : super(key: key);
 
   final List<UnitPrice> unitPrices;
-  final void Function(int index) onPressed;
+  final void Function(int index) onUnitPriceSelect;
 
 
   @override
@@ -22,7 +23,7 @@ class UnitPricesAlertDialog extends StatelessWidget {
           itemBuilder: (listContext, index) {
             return TextButton(
                 onPressed: () {
-                  onPressed(index);
+                  onUnitPriceSelect(index);
                 },
                 child: Row(
                   mainAxisAlignment:
@@ -33,9 +34,7 @@ class UnitPricesAlertDialog extends StatelessWidget {
                         .nameTr),
                     Row(
                       children: [
-                        Text(unitPrices[index]
-                            .amount
-                            .toString()),
+                        Text(unitPrices[index].amount.toStringAsFixed(2)),
                         Text(unitPrices[index]
                             .currency
                             .symbol),
@@ -46,6 +45,7 @@ class UnitPricesAlertDialog extends StatelessWidget {
                             .symbol),
                       ],
                     ),
+                    Text(DateFormat("MM.yyyy").format(unitPrices[index].dateTime)),
                   ],
                 ));
           },

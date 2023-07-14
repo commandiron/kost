@@ -39,7 +39,7 @@ class CostItem extends StatelessWidget {
                           builder: (dialogContext) {
                             return UnitPricesAlertDialog(
                               unitPrices: unitPrices,
-                              onPressed: (index) {
+                              onUnitPriceSelect: (index) {
                                 context.read<CostTableBloc>().add(ReplaceCostCategory(cost.category, unitPrices[index].category));
                                 Navigator.of(context).pop();
                               },

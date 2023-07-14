@@ -47,7 +47,7 @@ class UnitPriceRepository {
         category: UnitPriceCategory.c16Concrete,
         amount: c40Concrete.amount * 0.75,
         currency: Currency.lira,
-        dateTime: DateTime(2023, 01)),
+        dateTime: DateTime(2023, 07)),
     UnitPrice(
         category: UnitPriceCategory.plywood,
         amount: 900,
@@ -57,12 +57,12 @@ class UnitPriceRepository {
         category: UnitPriceCategory.c30Concrete,
         amount: c40Concrete.amount * 0.9,
         currency: Currency.lira,
-        dateTime: DateTime(2023, 01)),
+        dateTime: DateTime(2023, 07)),
     UnitPrice(
         category: UnitPriceCategory.c35Concrete,
         amount: c40Concrete.amount * 0.95,
         currency: Currency.lira,
-        dateTime: DateTime(2023, 01)),
+        dateTime: DateTime(2023, 07)),
     c40Concrete,
     s420Steel,
     UnitPrice(
