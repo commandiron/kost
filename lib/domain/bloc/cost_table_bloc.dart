@@ -222,6 +222,16 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
       state.quantityCalculator.setQuantityManually(event.jobCategory, quantity);
       _refresh();
     });
+    on<ShowHideCategory>((event, emit) {
+      state.costs.forEach((cost) {
+        if (cost.category.mainCategory == event.mainCategory) {
+          cost.visible = !cost.visible;
+        }
+      });
+      final newCosts = state.costs;
+      emit(state.copyWith(costs: []));
+      emit(state.copyWith(costs: List.from(newCosts)));
+    });
   }
 
   final UnitPriceRepository _unitPriceRepository = UnitPriceRepository();
@@ -286,14 +296,13 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
           _getFormattedNumber(number: totalPriceTRY, unit: "TL");
 
       final cost = Cost(
-        category: enabledCostCategory,
-        formattedUnitPrice: formattedUnitPrice,
-        formattedQuantity: formattedQuantity,
-        quantityExplanation: quantityExplanation,
-        totalPriceTRY: totalPriceTRY,
-        formattedTotalPriceTRY: formattedTotalPriceTRY,
-        visible: true
-      );
+          category: enabledCostCategory,
+          formattedUnitPrice: formattedUnitPrice,
+          formattedQuantity: formattedQuantity,
+          quantityExplanation: quantityExplanation,
+          totalPriceTRY: totalPriceTRY,
+          formattedTotalPriceTRY: formattedTotalPriceTRY,
+          visible: true);
 
       costs.add(cost);
     }

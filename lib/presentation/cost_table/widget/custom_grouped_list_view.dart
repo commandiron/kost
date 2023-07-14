@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:grouped_list/grouped_list.dart';
+import 'package:kost/domain/bloc/cost_table_bloc.dart';
+import 'package:kost/domain/bloc/cost_table_event.dart';
 
 import '../../../domain/model/category/category.dart';
 import '../../../domain/model/cost/cost.dart';
@@ -8,7 +11,12 @@ import 'cost_item.dart';
 import 'main_category_title.dart';
 
 class CustomGroupedListView extends StatelessWidget {
-  const CustomGroupedListView({Key? key, required this.costs, required this.formattedSubTotalsTRY, required this.unitPricePool}) : super(key: key);
+  const CustomGroupedListView(
+      {Key? key,
+      required this.costs,
+      required this.formattedSubTotalsTRY,
+      required this.unitPricePool})
+      : super(key: key);
 
   final List<Cost> costs;
   final Map<MainCategory, String> formattedSubTotalsTRY;
@@ -27,15 +35,15 @@ class CustomGroupedListView extends StatelessWidget {
           child: Row(
             children: [
               Expanded(
-                  flex: 5,
-                  child: MainCategoryTitle(text: mainCategory.nameTr)),
+                  flex: 5, child: MainCategoryTitle(text: mainCategory.nameTr)),
               Expanded(
                 child: Text(formattedSubTotalsTRY[mainCategory] ?? ""),
               ),
               IconButton(
-                onPressed: () {},
-                icon: const Icon(Icons.arrow_right)
-              )
+                  onPressed: () => context
+                      .read<CostTableBloc>()
+                      .add(ShowHideCategory(mainCategory)),
+                  icon: const Icon(Icons.arrow_right))
             ],
           ),
         );
@@ -45,13 +53,13 @@ class CustomGroupedListView extends StatelessWidget {
         return Visibility(
           visible: cost.visible,
           child: CostItem(
-              cost: cost,
-              index: index,
-              unitPrices: unitPricePool
-                  .where((element) => cost
-                  .category.jobCategory.unitPriceCategories
-                  .contains(element.category))
-                  .toList(),
+            cost: cost,
+            index: index,
+            unitPrices: unitPricePool
+                .where((element) => cost
+                    .category.jobCategory.unitPriceCategories
+                    .contains(element.category))
+                .toList(),
           ),
         );
       },
