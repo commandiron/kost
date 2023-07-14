@@ -230,7 +230,7 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
       });
       final newCosts = state.costs;
       emit(state.copyWith(costs: []));
-      emit(state.copyWith(costs: List.from(newCosts)));
+      emit(state.copyWith(costs: newCosts));
     });
   }
 

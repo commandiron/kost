@@ -29,6 +29,7 @@ class CustomGroupedListView extends StatelessWidget {
       elements: costs,
       groupBy: (cost) => cost.category.mainCategory,
       groupSeparatorBuilder: (MainCategory mainCategory) {
+        final visible = costs.firstWhere((cost) => cost.category.mainCategory == mainCategory).visible;
         return Container(
           height: 80,
           padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -43,7 +44,10 @@ class CustomGroupedListView extends StatelessWidget {
                   onPressed: () => context
                       .read<CostTableBloc>()
                       .add(ShowHideCategory(mainCategory)),
-                  icon: const Icon(Icons.arrow_right))
+                  icon: Icon(
+                    visible ? Icons.arrow_drop_down : Icons.arrow_right
+                  )
+              )
             ],
           ),
         );
