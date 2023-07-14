@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kost/domain/model/category/category.dart';
 import 'package:kost/domain/model/cost/cost.dart';
-import 'package:kost/domain/model/unit_price/currency.dart';
-import 'package:kost/domain/model/unit_price/unit.dart';
 import 'package:kost/domain/model/unit_price/unit_price_category.dart';
 import 'package:kost/presentation/cost_table/widget/quantity_text_field.dart';
+import 'package:kost/presentation/cost_table/widget/unit_prices_alert_dialog.dart';
 
 import '../../../domain/bloc/cost_table_bloc.dart';
 import '../../../domain/bloc/cost_table_event.dart';
@@ -38,47 +37,12 @@ class CostItem extends StatelessWidget {
                         showDialog(
                           context: context,
                           builder: (dialogContext) {
-                            return AlertDialog(
-                              content: SizedBox(
-                                width: 300,
-                                height: 300,
-                                child: ListView.builder(
-                                  itemCount: unitPrices.length,
-                                  itemBuilder: (listContext, index) {
-                                    return TextButton(
-                                        onPressed: () {
-                                          context.read<CostTableBloc>().add(
-                                              ReplaceCostCategory(cost.category,
-                                                  unitPrices[index].category));
-                                          Navigator.of(context).pop();
-                                        },
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceEvenly,
-                                          children: [
-                                            Text(unitPrices[index]
-                                                .category
-                                                .nameTr),
-                                            Row(
-                                              children: [
-                                                Text(unitPrices[index]
-                                                    .amount
-                                                    .toString()),
-                                                Text(unitPrices[index]
-                                                    .currency
-                                                    .symbol),
-                                                const Text("/"),
-                                                Text(unitPrices[index]
-                                                    .category
-                                                    .unit
-                                                    .symbol),
-                                              ],
-                                            ),
-                                          ],
-                                        ));
-                                  },
-                                ),
-                              ),
+                            return UnitPricesAlertDialog(
+                              unitPrices: unitPrices,
+                              onPressed: (index) {
+                                context.read<CostTableBloc>().add(ReplaceCostCategory(cost.category, unitPrices[index].category));
+                                Navigator.of(context).pop();
+                              },
                             );
                           },
                         );
