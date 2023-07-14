@@ -33,10 +33,8 @@ class CustomGroupedListView extends StatelessWidget {
                 child: Text(formattedSubTotalsTRY[mainCategory] ?? ""),
               ),
               IconButton(
-                onPressed: () {
-
-                },
-                icon: Icon(Icons.arrow_right)
+                onPressed: () {},
+                icon: const Icon(Icons.arrow_right)
               )
             ],
           ),
