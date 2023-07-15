@@ -20,7 +20,7 @@ extension CurrencyExtension on Currency {
 }
 
 class DefaultCurrencyRates extends CurrencyRates {
-  DefaultCurrencyRates({super.usdTry = 23.67, super.eurTry = 25.92});
+  DefaultCurrencyRates({super.usdTry = 26.17, super.eurTry = 29.42});
 }
 
 abstract class CurrencyRates {

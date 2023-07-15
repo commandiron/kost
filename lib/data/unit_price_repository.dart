@@ -16,9 +16,21 @@ class UnitPriceRepository {
       dateTime: DateTime(2023, 07));
   static UnitPrice diesel = UnitPrice(
       category: UnitPriceCategory.excavation,
-      amount: 27,
-      currency: Currency.lira,
+      amount: 1,
+      currency: Currency.euro,
       dateTime: DateTime(2023, 7)
+  );
+  static UnitPrice unUsed30TonExcavatorHourlyDepreciation = UnitPrice(
+    category: UnitPriceCategory.excavation,
+    amount: 200000 / 5 / 12 / 30 / 8,
+    currency: Currency.euro,
+    dateTime: DateTime(2023, 07)
+  );
+  static UnitPrice excavatorOperatorHourlyWage = UnitPrice(
+      category: UnitPriceCategory.excavation,
+      amount: 1200 / 30 / 8,
+      currency: Currency.euro,
+      dateTime: DateTime(2023, 07)
   );
 
   static List<UnitPrice> unitPrices = [
@@ -26,7 +38,7 @@ class UnitPriceRepository {
         category: UnitPriceCategory.shutCrete,
         amount: (c40Concrete.amount * 0.3) + (s420Steel.amount * 0.1),
         fixedAmount: 30000,
-        currency: Currency.lira,
+        currency: c40Concrete.currency,
         dateTime: DateTime(2023, 01)),
     UnitPrice(
         category: UnitPriceCategory.excavation,
@@ -35,8 +47,8 @@ class UnitPriceRepository {
         dateTime: DateTime(2023, 01)),
     UnitPrice(
         category: UnitPriceCategory.breaker,
-        amount: 1500,
-        currency: Currency.lira,
+        amount: (diesel.amount * 20 + unUsed30TonExcavatorHourlyDepreciation.amount + excavatorOperatorHourlyWage.amount) * 1.30, //1500
+        currency: diesel.currency,
         dateTime: DateTime(2023, 01)),
     UnitPrice(
         category: UnitPriceCategory.foundationStabilizationGravel,
@@ -46,7 +58,7 @@ class UnitPriceRepository {
     UnitPrice(
         category: UnitPriceCategory.c16Concrete,
         amount: c40Concrete.amount * 0.75,
-        currency: Currency.lira,
+        currency: c40Concrete.currency,
         dateTime: DateTime(2023, 07)),
     UnitPrice(
         category: UnitPriceCategory.plywood,
@@ -56,12 +68,12 @@ class UnitPriceRepository {
     UnitPrice(
         category: UnitPriceCategory.c30Concrete,
         amount: c40Concrete.amount * 0.9,
-        currency: Currency.lira,
+        currency: c40Concrete.currency,
         dateTime: DateTime(2023, 07)),
     UnitPrice(
         category: UnitPriceCategory.c35Concrete,
         amount: c40Concrete.amount * 0.95,
-        currency: Currency.lira,
+        currency: c40Concrete.currency,
         dateTime: DateTime(2023, 07)),
     c40Concrete,
     s420Steel,
