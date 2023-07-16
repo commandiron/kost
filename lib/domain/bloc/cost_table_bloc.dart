@@ -204,7 +204,7 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
         formattedGrandTotalTRY: formattedGrandTotalTRY,
       ));
     });
-    on<ShowHideCostCategory>((event, emit) {
+    on<ShowHideMainCategory>((event, emit) {
       for (var costCategory in state.costTemplate.enabledCostCategories) {
         if(costCategory.mainCategory == event.mainCategory) {
           costCategory.visible = !costCategory.visible;

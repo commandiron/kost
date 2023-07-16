@@ -47,9 +47,9 @@ class CreateCostTable extends CostTableEvent {
   List<Object?> get props => [];
 }
 
-class ShowHideCostCategory extends CostTableEvent {
+class ShowHideMainCategory extends CostTableEvent {
   final MainCategory mainCategory;
-  const ShowHideCostCategory(this.mainCategory);
+  const ShowHideMainCategory(this.mainCategory);
   @override
   List<Object?> get props => [mainCategory];
 }
