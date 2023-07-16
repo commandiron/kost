@@ -464,7 +464,7 @@ abstract class QuantityCalculator {
   }
 }
 
-class InitialQuantityCalculator extends QuantityCalculator {
+class EmptyQuantityCalculator extends QuantityCalculator {
   @override
   double get calculatedShoringArea => 0;
   @override

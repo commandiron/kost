@@ -24,15 +24,15 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
           CostTableState(
               costTemplate: EmptyCostTemplate(),
               unitPricePool: const [],
-              currencyRates: DefaultCurrencyRates(),
-              quantityCalculator: InitialQuantityCalculator(),
+              currencyRates: ManualCurrencyRates(),
+              quantityCalculator: EmptyQuantityCalculator(),
               costs: const [],
               formattedSubTotalsTRY: const {},
               formattedGrandTotalTRY: ""),
         ) {
     on<Init>((event, emit) {
       add(const FetchCostTemplate());
-      add(const FetchUnitPrices());
+      add(const FetchUnitPricePool());
       add(const FetchCurrencyRates());
       add(const CreateQuantityCalculator());
       _refresh();
@@ -40,12 +40,12 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
     on<FetchCostTemplate>((event, emit) {
       emit(state.copyWith(costTemplate: BuildingCostTemplate()));
     });
-    on<FetchUnitPrices>((event, emit) {
+    on<FetchUnitPricePool>((event, emit) {
       final unitPricePool = _unitPriceRepository.getAllUnitPrices();
       emit(state.copyWith(unitPricePool: unitPricePool));
     });
     on<FetchCurrencyRates>((event, emit) {
-      emit(state.copyWith(currencyRates: DefaultCurrencyRates()));
+      //Fetch currency rates.
     });
     on<CreateQuantityCalculator>((event, emit) {
       final quantityCalculator = DetailedQuantityCalculator(
@@ -204,7 +204,15 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
         formattedGrandTotalTRY: formattedGrandTotalTRY,
       ));
     });
-    on<ReplaceCostCategory>((event, emit) {
+    on<ShowHideCostCategory>((event, emit) {
+      for (var costCategory in state.costTemplate.enabledCostCategories) {
+        if(costCategory.mainCategory == event.mainCategory) {
+          costCategory.visible = !costCategory.visible;
+        }
+      }
+      _refresh();
+    });
+    on<ReplaceUnitPrice>((event, emit) {
       final replacedIndex = state.costTemplate.enabledCostCategories
           .indexWhere((element) => element == event.oldCostCategory);
       state.costTemplate.enabledCostCategories[replacedIndex] = CostCategory(
@@ -220,14 +228,6 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
     on<ChangeQuantityManually>((event, emit) {
       final quantity = _parseFormattedNumber(value: event.quantityText);
       state.quantityCalculator.setQuantityManually(event.jobCategory, quantity);
-      _refresh();
-    });
-    on<ShowHideCategory>((event, emit) {
-      for (var costCategory in state.costTemplate.enabledCostCategories) {
-        if(costCategory.mainCategory == event.mainCategory) {
-          costCategory.visible = !costCategory.visible;
-        }
-      }
       _refresh();
     });
   }

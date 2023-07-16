@@ -43,7 +43,7 @@ class CustomGroupedListView extends StatelessWidget {
               IconButton(
                   onPressed: () => context
                       .read<CostTableBloc>()
-                      .add(ShowHideCategory(mainCategory)),
+                      .add(ShowHideCostCategory(mainCategory)),
                   icon: Icon(
                     visible ? Icons.arrow_drop_down : Icons.arrow_right
                   )

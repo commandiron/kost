@@ -23,8 +23,8 @@ class FetchCostTemplate extends CostTableEvent {
   List<Object?> get props => [];
 }
 
-class FetchUnitPrices extends CostTableEvent {
-  const FetchUnitPrices();
+class FetchUnitPricePool extends CostTableEvent {
+  const FetchUnitPricePool();
   @override
   List<Object?> get props => [];
 }
@@ -47,10 +47,17 @@ class CreateCostTable extends CostTableEvent {
   List<Object?> get props => [];
 }
 
-class ReplaceCostCategory extends CostTableEvent {
+class ShowHideCostCategory extends CostTableEvent {
+  final MainCategory mainCategory;
+  const ShowHideCostCategory(this.mainCategory);
+  @override
+  List<Object?> get props => [mainCategory];
+}
+
+class ReplaceUnitPrice extends CostTableEvent {
   final CostCategory oldCostCategory;
   final UnitPriceCategory newUnitPriceCategory;
-  const ReplaceCostCategory(this.oldCostCategory, this.newUnitPriceCategory);
+  const ReplaceUnitPrice(this.oldCostCategory, this.newUnitPriceCategory);
   @override
   List<Object?> get props => [oldCostCategory, newUnitPriceCategory];
 }
@@ -68,11 +75,4 @@ class ChangeQuantityManually extends CostTableEvent {
   const ChangeQuantityManually(this.jobCategory, this.quantityText);
   @override
   List<Object?> get props => [quantityText];
-}
-
-class ShowHideCategory extends CostTableEvent {
-  final MainCategory mainCategory;
-  const ShowHideCategory(this.mainCategory);
-  @override
-  List<Object?> get props => [mainCategory];
 }
