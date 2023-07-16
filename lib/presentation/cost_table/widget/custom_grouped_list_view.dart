@@ -29,7 +29,7 @@ class CustomGroupedListView extends StatelessWidget {
       elements: costs,
       groupBy: (cost) => cost.category.mainCategory,
       groupSeparatorBuilder: (MainCategory mainCategory) {
-        final visible = costs.firstWhere((cost) => cost.category.mainCategory == mainCategory).visible;
+        final visible = costs.firstWhere((cost) => cost.category.mainCategory == mainCategory).category.visible;
         return Container(
           height: 80,
           padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -55,7 +55,7 @@ class CustomGroupedListView extends StatelessWidget {
       sort: false,
       indexedItemBuilder: (context, cost, index) {
         return Visibility(
-          visible: cost.visible,
+          visible: cost.category.visible,
           child: CostItem(
             cost: cost,
             index: index,

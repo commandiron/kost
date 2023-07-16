@@ -223,14 +223,12 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
       _refresh();
     });
     on<ShowHideCategory>((event, emit) {
-      for (var cost in state.costs) {
-        if (cost.category.mainCategory == event.mainCategory) {
-          cost.visible = !cost.visible;
+      for (var costCategory in state.costTemplate.enabledCostCategories) {
+        if(costCategory.mainCategory == event.mainCategory) {
+          costCategory.visible = !costCategory.visible;
         }
       }
-      final newCosts = state.costs;
-      emit(state.copyWith(costs: []));
-      emit(state.copyWith(costs: newCosts));
+      _refresh();
     });
   }
 
@@ -296,13 +294,13 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
           _getFormattedNumber(number: totalPriceTRY, unit: "TL");
 
       final cost = Cost(
-          category: enabledCostCategory,
-          formattedUnitPrice: formattedUnitPrice,
-          formattedQuantity: formattedQuantity,
-          quantityExplanation: quantityExplanation,
-          totalPriceTRY: totalPriceTRY,
-          formattedTotalPriceTRY: formattedTotalPriceTRY,
-          visible: enabledCostCategory.visible);
+        category: enabledCostCategory,
+        formattedUnitPrice: formattedUnitPrice,
+        formattedQuantity: formattedQuantity,
+        quantityExplanation: quantityExplanation,
+        totalPriceTRY: totalPriceTRY,
+        formattedTotalPriceTRY: formattedTotalPriceTRY,
+      );
 
       costs.add(cost);
     }

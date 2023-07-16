@@ -28,7 +28,7 @@ class RoughConstructionCostTemplate extends CostTemplate {
       super.name = "Kaba İnşaat Maliyeti"
     }
   ){
-    enabledCostCategories = const [
+    enabledCostCategories = [
       CostCategory(MainCategory.excavationJobs, JobCategory.shoring, UnitPriceCategory.shutCrete,),
       CostCategory(MainCategory.excavationJobs, JobCategory.excavation, UnitPriceCategory.excavation,),
       CostCategory(MainCategory.excavationJobs, JobCategory.breaker, UnitPriceCategory.breaker,),
@@ -53,7 +53,7 @@ class RoofingCostTemplate extends CostTemplate {
         super.name = "Çatı Maliyeti"
       }
       ){
-    enabledCostCategories = const [
+    enabledCostCategories = [
       CostCategory(MainCategory.roofJobs, JobCategory.roofing, UnitPriceCategory.steelConstructionBraasRoof,),
     ];
   }
@@ -65,7 +65,7 @@ class FacadeCostTemplate extends CostTemplate {
         super.name = "Cephe Maliyeti"
       }
   ){
-    enabledCostCategories = const [
+    enabledCostCategories = [
       CostCategory(MainCategory.facadeJobs, JobCategory.facadeScaffolding, UnitPriceCategory.steelScaffolding),
       CostCategory(MainCategory.facadeJobs, JobCategory.windows, UnitPriceCategory.windowJoineryRehau,),
       CostCategory(MainCategory.facadeJobs, JobCategory.facadeRails, UnitPriceCategory.wroughtIronRailing,),
@@ -80,7 +80,7 @@ class InteriorCostTemplate extends CostTemplate {
         super.name = "İç İmalat Maliyeti"
       }
       ){
-    enabledCostCategories = const [
+    enabledCostCategories = [
       CostCategory(MainCategory.interiorJobs, JobCategory.interiorPlastering, UnitPriceCategory.plaster,),
       CostCategory(MainCategory.interiorJobs, JobCategory.interiorPainting, UnitPriceCategory.painting,),
       CostCategory(MainCategory.interiorJobs, JobCategory.interiorWaterproofing, UnitPriceCategory.cementBasedFlexInsulation,),
@@ -127,7 +127,7 @@ class LandscapeCostTemplate extends CostTemplate {
         super.name = "Peysaj Maliyeti"
       }
       ){
-    enabledCostCategories = const [
+    enabledCostCategories = [
       CostCategory(MainCategory.landscapeJobs, JobCategory.landScapeGarden, UnitPriceCategory.averageGarden),
       CostCategory(MainCategory.landscapeJobs, JobCategory.outdoorParkingTile, UnitPriceCategory.interlockingPavingStone),
       CostCategory(MainCategory.landscapeJobs, JobCategory.carLift, UnitPriceCategory.carLift),
@@ -142,7 +142,7 @@ class GeneralExpensesCostTemplate extends CostTemplate {
         super.name = "Genel Giderler"
       }
       ){
-    enabledCostCategories = const [
+    enabledCostCategories = [
       CostCategory(MainCategory.generalExpenses, JobCategory.enclosingTheLand, UnitPriceCategory.trapezoidalSheetCurtain),
       CostCategory(MainCategory.generalExpenses, JobCategory.mobilizationDemobilization, UnitPriceCategory.mobilizationDemobilization),
       CostCategory(MainCategory.generalExpenses, JobCategory.crane, UnitPriceCategory.crane10Ton),
