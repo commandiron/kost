@@ -22,20 +22,30 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
   CostTableBloc()
       : super(
           CostTableState(
-              quantityCalculator: InitialQuantityCalculator(),
+              costTemplate: EmptyCostTemplate(),
               unitPricePool: const [],
               currencyRates: DefaultCurrencyRates(),
-              costTemplate: EmptyCostTemplate(),
+              quantityCalculator: InitialQuantityCalculator(),
               costs: const [],
               formattedSubTotalsTRY: const {},
               formattedGrandTotalTRY: ""),
         ) {
     on<Init>((event, emit) {
-      add(const CreateQuantityCalculator());
+      add(const FetchCostTemplate());
       add(const FetchUnitPrices());
       add(const FetchCurrencyRates());
-      add(const FetchCostTemplate());
+      add(const CreateQuantityCalculator());
       _refresh();
+    });
+    on<FetchCostTemplate>((event, emit) {
+      emit(state.copyWith(costTemplate: BuildingCostTemplate()));
+    });
+    on<FetchUnitPrices>((event, emit) {
+      final unitPricePool = _unitPriceRepository.getAllUnitPrices();
+      emit(state.copyWith(unitPricePool: unitPricePool));
+    });
+    on<FetchCurrencyRates>((event, emit) {
+      emit(state.copyWith(currencyRates: DefaultCurrencyRates()));
     });
     on<CreateQuantityCalculator>((event, emit) {
       final quantityCalculator = DetailedQuantityCalculator(
@@ -163,16 +173,6 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
         foundationHeight: 1,
       );
       emit(state.copyWith(quantityCalculator: quantityCalculator));
-    });
-    on<FetchUnitPrices>((event, emit) {
-      final unitPricePool = _unitPriceRepository.getAllUnitPrices();
-      emit(state.copyWith(unitPricePool: unitPricePool));
-    });
-    on<FetchCurrencyRates>((event, emit) {
-      emit(state.copyWith(currencyRates: DefaultCurrencyRates()));
-    });
-    on<FetchCostTemplate>((event, emit) {
-      emit(state.copyWith(costTemplate: BuildingCostTemplate()));
     });
     on<CreateCostTable>((event, emit) {
       if (!_isAllUnitPricesInCostTemplateIncludedInUnitPricePool) {

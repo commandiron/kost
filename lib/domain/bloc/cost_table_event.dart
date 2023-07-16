@@ -17,8 +17,8 @@ class Init extends CostTableEvent {
   List<Object?> get props => [];
 }
 
-class CreateQuantityCalculator extends CostTableEvent {
-  const CreateQuantityCalculator();
+class FetchCostTemplate extends CostTableEvent {
+  const FetchCostTemplate();
   @override
   List<Object?> get props => [];
 }
@@ -35,8 +35,8 @@ class FetchCurrencyRates extends CostTableEvent {
   List<Object?> get props => [];
 }
 
-class FetchCostTemplate extends CostTableEvent {
-  const FetchCostTemplate();
+class CreateQuantityCalculator extends CostTableEvent {
+  const CreateQuantityCalculator();
   @override
   List<Object?> get props => [];
 }
