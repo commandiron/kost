@@ -223,11 +223,11 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
       _refresh();
     });
     on<ShowHideCategory>((event, emit) {
-      state.costs.forEach((cost) {
+      for (var cost in state.costs) {
         if (cost.category.mainCategory == event.mainCategory) {
           cost.visible = !cost.visible;
         }
-      });
+      }
       final newCosts = state.costs;
       emit(state.copyWith(costs: []));
       emit(state.copyWith(costs: newCosts));

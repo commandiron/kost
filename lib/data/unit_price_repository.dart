@@ -33,10 +33,12 @@ class UnitPriceRepository {
       dateTime: DateTime(2023, 07)
   );
 
+  static const _profitAndOverhead = 1.30;
+
   static List<UnitPrice> unitPrices = [
     UnitPrice(
         category: UnitPriceCategory.shutCrete,
-        amount: (c40Concrete.amount * 0.3) + (s420Steel.amount * 0.1),
+        amount: ((c40Concrete.amount * 0.2) + (s420Steel.amount * 0.1)) * _profitAndOverhead,
         fixedAmount: 30000,
         currency: c40Concrete.currency,
         dateTime: DateTime(2023, 01)),
@@ -47,7 +49,7 @@ class UnitPriceRepository {
         dateTime: DateTime(2023, 01)),
     UnitPrice(
         category: UnitPriceCategory.breaker,
-        amount: (diesel.amount * 20 + unUsed30TonExcavatorHourlyDepreciation.amount + excavatorOperatorHourlyWage.amount) * 1.30, //1500
+        amount: (diesel.amount * 20 + unUsed30TonExcavatorHourlyDepreciation.amount + excavatorOperatorHourlyWage.amount) * _profitAndOverhead, //1500
         currency: diesel.currency,
         dateTime: DateTime(2023, 01)),
     UnitPrice(
