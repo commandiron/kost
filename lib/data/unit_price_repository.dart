@@ -35,7 +35,7 @@ class UnitPriceRepository {
 
   static const _profitAndOverhead = 1.30;
 
-  //Calculated Unit Prices
+  //Calculated Prices
   static const _shutCreteThickness = 0.2;
   static const _shutCreteSteelTonPerSquareMeter = 0.1;
   static UnitPrice shutCrete = UnitPrice(
