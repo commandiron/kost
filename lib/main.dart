@@ -13,17 +13,11 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(home: MaterialChild());
-  }
-}
-
-class MaterialChild extends StatelessWidget {
-  const MaterialChild({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
     return BlocProvider(
-        create: (context) => CostTableBloc()..init(),
-        child: const CostTableScreen());
+      create: (context) => CostTableBloc()..init(),
+      child: const MaterialApp(
+        home: CostTableScreen(),
+      )
+    );
   }
 }
