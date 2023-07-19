@@ -25,7 +25,9 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
               costTemplate: EmptyCostTemplate(),
               unitPricePool: const [],
               currencyRates: ManualCurrencyRates(),
-              quantityCalculator: EmptyQuantityCalculator(),
+              quantityCalculator: EmptyQuantityCalculator(
+                projectConstants: ProjectConstants()
+              ),
               costs: const [],
               formattedSubTotalsTRY: const {},
               formattedGrandTotalTRY: ""),

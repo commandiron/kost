@@ -1,41 +1,25 @@
-import 'package:kost/domain/calculator/detailed/project_constants.dart';
 import 'package:kost/domain/calculator/detailed/room.dart';
 
 import '../quantity_calculator.dart';
 import 'floor.dart';
 
 class DetailedQuantityCalculator extends QuantityCalculator {
-  final ProjectConstants projectConstants;
-  final double landArea;
-  final double landPerimeter;
-  final double excavationArea;
-  final double excavationPerimeter;
-  final double coreCurtainLength;
-  final double curtainsExceeding1MeterLength;
-  final double columnsLess1MeterPerimeter;
-  final double elevationTowerArea;
-  final double elevationTowerHeightWithoutSlab;
-  final List<Floor> floors;
-  final double foundationArea;
-  final double foundationPerimeter;
-  final double foundationHeight;
-
   DetailedQuantityCalculator(
     {
-      required this.projectConstants,
-      required this.landArea,
-      required this.landPerimeter,
-      required this.excavationArea,
-      required this.excavationPerimeter,
-      required this.coreCurtainLength,
-      required this.curtainsExceeding1MeterLength,
-      required this.columnsLess1MeterPerimeter,
-      required this.elevationTowerArea,
-      required this.elevationTowerHeightWithoutSlab,
-      required this.floors,
-      required this.foundationArea,
-      required this.foundationPerimeter,
-      required this.foundationHeight,
+      required super.projectConstants,
+      required super.landArea,
+      required super.landPerimeter,
+      required super.excavationArea,
+      required super.excavationPerimeter,
+      required super.coreCurtainLength,
+      required super.curtainsExceeding1MeterLength,
+      required super.columnsLess1MeterPerimeter,
+      required super.elevationTowerArea,
+      required super.elevationTowerHeightWithoutSlab,
+      required super.floors,
+      required super.foundationArea,
+      required super.foundationPerimeter,
+      required super.foundationHeight,
     }
   );
 

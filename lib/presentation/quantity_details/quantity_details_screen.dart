@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:kost/presentation/cost_table/cost_table_screen.dart';
 
 import '../../domain/bloc/cost_table_bloc.dart';
 import '../../domain/bloc/cost_table_state.dart';
@@ -20,7 +21,13 @@ class QuantityDetails extends StatelessWidget {
                 SliverToBoxAdapter(
                   child: Column(
                     children: [
-                      Text("Bilgiler")
+                      Text("Bilgiler"),
+                      Text(state.quantityCalculator.landArea.toString()),
+                      Text(state.quantityCalculator.landPerimeter.toString()),
+                      ElevatedButton(
+                        onPressed: () => Navigator.of(context).pushNamed(CostTableScreen.route),
+                        child: const Text("Hesapla")
+                      )
                     ],
                   ),
                 )

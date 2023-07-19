@@ -1,6 +1,42 @@
 import '../model/category/category.dart';
+import 'detailed/floor.dart';
+import 'detailed/project_constants.dart';
 
 abstract class QuantityCalculator {
+
+  final ProjectConstants projectConstants;
+  final double landArea;
+  final double landPerimeter;
+  final double excavationArea;
+  final double excavationPerimeter;
+  final double coreCurtainLength;
+  final double curtainsExceeding1MeterLength;
+  final double columnsLess1MeterPerimeter;
+  final double elevationTowerArea;
+  final double elevationTowerHeightWithoutSlab;
+  final List<Floor> floors;
+  final double foundationArea;
+  final double foundationPerimeter;
+  final double foundationHeight;
+
+  QuantityCalculator(
+    {
+      required this.projectConstants,
+      required this.landArea,
+      required this.landPerimeter,
+      required this.excavationArea,
+      required this.excavationPerimeter,
+      required this.coreCurtainLength,
+      required this.curtainsExceeding1MeterLength,
+      required this.columnsLess1MeterPerimeter,
+      required this.elevationTowerArea,
+      required this.elevationTowerHeightWithoutSlab,
+      required this.floors,
+      required this.foundationArea,
+      required this.foundationPerimeter,
+      required this.foundationHeight,
+    }
+  );
 
   double get calculatedShoringArea;
   double? shoringArea;
@@ -465,6 +501,25 @@ abstract class QuantityCalculator {
 }
 
 class EmptyQuantityCalculator extends QuantityCalculator {
+  EmptyQuantityCalculator(
+    {
+      required super.projectConstants,
+      super.landArea = 0,
+      super.landPerimeter = 0,
+      super.excavationArea = 0,
+      super.excavationPerimeter = 0,
+      super.coreCurtainLength = 0,
+      super.curtainsExceeding1MeterLength = 0,
+      super.columnsLess1MeterPerimeter = 0,
+      super.elevationTowerArea = 0,
+      super.elevationTowerHeightWithoutSlab = 0,
+      super.floors = const [],
+      super.foundationArea = 0,
+      super.foundationPerimeter = 0,
+      super.foundationHeight = 0,
+    }
+  );
+
   @override
   double get calculatedShoringArea => 0;
   @override
