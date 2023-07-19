@@ -35,13 +35,19 @@ class UnitPriceRepository {
 
   static const _profitAndOverhead = 1.30;
 
+  //Calculated Unit Prices
+  static const _shutCreteThickness = 0.2;
+  static const _shutCreteSteelTonPerSquareMeter = 0.1;
+  static UnitPrice shutCrete = UnitPrice(
+    category: UnitPriceCategory.shutCrete,
+    amount: ((c40Concrete.amount * _shutCreteThickness) + (s420Steel.amount * _shutCreteSteelTonPerSquareMeter)) * _profitAndOverhead,
+    fixedAmount: 30000,
+    currency: c40Concrete.currency,
+    dateTime: DateTime(2023, 01)
+  );
+
   static List<UnitPrice> unitPrices = [
-    UnitPrice(
-        category: UnitPriceCategory.shutCrete,
-        amount: ((c40Concrete.amount * 0.2) + (s420Steel.amount * 0.1)) * _profitAndOverhead,
-        fixedAmount: 30000,
-        currency: c40Concrete.currency,
-        dateTime: DateTime(2023, 01)),
+    shutCrete,
     UnitPrice(
         category: UnitPriceCategory.excavation,
         amount: 450,
