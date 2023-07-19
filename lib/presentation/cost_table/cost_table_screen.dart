@@ -8,6 +8,8 @@ import '../../domain/bloc/cost_table_state.dart';
 class CostTableScreen extends StatelessWidget {
   const CostTableScreen({Key? key}) : super(key: key);
 
+  static const route =  "cost_table";
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
