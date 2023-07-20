@@ -22,66 +22,62 @@ class FloorViewer extends StatelessWidget {
     final double foundationWidth = width;
     final double foundationHeight = (height / (floors.length + 1)) * 0.5;
 
-    return SizedBox(
-      width: width,
-      height: height,
-      child: Column(
-        children: [
-          CustomPaint(
-            painter: TrianglePainter(
-              strokeColor: Colors.red,
-              strokeWidth: 1,
-              paintingStyle: PaintingStyle.fill,
-            ),
-            child: SizedBox(
-              width: roofWidth,
-              height: roofHeight,
-            ),
+    return Column(
+      children: [
+        CustomPaint(
+          painter: TrianglePainter(
+            strokeColor: Colors.red,
+            strokeWidth: 1,
+            paintingStyle: PaintingStyle.fill,
           ),
-          ListView.builder(
-            itemCount: floors.length,
-            shrinkWrap: true,
-            itemBuilder: (context, index) {
-              final floorWidth = widthPerFoundationSquareMeter * floors[index].area;
-              final floorHeight = (height - (roofHeight + foundationHeight)) / floors.length;
-              return Align(
-                alignment: Alignment.center,
-                child: Container(
-                  color: Colors.blue,
-                  width: floorWidth,
-                  height: floorHeight,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(floors[index].type.nameTr, style: AppTextStyle.l1,),
-                      AppSpace.hS!,
-                      Text(floors[index].area.toString(), style: AppTextStyle.l1,),
-                      AppSpace.hS!,
-                      Text("m²", style: AppTextStyle.l1,),
-                    ],
-                  ),
+          child: SizedBox(
+            width: roofWidth,
+            height: roofHeight,
+          ),
+        ),
+        ListView.builder(
+          itemCount: floors.length,
+          shrinkWrap: true,
+          itemBuilder: (context, index) {
+            final floorWidth = widthPerFoundationSquareMeter * floors[index].area;
+            final floorHeight = (height - (roofHeight + foundationHeight)) / floors.length;
+            return Align(
+              alignment: Alignment.center,
+              child: Container(
+                color: Colors.blue,
+                width: floorWidth,
+                height: floorHeight,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(floors[index].type.nameTr, style: AppTextStyle.l1,),
+                    AppSpace.hS!,
+                    Text(floors[index].area.toString(), style: AppTextStyle.l1,),
+                    AppSpace.hS!,
+                    Text("m²", style: AppTextStyle.l1,),
+                  ],
                 ),
-              );
-            },
+              ),
+            );
+          },
+        ),
+        Container(
+          color: Colors.grey,
+          width: foundationWidth,
+          height: foundationHeight,
+          alignment: Alignment.center,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text("Temel", style: AppTextStyle.l1,),
+              AppSpace.hS!,
+              Text(foundationArea.toString(), style: AppTextStyle.l1,),
+              AppSpace.hS!,
+              Text("m²", style: AppTextStyle.l1,),
+            ],
           ),
-          Container(
-            color: Colors.grey,
-            width: foundationWidth,
-            height: foundationHeight,
-            alignment: Alignment.center,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text("Temel", style: AppTextStyle.l1,),
-                AppSpace.hS!,
-                Text(foundationArea.toString(), style: AppTextStyle.l1,),
-                AppSpace.hS!,
-                Text("m²", style: AppTextStyle.l1,),
-              ],
-            ),
-          ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }
