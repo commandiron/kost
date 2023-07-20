@@ -31,7 +31,7 @@ class QuantityDetails extends StatelessWidget {
                       AppSpace.vL!,
                       FloorViewer(
                         width: 350,
-                        height: 300,
+                        height: 360,
                         foundationArea: state.quantityCalculator.foundationArea,
                         floors: state.quantityCalculator.floors,
                       ),

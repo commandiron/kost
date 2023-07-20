@@ -54,10 +54,7 @@ class _FloorViewerState extends State<FloorViewer> {
               final floorHeight = (widget.height - (roofHeight + foundationHeight)) / widget.floors.length;
               return Align(
                 alignment: Alignment.center,
-                child: InkWell(
-                  onHover: (value) {
-                    //Adaptive config
-                  },
+                child: GestureDetector(
                   onTap: () {
                     setState(() {
                       _isHighlighted = {index : !(_isHighlighted[index] ?? false)};
@@ -65,7 +62,7 @@ class _FloorViewerState extends State<FloorViewer> {
                   },
                   child: Container(
                     width: _isHighlighted[index] ?? false ? floorWidth * 2 : floorWidth,
-                    height: _isHighlighted[index] ?? false ? floorHeight * 3 : floorHeight,
+                    height: _isHighlighted[index] ?? false ? floorHeight * 4 : floorHeight,
                     decoration: BoxDecoration(
                       border: Border.all()
                     ),
@@ -86,9 +83,11 @@ class _FloorViewerState extends State<FloorViewer> {
             },
           ),
           Container(
-            color: Colors.grey,
             width: foundationWidth,
             height: foundationHeight,
+            decoration: BoxDecoration(
+              border: Border.all()
+            ),
             alignment: Alignment.center,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
