@@ -30,73 +30,80 @@ class _FloorViewerState extends State<FloorViewer> {
     final double roofWidth = widthPerFoundationSquareMeter * (widget.floors.isNotEmpty ? widget.floors.first.area * 1.2 : widget.width / 2);
     final double roofHeight =  (widget.height / (widget.floors.length + 2));
 
-    return Column(
-      children: [
-        CustomPaint(
-          painter: TrianglePainter(
-            paintingStyle: PaintingStyle.fill,
-            strokeColor: Colors.red
+    return GestureDetector(
+      onTap: () {
+        setState(() {
+          _isHighlighted.clear();
+        });
+      },
+      child: Column(
+        children: [
+          CustomPaint(
+            painter: TrianglePainter(
+              paintingStyle: PaintingStyle.fill,
+              strokeColor: Colors.red
+            ),
+            child: SizedBox(
+              width: roofWidth,
+              height: roofHeight,
+            ),
           ),
-          child: SizedBox(
-            width: roofWidth,
-            height: roofHeight,
-          ),
-        ),
-        ListView.builder(
-          itemCount: widget.floors.length,
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-          itemBuilder: (context, index) {
-            final floorWidth = widthPerFoundationSquareMeter * widget.floors[index].area;
-            final floorHeight = (widget.height - (roofHeight + foundationHeight)) / widget.floors.length;
-            return Align(
-              alignment: Alignment.center,
-              child: InkWell(
-                onHover: (value) {
-
-                },
-                onTap: () {
-                  setState(() {
-                    _isHighlighted = {index : !(_isHighlighted[index] ?? false)};
-                  });
-                },
-                child: Container(
-                  color: Colors.blue,
-                  width: _isHighlighted[index] ?? false ? floorWidth * 2 : floorWidth,
-                  height: _isHighlighted[index] ?? false ? floorHeight * 2 : floorHeight,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Text(widget.floors[index].type.nameTr, style: AppTextStyle.l1,),
-                      AppSpace.hS!,
-                      Text(widget.floors[index].area.toString(), style: AppTextStyle.l1,),
-                      AppSpace.hS!,
-                      Text("m²", style: AppTextStyle.l1,),
-                    ],
+          ListView.builder(
+            itemCount: widget.floors.length,
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            itemBuilder: (context, index) {
+              final floorWidth = widthPerFoundationSquareMeter * widget.floors[index].area;
+              final floorHeight = (widget.height - (roofHeight + foundationHeight)) / widget.floors.length;
+              return Align(
+                alignment: Alignment.center,
+                child: InkWell(
+                  onHover: (value) {
+                    //Adaptive config
+                  },
+                  onTap: () {
+                    setState(() {
+                      _isHighlighted = {index : !(_isHighlighted[index] ?? false)};
+                    });
+                  },
+                  child: Container(
+                    color: Colors.blue,
+                    width: _isHighlighted[index] ?? false ? floorWidth * 2 : floorWidth,
+                    height: _isHighlighted[index] ?? false ? floorHeight * 3 : floorHeight,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text(widget.floors[index].type.nameTr, style: AppTextStyle.l1,),
+                        AppSpace.hS!,
+                        Text(widget.floors[index].area.toString(), style: AppTextStyle.l1,),
+                        AppSpace.hS!,
+                        Text("m²", style: AppTextStyle.l1,),
+                      ],
+                    ),
                   ),
                 ),
-              ),
-            );
-          },
-        ),
-        Container(
-          color: Colors.grey,
-          width: foundationWidth,
-          height: foundationHeight,
-          alignment: Alignment.center,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text("Temel", style: AppTextStyle.l1,),
-              AppSpace.hS!,
-              Text(widget.foundationArea.toString(), style: AppTextStyle.l1,),
-              AppSpace.hS!,
-              Text("m²", style: AppTextStyle.l1,),
-            ],
+              );
+            },
           ),
-        ),
-      ],
+          Container(
+            color: Colors.grey,
+            width: foundationWidth,
+            height: foundationHeight,
+            alignment: Alignment.center,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text("Temel", style: AppTextStyle.l1,),
+                AppSpace.hS!,
+                Text(widget.foundationArea.toString(), style: AppTextStyle.l1,),
+                AppSpace.hS!,
+                Text("m²", style: AppTextStyle.l1,),
+              ],
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
