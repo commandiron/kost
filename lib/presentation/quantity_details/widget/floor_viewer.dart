@@ -5,15 +5,16 @@ import '../../../config/app_text_style.dart';
 import '../../../domain/calculator/detailed/floor.dart';
 
 class FloorViewer extends StatelessWidget {
-  const FloorViewer({Key? key, required this.floors, required this.foundationArea}) : super(key: key);
+  const FloorViewer({Key? key, required this.width, required this.floorHeight, required this.floors, required this.foundationArea,}) : super(key: key);
 
+  final double width;
+  final double floorHeight;
   final List<Floor> floors;
   final double foundationArea;
 
   @override
   Widget build(BuildContext context) {
-    const double foundationWidth = 260;
-    final double widthPerFoundationSquareMeter = foundationWidth / foundationArea;
+    final double widthPerFoundationSquareMeter = width / foundationArea;
     return Column(
       children: [
         CustomPaint(
@@ -22,8 +23,8 @@ class FloorViewer extends StatelessWidget {
             strokeWidth: 1,
             paintingStyle: PaintingStyle.fill,
           ),
-          child: Container(
-            height: 20,
+          child: SizedBox(
+            height: width / 16,
             width: widthPerFoundationSquareMeter * (floors.isNotEmpty ? floors.first.area + 60 : 0),
           ),
         ),
@@ -36,13 +37,15 @@ class FloorViewer extends StatelessWidget {
               child: Container(
                 color: Colors.blue,
                 width: widthPerFoundationSquareMeter * floors[index].area,
-                height: 26,
+                height: floorHeight,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(floors[index].type.nameTr, style: AppTextStyle.l1,),
                     AppSpace.hS!,
                     Text(floors[index].area.toString(), style: AppTextStyle.l1,),
+                    AppSpace.hS!,
+                    Text("m²", style: AppTextStyle.l1,),
                   ],
                 ),
               ),
@@ -51,14 +54,17 @@ class FloorViewer extends StatelessWidget {
         ),
         Container(
           color: Colors.grey,
-          width: foundationWidth,
-          height: 13,
+          width: width,
+          height: floorHeight / 2,
           alignment: Alignment.center,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text("Temel", style: AppTextStyle.l1,),
+              AppSpace.hS!,
               Text(foundationArea.toString(), style: AppTextStyle.l1,),
+              AppSpace.hS!,
+              Text("m²", style: AppTextStyle.l1,),
             ],
           ),
         ),
