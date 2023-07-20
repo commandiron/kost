@@ -39,10 +39,7 @@ class _FloorViewerState extends State<FloorViewer> {
       child: Column(
         children: [
           CustomPaint(
-            painter: TrianglePainter(
-              paintingStyle: PaintingStyle.fill,
-              strokeColor: Colors.red
-            ),
+            painter: TrianglePainter(strokeWidth: 1),
             child: SizedBox(
               width: roofWidth,
               height: roofHeight,
@@ -67,9 +64,11 @@ class _FloorViewerState extends State<FloorViewer> {
                     });
                   },
                   child: Container(
-                    color: Colors.blue,
                     width: _isHighlighted[index] ?? false ? floorWidth * 2 : floorWidth,
                     height: _isHighlighted[index] ?? false ? floorHeight * 3 : floorHeight,
+                    decoration: BoxDecoration(
+                      border: Border.all()
+                    ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       mainAxisSize: MainAxisSize.min,

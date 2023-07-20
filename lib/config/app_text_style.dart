@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 
 class AppTextStyle {
-  static TextStyle? btn;
-
   // Headings
   static TextStyle? h1;
   static TextStyle? h1b;

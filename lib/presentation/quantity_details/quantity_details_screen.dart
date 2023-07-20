@@ -26,10 +26,12 @@ class QuantityDetails extends StatelessWidget {
                     children: [
                       AppSpace.vL!,
                       Text("Bina Bilgileri", style: AppTextStyle.b1,),
+                      AppSpace.vS!,
+                      Text("Detaylarını görmek istediğiniz kata dokunun", style: AppTextStyle.l1!.copyWith(color: Colors.grey),),
                       AppSpace.vL!,
                       FloorViewer(
-                        width: 320,
-                        height: 400,
+                        width: 350,
+                        height: 300,
                         foundationArea: state.quantityCalculator.foundationArea,
                         floors: state.quantityCalculator.floors,
                       ),
