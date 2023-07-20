@@ -30,8 +30,8 @@ class QuantityDetails extends StatelessWidget {
                       FloorViewer(
                         width: 320,
                         height: 400,
-                        floors: state.quantityCalculator.floors,
                         foundationArea: state.quantityCalculator.foundationArea,
+                        floors: state.quantityCalculator.floors,
                       ),
                       AppSpace.vL!,
                       Text("Diğer Bilgiler", style: AppTextStyle.b1,),

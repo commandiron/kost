@@ -4,22 +4,31 @@ import '../../../config/app_space.dart';
 import '../../../config/app_text_style.dart';
 import '../../../domain/calculator/detailed/floor.dart';
 
-class FloorViewer extends StatelessWidget {
-  const FloorViewer({Key? key, required this.width, required this.height, required this.floors, required this.foundationArea,}) : super(key: key);
+class FloorViewer extends StatefulWidget {
+  const FloorViewer({Key? key, required this.width, required this.height, required this.foundationArea, required this.floors,}) : super(key: key);
 
   final double width;
   final double height;
-  final List<Floor> floors;
   final double foundationArea;
+  final List<Floor> floors;
+
+
+  @override
+  State<FloorViewer> createState() => _FloorViewerState();
+}
+
+class _FloorViewerState extends State<FloorViewer> {
+
+  Map<int, bool> _isHighlighted = {};
 
   @override
   Widget build(BuildContext context) {
-    final double foundationWidth = width;
-    final double foundationHeight = (height / (floors.length + 1)) * 0.5;
-    final double widthPerFoundationSquareMeter = foundationWidth / foundationArea;
+    final double foundationWidth = widget.width;
+    final double foundationHeight = (widget.height / (widget.floors.length + 1)) * 0.5;
+    final double widthPerFoundationSquareMeter = foundationWidth / widget.foundationArea;
 
-    final double roofWidth = widthPerFoundationSquareMeter * (floors.isNotEmpty ? floors.first.area * 1.2 : width / 2);
-    final double roofHeight =  (height / (floors.length + 2));
+    final double roofWidth = widthPerFoundationSquareMeter * (widget.floors.isNotEmpty ? widget.floors.first.area * 1.2 : widget.width / 2);
+    final double roofHeight =  (widget.height / (widget.floors.length + 2));
 
     return Column(
       children: [
@@ -34,27 +43,38 @@ class FloorViewer extends StatelessWidget {
           ),
         ),
         ListView.builder(
-          itemCount: floors.length,
+          itemCount: widget.floors.length,
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
           itemBuilder: (context, index) {
-            final floorWidth = widthPerFoundationSquareMeter * floors[index].area;
-            final floorHeight = (height - (roofHeight + foundationHeight)) / floors.length;
+            final floorWidth = widthPerFoundationSquareMeter * widget.floors[index].area;
+            final floorHeight = (widget.height - (roofHeight + foundationHeight)) / widget.floors.length;
             return Align(
               alignment: Alignment.center,
-              child: Container(
-                color: Colors.blue,
-                width: floorWidth,
-                height: floorHeight,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(floors[index].type.nameTr, style: AppTextStyle.l1,),
-                    AppSpace.hS!,
-                    Text(floors[index].area.toString(), style: AppTextStyle.l1,),
-                    AppSpace.hS!,
-                    Text("m²", style: AppTextStyle.l1,),
-                  ],
+              child: InkWell(
+                onHover: (value) {
+
+                },
+                onTap: () {
+                  setState(() {
+                    _isHighlighted = {index : !(_isHighlighted[index] ?? false)};
+                  });
+                },
+                child: Container(
+                  color: Colors.blue,
+                  width: _isHighlighted[index] ?? false ? floorWidth * 2 : floorWidth,
+                  height: _isHighlighted[index] ?? false ? floorHeight * 2 : floorHeight,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(widget.floors[index].type.nameTr, style: AppTextStyle.l1,),
+                      AppSpace.hS!,
+                      Text(widget.floors[index].area.toString(), style: AppTextStyle.l1,),
+                      AppSpace.hS!,
+                      Text("m²", style: AppTextStyle.l1,),
+                    ],
+                  ),
                 ),
               ),
             );
@@ -70,7 +90,7 @@ class FloorViewer extends StatelessWidget {
             children: [
               Text("Temel", style: AppTextStyle.l1,),
               AppSpace.hS!,
-              Text(foundationArea.toString(), style: AppTextStyle.l1,),
+              Text(widget.foundationArea.toString(), style: AppTextStyle.l1,),
               AppSpace.hS!,
               Text("m²", style: AppTextStyle.l1,),
             ],
