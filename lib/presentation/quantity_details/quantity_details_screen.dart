@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:kost/config/app_padding.dart';
 import 'package:kost/config/app_space.dart';
 import 'package:kost/config/app_text_style.dart';
 import 'package:kost/presentation/cost_table/cost_table_screen.dart';
@@ -18,51 +17,43 @@ class QuantityDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: Padding(
-          padding: AppPadding.allM!,
-          child: BlocBuilder<CostTableBloc, CostTableState>(
-            builder: (context, state) {
-              return CustomScrollView(
-                slivers: [
-                  SliverToBoxAdapter(
-                    child: Text("Bina Bilgileri", style: AppTextStyle.b1,)
-                  ),
-                  SliverToBoxAdapter(
-                    child: AppSpace.vL!,
-                  ),
-                  SliverToBoxAdapter(
-                    child: FloorViewer(
-                      width: MediaQuery.of(context).size.width * 0.85,
-                      height: MediaQuery.of(context).size.height / 1.8,
-                      floors: state.quantityCalculator.floors,
-                      foundationArea: state.quantityCalculator.foundationArea,
-                    )
-                  ),
-                  SliverToBoxAdapter(
-                    child: AppSpace.vL!,
-                  ),
-                  SliverToBoxAdapter(
-                      child: Text("Diğer Bilgiler", style: AppTextStyle.b1,)
-                  ),
-                  SliverToBoxAdapter(
-                    child: AppSpace.vL!,
-                  ),
-                  SliverToBoxAdapter(
-                    child: Column(
-                      children: [
-                        Text(state.quantityCalculator.landArea.toString()),
-                        Text(state.quantityCalculator.landPerimeter.toString()),
-                        ElevatedButton(
-                          onPressed: () => Navigator.of(context).pushNamed(CostTableScreen.route),
-                          child: const Text("Maliyet Hesapla")
-                        )
-                      ],
-                    ),
-                  ),
-                ],
-              );
-            },
-          ),
+        body: BlocBuilder<CostTableBloc, CostTableState>(
+          builder: (context, state) {
+            return CustomScrollView(
+              shrinkWrap: true,
+              slivers: [
+                SliverToBoxAdapter(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      AppSpace.vL!,
+                      Text("Bina Bilgileri", style: AppTextStyle.b1,),
+                      AppSpace.vL!,
+                      FloorViewer(
+                        width: 320,
+                        height: 400,
+                        floors: state.quantityCalculator.floors,
+                        foundationArea: state.quantityCalculator.foundationArea,
+                      ),
+                      AppSpace.vL!,
+                      Text("Diğer Bilgiler", style: AppTextStyle.b1,),
+                      AppSpace.vL!,
+                      Column(
+                        children: [
+                          Text(state.quantityCalculator.landArea.toString()),
+                          Text(state.quantityCalculator.landPerimeter.toString()),
+                          ElevatedButton(
+                              onPressed: () => Navigator.of(context).pushNamed(CostTableScreen.route),
+                              child: const Text("Maliyet Hesapla")
+                          )
+                        ],
+                      ),
+                    ],
+                  )
+                ),
+              ],
+            );
+          },
         ),
       ),
     );
