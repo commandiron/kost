@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:kost/config/app_padding.dart';
+import 'package:kost/config/app_space.dart';
+import 'package:kost/config/app_text_style.dart';
 import 'package:kost/presentation/cost_table/cost_table_screen.dart';
+import 'package:kost/presentation/quantity_details/widget/floor_viewer.dart';
 
 import '../../domain/bloc/cost_table_bloc.dart';
 import '../../domain/bloc/cost_table_state.dart';
@@ -14,48 +18,49 @@ class QuantityDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: BlocBuilder<CostTableBloc, CostTableState>(
-          builder: (context, state) {
-            return CustomScrollView(
-              slivers: [
-                SliverToBoxAdapter(
-                  child: Column(
-                    children: [
-                      Text("Bilgiler"),
-                      Text(state.quantityCalculator.landArea.toString()),
-                      Text(state.quantityCalculator.landPerimeter.toString()),
-                      ElevatedButton(
-                          onPressed: () => Navigator.of(context)
-                              .pushNamed(CostTableScreen.route),
-                          child: const Text("Hesapla"))
-                    ],
+        body: Padding(
+          padding: AppPadding.allM!,
+          child: BlocBuilder<CostTableBloc, CostTableState>(
+            builder: (context, state) {
+              return CustomScrollView(
+                slivers: [
+                  SliverToBoxAdapter(
+                    child: Text("Bina Bilgileri", style: AppTextStyle.b1,)
                   ),
-                ),
-                SliverList.builder(
-                  itemCount: state.quantityCalculator.floors.length,
-                  itemBuilder: (context, index) {
-                    return Container(
-                      color: Colors.blue,
-                      width: 100,
-                      height: 20,
-                      child: Text(state.quantityCalculator.floors[index].area.toString()),
-                    );
-                  },
-                ),
-                SliverToBoxAdapter(
-                  child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Container(
-                        color: Colors.blue,
-                        width: 200,
-                        height: 20,
-                        child: Text(state.quantityCalculator.foundationArea.toString()),
-                      ),
+                  SliverToBoxAdapter(
+                    child: AppSpace.vL!,
+                  ),
+                  SliverToBoxAdapter(
+                    child: FloorViewer(
+                      floors: state.quantityCalculator.floors,
+                      foundationArea: state.quantityCalculator.foundationArea,
+                    )
+                  ),
+                  SliverToBoxAdapter(
+                    child: AppSpace.vL!,
+                  ),
+                  SliverToBoxAdapter(
+                      child: Text("Diğer Bilgiler", style: AppTextStyle.b1,)
+                  ),
+                  SliverToBoxAdapter(
+                    child: AppSpace.vL!,
+                  ),
+                  SliverToBoxAdapter(
+                    child: Column(
+                      children: [
+                        Text(state.quantityCalculator.landArea.toString()),
+                        Text(state.quantityCalculator.landPerimeter.toString()),
+                        ElevatedButton(
+                          onPressed: () => Navigator.of(context).pushNamed(CostTableScreen.route),
+                          child: const Text("Maliyet Hesapla")
+                        )
+                      ],
                     ),
-                )
-              ],
-            );
-          },
+                  ),
+                ],
+              );
+            },
+          ),
         ),
       ),
     );

@@ -102,10 +102,41 @@ class Floor {
         )
       );
     }
-    return duplicatedFloors;
+    return duplicatedFloors.reversed.toList();
   }
 }
 
 enum FloorType {
   b3, b2, b1, z, k1, k2, k3, k4, k5, k6, k7, k8, k9, k10, k11, k12, k13, k14, k15, k16, k17, k18, k19, k20
+}
+
+extension FloorTypeExtension on FloorType {
+  String get nameTr {
+    return switch (this) {
+      FloorType.b3 => "3. Bodrum Kat",
+      FloorType.b2 => "2. Bodrum Kat",
+      FloorType.b1 => "1. Bodrum Kat",
+      FloorType.z => "Zemin Kat",
+      FloorType.k1 => "1. Kat",
+      FloorType.k2 => "2. Kat",
+      FloorType.k3 => "3. Kat",
+      FloorType.k4 => "4. Kat",
+      FloorType.k5 => "5. Kat",
+      FloorType.k6 => "6. Kat",
+      FloorType.k7 => "7. Kat",
+      FloorType.k8 => "8. Kat",
+      FloorType.k9 => "9. Kat",
+      FloorType.k10 => "10. Kat",
+      FloorType.k11 => "11. Kat",
+      FloorType.k12 => "12. Kat",
+      FloorType.k13 => "13. Kat",
+      FloorType.k14 => "14. Kat",
+      FloorType.k15 => "15. Kat",
+      FloorType.k16 => "16. Kat",
+      FloorType.k17 => "17. Kat",
+      FloorType.k18 => "18. Kat",
+      FloorType.k19 => "19. Kat",
+      FloorType.k20 => "20. Kat",
+    };
+  }
 }
