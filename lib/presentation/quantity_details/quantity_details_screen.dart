@@ -33,7 +33,7 @@ class QuantityDetails extends StatelessWidget {
                   SliverToBoxAdapter(
                     child: FloorViewer(
                       width: MediaQuery.of(context).size.width * 0.85,
-                      height: MediaQuery.of(context).size.height / 2,
+                      height: MediaQuery.of(context).size.height / 1.8,
                       floors: state.quantityCalculator.floors,
                       foundationArea: state.quantityCalculator.foundationArea,
                     )
