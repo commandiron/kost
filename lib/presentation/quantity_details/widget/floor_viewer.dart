@@ -16,61 +16,100 @@ class FloorViewer extends StatelessWidget {
   Widget build(BuildContext context) {
     final double widthPerFoundationSquareMeter = width / foundationArea;
 
-    final double roofWidth = widthPerFoundationSquareMeter * (floors.isNotEmpty ? floors.first.area * 1.2 : 0);
-    final double roofHeight =  (height / (floors.length + 2)) * 0.5;
+    final double roofWidth = widthPerFoundationSquareMeter * (floors.isNotEmpty ? floors.first.area * 1.2 : width);
+    final double roofHeight =  (height / (floors.length + 2));
 
     final double foundationWidth = width;
     final double foundationHeight = (height / (floors.length + 1)) * 0.5;
 
-    return SizedBox(
-      width: width,
-      height: height,
-      child: Column(
-        children: [
-          ListView.builder(
-            itemCount: floors.length,
-            shrinkWrap: true,
-            itemBuilder: (context, index) {
-              final floorWidth = widthPerFoundationSquareMeter * floors[index].area;
-              final floorHeight = (height - (roofHeight + foundationHeight)) / floors.length;
-              return Align(
-                alignment: Alignment.center,
-                child: Container(
-                  color: Colors.blue,
-                  width: floorWidth,
-                  height: floorHeight,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(floors[index].type.nameTr, style: AppTextStyle.l1,),
-                      AppSpace.hS!,
-                      Text(floors[index].area.toString(), style: AppTextStyle.l1,),
-                      AppSpace.hS!,
-                      Text("m²", style: AppTextStyle.l1,),
-                    ],
-                  ),
+    return Column(
+      children: [
+        CustomPaint(
+          painter: TrianglePainter(
+            paintingStyle: PaintingStyle.fill,
+            strokeColor: Colors.red
+          ),
+          child: SizedBox(
+            width: roofWidth,
+            height: roofHeight,
+          ),
+        ),
+        ListView.builder(
+          itemCount: floors.length,
+          shrinkWrap: true,
+          itemBuilder: (context, index) {
+            final floorWidth = widthPerFoundationSquareMeter * floors[index].area;
+            final floorHeight = (height - (roofHeight + foundationHeight)) / floors.length;
+            return Align(
+              alignment: Alignment.center,
+              child: Container(
+                color: Colors.blue,
+                width: floorWidth,
+                height: floorHeight,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(floors[index].type.nameTr, style: AppTextStyle.l1,),
+                    AppSpace.hS!,
+                    Text(floors[index].area.toString(), style: AppTextStyle.l1,),
+                    AppSpace.hS!,
+                    Text("m²", style: AppTextStyle.l1,),
+                  ],
                 ),
-              );
-            },
+              ),
+            );
+          },
+        ),
+        Container(
+          color: Colors.grey,
+          width: foundationWidth,
+          height: foundationHeight,
+          alignment: Alignment.center,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text("Temel", style: AppTextStyle.l1,),
+              AppSpace.hS!,
+              Text(foundationArea.toString(), style: AppTextStyle.l1,),
+              AppSpace.hS!,
+              Text("m²", style: AppTextStyle.l1,),
+            ],
           ),
-          Container(
-            color: Colors.grey,
-            width: foundationWidth,
-            height: foundationHeight,
-            alignment: Alignment.center,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text("Temel", style: AppTextStyle.l1,),
-                AppSpace.hS!,
-                Text(foundationArea.toString(), style: AppTextStyle.l1,),
-                AppSpace.hS!,
-                Text("m²", style: AppTextStyle.l1,),
-              ],
-            ),
-          ),
-        ],
-      ),
+        ),
+      ],
     );
+  }
+}
+
+class TrianglePainter extends CustomPainter {
+  final Color strokeColor;
+  final PaintingStyle paintingStyle;
+  final double strokeWidth;
+
+  TrianglePainter({this.strokeColor = Colors.black, this.strokeWidth = 3, this.paintingStyle = PaintingStyle.stroke});
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    Paint paint = Paint()
+      ..color = strokeColor
+      ..strokeWidth = strokeWidth
+      ..style = paintingStyle;
+
+    canvas.drawPath(getTrianglePath(size.width, size.height), paint);
+  }
+
+  Path getTrianglePath(double x, double y) {
+    return Path()
+      ..moveTo(0, y)
+      ..lineTo(x / 2, 0)
+      ..lineTo(x, y)
+      ..lineTo(0, y);
+  }
+
+  @override
+  bool shouldRepaint(TrianglePainter oldDelegate) {
+    return oldDelegate.strokeColor != strokeColor ||
+        oldDelegate.paintingStyle != paintingStyle ||
+        oldDelegate.strokeWidth != strokeWidth;
   }
 }
