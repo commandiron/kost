@@ -20,11 +20,9 @@ class QuantityDetails extends StatelessWidget {
         body: BlocBuilder<CostTableBloc, CostTableState>(
           builder: (context, state) {
             return CustomScrollView(
-              shrinkWrap: true,
               slivers: [
                 SliverToBoxAdapter(
                   child: Column(
-                    mainAxisSize: MainAxisSize.min,
                     children: [
                       AppSpace.vL!,
                       Text("Bina Bilgileri", style: AppTextStyle.b1,),

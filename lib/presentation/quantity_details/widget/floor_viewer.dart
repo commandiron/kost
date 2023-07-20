@@ -14,13 +14,12 @@ class FloorViewer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final double widthPerFoundationSquareMeter = width / foundationArea;
-
-    final double roofWidth = widthPerFoundationSquareMeter * (floors.isNotEmpty ? floors.first.area * 1.2 : width);
-    final double roofHeight =  (height / (floors.length + 2));
-
     final double foundationWidth = width;
     final double foundationHeight = (height / (floors.length + 1)) * 0.5;
+    final double widthPerFoundationSquareMeter = foundationWidth / foundationArea;
+
+    final double roofWidth = widthPerFoundationSquareMeter * (floors.isNotEmpty ? floors.first.area * 1.2 : width / 2);
+    final double roofHeight =  (height / (floors.length + 2));
 
     return Column(
       children: [
@@ -37,6 +36,7 @@ class FloorViewer extends StatelessWidget {
         ListView.builder(
           itemCount: floors.length,
           shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
           itemBuilder: (context, index) {
             final floorWidth = widthPerFoundationSquareMeter * floors[index].area;
             final floorHeight = (height - (roofHeight + foundationHeight)) / floors.length;
