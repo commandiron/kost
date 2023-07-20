@@ -25,11 +25,33 @@ class QuantityDetails extends StatelessWidget {
                       Text(state.quantityCalculator.landArea.toString()),
                       Text(state.quantityCalculator.landPerimeter.toString()),
                       ElevatedButton(
-                        onPressed: () => Navigator.of(context).pushNamed(CostTableScreen.route),
-                        child: const Text("Hesapla")
-                      )
+                          onPressed: () => Navigator.of(context)
+                              .pushNamed(CostTableScreen.route),
+                          child: const Text("Hesapla"))
                     ],
                   ),
+                ),
+                SliverList.builder(
+                  itemCount: state.quantityCalculator.floors.length,
+                  itemBuilder: (context, index) {
+                    return Container(
+                      color: Colors.blue,
+                      width: 100,
+                      height: 20,
+                      child: Text(state.quantityCalculator.floors[index].area.toString()),
+                    );
+                  },
+                ),
+                SliverToBoxAdapter(
+                  child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Container(
+                        color: Colors.blue,
+                        width: 200,
+                        height: 20,
+                        child: Text(state.quantityCalculator.foundationArea.toString()),
+                      ),
+                    ),
                 )
               ],
             );
