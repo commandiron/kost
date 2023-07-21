@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:kost/data/unit_price_repository.dart';
@@ -168,7 +169,7 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
               FireEscapeHall(area: 11.1, perimeter: 20.9),
             ],
           ),
-        ],
+        ].sorted((a, b) => b.no.compareTo(a.no)),
         foundationArea: 477,
         foundationPerimeter: 94.42,
         foundationHeight: 1,

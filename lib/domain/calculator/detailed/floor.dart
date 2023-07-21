@@ -51,6 +51,6 @@ class Floor {
           rooms: floor.rooms,
           no: i));
     }
-    return duplicatedFloors.reversed.toList();
+    return duplicatedFloors;
   }
 }
