@@ -25,9 +25,9 @@ class DetailedQuantityCalculator extends QuantityCalculator {
 
   //Calculations
   Floor get _topMostBasementFloor {
-    for (var basementType in Floor.basementTypes) {
-      if (floors.any((floor) => floor.type == basementType)) {
-        return floors.firstWhere((floor) => floor.type == basementType);
+    for (var basementIndex in Floor.basementIndexes) {
+      if (floors.any((floor) => floor.index == basementIndex)) {
+        return floors.firstWhere((floor) => floor.index == basementIndex);
       }
     }
 
@@ -35,15 +35,15 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   }
 
   Floor get _groundFloor {
-    return floors.firstWhere((e) => e.type == Floor.groundType);
+    return floors.firstWhere((e) => e.index == Floor.groundIndex);
   }
 
   Floor get _topFloor {
-    final List<FloorType> normalFloorTypes =
-        Floor.normalTypes.reversed.toList();
-    for (var normalFloorType in normalFloorTypes) {
-      if (floors.any((floor) => floor.type == normalFloorType)) {
-        return floors.firstWhere((floor) => floor.type == normalFloorType);
+    final List<int> normalFloorIndexes =
+        Floor.normalIndexes.reversed.toList();
+    for (var normalFloorIndex in normalFloorIndexes) {
+      if (floors.any((floor) => floor.index == normalFloorIndex)) {
+        return floors.firstWhere((floor) => floor.index == normalFloorIndex);
       }
     }
 
@@ -52,15 +52,17 @@ class DetailedQuantityCalculator extends QuantityCalculator {
 
   List<Floor> get _basementFloors {
     return floors
-        .where((floor) =>
-            floor.type == FloorType.b3 ||
-            floor.type == FloorType.b2 ||
-            floor.type == FloorType.b1)
+        .where(
+          (floor) =>
+            floor.index == -3 ||
+            floor.index == -2 ||
+            floor.index == -1
+        )
         .toList();
   }
 
   List<Floor> get _normalFloors {
-    return floors.where((e) => Floor.normalTypes.contains(e.type)).toList();
+    return floors.where((e) => Floor.normalIndexes.contains(e.index)).toList();
   }
 
   List<Floor> get _aboveBasementFloors {

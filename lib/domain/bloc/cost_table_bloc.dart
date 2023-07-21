@@ -103,7 +103,7 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
                   FloorHall(area: 8.1, perimeter: 13.8),
                   FireEscapeHall(area: 11.1, perimeter: 20.9),
                 ],
-                type: FloorType.k1,
+                index: 1,
               ),
               11),
           Floor(
@@ -144,7 +144,7 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
               FireEscapeHall(area: 11.1, perimeter: 20.9),
               BuildingHall(area: 15.92, perimeter: 21.1),
             ],
-            type: FloorType.z,
+            index: 0,
           ),
           Floor(
             ceilingArea: 477,
@@ -167,7 +167,7 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
               FloorHall(area: 6.07, perimeter: 11.1),
               FireEscapeHall(area: 11.1, perimeter: 20.9),
             ],
-            type: FloorType.b1,
+            index: -1,
           ),
         ],
         foundationArea: 477,
