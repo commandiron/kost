@@ -4,72 +4,60 @@ import '../quantity_calculator.dart';
 import 'floor.dart';
 
 class DetailedQuantityCalculator extends QuantityCalculator {
-  DetailedQuantityCalculator(
-    {
-      required super.projectConstants,
-      required super.landArea,
-      required super.landPerimeter,
-      required super.excavationArea,
-      required super.excavationPerimeter,
-      required super.coreCurtainLength,
-      required super.curtainsExceeding1MeterLength,
-      required super.columnsLess1MeterPerimeter,
-      required super.elevationTowerArea,
-      required super.elevationTowerHeightWithoutSlab,
-      required super.floors,
-      required super.foundationArea,
-      required super.foundationPerimeter,
-      required super.foundationHeight,
-    }
-  );
+  DetailedQuantityCalculator({
+    required super.projectConstants,
+    required super.landArea,
+    required super.landPerimeter,
+    required super.excavationArea,
+    required super.excavationPerimeter,
+    required super.coreCurtainLength,
+    required super.curtainsExceeding1MeterLength,
+    required super.columnsLess1MeterPerimeter,
+    required super.elevationTowerArea,
+    required super.elevationTowerHeightWithoutSlab,
+    required super.floors,
+    required super.foundationArea,
+    required super.foundationPerimeter,
+    required super.foundationHeight,
+  });
 
   //Calculations
   Floor get _topMostBasementFloor {
-    for (var basementIndex in Floor.basementIndexes) {
-      if (floors.any((floor) => floor.index == basementIndex)) {
-        return floors.firstWhere((floor) => floor.index == basementIndex);
-      }
-    }
-
-    throw Exception("No top most basement.");
+    final basementFloors =
+        floors.where((element) => element.index < 0).toList();
+    final topMostBasementFloor = basementFloors.reduce((current, next) {
+      return current.index > next.index ? current : next;
+    });
+    return topMostBasementFloor;
   }
 
   Floor get _groundFloor {
-    return floors.firstWhere((e) => e.index == Floor.groundIndex);
+    final groundFloor = floors.firstWhere((e) => e.index == 0);
+    return groundFloor;
   }
 
   Floor get _topFloor {
-    final List<int> normalFloorIndexes =
-        Floor.normalIndexes.reversed.toList();
-    for (var normalFloorIndex in normalFloorIndexes) {
-      if (floors.any((floor) => floor.index == normalFloorIndex)) {
-        return floors.firstWhere((floor) => floor.index == normalFloorIndex);
-      }
-    }
-
-    throw Exception("No top floor.");
+    final topFloor = floors.reduce((current, next) {
+      return current.index > next.index ? current : next;
+    });
+    return topFloor;
   }
 
   List<Floor> get _basementFloors {
-    return floors
-        .where(
-          (floor) =>
-            floor.index == -3 ||
-            floor.index == -2 ||
-            floor.index == -1
-        )
-        .toList();
+    final basementFloors =
+        floors.where((element) => element.index < 0).toList();
+    return basementFloors;
   }
 
   List<Floor> get _normalFloors {
-    return floors.where((e) => Floor.normalIndexes.contains(e.index)).toList();
+    final normalFloors = floors.where((floor) => floor.index > 0).toList();
+    return normalFloors;
   }
 
   List<Floor> get _aboveBasementFloors {
-    return [
-      ..._normalFloors,
-      _groundFloor,
-    ];
+    final aboverBasementFloors =
+        floors.where((element) => element.index >= 0).toList();
+    return aboverBasementFloors;
   }
 
   double get _excavationHeight {
@@ -221,12 +209,13 @@ class DetailedQuantityCalculator extends QuantityCalculator {
     }
 
     final floorsWithWindow =
-    floors.where((element) => element.windows != null).toList();
+        floors.where((element) => element.windows != null).toList();
 
     double totalRailingLength = 0;
     for (var floor in floorsWithWindow) {
       totalRailingLength += floor.windows!
-          .map((window) => window.hasWindowsill ? window.width * window.count : 0)
+          .map((window) =>
+              window.hasWindowsill ? window.width * window.count : 0)
           .toList()
           .fold(0.0, (p, c) => p + c);
     }
@@ -307,7 +296,8 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   }
 
   double get _totalBuildingStairsHeight {
-    return floors.map((e) => e.fullHeight).toList().fold(0.0, (p, e) => p + e) - _topFloor.fullHeight;
+    return floors.map((e) => e.fullHeight).toList().fold(0.0, (p, e) => p + e) -
+        _topFloor.fullHeight;
   }
 
   int get _totalMainStairsCount {
@@ -366,9 +356,9 @@ class DetailedQuantityCalculator extends QuantityCalculator {
     int number = 0;
     for (var floor in floors) {
       for (var room in floor.rooms) {
-        if(room.doors != null) {
-          for(var door in room.doors!) {
-            if(door.doorType == DoorType.apartmentEntrance) {
+        if (room.doors != null) {
+          for (var door in room.doors!) {
+            if (door.doorType == DoorType.apartmentEntrance) {
               number += door.count;
             }
           }
@@ -382,9 +372,9 @@ class DetailedQuantityCalculator extends QuantityCalculator {
     int number = 0;
     for (var floor in floors) {
       for (var room in floor.rooms) {
-        if(room.doors != null) {
-          for(var door in room.doors!) {
-            if(door.doorType == DoorType.room) {
+        if (room.doors != null) {
+          for (var door in room.doors!) {
+            if (door.doorType == DoorType.room) {
               number += door.count;
             }
           }
@@ -398,9 +388,9 @@ class DetailedQuantityCalculator extends QuantityCalculator {
     int number = 0;
     for (var floor in floors) {
       for (var room in floor.rooms) {
-        if(room.doors != null) {
-          for(var door in room.doors!) {
-            if(door.doorType == DoorType.fire) {
+        if (room.doors != null) {
+          for (var door in room.doors!) {
+            if (door.doorType == DoorType.fire) {
               number += door.count;
             }
           }
@@ -414,9 +404,9 @@ class DetailedQuantityCalculator extends QuantityCalculator {
     int number = 0;
     for (var floor in floors) {
       for (var room in floor.rooms) {
-        if(room.doors != null) {
-          for(var door in room.doors!) {
-            if(door.doorType == DoorType.buildingEntrance) {
+        if (room.doors != null) {
+          for (var door in room.doors!) {
+            if (door.doorType == DoorType.buildingEntrance) {
               number += door.count;
             }
           }
@@ -430,8 +420,8 @@ class DetailedQuantityCalculator extends QuantityCalculator {
     int number = 0;
     for (var floor in floors) {
       for (var room in floor.rooms) {
-        if(room is Kitchen || room is SaloonWithKitchen) {
-          number ++;
+        if (room is Kitchen || room is SaloonWithKitchen) {
+          number++;
         }
       }
     }
@@ -442,8 +432,8 @@ class DetailedQuantityCalculator extends QuantityCalculator {
     int number = 0;
     for (var floor in floors) {
       for (var room in floor.rooms) {
-        if(room is Bathroom || room is EscapeHallBathroom) {
-          number ++;
+        if (room is Bathroom || room is EscapeHallBathroom) {
+          number++;
         }
       }
     }
@@ -454,8 +444,11 @@ class DetailedQuantityCalculator extends QuantityCalculator {
     int number = 0;
     for (var floor in floors) {
       for (var room in floor.rooms) {
-        if(room is Bathroom || room is EscapeHallBathroom || room is Wc || room is EscapeHallWc) {
-          number ++;
+        if (room is Bathroom ||
+            room is EscapeHallBathroom ||
+            room is Wc ||
+            room is EscapeHallWc) {
+          number++;
         }
       }
     }
@@ -479,7 +472,10 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   }
 
   double get _basementsArea {
-    return _basementFloors.map((e) => e.area).toList().fold(0.0, (p, c) => p + c);
+    return _basementFloors
+        .map((e) => e.area)
+        .toList()
+        .fold(0.0, (p, c) => p + c);
   }
 
   //Final Results
@@ -487,6 +483,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   double get calculatedShoringArea {
     return excavationPerimeter * _excavationHeight;
   }
+
   @override
   String get shoringAreaExplanation {
     return "Hafriyat çevre uzunluğu: $excavationPerimeter x Hafriyat yüksekliği: $_excavationHeight";
@@ -496,6 +493,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   double get calculatedExcavationVolume {
     return excavationArea * _excavationHeight;
   }
+
   @override
   String get excavationVolumeExplanation {
     return "Hafriyat alanı: $excavationArea x Hafriyat yüksekliği: $_excavationHeight";
@@ -507,6 +505,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
         _excavationHeight *
         projectConstants.breakerHourForOneCubicMeterMediumRockExcavation;
   }
+
   @override
   String get breakerHourExplanation {
     return "Hafriyat alanı: $excavationArea x Hafriyat yüksekliği: $_excavationHeight x Bir m3 orta sertlikte kaya içeren hafriyat için kırıcı çalışma süresi: ${projectConstants.breakerHourForOneCubicMeterMediumRockExcavation}";
@@ -516,6 +515,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   double get calculatedFoundationStabilizationVolume {
     return excavationArea * projectConstants.stabilizationHeight;
   }
+
   @override
   String get foundationStabilizationVolumeExplanation {
     return "Hafriyat alanı: $excavationArea x Temel altı stabilizasyon malzemesi yüksekliği: ${projectConstants.stabilizationHeight}";
@@ -523,8 +523,11 @@ class DetailedQuantityCalculator extends QuantityCalculator {
 
   @override
   double get calculatedSubFoundationConcreteVolume {
-    return excavationArea * (projectConstants.leanConcreteHeight + projectConstants.insulationConcreteHeight);
+    return excavationArea *
+        (projectConstants.leanConcreteHeight +
+            projectConstants.insulationConcreteHeight);
   }
+
   @override
   String get subFoundationConcreteVolumeExplanation {
     return "Hafriyat alanı: $excavationArea x (Grobeton yüksekliği: ${projectConstants.leanConcreteHeight} + Yalıtım koruma betonu yüksekliği: ${projectConstants.insulationConcreteHeight})";
@@ -537,6 +540,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
         _curtainsExceeding1MeterArea +
         _basementsOuterCurtainAreaWithoutSlab;
   }
+
   @override
   String get concreteFormWorkAreaExplanation {
     return "Kaba inşaat alanı: $_roughConstructionArea + Çekirdek perdesi alanı: $_coreCurtainArea + 1 metreyi geçen perdelerin alanı: $_curtainsExceeding1MeterArea + Bodrum dış perdeleri alanı: $_basementsOuterCurtainAreaWithoutSlab";
@@ -547,6 +551,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
     return calculatedConcreteFormWorkArea *
         projectConstants.concreteCubicMeterForOneSquareMeterFormWork;
   }
+
   @override
   String get pouringConcreteVolumeExplanation {
     return "Kalıp alanı (Düz ölçü): $calculatedConcreteFormWorkArea x 1 m2 kalıp için m3 biriminde beton hacmi: ${projectConstants.concreteCubicMeterForOneSquareMeterFormWork}";
@@ -557,6 +562,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
     return calculatedPouringConcreteVolume *
         projectConstants.rebarTonForOneCubicMeterConcrete;
   }
+
   @override
   String get rebarWeightExplanation {
     return "Beton hacmi: $calculatedPouringConcreteVolume x 1 m3 beton için ton biriminde demir ağırlığı: ${projectConstants.rebarTonForOneCubicMeterConcrete}";
@@ -568,6 +574,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
         _hollowSlabRoughConstructionArea *
         projectConstants.hollowFillingThickness;
   }
+
   @override
   String get hollowFloorFillingVolumeExplanation {
     return "1 m2 kaba inşaat alanı için m2 biriminde asmolen alanı: ${projectConstants.hollowAreaForOneSquareMeterConstructionArea} x Asmolen döşeme inşaat alanı: $_hollowSlabRoughConstructionArea x Asmolen kalınlığı: ${projectConstants.hollowFillingThickness}";
@@ -577,6 +584,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   double get calculatedFoundationWaterProofingArea {
     return foundationArea + (foundationPerimeter * foundationHeight);
   }
+
   @override
   String get foundationWaterProofingAreaExplanation {
     return "Temel alanı: $foundationArea + (Temel çevre uzunluğu: $foundationPerimeter x Temel yüksekliği: $foundationHeight)";
@@ -586,6 +594,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   double get calculatedCurtainWaterProofingArea {
     return _basementsOuterCurtainArea + _wetAreaAboveBasement;
   }
+
   @override
   String get curtainWaterProofingAreaExplanation {
     return "Bodrum dış perdesi ıslak alanı: $_basementsOuterCurtainArea + Bodrum üstü ıslak alanı: $_wetAreaAboveBasement";
@@ -595,6 +604,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   double get calculatedCurtainProtectionBeforeFillingArea {
     return _basementsOuterCurtainArea;
   }
+
   @override
   String get curtainProtectionBeforeFillingAreaExplanation {
     return "Bodrum dış perdesi ıslak alanı: $_basementsOuterCurtainArea";
@@ -604,6 +614,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   double get calculatedWallMaterialVolume {
     return _thickWallVolume + _thinWallVolume;
   }
+
   @override
   String get wallMaterialVolumeExplanation {
     return "Kalın duvar hacmi (kalınlık: ${projectConstants.thickWallThickness}): $_thickWallVolume + İnce duvar hacmi(kalınlık: ${projectConstants.thinWallThickness}): $_thinWallVolume";
@@ -613,6 +624,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   double get calculatedWallWorkmanShipArea {
     return _thickWallArea + _thinWallArea;
   }
+
   @override
   String get wallWorkmanShipAreaExplanation {
     return "Kalın duvar alanı: $_thickWallArea + İnce duvar alanı: $_thinWallArea";
@@ -622,6 +634,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   double get calculatedRoofingArea {
     return _topFloor.ceilingArea;
   }
+
   @override
   String get roofingAreaExplanation {
     return "En üst kat tavan alanı: ${_topFloor.ceilingArea}";
@@ -631,6 +644,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   double get calculatedFacadeScaffoldingArea {
     return _totalFacadeArea;
   }
+
   @override
   String get facadeScaffoldingAreaExplanation {
     return "Toplam cephe alanı: $_totalFacadeArea";
@@ -640,6 +654,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   double get calculatedWindowsArea {
     return _totalWindowArea;
   }
+
   @override
   String get windowAreaExplanation {
     return "Toplam pencere alanı: $_totalWindowArea";
@@ -649,6 +664,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   double get calculatedFacadeRailsLength {
     return _totalFacadeRailingLength;
   }
+
   @override
   String get facadeRailsLengthExplanation {
     return "Toplam cephe korkuluğu uzunluğu: $_totalFacadeRailingLength";
@@ -658,6 +674,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   double get calculatedFacadeSystemArea {
     return _totalFacadeArea - _totalWindowArea;
   }
+
   @override
   String get facadeSystemAreaExplanation {
     return "Toplam cephe alanı: $_totalFacadeArea - Toplam pencere alanı: $_totalWindowArea";
@@ -672,6 +689,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
         _totalOuterWallArea +
         (_totalInnerWallArea * 2);
   }
+
   @override
   String get interiorPlasteringAreaExplanation {
     return "Toplam bodrumlar dış perde alanı: $_basementsOuterCurtainAreaWithoutSlab + Çekirdek perdeleri toplam alanı: $_coreCurtainArea x 2 (Çift yüz) + Toplam 1 metreyi geçen perde alanı: $_curtainsExceeding1MeterArea x 2 (Çift yüz) + Kolon yüzey alanı: $_columnsSurfaceArea + Toplam dış duvar alanı: $_totalOuterWallArea + Toplam iç duvar alanı: $_totalInnerWallArea x 2 (Çift yüz)";
@@ -681,6 +699,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   double get calculatedInteriorPaintingArea {
     return calculatedInteriorPlasteringArea + _totalCeilingArea;
   }
+
   @override
   String get interiorPaintingAreaExplanation {
     return "Toplam sıva alanı: $calculatedInteriorPlasteringArea + Toplam tavan alanı: $_totalCeilingArea";
@@ -690,6 +709,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   double get calculatedInteriorWaterproofingArea {
     return _totalInteriorWetFloorArea;
   }
+
   @override
   String get interiorWaterproofingAreaExplanation {
     return "Toplam iç mekan ıslak zemin alanı: $_totalInteriorWetFloorArea";
@@ -699,6 +719,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   double get calculatedCeilingCoveringArea {
     return _totalDryWallArea;
   }
+
   @override
   String get ceilingCoveringAreaExplanation {
     return "Toplam alçıpan alanı: $_totalDryWallArea";
@@ -708,6 +729,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   double get calculatedCovingPlasterArea {
     return _totalCovingPlasterLength;
   }
+
   @override
   String get covingPlasterAreaExplanation {
     return "Toplam kartonpiyer uzunluğu: $_totalCovingPlasterLength";
@@ -717,6 +739,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   double get calculatedScreedingArea {
     return _totalScreedArea;
   }
+
   @override
   String get screedingAreaExplanation {
     return "Toplam şap alanı: $_totalScreedArea";
@@ -726,6 +749,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   double get calculatedMarbleArea {
     return _totalMarbleArea;
   }
+
   @override
   String get marbleAreaExplanation {
     return "Toplam mermer alanı: $_totalMarbleArea";
@@ -735,6 +759,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   double get calculatedMarbleStepLength {
     return _totalMainStairsLength + _totalFireStairsLength;
   }
+
   @override
   String get marbleStepLengthExplanation {
     return "Toplam ana merdiven basamak uzunluğu: $_totalMainStairsLength + Toplam yangın merdiveni basamak uzunluğu:: $_totalFireStairsLength";
@@ -744,6 +769,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   double get calculatedMarbleWindowsillLength {
     return _totalWindowsillLength;
   }
+
   @override
   String get marbleWindowsillLengthExplanation {
     return "Toplam denizlikli pencere uzunluğu: $_totalWindowsillLength";
@@ -751,8 +777,10 @@ class DetailedQuantityCalculator extends QuantityCalculator {
 
   @override
   double get calculatedStairRailingsLength {
-    return (_totalMainStairsCount + _totalFireStairsCount) * projectConstants.stairTreadDepth;
+    return (_totalMainStairsCount + _totalFireStairsCount) *
+        projectConstants.stairTreadDepth;
   }
+
   @override
   String get stairRailingsLengthExplanation {
     return "Toplam ana merdiven ve yangın merdiveni basamak toplamı: ($_totalMainStairsCount + $_totalFireStairsCount) x Basamak genişliği: ${projectConstants.stairTreadDepth}";
@@ -762,6 +790,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   double get calculatedCeramicTileArea {
     return _totalCeramicFloorArea + _totalCeramicWallArea;
   }
+
   @override
   String get ceramicTileAreaExplanation {
     return "Toplam yer seramik alanı: $_totalCeramicFloorArea + Toplam fayans alanı: $_totalCeramicWallArea";
@@ -771,6 +800,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   double get calculatedParquetTileArea {
     return _totalParquetFloorArea;
   }
+
   @override
   String get parquetTileAreaExplanation {
     return "Toplam parke alanı: $_totalParquetFloorArea";
@@ -780,6 +810,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   double get calculatedSteelDoorNumber {
     return _steelDoorNumber.toDouble();
   }
+
   @override
   String get steelDoorNumberExplanation {
     return "Toplam çelik kapı adedi: $_steelDoorNumber";
@@ -787,8 +818,10 @@ class DetailedQuantityCalculator extends QuantityCalculator {
 
   @override
   double get calculatedEntranceDoorArea {
-    return _buildingEntranceDoorNumber * projectConstants.buildingEntranceDoorArea;
+    return _buildingEntranceDoorNumber *
+        projectConstants.buildingEntranceDoorArea;
   }
+
   @override
   String get entranceDoorAreaExplanation {
     return "Apartman giriş kapısı sayısı: $_buildingEntranceDoorNumber + Toplam apartman giriş kapısı alanı: ${projectConstants.buildingEntranceDoorArea}";
@@ -798,6 +831,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   double get calculatedFireDoorNumber {
     return _fireDoorNumber.toDouble();
   }
+
   @override
   String get fireDoorNumberExplanation {
     return "Toplam yangın kapısı adedi: $_fireDoorNumber";
@@ -807,6 +841,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   double get calculatedWoodenDoorNumber {
     return _woodenDoorNumber.toDouble();
   }
+
   @override
   String get woodenDoorNumberExplanation {
     return "Toplam ahşap kapı adedi: $_woodenDoorNumber";
@@ -816,6 +851,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   double get calculatedKitchenCupboardLength {
     return _apartmentNumber * projectConstants.kitchenLength * 2;
   }
+
   @override
   String get kitchenCupboardLengthExplanation {
     return "Daire sayısı: $_apartmentNumber x Mutfak uzunluğu: ${projectConstants.kitchenLength} x 2(Alt - Üst dolap)";
@@ -825,6 +861,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   double get calculatedKitchenCounterLength {
     return _apartmentNumber * projectConstants.kitchenLength;
   }
+
   @override
   String get kitchenCounterLengthExplanation {
     return "Daire sayısı: $_apartmentNumber x Mutfak uzunluğu: ${projectConstants.kitchenLength}";
@@ -834,6 +871,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   double get calculatedCoatCabinetArea {
     return _apartmentNumber * projectConstants.coatCabinetArea;
   }
+
   @override
   String get coatCabinetAreaExplanation {
     return "Daire sayısı: $_apartmentNumber x Portmanto alanı: ${projectConstants.coatCabinetArea}";
@@ -843,6 +881,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   double get calculatedBathroomCabinetArea {
     return _toiletNumber * projectConstants.bathroomCabinetArea;
   }
+
   @override
   String get bathroomCabinetAreaExplanation {
     return "Tuvalet sayısı: $_toiletNumber x Banyo dolabı alanı: ${projectConstants.bathroomCabinetArea}";
@@ -852,6 +891,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   double get calculatedFloorPlinthLength {
     return _totalFloorPlinthLength;
   }
+
   @override
   String get floorPlinthLengthExplanation {
     return "Toplam süpürgelik uzunluğu: $_totalFloorPlinthLength";
@@ -861,6 +901,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   double get calculatedMechanicalInfrastructureApartment {
     return _apartmentNumber.toDouble();
   }
+
   @override
   String get mechanicalInfrastructureApartmentExplanation {
     return "Daire sayısı: $_apartmentNumber";
@@ -868,8 +909,10 @@ class DetailedQuantityCalculator extends QuantityCalculator {
 
   @override
   double get calculatedAirConditionerNumber {
-    return _apartmentNumber * projectConstants.airConditionerNumberForOneApartment.toDouble();
+    return _apartmentNumber *
+        projectConstants.airConditionerNumberForOneApartment.toDouble();
   }
+
   @override
   String get airConditionerNumberExplanation {
     return "Toplam daire sayısı: $_apartmentNumber x 1 daire için klima sayısı: ${projectConstants.airConditionerNumberForOneApartment}";
@@ -879,6 +922,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   double get calculatedVentilationArea {
     return _basementsArea;
   }
+
   @override
   String get ventilationAreaExplanation {
     return "Bodrumlar toplam alanı: $_basementsArea";
@@ -888,6 +932,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   double get calculatedElevationStop {
     return (_basementFloors.length + 1 + _normalFloors.length).toDouble();
   }
+
   @override
   String get elevationStopExplanation {
     return "Bodrum kat adedi: ${_basementFloors.length} + Zemin kat adedi: 1 + Normal kat adedi: ${_normalFloors.length}";
@@ -897,6 +942,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   double get calculatedSinkNumber {
     return _toiletNumber.toDouble();
   }
+
   @override
   String get sinkNumberExplanation {
     return "Toplam tuvalet sayısı: $_toiletNumber";
@@ -906,6 +952,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   double get calculatedSinkBatteryNumber {
     return _toiletNumber.toDouble();
   }
+
   @override
   String get sinkBatteryNumberExplanation {
     return "Toplam tuvalet sayısı: $_toiletNumber";
@@ -915,6 +962,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   double get calculatedConcealedCisternNumber {
     return _toiletNumber.toDouble();
   }
+
   @override
   String get concealedCisternNumberExplanation {
     return "Toplam tuvalet sayısı: $_toiletNumber";
@@ -924,6 +972,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   double get calculatedShowerNumber {
     return _bathroomNumber.toDouble();
   }
+
   @override
   String get showerNumberExplanation {
     return "Toplam banyo sayısı: $_bathroomNumber";
@@ -933,6 +982,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   double get calculatedShowerBatteryNumber {
     return _bathroomNumber.toDouble();
   }
+
   @override
   String get showerBatteryNumberExplanation {
     return "Toplam banyo sayısı: $_bathroomNumber";
@@ -942,6 +992,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   double get calculatedKitchenFaucetAndSinkNumber {
     return _kitchenNumber.toDouble();
   }
+
   @override
   String get kitchenFaucetAndSinkNumberExplanation {
     return "Toplam mutfak sayısı: $_kitchenNumber";
@@ -951,6 +1002,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   double get calculatedElectricalInfrastructureApartment {
     return _apartmentNumber.toDouble();
   }
+
   @override
   String get electricalInfrastructureApartmentExplanation {
     return "Toplam daire sayısı: $_apartmentNumber";
@@ -960,6 +1012,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   double get calculatedHouseholdAppliancesApartment {
     return _apartmentNumber.toDouble();
   }
+
   @override
   String get householdAppliancesApartmentExplanation {
     return "Toplam daire sayısı: $_apartmentNumber";
@@ -967,8 +1020,10 @@ class DetailedQuantityCalculator extends QuantityCalculator {
 
   @override
   double get calculatedLandScapeGardenArea {
-    return (_topMostBasementFloor.ceilingArea - _groundFloor.area) * projectConstants.gardenOutdoorParkingAreaRate;
+    return (_topMostBasementFloor.ceilingArea - _groundFloor.area) *
+        projectConstants.gardenOutdoorParkingAreaRate;
   }
+
   @override
   String get landScapeGardenAreaExplanation {
     return "En üst bodrum tavan alanı: ${_topMostBasementFloor.ceilingArea} - Zemin kat alanı: ${_groundFloor.area} x Bahçe Oranı: ${projectConstants.gardenOutdoorParkingAreaRate}";
@@ -976,8 +1031,10 @@ class DetailedQuantityCalculator extends QuantityCalculator {
 
   @override
   double get calculatedOutdoorParkingTileArea {
-    return (_topMostBasementFloor.ceilingArea - _groundFloor.area) * (1 - projectConstants.gardenOutdoorParkingAreaRate);
+    return (_topMostBasementFloor.ceilingArea - _groundFloor.area) *
+        (1 - projectConstants.gardenOutdoorParkingAreaRate);
   }
+
   @override
   String get outdoorParkingTileAreaExplanation {
     return "En üst bodrum tavan alanı: ${_topMostBasementFloor.ceilingArea} - Zemin kat alanı: ${_groundFloor.area} x Açık otopark oranı: 1 - Bahçe Oranı: ${projectConstants.gardenOutdoorParkingAreaRate}";
@@ -987,6 +1044,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   double get calculatedCarLiftStop {
     return _basementFloors.length + 1;
   }
+
   @override
   String get carLiftStopExplanation {
     return "Bodrum kat adedi: ${_basementFloors.length} + Zemin kat adedi: 1";
@@ -996,6 +1054,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   double get calculatedAutomaticBarrierNumber {
     return projectConstants.automaticBarrierNumber.toDouble();
   }
+
   @override
   String get automaticBarrierNumberExplanation {
     return "Otomatik bariyer adedi: ${projectConstants.automaticBarrierNumber}";
@@ -1005,6 +1064,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   double get calculatedEnclosingTheLandLength {
     return landPerimeter;
   }
+
   @override
   String get enclosingTheLandLengthExplanation {
     return "Arsa çevresi: $landPerimeter";
@@ -1012,8 +1072,10 @@ class DetailedQuantityCalculator extends QuantityCalculator {
 
   @override
   double get calculatedCraneHour {
-    return _roughConstructionArea * projectConstants.craneHourForOneSqareMeterRoughConstructionArea;
+    return _roughConstructionArea *
+        projectConstants.craneHourForOneSqareMeterRoughConstructionArea;
   }
+
   @override
   String get craneHourExplanation {
     return "Kaba inşaat alanı: $_roughConstructionArea x 1 metre kare kaba inşaat alanı için vinç çalışma saati: ${projectConstants.craneHourForOneSqareMeterRoughConstructionArea}";
@@ -1023,8 +1085,9 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   double get calculatedSiteSafetyMonth {
     return projectConstants.projectDurationMonth;
   }
+
   @override
-  String get siteSafetyMonthExplanation  {
+  String get siteSafetyMonthExplanation {
     return "Proje süresi: ${projectConstants.projectDurationMonth}";
   }
 
@@ -1032,6 +1095,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   double get calculatedOfficeExpensesMonth {
     return projectConstants.projectDurationMonth;
   }
+
   @override
   String get officeExpensesMonthExplanation {
     return "Proje süresi: ${projectConstants.projectDurationMonth}";
@@ -1041,6 +1105,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   double get calculatedSergeantMonth {
     return projectConstants.projectDurationMonth;
   }
+
   @override
   String get sergeantMonthExplanation {
     return "Proje süresi: ${projectConstants.projectDurationMonth}";
@@ -1050,8 +1115,9 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   double get calculatedProjectManagerMonth {
     return projectConstants.projectDurationMonth;
   }
+
   @override
-  String get projectManagerMonthExplanation  {
+  String get projectManagerMonthExplanation {
     return "Proje süresi: ${projectConstants.projectDurationMonth}";
   }
 }

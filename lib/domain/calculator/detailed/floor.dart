@@ -29,43 +29,6 @@ class Floor {
       required this.rooms,
       required this.index});
 
-  static const List<int> normalIndexes = [
-    1,
-    2,
-    3,
-    4,
-    5,
-    6,
-    7,
-    8,
-    9,
-    10,
-    11,
-    12,
-    13,
-    14,
-    15,
-    16,
-    17,
-    18,
-    19,
-    20,
-  ];
-
-  static const int groundIndex = 0;
-
-  static const List<int> basementIndexes = [
-    -3,
-    -2,
-    -1,
-  ];
-
-  static const List<int> indexes = [
-    ...basementIndexes,
-    groundIndex,
-    ...normalIndexes
-  ];
-
   static List<Floor> duplicateFloors(Floor floor, int count) {
     if (floor.index == -3 || floor.index == -2 || floor.index == -1 || floor.index == 0) {
       throw (Exception("Basements or ground floor cannot be duplicate"));
