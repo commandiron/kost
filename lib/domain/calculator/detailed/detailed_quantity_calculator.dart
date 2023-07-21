@@ -26,7 +26,14 @@ class DetailedQuantityCalculator extends QuantityCalculator {
 
   //Calculations
   Floor get _topMostBasementFloor {
-    final basementFloors = floors.where((element) => element.no < 0).toList();
+    final basementFloors = floors
+        .where(
+          (element) => element.no < 0,
+        )
+        .toList();
+    if (basementFloors.isEmpty) {
+      throw Exception("No basement floor");
+    }
     final topMostBasementFloor = basementFloors.reduce((current, next) {
       return current.no > next.no ? current : next;
     });
@@ -34,7 +41,10 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   }
 
   Floor get _groundFloor {
-    final groundFloor = floors.firstWhere((e) => e.no == 0);
+    final groundFloor = floors.firstWhere(
+      (e) => e.no == 0,
+      orElse: () => throw Exception("No ground floor"),
+    );
     return groundFloor;
   }
 
