@@ -85,7 +85,7 @@ class _FloorViewerState extends State<FloorViewer> {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         Text(
-                          widget.floors[index].no.toString(),
+                          widget.floors[index].floorName,
                           style: AppTextStyle.l1,
                         ),
                         AppSpace.hS!,

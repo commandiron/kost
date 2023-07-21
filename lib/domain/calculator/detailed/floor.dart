@@ -54,3 +54,35 @@ class Floor {
     return duplicatedFloors;
   }
 }
+
+extension FloorExtension on Floor {
+  String get floorName {
+    return switch (no) {
+      -3 => "3. Bodrum Kat",
+      -2 => "2. Bodrum Kat",
+      -1 => "1. Bodrum Kat",
+      0 => "Zemin Kat",
+      1 => "1. Kat",
+      2 => "2. Kat",
+      3 => "3. Kat",
+      4 => "4. Kat",
+      5 => "5. Kat",
+      6 => "6. Kat",
+      7 => "7. Kat",
+      8 => "8. Kat",
+      9 => "9. Kat",
+      10 => "10. Kat",
+      11 => "11. Kat",
+      12 => "12. Kat",
+      13 => "13. Kat",
+      14 => "14. Kat",
+      15 => "15. Kat",
+      16 => "16. Kat",
+      17 => "17. Kat",
+      18 => "18. Kat",
+      19 => "19. Kat",
+      20 => "20. Kat",
+      _ => ""
+    };
+  }
+}
