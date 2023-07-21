@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:kost/domain/calculator/detailed/room.dart';
 
 import '../quantity_calculator.dart';
@@ -19,7 +20,9 @@ class DetailedQuantityCalculator extends QuantityCalculator {
     required super.foundationArea,
     required super.foundationPerimeter,
     required super.foundationHeight,
-  });
+  }) {
+    floors.sorted((a, b) => b.no.compareTo(a.no));
+  }
 
   //Calculations
   Floor get _topMostBasementFloor {
