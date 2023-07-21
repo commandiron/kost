@@ -21,7 +21,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
     required super.foundationPerimeter,
     required super.foundationHeight,
   }) {
-    floors.sorted((a, b) => b.no.compareTo(a.no));
+    floors = floors.sorted((a, b) => b.no.compareTo(a.no));
   }
 
   //Calculations

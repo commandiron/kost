@@ -14,7 +14,7 @@ abstract class QuantityCalculator {
   final double columnsLess1MeterPerimeter;
   final double elevationTowerArea;
   final double elevationTowerHeightWithoutSlab;
-  final List<Floor> floors;
+  List<Floor> floors;
   final double foundationArea;
   final double foundationPerimeter;
   final double foundationHeight;
