@@ -2,6 +2,7 @@ import 'package:kost/domain/calculator/detailed/room.dart';
 import 'package:kost/domain/calculator/detailed/window.dart';
 
 class Floor {
+  final int no;
   final double ceilingArea;
   final double ceilingPerimeter;
   final double fullHeight;
@@ -13,10 +14,10 @@ class Floor {
   final bool isCeilingHollowSlab;
   final List<Window>? windows;
   final List<Room> rooms;
-  final int index;
 
   Floor(
-      {required this.ceilingArea,
+      {required this.no,
+      required this.ceilingArea,
       required this.ceilingPerimeter,
       required this.fullHeight,
       required this.area,
@@ -26,16 +27,16 @@ class Floor {
       required this.thinWallLength,
       required this.isCeilingHollowSlab,
       this.windows,
-      required this.rooms,
-      required this.index});
+      required this.rooms}
+    );
 
   static List<Floor> duplicateFloors(Floor floor, int count) {
-    if (floor.index == -3 || floor.index == -2 || floor.index == -1 || floor.index == 0) {
+    if (floor.no == -3 || floor.no == -2 || floor.no == -1 || floor.no == 0) {
       throw (Exception("Basements or ground floor cannot be duplicate"));
     }
 
     final List<Floor> duplicatedFloors = [];
-    for (var i = floor.index; i <= count; i++) {
+    for (var i = floor.no; i <= count; i++) {
       duplicatedFloors.add(Floor(
           ceilingArea: floor.ceilingArea,
           ceilingPerimeter: floor.ceilingPerimeter,
@@ -48,7 +49,7 @@ class Floor {
           isCeilingHollowSlab: floor.isCeilingHollowSlab,
           windows: floor.windows,
           rooms: floor.rooms,
-          index: i));
+          no: i));
     }
     return duplicatedFloors.reversed.toList();
   }

@@ -25,9 +25,8 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
               costTemplate: EmptyCostTemplate(),
               unitPricePool: const [],
               currencyRates: ManualCurrencyRates(),
-              quantityCalculator: EmptyQuantityCalculator(
-                projectConstants: ProjectConstants()
-              ),
+              quantityCalculator:
+                  EmptyQuantityCalculator(projectConstants: ProjectConstants()),
               costs: const [],
               formattedSubTotalsTRY: const {},
               formattedGrandTotalTRY: ""),
@@ -64,6 +63,7 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
         floors: [
           ...Floor.duplicateFloors(
               Floor(
+                no: 1,
                 ceilingArea: 190,
                 ceilingPerimeter: 62.8,
                 fullHeight: 3.3,
@@ -103,10 +103,10 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
                   FloorHall(area: 8.1, perimeter: 13.8),
                   FireEscapeHall(area: 11.1, perimeter: 20.9),
                 ],
-                index: 1,
               ),
               11),
           Floor(
+            no: 0,
             ceilingArea: 177.15,
             ceilingPerimeter: 61.3,
             fullHeight: 3.3,
@@ -144,9 +144,9 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
               FireEscapeHall(area: 11.1, perimeter: 20.9),
               BuildingHall(area: 15.92, perimeter: 21.1),
             ],
-            index: 0,
           ),
           Floor(
+            no: -1,
             ceilingArea: 477,
             ceilingPerimeter: 94.42,
             fullHeight: 3.15,
@@ -167,7 +167,6 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
               FloorHall(area: 6.07, perimeter: 11.1),
               FireEscapeHall(area: 11.1, perimeter: 20.9),
             ],
-            index: -1,
           ),
         ],
         foundationArea: 477,
@@ -208,7 +207,7 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
     });
     on<ShowHideMainCategory>((event, emit) {
       for (var costCategory in state.costTemplate.enabledCostCategories) {
-        if(costCategory.mainCategory == event.mainCategory) {
+        if (costCategory.mainCategory == event.mainCategory) {
           costCategory.visible = !costCategory.visible;
         }
       }
