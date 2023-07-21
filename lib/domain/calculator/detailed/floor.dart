@@ -27,16 +27,7 @@ class Floor {
       required this.isCeilingHollowSlab,
       this.windows,
       required this.rooms,
-      required this.index
-    });
-
-  static const List<int> basementIndexes = [
-    -3,
-    -2,
-    -1,
-  ];
-
-  static const int groundIndex = 0;
+      required this.index});
 
   static const List<int> normalIndexes = [
     1,
@@ -61,28 +52,27 @@ class Floor {
     20,
   ];
 
+  static const int groundIndex = 0;
+
+  static const List<int> basementIndexes = [
+    -3,
+    -2,
+    -1,
+  ];
+
   static const List<int> indexes = [
     ...basementIndexes,
     groundIndex,
     ...normalIndexes
   ];
 
-  static List<Floor> duplicateFloorsWithTypeOrdered(Floor floor, int count) {
-    if (floor.index == -1 ||
-        floor.index == -2 ||
-        floor.index == -3) {
-      throw (Exception("Basements cannot be duplicate"));
+  static List<Floor> duplicateFloors(Floor floor, int count) {
+    if (floor.index == -3 || floor.index == -2 || floor.index == -1 || floor.index == 0) {
+      throw (Exception("Basements or ground floor cannot be duplicate"));
     }
 
-    int floorIndex = Floor.indexes.firstWhere((element) => element == floor.index);
     final List<Floor> duplicatedFloors = [];
-    for (var i = 1; i <= count; i++) {
-      final floorTypeIndex = floorIndex + (i - 1);
-
-      if (floorTypeIndex > Floor.indexes.length - 1) {
-        throw (Exception("Exceed maximum floor type (>FloorType.k20)"));
-      }
-
+    for (var i = floor.index; i <= count; i++) {
       duplicatedFloors.add(Floor(
           ceilingArea: floor.ceilingArea,
           ceilingPerimeter: floor.ceilingPerimeter,
@@ -95,7 +85,7 @@ class Floor {
           isCeilingHollowSlab: floor.isCeilingHollowSlab,
           windows: floor.windows,
           rooms: floor.rooms,
-          index: Floor.indexes[floorTypeIndex]));
+          index: i));
     }
     return duplicatedFloors.reversed.toList();
   }

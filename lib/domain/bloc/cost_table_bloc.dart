@@ -25,9 +25,8 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
               costTemplate: EmptyCostTemplate(),
               unitPricePool: const [],
               currencyRates: ManualCurrencyRates(),
-              quantityCalculator: EmptyQuantityCalculator(
-                projectConstants: ProjectConstants()
-              ),
+              quantityCalculator:
+                  EmptyQuantityCalculator(projectConstants: ProjectConstants()),
               costs: const [],
               formattedSubTotalsTRY: const {},
               formattedGrandTotalTRY: ""),
@@ -62,7 +61,7 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
         elevationTowerArea: 30,
         elevationTowerHeightWithoutSlab: 3,
         floors: [
-          ...Floor.duplicateFloorsWithTypeOrdered(
+          ...Floor.duplicateFloors(
               Floor(
                 ceilingArea: 190,
                 ceilingPerimeter: 62.8,
@@ -208,7 +207,7 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
     });
     on<ShowHideMainCategory>((event, emit) {
       for (var costCategory in state.costTemplate.enabledCostCategories) {
-        if(costCategory.mainCategory == event.mainCategory) {
+        if (costCategory.mainCategory == event.mainCategory) {
           costCategory.visible = !costCategory.visible;
         }
       }
