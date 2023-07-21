@@ -5,30 +5,39 @@ import '../../../config/app_text_style.dart';
 import '../../../domain/calculator/detailed/floor.dart';
 
 class FloorViewer extends StatefulWidget {
-  const FloorViewer({Key? key, required this.width, required this.height, required this.foundationArea, required this.floors,}) : super(key: key);
+  const FloorViewer({
+    Key? key,
+    required this.width,
+    required this.height,
+    required this.foundationArea,
+    required this.floors,
+  }) : super(key: key);
 
   final double width;
   final double height;
   final double foundationArea;
   final List<Floor> floors;
 
-
   @override
   State<FloorViewer> createState() => _FloorViewerState();
 }
 
 class _FloorViewerState extends State<FloorViewer> {
-
   Map<int, bool> _isHighlighted = {};
 
   @override
   Widget build(BuildContext context) {
     final double foundationWidth = widget.width;
-    final double foundationHeight = (widget.height / (widget.floors.length + 1)) * 0.5;
-    final double widthPerFoundationSquareMeter = foundationWidth / widget.foundationArea;
+    final double foundationHeight =
+        (widget.height / (widget.floors.length + 1)) * 0.5;
+    final double widthPerFoundationSquareMeter =
+        foundationWidth / widget.foundationArea;
 
-    final double roofWidth = widthPerFoundationSquareMeter * (widget.floors.isNotEmpty ? widget.floors.first.area * 1.2 : widget.width / 2);
-    final double roofHeight =  (widget.height / (widget.floors.length + 2));
+    final double roofWidth = widthPerFoundationSquareMeter *
+        (widget.floors.isNotEmpty
+            ? widget.floors.first.area * 1.2
+            : widget.width / 2);
+    final double roofHeight = (widget.height / (widget.floors.length + 2));
 
     return GestureDetector(
       onTap: () {
@@ -50,31 +59,45 @@ class _FloorViewerState extends State<FloorViewer> {
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
             itemBuilder: (context, index) {
-              final floorWidth = widthPerFoundationSquareMeter * widget.floors[index].area;
-              final floorHeight = (widget.height - (roofHeight + foundationHeight)) / widget.floors.length;
+              final floorWidth =
+                  widthPerFoundationSquareMeter * widget.floors[index].area;
+              final floorHeight =
+                  (widget.height - (roofHeight + foundationHeight)) /
+                      widget.floors.length;
               return Align(
                 alignment: Alignment.center,
                 child: GestureDetector(
                   onTap: () {
                     setState(() {
-                      _isHighlighted = {index : !(_isHighlighted[index] ?? false)};
+                      _isHighlighted[index] = !(_isHighlighted[index] ?? false);
                     });
                   },
                   child: Container(
-                    width: _isHighlighted[index] ?? false ? floorWidth * 2 : floorWidth,
-                    height: _isHighlighted[index] ?? false ? floorHeight * 4 : floorHeight,
-                    decoration: BoxDecoration(
-                      border: Border.all()
-                    ),
+                    width: _isHighlighted[index] ?? false
+                        ? floorWidth * 2
+                        : floorWidth,
+                    height: _isHighlighted[index] ?? false
+                        ? floorHeight * 4
+                        : floorHeight,
+                    decoration: BoxDecoration(border: Border.all()),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Text(widget.floors[index].type.nameTr, style: AppTextStyle.l1,),
+                        Text(
+                          widget.floors[index].type.nameTr,
+                          style: AppTextStyle.l1,
+                        ),
                         AppSpace.hS!,
-                        Text(widget.floors[index].area.toString(), style: AppTextStyle.l1,),
+                        Text(
+                          widget.floors[index].area.toString(),
+                          style: AppTextStyle.l1,
+                        ),
                         AppSpace.hS!,
-                        Text("m²", style: AppTextStyle.l1,),
+                        Text(
+                          "m²",
+                          style: AppTextStyle.l1,
+                        ),
                       ],
                     ),
                   ),
@@ -85,18 +108,25 @@ class _FloorViewerState extends State<FloorViewer> {
           Container(
             width: foundationWidth,
             height: foundationHeight,
-            decoration: BoxDecoration(
-              border: Border.all()
-            ),
+            decoration: BoxDecoration(border: Border.all()),
             alignment: Alignment.center,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text("Temel", style: AppTextStyle.l1,),
+                Text(
+                  "Temel",
+                  style: AppTextStyle.l1,
+                ),
                 AppSpace.hS!,
-                Text(widget.foundationArea.toString(), style: AppTextStyle.l1,),
+                Text(
+                  widget.foundationArea.toString(),
+                  style: AppTextStyle.l1,
+                ),
                 AppSpace.hS!,
-                Text("m²", style: AppTextStyle.l1,),
+                Text(
+                  "m²",
+                  style: AppTextStyle.l1,
+                ),
               ],
             ),
           ),
@@ -111,7 +141,10 @@ class TrianglePainter extends CustomPainter {
   final PaintingStyle paintingStyle;
   final double strokeWidth;
 
-  TrianglePainter({this.strokeColor = Colors.black, this.strokeWidth = 3, this.paintingStyle = PaintingStyle.stroke});
+  TrianglePainter(
+      {this.strokeColor = Colors.black,
+      this.strokeWidth = 3,
+      this.paintingStyle = PaintingStyle.stroke});
 
   @override
   void paint(Canvas canvas, Size size) {
