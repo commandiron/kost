@@ -26,7 +26,7 @@ class CostTableScreen extends StatelessWidget {
                         style: const TextStyle(fontSize: 26),
                       ),
                       Text(state.formattedGrandTotalTRY),
-                      CostTable(
+                      CostsListView(
                           costs: state.costs,
                           formattedSubTotalsTRY: state.formattedSubTotalsTRY,
                           unitPricePool: state.unitPricePool),
