@@ -8,7 +8,7 @@ import '../../domain/bloc/cost_table_state.dart';
 class CostTableScreen extends StatelessWidget {
   const CostTableScreen({Key? key}) : super(key: key);
 
-  static const route =  "cost_table";
+  static const route = "cost_table";
 
   @override
   Widget build(BuildContext context) {
@@ -26,11 +26,10 @@ class CostTableScreen extends StatelessWidget {
                         style: const TextStyle(fontSize: 26),
                       ),
                       Text(state.formattedGrandTotalTRY),
-                      CustomGroupedListView(
-                        costs: state.costs,
-                        formattedSubTotalsTRY: state.formattedSubTotalsTRY,
-                        unitPricePool: state.unitPricePool
-                      ),
+                      CostsListView(
+                          costs: state.costs,
+                          formattedSubTotalsTRY: state.formattedSubTotalsTRY,
+                          unitPricePool: state.unitPricePool),
                       const SizedBox(
                         height: 512,
                       )

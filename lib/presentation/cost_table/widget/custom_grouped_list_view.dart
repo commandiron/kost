@@ -10,8 +10,8 @@ import '../../../domain/model/unit_price/unit_price.dart';
 import 'cost_item.dart';
 import 'main_category_title.dart';
 
-class CustomGroupedListView extends StatelessWidget {
-  const CustomGroupedListView(
+class CostsListView extends StatelessWidget {
+  const CostsListView(
       {Key? key,
       required this.costs,
       required this.formattedSubTotalsTRY,
@@ -29,7 +29,10 @@ class CustomGroupedListView extends StatelessWidget {
       elements: costs,
       groupBy: (cost) => cost.category.mainCategory,
       groupSeparatorBuilder: (MainCategory mainCategory) {
-        final visible = costs.firstWhere((cost) => cost.category.mainCategory == mainCategory).category.visible;
+        final visible = costs
+            .firstWhere((cost) => cost.category.mainCategory == mainCategory)
+            .category
+            .visible;
         return Container(
           height: 80,
           padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -44,10 +47,8 @@ class CustomGroupedListView extends StatelessWidget {
                   onPressed: () => context
                       .read<CostTableBloc>()
                       .add(ShowHideMainCategory(mainCategory)),
-                  icon: Icon(
-                    visible ? Icons.arrow_drop_down : Icons.arrow_right
-                  )
-              )
+                  icon:
+                      Icon(visible ? Icons.arrow_drop_down : Icons.arrow_right))
             ],
           ),
         );
