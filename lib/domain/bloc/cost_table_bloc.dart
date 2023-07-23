@@ -1,5 +1,4 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:intl/intl.dart';
 import 'package:kost/data/unit_price_repository.dart';
 import 'package:kost/domain/calculator/detailed/detailed_quantity_calculator.dart';
 import 'package:kost/domain/calculator/detailed/project_constants.dart';
