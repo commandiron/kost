@@ -34,148 +34,15 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
               formattedGrandTotalTRY: ""),
         ) {
     on<Init>((event, emit) {
-      add(const FetchCostTemplate());
-      add(const FetchUnitPricePool());
-      add(const FetchCurrencyRates());
-      add(const CreateQuantityCalculator());
+      final costTemplate = _fetchCostTemplate();
+      final unitPricePool = _fetchUnitPricePool();
+      // final currencyRates = _fetchCurrencyRates();
+      final quantityCalculator = _createQuantityCalculator();
+      emit(state.copyWith(
+          costTemplate: costTemplate,
+          unitPricePool: unitPricePool,
+          quantityCalculator: quantityCalculator));
       _refresh();
-    });
-    on<FetchCostTemplate>((event, emit) {
-      emit(state.copyWith(costTemplate: BuildingCostTemplate()));
-    });
-    on<FetchUnitPricePool>((event, emit) {
-      final unitPricePool = _unitPriceRepository.getAllUnitPrices();
-      emit(state.copyWith(unitPricePool: unitPricePool));
-    });
-    on<FetchCurrencyRates>((event, emit) {
-      //Fetch currency rates.
-    });
-    on<CreateQuantityCalculator>((event, emit) {
-      final quantityCalculator = DetailedQuantityCalculator(
-        projectConstants: ProjectConstants(),
-        landArea: 806.24,
-        landPerimeter: 117.23,
-        excavationArea: 581.47,
-        excavationPerimeter: 103.07,
-        coreCurtainLength: 30,
-        curtainsExceeding1MeterLength: 10,
-        columnsLess1MeterPerimeter: 20,
-        elevationTowerArea: 30,
-        elevationTowerHeightWithoutSlab: 3,
-        floors: [
-          ...Floor.duplicateFloors(
-              Floor(
-                no: 1,
-                ceilingArea: 190,
-                ceilingPerimeter: 62.8,
-                fullHeight: 3.3,
-                area: 188.75,
-                perimeter: 62.8,
-                heightWithoutSlab: 3,
-                thickWallLength: 77.05,
-                thinWallLength: 39.3,
-                isCeilingHollowSlab: true,
-                windows: [
-                  Window(
-                      width: 17,
-                      height: 2.2,
-                      hasRailing: true,
-                      hasWindowsill: true,
-                      count: 1),
-                ],
-                rooms: [
-                  ApartmentEntree(area: 0, perimeter: 0),
-                  SaloonWithKitchen(
-                    area: 30.87,
-                    perimeter: 32,
-                  ),
-                  NormalRoom(area: 12.95, perimeter: 14.4),
-                  NormalRoom(area: 8.93, perimeter: 12),
-                  Bathroom(area: 3.19, perimeter: 7.5),
-                  Bathroom(area: 4.38, perimeter: 8.5),
-                  ApartmentEntree(area: 0, perimeter: 0),
-                  SaloonWithKitchen(
-                    area: 33,
-                    perimeter: 30.7,
-                  ),
-                  NormalRoom(area: 15.4, perimeter: 16.5),
-                  NormalRoom(area: 10.88, perimeter: 13.2),
-                  Bathroom(area: 3.19, perimeter: 7.5),
-                  Bathroom(area: 5.08, perimeter: 9.3),
-                  FloorHall(area: 8.1, perimeter: 13.8),
-                  FireEscapeHall(area: 11.1, perimeter: 20.9),
-                ],
-              ),
-              11),
-          Floor(
-            no: 0,
-            ceilingArea: 177.15,
-            ceilingPerimeter: 61.3,
-            fullHeight: 3.3,
-            area: 177.15,
-            perimeter: 61.3,
-            heightWithoutSlab: 3,
-            thickWallLength: 77.05,
-            thinWallLength: 39.3,
-            isCeilingHollowSlab: true,
-            windows: [
-              Window(
-                  width: 14,
-                  height: 2.2,
-                  hasRailing: true,
-                  hasWindowsill: true,
-                  count: 1),
-            ],
-            rooms: [
-              ApartmentEntree(area: 0, perimeter: 0),
-              SaloonWithKitchen(
-                area: 33.61,
-                perimeter: 29.3,
-              ),
-              NormalRoom(area: 12.6, perimeter: 14.2),
-              Bathroom(area: 3.18, perimeter: 7.5),
-              Bathroom(area: 4.13, perimeter: 8.3),
-              ApartmentEntree(area: 0, perimeter: 0),
-              SaloonWithKitchen(
-                area: 33.5,
-                perimeter: 29.2,
-              ),
-              NormalRoom(area: 13.29, perimeter: 15.3),
-              Bathroom(area: 3.18, perimeter: 7.5),
-              Bathroom(area: 4.13, perimeter: 8.3),
-              FireEscapeHall(area: 11.1, perimeter: 20.9),
-              BuildingHall(area: 15.92, perimeter: 21.1),
-            ],
-          ),
-          Floor(
-            no: -1,
-            ceilingArea: 477,
-            ceilingPerimeter: 94.42,
-            fullHeight: 3.15,
-            area: 477,
-            perimeter: 94.42,
-            heightWithoutSlab: 3,
-            thickWallLength: 75,
-            thinWallLength: 0,
-            isCeilingHollowSlab: false,
-            rooms: [
-              ParkingArea(area: 296.25, perimeter: 94.82),
-              TechnicalArea(area: 7.15, perimeter: 10.7),
-              TechnicalArea(area: 7.25, perimeter: 10.8),
-              TechnicalArea(area: 17, perimeter: 16.6),
-              TechnicalArea(area: 52.6, perimeter: 33.6),
-              ElevatorShaft(area: 18.9, perimeter: 18.3),
-              ElevatorShaft(area: 8.61, perimeter: 12.8),
-              FloorHall(area: 6.07, perimeter: 11.1),
-              FireEscapeHall(area: 11.1, perimeter: 20.9),
-            ],
-          ),
-        ],
-        foundationArea: 477,
-        foundationPerimeter: 94.42,
-        foundationHeight: 1,
-      );
-      emit(state.copyWith(quantityCalculator: quantityCalculator));
     });
     on<CreateCostTable>((event, emit) {
       if (!_isAllUnitPricesInCostTemplateIncludedInUnitPricePool) {
@@ -238,7 +105,7 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
       state.quantityCalculator.floors[event.index].area = floorArea;
     });
     on<CalculateCost>((event, emit) {
-      add(const CreateCostTable());
+      _refresh();
       Navigator.of(event.context).pushNamed(CostTableScreen.route);
     });
   }
@@ -247,6 +114,142 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
 
   void init() {
     add(const Init());
+  }
+
+  CostTemplate _fetchCostTemplate() {
+    return BuildingCostTemplate();
+  }
+
+  List<UnitPrice> _fetchUnitPricePool() {
+    return _unitPriceRepository.getAllUnitPrices();
+  }
+
+  QuantityCalculator _createQuantityCalculator() {
+    final quantityCalculator = DetailedQuantityCalculator(
+      projectConstants: ProjectConstants(),
+      landArea: 806.24,
+      landPerimeter: 117.23,
+      excavationArea: 581.47,
+      excavationPerimeter: 103.07,
+      coreCurtainLength: 30,
+      curtainsExceeding1MeterLength: 10,
+      columnsLess1MeterPerimeter: 20,
+      elevationTowerArea: 30,
+      elevationTowerHeightWithoutSlab: 3,
+      floors: [
+        ...Floor.duplicateFloors(
+            Floor(
+              no: 1,
+              ceilingArea: 190,
+              ceilingPerimeter: 62.8,
+              fullHeight: 3.3,
+              area: 188.75,
+              perimeter: 62.8,
+              heightWithoutSlab: 3,
+              thickWallLength: 77.05,
+              thinWallLength: 39.3,
+              isCeilingHollowSlab: true,
+              windows: [
+                Window(
+                    width: 17,
+                    height: 2.2,
+                    hasRailing: true,
+                    hasWindowsill: true,
+                    count: 1),
+              ],
+              rooms: [
+                ApartmentEntree(area: 0, perimeter: 0),
+                SaloonWithKitchen(
+                  area: 30.87,
+                  perimeter: 32,
+                ),
+                NormalRoom(area: 12.95, perimeter: 14.4),
+                NormalRoom(area: 8.93, perimeter: 12),
+                Bathroom(area: 3.19, perimeter: 7.5),
+                Bathroom(area: 4.38, perimeter: 8.5),
+                ApartmentEntree(area: 0, perimeter: 0),
+                SaloonWithKitchen(
+                  area: 33,
+                  perimeter: 30.7,
+                ),
+                NormalRoom(area: 15.4, perimeter: 16.5),
+                NormalRoom(area: 10.88, perimeter: 13.2),
+                Bathroom(area: 3.19, perimeter: 7.5),
+                Bathroom(area: 5.08, perimeter: 9.3),
+                FloorHall(area: 8.1, perimeter: 13.8),
+                FireEscapeHall(area: 11.1, perimeter: 20.9),
+              ],
+            ),
+            11),
+        Floor(
+          no: 0,
+          ceilingArea: 177.15,
+          ceilingPerimeter: 61.3,
+          fullHeight: 3.3,
+          area: 177.15,
+          perimeter: 61.3,
+          heightWithoutSlab: 3,
+          thickWallLength: 77.05,
+          thinWallLength: 39.3,
+          isCeilingHollowSlab: true,
+          windows: [
+            Window(
+                width: 14,
+                height: 2.2,
+                hasRailing: true,
+                hasWindowsill: true,
+                count: 1),
+          ],
+          rooms: [
+            ApartmentEntree(area: 0, perimeter: 0),
+            SaloonWithKitchen(
+              area: 33.61,
+              perimeter: 29.3,
+            ),
+            NormalRoom(area: 12.6, perimeter: 14.2),
+            Bathroom(area: 3.18, perimeter: 7.5),
+            Bathroom(area: 4.13, perimeter: 8.3),
+            ApartmentEntree(area: 0, perimeter: 0),
+            SaloonWithKitchen(
+              area: 33.5,
+              perimeter: 29.2,
+            ),
+            NormalRoom(area: 13.29, perimeter: 15.3),
+            Bathroom(area: 3.18, perimeter: 7.5),
+            Bathroom(area: 4.13, perimeter: 8.3),
+            FireEscapeHall(area: 11.1, perimeter: 20.9),
+            BuildingHall(area: 15.92, perimeter: 21.1),
+          ],
+        ),
+        Floor(
+          no: -1,
+          ceilingArea: 477,
+          ceilingPerimeter: 94.42,
+          fullHeight: 3.15,
+          area: 477,
+          perimeter: 94.42,
+          heightWithoutSlab: 3,
+          thickWallLength: 75,
+          thinWallLength: 0,
+          isCeilingHollowSlab: false,
+          rooms: [
+            ParkingArea(area: 296.25, perimeter: 94.82),
+            TechnicalArea(area: 7.15, perimeter: 10.7),
+            TechnicalArea(area: 7.25, perimeter: 10.8),
+            TechnicalArea(area: 17, perimeter: 16.6),
+            TechnicalArea(area: 52.6, perimeter: 33.6),
+            ElevatorShaft(area: 18.9, perimeter: 18.3),
+            ElevatorShaft(area: 8.61, perimeter: 12.8),
+            FloorHall(area: 6.07, perimeter: 11.1),
+            FireEscapeHall(area: 11.1, perimeter: 20.9),
+          ],
+        ),
+      ],
+      foundationArea: 477,
+      foundationPerimeter: 94.42,
+      foundationHeight: 1,
+    );
+    return quantityCalculator;
   }
 
   bool get _isAllUnitPricesInCostTemplateIncludedInUnitPricePool {
