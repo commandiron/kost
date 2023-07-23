@@ -10,8 +10,8 @@ import '../../../domain/model/unit_price/unit_price.dart';
 import 'cost_item.dart';
 import 'main_category_title.dart';
 
-class CostsListView extends StatelessWidget {
-  const CostsListView(
+class CostTable extends StatelessWidget {
+  const CostTable(
       {Key? key,
       required this.costs,
       required this.formattedSubTotalsTRY,
