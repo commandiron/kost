@@ -23,7 +23,7 @@ class FloorViewer extends StatefulWidget {
 }
 
 class _FloorViewerState extends State<FloorViewer> {
-  Map<int, bool> _isHighlighted = {};
+  final Map<int, bool> _isHighlighted = {};
 
   @override
   Widget build(BuildContext context) {
