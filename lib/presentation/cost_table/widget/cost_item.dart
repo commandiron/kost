@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kost/domain/model/category/category.dart';
 import 'package:kost/domain/model/cost/cost.dart';
+import 'package:kost/domain/model/unit_price/unit.dart';
 import 'package:kost/domain/model/unit_price/unit_price_category.dart';
 import 'package:kost/presentation/cost_table/widget/quantity_text_field.dart';
 import 'package:kost/presentation/cost_table/widget/unit_prices_alert_dialog.dart';
@@ -66,7 +67,12 @@ class CostItem extends StatelessWidget {
                       width: 100,
                       child: QuantityTextField(
                         formattedQuantity: cost.formattedQuantity,
-                        costCategory: cost.category,
+                        symbol: cost.category.unitPriceCategory.unit.symbol,
+                        onFieldSubmitted: (value) {
+                          context.read<CostTableBloc>().add(
+                            ChangeQuantityManually(cost.category.jobCategory, value)
+                          );
+                        },
                       ))
                 ],
               )),

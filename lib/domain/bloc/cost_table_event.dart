@@ -76,3 +76,11 @@ class ChangeQuantityManually extends CostTableEvent {
   @override
   List<Object?> get props => [quantityText];
 }
+
+class FloorAreaChanged extends CostTableEvent {
+  final String floorAreaText;
+  final int index;
+  const FloorAreaChanged(this.floorAreaText, this.index);
+  @override
+  List<Object?> get props => [floorAreaText, index];
+}

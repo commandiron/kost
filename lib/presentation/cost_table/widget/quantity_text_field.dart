@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:kost/domain/model/cost/cost_category.dart';
-import 'package:kost/domain/model/unit_price/unit.dart';
-
-import '../../../domain/bloc/cost_table_bloc.dart';
-import '../../../domain/bloc/cost_table_event.dart';
 
 class QuantityTextField extends StatefulWidget {
   const QuantityTextField(
-      {Key? key, required this.formattedQuantity, required this.costCategory})
+      {Key? key,
+      required this.formattedQuantity,
+      required this.symbol,
+      this.onFieldSubmitted, 
+      this.onChanged})
       : super(key: key);
 
   final String formattedQuantity;
-  final CostCategory costCategory;
+  final String symbol;
+  final void Function(String value)? onFieldSubmitted;
+  final void Function(String value)? onChanged;
 
   @override
   State<QuantityTextField> createState() => _QuantityTextFieldState();
@@ -27,8 +27,7 @@ class _QuantityTextFieldState extends State<QuantityTextField> {
       key: _key,
       child: TextFormField(
         controller: TextEditingController(text: widget.formattedQuantity),
-        decoration: InputDecoration(
-            suffix: Text(widget.costCategory.unitPriceCategory.unit.symbol)),
+        decoration: InputDecoration(suffix: Text(widget.symbol)),
         validator: (value) {
           const String message = "Lütfen sayı giriniz.";
           if (value == null) {
@@ -44,9 +43,16 @@ class _QuantityTextFieldState extends State<QuantityTextField> {
         },
         onFieldSubmitted: (value) {
           if (_key.currentState!.validate()) {
-            context
-                .read<CostTableBloc>()
-                .add(ChangeQuantityManually(widget.costCategory.jobCategory, value));
+            if (widget.onFieldSubmitted != null) {
+              widget.onFieldSubmitted!(value);
+            }
+          }
+        },
+        onChanged: (value) {
+          if (_key.currentState!.validate()) {
+            if (widget.onChanged != null) {
+              widget.onChanged!(value);
+            }
           }
         },
       ),

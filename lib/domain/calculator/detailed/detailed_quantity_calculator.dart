@@ -42,7 +42,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
 
   Floor get _groundFloor {
     final groundFloor = floors.firstWhere(
-      (e) => e.no == 0,
+      (floor) => floor.no == 0,
       orElse: () => throw Exception("No ground floor"),
     );
     return groundFloor;

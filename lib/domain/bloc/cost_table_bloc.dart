@@ -6,6 +6,7 @@ import 'package:kost/domain/calculator/detailed/project_constants.dart';
 import 'package:kost/domain/calculator/detailed/room.dart';
 import 'package:kost/domain/calculator/detailed/window.dart';
 import 'package:kost/domain/calculator/quantity_calculator.dart';
+import 'package:kost/domain/helper/formattedNumber.dart';
 import 'package:kost/domain/model/category/category.dart';
 import 'package:kost/domain/model/cost/cost_category.dart';
 import 'package:kost/domain/model/unit_price/currency.dart';
@@ -192,12 +193,12 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
       for (var mainCategory in mainCategorySet) {
         final subTotal = _calculateSubTotal(costs, mainCategory);
         formattedSubTotalsTRY.putIfAbsent(mainCategory,
-            () => _getFormattedNumber(number: subTotal, unit: "TL"));
+            () => getFormattedNumber(number: subTotal, unit: "TL"));
       }
 
       final grandTotal = _calculateGrandTotal(costs);
       final formattedGrandTotalTRY =
-          _getFormattedNumber(number: grandTotal, unit: "TL");
+          getFormattedNumber(number: grandTotal, unit: "TL");
 
       emit(state.copyWith(
         costs: costs,
@@ -227,9 +228,13 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
       _refresh();
     });
     on<ChangeQuantityManually>((event, emit) {
-      final quantity = _parseFormattedNumber(value: event.quantityText);
+      final quantity = parseFormattedNumber(value: event.quantityText);
       state.quantityCalculator.setQuantityManually(event.jobCategory, quantity);
       _refresh();
+    });
+    on<FloorAreaChanged>((event, emit) {
+      final floorArea = parseFormattedNumber(value: event.floorAreaText);
+      state.quantityCalculator.floors[event.index].area = floorArea;
     });
   }
 
@@ -267,10 +272,10 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
       final lastDatedUnitPrice = unitPrices.reduce((current, next) =>
           current.dateTime.isAfter(next.dateTime) ? current : next);
 
-      final formattedFixedAmount = _getFormattedNumber(
+      final formattedFixedAmount = getFormattedNumber(
           number: lastDatedUnitPrice.fixedAmount,
           unit: lastDatedUnitPrice.currency.symbol);
-      final formattedAmount = _getFormattedNumber(
+      final formattedAmount = getFormattedNumber(
           number: lastDatedUnitPrice.amount,
           unit:
               "${lastDatedUnitPrice.currency.symbol}/${lastDatedUnitPrice.category.unit.symbol}");
@@ -281,7 +286,7 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
 
       final quantity =
           quantityCalculator.calculateQuantity(enabledCostCategory.jobCategory);
-      final formattedQuantity = _getFormattedNumber(number: quantity);
+      final formattedQuantity = getFormattedNumber(number: quantity);
 
       final quantityExplanation = quantityCalculator
           .getQuantityExplanation(enabledCostCategory.jobCategory);
@@ -292,7 +297,7 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
               quantity *
               lastDatedUnitPrice.currency.toLiraRate(currencyRates));
       final formattedTotalPriceTRY =
-          _getFormattedNumber(number: totalPriceTRY, unit: "TL");
+          getFormattedNumber(number: totalPriceTRY, unit: "TL");
 
       final cost = Cost(
         category: enabledCostCategory,
@@ -323,23 +328,6 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
         .map((e) => e.totalPriceTRY)
         .toList()
         .fold(0.0, (p, c) => p + c);
-  }
-
-  String _getFormattedNumber({
-    String pattern = "#,##0.00",
-    String locale = "tr_TR",
-    required double number,
-    String unit = "",
-  }) {
-    return "${NumberFormat(pattern, locale).format(number)}${unit.isEmpty ? "" : " $unit"}";
-  }
-
-  double _parseFormattedNumber({
-    String pattern = "#,##0.00",
-    String locale = "tr_TR",
-    required String value,
-  }) {
-    return NumberFormat(pattern, locale).parse(value).toDouble();
   }
 
   void _refresh() {

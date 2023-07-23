@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:kost/domain/helper/formattedNumber.dart';
+import 'package:kost/presentation/cost_table/widget/quantity_text_field.dart';
 
 import '../../../config/app_space.dart';
 import '../../../config/app_text_style.dart';
@@ -8,15 +10,19 @@ class FloorViewer extends StatefulWidget {
   const FloorViewer({
     Key? key,
     required this.width,
+    this.minWidth = 100,
     required this.height,
     required this.foundationArea,
     required this.floors,
+    required this.onFloorAreaChanged,
   }) : super(key: key);
 
   final double width;
+  final double minWidth;
   final double height;
   final double foundationArea;
   final List<Floor> floors;
+  final void Function(String floorAreaText, int index) onFloorAreaChanged;
 
   @override
   State<FloorViewer> createState() => _FloorViewerState();
@@ -59,8 +65,14 @@ class _FloorViewerState extends State<FloorViewer> {
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
             itemBuilder: (context, index) {
-              final floorWidth =
+              double floorWidth =
                   widthPerFoundationSquareMeter * widget.floors[index].area;
+              if (floorWidth > foundationWidth) {
+                floorWidth = foundationWidth;
+              }
+              if (floorWidth < widget.minWidth) {
+                floorWidth = widget.minWidth;
+              }
               final floorHeight =
                   (widget.height - (roofHeight + foundationHeight)) /
                       widget.floors.length;
@@ -80,26 +92,48 @@ class _FloorViewerState extends State<FloorViewer> {
                         ? floorHeight * 4
                         : floorHeight,
                     decoration: BoxDecoration(border: Border.all()),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Text(
-                          widget.floors[index].floorName,
-                          style: AppTextStyle.l1,
-                        ),
-                        AppSpace.hS!,
-                        Text(
-                          widget.floors[index].area.toString(),
-                          style: AppTextStyle.l1,
-                        ),
-                        AppSpace.hS!,
-                        Text(
-                          "m²",
-                          style: AppTextStyle.l1,
-                        ),
-                      ],
-                    ),
+                    child: _isHighlighted[index] ?? false
+                        ? Column(
+                            children: [
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  Text("Alan:"),
+                                  SizedBox(
+                                      width: 100,
+                                      child: QuantityTextField(
+                                        formattedQuantity: getFormattedNumber(
+                                            number: widget.floors[index].area),
+                                        symbol: "m2",
+                                        onChanged: (value) {
+                                          widget.onFloorAreaChanged(
+                                              value, index);
+                                        },
+                                      ))
+                                ],
+                              )
+                            ],
+                          )
+                        : Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Text(
+                                widget.floors[index].floorName,
+                                style: AppTextStyle.l1,
+                              ),
+                              AppSpace.hS!,
+                              Text(
+                                widget.floors[index].area.toString(),
+                                style: AppTextStyle.l1,
+                              ),
+                              AppSpace.hS!,
+                              Text(
+                                "m²",
+                                style: AppTextStyle.l1,
+                              ),
+                            ],
+                          ),
                   ),
                 ),
               );

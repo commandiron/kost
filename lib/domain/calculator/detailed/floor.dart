@@ -6,7 +6,7 @@ class Floor {
   final double ceilingArea;
   final double ceilingPerimeter;
   final double fullHeight;
-  final double area;
+  double area;
   final double perimeter;
   final double heightWithoutSlab;
   final double thickWallLength;
