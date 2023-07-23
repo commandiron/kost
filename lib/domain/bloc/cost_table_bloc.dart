@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kost/data/unit_price_repository.dart';
 import 'package:kost/domain/calculator/detailed/detailed_quantity_calculator.dart';
@@ -12,6 +13,7 @@ import 'package:kost/domain/model/unit_price/currency.dart';
 import 'package:kost/domain/model/cost/cost_template.dart';
 import 'package:kost/domain/model/unit_price/unit.dart';
 import 'package:kost/domain/model/cost/cost.dart';
+import 'package:kost/presentation/cost_table/cost_table_screen.dart';
 
 import '../calculator/detailed/floor.dart';
 import '../model/unit_price/unit_price.dart';
@@ -234,6 +236,10 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
     on<FloorAreaChanged>((event, emit) {
       final floorArea = parseFormattedNumber(value: event.floorAreaText);
       state.quantityCalculator.floors[event.index].area = floorArea;
+    });
+    on<CalculateCost>((event, emit) {
+      add(const CreateCostTable());
+      Navigator.of(event.context).pushNamed(CostTableScreen.route);
     });
   }
 

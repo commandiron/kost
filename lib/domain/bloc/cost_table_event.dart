@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
 import 'package:kost/domain/model/category/category.dart';
 import 'package:kost/domain/model/unit_price/unit_price_category.dart';
 
@@ -83,4 +84,11 @@ class FloorAreaChanged extends CostTableEvent {
   const FloorAreaChanged(this.floorAreaText, this.index);
   @override
   List<Object?> get props => [floorAreaText, index];
+}
+
+class CalculateCost extends CostTableEvent {
+  final BuildContext context;
+  const CalculateCost(this.context);
+  @override
+  List<Object?> get props => [context];
 }

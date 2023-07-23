@@ -58,8 +58,7 @@ class QuantityDetails extends StatelessWidget {
                         Text(state.quantityCalculator.landArea.toString()),
                         Text(state.quantityCalculator.landPerimeter.toString()),
                         ElevatedButton(
-                            onPressed: () => Navigator.of(context)
-                                .pushNamed(CostTableScreen.route),
+                            onPressed:() => context.read<CostTableBloc>().add(CalculateCost(context)),
                             child: const Text("Maliyet Hesapla"))
                       ],
                     ),
