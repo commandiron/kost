@@ -152,7 +152,7 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
               windows: [
                 Window(
                   width: 17,
-                  height: 2.2,
+                  height: 2.5,
                   hasRailing: true,
                   hasWindowsill: true,
                   count: 1
@@ -191,7 +191,7 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
           windows: [
             Window(
               width: 14,
-              height: 2.2,
+              height: 2.5,
               hasRailing: true,
               hasWindowsill: true,
               count: 1
