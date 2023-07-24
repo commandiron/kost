@@ -177,16 +177,16 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   }
 
   double get _totalWindowArea {
-    if (floors.every((element) => element.windows == null)) {
+    if (floors.every((element) => element.windows.isEmpty)) {
       return 0;
     }
 
     final floorsWithWindow =
-        floors.where((element) => element.windows != null).toList();
+        floors.where((element) => element.windows.isNotEmpty).toList();
 
     double totalWindowArea = 0;
     for (var floor in floorsWithWindow) {
-      totalWindowArea += floor.windows!
+      totalWindowArea += floor.windows
           .map((window) => window.width * window.height * window.count)
           .toList()
           .fold(0.0, (p, c) => p + c);
@@ -196,16 +196,16 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   }
 
   double get _totalFacadeRailingLength {
-    if (floors.every((element) => element.windows == null)) {
+    if (floors.every((element) => element.windows.isEmpty)) {
       return 0;
     }
 
     final floorsWithWindow =
-        floors.where((element) => element.windows != null).toList();
+        floors.where((element) => element.windows.isNotEmpty).toList();
 
     double totalRailingLength = 0;
     for (var floor in floorsWithWindow) {
-      totalRailingLength += floor.windows!
+      totalRailingLength += floor.windows
           .map((window) => window.hasRailing ? window.width * window.count : 0)
           .toList()
           .fold(0.0, (p, c) => p + c);
@@ -215,16 +215,16 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   }
 
   double get _totalWindowsillLength {
-    if (floors.every((element) => element.windows == null)) {
+    if (floors.every((element) => element.windows.isEmpty)) {
       return 0;
     }
 
     final floorsWithWindow =
-        floors.where((element) => element.windows != null).toList();
+        floors.where((element) => element.windows.isNotEmpty).toList();
 
     double totalRailingLength = 0;
     for (var floor in floorsWithWindow) {
-      totalRailingLength += floor.windows!
+      totalRailingLength += floor.windows
           .map((window) =>
               window.hasWindowsill ? window.width * window.count : 0)
           .toList()
