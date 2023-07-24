@@ -161,14 +161,17 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
               rooms: [
                 ElevatorShaft(area: 8.61, perimeter: 12.8),
                 StairsShaft(area: 7.2, perimeter: 10.9),
+                Shaft(area: 1.05, perimeter: 5.2,),
                 FloorHall(area: 8.1, perimeter: 13.8),
                 FireEscapeHall(area: 11.1, perimeter: 20.9),
+
                 ApartmentEntree(area: 0, perimeter: 0),
                 SaloonWithKitchen(area: 39.38, perimeter: 35.3,),
                 NormalRoom(area: 18.37, perimeter: 18.5),
                 NormalRoom(area: 10.76, perimeter: 13.6),
                 Bathroom(area: 6.41, perimeter: 11.1),
                 Bathroom(area: 3.16, perimeter: 7.5),
+
                 ApartmentEntree(area: 0, perimeter: 0),
                 SaloonWithKitchen(area: 35.7, perimeter: 34.2,),
                 NormalRoom(area: 15.56, perimeter: 16.2),
@@ -202,13 +205,16 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
           rooms: [
             ElevatorShaft(area: 8.61, perimeter: 12.8),
             StairsShaft(area: 7.2, perimeter: 10.9),
+            Shaft(area: 1.05, perimeter: 5.2,),
             FireEscapeHall(area: 11.1, perimeter: 20.9),
             BuildingHall(area: 15.92, perimeter: 21.1),
+
             ApartmentEntree(area: 0, perimeter: 0),
             SaloonWithKitchen(area: 33.40, perimeter: 30.65,),
             NormalRoom(area: 12.43, perimeter: 14.2),
             Bathroom(area: 4.26, perimeter: 8.6),
             Bathroom(area: 3.16, perimeter: 7.5),
+
             ApartmentEntree(area: 0, perimeter: 0),
             SaloonWithKitchen(area: 33.40, perimeter: 30.65,),
             NormalRoom(area: 12.43, perimeter: 14.2),
@@ -231,8 +237,10 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
           rooms: [
             ElevatorShaft(area: 8.61, perimeter: 12.8),
             StairsShaft(area: 7.2, perimeter: 10.9),
-            FloorHall(area: 6.07, perimeter: 11.1),
-            FireEscapeHall(area: 17.62, perimeter: 20.9),
+            Shaft(area: 1.05, perimeter: 5.2,),
+
+            FloorHall(area: 6.07, perimeter: 11.1, doors: [Door(count: 1, doorType: DoorType.fire)]),
+            FireEscapeHall(area: 17.62, perimeter: 20.9, doors: [Door(count: 1, doorType: DoorType.fire)]),
             ParkingArea(area: 296.25, perimeter: 94.82),
             TechnicalArea(area: 7.10, perimeter: 10.7),
             TechnicalArea(area: 7.25, perimeter: 10.8),
