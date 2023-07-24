@@ -13,7 +13,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
     required super.excavationPerimeter,
     required super.coreCurtainLength,
     required super.curtainsExceeding1MeterLength,
-    required super.basementOuterCurtainLength,
+    required super.basementCurtainLength,
     required super.columnsLess1MeterPerimeter,
     required super.elevationTowerArea,
     required super.elevationTowerHeightWithoutSlab,
@@ -132,8 +132,8 @@ class DetailedQuantityCalculator extends QuantityCalculator {
     return columnsLess1MeterPerimeter * _buildingHeightWithoutSlabs;
   }
 
-  double get _basementsOuterCurtainAreaWithoutSlab {
-    return basementOuterCurtainLength * _basementsHeightWithoutSlab;
+  double get _basementsCurtainAreaWithoutSlab {
+    return basementCurtainLength * _basementsHeightWithoutSlab;
   }
 
   double get _basementsOuterCurtainArea {
@@ -543,12 +543,12 @@ class DetailedQuantityCalculator extends QuantityCalculator {
 
   @override
   double get calculatedConcreteFormWorkArea {
-    return _roughConstructionArea + _coreCurtainAreaWithoutSlab + _curtainsExceeding1MeterAreaWithoutSlab + _basementsOuterCurtainAreaWithoutSlab;
+    return _roughConstructionArea + _coreCurtainAreaWithoutSlab + _curtainsExceeding1MeterAreaWithoutSlab + _basementsCurtainAreaWithoutSlab;
   }
 
   @override
   String get concreteFormWorkAreaExplanation {
-    return "Kaba inşaat alanı: $_roughConstructionArea + Çekirdek perdesi alanı: $_coreCurtainAreaWithoutSlab + 1 metreyi geçen perdelerin alanı: $_curtainsExceeding1MeterAreaWithoutSlab + Bodrum dış perdeleri alanı: $_basementsOuterCurtainAreaWithoutSlab";
+    return "Kaba inşaat alanı: $_roughConstructionArea + Çekirdek perdesi alanı: $_coreCurtainAreaWithoutSlab + 1 metreyi geçen perdelerin alanı: $_curtainsExceeding1MeterAreaWithoutSlab + Bodrum perdeleri alanı: $_basementsCurtainAreaWithoutSlab";
   }
 
   @override
@@ -697,7 +697,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
 
   @override
   String get interiorPlasteringAreaExplanation {
-    return "Toplam bodrumlar dış perde alanı: $_basementsOuterCurtainAreaWithoutSlab + Çekirdek perdeleri toplam alanı: $_coreCurtainAreaWithoutSlab x 2 (Çift yüz) + Toplam 1 metreyi geçen perde alanı: $_curtainsExceeding1MeterAreaWithoutSlab x 2 (Çift yüz) + Kolon yüzey alanı: $_columnsSurfaceArea + Toplam dış duvar alanı: $_totalOuterWallArea + Toplam iç duvar alanı: $_totalInnerWallArea x 2 (Çift yüz)";
+    return "Toplam bodrumlar dış perde alanı: $_basementsCurtainAreaWithoutSlab + Çekirdek perdeleri toplam alanı: $_coreCurtainAreaWithoutSlab x 2 (Çift yüz) + Toplam 1 metreyi geçen perde alanı: $_curtainsExceeding1MeterAreaWithoutSlab x 2 (Çift yüz) + Kolon yüzey alanı: $_columnsSurfaceArea + Toplam dış duvar alanı: $_totalOuterWallArea + Toplam iç duvar alanı: $_totalInnerWallArea x 2 (Çift yüz)";
   }
 
   @override

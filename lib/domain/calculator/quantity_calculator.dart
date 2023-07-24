@@ -11,7 +11,7 @@ abstract class QuantityCalculator {
   final double excavationPerimeter;
   final double coreCurtainLength;
   final double curtainsExceeding1MeterLength;
-  final double basementOuterCurtainLength;
+  final double basementCurtainLength;
   final double columnsLess1MeterPerimeter;
   final double elevationTowerArea;
   final double elevationTowerHeightWithoutSlab;
@@ -29,7 +29,7 @@ abstract class QuantityCalculator {
       required this.excavationPerimeter,
       required this.coreCurtainLength,
       required this.curtainsExceeding1MeterLength,
-      required this.basementOuterCurtainLength,
+      required this.basementCurtainLength,
       required this.columnsLess1MeterPerimeter,
       required this.elevationTowerArea,
       required this.elevationTowerHeightWithoutSlab,
@@ -512,7 +512,7 @@ class EmptyQuantityCalculator extends QuantityCalculator {
       super.excavationPerimeter = 0,
       super.coreCurtainLength = 0,
       super.curtainsExceeding1MeterLength = 0,
-      super.basementOuterCurtainLength = 0,
+      super.basementCurtainLength = 0,
       super.columnsLess1MeterPerimeter = 0,
       super.elevationTowerArea = 0,
       super.elevationTowerHeightWithoutSlab = 0,
