@@ -581,6 +581,8 @@ class DetailedQuantityCalculator extends QuantityCalculator {
     return "1 m2 kaba inşaat alanı için m2 biriminde asmolen alanı: ${projectConstants.hollowAreaForOneSquareMeterConstructionArea} x Asmolen döşeme inşaat alanı: $_hollowSlabRoughConstructionArea x Asmolen kalınlığı: ${projectConstants.hollowFillingThickness}";
   }
 
+  //Burda kaldım, aşağı doğru kontrol etmeye devam et. Bu hesaplamaları basitleştirmenin yolunu ara.
+
   @override
   double get calculatedFoundationWaterProofingArea {
     return foundationArea + (foundationPerimeter * foundationHeight);
