@@ -22,17 +22,17 @@ import 'cost_table_state.dart';
 
 class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
   CostTableBloc()
-      : super(
-          CostTableState(
-              costTemplate: EmptyCostTemplate(),
-              unitPricePool: const [],
-              currencyRates: ManualCurrencyRates(),
-              quantityCalculator:
-                  EmptyQuantityCalculator(projectConstants: ProjectConstants()),
-              costs: const [],
-              formattedSubTotalsTRY: const {},
-              formattedGrandTotalTRY: ""),
-        ) {
+    : super(
+      CostTableState(
+        costTemplate: EmptyCostTemplate(),
+        unitPricePool: const [],
+        currencyRates: ManualCurrencyRates(),
+        quantityCalculator: EmptyQuantityCalculator(projectConstants: ProjectConstants()),
+        costs: const [],
+        formattedSubTotalsTRY: const {},
+        formattedGrandTotalTRY: ""
+      ),
+    ) {
     on<Init>((event, emit) {
       final costTemplate = _fetchCostTemplate();
       final unitPricePool = _fetchUnitPricePool();
