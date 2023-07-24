@@ -1084,12 +1084,12 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   @override
   double get calculatedCraneHour {
     return _roughConstructionArea *
-        projectConstants.craneHourForOneSqareMeterRoughConstructionArea;
+        projectConstants.craneHourForOneSquareMeterRoughConstructionArea;
   }
 
   @override
   String get craneHourExplanation {
-    return "Kaba inşaat alanı: $_roughConstructionArea x 1 metre kare kaba inşaat alanı için vinç çalışma saati: ${projectConstants.craneHourForOneSqareMeterRoughConstructionArea}";
+    return "Kaba inşaat alanı: $_roughConstructionArea x 1 metre kare kaba inşaat alanı için vinç çalışma saati: ${projectConstants.craneHourForOneSquareMeterRoughConstructionArea}";
   }
 
   @override

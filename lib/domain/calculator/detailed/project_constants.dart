@@ -21,7 +21,7 @@ class ProjectConstants {
   final double coatCabinetArea;
   final double gardenOutdoorParkingAreaRate;
   final int automaticBarrierNumber;
-  final double craneHourForOneSqareMeterRoughConstructionArea;
+  final double craneHourForOneSquareMeterRoughConstructionArea;
 
   ProjectConstants(
     {
@@ -45,9 +45,9 @@ class ProjectConstants {
       this.bathroomCabinetArea = 1,
       this.kitchenLength = 5,
       this.coatCabinetArea = 5,
-      this.gardenOutdoorParkingAreaRate = 0.30,
+      this.gardenOutdoorParkingAreaRate = 0.50,
       this.automaticBarrierNumber = 1,
-      this.craneHourForOneSqareMeterRoughConstructionArea = 0.02
+      this.craneHourForOneSquareMeterRoughConstructionArea = 0.02
     }
   );
 }
