@@ -182,7 +182,7 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
             ),
             11
         ),
-        //Burdan aşağı kontrol edildi.
+        //Burdan aşağı kontrol edildi. Üst tarafı katları tek tek mi yoksa ortalama mı girceksin kararlaştır yap.
         Floor(
           no: 0,
           ceilingArea: 177.15,
