@@ -13,6 +13,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
     required super.excavationPerimeter,
     required super.coreCurtainLength,
     required super.curtainsExceeding1MeterLength,
+    required super.basementOuterCurtainLength,
     required super.columnsLess1MeterPerimeter,
     required super.elevationTowerArea,
     required super.elevationTowerHeightWithoutSlab,
@@ -87,6 +88,14 @@ class DetailedQuantityCalculator extends QuantityCalculator {
     return basementsHeight;
   }
 
+  double get _basementsHeightWithoutSlab {
+    double basementsHeightWithoutSlab = 0;
+    for (var basementFloor in _basementFloors) {
+      basementsHeightWithoutSlab += basementFloor.heightWithoutSlab;
+    }
+    return basementsHeightWithoutSlab;
+  }
+
   double get _roughConstructionArea {
     double roughConstructionArea = 0;
     roughConstructionArea += foundationArea;
@@ -124,11 +133,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   }
 
   double get _basementsOuterCurtainAreaWithoutSlab {
-    double resultArea = 0;
-    for (var basementFloor in _basementFloors) {
-      resultArea += basementFloor.perimeter * basementFloor.heightWithoutSlab;
-    }
-    return resultArea;
+    return basementOuterCurtainLength * _basementsHeightWithoutSlab;
   }
 
   double get _basementsOuterCurtainArea {

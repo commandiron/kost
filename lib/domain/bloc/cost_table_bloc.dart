@@ -133,6 +133,7 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
       excavationPerimeter: 102.46,
       coreCurtainLength: 19.36,
       curtainsExceeding1MeterLength: 15.7,
+      basementOuterCurtainLength: 108.12,
       columnsLess1MeterPerimeter: 9,
       elevationTowerArea: 30,
       elevationTowerHeightWithoutSlab: 3,
