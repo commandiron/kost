@@ -130,7 +130,6 @@ class LandscapeCostTemplate extends CostTemplate {
     enabledCostCategories = [
       CostCategory(MainCategory.landscapeJobs, JobCategory.landScapeGarden, UnitPriceCategory.averageGarden),
       CostCategory(MainCategory.landscapeJobs, JobCategory.outdoorParkingTile, UnitPriceCategory.interlockingPavingStone),
-      CostCategory(MainCategory.landscapeJobs, JobCategory.carLift, UnitPriceCategory.carLift),
       CostCategory(MainCategory.landscapeJobs, JobCategory.automaticBarrier, UnitPriceCategory.automaticBarrier),
     ];
   }
