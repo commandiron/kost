@@ -27,7 +27,7 @@ abstract class Room {
 }
 
 enum FloorMaterial {
-  none, parquet, ceramic, marble, epoxy
+  none, parquet, ceramic, marble, marbleStep, epoxy
 }
 enum WallMaterial {
   none, painting, ceramic,
@@ -377,7 +377,7 @@ class ElevatorShaft extends Room {
       required super.area,
       required super.perimeter,
       super.floorMaterial = FloorMaterial.none,
-      super.wallMaterial = WallMaterial.none,
+      super.wallMaterial = WallMaterial.painting,
       super.ceilingMaterial = CeilingMaterial.none,
       super.hasCovingPlaster = false,
       super.hasFloorPlinth = false,
@@ -393,8 +393,8 @@ class StairsShaft extends Room {
     {
       required super.area,
       required super.perimeter,
-      super.floorMaterial = FloorMaterial.none,
-      super.wallMaterial = WallMaterial.none,
+      super.floorMaterial = FloorMaterial.marbleStep,
+      super.wallMaterial = WallMaterial.painting,
       super.ceilingMaterial = CeilingMaterial.none,
       super.hasCovingPlaster = false,
       super.hasFloorPlinth = false,
