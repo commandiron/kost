@@ -128,16 +128,15 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
     final quantityCalculator = DetailedQuantityCalculator(
       projectConstants: ProjectConstants(),
       landArea: 806.24,
-      landPerimeter: 117.23,
-      excavationArea: 581.47,
-      excavationPerimeter: 103.07,
-      coreCurtainLength: 30,
-      curtainsExceeding1MeterLength: 10,
-      columnsLess1MeterPerimeter: 20,
+      landPerimeter: 117.93,
+      excavationArea: 576.52,
+      excavationPerimeter: 102.46,
+      coreCurtainLength: 19.36,
+      curtainsExceeding1MeterLength: 15.7,
+      columnsLess1MeterPerimeter: 9,
       elevationTowerArea: 30,
       elevationTowerHeightWithoutSlab: 3,
       floors: [
-
         ...Floor.duplicateFloors(
             Floor(
               no: 1,
