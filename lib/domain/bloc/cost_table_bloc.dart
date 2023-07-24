@@ -180,7 +180,9 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
                 FireEscapeHall(area: 11.1, perimeter: 20.9),
               ],
             ),
-            11),
+            11
+        ),
+        //Burdan aşağı kontrol edildi.
         Floor(
           no: 0,
           ceilingArea: 177.15,
@@ -203,26 +205,19 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
           ],
           rooms: [
             ApartmentEntree(area: 0, perimeter: 0),
-            SaloonWithKitchen(
-              area: 33.61,
-              perimeter: 29.3,
-            ),
-            NormalRoom(area: 12.6, perimeter: 14.2),
-            Bathroom(area: 3.18, perimeter: 7.5),
-            Bathroom(area: 4.13, perimeter: 8.3),
+            SaloonWithKitchen(area: 33.40, perimeter: 30.65,),
+            NormalRoom(area: 12.43, perimeter: 14.2),
+            Bathroom(area: 4.26, perimeter: 8.6),
+            Bathroom(area: 3.16, perimeter: 7.5),
             ApartmentEntree(area: 0, perimeter: 0),
-            SaloonWithKitchen(
-              area: 33.5,
-              perimeter: 29.2,
-            ),
-            NormalRoom(area: 13.29, perimeter: 15.3),
-            Bathroom(area: 3.18, perimeter: 7.5),
-            Bathroom(area: 4.13, perimeter: 8.3),
+            SaloonWithKitchen(area: 33.40, perimeter: 30.65,),
+            NormalRoom(area: 12.43, perimeter: 14.2),
+            Bathroom(area: 4.26, perimeter: 8.6),
+            Bathroom(area: 3.16, perimeter: 7.5),
             FireEscapeHall(area: 11.1, perimeter: 20.9),
             BuildingHall(area: 15.92, perimeter: 21.1),
           ],
         ),
-
         Floor(
           no: -1,
           ceilingArea: 477,
