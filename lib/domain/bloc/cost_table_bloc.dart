@@ -189,16 +189,17 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
           area: 177.15,
           perimeter: 61.3,
           heightWithoutSlab: 3,
-          thickWallLength: 77.05,
-          thinWallLength: 39.3,
+          thickWallLength: 66.29,
+          thinWallLength: 21.67,
           isCeilingHollowSlab: true,
           windows: [
             Window(
-                width: 14,
-                height: 2.2,
-                hasRailing: true,
-                hasWindowsill: true,
-                count: 1),
+              width: 14,
+              height: 2.2,
+              hasRailing: true,
+              hasWindowsill: true,
+              count: 1
+            ),
           ],
           rooms: [
             ApartmentEntree(area: 0, perimeter: 0),
@@ -230,7 +231,7 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
           area: 477,
           perimeter: 94.42,
           heightWithoutSlab: 3,
-          thickWallLength: 75,
+          thickWallLength: 39.13,
           thinWallLength: 0,
           isCeilingHollowSlab: false,
           windows: [],
