@@ -43,7 +43,7 @@ class UnitPriceRepository {
     amount: ((c40Concrete.amount * _shutCreteThickness) + (s420Steel.amount * _shutCreteSteelTonPerSquareMeter)) * _profitAndOverhead,
     fixedAmount: 30000,
     currency: c40Concrete.currency,
-    dateTime: DateTime(2023, 01)
+    dateTime: DateTime(2023, 07)
   );
 
   static List<UnitPrice> unitPrices = [
