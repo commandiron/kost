@@ -12,7 +12,7 @@ class Floor {
   final double thickWallLength;
   final double thinWallLength;
   final bool isCeilingHollowSlab;
-  final List<Window>? windows;
+  final List<Window> windows;
   final List<Room> rooms;
 
   Floor(
@@ -26,7 +26,7 @@ class Floor {
       required this.thickWallLength,
       required this.thinWallLength,
       required this.isCeilingHollowSlab,
-      this.windows,
+      required this.windows,
       required this.rooms}
     );
 
