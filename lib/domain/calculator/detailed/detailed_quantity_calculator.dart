@@ -108,18 +108,14 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   }
 
   double get _buildingHeightWithoutSlabs {
-    return floors
-        .map((e) => e.heightWithoutSlab)
-        .toList()
-        .fold(0.0, (p, c) => p + c);
+    return floors.map((e) => e.heightWithoutSlab).toList().fold(0.0, (p, c) => p + c);
   }
 
-  double get _coreCurtainArea {
-    return coreCurtainLength *
-        (_buildingHeightWithoutSlabs + elevationTowerHeightWithoutSlab);
+  double get _coreCurtainAreaWithoutSlab {
+    return coreCurtainLength * (_buildingHeightWithoutSlabs + elevationTowerHeightWithoutSlab);
   }
 
-  double get _curtainsExceeding1MeterArea {
+  double get _curtainsExceeding1MeterAreaWithoutSlab {
     return curtainsExceeding1MeterLength * _buildingHeightWithoutSlabs;
   }
 
@@ -512,9 +508,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
 
   @override
   double get calculatedBreakerHour {
-    return excavationArea *
-        _excavationHeight *
-        projectConstants.breakerHourForOneCubicMeterMediumRockExcavation;
+    return excavationArea * _excavationHeight * projectConstants.breakerHourForOneCubicMeterMediumRockExcavation;
   }
 
   @override
@@ -534,9 +528,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
 
   @override
   double get calculatedSubFoundationConcreteVolume {
-    return excavationArea *
-        (projectConstants.leanConcreteHeight +
-            projectConstants.insulationConcreteHeight);
+    return excavationArea * (projectConstants.leanConcreteHeight + projectConstants.insulationConcreteHeight);
   }
 
   @override
@@ -546,15 +538,12 @@ class DetailedQuantityCalculator extends QuantityCalculator {
 
   @override
   double get calculatedConcreteFormWorkArea {
-    return _roughConstructionArea +
-        _coreCurtainArea +
-        _curtainsExceeding1MeterArea +
-        _basementsOuterCurtainAreaWithoutSlab;
+    return _roughConstructionArea + _coreCurtainAreaWithoutSlab + _curtainsExceeding1MeterAreaWithoutSlab + _basementsOuterCurtainAreaWithoutSlab;
   }
 
   @override
   String get concreteFormWorkAreaExplanation {
-    return "Kaba inşaat alanı: $_roughConstructionArea + Çekirdek perdesi alanı: $_coreCurtainArea + 1 metreyi geçen perdelerin alanı: $_curtainsExceeding1MeterArea + Bodrum dış perdeleri alanı: $_basementsOuterCurtainAreaWithoutSlab";
+    return "Kaba inşaat alanı: $_roughConstructionArea + Çekirdek perdesi alanı: $_coreCurtainAreaWithoutSlab + 1 metreyi geçen perdelerin alanı: $_curtainsExceeding1MeterAreaWithoutSlab + Bodrum dış perdeleri alanı: $_basementsOuterCurtainAreaWithoutSlab";
   }
 
   @override
@@ -694,8 +683,8 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   @override
   double get calculatedInteriorPlasteringArea {
     return _basementsOuterCurtainArea +
-        (_coreCurtainArea * 2) +
-        (_curtainsExceeding1MeterArea * 2) +
+        (_coreCurtainAreaWithoutSlab * 2) +
+        (_curtainsExceeding1MeterAreaWithoutSlab * 2) +
         _columnsSurfaceArea +
         _totalOuterWallArea +
         (_totalInnerWallArea * 2);
@@ -703,7 +692,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
 
   @override
   String get interiorPlasteringAreaExplanation {
-    return "Toplam bodrumlar dış perde alanı: $_basementsOuterCurtainAreaWithoutSlab + Çekirdek perdeleri toplam alanı: $_coreCurtainArea x 2 (Çift yüz) + Toplam 1 metreyi geçen perde alanı: $_curtainsExceeding1MeterArea x 2 (Çift yüz) + Kolon yüzey alanı: $_columnsSurfaceArea + Toplam dış duvar alanı: $_totalOuterWallArea + Toplam iç duvar alanı: $_totalInnerWallArea x 2 (Çift yüz)";
+    return "Toplam bodrumlar dış perde alanı: $_basementsOuterCurtainAreaWithoutSlab + Çekirdek perdeleri toplam alanı: $_coreCurtainAreaWithoutSlab x 2 (Çift yüz) + Toplam 1 metreyi geçen perde alanı: $_curtainsExceeding1MeterAreaWithoutSlab x 2 (Çift yüz) + Kolon yüzey alanı: $_columnsSurfaceArea + Toplam dış duvar alanı: $_totalOuterWallArea + Toplam iç duvar alanı: $_totalInnerWallArea x 2 (Çift yüz)";
   }
 
   @override
