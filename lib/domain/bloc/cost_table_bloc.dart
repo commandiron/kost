@@ -159,6 +159,10 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
                 ),
               ],
               rooms: [
+                ElevatorShaft(area: 8.61, perimeter: 12.8),
+                StairsShaft(area: 7.2, perimeter: 10.9),
+                FloorHall(area: 8.1, perimeter: 13.8),
+                FireEscapeHall(area: 11.1, perimeter: 20.9),
                 ApartmentEntree(area: 0, perimeter: 0),
                 SaloonWithKitchen(area: 39.38, perimeter: 35.3,),
                 NormalRoom(area: 18.37, perimeter: 18.5),
@@ -171,8 +175,6 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
                 NormalRoom(area: 10.06, perimeter: 13.2),
                 Bathroom(area: 5.63, perimeter: 10.10),
                 Bathroom(area: 3.16, perimeter: 7.5),
-                FloorHall(area: 8.1, perimeter: 13.8),
-                FireEscapeHall(area: 11.1, perimeter: 20.9),
               ],
             ),
             11
