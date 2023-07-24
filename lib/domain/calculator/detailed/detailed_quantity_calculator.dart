@@ -107,13 +107,13 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   }
 
   double get _hollowSlabRoughConstructionArea {
-    double roughConstructionArea = 0;
-    final hollowSlabFloors =
-        floors.where((e) => e.isCeilingHollowSlab == true).toList();
-    for (var floor in hollowSlabFloors) {
-      roughConstructionArea += floor.ceilingArea;
-    }
-    return roughConstructionArea;
+    double hollowSlabRoughConstructionArea = 0;
+    floors.where((floor) => floor.isCeilingHollowSlab == true).forEach(
+      (hollowSlabFloor) {
+        hollowSlabRoughConstructionArea += hollowSlabFloor.ceilingArea;
+      }
+    );
+    return hollowSlabRoughConstructionArea;
   }
 
   double get _buildingHeightWithoutSlabs {
@@ -553,8 +553,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
 
   @override
   double get calculatedPouringConcreteVolume {
-    return calculatedConcreteFormWorkArea *
-        projectConstants.concreteCubicMeterForOneSquareMeterFormWork;
+    return calculatedConcreteFormWorkArea * projectConstants.concreteCubicMeterForOneSquareMeterFormWork;
   }
 
   @override
@@ -564,8 +563,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
 
   @override
   double get calculatedRebarWeight {
-    return calculatedPouringConcreteVolume *
-        projectConstants.rebarTonForOneCubicMeterConcrete;
+    return calculatedPouringConcreteVolume * projectConstants.rebarTonForOneCubicMeterConcrete;
   }
 
   @override
@@ -575,9 +573,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
 
   @override
   double get calculatedHollowFloorFillingVolume {
-    return projectConstants.hollowAreaForOneSquareMeterConstructionArea *
-        _hollowSlabRoughConstructionArea *
-        projectConstants.hollowFillingThickness;
+    return projectConstants.hollowAreaForOneSquareMeterConstructionArea * _hollowSlabRoughConstructionArea * projectConstants.hollowFillingThickness;
   }
 
   @override
