@@ -128,10 +128,6 @@ class DetailedQuantityCalculator extends QuantityCalculator {
     return curtainsExceeding1MeterLength * _buildingHeightWithoutSlabs;
   }
 
-  double get _columnsSurfaceArea {
-    return columnsLess1MeterPerimeter * _buildingHeightWithoutSlabs;
-  }
-
   double get _basementsCurtainAreaWithoutSlab {
     return basementCurtainLength * _basementsHeightWithoutSlab;
   }
@@ -235,18 +231,6 @@ class DetailedQuantityCalculator extends QuantityCalculator {
     return totalRailingLength;
   }
 
-  double get _totalOuterWallArea {
-    return _totalFacadeArea - _totalWindowArea;
-  }
-
-  double get _totalInnerWallArea {
-    return (_thickWallArea - _totalOuterWallArea + _thinWallArea);
-  }
-
-  double get _totalCeilingArea {
-    return floors.map((e) => e.ceilingArea).toList().fold(0.0, (p, c) => p + c);
-  }
-
   double get _totalInteriorWetFloorArea {
     double area = 0;
     for (var floor in floors) {
@@ -264,6 +248,36 @@ class DetailedQuantityCalculator extends QuantityCalculator {
     for (var floor in floors) {
       for (var room in floor.rooms) {
         if (room.ceilingMaterial == CeilingMaterial.drywall) {
+          area += room.area;
+        }
+      }
+    }
+    return area;
+  }
+
+  double get _totalPaintingArea {
+    double area = 0;
+    for (var floor in floors) {
+      for (var room in floor.rooms) {
+        if (room.wallMaterial == WallMaterial.painting) {
+          area += (room.perimeter * floor.heightWithoutSlab);
+        }
+        if(room.ceilingMaterial == CeilingMaterial.drywall) {
+          area += room.area;
+        }
+      }
+    }
+    return area;
+  }
+
+  double get _totalPlasterArea {
+    double area = 0;
+    for (var floor in floors) {
+      for (var room in floor.rooms) {
+        if (room.wallMaterial == WallMaterial.painting) {
+          area += (room.perimeter * floor.heightWithoutSlab);
+        }
+        if(room.ceilingMaterial == CeilingMaterial.plaster) {
           area += room.area;
         }
       }
@@ -685,27 +699,22 @@ class DetailedQuantityCalculator extends QuantityCalculator {
 
   @override
   double get calculatedInteriorPlasteringArea {
-    return _basementsOuterCurtainArea +
-        (_coreCurtainAreaWithoutSlab * 2) +
-        (_curtainsExceeding1MeterAreaWithoutSlab * 2) +
-        _columnsSurfaceArea +
-        _totalOuterWallArea +
-        (_totalInnerWallArea * 2);
+    return _totalPlasterArea;
   }
 
   @override
   String get interiorPlasteringAreaExplanation {
-    return "Toplam bodrumlar dış perde alanı: $_basementsCurtainAreaWithoutSlab + Çekirdek perdeleri toplam alanı: $_coreCurtainAreaWithoutSlab x 2 (Çift yüz) + Toplam 1 metreyi geçen perde alanı: $_curtainsExceeding1MeterAreaWithoutSlab x 2 (Çift yüz) + Kolon yüzey alanı: $_columnsSurfaceArea + Toplam dış duvar alanı: $_totalOuterWallArea + Toplam iç duvar alanı: $_totalInnerWallArea x 2 (Çift yüz)";
+    return "Toplam sıva alanı: $_totalPlasterArea";
   }
 
   @override
   double get calculatedInteriorPaintingArea {
-    return calculatedInteriorPlasteringArea + _totalCeilingArea;
+    return _totalPaintingArea;
   }
 
   @override
   String get interiorPaintingAreaExplanation {
-    return "Toplam sıva alanı: $calculatedInteriorPlasteringArea + Toplam tavan alanı: $_totalCeilingArea";
+    return "Toplam boya alanı: $_totalPaintingArea";
   }
 
   @override

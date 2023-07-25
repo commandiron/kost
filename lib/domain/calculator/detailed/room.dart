@@ -33,7 +33,7 @@ enum WallMaterial {
   none, painting, ceramic,
 }
 enum CeilingMaterial {
-  none, drywall,
+  none, plaster, drywall,
 }
 
 class Door {
@@ -264,7 +264,7 @@ class Balcony extends Room {
       required super.perimeter,
       super.floorMaterial = FloorMaterial.ceramic,
       super.wallMaterial = WallMaterial.painting,
-      super.ceilingMaterial = CeilingMaterial.none,
+      super.ceilingMaterial = CeilingMaterial.plaster,
       super.hasCovingPlaster = false,
       super.hasFloorPlinth = false,
       super.hasScreed = true,
@@ -298,7 +298,7 @@ class FireEscapeHall extends Room {
       required super.perimeter,
       super.floorMaterial = FloorMaterial.marble,
       super.wallMaterial = WallMaterial.painting,
-      super.ceilingMaterial = CeilingMaterial.none,
+      super.ceilingMaterial = CeilingMaterial.plaster,
       super.hasCovingPlaster = false,
       super.hasFloorPlinth = false,
       super.hasScreed = false,
@@ -340,7 +340,7 @@ class ParkingArea extends Room {
       required super.perimeter,
       super.floorMaterial = FloorMaterial.epoxy,
       super.wallMaterial = WallMaterial.painting,
-      super.ceilingMaterial = CeilingMaterial.none,
+      super.ceilingMaterial = CeilingMaterial.plaster,
       super.hasCovingPlaster = false,
       super.hasFloorPlinth = false,
       super.hasScreed = false,
@@ -357,7 +357,7 @@ class TechnicalArea extends Room {
       required super.perimeter,
       super.floorMaterial = FloorMaterial.ceramic,
       super.wallMaterial = WallMaterial.painting,
-      super.ceilingMaterial = CeilingMaterial.none,
+      super.ceilingMaterial = CeilingMaterial.plaster,
       super.hasCovingPlaster = false,
       super.hasFloorPlinth = false,
       super.hasScreed = true,
