@@ -99,7 +99,7 @@ class SaloonWithKitchen extends Room {
     {
       required super.area,
       required super.perimeter,
-      super.floorMaterial = FloorMaterial.ceramic,
+      super.floorMaterial = FloorMaterial.parquet,
       super.wallMaterial = WallMaterial.painting,
       super.ceilingMaterial = CeilingMaterial.drywall,
       super.hasCovingPlaster = true,
