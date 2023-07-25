@@ -68,11 +68,11 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   }
 
   double get _excavationHeight {
-    return projectConstants.stabilizationHeight +
-        projectConstants.leanConcreteHeight +
-        projectConstants.insulationConcreteHeight +
-        foundationHeight +
-        _basementsHeight;
+    return projectConstants.stabilizationHeight
+      + projectConstants.leanConcreteHeight
+      + projectConstants.insulationConcreteHeight
+      + foundationHeight
+      + _basementsHeight;
   }
 
   double get _basementsHeight {
