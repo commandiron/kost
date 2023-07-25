@@ -178,6 +178,8 @@ class DetailedQuantityCalculator extends QuantityCalculator {
     return area;
   }
 
+  //Tek tek kontrol ediyorum buradan aşağıda kaldım.
+
   double get _totalDryWallArea {
     double area = 0;
     for (var floor in floors) {
