@@ -96,7 +96,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   }
 
   double get _buildingHeightWithoutSlabs {
-    return floors.map((e) => e.heightWithoutSlab).toList().fold(0.0, (p, c) => p + c);
+    return floors.map((floor) => floor.heightWithoutSlab).fold(0.0, (p, c) => p + c);
   }
 
   double get _coreCurtainAreaWithoutSlab {
@@ -112,11 +112,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   }
 
   double get _basementsOuterCurtainArea {
-    double resultArea = 0;
-    for (var basementFloor in _basementFloors) {
-      resultArea += basementFloor.perimeter * basementFloor.fullHeight;
-    }
-    return resultArea;
+    return _basementFloors.map((floor) => floor.perimeter * floor.fullHeight).fold(0.0, (p, c) => p + c);
   }
 
   double get _wetAreaAboveBasement {
@@ -124,10 +120,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   }
 
   double get _thickWallArea {
-    return floors
-        .map((e) => e.thickWallLength * e.heightWithoutSlab)
-        .toList()
-        .fold(0.0, (p, c) => p + c);
+    return floors.map((floor) => floor.thickWallLength * floor.heightWithoutSlab).fold(0.0, (p, c) => p + c);
   }
 
   double get _thickWallVolume {
@@ -135,10 +128,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   }
 
   double get _thinWallArea {
-    return floors
-        .map((e) => e.thinWallLength * e.heightWithoutSlab)
-        .toList()
-        .fold(0.0, (p, c) => p + c);
+    return floors.map((floor) => floor.thinWallLength * floor.heightWithoutSlab).fold(0.0, (p, c) => p + c);
   }
 
   double get _thinWallVolume {
@@ -146,68 +136,34 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   }
 
   double get _totalFacadeArea {
-    return _aboveBasementFloors
-        .map((e) => e.perimeter * e.fullHeight)
-        .toList()
-        .fold(0.0, (p, c) => p + c);
+    return _aboveBasementFloors.map((floor) => floor.perimeter * floor.fullHeight).fold(0.0, (p, c) => p + c);
   }
 
   double get _totalWindowArea {
-    if (floors.every((element) => element.windows.isEmpty)) {
-      return 0;
-    }
-
-    final floorsWithWindow =
-        floors.where((element) => element.windows.isNotEmpty).toList();
-
     double totalWindowArea = 0;
-    for (var floor in floorsWithWindow) {
-      totalWindowArea += floor.windows
-          .map((window) => window.width * window.height * window.count)
-          .toList()
-          .fold(0.0, (p, c) => p + c);
+    for (var floor in floors) {
+      final windowAreas = floor.windows.map((window) => window.width * window.height * window.count);
+      totalWindowArea += windowAreas.fold(0.0, (p, c) => p + c);
     }
-
     return totalWindowArea;
   }
 
   double get _totalFacadeRailingLength {
-    if (floors.every((element) => element.windows.isEmpty)) {
-      return 0;
+    double totalFacadeRailingLength = 0;
+    for (var floor in floors) {
+      final facadeRailingLengths = floor.windows.map((window) => window.hasRailing ? window.width * window.count : 0);
+      totalFacadeRailingLength += facadeRailingLengths.fold(0.0, (p, c) => p + c);
     }
-
-    final floorsWithWindow =
-        floors.where((element) => element.windows.isNotEmpty).toList();
-
-    double totalRailingLength = 0;
-    for (var floor in floorsWithWindow) {
-      totalRailingLength += floor.windows
-          .map((window) => window.hasRailing ? window.width * window.count : 0)
-          .toList()
-          .fold(0.0, (p, c) => p + c);
-    }
-
-    return totalRailingLength;
+    return totalFacadeRailingLength;
   }
 
   double get _totalWindowsillLength {
-    if (floors.every((element) => element.windows.isEmpty)) {
-      return 0;
+    double totalWindowsillLength = 0;
+    for (var floor in floors) {
+      final windowsillLengths = floor.windows.map((window) => window.hasWindowsill ? window.width * window.count : 0);
+      totalWindowsillLength += windowsillLengths.fold(0.0, (p, c) => p + c);
     }
-
-    final floorsWithWindow =
-        floors.where((element) => element.windows.isNotEmpty).toList();
-
-    double totalRailingLength = 0;
-    for (var floor in floorsWithWindow) {
-      totalRailingLength += floor.windows
-          .map((window) =>
-              window.hasWindowsill ? window.width * window.count : 0)
-          .toList()
-          .fold(0.0, (p, c) => p + c);
-    }
-
-    return totalRailingLength;
+    return totalWindowsillLength;
   }
 
   double get _totalInteriorWetFloorArea {
