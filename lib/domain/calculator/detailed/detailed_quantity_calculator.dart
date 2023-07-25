@@ -67,9 +67,9 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   }
 
   List<Floor> get _aboveBasementFloors {
-    final aboverBasementFloors =
+    final aboveBasementFloors =
         floors.where((element) => element.no >= 0).toList();
-    return aboverBasementFloors;
+    return aboveBasementFloors;
   }
 
   double get _excavationHeight {
