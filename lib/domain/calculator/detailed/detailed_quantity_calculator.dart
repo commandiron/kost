@@ -58,13 +58,11 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   }
 
   List<Floor> get _normalFloors {
-    final normalFloors = floors.where((floor) => floor.no > 0).toList();
-    return normalFloors;
+    return floors.where((floor) => floor.no > 0).toList();
   }
 
   List<Floor> get _aboveBasementFloors {
-    final aboveBasementFloors = floors.where((floor) => floor.no >= 0).toList();
-    return aboveBasementFloors;
+    return floors.where((floor) => floor.no >= 0).toList();
   }
 
   double get _excavationHeight {
@@ -76,19 +74,11 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   }
 
   double get _basementsHeight {
-    double basementsHeight = 0;
-    for (var basementFloor in _basementFloors) {
-      basementsHeight += basementFloor.fullHeight;
-    }
-    return basementsHeight;
+    return _basementFloors.map((floor) => floor.fullHeight).fold(0.0, (p, c) => p + c);
   }
 
   double get _basementsHeightWithoutSlab {
-    double basementsHeightWithoutSlab = 0;
-    for (var basementFloor in _basementFloors) {
-      basementsHeightWithoutSlab += basementFloor.heightWithoutSlab;
-    }
-    return basementsHeightWithoutSlab;
+    return _basementFloors.map((floor) => floor.heightWithoutSlab).fold(0.0, (p, c) => p + c);
   }
 
   double get _roughConstructionArea {
