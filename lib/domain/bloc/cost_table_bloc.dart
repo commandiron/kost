@@ -161,10 +161,11 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
               ],
               rooms: [
                 ElevatorShaft(area: 8.61, perimeter: 12.8),
-                StairsShaft(area: 7.2, perimeter: 10.9),
                 Shaft(area: 1.05, perimeter: 5.2,),
                 FloorHall(area: 8.1, perimeter: 13.8),
                 FireEscapeHall(area: 11.1, perimeter: 20.9),
+                Stairs(area: 7.2, perimeter: 10.9),
+                Stairs(area: 5.1, perimeter: 10.9),
 
                 ApartmentEntree(area: 0, perimeter: 0),
                 SaloonWithKitchen(area: 39.38, perimeter: 35.3,),
@@ -205,10 +206,11 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
           ],
           rooms: [
             ElevatorShaft(area: 8.61, perimeter: 12.8),
-            StairsShaft(area: 7.2, perimeter: 10.9),
             Shaft(area: 1.05, perimeter: 5.2,),
             FireEscapeHall(area: 11.1, perimeter: 20.9),
             BuildingHall(area: 15.92, perimeter: 21.1),
+            Stairs(area: 7.2, perimeter: 10.9),
+            Stairs(area: 5.1, perimeter: 10.9),
 
             ApartmentEntree(area: 0, perimeter: 0),
             SaloonWithKitchen(area: 33.40, perimeter: 30.65,),
@@ -237,8 +239,9 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
           windows: [],
           rooms: [
             ElevatorShaft(area: 8.61, perimeter: 12.8),
-            StairsShaft(area: 7.2, perimeter: 10.9),
             Shaft(area: 1.05, perimeter: 5.2,),
+            Stairs(area: 7.2, perimeter: 10.9),
+            Stairs(area: 5.1, perimeter: 10.9),
 
             FloorHall(area: 6.07, perimeter: 11.1, doors: [Door(count: 1, doorType: DoorType.fire)]),
             FireEscapeHall(area: 17.62, perimeter: 20.9, doors: [Door(count: 1, doorType: DoorType.fire)]),

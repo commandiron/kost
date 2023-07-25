@@ -388,14 +388,14 @@ class ElevatorShaft extends Room {
   );
 }
 
-class StairsShaft extends Room {
-  StairsShaft(
+class Stairs extends Room {
+  Stairs(
     {
       required super.area,
       required super.perimeter,
       super.floorMaterial = FloorMaterial.marbleStep,
       super.wallMaterial = WallMaterial.painting,
-      super.ceilingMaterial = CeilingMaterial.none,
+      super.ceilingMaterial = CeilingMaterial.plaster,
       super.hasCovingPlaster = false,
       super.hasFloorPlinth = false,
       super.hasScreed = false,

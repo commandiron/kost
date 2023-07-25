@@ -12,8 +12,7 @@ class ProjectConstants {
   final double thinWallThickness;
   final double stairRiserHeight;
   final double stairTreadDepth;
-  final double mainStairsStepLength;
-  final double fireStairsStepLength;
+  final double stairLength;
   final double buildingEntranceDoorArea;
   final int airConditionerNumberForOneApartment;
   final double bathroomCabinetArea;
@@ -38,8 +37,7 @@ class ProjectConstants {
       this.thinWallThickness = 0.085,
       this.stairRiserHeight = 0.18,
       this.stairTreadDepth = 0.26,
-      this.mainStairsStepLength = 1,
-      this.fireStairsStepLength = 1,
+      this.stairLength = 1,
       this.buildingEntranceDoorArea = 6,
       this.airConditionerNumberForOneApartment = 2,
       this.bathroomCabinetArea = 1,

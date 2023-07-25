@@ -321,25 +321,30 @@ class DetailedQuantityCalculator extends QuantityCalculator {
     return area;
   }
 
-  double get _totalBuildingStairsHeight {
-    return floors.map((e) => e.fullHeight).toList().fold(0.0, (p, e) => p + e) -
-        _topFloor.fullHeight;
+  double get _totalMarbleStepLength {
+    double length = 0;
+    for (var floor in floors) {
+      for (var room in floor.rooms) {
+        if (room.floorMaterial == FloorMaterial.marbleStep) {
+          final stepCount = floor.fullHeight / projectConstants.stairRiserHeight;
+          length += (projectConstants.stairLength * stepCount);
+        }
+      }
+    }
+    return length;
   }
 
-  int get _totalMainStairsCount {
-    return _totalBuildingStairsHeight ~/ projectConstants.stairRiserHeight;
-  }
-
-  double get _totalMainStairsLength {
-    return _totalMainStairsCount * projectConstants.mainStairsStepLength;
-  }
-
-  int get _totalFireStairsCount {
-    return _totalBuildingStairsHeight ~/ projectConstants.stairRiserHeight;
-  }
-
-  double get _totalFireStairsLength {
-    return _totalFireStairsCount * projectConstants.fireStairsStepLength;
+  double get _totalStairRailingsLength {
+    double length = 0;
+    for (var floor in floors) {
+      for (var room in floor.rooms) {
+        if (room.floorMaterial == FloorMaterial.marbleStep) {
+          final stepCount = floor.fullHeight / projectConstants.stairRiserHeight;
+          length += stepCount * projectConstants.stairTreadDepth;
+        }
+      }
+    }
+    return length;
   }
 
   double get _totalCeramicFloorArea {
@@ -595,8 +600,6 @@ class DetailedQuantityCalculator extends QuantityCalculator {
     return "1 m2 kaba inşaat alanı için m2 biriminde asmolen alanı: ${projectConstants.hollowAreaForOneSquareMeterConstructionArea} x Asmolen döşeme inşaat alanı: $_hollowSlabRoughConstructionArea x Asmolen kalınlığı: ${projectConstants.hollowFillingThickness}";
   }
 
-  //Burda kaldım, aşağı doğru kontrol etmeye devam et. Bu hesaplamaları basitleştirmenin yolunu ara.
-
   @override
   double get calculatedFoundationWaterProofingArea {
     return foundationArea + (foundationPerimeter * foundationHeight);
@@ -769,12 +772,12 @@ class DetailedQuantityCalculator extends QuantityCalculator {
 
   @override
   double get calculatedMarbleStepLength {
-    return _totalMainStairsLength + _totalFireStairsLength;
+    return _totalMarbleStepLength;
   }
 
   @override
   String get marbleStepLengthExplanation {
-    return "Toplam ana merdiven basamak uzunluğu: $_totalMainStairsLength + Toplam yangın merdiveni basamak uzunluğu:: $_totalFireStairsLength";
+    return "Toplam basamak uzunluğu: $_totalMarbleStepLength";
   }
 
   @override
@@ -789,13 +792,12 @@ class DetailedQuantityCalculator extends QuantityCalculator {
 
   @override
   double get calculatedStairRailingsLength {
-    return (_totalMainStairsCount + _totalFireStairsCount) *
-        projectConstants.stairTreadDepth;
+    return _totalStairRailingsLength;
   }
 
   @override
   String get stairRailingsLengthExplanation {
-    return "Toplam ana merdiven ve yangın merdiveni basamak toplamı: ($_totalMainStairsCount + $_totalFireStairsCount) x Basamak genişliği: ${projectConstants.stairTreadDepth}";
+    return "Toplam merdiven korkuluğu uzunluğu: $_totalStairRailingsLength";
   }
 
   @override
