@@ -92,13 +92,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
   }
 
   double get _hollowSlabRoughConstructionArea {
-    double hollowSlabRoughConstructionArea = 0;
-    floors.where((floor) => floor.isCeilingHollowSlab == true).forEach(
-      (hollowSlabFloor) {
-        hollowSlabRoughConstructionArea += hollowSlabFloor.ceilingArea;
-      }
-    );
-    return hollowSlabRoughConstructionArea;
+    return floors.where((floor) => floor.isCeilingHollowSlab).map((ceilingSlabFloor) => ceilingSlabFloor.ceilingArea).fold(0.0, (p, c) => p + c);
   }
 
   double get _buildingHeightWithoutSlabs {
