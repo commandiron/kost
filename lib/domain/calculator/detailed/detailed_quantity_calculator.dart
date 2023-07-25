@@ -262,7 +262,7 @@ class DetailedQuantityCalculator extends QuantityCalculator {
         if (room.wallMaterial == WallMaterial.painting) {
           area += (room.perimeter * floor.heightWithoutSlab);
         }
-        if(room.ceilingMaterial == CeilingMaterial.drywall) {
+        if(room.ceilingMaterial == CeilingMaterial.drywall || room.ceilingMaterial == CeilingMaterial.plaster) {
           area += room.area;
         }
       }
