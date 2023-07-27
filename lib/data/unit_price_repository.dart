@@ -11,29 +11,34 @@ class UnitPriceRepository {
         currency: Currency.lira,
         dateTime: DateTime(2023, 08)
     ),
+    //Habip
     UnitPrice(
         category: UnitPriceCategory.excavation,
         amount: 450,
         currency: Currency.lira,
         dateTime: DateTime(2023, 01)),
+    //Habip
     UnitPrice(
         category: UnitPriceCategory.breaker,
         amount: 1500,
         currency: Currency.lira,
         dateTime: DateTime(2023, 01)),
+    //Can Malzeme
     UnitPrice(
         category: UnitPriceCategory.foundationStabilizationGravel,
         amount: 450,
         currency: Currency.lira,
         dateTime: DateTime(2023, 01)),
-    UnitPrice(
-        category: UnitPriceCategory.c16Concrete,
-        amount: 1500,
-        currency: Currency.lira,
-        dateTime: DateTime(2023, 07)),
+    //Kalıp Yaşar - duvarsız sor
     UnitPrice(
         category: UnitPriceCategory.plywood,
         amount: 900,
+        currency: Currency.lira,
+        dateTime: DateTime(2023, 07)),
+    //Beton Albayrak
+    UnitPrice(
+        category: UnitPriceCategory.c16Concrete,
+        amount: 1500,
         currency: Currency.lira,
         dateTime: DateTime(2023, 07)),
     UnitPrice(
