@@ -337,7 +337,7 @@ class UnitPriceRepository {
         currency: Currency.lira,
         dateTime: DateTime(2023, 01)),
 
-    //Asansör - Kone
+    //Asansör - Kone ✓
     UnitPrice(
         category: UnitPriceCategory.elevation10PersonKone,
         fixedAmount: 30000,
