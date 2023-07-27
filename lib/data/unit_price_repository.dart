@@ -9,7 +9,7 @@ class UnitPriceRepository {
         amount: 2700,
         fixedAmount: 30000,
         currency: Currency.lira,
-        dateTime: DateTime(2023, 07)
+        dateTime: DateTime(2023, 08)
     ),
     UnitPrice(
         category: UnitPriceCategory.excavation,
