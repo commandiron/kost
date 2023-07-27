@@ -4,7 +4,7 @@ import '../domain/model/unit_price/unit_price_category.dart';
 
 class UnitPriceRepository {
   static List<UnitPrice> unitPrices = [
-    //Deniz, alındı.
+    //Deniz ✓
     UnitPrice(
         category: UnitPriceCategory.shutCrete,
         amount: 2700,
