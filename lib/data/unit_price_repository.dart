@@ -6,9 +6,9 @@ class UnitPriceRepository {
   //Base Prices
   static UnitPrice s420Steel = UnitPrice(
       category: UnitPriceCategory.s420Steel,
-      amount: 19500/1.18,
+      amount: 19000/1.18,
       currency: Currency.lira,
-      dateTime: DateTime(2023, 07));
+      dateTime: DateTime(2023, 08));
   static UnitPrice c40Concrete = UnitPrice(
       category: UnitPriceCategory.c40Concrete,
       amount: 2000,
@@ -92,9 +92,9 @@ class UnitPriceRepository {
         dateTime: DateTime(2023, 01)),
     UnitPrice(
         category: UnitPriceCategory.doubleLayerBitumenMembrane,
-        amount: 180,
+        amount: 224.47,
         currency: Currency.lira,
-        dateTime: DateTime(2023, 01)),
+        dateTime: DateTime(2023, 08)),
     UnitPrice(
         category: UnitPriceCategory.bitumenSliding,
         amount: 155,
