@@ -32,7 +32,7 @@ class UnitPriceRepository {
         currency: Currency.lira,
         dateTime: DateTime(2023, 07)),
 
-    //Beton Albayrak
+    //Beton Albayrak ✓
     UnitPrice(
         category: UnitPriceCategory.c16Concrete,
         amount: 2150,
@@ -55,7 +55,7 @@ class UnitPriceRepository {
         dateTime: DateTime(2023, 08)
     ),
 
-    //İnternet ✓
+    //İnşaat Demiri - İnternet ✓
     UnitPrice(
         category: UnitPriceCategory.s420Steel,
         amount: 19000/1.18,
