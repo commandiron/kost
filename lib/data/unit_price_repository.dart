@@ -25,10 +25,10 @@ class UnitPriceRepository {
         currency: Currency.lira,
         dateTime: DateTime(2023, 08)),
 
-    //Kalıp Yaşar - duvarsız sor
+    //Kalıp Yaşar ✓
     UnitPrice(
         category: UnitPriceCategory.plywood,
-        amount: 900,
+        amount: 800,
         currency: Currency.lira,
         dateTime: DateTime(2023, 07)),
 
@@ -272,7 +272,7 @@ class UnitPriceRepository {
         currency: Currency.lira,
         dateTime: DateTime(2023, 01)),
 
-    //Vrf erdinç v
+    //Vrf klima erdinç (Fiyat vermişti multi split felan onuda ekle Mitshubishi)
     UnitPrice(
         category: UnitPriceCategory.airConditionerArcelik,
         amount: 10000,
@@ -283,6 +283,7 @@ class UnitPriceRepository {
         amount: 180,
         currency: Currency.lira,
         dateTime: DateTime(2023, 01)),
+
     UnitPrice(
         category: UnitPriceCategory.galvanize25TonWaterTankEsinoks,
         amount: 110000,
