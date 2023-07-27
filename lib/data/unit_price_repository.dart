@@ -287,7 +287,7 @@ class UnitPriceRepository {
         currency: Currency.lira,
         dateTime: DateTime(2023, 01)),
 
-    //Mutfak dolabı - Ramazan, Hacker, Aster (Fiyat yeni aldık, düzenle)
+    //Mutfak dolabı - Ramazan, Hacker, Aster ✓
     UnitPrice(
         category: UnitPriceCategory.shinyLacqueredKitchenCupboardAster,
         amount: 500,
