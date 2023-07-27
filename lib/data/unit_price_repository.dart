@@ -3,51 +3,14 @@ import '../domain/model/unit_price/unit_price.dart';
 import '../domain/model/unit_price/unit_price_category.dart';
 
 class UnitPriceRepository {
-  //Base Prices
-  static UnitPrice s420Steel = UnitPrice(
-      category: UnitPriceCategory.s420Steel,
-      amount: 19000/1.18,
-      currency: Currency.lira,
-      dateTime: DateTime(2023, 08));
-  static UnitPrice c40Concrete = UnitPrice(
-      category: UnitPriceCategory.c40Concrete,
-      amount: 2000,
-      currency: Currency.lira,
-      dateTime: DateTime(2023, 07));
-  static UnitPrice diesel = UnitPrice(
-      category: UnitPriceCategory.excavation,
-      amount: 1,
-      currency: Currency.euro,
-      dateTime: DateTime(2023, 7)
-  );
-  static UnitPrice unUsed30TonExcavatorHourlyDepreciation = UnitPrice(
-    category: UnitPriceCategory.excavation,
-    amount: 200000 / 5 / 12 / 30 / 8,
-    currency: Currency.euro,
-    dateTime: DateTime(2023, 07)
-  );
-  static UnitPrice excavatorOperatorHourlyWage = UnitPrice(
-      category: UnitPriceCategory.excavation,
-      amount: 1200 / 30 / 8,
-      currency: Currency.euro,
-      dateTime: DateTime(2023, 07)
-  );
-
-  static const _profitAndOverhead = 1.30;
-
-  //Calculated Prices
-  static const _shutCreteThickness = 0.2;
-  static const _shutCreteSteelTonPerSquareMeter = 0.1;
-  static UnitPrice shutCrete = UnitPrice(
-    category: UnitPriceCategory.shutCrete,
-    amount: ((c40Concrete.amount * _shutCreteThickness) + (s420Steel.amount * _shutCreteSteelTonPerSquareMeter)) * _profitAndOverhead,
-    fixedAmount: 30000,
-    currency: c40Concrete.currency,
-    dateTime: DateTime(2023, 07)
-  );
-
   static List<UnitPrice> unitPrices = [
-    shutCrete,
+    UnitPrice(
+      category: UnitPriceCategory.shutCrete,
+      amount: 2700,
+      fixedAmount: 30000,
+      currency: Currency.lira,
+      dateTime: DateTime(2023, 07)
+    ),
     UnitPrice(
         category: UnitPriceCategory.excavation,
         amount: 450,
@@ -55,8 +18,8 @@ class UnitPriceRepository {
         dateTime: DateTime(2023, 01)),
     UnitPrice(
         category: UnitPriceCategory.breaker,
-        amount: (diesel.amount * 20 + unUsed30TonExcavatorHourlyDepreciation.amount + excavatorOperatorHourlyWage.amount) * _profitAndOverhead, //1500
-        currency: diesel.currency,
+        amount: 1500,
+        currency: Currency.lira,
         dateTime: DateTime(2023, 01)),
     UnitPrice(
         category: UnitPriceCategory.foundationStabilizationGravel,
@@ -65,8 +28,8 @@ class UnitPriceRepository {
         dateTime: DateTime(2023, 01)),
     UnitPrice(
         category: UnitPriceCategory.c16Concrete,
-        amount: c40Concrete.amount * 0.75,
-        currency: c40Concrete.currency,
+        amount: 1500,
+        currency: Currency.lira,
         dateTime: DateTime(2023, 07)),
     UnitPrice(
         category: UnitPriceCategory.plywood,
@@ -75,16 +38,26 @@ class UnitPriceRepository {
         dateTime: DateTime(2023, 07)),
     UnitPrice(
         category: UnitPriceCategory.c30Concrete,
-        amount: c40Concrete.amount * 0.9,
-        currency: c40Concrete.currency,
+        amount: 1800,
+        currency: Currency.lira,
         dateTime: DateTime(2023, 07)),
     UnitPrice(
         category: UnitPriceCategory.c35Concrete,
-        amount: c40Concrete.amount * 0.95,
-        currency: c40Concrete.currency,
+        amount: 1900,
+        currency: Currency.lira,
         dateTime: DateTime(2023, 07)),
-    c40Concrete,
-    s420Steel,
+    UnitPrice(
+        category: UnitPriceCategory.c40Concrete,
+        amount: 2000,
+        currency: Currency.lira,
+        dateTime: DateTime(2023, 07)
+    ),
+    UnitPrice(
+        category: UnitPriceCategory.s420Steel,
+        amount: 19000/1.18,
+        currency: Currency.lira,
+        dateTime: DateTime(2023, 08)
+    ),
     UnitPrice(
         category: UnitPriceCategory.eps,
         amount: 815,
