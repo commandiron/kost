@@ -5,11 +5,11 @@ import '../domain/model/unit_price/unit_price_category.dart';
 class UnitPriceRepository {
   static List<UnitPrice> unitPrices = [
     UnitPrice(
-      category: UnitPriceCategory.shutCrete,
-      amount: 2700,
-      fixedAmount: 30000,
-      currency: Currency.lira,
-      dateTime: DateTime(2023, 07)
+        category: UnitPriceCategory.shutCrete,
+        amount: 2700,
+        fixedAmount: 30000,
+        currency: Currency.lira,
+        dateTime: DateTime(2023, 07)
     ),
     UnitPrice(
         category: UnitPriceCategory.excavation,
