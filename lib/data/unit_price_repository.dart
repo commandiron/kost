@@ -289,11 +289,15 @@ class UnitPriceRepository {
 
     //Mutfak dolabı - Ramazan, Hacker, Aster (Fiyat yeni aldık, düzenle)
     UnitPrice(
-        category: UnitPriceCategory.lacqueredKitchenCupboard,
-        amount: 8000,
-        currency: Currency.lira,
-        dateTime: DateTime(2023, 01)),
-
+        category: UnitPriceCategory.shinyLacqueredKitchenCupboardAster,
+        amount: 500,
+        currency: Currency.euro,
+        dateTime: DateTime(2023, 08)),
+    UnitPrice(
+        category: UnitPriceCategory.matteLacqueredKitchenCupboardAster,
+        amount: 435,
+        currency: Currency.euro,
+        dateTime: DateTime(2023, 08)),
 
     //Marangoz - Ramazan (Markasız olanlar bunun altında dursun)
     UnitPrice(

@@ -64,7 +64,7 @@ enum JobCategory {
   entranceDoor([UnitPriceCategory.entranceDoor]),
   fireDoor([UnitPriceCategory.ironFireDoor]),
   woodenDoor([UnitPriceCategory.lacqueredDoor]),
-  kitchenCupboard([UnitPriceCategory.lacqueredKitchenCupboard]),
+  kitchenCupboard([UnitPriceCategory.shinyLacqueredKitchenCupboardAster, UnitPriceCategory.matteLacqueredKitchenCupboardAster]),
   kitchenCounter([UnitPriceCategory.quartzCountertopCimstone]),
   coatCabinet([UnitPriceCategory.lacqueredCabinet]),
   bathroomCabinet([UnitPriceCategory.lacqueredCabinet]),
