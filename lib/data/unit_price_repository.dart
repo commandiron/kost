@@ -12,24 +12,26 @@ class UnitPriceRepository {
         currency: Currency.lira,
         dateTime: DateTime(2023, 08)
     ),
+
     //Habip
     UnitPrice(
         category: UnitPriceCategory.excavation,
         amount: 450,
         currency: Currency.lira,
         dateTime: DateTime(2023, 01)),
-    //Habip
     UnitPrice(
         category: UnitPriceCategory.breaker,
         amount: 1500,
         currency: Currency.lira,
         dateTime: DateTime(2023, 01)),
+
     //Kalıp Yaşar - duvarsız sor
     UnitPrice(
         category: UnitPriceCategory.plywood,
         amount: 900,
         currency: Currency.lira,
         dateTime: DateTime(2023, 07)),
+
     //Beton Albayrak
     UnitPrice(
         category: UnitPriceCategory.c16Concrete,
@@ -52,12 +54,15 @@ class UnitPriceRepository {
         currency: Currency.lira,
         dateTime: DateTime(2023, 07)
     ),
+
+    //İnternet ✓
     UnitPrice(
         category: UnitPriceCategory.s420Steel,
         amount: 19000/1.18,
         currency: Currency.lira,
         dateTime: DateTime(2023, 08)
     ),
+
     //Tunç - İzolasyon
     UnitPrice(
         category: UnitPriceCategory.doubleLayerBitumenMembrane,
@@ -74,6 +79,7 @@ class UnitPriceRepository {
         amount: 30,
         currency: Currency.lira,
         dateTime: DateTime(2023, 01)),
+
     //Can Malzeme
     UnitPrice(
         category: UnitPriceCategory.foundationStabilizationGravel,
@@ -90,6 +96,12 @@ class UnitPriceRepository {
         amount: 1500,
         currency: Currency.lira,
         dateTime: DateTime(2023, 01)),
+    UnitPrice(
+        category: UnitPriceCategory.cementBasedFlexInsulation,
+        amount: 200,
+        currency: Currency.lira,
+        dateTime: DateTime(2023, 01)),
+
     //Duvarcı
     UnitPrice(
         category: UnitPriceCategory.aeratedConcreteLabor,
@@ -101,24 +113,28 @@ class UnitPriceRepository {
         amount: 3000,
         currency: Currency.lira,
         dateTime: DateTime(2023, 01)),
+
     //Çatıcı - fiyat zaten çalışıyor şu an.
     UnitPrice(
         category: UnitPriceCategory.steelScaffolding,
         amount: 208,
         currency: Currency.lira,
         dateTime: DateTime(2023, 07)),
+
     //Rehau doğramacı, bunun euro teklifi vardı onun üzerinden gidebilirsin.
     UnitPrice(
         category: UnitPriceCategory.windowJoineryRehau,
         amount: 6000,
         currency: Currency.lira,
         dateTime: DateTime(2023, 01)),
+
     //Selçuk veya internet
     UnitPrice(
         category: UnitPriceCategory.wroughtIronRailing,
         amount: 3000,
         currency: Currency.lira,
         dateTime: DateTime(2023, 01)),
+
     //Cepheci - bunun birim fiyatı nasıl hesaplanacak bir düşün
     UnitPrice(
         category: UnitPriceCategory.ceramicFacade,
@@ -130,24 +146,21 @@ class UnitPriceRepository {
         amount: 800,
         currency: Currency.lira,
         dateTime: DateTime(2023, 01)),
+
     //Alçı Sıvacı Abdullah
     UnitPrice(
         category: UnitPriceCategory.plaster,
         amount: 100,
         currency: Currency.lira,
         dateTime: DateTime(2023, 01)),
+
     //Nebi
     UnitPrice(
         category: UnitPriceCategory.painting,
         amount: 110,
         currency: Currency.lira,
         dateTime: DateTime(2023, 01)),
-    //İnternet
-    UnitPrice(
-        category: UnitPriceCategory.cementBasedFlexInsulation,
-        amount: 200,
-        currency: Currency.lira,
-        dateTime: DateTime(2023, 01)),
+
     //Alçıpancı Bedir
     UnitPrice(
         category: UnitPriceCategory.drywall,
@@ -159,11 +172,15 @@ class UnitPriceRepository {
         amount: 55,
         currency: Currency.lira,
         dateTime: DateTime(2023, 01)),
+
+    //Şapçı
     UnitPrice(
         category: UnitPriceCategory.screed,
         amount: 156,
         currency: Currency.lira,
         dateTime: DateTime(2023, 01)),
+
+    //Mermerci
     UnitPrice(
         category: UnitPriceCategory.marbleFloorBilecik,
         amount: 1000,
