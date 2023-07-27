@@ -106,16 +106,19 @@ class UnitPriceRepository {
         amount: 208,
         currency: Currency.lira,
         dateTime: DateTime(2023, 07)),
+    //Rehau doğramacı, bunun euro teklifi vardı onun üzerinden gidebilirsin.
     UnitPrice(
         category: UnitPriceCategory.windowJoineryRehau,
         amount: 6000,
         currency: Currency.lira,
         dateTime: DateTime(2023, 01)),
+    //Selçuk veya internet
     UnitPrice(
         category: UnitPriceCategory.wroughtIronRailing,
         amount: 3000,
         currency: Currency.lira,
         dateTime: DateTime(2023, 01)),
+    //Cepheci - bunun birim fiyatı nasıl hesaplanacak bir düşün
     UnitPrice(
         category: UnitPriceCategory.ceramicFacade,
         amount: 600,
@@ -126,21 +129,25 @@ class UnitPriceRepository {
         amount: 800,
         currency: Currency.lira,
         dateTime: DateTime(2023, 01)),
+    //Alçı Sıvacı Abdullah
     UnitPrice(
         category: UnitPriceCategory.plaster,
         amount: 100,
         currency: Currency.lira,
         dateTime: DateTime(2023, 01)),
+    //Nebi
     UnitPrice(
         category: UnitPriceCategory.painting,
         amount: 110,
         currency: Currency.lira,
         dateTime: DateTime(2023, 01)),
+    //İnternet
     UnitPrice(
         category: UnitPriceCategory.cementBasedFlexInsulation,
         amount: 200,
         currency: Currency.lira,
         dateTime: DateTime(2023, 01)),
+    //Alçıpancı Bedir
     UnitPrice(
         category: UnitPriceCategory.drywall,
         amount: 230,
