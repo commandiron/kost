@@ -134,6 +134,11 @@ class UnitPriceRepository {
         amount: 3000,
         currency: Currency.lira,
         dateTime: DateTime(2023, 01)),
+    UnitPrice(
+        category: UnitPriceCategory.aluminumRailing,
+        amount: 1000,
+        currency: Currency.lira,
+        dateTime: DateTime(2023, 01)),
 
     //Cepheci - bunun birim fiyatı nasıl hesaplanacak bir düşün
     UnitPrice(
@@ -196,21 +201,22 @@ class UnitPriceRepository {
         amount: 850,
         currency: Currency.lira,
         dateTime: DateTime(2023, 01)),
-    UnitPrice(
-        category: UnitPriceCategory.aluminumRailing,
-        amount: 1000,
-        currency: Currency.lira,
-        dateTime: DateTime(2023, 01)),
+
+    //Seramik internet
     UnitPrice(
         category: UnitPriceCategory.ceramicTileEge,
         amount: 500,
         currency: Currency.lira,
         dateTime: DateTime(2023, 01)),
+
+    //Parke şerifoğlu ✓
     UnitPrice(
         category: UnitPriceCategory.laminatedSerifoglu,
         amount: 52,
         currency: Currency.euro,
         dateTime: DateTime(2023, 01)),
+
+    //Kapı Ahmet
     UnitPrice(
         category: UnitPriceCategory.steelDoorKale,
         amount: 16000,
@@ -226,6 +232,7 @@ class UnitPriceRepository {
         amount: 4200,
         currency: Currency.lira,
         dateTime: DateTime(2023, 01)),
+
     UnitPrice(
         category: UnitPriceCategory.lacqueredDoor,
         amount: 8000,
