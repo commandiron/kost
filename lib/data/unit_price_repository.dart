@@ -219,7 +219,7 @@ class UnitPriceRepository {
         category: UnitPriceCategory.laminatedSerifoglu,
         amount: 52,
         currency: Currency.euro,
-        dateTime: DateTime(2023, 01)),
+        dateTime: DateTime(2023, 08)),
 
     //Kapı Ahmet
     UnitPrice(
