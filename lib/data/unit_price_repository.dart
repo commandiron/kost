@@ -21,7 +21,7 @@ class UnitPriceRepository {
         dateTime: DateTime(2023, 01)),
     UnitPrice(
         category: UnitPriceCategory.breaker,
-        amount: 1500,
+        amount: 2000,
         currency: Currency.lira,
         dateTime: DateTime(2023, 01)),
 
@@ -185,7 +185,7 @@ class UnitPriceRepository {
         currency: Currency.lira,
         dateTime: DateTime(2023, 01)),
 
-    //Mermerci
+    //Mermerci Osman
     UnitPrice(
         category: UnitPriceCategory.marbleFloorBilecik,
         amount: 1000,
@@ -199,6 +199,11 @@ class UnitPriceRepository {
     UnitPrice(
         category: UnitPriceCategory.marbleWindowsillBilecik,
         amount: 850,
+        currency: Currency.lira,
+        dateTime: DateTime(2023, 01)),
+    UnitPrice(
+        category: UnitPriceCategory.quartzCountertopCimstone,
+        amount: 3500,
         currency: Currency.lira,
         dateTime: DateTime(2023, 01)),
 
@@ -233,21 +238,22 @@ class UnitPriceRepository {
         currency: Currency.lira,
         dateTime: DateTime(2023, 01)),
 
+    //Still door kapı fiyatı gelecek bu unit price'ı markalı yap
     UnitPrice(
         category: UnitPriceCategory.lacqueredDoor,
         amount: 8000,
         currency: Currency.lira,
         dateTime: DateTime(2023, 01)),
+
+    //Fiyat var yeni aldık. (Hacker ve Aster var), unit price'ı markalı yap
     UnitPrice(
         category: UnitPriceCategory.lacqueredKitchenCupboard,
         amount: 8000,
         currency: Currency.lira,
         dateTime: DateTime(2023, 01)),
-    UnitPrice(
-        category: UnitPriceCategory.quartzCountertopCimstone,
-        amount: 3500,
-        currency: Currency.lira,
-        dateTime: DateTime(2023, 01)),
+
+
+    //Marangoz ramazan (Markasız olanlar bunun altında dursun)
     UnitPrice(
         category: UnitPriceCategory.lacqueredCabinet,
         amount: 5000,
@@ -258,11 +264,15 @@ class UnitPriceRepository {
         amount: 100,
         currency: Currency.lira,
         dateTime: DateTime(2023, 01)),
+
+    //Halil
     UnitPrice(
         category: UnitPriceCategory.mechanicalInfrastructure,
         amount: 100000,
         currency: Currency.lira,
         dateTime: DateTime(2023, 01)),
+
+    //Vrf erdinç v
     UnitPrice(
         category: UnitPriceCategory.airConditionerArcelik,
         amount: 10000,
