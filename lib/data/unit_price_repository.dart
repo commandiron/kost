@@ -23,12 +23,6 @@ class UnitPriceRepository {
         amount: 1500,
         currency: Currency.lira,
         dateTime: DateTime(2023, 01)),
-    //Can Malzeme
-    UnitPrice(
-        category: UnitPriceCategory.foundationStabilizationGravel,
-        amount: 450,
-        currency: Currency.lira,
-        dateTime: DateTime(2023, 01)),
     //Kalıp Yaşar - duvarsız sor
     UnitPrice(
         category: UnitPriceCategory.plywood,
@@ -63,11 +57,7 @@ class UnitPriceRepository {
         currency: Currency.lira,
         dateTime: DateTime(2023, 08)
     ),
-    UnitPrice(
-        category: UnitPriceCategory.eps,
-        amount: 815,
-        currency: Currency.lira,
-        dateTime: DateTime(2023, 01)),
+    //Tunç - İzolasyon
     UnitPrice(
         category: UnitPriceCategory.doubleLayerBitumenMembrane,
         amount: 224.47,
@@ -83,11 +73,23 @@ class UnitPriceRepository {
         amount: 30,
         currency: Currency.lira,
         dateTime: DateTime(2023, 01)),
+    //Can Malzeme
+    UnitPrice(
+        category: UnitPriceCategory.foundationStabilizationGravel,
+        amount: 450,
+        currency: Currency.lira,
+        dateTime: DateTime(2023, 01)),
+    UnitPrice(
+        category: UnitPriceCategory.eps,
+        amount: 815,
+        currency: Currency.lira,
+        dateTime: DateTime(2023, 01)),
     UnitPrice(
         category: UnitPriceCategory.aeratedConcreteMaterial,
         amount: 1500,
         currency: Currency.lira,
         dateTime: DateTime(2023, 01)),
+    //Duvarcı
     UnitPrice(
         category: UnitPriceCategory.aeratedConcreteLabor,
         amount: 60,
@@ -98,6 +100,7 @@ class UnitPriceRepository {
         amount: 3000,
         currency: Currency.lira,
         dateTime: DateTime(2023, 01)),
+    //Çatıcı - fiyat zaten çalışıyor şu an.
     UnitPrice(
         category: UnitPriceCategory.steelScaffolding,
         amount: 208,
