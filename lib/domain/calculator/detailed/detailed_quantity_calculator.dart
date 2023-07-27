@@ -180,11 +180,14 @@ class DetailedQuantityCalculator extends QuantityCalculator {
 
   //Tek tek kontrol ediyorum buradan aşağıda kaldım.
 
-  double get _totalDryWallArea {
+  double get _totalPlasterArea {
     double area = 0;
     for (var floor in floors) {
       for (var room in floor.rooms) {
-        if (room.ceilingMaterial == CeilingMaterial.drywall) {
+        if (room.wallMaterial == WallMaterial.painting) {
+          area += (room.perimeter * floor.heightWithoutSlab);
+        }
+        if(room.ceilingMaterial == CeilingMaterial.plaster) {
           area += room.area;
         }
       }
@@ -207,14 +210,11 @@ class DetailedQuantityCalculator extends QuantityCalculator {
     return area;
   }
 
-  double get _totalPlasterArea {
+  double get _totalDryWallArea {
     double area = 0;
     for (var floor in floors) {
       for (var room in floor.rooms) {
-        if (room.wallMaterial == WallMaterial.painting) {
-          area += (room.perimeter * floor.heightWithoutSlab);
-        }
-        if(room.ceilingMaterial == CeilingMaterial.plaster) {
+        if (room.ceilingMaterial == CeilingMaterial.drywall) {
           area += room.area;
         }
       }
@@ -336,13 +336,13 @@ class DetailedQuantityCalculator extends QuantityCalculator {
     return number;
   }
 
-  int get _woodenDoorNumber {
+  int get _buildingEntranceDoorNumber {
     int number = 0;
     for (var floor in floors) {
       for (var room in floor.rooms) {
         if (room.doors != null) {
           for (var door in room.doors!) {
-            if (door.doorType == DoorType.room) {
+            if (door.doorType == DoorType.buildingEntrance) {
               number += door.count;
             }
           }
@@ -368,13 +368,13 @@ class DetailedQuantityCalculator extends QuantityCalculator {
     return number;
   }
 
-  int get _buildingEntranceDoorNumber {
+  int get _woodenDoorNumber {
     int number = 0;
     for (var floor in floors) {
       for (var room in floor.rooms) {
         if (room.doors != null) {
           for (var door in room.doors!) {
-            if (door.doorType == DoorType.buildingEntrance) {
+            if (door.doorType == DoorType.room) {
               number += door.count;
             }
           }
@@ -800,22 +800,22 @@ class DetailedQuantityCalculator extends QuantityCalculator {
 
   @override
   double get calculatedKitchenCupboardLength {
-    return _apartmentNumber * projectConstants.kitchenLength * 2;
+    return _kitchenNumber * projectConstants.kitchenLength * 2;
   }
 
   @override
   String get kitchenCupboardLengthExplanation {
-    return "Daire sayısı: $_apartmentNumber x Mutfak uzunluğu: ${projectConstants.kitchenLength} x 2(Alt - Üst dolap)";
+    return "Mutfak sayısı: $_kitchenNumber x Mutfak uzunluğu: ${projectConstants.kitchenLength} x 2(Alt - Üst dolap)";
   }
 
   @override
   double get calculatedKitchenCounterLength {
-    return _apartmentNumber * projectConstants.kitchenLength;
+    return _kitchenNumber * projectConstants.kitchenLength;
   }
 
   @override
   String get kitchenCounterLengthExplanation {
-    return "Daire sayısı: $_apartmentNumber x Mutfak uzunluğu: ${projectConstants.kitchenLength}";
+    return "Mutfak sayısı: $_kitchenNumber x Mutfak uzunluğu: ${projectConstants.kitchenLength}";
   }
 
   @override
@@ -971,24 +971,24 @@ class DetailedQuantityCalculator extends QuantityCalculator {
 
   @override
   double get calculatedLandScapeGardenArea {
-    return (_topMostBasementFloor.ceilingArea - _groundFloor.area) *
+    return (landArea - _groundFloor.area) *
         projectConstants.gardenOutdoorParkingAreaRate;
   }
 
   @override
   String get landScapeGardenAreaExplanation {
-    return "En üst bodrum tavan alanı: ${_topMostBasementFloor.ceilingArea} - Zemin kat alanı: ${_groundFloor.area} x Bahçe Oranı: ${projectConstants.gardenOutdoorParkingAreaRate}";
+    return "Arsa alanı: $landArea - Zemin kat alanı: ${_groundFloor.area} x Bahçe Oranı: ${projectConstants.gardenOutdoorParkingAreaRate}";
   }
 
   @override
   double get calculatedOutdoorParkingTileArea {
-    return (_topMostBasementFloor.ceilingArea - _groundFloor.area) *
+    return (landArea - _groundFloor.area) *
         (1 - projectConstants.gardenOutdoorParkingAreaRate);
   }
 
   @override
   String get outdoorParkingTileAreaExplanation {
-    return "En üst bodrum tavan alanı: ${_topMostBasementFloor.ceilingArea} - Zemin kat alanı: ${_groundFloor.area} x Açık otopark oranı: 1 - Bahçe Oranı: ${projectConstants.gardenOutdoorParkingAreaRate}";
+    return "Arsa alanı: $landArea - Zemin kat alanı: ${_groundFloor.area} x Açık otopark oranı: 1 - Bahçe Oranı: ${projectConstants.gardenOutdoorParkingAreaRate}";
   }
 
   @override
