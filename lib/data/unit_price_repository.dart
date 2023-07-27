@@ -102,24 +102,26 @@ class UnitPriceRepository {
         currency: Currency.lira,
         dateTime: DateTime(2023, 01)),
 
-    //Duvarcı - Şener (Amcam en son anlaştı ona bak)
+    //Duvarcı - Şener ✓
     UnitPrice(
         category: UnitPriceCategory.aeratedConcreteLabor,
-        amount: 60,
+        amount: 80,
         currency: Currency.lira,
-        dateTime: DateTime(2023, 01)),
+        dateTime: DateTime(2023, 08)),
+
+    //Çatıcı - Aydın (Fiyat zaten çalışıyor şu an)
     UnitPrice(
         category: UnitPriceCategory.steelConstructionBraasRoof,
         amount: 3000,
         currency: Currency.lira,
         dateTime: DateTime(2023, 01)),
 
-    //Çatıcı - Aydın (Fiyat zaten çalışıyor şu an)
+    //Yağmur İskele - Mesut ✓
     UnitPrice(
         category: UnitPriceCategory.steelScaffolding,
         amount: 208,
         currency: Currency.lira,
-        dateTime: DateTime(2023, 07)),
+        dateTime: DateTime(2023, 08)),
 
     //Doğrama - Rehau Seyid (Bunun euro teklifi vardı onun üzerinden gidebilirsin, kontrol et)
     UnitPrice(
