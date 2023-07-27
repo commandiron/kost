@@ -13,17 +13,17 @@ class UnitPriceRepository {
         dateTime: DateTime(2023, 08)
     ),
 
-    //Habip
+    //Habip ✓
     UnitPrice(
         category: UnitPriceCategory.excavation,
         amount: 450,
         currency: Currency.lira,
-        dateTime: DateTime(2023, 01)),
+        dateTime: DateTime(2023, 08)),
     UnitPrice(
         category: UnitPriceCategory.breaker,
         amount: 2000,
         currency: Currency.lira,
-        dateTime: DateTime(2023, 01)),
+        dateTime: DateTime(2023, 08)),
 
     //Kalıp Yaşar - duvarsız sor
     UnitPrice(
