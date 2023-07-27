@@ -35,24 +35,24 @@ class UnitPriceRepository {
     //Beton Albayrak
     UnitPrice(
         category: UnitPriceCategory.c16Concrete,
-        amount: 1500,
+        amount: 2150,
         currency: Currency.lira,
-        dateTime: DateTime(2023, 07)),
+        dateTime: DateTime(2023, 08)),
     UnitPrice(
         category: UnitPriceCategory.c30Concrete,
-        amount: 1800,
+        amount: 2250,
         currency: Currency.lira,
-        dateTime: DateTime(2023, 07)),
+        dateTime: DateTime(2023, 08)),
     UnitPrice(
         category: UnitPriceCategory.c35Concrete,
-        amount: 1900,
+        amount: 2300,
         currency: Currency.lira,
-        dateTime: DateTime(2023, 07)),
+        dateTime: DateTime(2023, 08)),
     UnitPrice(
         category: UnitPriceCategory.c40Concrete,
-        amount: 2000,
+        amount: 2400,
         currency: Currency.lira,
-        dateTime: DateTime(2023, 07)
+        dateTime: DateTime(2023, 08)
     ),
 
     //İnternet ✓
