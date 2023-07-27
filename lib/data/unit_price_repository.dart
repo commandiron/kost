@@ -351,13 +351,13 @@ class UnitPriceRepository {
         currency: Currency.euro,
         dateTime: DateTime(2023, 08)),
 
-    //Araç lifti - Can
+    //Araç lifti - Can ✓
     UnitPrice(
         category: UnitPriceCategory.carLift,
-        fixedAmount: 25000,
+        fixedAmount: 30000,
         amount: 5000,
         currency: Currency.euro,
-        dateTime: DateTime(2023, 01)),
+        dateTime: DateTime(2023, 08)),
 
     //Düşakabin - Hüppe (Eski fiyatlardan git)
     UnitPrice(
