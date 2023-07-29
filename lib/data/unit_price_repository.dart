@@ -398,7 +398,7 @@ class UnitPriceRepository {
         dateTime: DateTime(2023, 08),
     ),
 
-    //Kapıcı - Ahmet (Tekrar fiyat al.)
+    //Kapıcı - Ahmet (Ahmetten Tekrar fiyat al.)
     UnitPrice(
         category: UnitPriceCategory.steelDoorKale,
         explanationTr: "Kale Çelik Kapı",
