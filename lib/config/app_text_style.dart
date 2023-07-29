@@ -75,4 +75,10 @@ class AppTextStyle {
   static TextStyle responsiveH5B(BuildContext context) {
     return Responsive.value(context, AppTextStyle.b2b, AppTextStyle.b1b, AppTextStyle.h5b);
   }
+  static TextStyle responsiveB1(BuildContext context) {
+    return Responsive.value(context, AppTextStyle.b3, AppTextStyle.b2, AppTextStyle.b1);
+  }
+  static TextStyle responsiveB2(BuildContext context) {
+    return Responsive.value(context, AppTextStyle.b4, AppTextStyle.b3, AppTextStyle.b2);
+  }
 }

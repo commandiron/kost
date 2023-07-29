@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:kost/config/app_text_style.dart';
 import 'package:kost/domain/model/category/category.dart';
 import 'package:kost/domain/model/cost/cost.dart';
 import 'package:kost/presentation/cost_table/widget/quantity_text_field.dart';
@@ -25,13 +26,13 @@ class CostItem extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Row(
         children: [
-          Expanded(flex: 4, child: Text(cost.category.jobCategory.nameTr)),
+          Expanded(flex: 2, child: Text(cost.category.jobCategory.nameTr, style: AppTextStyle.responsiveB1(context),)),
           Expanded(
               flex: 4,
               child: Row(
                 children: [
-                  Expanded(child: Text(cost.unitPriceExplanationText)),
-                  IconButton(
+                  Expanded(
+                    child: TextButton(
                       onPressed: () {
                         showDialog(
                           context: context,
@@ -46,7 +47,16 @@ class CostItem extends StatelessWidget {
                           },
                         );
                       },
-                      icon: const Icon(Icons.edit)),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Text(cost.unitPriceExplanationText, style: AppTextStyle.responsiveB1(context), textAlign: TextAlign.center,),
+                          const Icon(Icons.change_circle,)
+                        ],
+                      )
+                    )
+                  ),
                   Expanded(child: Text(cost.unitPriceText)),
                 ],
               )),

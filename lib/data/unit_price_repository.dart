@@ -149,7 +149,7 @@ class UnitPriceRepository {
     ),
     UnitPrice(
         category: UnitPriceCategory.cementBasedFlexInsulation,
-        explanationTr: "Çimento esaslı flex yalıtım malzemesi",
+        explanationTr: "Çimento Esaslı Sürme İzolasyon",
         amount: 200,
         currency: Currency.lira,
         unit: Unit.squareMeters,
@@ -189,7 +189,7 @@ class UnitPriceRepository {
     //Doğrama - Rehau Seyid ✓
     UnitPrice(
         category: UnitPriceCategory.windowJoineryRehau,
-        explanationTr: "Rehau sürgülü, Hebeschiebe veya Volkswagen Monoblok Panjurlu Doğrama",
+        explanationTr: "Rehau sürgülü, monoblok panjurlu",
         amount: 300,
         currency: Currency.euro,
         unit: Unit.squareMeters,
@@ -323,7 +323,7 @@ class UnitPriceRepository {
     ),
     UnitPrice(
         category: UnitPriceCategory.concealedCisternVitra,
-        explanationTr: "Vitra Gömme Rezervuar ve Tuvalet Taşı",
+        explanationTr: "Vitra Gömme Rezervuar ve Taşı",
         amount: 3500,
         currency: Currency.lira,
         unit: Unit.number,
@@ -417,7 +417,7 @@ class UnitPriceRepository {
     ),
     UnitPrice(
         category: UnitPriceCategory.ironFireDoor,
-        explanationTr: "Yangına dayanıklı, panik barlı, demir kapı",
+        explanationTr: "Yangın kapısı",
         amount: 4200,
         currency: Currency.lira,
         unit: Unit.number,
@@ -437,7 +437,7 @@ class UnitPriceRepository {
     //Mutfak dolabı - Hacker, Aster ✓
     UnitPrice(
         category: UnitPriceCategory.shinyLacqueredKitchenCupboardAster,
-        explanationTr: "Aster Marka Parlak Lake Mutfak Dolabı",
+        explanationTr: "Aster Parlak Lake",
         amount: 500,
         currency: Currency.euro,
         unit: Unit.meter,
@@ -445,7 +445,7 @@ class UnitPriceRepository {
     ),
     UnitPrice(
         category: UnitPriceCategory.matteLacqueredKitchenCupboardAster,
-        explanationTr: "Aster Marka Mat Lake Mutfak Dolabı",
+        explanationTr: "Aster Mat Lake",
         amount: 435,
         currency: Currency.euro,
         unit: Unit.meter,
@@ -509,7 +509,7 @@ class UnitPriceRepository {
     //Modüler su deposu ✓
     UnitPrice(
         category: UnitPriceCategory.galvanize25TonWaterTankEsinoks,
-        explanationTr: "Esinoks 25 Ton Galvaniz Su Deposu",
+        explanationTr: "Esinoks 25 Ton Galvaniz",
         amount: 5500,
         currency: Currency.dollar,
         unit: Unit.lumpSum,
@@ -613,7 +613,7 @@ class UnitPriceRepository {
         dateTime: DateTime(2023, 07)),
     UnitPrice(
         category: UnitPriceCategory.siteExpenses,
-        explanationTr: "Şantiye, Ofis, Elektrik, Su vb. Giderler",
+        explanationTr: "Şantiye, Ofis, Elektrik, Su vb.",
         amount: 10000,
         currency: Currency.lira,
         unit: Unit.month,
@@ -634,7 +634,7 @@ class UnitPriceRepository {
         dateTime: DateTime(2023, 01)),
     UnitPrice(
         category: UnitPriceCategory.projectsFeesPayments,
-        explanationTr: "Projelerin çizilmesi, resmi harçlar, ödemeler",
+        explanationTr: "Projeler, resmi harçlar, ödemeler",
         amount: 1000000,
         currency: Currency.lira,
         unit: Unit.lumpSum,
