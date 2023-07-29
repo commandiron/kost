@@ -196,7 +196,7 @@ class UnitPriceRepository {
         dateTime: DateTime(2023, 01),
     ),
 
-    //Cepheci (Sinterflex fiyatı öğren)
+    //Cepheci ✓
     UnitPrice(
         category: UnitPriceCategory.sinterFlexFacade,
         explanationTr: "Sinterflex cephe",
