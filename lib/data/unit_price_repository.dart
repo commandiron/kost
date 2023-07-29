@@ -566,7 +566,7 @@ class UnitPriceRepository {
         unit: Unit.apartment,
         dateTime: DateTime(2023, 01)),
 
-    //Jeneratör - Aksa (Eski fiyatlardan git kontrol et)
+    //Jeneratör - Aksa (Eski fiyatlardan git kontrol et ya da fiyat al)
     UnitPrice(
         category: UnitPriceCategory.generatorAksa160,
         explanationTr: "Aksa 160 Kva Jeneratör",
