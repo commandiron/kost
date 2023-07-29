@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:kost/domain/bloc/cost_table_event.dart';
 import 'package:kost/presentation/cost_table/widget/custom_grouped_list_view.dart';
 
 import '../../domain/bloc/cost_table_bloc.dart';
@@ -26,6 +27,10 @@ class CostTableScreen extends StatelessWidget {
                         style: const TextStyle(fontSize: 26),
                       ),
                       Text(state.formattedGrandTotalTRY),
+                      ElevatedButton(
+                        onPressed: () => context.read<CostTableBloc>().add(const ExpandCollapseAllMainCategory()),
+                        child: const Text("Collapse All")
+                      ),
                       CostsListView(
                           costs: state.costs,
                           formattedSubTotalsTRY: state.formattedSubTotalsTRY,

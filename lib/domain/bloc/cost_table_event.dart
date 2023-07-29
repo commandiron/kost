@@ -23,11 +23,17 @@ class CreateCostTable extends CostTableEvent {
   List<Object?> get props => [];
 }
 
-class ShowHideMainCategory extends CostTableEvent {
+class ExpandCollapseMainCategory extends CostTableEvent {
   final MainCategory mainCategory;
-  const ShowHideMainCategory(this.mainCategory);
+  const ExpandCollapseMainCategory(this.mainCategory);
   @override
   List<Object?> get props => [mainCategory];
+}
+
+class ExpandCollapseAllMainCategory extends CostTableEvent {
+  const ExpandCollapseAllMainCategory();
+  @override
+  List<Object?> get props => [];
 }
 
 class ReplaceUnitPrice extends CostTableEvent {
