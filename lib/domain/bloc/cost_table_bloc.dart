@@ -83,8 +83,14 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
       emit(state.copyWith(costs: List.of(state.costs)));
     });
     on<ExpandCollapseAllMainCategory>((event, emit) {
-      for (var cost in state.costs) {
-        cost.visible = !cost.visible;
+      if(state.costs.any((cost) => cost.visible)) {
+        for (var cost in state.costs) {
+          cost.visible = false;
+        }
+      } else {
+        for (var cost in state.costs) {
+          cost.visible = true;
+        }
       }
       emit(state.copyWith(costs: List.of(state.costs)));
     });
