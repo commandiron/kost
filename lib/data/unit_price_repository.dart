@@ -480,7 +480,7 @@ class UnitPriceRepository {
         dateTime: DateTime(2023, 01),
     ),
 
-    //Vrf klima - Erdinç (Fiyat vermişti multi split felan onuda ekle Mitshubishi)
+    //Vrf - Klima ✓
     UnitPrice(
       category: UnitPriceCategory.airConditionerArcelik,
       explanationTr: "Arçelik Klima",
@@ -492,18 +492,18 @@ class UnitPriceRepository {
     UnitPrice(
         category: UnitPriceCategory.vrfMultiSplitMitshubishiElectric,
         explanationTr: "Mitshubishi Electric Multi Split",
-        amount: 24000,
-        currency: Currency.lira,
+        amount: 800,
+        currency: Currency.euro,
         unit: Unit.number,
         dateTime: DateTime(2023, 08),
     ),
     UnitPrice(
         category: UnitPriceCategory.ventilation,
         explanationTr: "Havalandırma",
-        amount: 180,
-        currency: Currency.lira,
+        amount: 10,
+        currency: Currency.dollar,
         unit: Unit.squareMeters,
-        dateTime: DateTime(2023, 01),
+        dateTime: DateTime(2023, 08),
     ),
 
     //Modüler su deposu - Esinoks (Eski fiyatlardan gidebilirsin)
