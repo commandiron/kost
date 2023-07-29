@@ -44,7 +44,7 @@ class CostsListView extends StatelessWidget {
                 flex: 10, child: MainCategoryTitle(text: mainCategory.nameTr)),
               Expanded(
                 flex: Responsive.value(context, 6, 4, 2),
-                child: Text(formattedSubTotalsTRY[mainCategory] ?? "", style: AppTextStyle.responsiveH5(context),),
+                child: Text(formattedSubTotalsTRY[mainCategory] ?? "", style: AppTextStyle.responsiveH5B(context),),
               ),
               IconButton(
                 onPressed: () => context.read<CostTableBloc>().add(ExpandCollapseMainCategory(mainCategory)),
