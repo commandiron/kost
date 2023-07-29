@@ -28,7 +28,7 @@ class UnitPricesAlertDialog extends StatelessWidget {
                   mainAxisAlignment:
                   MainAxisAlignment.spaceEvenly,
                   children: [
-                    Text(unitPrices[index].explanation),
+                    Text(unitPrices[index].explanationTr),
                     Row(
                       children: [
                         Text(unitPrices[index].amount.toStringAsFixed(2)),
