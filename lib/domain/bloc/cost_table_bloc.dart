@@ -300,6 +300,8 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
           ? "$formattedFixedAmount + $formattedAmount"
           : formattedAmount;
 
+      final unitPriceNameTr = lastDatedUnitPrice.nameTr;
+
       final quantity =
           quantityCalculator.calculateQuantity(enabledCostCategory.jobCategory);
       final formattedQuantity = getFormattedNumber(number: quantity);
@@ -318,6 +320,7 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
       final cost = Cost(
         category: enabledCostCategory,
         formattedUnitPrice: formattedUnitPrice,
+        unitPriceNameTr: unitPriceNameTr,
         formattedQuantity: formattedQuantity,
         quantityExplanation: quantityExplanation,
         totalPriceTRY: totalPriceTRY,

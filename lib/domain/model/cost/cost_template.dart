@@ -144,7 +144,7 @@ class GeneralExpensesCostTemplate extends CostTemplate {
     enabledCostCategories = [
       CostCategory(MainCategory.generalExpenses, JobCategory.enclosingTheLand, UnitPriceCategory.trapezoidalSheetCurtain),
       CostCategory(MainCategory.generalExpenses, JobCategory.mobilizationDemobilization, UnitPriceCategory.mobilizationDemobilization),
-      CostCategory(MainCategory.generalExpenses, JobCategory.crane, UnitPriceCategory.crane10Ton),
+      CostCategory(MainCategory.generalExpenses, JobCategory.crane, UnitPriceCategory.crane15Ton),
       CostCategory(MainCategory.generalExpenses, JobCategory.siteSafety, UnitPriceCategory.siteSafety),
       CostCategory(MainCategory.generalExpenses, JobCategory.siteExpenses, UnitPriceCategory.siteExpenses),
       CostCategory(MainCategory.generalExpenses, JobCategory.sergeant, UnitPriceCategory.sergeantGrossWage),

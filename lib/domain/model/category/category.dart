@@ -89,7 +89,7 @@ enum JobCategory {
   automaticBarrier([UnitPriceCategory.automaticBarrier]),
   enclosingTheLand([UnitPriceCategory.trapezoidalSheetCurtain]),
   mobilizationDemobilization([UnitPriceCategory.mobilizationDemobilization]),
-  crane([UnitPriceCategory.crane10Ton]),
+  crane([UnitPriceCategory.crane15Ton]),
   siteSafety([UnitPriceCategory.siteSafety]),
   siteExpenses([UnitPriceCategory.siteExpenses]),
   sergeant([UnitPriceCategory.sergeantGrossWage]),

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:kost/domain/model/unit_price/currency.dart';
 import 'package:kost/domain/model/unit_price/unit.dart';
-import 'package:kost/domain/model/unit_price/unit_price_category.dart';
 import '../../../domain/model/unit_price/unit_price.dart';
 
 class UnitPricesAlertDialog extends StatelessWidget {
@@ -29,9 +28,7 @@ class UnitPricesAlertDialog extends StatelessWidget {
                   mainAxisAlignment:
                   MainAxisAlignment.spaceEvenly,
                   children: [
-                    Text(unitPrices[index]
-                        .category
-                        .nameTr),
+                    Text(unitPrices[index].nameTr),
                     Row(
                       children: [
                         Text(unitPrices[index].amount.toStringAsFixed(2)),
