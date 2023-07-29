@@ -32,25 +32,25 @@ class CostsListView extends StatelessWidget {
       groupBy: (cost) => cost.category.mainCategory,
       groupSeparatorBuilder: (MainCategory mainCategory) {
         final visible = costs.firstWhere((cost) => cost.category.mainCategory == mainCategory).visible;
-        return Container(
-          height: 80,
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          decoration: BoxDecoration(
-            border: visible ? null : Border.all()
-          ),
-          child: Row(
-            children: [
-              Expanded(
-                flex: 10, child: MainCategoryTitle(text: mainCategory.nameTr)),
-              Expanded(
-                flex: Responsive.value(context, 6, 4, 2),
-                child: Text(formattedSubTotalsTRY[mainCategory] ?? "", style: AppTextStyle.responsiveH5B(context),),
-              ),
-              IconButton(
-                onPressed: () => context.read<CostTableBloc>().add(ExpandCollapseMainCategory(mainCategory)),
-                icon: Icon(visible ? Icons.arrow_drop_down : Icons.arrow_right)
-              )
-            ],
+        return InkWell(
+          onTap: () => context.read<CostTableBloc>().add(ExpandCollapseMainCategory(mainCategory)),
+          child: Container(
+            height: 80,
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            decoration: BoxDecoration(
+              border: visible ? null : Border.all()
+            ),
+            child: Row(
+              children: [
+                Expanded(
+                  flex: 10, child: MainCategoryTitle(text: mainCategory.nameTr)),
+                Expanded(
+                  flex: Responsive.value(context, 6, 4, 2),
+                  child: Text(formattedSubTotalsTRY[mainCategory] ?? "", style: AppTextStyle.responsiveH5B(context),),
+                ),
+                Icon(visible ? Icons.arrow_drop_down : Icons.arrow_right)
+              ],
+            ),
           ),
         );
       },
