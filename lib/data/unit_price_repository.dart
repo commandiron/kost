@@ -506,12 +506,12 @@ class UnitPriceRepository {
         dateTime: DateTime(2023, 08),
     ),
 
-    //Modüler su deposu - Esinoks (Eski fiyatlardan gidebilirsin)
+    //Modüler su deposu ✓
     UnitPrice(
         category: UnitPriceCategory.galvanize25TonWaterTankEsinoks,
         explanationTr: "Esinoks 25 Ton Galvaniz Su Deposu",
-        amount: 110000,
-        currency: Currency.lira,
+        amount: 5500,
+        currency: Currency.dollar,
         unit: Unit.lumpSum,
         dateTime: DateTime(2023, 01),
     ),
