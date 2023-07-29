@@ -110,7 +110,7 @@ class InteriorCostTemplate extends CostTemplate {
       CostCategory(MainCategory.mechanicalJobs, JobCategory.sink, UnitPriceCategory.sinkVitra),
       CostCategory(MainCategory.mechanicalJobs, JobCategory.sinkBattery, UnitPriceCategory.sinkBatteryVitra),
       CostCategory(MainCategory.mechanicalJobs, JobCategory.concealedCistern, UnitPriceCategory.concealedCisternVitra),
-      CostCategory(MainCategory.mechanicalJobs, JobCategory.shower, UnitPriceCategory.showerHuppe),
+      CostCategory(MainCategory.mechanicalJobs, JobCategory.shower, UnitPriceCategory.showerHuppe100x100),
       CostCategory(MainCategory.mechanicalJobs, JobCategory.showerBattery, UnitPriceCategory.showerBatteryVitra),
       CostCategory(MainCategory.mechanicalJobs, JobCategory.kitchenFaucetAndSink, UnitPriceCategory.kitchenFaucetAndSinkFranke),
       CostCategory(MainCategory.electricalJobs, JobCategory.electricalInfrastructure, UnitPriceCategory.electricalInfrastructure),

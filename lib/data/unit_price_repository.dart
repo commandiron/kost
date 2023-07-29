@@ -214,7 +214,7 @@ class UnitPriceRepository {
         dateTime: DateTime(2023, 08),
     ),
 
-    //Alçı Sıvacı - Abdullah
+    //Alçı Sıvacı - Abdullah (Tekrar fiyat al.)
     UnitPrice(
         category: UnitPriceCategory.plaster,
         explanationTr: "Alçı sıva",
@@ -224,7 +224,7 @@ class UnitPriceRepository {
         dateTime: DateTime(2023, 01),
     ),
 
-    //Boyacı - Nebi
+    //Boyacı - Nebi (Tekrar fiyat al.)
     UnitPrice(
         category: UnitPriceCategory.painting,
         explanationTr: "İç mekan boyası",
@@ -234,7 +234,7 @@ class UnitPriceRepository {
         dateTime: DateTime(2023, 01),
     ),
 
-    //Alçıpancı - Bedir
+    //Alçıpancı - Bedir (Tekrar fiyat al.)
     UnitPrice(
         category: UnitPriceCategory.drywall,
         explanationTr: "Alçıpan",
@@ -398,7 +398,7 @@ class UnitPriceRepository {
         dateTime: DateTime(2023, 08),
     ),
 
-    //Kapıcı - Ahmet
+    //Kapıcı - Ahmet (Tekrar fiyat al.)
     UnitPrice(
         category: UnitPriceCategory.steelDoorKale,
         explanationTr: "Kale Çelik Kapı",
@@ -539,11 +539,11 @@ class UnitPriceRepository {
         dateTime: DateTime(2023, 08),
     ),
 
-    //Düşakabin - Hüppe (Eski fiyatlardan git)
+    //Düşakabin ✓
     UnitPrice(
-        category: UnitPriceCategory.showerHuppe,
-        explanationTr: "Hüppe Duşakabin",
-        amount: 9000,
+        category: UnitPriceCategory.showerHuppe100x100,
+        explanationTr: "Hüppe Duşakabin 160x80",
+        amount: 18000,
         currency: Currency.lira,
         unit: Unit.number,
         dateTime: DateTime(2023, 01)
