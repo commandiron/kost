@@ -470,7 +470,7 @@ class UnitPriceRepository {
         dateTime: DateTime(2023, 01),
     ),
 
-    //Mekanik Tesisatçı - Halil
+    //Mekanik Tesisatçı - Halil (Bizim teklifimizden bak)
     UnitPrice(
         category: UnitPriceCategory.mechanicalInfrastructure,
         explanationTr: "Mekanik Tesisat Altyapı İşleri",
@@ -549,7 +549,7 @@ class UnitPriceRepository {
         dateTime: DateTime(2023, 01)
     ),
 
-    //Elektrikçi - İhsan
+    //Elektrikçi - İhsan (Bizim teklifimizden bak)
     UnitPrice(
         category: UnitPriceCategory.electricalInfrastructure,
         explanationTr: "Elektrik Tesisat Altyapı İşleri",
