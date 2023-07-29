@@ -1,3 +1,4 @@
+import 'package:kost/domain/model/unit_price/unit.dart';
 import 'package:kost/domain/model/unit_price/unit_price_category.dart';
 import 'currency.dart';
 
@@ -8,6 +9,7 @@ class UnitPrice {
   double fixedAmount;
   Currency currency;
   DateTime dateTime;
+  Unit unit;
 
   UnitPrice(
     {
@@ -17,6 +19,7 @@ class UnitPrice {
       this.fixedAmount = 0,
       required this.currency,
       required this.dateTime,
+      required this.unit,
     }
   );
 }

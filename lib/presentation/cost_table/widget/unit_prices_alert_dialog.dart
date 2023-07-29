@@ -36,10 +36,7 @@ class UnitPricesAlertDialog extends StatelessWidget {
                             .currency
                             .symbol),
                         const Text("/"),
-                        Text(unitPrices[index]
-                            .category
-                            .unit
-                            .symbol),
+                        Text(unitPrices[index].unit.symbol),
                       ],
                     ),
                     Text(DateFormat("MM.yyyy").format(unitPrices[index].dateTime)),
