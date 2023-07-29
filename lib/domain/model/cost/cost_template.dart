@@ -68,7 +68,7 @@ class FacadeCostTemplate extends CostTemplate {
       CostCategory(MainCategory.facadeJobs, JobCategory.facadeScaffolding, UnitPriceCategory.steelScaffolding),
       CostCategory(MainCategory.facadeJobs, JobCategory.windows, UnitPriceCategory.windowJoineryRehau,),
       CostCategory(MainCategory.facadeJobs, JobCategory.facadeRails, UnitPriceCategory.aluminumRailing,),
-      CostCategory(MainCategory.facadeJobs, JobCategory.facadeSystem, UnitPriceCategory.ceramicFacade,),
+      CostCategory(MainCategory.facadeJobs, JobCategory.facadeSystem, UnitPriceCategory.sinterFlexFacade,),
     ];
   }
 }

@@ -198,7 +198,7 @@ class UnitPriceRepository {
 
     //Cepheci (Sinterflex fiyatı öğren)
     UnitPrice(
-        category: UnitPriceCategory.ceramicFacade,
+        category: UnitPriceCategory.sinterFlexFacade,
         explanationTr: "Sinterflex cephe",
         amount: 1500,
         currency: Currency.lira,
@@ -252,7 +252,7 @@ class UnitPriceRepository {
         dateTime: DateTime(2023, 01),
     ),
 
-    //Şapçı -
+    //Şapçı - (Şapçı Halitten fiyat al)
     UnitPrice(
         category: UnitPriceCategory.screed,
         explanationTr: "Şap",
@@ -262,7 +262,7 @@ class UnitPriceRepository {
         dateTime: DateTime(2023, 01),
     ),
 
-    //Mermerci - Osman
+    //Mermerci - Osman (Tekrar fiyat al)
     UnitPrice(
         category: UnitPriceCategory.marbleFloorBilecik,
         explanationTr: "Bilecik Beji Mermer",
