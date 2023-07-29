@@ -197,47 +197,47 @@ class UnitPriceRepository {
         currency: Currency.lira,
         dateTime: DateTime(2023, 01)),
 
-    //Banyo - Orhan, İnternet
+    //Banyo - Orhan, İnternet ✓
     UnitPrice(
-        category: UnitPriceCategory.ceramicTileEge,
+        category: UnitPriceCategory.ceramicTileVitraVersus,
         amount: 500,
         currency: Currency.lira,
-        dateTime: DateTime(2023, 01)),
+        dateTime: DateTime(2023, 08)),
     UnitPrice(
         category: UnitPriceCategory.sinkVitra,
-        amount: 3000,
+        amount: 2000,
         currency: Currency.lira,
-        dateTime: DateTime(2023, 01)),
+        dateTime: DateTime(2023, 08)),
     UnitPrice(
         category: UnitPriceCategory.sinkBatteryVitra,
-        amount: 3000,
+        amount: 1500,
         currency: Currency.lira,
-        dateTime: DateTime(2023, 01)),
+        dateTime: DateTime(2023, 08)),
     UnitPrice(
         category: UnitPriceCategory.concealedCisternVitra,
-        amount: 3000,
+        amount: 2500,
         currency: Currency.lira,
-        dateTime: DateTime(2023, 01)),
+        dateTime: DateTime(2023, 08)),
     UnitPrice(
         category: UnitPriceCategory.showerBatteryVitra,
-        amount: 3000,
+        amount: 2000,
         currency: Currency.lira,
-        dateTime: DateTime(2023, 01)),
+        dateTime: DateTime(2023, 08)),
     UnitPrice(
         category: UnitPriceCategory.kitchenFaucetAndSinkFranke,
-        amount: 10000,
+        amount: 12500,
         currency: Currency.lira,
-        dateTime: DateTime(2023, 01)),
+        dateTime: DateTime(2023, 08)),
     UnitPrice(
-        category: UnitPriceCategory.fullSetFranke,
-        amount: 41000,
+        category: UnitPriceCategory.paddleBoxBuiltInOvenCookTopDishwasherFranke,
+        amount: 8000 + 10000 + 7000 + 15000,
         currency: Currency.lira,
-        dateTime: DateTime(2023, 01)),
+        dateTime: DateTime(2023, 08)),
     UnitPrice(
         category: UnitPriceCategory.automaticBarrier,
-        amount: 25000,
+        amount: 35000,
         currency: Currency.lira,
-        dateTime: DateTime(2023, 01)),
+        dateTime: DateTime(2023, 08)),
 
     //Sıcak Demirci - Selçuk, İnternet
     UnitPrice(

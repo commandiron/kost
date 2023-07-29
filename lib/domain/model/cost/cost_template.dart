@@ -91,7 +91,7 @@ class InteriorCostTemplate extends CostTemplate {
       CostCategory(MainCategory.interiorJobs, JobCategory.marbleStep, UnitPriceCategory.marbleStepBilecik,),
       CostCategory(MainCategory.interiorJobs, JobCategory.marbleWindowsill, UnitPriceCategory.marbleWindowsillBilecik,),
       CostCategory(MainCategory.interiorJobs, JobCategory.stairRailings, UnitPriceCategory.aluminumRailing,),
-      CostCategory(MainCategory.interiorJobs, JobCategory.ceramicTile, UnitPriceCategory.ceramicTileEge),
+      CostCategory(MainCategory.interiorJobs, JobCategory.ceramicTile, UnitPriceCategory.ceramicTileVitraVersus),
       CostCategory(MainCategory.interiorJobs, JobCategory.parquetTile, UnitPriceCategory.laminatedSerifoglu),
       CostCategory(MainCategory.interiorJobs, JobCategory.steelDoor, UnitPriceCategory.steelDoorKale),
       CostCategory(MainCategory.interiorJobs, JobCategory.entranceDoor, UnitPriceCategory.entranceDoor),
@@ -116,7 +116,7 @@ class InteriorCostTemplate extends CostTemplate {
       CostCategory(MainCategory.mechanicalJobs, JobCategory.kitchenFaucetAndSink, UnitPriceCategory.kitchenFaucetAndSinkFranke),
       CostCategory(MainCategory.electricalJobs, JobCategory.electricalInfrastructure, UnitPriceCategory.electricalInfrastructure),
       CostCategory(MainCategory.electricalJobs, JobCategory.generator, UnitPriceCategory.generatorAksa160),
-      CostCategory(MainCategory.electricalJobs, JobCategory.householdAppliances, UnitPriceCategory.fullSetFranke),
+      CostCategory(MainCategory.electricalJobs, JobCategory.householdAppliances, UnitPriceCategory.paddleBoxBuiltInOvenCookTopDishwasherFranke),
     ];
   }
 }
