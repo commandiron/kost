@@ -3,7 +3,7 @@ import 'currency.dart';
 
 class UnitPrice {
   UnitPriceCategory category;
-  String nameTr;
+  String explanation;
   double amount;
   double fixedAmount;
   Currency currency;
@@ -12,7 +12,7 @@ class UnitPrice {
   UnitPrice(
     {
       required this.category,
-      required this.nameTr,
+      required this.explanation,
       required this.amount,
       this.fixedAmount = 0,
       required this.currency,

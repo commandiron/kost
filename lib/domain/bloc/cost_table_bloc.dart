@@ -288,6 +288,8 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
       final lastDatedUnitPrice = unitPrices.reduce((current, next) =>
           current.dateTime.isAfter(next.dateTime) ? current : next);
 
+      final unitPriceExplanation = lastDatedUnitPrice.explanation;
+
       final formattedFixedAmount = getFormattedNumber(
           number: lastDatedUnitPrice.fixedAmount,
           unit: lastDatedUnitPrice.currency.symbol);
@@ -299,8 +301,6 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
       final formattedUnitPrice = lastDatedUnitPrice.fixedAmount != 0
           ? "$formattedFixedAmount + $formattedAmount"
           : formattedAmount;
-
-      final unitPriceNameTr = lastDatedUnitPrice.nameTr;
 
       final quantity =
           quantityCalculator.calculateQuantity(enabledCostCategory.jobCategory);
@@ -319,8 +319,8 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
 
       final cost = Cost(
         category: enabledCostCategory,
+        unitPriceExplanation: unitPriceExplanation,
         formattedUnitPrice: formattedUnitPrice,
-        unitPriceNameTr: unitPriceNameTr,
         formattedQuantity: formattedQuantity,
         quantityExplanation: quantityExplanation,
         totalPriceTRY: totalPriceTRY,

@@ -7,7 +7,7 @@ class UnitPriceRepository {
     //Zeminci - Deniz ✓
     UnitPrice(
         category: UnitPriceCategory.shutCrete,
-        nameTr: "Shutcrete",
+        explanation: "Shutcrete",
         amount: 2700,
         fixedAmount: 30000,
         currency: Currency.lira,
@@ -17,13 +17,13 @@ class UnitPriceRepository {
     //Hafriyat - Habip ✓
     UnitPrice(
         category: UnitPriceCategory.excavation,
-        nameTr: "Hafriyat",
+        explanation: "Hafriyat",
         amount: 450,
         currency: Currency.lira,
         dateTime: DateTime(2023, 08)),
     UnitPrice(
         category: UnitPriceCategory.breaker,
-        nameTr: "Kırıcı",
+        explanation: "Kırıcı",
         amount: 2000,
         currency: Currency.lira,
         dateTime: DateTime(2023, 08)),
@@ -31,7 +31,7 @@ class UnitPriceRepository {
     //Kalıp Yaşar ✓
     UnitPrice(
         category: UnitPriceCategory.plywood,
-        nameTr: "Plywood",
+        explanation: "Plywood",
         amount: 800,
         currency: Currency.lira,
         dateTime: DateTime(2023, 07)),
@@ -39,25 +39,25 @@ class UnitPriceRepository {
     //Beton Albayrak ✓
     UnitPrice(
         category: UnitPriceCategory.c16Concrete,
-        nameTr: "C16 Beton",
+        explanation: "C16 Beton",
         amount: 2150,
         currency: Currency.lira,
         dateTime: DateTime(2023, 08)),
     UnitPrice(
         category: UnitPriceCategory.c30Concrete,
-        nameTr: "C30 Beton",
+        explanation: "C30 Beton",
         amount: 2250,
         currency: Currency.lira,
         dateTime: DateTime(2023, 08)),
     UnitPrice(
         category: UnitPriceCategory.c35Concrete,
-        nameTr: "C35 Beton",
+        explanation: "C35 Beton",
         amount: 2300,
         currency: Currency.lira,
         dateTime: DateTime(2023, 08)),
     UnitPrice(
         category: UnitPriceCategory.c40Concrete,
-        nameTr: "C40 Beton",
+        explanation: "C40 Beton",
         amount: 2400,
         currency: Currency.lira,
         dateTime: DateTime(2023, 08)
@@ -66,7 +66,7 @@ class UnitPriceRepository {
     //İnşaat Demiri - İnternet ✓
     UnitPrice(
         category: UnitPriceCategory.s420Steel,
-        nameTr: "S420 Nervürlü İnşaat Demiri",
+        explanation: "S420 Nervürlü İnşaat Demiri",
         amount: 19000/1.18,
         currency: Currency.lira,
         dateTime: DateTime(2023, 08)
@@ -75,25 +75,25 @@ class UnitPriceRepository {
     //Su İzolasyon - Tunç ✓
     UnitPrice(
         category: UnitPriceCategory.proofBitumenMembrane,
-        nameTr: "Bitüm Esaslı Proof Membran",
+        explanation: "Bitüm Esaslı Proof Membran",
         amount: 9,
         currency: Currency.dollar,
         dateTime: DateTime(2023, 08)),
     UnitPrice(
         category: UnitPriceCategory.bitumenSliding,
-        nameTr: "Bitüm Esaslı Sürme İzolasyon",
+        explanation: "Bitüm Esaslı Sürme İzolasyon",
         amount: 8,
         currency: Currency.euro,
         dateTime: DateTime(2023, 08)),
     UnitPrice(
         category: UnitPriceCategory.cementSliding,
-        nameTr: "Çimento Esaslı Sürme İzolasyon",
+        explanation: "Çimento Esaslı Sürme İzolasyon",
         amount: 6.5,
         currency: Currency.euro,
         dateTime: DateTime(2023, 08)),
     UnitPrice(
         category: UnitPriceCategory.drainPlate,
-        nameTr: "Drenaj Levhası",
+        explanation: "Drenaj Levhası",
         amount: 1.15,
         currency: Currency.euro,
         dateTime: DateTime(2023, 08)),
@@ -101,25 +101,25 @@ class UnitPriceRepository {
     //Çeşitli Malzeme - Can
     UnitPrice(
         category: UnitPriceCategory.foundationStabilizationGravel,
-        nameTr: "Mıcır",
+        explanation: "Mıcır",
         amount: 450,
         currency: Currency.lira,
         dateTime: DateTime(2023, 01)),
     UnitPrice(
         category: UnitPriceCategory.eps,
-        nameTr: "Eps",
+        explanation: "Eps",
         amount: 815,
         currency: Currency.lira,
         dateTime: DateTime(2023, 01)),
     UnitPrice(
         category: UnitPriceCategory.aeratedConcreteMaterial,
-        nameTr: "Gazbeton Malzeme",
+        explanation: "Gazbeton Malzeme",
         amount: 1500,
         currency: Currency.lira,
         dateTime: DateTime(2023, 01)),
     UnitPrice(
         category: UnitPriceCategory.cementBasedFlexInsulation,
-        nameTr: "Çimento esaslı flex yalıtım malzemesi",
+        explanation: "Çimento esaslı flex yalıtım malzemesi",
         amount: 200,
         currency: Currency.lira,
         dateTime: DateTime(2023, 01)),
@@ -127,7 +127,7 @@ class UnitPriceRepository {
     //Duvarcı - Şener ✓
     UnitPrice(
         category: UnitPriceCategory.aeratedConcreteLabor,
-        nameTr: "Gazbeton İşçilik",
+        explanation: "Gazbeton İşçilik",
         amount: 80,
         currency: Currency.lira,
         dateTime: DateTime(2023, 08)),
@@ -135,7 +135,7 @@ class UnitPriceRepository {
     //Çatıcı - Aydın (Fiyat zaten çalışıyor şu an)
     UnitPrice(
         category: UnitPriceCategory.steelConstructionBraasRoof,
-        nameTr: "Çelik konstrüksiyon Braas Çatı",
+        explanation: "Çelik konstrüksiyon Braas Çatı",
         amount: 3000,
         currency: Currency.lira,
         dateTime: DateTime(2023, 01)),
@@ -143,7 +143,7 @@ class UnitPriceRepository {
     //Yağmur İskele - Mesut ✓
     UnitPrice(
         category: UnitPriceCategory.steelScaffolding,
-        nameTr: "Korkuluklu çelik iskele",
+        explanation: "Korkuluklu çelik iskele",
         amount: 208,
         currency: Currency.lira,
         dateTime: DateTime(2023, 08)),
@@ -151,7 +151,7 @@ class UnitPriceRepository {
     //Doğrama - Rehau Seyid (Bunun euro teklifi vardı onun üzerinden gidebilirsin, kontrol et)
     UnitPrice(
         category: UnitPriceCategory.windowJoineryRehau,
-        nameTr: "Rehau sürgülü, Hebeschiebe veya Volkswagen Doğrama",
+        explanation: "Rehau sürgülü, Hebeschiebe veya Volkswagen Doğrama",
         amount: 6000,
         currency: Currency.lira,
         dateTime: DateTime(2023, 01)),
@@ -159,13 +159,13 @@ class UnitPriceRepository {
     //Cepheci - (Bunun birim fiyatı nasıl hesaplanacak bir düşün)
     UnitPrice(
         category: UnitPriceCategory.ceramicFacade,
-        nameTr: "Seramik cephe",
+        explanation: "Seramik cephe",
         amount: 600,
         currency: Currency.lira,
         dateTime: DateTime(2023, 01)),
     UnitPrice(
         category: UnitPriceCategory.precastFacade,
-        nameTr: "Prekast cephe",
+        explanation: "Prekast cephe",
         amount: 800,
         currency: Currency.lira,
         dateTime: DateTime(2023, 01)),
@@ -173,7 +173,7 @@ class UnitPriceRepository {
     //Alçı Sıvacı - Abdullah
     UnitPrice(
         category: UnitPriceCategory.plaster,
-        nameTr: "Alçı sıva",
+        explanation: "Alçı sıva",
         amount: 100,
         currency: Currency.lira,
         dateTime: DateTime(2023, 01)),
@@ -181,7 +181,7 @@ class UnitPriceRepository {
     //Boyacı - Nebi
     UnitPrice(
         category: UnitPriceCategory.painting,
-        nameTr: "İç mekan boyası",
+        explanation: "İç mekan boyası",
         amount: 110,
         currency: Currency.lira,
         dateTime: DateTime(2023, 01)),
@@ -189,13 +189,13 @@ class UnitPriceRepository {
     //Alçıpancı - Bedir
     UnitPrice(
         category: UnitPriceCategory.drywall,
-        nameTr: "Alçıpan",
+        explanation: "Alçıpan",
         amount: 230,
         currency: Currency.lira,
         dateTime: DateTime(2023, 01)),
     UnitPrice(
         category: UnitPriceCategory.covingPlaster,
-        nameTr: "Kartonpiyer",
+        explanation: "Kartonpiyer",
         amount: 55,
         currency: Currency.lira,
         dateTime: DateTime(2023, 01)),
@@ -203,7 +203,7 @@ class UnitPriceRepository {
     //Şapçı -
     UnitPrice(
         category: UnitPriceCategory.screed,
-        nameTr: "Şap",
+        explanation: "Şap",
         amount: 156,
         currency: Currency.lira,
         dateTime: DateTime(2023, 01)),
@@ -211,25 +211,25 @@ class UnitPriceRepository {
     //Mermerci - Osman
     UnitPrice(
         category: UnitPriceCategory.marbleFloorBilecik,
-        nameTr: "Bilecik Beji Mermer",
+        explanation: "Bilecik Beji Mermer",
         amount: 1000,
         currency: Currency.lira,
         dateTime: DateTime(2023, 01)),
     UnitPrice(
         category: UnitPriceCategory.marbleStepBilecik,
-        nameTr: "Bilejik Beji Basamak",
+        explanation: "Bilejik Beji Basamak",
         amount: 850,
         currency: Currency.lira,
         dateTime: DateTime(2023, 01)),
     UnitPrice(
         category: UnitPriceCategory.marbleWindowsillBilecik,
-        nameTr: "Bilejik Beji Denizlik",
+        explanation: "Bilejik Beji Denizlik",
         amount: 850,
         currency: Currency.lira,
         dateTime: DateTime(2023, 01)),
     UnitPrice(
         category: UnitPriceCategory.quartzCountertopCimstone,
-        nameTr: "Çimstone Mutfak Tezgahı",
+        explanation: "Çimstone Mutfak Tezgahı",
         amount: 3500,
         currency: Currency.lira,
         dateTime: DateTime(2023, 01)),
@@ -237,49 +237,49 @@ class UnitPriceRepository {
     //Banyo - Orhan, İnternet ✓
     UnitPrice(
         category: UnitPriceCategory.ceramicTileVitraVersus,
-        nameTr: "Vitra Versus Seramik",
+        explanation: "Vitra Versus Seramik",
         amount: 500,
         currency: Currency.lira,
         dateTime: DateTime(2023, 08)),
     UnitPrice(
         category: UnitPriceCategory.sinkVitra,
-        nameTr: "Vitra Lavabo",
+        explanation: "Vitra Lavabo",
         amount: 2000,
         currency: Currency.lira,
         dateTime: DateTime(2023, 08)),
     UnitPrice(
         category: UnitPriceCategory.sinkBatteryVitra,
-        nameTr: "Vitra Lavabo Bataryası",
+        explanation: "Vitra Lavabo Bataryası",
         amount: 1500,
         currency: Currency.lira,
         dateTime: DateTime(2023, 08)),
     UnitPrice(
         category: UnitPriceCategory.concealedCisternVitra,
-        nameTr: "Vitra Gömme Rezervuar ve Tuvalet Taşı",
+        explanation: "Vitra Gömme Rezervuar ve Tuvalet Taşı",
         amount: 3500,
         currency: Currency.lira,
         dateTime: DateTime(2023, 08)),
     UnitPrice(
         category: UnitPriceCategory.showerBatteryVitra,
-        nameTr: "Vitra Duş Bataryası",
+        explanation: "Vitra Duş Bataryası",
         amount: 2000,
         currency: Currency.lira,
         dateTime: DateTime(2023, 08)),
     UnitPrice(
         category: UnitPriceCategory.kitchenFaucetAndSinkFranke,
-        nameTr: "Franke Evye ve Batarya",
+        explanation: "Franke Evye ve Batarya",
         amount: 12500,
         currency: Currency.lira,
         dateTime: DateTime(2023, 08)),
     UnitPrice(
         category: UnitPriceCategory.paddleBoxBuiltInOvenCookTopDishwasherFranke,
-        nameTr: "Franke Ankastre Beyaz Eşya Seti",
+        explanation: "Franke Ankastre Beyaz Eşya Seti",
         amount: 8000 + 10000 + 7000 + 15000,
         currency: Currency.lira,
         dateTime: DateTime(2023, 08)),
     UnitPrice(
         category: UnitPriceCategory.automaticBarrier,
-        nameTr: "Açık Otopark Otomatik Bariyer",
+        explanation: "Açık Otopark Otomatik Bariyer",
         amount: 35000,
         currency: Currency.lira,
         dateTime: DateTime(2023, 08)),
@@ -287,19 +287,19 @@ class UnitPriceRepository {
     //Sıcak Demirci - Selçuk, İnternet ✓
     UnitPrice(
         category: UnitPriceCategory.wroughtIronRailing,
-        nameTr: "Ferforje Korkuluk",
+        explanation: "Ferforje Korkuluk",
         amount: 4500,
         currency: Currency.lira,
         dateTime: DateTime(2023, 08)),
     UnitPrice(
         category: UnitPriceCategory.aluminumRailing,
-        nameTr: "Alüminyum Korkuluk",
+        explanation: "Alüminyum Korkuluk",
         amount: 1000,
         currency: Currency.lira,
         dateTime: DateTime(2023, 08)),
     UnitPrice(
         category: UnitPriceCategory.trapezoidalSheetCurtain,
-        nameTr: "Trapez sac çevre perdesi",
+        explanation: "Trapez sac çevre perdesi",
         amount: 1000,
         currency: Currency.lira,
         dateTime: DateTime(2023, 08)),
@@ -307,7 +307,7 @@ class UnitPriceRepository {
     //Parke - şerifoğlu ✓
     UnitPrice(
         category: UnitPriceCategory.laminatedSerifoglu,
-        nameTr: "Şerifoğlu Lamine Parke",
+        explanation: "Şerifoğlu Lamine Parke",
         amount: 52,
         currency: Currency.euro,
         dateTime: DateTime(2023, 08)),
@@ -315,19 +315,19 @@ class UnitPriceRepository {
     //Kapıcı - Ahmet
     UnitPrice(
         category: UnitPriceCategory.steelDoorKale,
-        nameTr: "Kale Çelik Kapı",
+        explanation: "Kale Çelik Kapı",
         amount: 16000,
         currency: Currency.lira,
         dateTime: DateTime(2023, 01)),
     UnitPrice(
         category: UnitPriceCategory.entranceDoor,
-        nameTr: "Apartman Giriş Kapısı",
+        explanation: "Apartman Giriş Kapısı",
         amount: 9750,
         currency: Currency.lira,
         dateTime: DateTime(2023, 01)),
     UnitPrice(
         category: UnitPriceCategory.ironFireDoor,
-        nameTr: "Yangına dayanıklı, panik barlı, demir kapı",
+        explanation: "Yangına dayanıklı, panik barlı, demir kapı",
         amount: 4200,
         currency: Currency.lira,
         dateTime: DateTime(2023, 01)),
@@ -335,7 +335,7 @@ class UnitPriceRepository {
     //Oda kapısı - StillDoor (Kapı fiyatı gelecek bu unit price'ı markalı yap)
     UnitPrice(
         category: UnitPriceCategory.lacqueredDoor,
-        nameTr: "Lake Ahşap Kapı",
+        explanation: "Lake Ahşap Kapı",
         amount: 8000,
         currency: Currency.lira,
         dateTime: DateTime(2023, 01)),
@@ -343,13 +343,13 @@ class UnitPriceRepository {
     //Mutfak dolabı - Ramazan, Hacker, Aster ✓
     UnitPrice(
         category: UnitPriceCategory.shinyLacqueredKitchenCupboardAster,
-        nameTr: "Aster Marka Parlak Lake Mutfak Dolabı",
+        explanation: "Aster Marka Parlak Lake Mutfak Dolabı",
         amount: 500,
         currency: Currency.euro,
         dateTime: DateTime(2023, 08)),
     UnitPrice(
         category: UnitPriceCategory.matteLacqueredKitchenCupboardAster,
-        nameTr: "Aster Marka Mat Lake Mutfak Dolabı",
+        explanation: "Aster Marka Mat Lake Mutfak Dolabı",
         amount: 435,
         currency: Currency.euro,
         dateTime: DateTime(2023, 08)),
@@ -357,13 +357,13 @@ class UnitPriceRepository {
     //Marangoz - Ramazan (Markasız olanlar bunun altında dursun)
     UnitPrice(
         category: UnitPriceCategory.lacqueredCabinet,
-        nameTr: "Lake Dolap",
+        explanation: "Lake Dolap",
         amount: 5000,
         currency: Currency.lira,
         dateTime: DateTime(2023, 01)),
     UnitPrice(
         category: UnitPriceCategory.lacqueredFloorPlinth,
-        nameTr: "Lake Süpürgelik",
+        explanation: "Lake Süpürgelik",
         amount: 100,
         currency: Currency.lira,
         dateTime: DateTime(2023, 01)),
@@ -371,7 +371,7 @@ class UnitPriceRepository {
     //Mekanik Tesisatçı - Halil
     UnitPrice(
         category: UnitPriceCategory.mechanicalInfrastructure,
-        nameTr: "Mekanik Tesisat Altyapı İşleri",
+        explanation: "Mekanik Tesisat Altyapı İşleri",
         amount: 100000,
         currency: Currency.lira,
         dateTime: DateTime(2023, 01)),
@@ -379,13 +379,13 @@ class UnitPriceRepository {
     //Vrf klima - Erdinç (Fiyat vermişti multi split felan onuda ekle Mitshubishi)
     UnitPrice(
         category: UnitPriceCategory.airConditionerArcelik,
-        nameTr: "Arçelik Klima",
+        explanation: "Arçelik Klima",
         amount: 10000,
         currency: Currency.lira,
         dateTime: DateTime(2023, 01)),
     UnitPrice(
         category: UnitPriceCategory.ventilation,
-        nameTr: "Havalandırma",
+        explanation: "Havalandırma",
         amount: 180,
         currency: Currency.lira,
         dateTime: DateTime(2023, 01)),
@@ -393,7 +393,7 @@ class UnitPriceRepository {
     //Modüler su deposu - Esinoks (Eski fiyatlardan gidebilirsin)
     UnitPrice(
         category: UnitPriceCategory.galvanize25TonWaterTankEsinoks,
-        nameTr: "Esinoks 25 Ton Galvaniz Su Deposu",
+        explanation: "Esinoks 25 Ton Galvaniz Su Deposu",
         amount: 110000,
         currency: Currency.lira,
         dateTime: DateTime(2023, 01)),
@@ -401,14 +401,14 @@ class UnitPriceRepository {
     //Asansör - Kone ✓
     UnitPrice(
         category: UnitPriceCategory.elevation10PersonKone,
-        nameTr: "Kone 10 Kişilik Asansör",
+        explanation: "Kone 10 Kişilik Asansör",
         fixedAmount: 30000,
         amount: 1000,
         currency: Currency.euro,
         dateTime: DateTime(2023, 08)),
     UnitPrice(
         category: UnitPriceCategory.elevation6PersonKone,
-        nameTr: "Kone 6 Kişilik Asansör",
+        explanation: "Kone 6 Kişilik Asansör",
         fixedAmount: 20000,
         amount: 1000,
         currency: Currency.euro,
@@ -417,7 +417,7 @@ class UnitPriceRepository {
     //Araç lifti - Can ✓
     UnitPrice(
         category: UnitPriceCategory.carLift,
-        nameTr: "Araç Asansörü",
+        explanation: "Araç Asansörü",
         fixedAmount: 30000,
         amount: 5000,
         currency: Currency.euro,
@@ -426,7 +426,7 @@ class UnitPriceRepository {
     //Düşakabin - Hüppe (Eski fiyatlardan git)
     UnitPrice(
         category: UnitPriceCategory.showerHuppe,
-        nameTr: "Hüppe Duşakabin",
+        explanation: "Hüppe Duşakabin",
         amount: 9000,
         currency: Currency.lira,
         dateTime: DateTime(2023, 01)),
@@ -434,7 +434,7 @@ class UnitPriceRepository {
     //Elektrikçi - İhsan
     UnitPrice(
         category: UnitPriceCategory.electricalInfrastructure,
-        nameTr: "Elektrik Tesisat Altyapı İşleri",
+        explanation: "Elektrik Tesisat Altyapı İşleri",
         amount: 85000,
         currency: Currency.lira,
         dateTime: DateTime(2023, 01)),
@@ -442,7 +442,7 @@ class UnitPriceRepository {
     //Jeneratör - Aksa (Eski fiyatlardan git kontrol et)
     UnitPrice(
         category: UnitPriceCategory.generatorAksa160,
-        nameTr: "Aksa 160 Kva Jeneratör",
+        explanation: "Aksa 160 Kva Jeneratör",
         amount: 16282,
         currency: Currency.euro,
         dateTime: DateTime(2023, 01)),
@@ -450,55 +450,55 @@ class UnitPriceRepository {
     //Kendin hesapla
     UnitPrice(
         category: UnitPriceCategory.averageGarden,
-        nameTr: "Bahçe, Çim, Ağaç vs.",
+        explanation: "Bahçe, Çim, Ağaç vs.",
         amount: 2000,
         currency: Currency.lira,
         dateTime: DateTime(2023, 01)),
     UnitPrice(
         category: UnitPriceCategory.interlockingPavingStone,
-        nameTr: "Kilit Taşı",
+        explanation: "Kilit Taşı",
         amount: 360,
         currency: Currency.lira,
         dateTime: DateTime(2023, 01)),
     UnitPrice(
         category: UnitPriceCategory.mobilizationDemobilization,
-        nameTr: "Mobilizasyon - Demobilizasyon",
+        explanation: "Mobilizasyon - Demobilizasyon",
         amount: 200000,
         currency: Currency.lira,
         dateTime: DateTime(2023, 01)),
     UnitPrice(
         category: UnitPriceCategory.crane15Ton,
-        nameTr: "15 Ton Vinç",
+        explanation: "15 Ton Vinç",
         amount: 5000,
         currency: Currency.lira,
         dateTime: DateTime(2023, 01)),
     UnitPrice(
         category: UnitPriceCategory.siteSafety,
-        nameTr: "Şantiye güvenlik önlemleri",
+        explanation: "Şantiye güvenlik önlemleri",
         amount: 15000,
         currency: Currency.lira,
         dateTime: DateTime(2023, 07)),
     UnitPrice(
         category: UnitPriceCategory.siteExpenses,
-        nameTr: "Şantiye, Ofis, Elektrik, Su vb. Giderler",
+        explanation: "Şantiye, Ofis, Elektrik, Su vb. Giderler",
         amount: 10000,
         currency: Currency.lira,
         dateTime: DateTime(2023, 01)),
     UnitPrice(
         category: UnitPriceCategory.sergeantGrossWage,
-        nameTr: "Şantiye Çavuşu Brüt Maaş",
+        explanation: "Şantiye Çavuşu Brüt Maaş",
         amount: 30000,
         currency: Currency.lira,
         dateTime: DateTime(2023, 01)),
     UnitPrice(
         category: UnitPriceCategory.projectManagerGrossWage,
-        nameTr: "Proje Müdürü Brüt Maaş",
+        explanation: "Proje Müdürü Brüt Maaş",
         amount: 60000,
         currency: Currency.lira,
         dateTime: DateTime(2023, 01)),
     UnitPrice(
         category: UnitPriceCategory.projectsFeesPayments,
-        nameTr: "Projelerin çizilmesi, resmi harçlar, ödemeler",
+        explanation: "Projelerin çizilmesi, resmi harçlar, ödemeler",
         amount: 1000000,
         currency: Currency.lira,
         dateTime: DateTime(2023, 01)),
