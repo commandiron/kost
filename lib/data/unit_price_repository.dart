@@ -186,12 +186,12 @@ class UnitPriceRepository {
         dateTime: DateTime(2023, 08),
     ),
 
-    //Doğrama - Rehau Seyid (Bunun euro teklifi vardı onun üzerinden gidebilirsin, kontrol et)
+    //Doğrama - Rehau Seyid ✓
     UnitPrice(
         category: UnitPriceCategory.windowJoineryRehau,
-        explanationTr: "Rehau sürgülü, Hebeschiebe veya Volkswagen Doğrama",
-        amount: 6000,
-        currency: Currency.lira,
+        explanationTr: "Rehau sürgülü, Hebeschiebe veya Volkswagen Monoblok Panjurlu Doğrama",
+        amount: 300,
+        currency: Currency.euro,
         unit: Unit.squareMeters,
         dateTime: DateTime(2023, 01),
     ),
