@@ -30,7 +30,7 @@ class CostItem extends StatelessWidget {
               flex: 4,
               child: Row(
                 children: [
-                  Expanded(child: Text(cost.unitPriceExplanationTr)),
+                  Expanded(child: Text(cost.unitPriceExplanationText)),
                   IconButton(
                       onPressed: () {
                         showDialog(
@@ -47,7 +47,7 @@ class CostItem extends StatelessWidget {
                         );
                       },
                       icon: const Icon(Icons.edit)),
-                  Expanded(child: Text(cost.formattedUnitPrice)),
+                  Expanded(child: Text(cost.unitPriceText)),
                 ],
               )),
           Expanded(
@@ -55,7 +55,7 @@ class CostItem extends StatelessWidget {
               child: Row(
                 children: [
                   Tooltip(
-                    message: cost.quantityExplanation,
+                    message: cost.quantityExplanationText,
                     child: const Icon(Icons.info_outlined),
                   ),
                   const SizedBox(
@@ -64,8 +64,8 @@ class CostItem extends StatelessWidget {
                   SizedBox(
                       width: 100,
                       child: QuantityTextField(
-                        formattedQuantity: cost.formattedQuantity,
-                        symbol: cost.quantityUnit,
+                        formattedQuantity: cost.quantityText,
+                        symbol: cost.quantityUnitText,
                         onFieldSubmitted: (value) {
                           context.read<CostTableBloc>().add(
                             ChangeQuantityManually(cost.category.jobCategory, value)

@@ -36,6 +36,9 @@ class CostsListView extends StatelessWidget {
         return Container(
           height: 80,
           padding: const EdgeInsets.symmetric(horizontal: 16),
+          decoration: BoxDecoration(
+            border: visible ? null : Border.all(strokeAlign: BorderSide.strokeAlignInside)
+          ),
           child: Row(
             children: [
               Expanded(

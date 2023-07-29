@@ -288,7 +288,7 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
       final lastDatedUnitPrice = unitPrices.reduce((current, next) =>
           current.dateTime.isAfter(next.dateTime) ? current : next);
 
-      final unitPriceExplanationTr = lastDatedUnitPrice.explanationTr;
+      final unitPriceExplanationText = lastDatedUnitPrice.explanationTr;
 
       final formattedFixedAmount = getFormattedNumber(
           number: lastDatedUnitPrice.fixedAmount,
@@ -297,17 +297,17 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
           number: lastDatedUnitPrice.amount,
           unit: "${lastDatedUnitPrice.currency.symbol}/${lastDatedUnitPrice.unit.symbol}");
 
-      final formattedUnitPrice = lastDatedUnitPrice.fixedAmount != 0
+      final unitPriceText = lastDatedUnitPrice.fixedAmount != 0
           ? "$formattedFixedAmount + $formattedAmount"
           : formattedAmount;
 
       final quantity =
           quantityCalculator.calculateQuantity(enabledCostCategory.jobCategory);
-      final formattedQuantity = getFormattedNumber(number: quantity);
+      final quantityText = getFormattedNumber(number: quantity);
 
-      final quantityUnit = lastDatedUnitPrice.unit.symbol;
+      final quantityUnitText = lastDatedUnitPrice.unit.symbol;
 
-      final quantityExplanation = quantityCalculator
+      final quantityExplanationText = quantityCalculator
           .getQuantityExplanation(enabledCostCategory.jobCategory);
 
       final totalPriceTRY = (lastDatedUnitPrice.fixedAmount *
@@ -320,11 +320,11 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
 
       final cost = Cost(
         category: enabledCostCategory,
-        unitPriceExplanationTr: unitPriceExplanationTr,
-        formattedUnitPrice: formattedUnitPrice,
-        formattedQuantity: formattedQuantity,
-        quantityUnit: quantityUnit,
-        quantityExplanation: quantityExplanation,
+        unitPriceExplanationText: unitPriceExplanationText,
+        unitPriceText: unitPriceText,
+        quantityText: quantityText,
+        quantityUnitText: quantityUnitText,
+        quantityExplanationText: quantityExplanationText,
         formattedTotalPriceTRY: formattedTotalPriceTRY,
         totalPriceTRY: totalPriceTRY,
       );
