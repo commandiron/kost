@@ -63,22 +63,27 @@ class UnitPriceRepository {
         dateTime: DateTime(2023, 08)
     ),
 
-    //Su İzolasyon - Tunç
+    //Su İzolasyon - Tunç ✓
     UnitPrice(
-        category: UnitPriceCategory.doubleLayerBitumenMembrane,
-        amount: 224.47,
-        currency: Currency.lira,
+        category: UnitPriceCategory.proofBitumenMembrane,
+        amount: 9,
+        currency: Currency.dollar,
         dateTime: DateTime(2023, 08)),
     UnitPrice(
         category: UnitPriceCategory.bitumenSliding,
-        amount: 155,
-        currency: Currency.lira,
-        dateTime: DateTime(2023, 01)),
+        amount: 8,
+        currency: Currency.euro,
+        dateTime: DateTime(2023, 08)),
+    UnitPrice(
+        category: UnitPriceCategory.cementSliding,
+        amount: 6.5,
+        currency: Currency.euro,
+        dateTime: DateTime(2023, 08)),
     UnitPrice(
         category: UnitPriceCategory.drainPlate,
-        amount: 30,
-        currency: Currency.lira,
-        dateTime: DateTime(2023, 01)),
+        amount: 1.15,
+        currency: Currency.euro,
+        dateTime: DateTime(2023, 08)),
 
     //Çeşitli Malzeme - Can
     UnitPrice(
