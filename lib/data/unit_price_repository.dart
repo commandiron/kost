@@ -234,22 +234,22 @@ class UnitPriceRepository {
         dateTime: DateTime(2023, 01),
     ),
 
-    //Alçıpancı - Bedir (Tekrar fiyat al.)
+    //Alçıpancı - Bedir ✓
     UnitPrice(
         category: UnitPriceCategory.drywall,
         explanationTr: "Alçıpan",
-        amount: 230,
+        amount: 250,
         currency: Currency.lira,
         unit: Unit.squareMeters,
-        dateTime: DateTime(2023, 01),
+        dateTime: DateTime(2023, 08),
     ),
     UnitPrice(
         category: UnitPriceCategory.covingPlaster,
         explanationTr: "Kartonpiyer",
-        amount: 55,
+        amount: 75,
         currency: Currency.lira,
         unit: Unit.meter,
-        dateTime: DateTime(2023, 01),
+        dateTime: DateTime(2023, 08),
     ),
 
     //Şapçı - (Şapçı Halitten fiyat al)
@@ -546,7 +546,7 @@ class UnitPriceRepository {
         amount: 18000,
         currency: Currency.lira,
         unit: Unit.number,
-        dateTime: DateTime(2023, 01)
+        dateTime: DateTime(2023, 08)
     ),
 
     //Elektrikçi - İhsan (Bizim teklifimizden bak)
