@@ -35,7 +35,7 @@ class RoughConstructionCostTemplate extends CostTemplate {
       CostCategory(MainCategory.roughConstructionJobs, JobCategory.foundationStabilization, UnitPriceCategory.foundationStabilizationGravel,),
       CostCategory(MainCategory.roughConstructionJobs, JobCategory.subFoundationConcrete, UnitPriceCategory.c16Concrete,),
       CostCategory(MainCategory.roughConstructionJobs, JobCategory.concreteFormWork, UnitPriceCategory.plywood,),
-      CostCategory(MainCategory.roughConstructionJobs, JobCategory.pouringConcrete, UnitPriceCategory.c30Concrete,),
+      CostCategory(MainCategory.roughConstructionJobs, JobCategory.pouringConcrete, UnitPriceCategory.c35Concrete,),
       CostCategory(MainCategory.roughConstructionJobs, JobCategory.rebar, UnitPriceCategory.s420Steel,),
       CostCategory(MainCategory.roughConstructionJobs, JobCategory.hollowFloorFilling, UnitPriceCategory.eps,),
       CostCategory(MainCategory.roughConstructionJobs, JobCategory.foundationWaterproofing, UnitPriceCategory.doubleLayerBitumenMembrane,),
@@ -68,7 +68,7 @@ class FacadeCostTemplate extends CostTemplate {
     enabledCostCategories = [
       CostCategory(MainCategory.facadeJobs, JobCategory.facadeScaffolding, UnitPriceCategory.steelScaffolding),
       CostCategory(MainCategory.facadeJobs, JobCategory.windows, UnitPriceCategory.windowJoineryRehau,),
-      CostCategory(MainCategory.facadeJobs, JobCategory.facadeRails, UnitPriceCategory.wroughtIronRailing,),
+      CostCategory(MainCategory.facadeJobs, JobCategory.facadeRails, UnitPriceCategory.aluminumRailing,),
       CostCategory(MainCategory.facadeJobs, JobCategory.facadeSystem, UnitPriceCategory.ceramicFacade,),
     ];
   }
