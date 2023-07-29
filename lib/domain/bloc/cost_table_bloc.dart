@@ -288,7 +288,7 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
       final lastDatedUnitPrice = unitPrices.reduce((current, next) =>
           current.dateTime.isAfter(next.dateTime) ? current : next);
 
-      final unitPriceExplanation = lastDatedUnitPrice.explanationTr;
+      final unitPriceExplanationTr = lastDatedUnitPrice.explanationTr;
 
       final formattedFixedAmount = getFormattedNumber(
           number: lastDatedUnitPrice.fixedAmount,
@@ -319,7 +319,7 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
 
       final cost = Cost(
         category: enabledCostCategory,
-        unitPriceExplanation: unitPriceExplanation,
+        unitPriceExplanationTr: unitPriceExplanationTr,
         formattedUnitPrice: formattedUnitPrice,
         formattedQuantity: formattedQuantity,
         quantityExplanation: quantityExplanation,

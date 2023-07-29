@@ -31,7 +31,7 @@ class CostItem extends StatelessWidget {
               flex: 4,
               child: Row(
                 children: [
-                  Expanded(child: Text(cost.unitPriceExplanation)),
+                  Expanded(child: Text(cost.unitPriceExplanationTr)),
                   IconButton(
                       onPressed: () {
                         showDialog(
