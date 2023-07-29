@@ -1,7 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:kost/domain/model/category/category.dart';
-import 'package:kost/domain/model/unit_price/unit_price_category.dart';
 
 import '../model/cost/cost_category.dart';
 

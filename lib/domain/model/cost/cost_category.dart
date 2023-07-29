@@ -1,5 +1,4 @@
 import '../category/category.dart';
-import '../unit_price/unit_price_category.dart';
 
 class CostCategory {
   CostCategory(
