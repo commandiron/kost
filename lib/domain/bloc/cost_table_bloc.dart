@@ -75,18 +75,18 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
       ));
     });
     on<ExpandCollapseMainCategory>((event, emit) {
-      for (var costCategory in state.costTemplate.enabledCostCategories) {
-        if (costCategory.mainCategory == event.mainCategory) {
-          costCategory.visible = !costCategory.visible;
+      state.costs.where((cost) => cost.category.mainCategory == event.mainCategory).forEach(
+        (cost) {
+          cost.visible = !cost.visible;
         }
-      }
-      _refresh();
+      );
+      emit(state.copyWith(costs: List.of(state.costs)));
     });
     on<ExpandCollapseAllMainCategory>((event, emit) {
-      for (var costCategory in state.costTemplate.enabledCostCategories) {
-        costCategory.visible = !costCategory.visible;
+      for (var cost in state.costs) {
+        cost.visible = !cost.visible;
       }
-      _refresh();
+      emit(state.copyWith(costs: List.of(state.costs)));
     });
     on<ReplaceUnitPrice>((event, emit) {
       final replacedIndex = state.costTemplate.enabledCostCategories
@@ -333,6 +333,7 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
         quantityExplanationText: quantityExplanationText,
         formattedTotalPriceTRY: formattedTotalPriceTRY,
         totalPriceTRY: totalPriceTRY,
+        visible: true
       );
 
       costs.add(cost);

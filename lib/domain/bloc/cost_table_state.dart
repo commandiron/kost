@@ -51,7 +51,7 @@ class CostTableState extends Equatable {
         unitPricePool,
         currencyRates,
         costTemplate,
-        costs,
+        costs.hashCode,
         formattedSubTotalsTRY,
         formattedGrandTotalTRY
       ];

@@ -4,11 +4,9 @@ class CostCategory {
   CostCategory(
     this.mainCategory,
     this.jobCategory,
-    this.unitPriceCategory,
-    {this.visible = true}
+    this.unitPriceCategory
   );
   final MainCategory mainCategory;
   final JobCategory jobCategory;
   final UnitPriceCategory unitPriceCategory;
-  bool visible;
 }
