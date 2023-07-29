@@ -239,22 +239,22 @@ class UnitPriceRepository {
         currency: Currency.lira,
         dateTime: DateTime(2023, 08)),
 
-    //Sıcak Demirci - Selçuk, İnternet
+    //Sıcak Demirci - Selçuk, İnternet ✓
     UnitPrice(
         category: UnitPriceCategory.wroughtIronRailing,
-        amount: 3000,
+        amount: 4500,
         currency: Currency.lira,
-        dateTime: DateTime(2023, 01)),
+        dateTime: DateTime(2023, 08)),
     UnitPrice(
         category: UnitPriceCategory.aluminumRailing,
         amount: 1000,
         currency: Currency.lira,
-        dateTime: DateTime(2023, 01)),
+        dateTime: DateTime(2023, 08)),
     UnitPrice(
         category: UnitPriceCategory.trapezoidalSheetCurtain,
-        amount: 850,
+        amount: 1000,
         currency: Currency.lira,
-        dateTime: DateTime(2023, 01)),
+        dateTime: DateTime(2023, 08)),
 
     //Parke - şerifoğlu ✓
     UnitPrice(
