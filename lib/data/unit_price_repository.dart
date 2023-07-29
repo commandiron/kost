@@ -482,12 +482,20 @@ class UnitPriceRepository {
 
     //Vrf klima - Erdinç (Fiyat vermişti multi split felan onuda ekle Mitshubishi)
     UnitPrice(
-        category: UnitPriceCategory.airConditionerArcelik,
-        explanationTr: "Arçelik Klima",
-        amount: 10000,
+      category: UnitPriceCategory.airConditionerArcelik,
+      explanationTr: "Arçelik Klima",
+      amount: 15000,
+      currency: Currency.lira,
+      unit: Unit.number,
+      dateTime: DateTime(2023, 08),
+    ),
+    UnitPrice(
+        category: UnitPriceCategory.vrfMultiSplitMitshubishiElectric,
+        explanationTr: "Mitshubishi Electric Multi Split",
+        amount: 24000,
         currency: Currency.lira,
         unit: Unit.number,
-        dateTime: DateTime(2023, 01),
+        dateTime: DateTime(2023, 08),
     ),
     UnitPrice(
         category: UnitPriceCategory.ventilation,
