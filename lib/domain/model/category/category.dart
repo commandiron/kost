@@ -104,7 +104,7 @@ extension JobCategoryExtension on JobCategory {
   String get nameTr {
     return switch (this) {
       JobCategory.shoring => "İksa yapılması",
-      JobCategory.excavation => "Kazı yapılması ve çıkan molozun şantiye dışına gönderilmesi",
+      JobCategory.excavation => "Kazı yapılması",
       JobCategory.breaker => "Kırıcı çalıştırılması",
       JobCategory.foundationStabilization => "Temel altına stabilizasyon malzemesinin serilmesi",
       JobCategory.subFoundationConcrete => "Temel altı grobeton ve yalıtım koruma betonu atılması",
