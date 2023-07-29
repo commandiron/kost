@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kost/config/app_text_style.dart';
 
 class MainCategoryTitle extends StatelessWidget {
   const MainCategoryTitle({Key? key, required this.text}) : super(key: key);
@@ -9,7 +10,7 @@ class MainCategoryTitle extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       text,
-      style: const TextStyle(fontSize: 20),
+      style: AppTextStyle.responsiveH4B(context)
     );
   }
 }

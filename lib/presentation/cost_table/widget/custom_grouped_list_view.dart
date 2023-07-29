@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:grouped_list/grouped_list.dart';
+import 'package:kost/config/app_text_style.dart';
 import 'package:kost/domain/bloc/cost_table_bloc.dart';
 import 'package:kost/domain/bloc/cost_table_event.dart';
 
@@ -41,14 +42,14 @@ class CostsListView extends StatelessWidget {
               Expanded(
                   flex: 5, child: MainCategoryTitle(text: mainCategory.nameTr)),
               Expanded(
-                child: Text(formattedSubTotalsTRY[mainCategory] ?? ""),
+                child: Text(formattedSubTotalsTRY[mainCategory] ?? "", style: AppTextStyle.responsiveH5(context),),
               ),
               IconButton(
-                  onPressed: () => context
-                      .read<CostTableBloc>()
-                      .add(ExpandCollapseMainCategory(mainCategory)),
-                  icon:
-                      Icon(visible ? Icons.arrow_drop_down : Icons.arrow_right))
+                onPressed: () => context
+                    .read<CostTableBloc>()
+                    .add(ExpandCollapseMainCategory(mainCategory)),
+                icon: Icon(visible ? Icons.arrow_drop_down : Icons.arrow_right)
+              )
             ],
           ),
         );
