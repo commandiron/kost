@@ -629,12 +629,12 @@ class DetailedQuantityCalculator extends QuantityCalculator {
 
   @override
   double get calculatedFacadeSystemArea {
-    return _totalFacadeArea - _totalWindowArea;
+    return _totalFacadeArea;
   }
 
   @override
   String get facadeSystemAreaExplanation {
-    return "Toplam cephe alanı: $_totalFacadeArea - Toplam pencere alanı: $_totalWindowArea";
+    return "Toplam cephe alanı: $_totalFacadeArea";
   }
 
   @override

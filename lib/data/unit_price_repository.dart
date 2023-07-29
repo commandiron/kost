@@ -196,22 +196,22 @@ class UnitPriceRepository {
         dateTime: DateTime(2023, 01),
     ),
 
-    //Cepheci - (Bunun birim fiyatı nasıl hesaplanacak bir düşün)
+    //Cepheci (Sinterflex fiyatı öğren)
     UnitPrice(
         category: UnitPriceCategory.ceramicFacade,
-        explanationTr: "Seramik cephe",
-        amount: 600,
+        explanationTr: "Sinterflex cephe",
+        amount: 1500,
         currency: Currency.lira,
         unit: Unit.squareMeters,
         dateTime: DateTime(2023, 01),
     ),
     UnitPrice(
         category: UnitPriceCategory.precastFacade,
-        explanationTr: "Prekast cephe",
-        amount: 800,
-        currency: Currency.lira,
+        explanationTr: "Prekast 3 cephe",
+        amount: 120,
+        currency: Currency.dollar,
         unit: Unit.squareMeters,
-        dateTime: DateTime(2023, 01),
+        dateTime: DateTime(2023, 08),
     ),
 
     //Alçı Sıvacı - Abdullah
