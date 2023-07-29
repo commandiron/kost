@@ -17,10 +17,11 @@ class CostTableScreen extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
+          backgroundColor: Colors.grey,
           actions: [
             ElevatedButton(
               onPressed: () => Navigator.pushNamed(context, QuantityDetails.route),
-              child: Text("Quantity Details Screen")
+              child: Text("To Quantity Details Screen")
             )
           ],
         ),
