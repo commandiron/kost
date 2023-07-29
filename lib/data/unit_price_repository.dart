@@ -434,7 +434,7 @@ class UnitPriceRepository {
         dateTime: DateTime(2023, 01),
     ),
 
-    //Mutfak dolabı - Ramazan, Hacker, Aster ✓
+    //Mutfak dolabı - Hacker, Aster ✓
     UnitPrice(
         category: UnitPriceCategory.shinyLacqueredKitchenCupboardAster,
         explanationTr: "Aster Marka Parlak Lake Mutfak Dolabı",
