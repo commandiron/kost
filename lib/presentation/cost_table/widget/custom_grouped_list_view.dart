@@ -6,6 +6,7 @@ import 'package:kost/config/responsive.dart';
 import 'package:kost/domain/bloc/cost_table_bloc.dart';
 import 'package:kost/domain/bloc/cost_table_event.dart';
 
+import '../../../config/app_padding.dart';
 import '../../../domain/model/category/category.dart';
 import '../../../domain/model/cost/cost.dart';
 import '../../../domain/model/unit_price/unit_price.dart';
@@ -36,19 +37,22 @@ class CostsListView extends StatelessWidget {
           onTap: () => context.read<CostTableBloc>().add(ExpandCollapseMainCategory(mainCategory)),
           child: Container(
             height: 80,
-            padding: const EdgeInsets.symmetric(horizontal: 16),
+            padding: Responsive.value(context, AppPadding.hS , AppPadding.hM, AppPadding.hM),
             decoration: BoxDecoration(
               border: visible ? null : Border.all()
             ),
             child: Row(
               children: [
                 Expanded(
-                  flex: 10, child: MainCategoryTitle(text: mainCategory.nameTr)),
+                  flex: 4, child: MainCategoryTitle(text: mainCategory.nameTr)),
                 Expanded(
-                  flex: Responsive.value(context, 6, 4, 2),
+                  flex: Responsive.value(context, 2, 1, 1),
                   child: Text(formattedSubTotalsTRY[mainCategory] ?? "", style: AppTextStyle.responsiveH5B(context),),
                 ),
-                Icon(visible ? Icons.arrow_drop_down : Icons.arrow_right)
+                Padding(
+                  padding: const EdgeInsets.all(8),
+                  child: Icon(visible ? Icons.arrow_drop_down : Icons.arrow_right, size: 24,),
+                )
               ],
             ),
           ),

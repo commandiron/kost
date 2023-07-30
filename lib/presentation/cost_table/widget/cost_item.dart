@@ -45,7 +45,7 @@ class CostItem extends StatelessWidget {
             child: Row(
               children: [
                 if(!Responsive.isMobile(context))
-                  Expanded(flex: 2, child: Text(cost.category.jobCategory.nameTr, style: AppTextStyle.responsiveB1(context),)),
+                  Expanded(child: Text(cost.category.jobCategory.nameTr, style: AppTextStyle.responsiveB1(context),)),
                 Expanded(
                   child: unitPrices.length > 1
                     ? TextButton(
