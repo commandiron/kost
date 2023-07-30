@@ -339,7 +339,7 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
         quantityExplanationText: quantityExplanationText,
         formattedTotalPriceTRY: formattedTotalPriceTRY,
         totalPriceTRY: totalPriceTRY,
-        visible: true
+        visible: state.costs.isNotEmpty ? state.costs.firstWhere((cost) => cost.category == enabledCostCategory).visible : true
       );
 
       costs.add(cost);
