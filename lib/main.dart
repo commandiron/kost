@@ -7,6 +7,7 @@ import 'config/app_config.dart';
 import 'domain/bloc/cost_table_bloc.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyApp());
 }
 

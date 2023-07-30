@@ -17,7 +17,6 @@ class CostTableScreen extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.grey,
           title: BlocBuilder<CostTableBloc, CostTableState>(
             builder: (context, state) {
               return Text(state.formattedGrandTotalTRY, style: AppTextStyle.b1,);
