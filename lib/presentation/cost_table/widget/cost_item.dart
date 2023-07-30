@@ -114,9 +114,7 @@ class CostItem extends StatelessWidget {
                 if(!Responsive.isMobile(context))
                   IconButton(
                     onPressed: () {
-                      context
-                          .read<CostTableBloc>()
-                          .add(DeleteCostCategory(cost.category));
+                      context.read<CostTableBloc>().add(DeleteCostCategory(cost.category));
                     },
                     icon: const Icon(Icons.delete)
                   )
