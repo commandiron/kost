@@ -70,7 +70,7 @@ class CostItem extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(cost.unitPriceNameText, style: AppTextStyle.responsiveB1(context), textAlign: TextAlign.center,),
-                            Icon(Icons.change_circle)
+                            const Icon(Icons.change_circle)
                           ],
                         )
                     )
