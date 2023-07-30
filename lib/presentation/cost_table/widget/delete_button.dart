@@ -13,7 +13,8 @@ class DeleteButton extends StatelessWidget {
     return IconButton(
       onPressed: () async {
         final result = await showDialog<bool>(
-          context: context, builder: (BuildContext context) {
+          context: context,
+          builder: (BuildContext context) {
             return AlertDialog(
               content: const Text("Silmek istediğinize emin misiniz?"),
               actions: [
