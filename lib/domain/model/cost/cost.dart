@@ -1,7 +1,6 @@
 import 'cost_category.dart';
 
 class Cost {
-  String id;
   CostCategory category;
   String unitPriceNameText;
   String unitPriceAmountText;
@@ -13,7 +12,6 @@ class Cost {
   bool visible;
 
   Cost({
-    required this.id,
     required this.category,
     required this.unitPriceNameText,
     required this.unitPriceAmountText,
@@ -26,7 +24,6 @@ class Cost {
   });
 
   Cost copyWith({
-    String? id,
     CostCategory? category,
     String? unitPriceNameText,
     String? unitPriceAmountText,
@@ -38,7 +35,6 @@ class Cost {
     bool? visible,
   }) {
     return Cost(
-      id: id ?? this.id,
       category: category ?? this.category,
       unitPriceNameText: unitPriceNameText ?? this.unitPriceNameText,
       unitPriceAmountText: unitPriceAmountText ?? this.unitPriceAmountText,

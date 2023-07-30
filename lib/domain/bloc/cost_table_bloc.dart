@@ -14,7 +14,6 @@ import 'package:kost/domain/model/cost/cost_template.dart';
 import 'package:kost/domain/model/unit_price/unit.dart';
 import 'package:kost/domain/model/cost/cost.dart';
 import 'package:kost/presentation/cost_table/cost_table_screen.dart';
-import 'package:uuid/uuid.dart';
 
 import '../calculator/detailed/floor.dart';
 import '../model/unit_price/unit_price.dart';
@@ -332,7 +331,6 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
           getFormattedNumber(number: totalPriceTRY, unit: "TL");
 
       final cost = Cost(
-        id: const Uuid().v4(),
         category: enabledCostCategory,
         unitPriceNameText: unitPriceNameText,
         unitPriceAmountText: unitAmountText,
