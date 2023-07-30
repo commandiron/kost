@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:kost/config/app_text_style.dart';
 import 'package:kost/domain/bloc/cost_table_event.dart';
 import 'package:kost/presentation/cost_table/widget/custom_grouped_list_view.dart';
-import 'package:kost/presentation/quantity_details/quantity_details_screen.dart';
 
 import '../../domain/bloc/cost_table_bloc.dart';
 import '../../domain/bloc/cost_table_state.dart';
@@ -18,12 +18,11 @@ class CostTableScreen extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.grey,
-          actions: [
-            ElevatedButton(
-              onPressed: () => Navigator.pushNamed(context, QuantityDetails.route),
-              child: Text("To Quantity Details Screen")
-            )
-          ],
+          title: BlocBuilder<CostTableBloc, CostTableState>(
+            builder: (context, state) {
+              return Text(state.formattedGrandTotalTRY, style: AppTextStyle.b1,);
+            },
+          ),
         ),
         body: BlocBuilder<CostTableBloc, CostTableState>(
           builder: (context, state) {
@@ -36,7 +35,6 @@ class CostTableScreen extends StatelessWidget {
                         state.costTemplate.name,
                         style: const TextStyle(fontSize: 26),
                       ),
-                      Text(state.formattedGrandTotalTRY),
                       ElevatedButton(
                         onPressed: () => context.read<CostTableBloc>().add(const ExpandCollapseAllMainCategory()),
                         child: const Text("Collapse All")
