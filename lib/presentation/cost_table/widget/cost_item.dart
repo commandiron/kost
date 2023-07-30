@@ -12,6 +12,7 @@ import 'package:kost/presentation/cost_table/widget/unit_prices_alert_dialog.dar
 import '../../../domain/bloc/cost_table_bloc.dart';
 import '../../../domain/bloc/cost_table_event.dart';
 import '../../../domain/model/unit_price/unit_price.dart';
+import 'delete_button.dart';
 
 class CostItem extends StatelessWidget {
   const CostItem({Key? key, required this.cost, required this.index, required this.unitPrices})
@@ -26,7 +27,7 @@ class CostItem extends StatelessWidget {
     return Container(
       color: index.isOdd ? Colors.grey.shade400 : Colors.grey.shade200,
       height: Responsive.value(context, 120 , 80, 80),
-      padding: AppPadding.hM!,
+      padding: Responsive.value(context, AppPadding.hS , AppPadding.hM, AppPadding.hM),
       child: Column(
         children: [
           if(Responsive.isMobile(context))
@@ -35,12 +36,7 @@ class CostItem extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Expanded(child: Text(cost.category.jobCategory.nameTr, style: AppTextStyle.b3b,)),
-                  IconButton(
-                      onPressed: () {
-                        context.read<CostTableBloc>().add(DeleteCostCategory(cost.category));
-                      },
-                      icon: const Icon(Icons.delete)
-                  ),
+                  DeleteButton(costCategory: cost.category)
                 ],
               ),
             ),
@@ -114,12 +110,7 @@ class CostItem extends StatelessWidget {
                     ],
                   )),
                 if(!Responsive.isMobile(context))
-                  IconButton(
-                    onPressed: () {
-                      context.read<CostTableBloc>().add(DeleteCostCategory(cost.category));
-                    },
-                    icon: const Icon(Icons.delete)
-                  )
+                  DeleteButton(costCategory: cost.category)
               ],
             ),
           ),
