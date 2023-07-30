@@ -23,6 +23,7 @@ class DeleteButton extends StatelessWidget {
             );
           },
         );
+        await Future.delayed(const Duration(milliseconds: 150));
         if(result != null && result) {
           if(context.mounted) {
             context.read<CostTableBloc>().add(DeleteCostCategory(costCategory));
