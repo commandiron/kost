@@ -30,6 +30,7 @@ class _QuantityTextFieldState extends State<QuantityTextField> {
         controller: TextEditingController(text: widget.formattedQuantity),
         decoration: InputDecoration(suffix: Text(widget.symbol)),
         style: AppTextStyle.responsiveB1(context),
+        textAlign: TextAlign.end,
         validator: (value) {
           const String message = "Lütfen sayı giriniz.";
           if (value == null) {
