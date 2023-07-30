@@ -25,89 +25,111 @@ class CostItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: index.isOdd ? Colors.grey.shade400 : Colors.grey.shade200,
-      height: 80,
-      padding: Responsive.value(context, AppPadding.hS!, AppPadding.hM!, AppPadding.hM!),
-      child: Row(
+      height: Responsive.value(context, 120 , 80, 80),
+      padding: AppPadding.hM!,
+      child: Column(
         children: [
-          Expanded(flex: 2, child: Text(cost.category.jobCategory.nameTr, style: AppTextStyle.responsiveB1(context),)),
-          Expanded(
-              flex: 4,
+          if(Responsive.isMobile(context))
+            Expanded(
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Expanded(
-                    child: TextButton(
+                  Expanded(child: Text(cost.category.jobCategory.nameTr, style: AppTextStyle.b3b,)),
+                  IconButton(
                       onPressed: () {
-                        showDialog(
-                          context: context,
-                          builder: (dialogContext) {
-                            return UnitPricesAlertDialog(
-                              unitPrices: unitPrices,
-                              onUnitPriceSelect: (index) {
-                                context.read<CostTableBloc>().add(ReplaceUnitPrice(cost.category, unitPrices[index].category));
-                                Navigator.of(context).pop();
-                              },
-                            );
-                          },
-                        );
+                        context.read<CostTableBloc>().add(DeleteCostCategory(cost.category));
                       },
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Text(cost.unitPriceNameText, style: AppTextStyle.responsiveB1(context), textAlign: TextAlign.center,),
-                          const Icon(Icons.change_circle,)
-                        ],
-                      )
+                      icon: const Icon(Icons.delete)
+                  ),
+                ],
+              ),
+            ),
+          Expanded(
+            flex: 2,
+            child: Row(
+              children: [
+                if(!Responsive.isMobile(context))
+                  Expanded(flex: 2, child: Text(cost.category.jobCategory.nameTr, style: AppTextStyle.responsiveB1(context),)),
+                Expanded(
+                    child: TextButton(
+                        onPressed: () {
+                          showDialog(
+                            context: context,
+                            builder: (dialogContext) {
+                              return UnitPricesAlertDialog(
+                                unitPrices: unitPrices,
+                                onUnitPriceSelect: (index) {
+                                  context.read<CostTableBloc>().add(ReplaceUnitPrice(cost.category, unitPrices[index].category));
+                                  Navigator.of(context).pop();
+                                },
+                              );
+                            },
+                          );
+                        },
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(cost.unitPriceNameText, style: AppTextStyle.responsiveB1(context), textAlign: TextAlign.center,),
+                            Icon(Icons.change_circle)
+                          ],
+                        )
                     )
-                  ),
-                  Expanded(child: Text(cost.unitPriceAmountText, style: AppTextStyle.responsiveB1(context),),),
-                ],
-              )),
-          Expanded(
-              flex: 2,
-              child: Row(
-                children: [
-                  if(Responsive.isDesktop(context))
-                    Row(
+                ),
+                Expanded(child: Text(cost.unitPriceAmountText, style: AppTextStyle.responsiveB1(context),),),
+                Expanded(
+                    child: Row(
                       children: [
-                        Tooltip(
-                          message: cost.quantityExplanationText,
-                          child: const Icon(Icons.info_outlined),
+                        if(Responsive.isDesktop(context))
+                          Row(
+                            children: [
+                              Tooltip(
+                                message: cost.quantityExplanationText,
+                                child: const Icon(Icons.info_outlined),
+                              ),
+                              AppSpace.hM!,
+                            ],
+                          ),
+                        Expanded(
+                          flex: Responsive.value(context, 8, 4, 1),
+                          child: QuantityTextField(
+                            formattedQuantity: cost.quantityText,
+                            symbol: cost.quantityUnitText,
+                            onFieldSubmitted: (value) {
+                              context.read<CostTableBloc>().add(
+                                ChangeQuantityManually(cost.category.jobCategory, value)
+                              );
+                            },
+                          ),
                         ),
-                        AppSpace.hM!,
+                        AppSpace.hExpanded!,
                       ],
-                    ),
-                  Expanded(
-                    flex: Responsive.value(context, 8, 4, 1),
-                    child: QuantityTextField(
-                      formattedQuantity: cost.quantityText,
-                      symbol: cost.quantityUnitText,
-                      onFieldSubmitted: (value) {
-                        context.read<CostTableBloc>().add(
-                          ChangeQuantityManually(cost.category.jobCategory, value)
-                        );
-                      },
-                    ),
-                  ),
-                  AppSpace.hExpanded!,
-                ],
-              )),
-          Expanded(
-              flex: 2,
-              child: Row(
-                children: [
-                  Text(cost.formattedTotalPriceTRY, style: AppTextStyle.responsiveB1(context),),
-                ],
-              )),
-          if(Responsive.isDesktop(context))
-            IconButton(
-              onPressed: () {
-                context
-                    .read<CostTableBloc>()
-                    .add(DeleteCostCategory(cost.category));
-              },
-              icon: const Icon(Icons.delete)
-            )
+                    )),
+                if(!Responsive.isMobile(context))
+                Expanded(
+                  child: Row(
+                    children: [
+                      Text(cost.formattedTotalPriceTRY, style: AppTextStyle.responsiveB1(context),),
+                    ],
+                  )),
+                if(!Responsive.isMobile(context))
+                  IconButton(
+                    onPressed: () {
+                      context
+                          .read<CostTableBloc>()
+                          .add(DeleteCostCategory(cost.category));
+                    },
+                    icon: const Icon(Icons.delete)
+                  )
+              ],
+            ),
+          ),
+          if(Responsive.isMobile(context))
+            Expanded(
+              child: Align(
+                alignment: Alignment.centerRight,
+                child: Text(cost.formattedTotalPriceTRY, style: AppTextStyle.b3b,)
+              )
+            ),
         ],
       ),
     );
