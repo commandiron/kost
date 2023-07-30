@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kost/config/app_text_style.dart';
 
 class QuantityTextField extends StatefulWidget {
   const QuantityTextField(
@@ -28,6 +29,7 @@ class _QuantityTextFieldState extends State<QuantityTextField> {
       child: TextFormField(
         controller: TextEditingController(text: widget.formattedQuantity),
         decoration: InputDecoration(suffix: Text(widget.symbol)),
+        style: AppTextStyle.responsiveB1(context),
         validator: (value) {
           const String message = "Lütfen sayı giriniz.";
           if (value == null) {

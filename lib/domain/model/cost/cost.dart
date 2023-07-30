@@ -2,8 +2,8 @@ import 'cost_category.dart';
 
 class Cost {
   CostCategory category;
-  String unitPriceExplanationText;
-  String unitPriceText;
+  String unitPriceNameText;
+  String unitPriceAmountText;
   String quantityText;
   String quantityUnitText;
   String quantityExplanationText;
@@ -13,8 +13,8 @@ class Cost {
 
   Cost({
     required this.category,
-    required this.unitPriceExplanationText,
-    required this.unitPriceText,
+    required this.unitPriceNameText,
+    required this.unitPriceAmountText,
     required this.quantityText,
     required this.quantityUnitText,
     required this.quantityExplanationText,
@@ -25,8 +25,8 @@ class Cost {
 
   Cost copyWith({
     CostCategory? category,
-    String? unitPriceExplanationText,
-    String? unitPriceText,
+    String? unitPriceNameText,
+    String? unitPriceAmountText,
     String? quantityText,
     String? quantityUnitText,
     String? quantityExplanationText,
@@ -36,8 +36,8 @@ class Cost {
   }) {
     return Cost(
       category: category ?? this.category,
-      unitPriceExplanationText: unitPriceExplanationText ?? this.unitPriceExplanationText,
-      unitPriceText: unitPriceText ?? this.unitPriceText,
+      unitPriceNameText: unitPriceNameText ?? this.unitPriceNameText,
+      unitPriceAmountText: unitPriceAmountText ?? this.unitPriceAmountText,
       quantityText: quantityText ?? this.quantityText,
       quantityUnitText: quantityUnitText ?? this.quantityUnitText,
       quantityExplanationText: quantityExplanationText ?? this.quantityExplanationText,

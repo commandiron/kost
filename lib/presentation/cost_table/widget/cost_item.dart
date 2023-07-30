@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:kost/config/app_padding.dart';
+import 'package:kost/config/app_space.dart';
 import 'package:kost/config/app_text_style.dart';
+import 'package:kost/config/responsive.dart';
 import 'package:kost/domain/model/category/category.dart';
 import 'package:kost/domain/model/cost/cost.dart';
 import 'package:kost/presentation/cost_table/widget/quantity_text_field.dart';
@@ -23,7 +26,7 @@ class CostItem extends StatelessWidget {
     return Container(
       color: index.isOdd ? Colors.grey.shade400 : Colors.grey.shade200,
       height: 80,
-      padding: const EdgeInsets.symmetric(horizontal: 16),
+      padding: Responsive.value(context, AppPadding.hS!, AppPadding.hM!, AppPadding.hM!),
       child: Row(
         children: [
           Expanded(flex: 2, child: Text(cost.category.jobCategory.nameTr, style: AppTextStyle.responsiveB1(context),)),
@@ -51,53 +54,60 @@ class CostItem extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Text(cost.unitPriceExplanationText, style: AppTextStyle.responsiveB1(context), textAlign: TextAlign.center,),
+                          Text(cost.unitPriceNameText, style: AppTextStyle.responsiveB1(context), textAlign: TextAlign.center,),
                           const Icon(Icons.change_circle,)
                         ],
                       )
                     )
                   ),
-                  Expanded(child: Text(cost.unitPriceText)),
+                  Expanded(child: Text(cost.unitPriceAmountText, style: AppTextStyle.responsiveB1(context),),),
                 ],
               )),
           Expanded(
               flex: 2,
               child: Row(
                 children: [
-                  Tooltip(
-                    message: cost.quantityExplanationText,
-                    child: const Icon(Icons.info_outlined),
+                  if(Responsive.isDesktop(context))
+                    Row(
+                      children: [
+                        Tooltip(
+                          message: cost.quantityExplanationText,
+                          child: const Icon(Icons.info_outlined),
+                        ),
+                        AppSpace.hM!,
+                      ],
+                    ),
+                  Expanded(
+                    flex: Responsive.value(context, 8, 4, 1),
+                    child: QuantityTextField(
+                      formattedQuantity: cost.quantityText,
+                      symbol: cost.quantityUnitText,
+                      onFieldSubmitted: (value) {
+                        context.read<CostTableBloc>().add(
+                          ChangeQuantityManually(cost.category.jobCategory, value)
+                        );
+                      },
+                    ),
                   ),
-                  const SizedBox(
-                    width: 8,
-                  ),
-                  SizedBox(
-                      width: 100,
-                      child: QuantityTextField(
-                        formattedQuantity: cost.quantityText,
-                        symbol: cost.quantityUnitText,
-                        onFieldSubmitted: (value) {
-                          context.read<CostTableBloc>().add(
-                            ChangeQuantityManually(cost.category.jobCategory, value)
-                          );
-                        },
-                      ))
+                  AppSpace.hExpanded!,
                 ],
               )),
           Expanded(
               flex: 2,
               child: Row(
                 children: [
-                  Text(cost.formattedTotalPriceTRY),
+                  Text(cost.formattedTotalPriceTRY, style: AppTextStyle.responsiveB1(context),),
                 ],
               )),
-          IconButton(
+          if(Responsive.isDesktop(context))
+            IconButton(
               onPressed: () {
                 context
                     .read<CostTableBloc>()
                     .add(DeleteCostCategory(cost.category));
               },
-              icon: const Icon(Icons.delete))
+              icon: const Icon(Icons.delete)
+            )
         ],
       ),
     );
