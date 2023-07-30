@@ -40,7 +40,7 @@ class RoughConstructionCostTemplate extends CostTemplate {
       CostCategory(MainCategory.roughConstructionJobs, JobCategory.foundationWaterproofing, UnitPriceCategory.proofBitumenMembrane,),
       CostCategory(MainCategory.roughConstructionJobs, JobCategory.curtainWaterproofing, UnitPriceCategory.cementSliding,),
       CostCategory(MainCategory.roughConstructionJobs, JobCategory.curtainProtectionBeforeFilling, UnitPriceCategory.drainPlate,),
-      CostCategory(MainCategory.roughConstructionJobs, JobCategory.wallMaterial, UnitPriceCategory.aeratedConcreteMaterial,),
+      CostCategory(MainCategory.roughConstructionJobs, JobCategory.wallMaterial, UnitPriceCategory.aeratedConcreteYtong,),
       CostCategory(MainCategory.roughConstructionJobs, JobCategory.wallWorkmanShip, UnitPriceCategory.aeratedConcreteLabor,),
     ];
   }
@@ -85,7 +85,7 @@ class InteriorCostTemplate extends CostTemplate {
       CostCategory(MainCategory.interiorJobs, JobCategory.interiorWaterproofing, UnitPriceCategory.cementBasedFlexInsulation,),
       CostCategory(MainCategory.interiorJobs, JobCategory.ceilingCovering, UnitPriceCategory.drywall,),
       CostCategory(MainCategory.interiorJobs, JobCategory.covingPlaster, UnitPriceCategory.covingPlaster,),
-      CostCategory(MainCategory.interiorJobs, JobCategory.screeding, UnitPriceCategory.screed,),
+      CostCategory(MainCategory.interiorJobs, JobCategory.screeding, UnitPriceCategory.screed300Doses,),
       CostCategory(MainCategory.interiorJobs, JobCategory.marble, UnitPriceCategory.marbleFloorBilecik,),
       CostCategory(MainCategory.interiorJobs, JobCategory.marbleStep, UnitPriceCategory.marbleStepBilecik,),
       CostCategory(MainCategory.interiorJobs, JobCategory.marbleWindowsill, UnitPriceCategory.marbleWindowsillBilecik,),

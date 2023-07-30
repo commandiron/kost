@@ -81,7 +81,7 @@ class UnitPriceRepository {
     //İnşaat Demiri - İnternet ✓
     UnitPrice(
         category: UnitPriceCategory.s420Steel,
-        nameTr: "S420 Nervürlü İnşaat Demiri",
+        nameTr: "S420 İnşaat Demiri",
         amount: 19000/1.18,
         currency: Currency.lira,
         unit: Unit.ton,
@@ -140,8 +140,8 @@ class UnitPriceRepository {
         dateTime: DateTime(2023, 01),
     ),
     UnitPrice(
-        category: UnitPriceCategory.aeratedConcreteMaterial,
-        nameTr: "Gazbeton Malzeme",
+        category: UnitPriceCategory.aeratedConcreteYtong,
+        nameTr: "Ytong",
         amount: 1500,
         currency: Currency.lira,
         unit: Unit.cubicMeters,
@@ -227,7 +227,7 @@ class UnitPriceRepository {
     //Boyacı - Nebi (Tekrar fiyat al.)
     UnitPrice(
         category: UnitPriceCategory.painting,
-        nameTr: "İç mekan boyası",
+        nameTr: "Dyo",
         amount: 110,
         currency: Currency.lira,
         unit: Unit.squareMeters,
@@ -254,8 +254,8 @@ class UnitPriceRepository {
 
     //Şapçı - (Şapçı Halitten fiyat al)
     UnitPrice(
-        category: UnitPriceCategory.screed,
-        nameTr: "Şap",
+        category: UnitPriceCategory.screed300Doses,
+        nameTr: "300 Doz Şap",
         amount: 156,
         currency: Currency.lira,
         unit: Unit.squareMeters,

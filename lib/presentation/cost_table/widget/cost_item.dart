@@ -51,7 +51,8 @@ class CostItem extends StatelessWidget {
                 if(!Responsive.isMobile(context))
                   Expanded(flex: 2, child: Text(cost.category.jobCategory.nameTr, style: AppTextStyle.responsiveB1(context),)),
                 Expanded(
-                    child: TextButton(
+                  child: unitPrices.length > 1
+                    ? TextButton(
                         onPressed: () {
                           showDialog(
                             context: context,
@@ -73,7 +74,8 @@ class CostItem extends StatelessWidget {
                             const Icon(Icons.change_circle)
                           ],
                         )
-                    )
+                      )
+                    : Text(cost.unitPriceNameText, style: AppTextStyle.responsiveH5(context), textAlign: TextAlign.center,),
                 ),
                 Expanded(child: Text(cost.unitPriceAmountText, style: AppTextStyle.responsiveB1(context),),),
                 Expanded(
