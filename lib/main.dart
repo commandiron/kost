@@ -20,9 +20,9 @@ class MyApp extends StatelessWidget {
     return BlocProvider(
       create: (context) => CostTableBloc()..init(),
       child: MaterialApp(
-        initialRoute: CostTableScreen.route,
+        initialRoute: QuantityDetailsScreen.route,
         routes: {
-          QuantityDetails.route : (context) => const QuantityDetails(),
+          QuantityDetailsScreen.route : (context) => const QuantityDetailsScreen(),
           CostTableScreen.route : (context) => const CostTableScreen(),
         },
       )

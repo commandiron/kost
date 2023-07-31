@@ -8,8 +8,8 @@ import 'package:kost/presentation/quantity_details/widget/floor_viewer.dart';
 import '../../domain/bloc/cost_table_bloc.dart';
 import '../../domain/bloc/cost_table_state.dart';
 
-class QuantityDetails extends StatelessWidget {
-  const QuantityDetails({Key? key}) : super(key: key);
+class QuantityDetailsScreen extends StatelessWidget {
+  const QuantityDetailsScreen({Key? key}) : super(key: key);
 
   static const route = "quantity_details";
 
