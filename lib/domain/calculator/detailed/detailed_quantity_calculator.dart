@@ -479,12 +479,12 @@ class DetailedQuantityCalculator extends QuantityCalculator {
 
   @override
   double get calculatedFoundationStabilizationVolume {
-    return excavationArea * projectConstants.stabilizationHeight;
+    return excavationArea * projectConstants.stabilizationHeight * projectConstants.gravelTonForOneCubicMeter;
   }
 
   @override
-  String get foundationStabilizationVolumeExplanation {
-    return "Hafriyat alanı: $excavationArea x Temel altı stabilizasyon malzemesi yüksekliği: ${projectConstants.stabilizationHeight}";
+  String get foundationStabilizationWeightExplanation {
+    return "Hafriyat alanı: $excavationArea x Temel altı stabilizasyon malzemesi yüksekliği: ${projectConstants.stabilizationHeight} x 1 m3 mıcır: ${projectConstants.gravelTonForOneCubicMeter} ton";
   }
 
   @override

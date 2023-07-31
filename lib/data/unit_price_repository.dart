@@ -36,9 +36,9 @@ class UnitPriceRepository {
     UnitPrice(
       category: UnitPriceCategory.foundationStabilizationGravel,
       nameTr: "Mıcır",
-      amount: 450,
+      amount: 330,
       currency: Currency.lira,
-      unit: Unit.cubicMeters,
+      unit: Unit.ton,
       dateTime: DateTime(2023, 01),
     ),
 

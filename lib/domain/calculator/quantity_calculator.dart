@@ -53,8 +53,8 @@ abstract class QuantityCalculator {
   String get breakerHourExplanation;
 
   double get calculatedFoundationStabilizationVolume;
-  double? foundationStabilizationVolume;
-  String get foundationStabilizationVolumeExplanation;
+  double? foundationStabilizationWeight;
+  String get foundationStabilizationWeightExplanation;
 
   double get calculatedSubFoundationConcreteVolume;
   double? subFoundationConcreteVolume;
@@ -293,7 +293,7 @@ abstract class QuantityCalculator {
       case JobCategory.shoring : shoringArea = quantity;
       case JobCategory.excavation : excavationVolume = quantity;
       case JobCategory.breaker : breakerHour = quantity;
-      case JobCategory.foundationStabilization : foundationStabilizationVolume = quantity;
+      case JobCategory.foundationStabilization : foundationStabilizationWeight = quantity;
       case JobCategory.subFoundationConcrete : subFoundationConcreteVolume = quantity;
       case JobCategory.concreteFormWork : concreteFormWorkArea = quantity;
       case JobCategory.pouringConcrete : pouringConcreteVolume = quantity;
@@ -364,7 +364,7 @@ abstract class QuantityCalculator {
       JobCategory.shoring => shoringArea ?? calculatedShoringArea,
       JobCategory.excavation => excavationVolume ?? calculatedExcavationVolume,
       JobCategory.breaker => breakerHour ?? calculatedBreakerHour,
-      JobCategory.foundationStabilization => foundationStabilizationVolume ?? calculatedFoundationStabilizationVolume,
+      JobCategory.foundationStabilization => foundationStabilizationWeight ?? calculatedFoundationStabilizationVolume,
       JobCategory.subFoundationConcrete => subFoundationConcreteVolume ?? calculatedSubFoundationConcreteVolume,
       JobCategory.concreteFormWork => concreteFormWorkArea ?? calculatedConcreteFormWorkArea,
       JobCategory.pouringConcrete => pouringConcreteVolume ?? calculatedPouringConcreteVolume,
@@ -435,7 +435,7 @@ abstract class QuantityCalculator {
       JobCategory.shoring => shoringAreaExplanation,
       JobCategory.excavation => excavationVolumeExplanation,
       JobCategory.breaker => breakerHourExplanation,
-      JobCategory.foundationStabilization => foundationStabilizationVolumeExplanation,
+      JobCategory.foundationStabilization => foundationStabilizationWeightExplanation,
       JobCategory.subFoundationConcrete => subFoundationConcreteVolumeExplanation,
       JobCategory.concreteFormWork => concreteFormWorkAreaExplanation,
       JobCategory.pouringConcrete => pouringConcreteVolumeExplanation,
@@ -541,7 +541,7 @@ class EmptyQuantityCalculator extends QuantityCalculator {
   @override
   double get calculatedFoundationStabilizationVolume => 0;
   @override
-  String get foundationStabilizationVolumeExplanation => "";
+  String get foundationStabilizationWeightExplanation => "";
 
   @override
   double get calculatedSubFoundationConcreteVolume => 0;

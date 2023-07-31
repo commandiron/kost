@@ -5,6 +5,7 @@ class ProjectConstants {
   final double stabilizationHeight;
   final double hollowFillingThickness;
   final double breakerHourForOneCubicMeterMediumRockExcavation;
+  final double gravelTonForOneCubicMeter;
   final double concreteCubicMeterForOneSquareMeterFormWork;
   final double rebarTonForOneCubicMeterConcrete;
   final double hollowAreaForOneSquareMeterConstructionArea;
@@ -30,6 +31,7 @@ class ProjectConstants {
       this.stabilizationHeight = 0.30,
       this.hollowFillingThickness = 0.2,
       this.breakerHourForOneCubicMeterMediumRockExcavation = 0.0436,
+      this.gravelTonForOneCubicMeter = 1.8,
       this.concreteCubicMeterForOneSquareMeterFormWork = 0.35,
       this.rebarTonForOneCubicMeterConcrete = 0.16,
       this.hollowAreaForOneSquareMeterConstructionArea = 0.40,
