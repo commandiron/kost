@@ -4,6 +4,9 @@ import '../domain/model/unit_price/unit.dart';
 import '../domain/model/unit_price/unit_price.dart';
 
 class UnitPriceRepository {
+
+  // Ayın 8'i olan fiyatları bozma, yeni fiyatları üzerine ekle.
+
   static List<UnitPrice> unitPrices = [
     //Zeminci - Deniz ✓
     UnitPrice(
@@ -142,10 +145,10 @@ class UnitPriceRepository {
     UnitPrice(
         category: UnitPriceCategory.eps14Dns,
         nameTr: "14 Dansite Eps",
-        amount: 815,
+        amount: 960,
         currency: Currency.lira,
         unit: Unit.cubicMeters,
-        dateTime: DateTime(2023, 01),
+        dateTime: DateTime(2023, 08),
     ),
     UnitPrice(
         category: UnitPriceCategory.aeratedConcreteYtong,
