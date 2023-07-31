@@ -7,7 +7,7 @@ import 'package:kost/domain/bloc/cost_table_bloc.dart';
 import 'package:kost/domain/bloc/cost_table_event.dart';
 
 import '../../../config/app_padding.dart';
-import '../../../domain/model/category/category.dart';
+import '../../../domain/model/cost/category.dart';
 import '../../../domain/model/cost/cost.dart';
 import '../../../domain/model/unit_price/unit_price.dart';
 import 'cost_item.dart';

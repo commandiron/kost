@@ -1,4 +1,4 @@
-import 'cost_category.dart';
+import 'category.dart';
 
 class Cost {
   CostCategory category;

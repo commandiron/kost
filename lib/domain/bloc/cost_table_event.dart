@@ -1,8 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
-import 'package:kost/domain/model/category/category.dart';
 
-import '../model/cost/cost_category.dart';
+import '../model/cost/category.dart';
 
 abstract class CostTableEvent extends Equatable {
   const CostTableEvent();

@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
-import 'package:kost/domain/model/category/category.dart';
 import 'package:kost/domain/model/unit_price/currency.dart';
 import 'package:kost/domain/model/cost/cost_template.dart';
+import '../model/cost/category.dart';
 import '../model/cost/cost.dart';
 import '../model/unit_price/unit_price.dart';
 import '../calculator/quantity_calculator.dart';

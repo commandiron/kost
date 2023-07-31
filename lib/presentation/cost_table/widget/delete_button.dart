@@ -2,11 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kost/config/app_space.dart';
 import 'package:kost/config/app_text_style.dart';
-import 'package:kost/domain/model/category/category.dart';
 
 import '../../../domain/bloc/cost_table_bloc.dart';
 import '../../../domain/bloc/cost_table_event.dart';
-import '../../../domain/model/cost/cost_category.dart';
+import '../../../domain/model/cost/category.dart';
 
 class DeleteButton extends StatelessWidget {
   const DeleteButton({Key? key, required this.costCategory}) : super(key: key);

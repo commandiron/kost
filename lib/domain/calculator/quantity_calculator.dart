@@ -1,4 +1,4 @@
-import '../model/category/category.dart';
+import '../model/cost/category.dart';
 import 'detailed/floor.dart';
 import 'detailed/project_constants.dart';
 

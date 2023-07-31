@@ -1,5 +1,5 @@
 import 'package:kost/domain/model/unit_price/unit.dart';
-import '../category/category.dart';
+import '../cost/category.dart';
 import 'currency.dart';
 
 class UnitPrice {
