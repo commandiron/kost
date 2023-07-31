@@ -560,7 +560,7 @@ class UnitPriceRepository {
         dateTime: DateTime(2023, 08)
     ),
 
-    //Elektrikçi - İhsan (Bizim teklifimizden bak)
+    //Elektrikçi - İhsan ✓
     UnitPrice(
         category: UnitPriceCategory.electricalInfrastructure,
         nameTr: "Elektrik Tesisat Altyapı İşleri",
