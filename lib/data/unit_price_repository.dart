@@ -141,7 +141,7 @@ class UnitPriceRepository {
         dateTime: DateTime(2023, 08),
     ),
 
-    //Çeşitli Malzeme - Can
+    //Çeşitli Malzeme - Can ✓
     UnitPrice(
         category: UnitPriceCategory.eps14Dns,
         nameTr: "14 Dansite Eps",
@@ -427,7 +427,7 @@ class UnitPriceRepository {
         dateTime: DateTime(2023, 08),
     ),
 
-    //Oda kapısı - StillDoor (Kapı fiyatı gelecek bu unit price'ı markalı yap)
+    //Oda kapısı - Artella (Şu an çalışıyor), StillDoor(Kapı fiyatı gelecek bu unit price'ı markalı yap)
     UnitPrice(
         category: UnitPriceCategory.lacqueredDoor,
         nameTr: "Lake Ahşap Kapı",
