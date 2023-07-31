@@ -227,14 +227,14 @@ class UnitPriceRepository {
         dateTime: DateTime(2023, 01),
     ),
 
-    //Boyacı - Nebi (Tekrar fiyat al.)
+    //Boyacı - Nebi ✓
     UnitPrice(
         category: UnitPriceCategory.painting,
         nameTr: "Dyo",
-        amount: 110,
+        amount: 130,
         currency: Currency.lira,
         unit: Unit.squareMeters,
-        dateTime: DateTime(2023, 01),
+        dateTime: DateTime(2023, 08),
     ),
 
     //Alçıpancı - Bedir ✓
