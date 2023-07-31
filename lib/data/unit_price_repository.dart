@@ -262,38 +262,38 @@ class UnitPriceRepository {
         dateTime: DateTime(2023, 01),
     ),
 
-    //Mermerci - Osman (Tekrar fiyat al)
+    //Mermerci - Osman ✓
     UnitPrice(
         category: UnitPriceCategory.marbleFloorBilecik,
         nameTr: "Bilecik Beji Mermer",
-        amount: 1000,
+        amount: 1200,
         currency: Currency.lira,
         unit: Unit.squareMeters,
-        dateTime: DateTime(2023, 01),
+        dateTime: DateTime(2023, 08),
     ),
     UnitPrice(
         category: UnitPriceCategory.marbleStepBilecik,
         nameTr: "Bilejik Beji Basamak",
-        amount: 850,
+        amount: 1000,
         currency: Currency.lira,
         unit: Unit.meter,
-        dateTime: DateTime(2023, 01),
+        dateTime: DateTime(2023, 08),
     ),
     UnitPrice(
         category: UnitPriceCategory.marbleWindowsillBilecik,
         nameTr: "Bilejik Beji Denizlik",
-        amount: 850,
+        amount: 1000,
         currency: Currency.lira,
         unit: Unit.meter,
-        dateTime: DateTime(2023, 01),
+        dateTime: DateTime(2023, 08),
     ),
     UnitPrice(
         category: UnitPriceCategory.quartzCountertopCimstone,
         nameTr: "Çimstone Mutfak Tezgahı",
-        amount: 3500,
+        amount: 3800,
         currency: Currency.lira,
         unit: Unit.meter,
-        dateTime: DateTime(2023, 01),
+        dateTime: DateTime(2023, 08),
     ),
 
     //Banyo - Orhan, İnternet ✓
