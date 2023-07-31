@@ -217,14 +217,14 @@ class UnitPriceRepository {
         dateTime: DateTime(2023, 08),
     ),
 
-    //Alçı Sıvacı - Abdullah (Tekrar fiyat al.)
+    //Alçı Sıvacı - Abdullah ✓
     UnitPrice(
         category: UnitPriceCategory.plaster,
         nameTr: "Alçı sıva",
-        amount: 100,
+        amount: 175,
         currency: Currency.lira,
         unit: Unit.squareMeters,
-        dateTime: DateTime(2023, 01),
+        dateTime: DateTime(2023, 08),
     ),
 
     //Boyacı - Nebi ✓
@@ -473,14 +473,14 @@ class UnitPriceRepository {
         dateTime: DateTime(2023, 01),
     ),
 
-    //Mekanik Tesisatçı - Halil (Bizim teklifimizden bak)
+    //Mekanik Tesisatçı - Halil ✓
     UnitPrice(
         category: UnitPriceCategory.mechanicalInfrastructure,
         nameTr: "Mekanik Tesisat Altyapı İşleri",
-        amount: 100000,
+        amount: 120000,
         currency: Currency.lira,
         unit: Unit.apartment,
-        dateTime: DateTime(2023, 01),
+        dateTime: DateTime(2023, 08),
     ),
 
     //Vrf - Klima ✓
