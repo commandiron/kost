@@ -16,7 +16,7 @@ class UnitPriceRepository {
         dateTime: DateTime(2023, 08),
     ),
 
-    //Hafriyat - Habip (Mıcır Sor.)
+    //Hafriyat - Habip ✓
     UnitPrice(
         category: UnitPriceCategory.excavation,
         nameTr: "Hafriyat",
@@ -39,7 +39,7 @@ class UnitPriceRepository {
       amount: 330,
       currency: Currency.lira,
       unit: Unit.ton,
-      dateTime: DateTime(2023, 01),
+      dateTime: DateTime(2023, 08),
     ),
 
     //Kalıp Yaşar ✓
