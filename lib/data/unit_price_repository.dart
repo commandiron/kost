@@ -16,7 +16,7 @@ class UnitPriceRepository {
         dateTime: DateTime(2023, 08),
     ),
 
-    //Hafriyat - Habip ✓
+    //Hafriyat - Habip (Mıcır Sor.)
     UnitPrice(
         category: UnitPriceCategory.excavation,
         nameTr: "Hafriyat",
@@ -32,6 +32,14 @@ class UnitPriceRepository {
         currency: Currency.lira,
         unit: Unit.hour,
         dateTime: DateTime(2023, 08)
+    ),
+    UnitPrice(
+      category: UnitPriceCategory.foundationStabilizationGravel,
+      nameTr: "Mıcır",
+      amount: 450,
+      currency: Currency.lira,
+      unit: Unit.cubicMeters,
+      dateTime: DateTime(2023, 01),
     ),
 
     //Kalıp Yaşar ✓
@@ -107,8 +115,16 @@ class UnitPriceRepository {
     ),
     UnitPrice(
         category: UnitPriceCategory.cementSliding,
-        nameTr: "Çimento Esaslı Kristalize (Betona Penetre) Sürme İzolasyon",
+        nameTr: "Çimento Esaslı Kristalize Sürme İzolasyon",
         amount: 6.5,
+        currency: Currency.euro,
+        unit: Unit.squareMeters,
+        dateTime: DateTime(2023, 08),
+    ),
+    UnitPrice(
+        category: UnitPriceCategory.cementBasedFlexInsulation,
+        nameTr: "Çimento Esaslı Tam Elastik Sürme İzolasyon",
+        amount: 7.5,
         currency: Currency.euro,
         unit: Unit.squareMeters,
         dateTime: DateTime(2023, 08),
@@ -124,14 +140,6 @@ class UnitPriceRepository {
 
     //Çeşitli Malzeme - Can
     UnitPrice(
-        category: UnitPriceCategory.foundationStabilizationGravel,
-        nameTr: "Mıcır",
-        amount: 450,
-        currency: Currency.lira,
-        unit: Unit.cubicMeters,
-        dateTime: DateTime(2023, 01),
-    ),
-    UnitPrice(
         category: UnitPriceCategory.eps,
         nameTr: "Eps",
         amount: 815,
@@ -145,14 +153,6 @@ class UnitPriceRepository {
         amount: 1500,
         currency: Currency.lira,
         unit: Unit.cubicMeters,
-        dateTime: DateTime(2023, 01),
-    ),
-    UnitPrice(
-        category: UnitPriceCategory.cementBasedFlexInsulation,
-        nameTr: "Çimento Esaslı Tam Elastik Sürme İzolasyon",
-        amount: 7.5,
-        currency: Currency.euro,
-        unit: Unit.squareMeters,
         dateTime: DateTime(2023, 08),
     ),
 
