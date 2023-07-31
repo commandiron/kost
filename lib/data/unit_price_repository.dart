@@ -107,7 +107,7 @@ class UnitPriceRepository {
     ),
     UnitPrice(
         category: UnitPriceCategory.cementSliding,
-        nameTr: "Çimento Esaslı Sürme İzolasyon",
+        nameTr: "Çimento Esaslı Kristalize (Betona Penetre) Sürme İzolasyon",
         amount: 6.5,
         currency: Currency.euro,
         unit: Unit.squareMeters,
@@ -149,11 +149,11 @@ class UnitPriceRepository {
     ),
     UnitPrice(
         category: UnitPriceCategory.cementBasedFlexInsulation,
-        nameTr: "Çimento Esaslı Sürme İzolasyon",
-        amount: 200,
-        currency: Currency.lira,
+        nameTr: "Çimento Esaslı Tam Elastik Sürme İzolasyon",
+        amount: 7.5,
+        currency: Currency.euro,
         unit: Unit.squareMeters,
-        dateTime: DateTime(2023, 01),
+        dateTime: DateTime(2023, 08),
     ),
 
     //Duvarcı - Şener ✓
@@ -398,30 +398,30 @@ class UnitPriceRepository {
         dateTime: DateTime(2023, 08),
     ),
 
-    //Kapıcı - Ahmet (Ahmetten Tekrar fiyat al.)
+    //Kapıcı - Ahmet ✓
     UnitPrice(
         category: UnitPriceCategory.steelDoorKale,
         nameTr: "Kale Çelik Kapı",
-        amount: 16000,
+        amount: 29400,
         currency: Currency.lira,
         unit: Unit.number,
-        dateTime: DateTime(2023, 01),
+        dateTime: DateTime(2023, 08),
     ),
     UnitPrice(
         category: UnitPriceCategory.entranceDoor,
         nameTr: "Apartman Giriş Kapısı",
-        amount: 9750,
+        amount: 14250,
         currency: Currency.lira,
         unit: Unit.squareMeters,
-        dateTime: DateTime(2023, 01),
+        dateTime: DateTime(2023, 08),
     ),
     UnitPrice(
         category: UnitPriceCategory.ironFireDoor,
         nameTr: "Yangın kapısı",
-        amount: 4200,
+        amount: 4950,
         currency: Currency.lira,
         unit: Unit.number,
-        dateTime: DateTime(2023, 01),
+        dateTime: DateTime(2023, 08),
     ),
 
     //Oda kapısı - StillDoor (Kapı fiyatı gelecek bu unit price'ı markalı yap)
