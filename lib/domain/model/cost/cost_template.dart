@@ -36,7 +36,7 @@ class RoughConstructionCostTemplate extends CostTemplate {
       CostCategory(MainCategory.roughConstructionJobs, JobCategory.concreteFormWork, UnitPriceCategory.plywood,),
       CostCategory(MainCategory.roughConstructionJobs, JobCategory.pouringConcrete, UnitPriceCategory.c35Concrete,),
       CostCategory(MainCategory.roughConstructionJobs, JobCategory.rebar, UnitPriceCategory.s420Steel,),
-      CostCategory(MainCategory.roughConstructionJobs, JobCategory.hollowFloorFilling, UnitPriceCategory.eps,),
+      CostCategory(MainCategory.roughConstructionJobs, JobCategory.hollowFloorFilling, UnitPriceCategory.eps14Dns,),
       CostCategory(MainCategory.roughConstructionJobs, JobCategory.foundationWaterproofing, UnitPriceCategory.proofBitumenMembrane,),
       CostCategory(MainCategory.roughConstructionJobs, JobCategory.curtainWaterproofing, UnitPriceCategory.cementSliding,),
       CostCategory(MainCategory.roughConstructionJobs, JobCategory.curtainProtectionBeforeFilling, UnitPriceCategory.drainPlate,),

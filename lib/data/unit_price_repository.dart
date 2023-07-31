@@ -140,8 +140,8 @@ class UnitPriceRepository {
 
     //Çeşitli Malzeme - Can
     UnitPrice(
-        category: UnitPriceCategory.eps,
-        nameTr: "Eps",
+        category: UnitPriceCategory.eps14Dns,
+        nameTr: "14 Dansite Eps",
         amount: 815,
         currency: Currency.lira,
         unit: Unit.cubicMeters,
