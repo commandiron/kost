@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:kost/config/app_padding.dart';
 import 'package:kost/domain/model/unit_price/currency.dart';
 import 'package:kost/domain/model/unit_price/unit.dart';
 import '../../../domain/model/unit_price/unit_price.dart';
@@ -15,33 +16,36 @@ class UnitPricesAlertDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     return AlertDialog(
       content: SizedBox(
-        width: 300,
+        width: double.maxFinite,
         height: 300,
         child: ListView.builder(
           itemCount: unitPrices.length,
-          itemBuilder: (listContext, index) {
-            return TextButton(
-                onPressed: () {
-                  onUnitPriceSelect(index);
-                },
-                child: Row(
-                  mainAxisAlignment:
-                  MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Text(unitPrices[index].nameTr),
-                    Row(
-                      children: [
-                        Text(unitPrices[index].amount.toStringAsFixed(2)),
-                        Text(unitPrices[index]
-                            .currency
-                            .symbol),
-                        const Text("/"),
-                        Text(unitPrices[index].unit.symbol),
-                      ],
-                    ),
-                    Text(DateFormat("MM.yyyy").format(unitPrices[index].dateTime)),
-                  ],
-                ));
+          itemBuilder: (context, index) {
+            return Padding(
+              padding: AppPadding.allS!,
+              child: ElevatedButton(
+                  onPressed: () {
+                    onUnitPriceSelect(index);
+                  },
+                  child: Column(
+                    children: [
+                      Text(unitPrices[index].nameTr),
+                      Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text(unitPrices[index].amount.toStringAsFixed(2)),
+                          Text(unitPrices[index]
+                              .currency
+                              .symbol),
+                          const Text("/"),
+                          Text(unitPrices[index].unit.symbol),
+                        ],
+                      ),
+                      Text(DateFormat("MM.yyyy").format(unitPrices[index].dateTime)),
+                    ],
+                  )
+              ),
+            );
           },
         ),
       ),
