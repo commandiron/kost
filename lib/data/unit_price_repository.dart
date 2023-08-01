@@ -429,8 +429,8 @@ class UnitPriceRepository {
 
     //Oda kapısı - Artella (Şu an çalışıyor), StillDoor(Kapı fiyatı gelecek bu unit price'ı markalı yap)
     UnitPrice(
-        category: UnitPriceCategory.lacqueredDoor,
-        nameTr: "Lake Ahşap Kapı",
+        category: UnitPriceCategory.lacqueredDoorArtella,
+        nameTr: "Artella Lake Ahşap Kapı",
         amount: 8000,
         currency: Currency.lira,
         unit: Unit.number,
