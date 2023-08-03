@@ -20,7 +20,7 @@ extension CurrencyExtension on Currency {
 }
 
 class ManualCurrencyRates extends CurrencyRates {
-  ManualCurrencyRates({super.usdTry = 26.17, super.eurTry = 29.42});
+  ManualCurrencyRates({super.usdTry = 27, super.eurTry = 29.72});
 }
 
 abstract class CurrencyRates {
