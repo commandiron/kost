@@ -34,15 +34,10 @@ class _FloorViewerState extends State<FloorViewer> {
   @override
   Widget build(BuildContext context) {
     final double foundationWidth = widget.width;
-    final double foundationHeight =
-        (widget.height / (widget.floors.length + 1)) * 0.5;
-    final double widthPerFoundationSquareMeter =
-        foundationWidth / widget.foundationArea;
+    final double foundationHeight = (widget.height / (widget.floors.length + 1)) * 0.5;
+    final double widthPerFoundationSquareMeter = foundationWidth / widget.foundationArea;
 
-    final double roofWidth = widthPerFoundationSquareMeter *
-        (widget.floors.isNotEmpty
-            ? widget.floors.first.area * 1.2
-            : widget.width / 2);
+    final double roofWidth = widthPerFoundationSquareMeter * (widget.floors.isNotEmpty ? widget.floors.first.area * 1.2 : widget.width / 2);
     final double roofHeight = (widget.height / (widget.floors.length + 2));
 
     return GestureDetector(
@@ -120,17 +115,17 @@ class _FloorViewerState extends State<FloorViewer> {
                             children: [
                               Text(
                                 widget.floors[index].floorName,
-                                style: AppTextStyle.l1,
+                                style: AppTextStyle.responsiveB1(context),
                               ),
                               AppSpace.hS!,
                               Text(
                                 widget.floors[index].area.toString(),
-                                style: AppTextStyle.l1,
+                                style: AppTextStyle.responsiveB1(context),
                               ),
                               AppSpace.hS!,
                               Text(
                                 "m²",
-                                style: AppTextStyle.l1,
+                                style: AppTextStyle.responsiveB1(context),
                               ),
                             ],
                           ),
@@ -149,17 +144,17 @@ class _FloorViewerState extends State<FloorViewer> {
               children: [
                 Text(
                   "Temel",
-                  style: AppTextStyle.l1,
+                  style: AppTextStyle.responsiveB2(context),
                 ),
                 AppSpace.hS!,
                 Text(
                   widget.foundationArea.toString(),
-                  style: AppTextStyle.l1,
+                  style: AppTextStyle.responsiveB2(context),
                 ),
                 AppSpace.hS!,
                 Text(
                   "m²",
-                  style: AppTextStyle.l1,
+                  style: AppTextStyle.responsiveB2(context),
                 ),
               ],
             ),

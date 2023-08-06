@@ -84,4 +84,7 @@ class AppTextStyle {
   static TextStyle responsiveB2(BuildContext context) {
     return Responsive.value(context, AppTextStyle.b4, AppTextStyle.b3, AppTextStyle.b2);
   }
+  static TextStyle responsiveB3(BuildContext context) {
+    return Responsive.value(context, AppTextStyle.l1, AppTextStyle.b4, AppTextStyle.b3);
+  }
 }
