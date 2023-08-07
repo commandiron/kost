@@ -33,12 +33,13 @@ class _FloorViewerState extends State<FloorViewer> {
 
   @override
   Widget build(BuildContext context) {
+
     final double foundationWidth = widget.width;
     final double foundationHeight = (widget.height / (widget.floors.length + 1)) * 0.5;
-    final double widthPerFoundationSquareMeter = foundationWidth / widget.foundationArea;
-
-    final double roofWidth = widthPerFoundationSquareMeter * (widget.floors.isNotEmpty ? widget.floors.first.area * 1.2 : widget.width / 2);
+    final double widthPerArea = foundationWidth / widget.foundationArea;
+    final double roofWidth = widthPerArea * (widget.floors.isNotEmpty ? widget.floors.first.area * 1.2 : widget.width / 2);
     final double roofHeight = (widget.height / (widget.floors.length + 2));
+    final double floorHeight = (widget.height - (roofHeight + foundationHeight)) / widget.floors.length;
 
     return GestureDetector(
       onTap: () {
@@ -60,17 +61,7 @@ class _FloorViewerState extends State<FloorViewer> {
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
             itemBuilder: (context, index) {
-              double floorWidth =
-                  widthPerFoundationSquareMeter * widget.floors[index].area;
-              if (floorWidth > foundationWidth) {
-                floorWidth = foundationWidth;
-              }
-              if (floorWidth < widget.minWidth) {
-                floorWidth = widget.minWidth;
-              }
-              final floorHeight =
-                  (widget.height - (roofHeight + foundationHeight)) /
-                      widget.floors.length;
+              final floorWidth = _calculateFloorWidth(widthPerArea, index, foundationWidth);
               return Align(
                 alignment: Alignment.center,
                 child: GestureDetector(
@@ -93,7 +84,7 @@ class _FloorViewerState extends State<FloorViewer> {
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
-                                  Text("Alan:"),
+                                  const Text("Alan:"),
                                   SizedBox(
                                       width: 100,
                                       child: QuantityTextField(
@@ -162,6 +153,17 @@ class _FloorViewerState extends State<FloorViewer> {
         ],
       ),
     );
+  }
+
+  double _calculateFloorWidth(double widthPerArea, int index, double foundationWidth) {
+    double floorWidth = widthPerArea * widget.floors[index].area;
+    if (floorWidth > foundationWidth) {
+      floorWidth = foundationWidth;
+    }
+    if (floorWidth < widget.minWidth) {
+      floorWidth = widget.minWidth;
+    }
+    return floorWidth;
   }
 }
 
