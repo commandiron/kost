@@ -27,12 +27,12 @@ class QuantityDetailsScreen extends StatelessWidget {
                     AppSpace.vL!,
                     Text(
                       "Bina Bilgileri",
-                      style: AppTextStyle.b1,
+                      style: AppTextStyle.responsiveH4B(context),
                     ),
                     AppSpace.vS!,
                     Text(
                       "Detaylarını görmek istediğiniz kata dokunun",
-                      style: AppTextStyle.l1!.copyWith(color: Colors.grey),
+                      style: AppTextStyle.responsiveB2(context).copyWith(color: Colors.grey)
                     ),
                     AppSpace.vL!,
                     FloorViewer(
