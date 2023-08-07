@@ -41,136 +41,117 @@ class _FloorViewerState extends State<FloorViewer> {
     final double roofHeight = (widget.height / (widget.floors.length + 2));
     final double floorHeight = (widget.height - (roofHeight + foundationHeight)) / widget.floors.length;
 
-    return Row(
-      children: [
-        Expanded(
-          child: Align(
-            alignment: Alignment.centerRight,
-            child: IconButton(icon: const Icon(Icons.remove), onPressed: () {  },),
-          )
-        ),
-        Expanded(
-          flex: 5,
-          child: GestureDetector(
-            onTap: () {
-              setState(() {
-                _isHighlighted.clear();
-              });
-            },
-            child: Column(
-              children: [
-                CustomPaint(
-                  painter: TrianglePainter(strokeWidth: 1),
-                  child: SizedBox(
-                    width: roofWidth,
-                    height: roofHeight,
-                  ),
-                ),
-                ListView.builder(
-                  itemCount: widget.floors.length,
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemBuilder: (context, index) {
-                    final floorWidth = _calculateFloorWidth(widthPerArea, index, foundationWidth);
-                    return Align(
-                      alignment: Alignment.center,
-                      child: GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            _isHighlighted[index] = !(_isHighlighted[index] ?? false);
-                          });
-                        },
-                        child: Container(
-                          width: _isHighlighted[index] ?? false
-                              ? floorWidth * 2
-                              : floorWidth,
-                          height: _isHighlighted[index] ?? false
-                              ? floorHeight * 4
-                              : floorHeight,
-                          decoration: BoxDecoration(border: Border.all()),
-                          child: _isHighlighted[index] ?? false
-                              ? Column(
-                                  children: [
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.start,
-                                      children: [
-                                        const Text("Alan:"),
-                                        SizedBox(
-                                            width: 100,
-                                            child: QuantityTextField(
-                                              formattedQuantity: getFormattedNumber(
-                                                  number: widget.floors[index].area),
-                                              symbol: "m2",
-                                              onChanged: (value) {
-                                                widget.onFloorAreaChanged(
-                                                    value, index);
-                                              },
-                                            ))
-                                      ],
-                                    )
-                                  ],
-                                )
-                              : Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    Text(
-                                      widget.floors[index].floorName,
-                                      style: AppTextStyle.responsiveB1(context),
-                                    ),
-                                    AppSpace.hS!,
-                                    Text(
-                                      widget.floors[index].area.toString(),
-                                      style: AppTextStyle.responsiveB1(context),
-                                    ),
-                                    AppSpace.hS!,
-                                    Text(
-                                      "m²",
-                                      style: AppTextStyle.responsiveB1(context),
-                                    ),
-                                  ],
-                                ),
-                        ),
-                      ),
-                    );
+    return GestureDetector(
+      onTap: () {
+        setState(() {
+          _isHighlighted.clear();
+        });
+      },
+      child: Column(
+        children: [
+          CustomPaint(
+            painter: TrianglePainter(strokeWidth: 1),
+            child: SizedBox(
+              width: roofWidth,
+              height: roofHeight,
+            ),
+          ),
+          ListView.builder(
+            itemCount: widget.floors.length,
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            itemBuilder: (context, index) {
+              final floorWidth = _calculateFloorWidth(widthPerArea, index, foundationWidth);
+              return Align(
+                alignment: Alignment.center,
+                child: GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      _isHighlighted[index] = !(_isHighlighted[index] ?? false);
+                    });
                   },
-                ),
-                Container(
-                  width: foundationWidth,
-                  height: foundationHeight,
-                  decoration: BoxDecoration(border: Border.all()),
-                  alignment: Alignment.center,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        "Temel",
-                        style: AppTextStyle.responsiveB2(context),
-                      ),
-                      AppSpace.hS!,
-                      Text(
-                        widget.foundationArea.toString(),
-                        style: AppTextStyle.responsiveB2(context),
-                      ),
-                      AppSpace.hS!,
-                      Text(
-                        "m²",
-                        style: AppTextStyle.responsiveB2(context),
-                      ),
-                    ],
+                  child: Container(
+                    width: _isHighlighted[index] ?? false
+                        ? floorWidth * 2
+                        : floorWidth,
+                    height: _isHighlighted[index] ?? false
+                        ? floorHeight * 4
+                        : floorHeight,
+                    decoration: BoxDecoration(border: Border.all()),
+                    child: _isHighlighted[index] ?? false
+                        ? Column(
+                            children: [
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  const Text("Alan:"),
+                                  SizedBox(
+                                      width: 100,
+                                      child: QuantityTextField(
+                                        formattedQuantity: getFormattedNumber(
+                                            number: widget.floors[index].area),
+                                        symbol: "m2",
+                                        onChanged: (value) {
+                                          widget.onFloorAreaChanged(
+                                              value, index);
+                                        },
+                                      ))
+                                ],
+                              )
+                            ],
+                          )
+                        : Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Text(
+                                widget.floors[index].floorName,
+                                style: AppTextStyle.responsiveB1(context),
+                              ),
+                              AppSpace.hS!,
+                              Text(
+                                widget.floors[index].area.toString(),
+                                style: AppTextStyle.responsiveB1(context),
+                              ),
+                              AppSpace.hS!,
+                              Text(
+                                "m²",
+                                style: AppTextStyle.responsiveB1(context),
+                              ),
+                            ],
+                          ),
                   ),
+                ),
+              );
+            },
+          ),
+          Container(
+            width: foundationWidth,
+            height: foundationHeight,
+            decoration: BoxDecoration(border: Border.all()),
+            alignment: Alignment.center,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  "Temel",
+                  style: AppTextStyle.responsiveB2(context),
+                ),
+                AppSpace.hS!,
+                Text(
+                  widget.foundationArea.toString(),
+                  style: AppTextStyle.responsiveB2(context),
+                ),
+                AppSpace.hS!,
+                Text(
+                  "m²",
+                  style: AppTextStyle.responsiveB2(context),
                 ),
               ],
             ),
           ),
-        ),
-        Expanded(
-          child: Align(
-            alignment: Alignment.centerLeft,
-            child: IconButton(icon: const Icon(Icons.add), onPressed: () {  },),
-          )
-        ),
-      ],
+        ],
+      ),
     );
   }
 
