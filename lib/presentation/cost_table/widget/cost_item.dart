@@ -26,7 +26,7 @@ class CostItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: index.isOdd ? Colors.grey.shade400 : Colors.grey.shade200,
-      height: Responsive.value(context, 130.0 , 80.0, 80.0),
+      height: Responsive.value(context, 136.0 , 80.0, 80.0),
       padding: Responsive.value(context, AppPadding.hS , AppPadding.hM, AppPadding.hM),
       child: Column(
         children: [
