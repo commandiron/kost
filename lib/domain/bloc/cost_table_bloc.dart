@@ -27,7 +27,7 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
         costTemplate: EmptyCostTemplate(),
         unitPricePool: const [],
         currencyRates: ManualCurrencyRates(),
-        quantityCalculator: EmptyQuantityCalculator(projectConstants: ProjectConstants()),
+        quantityCalculator: InitialQuantityCalculator(projectConstants: ProjectConstants()),
         costs: const [],
         formattedSubTotalsTRY: const {},
         formattedGrandTotalTRY: ""
@@ -37,11 +37,15 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
       final costTemplate = _fetchCostTemplate();
       final unitPricePool = _fetchUnitPricePool();
       // final currencyRates = _fetchCurrencyRates();
-      final quantityCalculator = _createQuantityCalculator();
-      emit(state.copyWith(
+      // final quantityCalculator = _createQuantityCalculator();
+      emit(
+        state.copyWith(
           costTemplate: costTemplate,
           unitPricePool: unitPricePool,
-          quantityCalculator: quantityCalculator));
+          //currencyRates: currencyRates,
+          // quantityCalculator: quantityCalculator
+        )
+      );
       _refresh();
     });
     on<CreateCostTable>((event, emit) {

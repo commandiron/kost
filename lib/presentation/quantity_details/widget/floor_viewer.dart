@@ -10,7 +10,7 @@ class FloorViewer extends StatefulWidget {
   const FloorViewer({
     Key? key,
     required this.width,
-    this.minWidth = 100,
+    this.minWidth = 120,
     required this.height,
     required this.foundationArea,
     required this.floors,
@@ -36,8 +36,17 @@ class _FloorViewerState extends State<FloorViewer> {
 
     final double foundationWidth = widget.width;
     final double foundationHeight = (widget.height / (widget.floors.length + 1)) * 0.5;
-    final double widthPerArea = foundationWidth / widget.foundationArea;
-    final double roofWidth = widthPerArea * (widget.floors.isNotEmpty ? widget.floors.first.area * 1.2 : widget.width / 2);
+
+    double widthPerArea = 1;
+    if(widget.foundationArea != 0) {
+      widthPerArea = foundationWidth / widget.foundationArea;
+    }
+
+    double roofWidth = widthPerArea * (widget.floors.isNotEmpty ? widget.floors.first.area * 1.2 : widget.width / 2);
+    if (roofWidth < widget.minWidth) {
+      roofWidth = widget.minWidth;
+    }
+
     final double roofHeight = (widget.height / (widget.floors.length + 2));
     final double floorHeight = (widget.height - (roofHeight + foundationHeight)) / widget.floors.length;
 

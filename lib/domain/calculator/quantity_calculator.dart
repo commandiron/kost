@@ -502,8 +502,8 @@ abstract class QuantityCalculator {
   }
 }
 
-class EmptyQuantityCalculator extends QuantityCalculator {
-  EmptyQuantityCalculator(
+class InitialQuantityCalculator extends QuantityCalculator {
+  InitialQuantityCalculator(
     {
       required super.projectConstants,
       super.landArea = 0,
@@ -519,9 +519,57 @@ class EmptyQuantityCalculator extends QuantityCalculator {
       super.floors = const [],
       super.foundationArea = 0,
       super.foundationPerimeter = 0,
-      super.foundationHeight = 0,
+      super.foundationHeight = 1,
     }
-  );
+  ){
+    super.floors = [
+      ...Floor.duplicateFloors(
+        Floor(
+          no: 1,
+          ceilingArea: 0,
+          ceilingPerimeter: 0,
+          fullHeight: 3.3,
+          area: 0,
+          perimeter: 0,
+          heightWithoutSlab: 3,
+          thickWallLength: 0,
+          thinWallLength: 0,
+          isCeilingHollowSlab: true,
+          windows: [],
+          rooms: [],
+        ),
+        3
+      ),
+      Floor(
+        no: 0,
+        ceilingArea: 0,
+        ceilingPerimeter: 0,
+        fullHeight: 3.3,
+        area: 0,
+        perimeter: 0,
+        heightWithoutSlab: 3,
+        thickWallLength: 0,
+        thinWallLength: 0,
+        isCeilingHollowSlab: true,
+        windows: [],
+        rooms: [],
+      ),
+      Floor(
+        no: -1,
+        ceilingArea: 0,
+        ceilingPerimeter: 0,
+        fullHeight: 3.15,
+        area: 0,
+        perimeter: 0,
+        heightWithoutSlab: 3,
+        thickWallLength: 0,
+        thinWallLength: 0,
+        isCeilingHollowSlab: false,
+        windows: [],
+        rooms: [],
+      ),
+    ];
+  }
 
   @override
   double get calculatedShoringArea => 0;
