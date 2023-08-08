@@ -37,13 +37,13 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
       final costTemplate = _fetchCostTemplate();
       final unitPricePool = _fetchUnitPricePool();
       // final currencyRates = _fetchCurrencyRates();
-      // final quantityCalculator = _createQuantityCalculator();
+      final quantityCalculator = _createQuantityCalculator();
       emit(
         state.copyWith(
           costTemplate: costTemplate,
           unitPricePool: unitPricePool,
           //currencyRates: currencyRates,
-          // quantityCalculator: quantityCalculator
+          quantityCalculator: quantityCalculator
         )
       );
       _refresh();
