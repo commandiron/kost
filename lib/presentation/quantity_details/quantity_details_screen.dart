@@ -36,8 +36,8 @@ class QuantityDetailsScreen extends StatelessWidget {
                     ),
                     AppSpace.vL!,
                     FloorViewer(
-                      width: MediaQuery.of(context).size.height / 2,
-                      height: MediaQuery.of(context).size.height / 2,
+                      width: MediaQuery.of(context).size.width / 1.2,
+                      height: MediaQuery.of(context).size.height / 1.4,
                       foundationArea: state.quantityCalculator.foundationArea,
                       floors: state.quantityCalculator.floors,
                       onFloorAreaChanged: (String floorAreaText, int index) {

@@ -10,7 +10,7 @@ class FloorViewer extends StatefulWidget {
   const FloorViewer({
     Key? key,
     required this.width,
-    this.minWidth = 120,
+    this.minWidth = 80,
     required this.height,
     required this.foundationArea,
     required this.floors,
@@ -36,19 +36,8 @@ class _FloorViewerState extends State<FloorViewer> {
 
     final double foundationWidth = widget.width;
     final double foundationHeight = (widget.height / (widget.floors.length + 1)) * 0.5;
-
-    double widthPerArea = 1;
-    if(widget.foundationArea != 0) {
-      widthPerArea = foundationWidth / widget.foundationArea;
-    }
-
-    double roofWidth = widthPerArea * (widget.floors.isNotEmpty ? widget.floors.first.area * 1.2 : widget.width / 2);
-    if (roofWidth < widget.minWidth) {
-      roofWidth = widget.minWidth;
-    }
-
-    final double roofHeight = (widget.height / (widget.floors.length + 2));
-    final double floorHeight = (widget.height - (roofHeight + foundationHeight)) / widget.floors.length;
+    double widthPerArea = foundationWidth / widget.foundationArea;
+    final double floorHeight = (widget.height - foundationHeight) / widget.floors.length;
 
     return GestureDetector(
       onTap: () {
@@ -58,13 +47,6 @@ class _FloorViewerState extends State<FloorViewer> {
       },
       child: Column(
         children: [
-          CustomPaint(
-            painter: TrianglePainter(strokeWidth: 1),
-            child: SizedBox(
-              width: roofWidth,
-              height: roofHeight,
-            ),
-          ),
           ListView.builder(
             itemCount: widget.floors.length,
             shrinkWrap: true,
@@ -134,31 +116,32 @@ class _FloorViewerState extends State<FloorViewer> {
               );
             },
           ),
-          Container(
-            width: foundationWidth,
-            height: foundationHeight,
-            decoration: BoxDecoration(border: Border.all()),
-            alignment: Alignment.center,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  "Temel",
-                  style: AppTextStyle.responsiveB2(context),
-                ),
-                AppSpace.hS!,
-                Text(
-                  widget.foundationArea.toString(),
-                  style: AppTextStyle.responsiveB2(context),
-                ),
-                AppSpace.hS!,
-                Text(
-                  "m²",
-                  style: AppTextStyle.responsiveB2(context),
-                ),
-              ],
+          if(widget.foundationArea != 0)
+            Container(
+              width: foundationWidth,
+              height: foundationHeight,
+              decoration: BoxDecoration(border: Border.all()),
+              alignment: Alignment.center,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "Temel",
+                    style: AppTextStyle.responsiveB2(context),
+                  ),
+                  AppSpace.hS!,
+                  Text(
+                    widget.foundationArea.toString(),
+                    style: AppTextStyle.responsiveB2(context),
+                  ),
+                  AppSpace.hS!,
+                  Text(
+                    "m²",
+                    style: AppTextStyle.responsiveB2(context),
+                  ),
+                ],
+              ),
             ),
-          ),
         ],
       ),
     );
@@ -173,41 +156,5 @@ class _FloorViewerState extends State<FloorViewer> {
       floorWidth = widget.minWidth;
     }
     return floorWidth;
-  }
-}
-
-class TrianglePainter extends CustomPainter {
-  final Color strokeColor;
-  final PaintingStyle paintingStyle;
-  final double strokeWidth;
-
-  TrianglePainter(
-      {this.strokeColor = Colors.black,
-      this.strokeWidth = 3,
-      this.paintingStyle = PaintingStyle.stroke});
-
-  @override
-  void paint(Canvas canvas, Size size) {
-    Paint paint = Paint()
-      ..color = strokeColor
-      ..strokeWidth = strokeWidth
-      ..style = paintingStyle;
-
-    canvas.drawPath(getTrianglePath(size.width, size.height), paint);
-  }
-
-  Path getTrianglePath(double x, double y) {
-    return Path()
-      ..moveTo(0, y)
-      ..lineTo(x / 2, 0)
-      ..lineTo(x, y)
-      ..lineTo(0, y);
-  }
-
-  @override
-  bool shouldRepaint(TrianglePainter oldDelegate) {
-    return oldDelegate.strokeColor != strokeColor ||
-        oldDelegate.paintingStyle != paintingStyle ||
-        oldDelegate.strokeWidth != strokeWidth;
   }
 }

@@ -79,10 +79,7 @@ extension FloorExtension on Floor {
       15 => "15. Kat",
       16 => "16. Kat",
       17 => "17. Kat",
-      18 => "18. Kat",
-      19 => "19. Kat",
-      20 => "20. Kat",
-      _ => ""
+      _ => throw Exception("Maximum number of floors exceeded")
     };
   }
 }

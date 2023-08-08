@@ -3,7 +3,6 @@ import 'detailed/floor.dart';
 import 'detailed/project_constants.dart';
 
 abstract class QuantityCalculator {
-
   final ProjectConstants projectConstants;
   final double landArea;
   final double landPerimeter;
@@ -20,25 +19,23 @@ abstract class QuantityCalculator {
   final double foundationPerimeter;
   final double foundationHeight;
 
-  QuantityCalculator(
-    {
-      required this.projectConstants,
-      required this.landArea,
-      required this.landPerimeter,
-      required this.excavationArea,
-      required this.excavationPerimeter,
-      required this.coreCurtainLength,
-      required this.curtainsExceeding1MeterLength,
-      required this.basementCurtainLength,
-      required this.columnsLess1MeterPerimeter,
-      required this.elevationTowerArea,
-      required this.elevationTowerHeightWithoutSlab,
-      required this.floors,
-      required this.foundationArea,
-      required this.foundationPerimeter,
-      required this.foundationHeight,
-    }
-  );
+  QuantityCalculator({
+    required this.projectConstants,
+    required this.landArea,
+    required this.landPerimeter,
+    required this.excavationArea,
+    required this.excavationPerimeter,
+    required this.coreCurtainLength,
+    required this.curtainsExceeding1MeterLength,
+    required this.basementCurtainLength,
+    required this.columnsLess1MeterPerimeter,
+    required this.elevationTowerArea,
+    required this.elevationTowerHeightWithoutSlab,
+    required this.floors,
+    required this.foundationArea,
+    required this.foundationPerimeter,
+    required this.foundationHeight,
+  });
 
   double get calculatedShoringArea;
   double? shoringArea;
@@ -290,72 +287,138 @@ abstract class QuantityCalculator {
 
   setQuantityManually(JobCategory jobCategory, double quantity) {
     switch (jobCategory) {
-      case JobCategory.shoring : shoringArea = quantity;
-      case JobCategory.excavation : excavationVolume = quantity;
-      case JobCategory.breaker : breakerHour = quantity;
-      case JobCategory.foundationStabilization : foundationStabilizationWeight = quantity;
-      case JobCategory.subFoundationConcrete : subFoundationConcreteVolume = quantity;
-      case JobCategory.concreteFormWork : concreteFormWorkArea = quantity;
-      case JobCategory.pouringConcrete : pouringConcreteVolume = quantity;
-      case JobCategory.rebar : rebarWeight = quantity;
-      case JobCategory.hollowFloorFilling : hollowFloorFillingVolume = quantity;
-      case JobCategory.foundationWaterproofing : foundationWaterProofingArea = quantity;
-      case JobCategory.curtainWaterproofing : curtainWaterProofingArea = quantity;
-      case JobCategory.curtainProtectionBeforeFilling : curtainProtectionBeforeFillingArea = quantity;
-      case JobCategory.wallMaterial : wallMaterialVolume = quantity;
-      case JobCategory.wallWorkmanShip : wallWorkmanShipArea = quantity;
-      case JobCategory.roofing : roofingArea = quantity;
-      case JobCategory.facadeScaffolding : facadeScaffoldingArea = quantity;
-      case JobCategory.windows : windowsArea = quantity;
-      case JobCategory.facadeRails : facadeRailsLength = quantity;
-      case JobCategory.facadeSystem : facadeSystemArea = quantity;
-      case JobCategory.interiorPlastering : interiorPlasteringArea = quantity;
-      case JobCategory.interiorPainting : interiorPaintingArea = quantity;
-      case JobCategory.interiorWaterproofing : interiorWaterproofingArea = quantity;
-      case JobCategory.ceilingCovering : ceilingCoveringArea = quantity;
-      case JobCategory.covingPlaster : covingPlasterArea = quantity;
-      case JobCategory.screeding : screedingArea = quantity;
-      case JobCategory.marble : marbleArea = quantity;
-      case JobCategory.marbleStep : marbleStepLength = quantity;
-      case JobCategory.marbleWindowsill : marbleWindowsillLength = quantity;
-      case JobCategory.stairRailings : stairRailingsLength = quantity;
-      case JobCategory.ceramicTile : ceramicTileArea = quantity;
-      case JobCategory.parquetTile : parquetTileArea = quantity;
-      case JobCategory.steelDoor : steelDoorNumber = quantity;
-      case JobCategory.entranceDoor : entranceDoorArea = quantity;
-      case JobCategory.fireDoor : fireDoorNumber = quantity;
-      case JobCategory.woodenDoor : woodenDoorNumber = quantity;
-      case JobCategory.kitchenCupboard : kitchenCupboardLength = quantity;
-      case JobCategory.kitchenCounter : kitchenCounterLength = quantity;
-      case JobCategory.coatCabinet : coatCabinetArea = quantity;
-      case JobCategory.bathroomCabinet : bathroomCabinetArea = quantity;
-      case JobCategory.floorPlinth : floorPlinthLength = quantity;
-      case JobCategory.mechanicalInfrastructure : mechanicalInfrastructureApartment = quantity;
-      case JobCategory.airConditioner : airConditionerNumber = quantity;
-      case JobCategory.ventilation : ventilationArea = quantity;
-      case JobCategory.waterTank : 1;
-      case JobCategory.elevation : elevationStop = quantity;
-      case JobCategory.sink : sinkNumber = quantity;
-      case JobCategory.sinkBattery : sinkBatteryNumber = quantity;
-      case JobCategory.concealedCistern : concealedCisternNumber = quantity;
-      case JobCategory.shower : showerNumber = quantity;
-      case JobCategory.showerBattery : showerBatteryNumber = quantity;
-      case JobCategory.kitchenFaucetAndSink : kitchenFaucetAndSinkNumber = quantity;
-      case JobCategory.electricalInfrastructure : electricalInfrastructureApartment = quantity;
-      case JobCategory.generator : 1;
-      case JobCategory.householdAppliances : householdAppliancesApartment = quantity;
-      case JobCategory.landScapeGarden : landScapeGardenArea = quantity;
-      case JobCategory.outdoorParkingTile : outdoorParkingTileArea = quantity;
-      case JobCategory.carLift : carLiftStop = quantity;
-      case JobCategory.automaticBarrier : automaticBarrierNumber = quantity;
-      case JobCategory.enclosingTheLand : enclosingTheLandLength = quantity;
-      case JobCategory.mobilizationDemobilization : 1;
-      case JobCategory.crane : craneHour = quantity;
-      case JobCategory.siteSafety : siteSafetyMonth = quantity;
-      case JobCategory.siteExpenses : officeExpensesMonth = quantity;
-      case JobCategory.sergeant : sergeantMonth = quantity;
-      case JobCategory.projectManager : projectManagerMonth = quantity;
-      case JobCategory.projectsFeesPayments : 1;
+      case JobCategory.shoring:
+        shoringArea = quantity;
+      case JobCategory.excavation:
+        excavationVolume = quantity;
+      case JobCategory.breaker:
+        breakerHour = quantity;
+      case JobCategory.foundationStabilization:
+        foundationStabilizationWeight = quantity;
+      case JobCategory.subFoundationConcrete:
+        subFoundationConcreteVolume = quantity;
+      case JobCategory.concreteFormWork:
+        concreteFormWorkArea = quantity;
+      case JobCategory.pouringConcrete:
+        pouringConcreteVolume = quantity;
+      case JobCategory.rebar:
+        rebarWeight = quantity;
+      case JobCategory.hollowFloorFilling:
+        hollowFloorFillingVolume = quantity;
+      case JobCategory.foundationWaterproofing:
+        foundationWaterProofingArea = quantity;
+      case JobCategory.curtainWaterproofing:
+        curtainWaterProofingArea = quantity;
+      case JobCategory.curtainProtectionBeforeFilling:
+        curtainProtectionBeforeFillingArea = quantity;
+      case JobCategory.wallMaterial:
+        wallMaterialVolume = quantity;
+      case JobCategory.wallWorkmanShip:
+        wallWorkmanShipArea = quantity;
+      case JobCategory.roofing:
+        roofingArea = quantity;
+      case JobCategory.facadeScaffolding:
+        facadeScaffoldingArea = quantity;
+      case JobCategory.windows:
+        windowsArea = quantity;
+      case JobCategory.facadeRails:
+        facadeRailsLength = quantity;
+      case JobCategory.facadeSystem:
+        facadeSystemArea = quantity;
+      case JobCategory.interiorPlastering:
+        interiorPlasteringArea = quantity;
+      case JobCategory.interiorPainting:
+        interiorPaintingArea = quantity;
+      case JobCategory.interiorWaterproofing:
+        interiorWaterproofingArea = quantity;
+      case JobCategory.ceilingCovering:
+        ceilingCoveringArea = quantity;
+      case JobCategory.covingPlaster:
+        covingPlasterArea = quantity;
+      case JobCategory.screeding:
+        screedingArea = quantity;
+      case JobCategory.marble:
+        marbleArea = quantity;
+      case JobCategory.marbleStep:
+        marbleStepLength = quantity;
+      case JobCategory.marbleWindowsill:
+        marbleWindowsillLength = quantity;
+      case JobCategory.stairRailings:
+        stairRailingsLength = quantity;
+      case JobCategory.ceramicTile:
+        ceramicTileArea = quantity;
+      case JobCategory.parquetTile:
+        parquetTileArea = quantity;
+      case JobCategory.steelDoor:
+        steelDoorNumber = quantity;
+      case JobCategory.entranceDoor:
+        entranceDoorArea = quantity;
+      case JobCategory.fireDoor:
+        fireDoorNumber = quantity;
+      case JobCategory.woodenDoor:
+        woodenDoorNumber = quantity;
+      case JobCategory.kitchenCupboard:
+        kitchenCupboardLength = quantity;
+      case JobCategory.kitchenCounter:
+        kitchenCounterLength = quantity;
+      case JobCategory.coatCabinet:
+        coatCabinetArea = quantity;
+      case JobCategory.bathroomCabinet:
+        bathroomCabinetArea = quantity;
+      case JobCategory.floorPlinth:
+        floorPlinthLength = quantity;
+      case JobCategory.mechanicalInfrastructure:
+        mechanicalInfrastructureApartment = quantity;
+      case JobCategory.airConditioner:
+        airConditionerNumber = quantity;
+      case JobCategory.ventilation:
+        ventilationArea = quantity;
+      case JobCategory.waterTank:
+        1;
+      case JobCategory.elevation:
+        elevationStop = quantity;
+      case JobCategory.sink:
+        sinkNumber = quantity;
+      case JobCategory.sinkBattery:
+        sinkBatteryNumber = quantity;
+      case JobCategory.concealedCistern:
+        concealedCisternNumber = quantity;
+      case JobCategory.shower:
+        showerNumber = quantity;
+      case JobCategory.showerBattery:
+        showerBatteryNumber = quantity;
+      case JobCategory.kitchenFaucetAndSink:
+        kitchenFaucetAndSinkNumber = quantity;
+      case JobCategory.electricalInfrastructure:
+        electricalInfrastructureApartment = quantity;
+      case JobCategory.generator:
+        1;
+      case JobCategory.householdAppliances:
+        householdAppliancesApartment = quantity;
+      case JobCategory.landScapeGarden:
+        landScapeGardenArea = quantity;
+      case JobCategory.outdoorParkingTile:
+        outdoorParkingTileArea = quantity;
+      case JobCategory.carLift:
+        carLiftStop = quantity;
+      case JobCategory.automaticBarrier:
+        automaticBarrierNumber = quantity;
+      case JobCategory.enclosingTheLand:
+        enclosingTheLandLength = quantity;
+      case JobCategory.mobilizationDemobilization:
+        1;
+      case JobCategory.crane:
+        craneHour = quantity;
+      case JobCategory.siteSafety:
+        siteSafetyMonth = quantity;
+      case JobCategory.siteExpenses:
+        officeExpensesMonth = quantity;
+      case JobCategory.sergeant:
+        sergeantMonth = quantity;
+      case JobCategory.projectManager:
+        projectManagerMonth = quantity;
+      case JobCategory.projectsFeesPayments:
+        1;
     }
   }
 
@@ -364,68 +427,110 @@ abstract class QuantityCalculator {
       JobCategory.shoring => shoringArea ?? calculatedShoringArea,
       JobCategory.excavation => excavationVolume ?? calculatedExcavationVolume,
       JobCategory.breaker => breakerHour ?? calculatedBreakerHour,
-      JobCategory.foundationStabilization => foundationStabilizationWeight ?? calculatedFoundationStabilizationVolume,
-      JobCategory.subFoundationConcrete => subFoundationConcreteVolume ?? calculatedSubFoundationConcreteVolume,
-      JobCategory.concreteFormWork => concreteFormWorkArea ?? calculatedConcreteFormWorkArea,
-      JobCategory.pouringConcrete => pouringConcreteVolume ?? calculatedPouringConcreteVolume,
+      JobCategory.foundationStabilization => foundationStabilizationWeight ??
+          calculatedFoundationStabilizationVolume,
+      JobCategory.subFoundationConcrete =>
+        subFoundationConcreteVolume ?? calculatedSubFoundationConcreteVolume,
+      JobCategory.concreteFormWork =>
+        concreteFormWorkArea ?? calculatedConcreteFormWorkArea,
+      JobCategory.pouringConcrete =>
+        pouringConcreteVolume ?? calculatedPouringConcreteVolume,
       JobCategory.rebar => rebarWeight ?? calculatedRebarWeight,
-      JobCategory.hollowFloorFilling => hollowFloorFillingVolume ?? calculatedHollowFloorFillingVolume,
-      JobCategory.foundationWaterproofing => foundationWaterProofingArea ?? calculatedFoundationWaterProofingArea,
-      JobCategory.curtainWaterproofing => curtainWaterProofingArea ?? calculatedCurtainWaterProofingArea,
-      JobCategory.curtainProtectionBeforeFilling => curtainProtectionBeforeFillingArea ?? calculatedCurtainProtectionBeforeFillingArea,
-      JobCategory.wallMaterial => wallMaterialVolume ?? calculatedWallMaterialVolume,
-      JobCategory.wallWorkmanShip => wallWorkmanShipArea ?? calculatedWallWorkmanShipArea,
+      JobCategory.hollowFloorFilling =>
+        hollowFloorFillingVolume ?? calculatedHollowFloorFillingVolume,
+      JobCategory.foundationWaterproofing =>
+        foundationWaterProofingArea ?? calculatedFoundationWaterProofingArea,
+      JobCategory.curtainWaterproofing =>
+        curtainWaterProofingArea ?? calculatedCurtainWaterProofingArea,
+      JobCategory.curtainProtectionBeforeFilling =>
+        curtainProtectionBeforeFillingArea ??
+            calculatedCurtainProtectionBeforeFillingArea,
+      JobCategory.wallMaterial =>
+        wallMaterialVolume ?? calculatedWallMaterialVolume,
+      JobCategory.wallWorkmanShip =>
+        wallWorkmanShipArea ?? calculatedWallWorkmanShipArea,
       JobCategory.roofing => roofingArea ?? calculatedRoofingArea,
-      JobCategory.facadeScaffolding => facadeScaffoldingArea ?? calculatedFacadeScaffoldingArea,
+      JobCategory.facadeScaffolding =>
+        facadeScaffoldingArea ?? calculatedFacadeScaffoldingArea,
       JobCategory.windows => windowsArea ?? calculatedWindowsArea,
-      JobCategory.facadeRails => facadeRailsLength ?? calculatedFacadeRailsLength,
-      JobCategory.facadeSystem => facadeSystemArea ?? calculatedFacadeSystemArea,
-      JobCategory.interiorPlastering => interiorPlasteringArea ?? calculatedInteriorPlasteringArea,
-      JobCategory.interiorPainting => interiorPaintingArea ?? calculatedInteriorPaintingArea,
-      JobCategory.interiorWaterproofing => interiorWaterproofingArea ?? calculatedInteriorWaterproofingArea,
-      JobCategory.ceilingCovering => ceilingCoveringArea ?? calculatedCeilingCoveringArea,
-      JobCategory.covingPlaster => covingPlasterArea ?? calculatedCovingPlasterArea,
+      JobCategory.facadeRails =>
+        facadeRailsLength ?? calculatedFacadeRailsLength,
+      JobCategory.facadeSystem =>
+        facadeSystemArea ?? calculatedFacadeSystemArea,
+      JobCategory.interiorPlastering =>
+        interiorPlasteringArea ?? calculatedInteriorPlasteringArea,
+      JobCategory.interiorPainting =>
+        interiorPaintingArea ?? calculatedInteriorPaintingArea,
+      JobCategory.interiorWaterproofing =>
+        interiorWaterproofingArea ?? calculatedInteriorWaterproofingArea,
+      JobCategory.ceilingCovering =>
+        ceilingCoveringArea ?? calculatedCeilingCoveringArea,
+      JobCategory.covingPlaster =>
+        covingPlasterArea ?? calculatedCovingPlasterArea,
       JobCategory.screeding => screedingArea ?? calculatedScreedingArea,
       JobCategory.marble => marbleArea ?? calculatedMarbleArea,
       JobCategory.marbleStep => marbleStepLength ?? calculatedMarbleStepLength,
-      JobCategory.marbleWindowsill => marbleWindowsillLength ?? calculatedMarbleWindowsillLength,
-      JobCategory.stairRailings => stairRailingsLength ?? calculatedStairRailingsLength,
+      JobCategory.marbleWindowsill =>
+        marbleWindowsillLength ?? calculatedMarbleWindowsillLength,
+      JobCategory.stairRailings =>
+        stairRailingsLength ?? calculatedStairRailingsLength,
       JobCategory.ceramicTile => ceramicTileArea ?? calculatedCeramicTileArea,
       JobCategory.parquetTile => parquetTileArea ?? calculatedParquetTileArea,
       JobCategory.steelDoor => steelDoorNumber ?? calculatedSteelDoorNumber,
-      JobCategory.entranceDoor => entranceDoorArea ?? calculatedEntranceDoorArea,
+      JobCategory.entranceDoor =>
+        entranceDoorArea ?? calculatedEntranceDoorArea,
       JobCategory.fireDoor => fireDoorNumber ?? calculatedFireDoorNumber,
       JobCategory.woodenDoor => woodenDoorNumber ?? calculatedWoodenDoorNumber,
-      JobCategory.kitchenCupboard => kitchenCupboardLength ?? calculatedKitchenCupboardLength,
-      JobCategory.kitchenCounter => kitchenCounterLength ?? calculatedKitchenCounterLength,
+      JobCategory.kitchenCupboard =>
+        kitchenCupboardLength ?? calculatedKitchenCupboardLength,
+      JobCategory.kitchenCounter =>
+        kitchenCounterLength ?? calculatedKitchenCounterLength,
       JobCategory.coatCabinet => coatCabinetArea ?? calculatedCoatCabinetArea,
-      JobCategory.bathroomCabinet => bathroomCabinetArea ?? calculatedBathroomCabinetArea,
-      JobCategory.floorPlinth => floorPlinthLength ?? calculatedFloorPlinthLength,
-      JobCategory.mechanicalInfrastructure => mechanicalInfrastructureApartment ?? calculatedMechanicalInfrastructureApartment,
-      JobCategory.airConditioner => airConditionerNumber ?? calculatedAirConditionerNumber,
+      JobCategory.bathroomCabinet =>
+        bathroomCabinetArea ?? calculatedBathroomCabinetArea,
+      JobCategory.floorPlinth =>
+        floorPlinthLength ?? calculatedFloorPlinthLength,
+      JobCategory.mechanicalInfrastructure =>
+        mechanicalInfrastructureApartment ??
+            calculatedMechanicalInfrastructureApartment,
+      JobCategory.airConditioner =>
+        airConditionerNumber ?? calculatedAirConditionerNumber,
       JobCategory.ventilation => ventilationArea ?? calculatedVentilationArea,
       JobCategory.waterTank => 1,
       JobCategory.elevation => elevationStop ?? calculatedElevationStop,
       JobCategory.sink => sinkNumber ?? calculatedSinkNumber,
-      JobCategory.sinkBattery => sinkBatteryNumber ?? calculatedSinkBatteryNumber,
-      JobCategory.concealedCistern => concealedCisternNumber ?? calculatedConcealedCisternNumber,
+      JobCategory.sinkBattery =>
+        sinkBatteryNumber ?? calculatedSinkBatteryNumber,
+      JobCategory.concealedCistern =>
+        concealedCisternNumber ?? calculatedConcealedCisternNumber,
       JobCategory.shower => showerNumber ?? calculatedShowerNumber,
-      JobCategory.showerBattery => showerBatteryNumber ?? calculatedShowerBatteryNumber,
-      JobCategory.kitchenFaucetAndSink => kitchenFaucetAndSinkNumber ?? calculatedKitchenFaucetAndSinkNumber,
-      JobCategory.electricalInfrastructure => electricalInfrastructureApartment ?? calculatedElectricalInfrastructureApartment,
+      JobCategory.showerBattery =>
+        showerBatteryNumber ?? calculatedShowerBatteryNumber,
+      JobCategory.kitchenFaucetAndSink =>
+        kitchenFaucetAndSinkNumber ?? calculatedKitchenFaucetAndSinkNumber,
+      JobCategory.electricalInfrastructure =>
+        electricalInfrastructureApartment ??
+            calculatedElectricalInfrastructureApartment,
       JobCategory.generator => 1,
-      JobCategory.householdAppliances => householdAppliancesApartment ?? calculatedHouseholdAppliancesApartment,
-      JobCategory.landScapeGarden => landScapeGardenArea ?? calculatedLandScapeGardenArea,
-      JobCategory.outdoorParkingTile => outdoorParkingTileArea ?? calculatedOutdoorParkingTileArea,
+      JobCategory.householdAppliances =>
+        householdAppliancesApartment ?? calculatedHouseholdAppliancesApartment,
+      JobCategory.landScapeGarden =>
+        landScapeGardenArea ?? calculatedLandScapeGardenArea,
+      JobCategory.outdoorParkingTile =>
+        outdoorParkingTileArea ?? calculatedOutdoorParkingTileArea,
       JobCategory.carLift => carLiftStop ?? calculatedCarLiftStop,
-      JobCategory.automaticBarrier => automaticBarrierNumber ?? calculatedAutomaticBarrierNumber,
-      JobCategory.enclosingTheLand => enclosingTheLandLength ?? calculatedEnclosingTheLandLength,
+      JobCategory.automaticBarrier =>
+        automaticBarrierNumber ?? calculatedAutomaticBarrierNumber,
+      JobCategory.enclosingTheLand =>
+        enclosingTheLandLength ?? calculatedEnclosingTheLandLength,
       JobCategory.mobilizationDemobilization => 1,
       JobCategory.crane => craneHour ?? calculatedCraneHour,
       JobCategory.siteSafety => siteSafetyMonth ?? calculatedSiteSafetyMonth,
-      JobCategory.siteExpenses => officeExpensesMonth  ?? calculatedOfficeExpensesMonth,
+      JobCategory.siteExpenses =>
+        officeExpensesMonth ?? calculatedOfficeExpensesMonth,
       JobCategory.sergeant => sergeantMonth ?? calculatedSergeantMonth,
-      JobCategory.projectManager => projectManagerMonth ?? calculatedProjectManagerMonth,
+      JobCategory.projectManager =>
+        projectManagerMonth ?? calculatedProjectManagerMonth,
       JobCategory.projectsFeesPayments => 1,
     };
   }
@@ -435,15 +540,19 @@ abstract class QuantityCalculator {
       JobCategory.shoring => shoringAreaExplanation,
       JobCategory.excavation => excavationVolumeExplanation,
       JobCategory.breaker => breakerHourExplanation,
-      JobCategory.foundationStabilization => foundationStabilizationWeightExplanation,
-      JobCategory.subFoundationConcrete => subFoundationConcreteVolumeExplanation,
+      JobCategory.foundationStabilization =>
+        foundationStabilizationWeightExplanation,
+      JobCategory.subFoundationConcrete =>
+        subFoundationConcreteVolumeExplanation,
       JobCategory.concreteFormWork => concreteFormWorkAreaExplanation,
       JobCategory.pouringConcrete => pouringConcreteVolumeExplanation,
       JobCategory.rebar => rebarWeightExplanation,
       JobCategory.hollowFloorFilling => hollowFloorFillingVolumeExplanation,
-      JobCategory.foundationWaterproofing => foundationWaterProofingAreaExplanation,
+      JobCategory.foundationWaterproofing =>
+        foundationWaterProofingAreaExplanation,
       JobCategory.curtainWaterproofing => curtainWaterProofingAreaExplanation,
-      JobCategory.curtainProtectionBeforeFilling => curtainProtectionBeforeFillingAreaExplanation,
+      JobCategory.curtainProtectionBeforeFilling =>
+        curtainProtectionBeforeFillingAreaExplanation,
       JobCategory.wallMaterial => wallMaterialVolumeExplanation,
       JobCategory.wallWorkmanShip => wallWorkmanShipAreaExplanation,
       JobCategory.roofing => roofingAreaExplanation,
@@ -472,7 +581,8 @@ abstract class QuantityCalculator {
       JobCategory.coatCabinet => coatCabinetAreaExplanation,
       JobCategory.bathroomCabinet => bathroomCabinetAreaExplanation,
       JobCategory.floorPlinth => floorPlinthLengthExplanation,
-      JobCategory.mechanicalInfrastructure => mechanicalInfrastructureApartmentExplanation,
+      JobCategory.mechanicalInfrastructure =>
+        mechanicalInfrastructureApartmentExplanation,
       JobCategory.airConditioner => airConditionerNumberExplanation,
       JobCategory.ventilation => ventilationAreaExplanation,
       JobCategory.waterTank => "Götürü bedel",
@@ -483,9 +593,11 @@ abstract class QuantityCalculator {
       JobCategory.shower => showerNumberExplanation,
       JobCategory.showerBattery => showerBatteryNumberExplanation,
       JobCategory.kitchenFaucetAndSink => kitchenFaucetAndSinkNumberExplanation,
-      JobCategory.electricalInfrastructure => electricalInfrastructureApartmentExplanation,
+      JobCategory.electricalInfrastructure =>
+        electricalInfrastructureApartmentExplanation,
       JobCategory.generator => "Götürü bedel",
-      JobCategory.householdAppliances => householdAppliancesApartmentExplanation,
+      JobCategory.householdAppliances =>
+        householdAppliancesApartmentExplanation,
       JobCategory.landScapeGarden => landScapeGardenAreaExplanation,
       JobCategory.outdoorParkingTile => outdoorParkingTileAreaExplanation,
       JobCategory.carLift => carLiftStopExplanation,
@@ -503,70 +615,23 @@ abstract class QuantityCalculator {
 }
 
 class InitialQuantityCalculator extends QuantityCalculator {
-  InitialQuantityCalculator(
-    {
-      required super.projectConstants,
-      super.landArea = 0,
-      super.landPerimeter = 0,
-      super.excavationArea = 0,
-      super.excavationPerimeter = 0,
-      super.coreCurtainLength = 0,
-      super.curtainsExceeding1MeterLength = 0,
-      super.basementCurtainLength = 0,
-      super.columnsLess1MeterPerimeter = 0,
-      super.elevationTowerArea = 0,
-      super.elevationTowerHeightWithoutSlab = 0,
-      super.floors = const [],
-      super.foundationArea = 0,
-      super.foundationPerimeter = 0,
-      super.foundationHeight = 1,
-    }
-  ){
-    super.floors = [
-      Floor(
-        no: 1,
-        ceilingArea: 0,
-        ceilingPerimeter: 0,
-        fullHeight: 3.3,
-        area: 0,
-        perimeter: 0,
-        heightWithoutSlab: 3,
-        thickWallLength: 0,
-        thinWallLength: 0,
-        isCeilingHollowSlab: true,
-        windows: [],
-        rooms: [],
-      ),
-      Floor(
-        no: 0,
-        ceilingArea: 0,
-        ceilingPerimeter: 0,
-        fullHeight: 3.3,
-        area: 0,
-        perimeter: 0,
-        heightWithoutSlab: 3,
-        thickWallLength: 0,
-        thinWallLength: 0,
-        isCeilingHollowSlab: true,
-        windows: [],
-        rooms: [],
-      ),
-      Floor(
-        no: -1,
-        ceilingArea: 0,
-        ceilingPerimeter: 0,
-        fullHeight: 3.15,
-        area: 0,
-        perimeter: 0,
-        heightWithoutSlab: 3,
-        thickWallLength: 0,
-        thinWallLength: 0,
-        isCeilingHollowSlab: false,
-        windows: [],
-        rooms: [],
-      ),
-    ];
-  }
+  InitialQuantityCalculator({
+    required super.projectConstants,
+    super.landArea = 0,
+    super.landPerimeter = 0,
+    super.excavationArea = 0,
+    super.excavationPerimeter = 0,
+    super.coreCurtainLength = 0,
+    super.curtainsExceeding1MeterLength = 0,
+    super.basementCurtainLength = 0,
+    super.columnsLess1MeterPerimeter = 0,
+    super.elevationTowerArea = 0,
+    super.elevationTowerHeightWithoutSlab = 0,
+    super.floors = const [],
+    super.foundationArea = 0,
+    super.foundationPerimeter = 0,
+    super.foundationHeight = 1,
+  });
 
   @override
   double get calculatedShoringArea => 0;
@@ -677,7 +742,7 @@ class InitialQuantityCalculator extends QuantityCalculator {
   double get calculatedInteriorWaterproofingArea => 0;
   @override
   String get interiorWaterproofingAreaExplanation => "";
-  
+
   @override
   double get calculatedCeilingCoveringArea => 0;
   @override
@@ -709,7 +774,6 @@ class InitialQuantityCalculator extends QuantityCalculator {
   String get marbleWindowsillLengthExplanation => "";
 
   @override
-
   double get calculatedStairRailingsLength => 0;
   @override
   String get stairRailingsLengthExplanation => "";
@@ -876,7 +940,6 @@ class InitialQuantityCalculator extends QuantityCalculator {
   String get sergeantMonthExplanation => "";
 
   @override
-
   double get calculatedProjectManagerMonth => 0;
   @override
   String get projectManagerMonthExplanation => "";
