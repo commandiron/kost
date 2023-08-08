@@ -42,9 +42,6 @@ class CostTableScreen extends StatelessWidget {
                           costs: state.costs,
                           formattedSubTotalsTRY: state.formattedSubTotalsTRY,
                           unitPricePool: state.unitPricePool),
-                      const SizedBox(
-                        height: 512,
-                      )
                     ],
                   ),
                 )
