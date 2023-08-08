@@ -45,104 +45,74 @@ class _FloorViewerState extends State<FloorViewer> {
           _isHighlighted.clear();
         });
       },
-      child: Column(
-        children: [
-          ListView.builder(
-            itemCount: widget.floors.length,
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            itemBuilder: (context, index) {
-              final floorWidth = _calculateFloorWidth(widthPerArea, index, foundationWidth);
-              return Align(
-                alignment: Alignment.center,
-                child: GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      _isHighlighted[index] = !(_isHighlighted[index] ?? false);
-                    });
-                  },
-                  child: Container(
-                    width: _isHighlighted[index] ?? false
-                        ? floorWidth * 2
-                        : floorWidth,
-                    height: _isHighlighted[index] ?? false
-                        ? floorHeight * 4
-                        : floorHeight,
-                    decoration: BoxDecoration(border: Border.all()),
-                    child: _isHighlighted[index] ?? false
-                        ? Column(
+      child: ListView.builder(
+        itemCount: widget.floors.length,
+        shrinkWrap: true,
+        physics: const NeverScrollableScrollPhysics(),
+        itemBuilder: (context, index) {
+          final floorWidth = _calculateFloorWidth(widthPerArea, index, foundationWidth);
+          return Align(
+            alignment: Alignment.center,
+            child: GestureDetector(
+              onTap: () {
+                setState(() {
+                  _isHighlighted[index] = !(_isHighlighted[index] ?? false);
+                });
+              },
+              child: Container(
+                width: _isHighlighted[index] ?? false
+                    ? floorWidth * 2
+                    : floorWidth,
+                height: _isHighlighted[index] ?? false
+                    ? floorHeight * 4
+                    : floorHeight,
+                decoration: BoxDecoration(border: Border.all()),
+                child: _isHighlighted[index] ?? false
+                    ? Column(
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
                             children: [
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  const Text("Alan:"),
-                                  SizedBox(
-                                      width: 100,
-                                      child: QuantityTextField(
-                                        formattedQuantity: getFormattedNumber(
-                                            number: widget.floors[index].area),
-                                        symbol: "m2",
-                                        onChanged: (value) {
-                                          widget.onFloorAreaChanged(
-                                              value, index);
-                                        },
-                                      ))
-                                ],
-                              )
+                              const Text("Alan:"),
+                              SizedBox(
+                                  width: 100,
+                                  child: QuantityTextField(
+                                    formattedQuantity: getFormattedNumber(
+                                        number: widget.floors[index].area),
+                                    symbol: "m2",
+                                    onChanged: (value) {
+                                      widget.onFloorAreaChanged(
+                                          value, index);
+                                    },
+                                  ))
                             ],
                           )
-                        : Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Text(
-                                widget.floors[index].floorName,
-                                style: AppTextStyle.responsiveB1(context),
-                              ),
-                              AppSpace.hS!,
-                              Text(
-                                widget.floors[index].area.toString(),
-                                style: AppTextStyle.responsiveB1(context),
-                              ),
-                              AppSpace.hS!,
-                              Text(
-                                "m²",
-                                style: AppTextStyle.responsiveB1(context),
-                              ),
-                            ],
+                        ],
+                      )
+                    : Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text(
+                            widget.floors[index].floorName,
+                            style: AppTextStyle.responsiveB1(context),
                           ),
-                  ),
-                ),
-              );
-            },
-          ),
-          if(widget.foundationArea != 0)
-            Container(
-              width: foundationWidth,
-              height: foundationHeight,
-              decoration: BoxDecoration(border: Border.all()),
-              alignment: Alignment.center,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    "Temel",
-                    style: AppTextStyle.responsiveB2(context),
-                  ),
-                  AppSpace.hS!,
-                  Text(
-                    widget.foundationArea.toString(),
-                    style: AppTextStyle.responsiveB2(context),
-                  ),
-                  AppSpace.hS!,
-                  Text(
-                    "m²",
-                    style: AppTextStyle.responsiveB2(context),
-                  ),
-                ],
+                          AppSpace.hS!,
+                          Text(
+                            widget.floors[index].area.toString(),
+                            style: AppTextStyle.responsiveB1(context),
+                          ),
+                          AppSpace.hS!,
+                          Text(
+                            "m²",
+                            style: AppTextStyle.responsiveB1(context),
+                          ),
+                        ],
+                      ),
               ),
             ),
-        ],
+          );
+        },
       ),
     );
   }

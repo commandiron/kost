@@ -198,7 +198,7 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
                 Bathroom(area: 3.16, perimeter: 7.5),
               ],
             ),
-            11
+            17
         ),
         Floor(
           no: 0,
