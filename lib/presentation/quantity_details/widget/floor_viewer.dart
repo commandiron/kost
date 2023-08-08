@@ -36,7 +36,7 @@ class _FloorViewerState extends State<FloorViewer> {
 
     final double foundationWidth = widget.width;
     final double foundationHeight = (widget.height / (widget.floors.length + 1)) * 0.5;
-    double widthPerArea = foundationWidth / widget.foundationArea;
+    final double widthPerArea = foundationWidth / widget.foundationArea;
     final double floorHeight = (widget.height - foundationHeight) / widget.floors.length;
 
     return GestureDetector(
