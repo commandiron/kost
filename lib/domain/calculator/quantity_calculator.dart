@@ -523,22 +523,19 @@ class InitialQuantityCalculator extends QuantityCalculator {
     }
   ){
     super.floors = [
-      ...Floor.duplicateFloors(
-        Floor(
-          no: 1,
-          ceilingArea: 0,
-          ceilingPerimeter: 0,
-          fullHeight: 3.3,
-          area: 0,
-          perimeter: 0,
-          heightWithoutSlab: 3,
-          thickWallLength: 0,
-          thinWallLength: 0,
-          isCeilingHollowSlab: true,
-          windows: [],
-          rooms: [],
-        ),
-        3
+      Floor(
+        no: 1,
+        ceilingArea: 0,
+        ceilingPerimeter: 0,
+        fullHeight: 3.3,
+        area: 0,
+        perimeter: 0,
+        heightWithoutSlab: 3,
+        thickWallLength: 0,
+        thinWallLength: 0,
+        isCeilingHollowSlab: true,
+        windows: [],
+        rooms: [],
       ),
       Floor(
         no: 0,
