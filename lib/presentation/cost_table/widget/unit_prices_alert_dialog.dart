@@ -16,13 +16,13 @@ class UnitPricesAlertDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     return AlertDialog(
       content: SizedBox(
-        width: double.maxFinite,
+        width: 300,
         height: 300,
         child: ListView.builder(
           itemCount: unitPrices.length,
           itemBuilder: (context, index) {
             return Padding(
-              padding: AppPadding.allS!,
+              padding: AppPadding.vS!,
               child: ElevatedButton(
                   onPressed: () {
                     onUnitPriceSelect(index);
