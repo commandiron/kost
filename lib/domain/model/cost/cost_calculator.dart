@@ -1,7 +1,7 @@
 import 'package:kost/domain/calculator/detailed/project_constants.dart';
 
 import '../../calculator/detailed/floor.dart';
-import 'category.dart';
+import 'job.dart';
 
 abstract class CostCalculator {
   List<Job> enabledJobs;
