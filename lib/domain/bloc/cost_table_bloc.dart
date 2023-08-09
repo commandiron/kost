@@ -213,7 +213,7 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
       state.costCalculator.enabledJobs.firstWhere((element) => element.id == event.jobId).selectedUnitPriceCategoryIndex = event.selectedUnitPriceIndex;
       add(const CreateCostTable());
     });
-    on<DeleteCostCategory>((event, emit) {
+    on<DeleteJob>((event, emit) {
       state.costCalculator.enabledJobs.removeWhere((element) => element.id == event.jobId);
       add(const CreateCostTable());
     });

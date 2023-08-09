@@ -43,9 +43,9 @@ class ReplaceUnitPrice extends CostTableEvent {
   List<Object?> get props => [jobId, selectedUnitPriceIndex];
 }
 
-class DeleteCostCategory extends CostTableEvent {
+class DeleteJob extends CostTableEvent {
   final int jobId;
-  const DeleteCostCategory(this.jobId);
+  const DeleteJob(this.jobId);
   @override
   List<Object?> get props => [jobId];
 }
