@@ -101,14 +101,14 @@ class RoughConstructionCostCalculator extends CostCalculator {
       FoundationStabilization(quantity: foundationStabilizationVolume, quantityExplanation: foundationStabilizationWeightExplanation),
       SubFoundationConcrete(quantity: 100, quantityExplanation: "quantityExplanation"),
       ConcreteFormWork(quantity: 100, quantityExplanation: "quantityExplanation"),
-      PouringConcrete(quantity: 100, quantityExplanation: "quantityExplanation")
-      // CostCategory(MainCategory.roughConstructionJobs, JobCategory.rebar, UnitPriceCategory.s420Steel,),
-      // CostCategory(MainCategory.roughConstructionJobs, JobCategory.hollowFloorFilling, UnitPriceCategory.eps14Dns,),
-      // CostCategory(MainCategory.roughConstructionJobs, JobCategory.foundationWaterproofing, UnitPriceCategory.proofBitumenMembrane,),
-      // CostCategory(MainCategory.roughConstructionJobs, JobCategory.curtainWaterproofing, UnitPriceCategory.cementSliding,),
-      // CostCategory(MainCategory.roughConstructionJobs, JobCategory.curtainProtectionBeforeFilling, UnitPriceCategory.drainPlate,),
-      // CostCategory(MainCategory.roughConstructionJobs, JobCategory.wallMaterial, UnitPriceCategory.aeratedConcreteYtong,),
-      // CostCategory(MainCategory.roughConstructionJobs, JobCategory.wallWorkmanShip, UnitPriceCategory.aeratedConcreteLabor,),
+      PouringConcrete(quantity: 100, quantityExplanation: "quantityExplanation"),
+      Rebar(quantity: 100, quantityExplanation: "quantityExplanation"),
+      HollowFloorFilling(quantity: 100, quantityExplanation: "quantityExplanation"),
+      FoundationWaterproofing(quantity: 100, quantityExplanation: "quantityExplanation"),
+      CurtainWaterproofing(quantity: 100, quantityExplanation: "quantityExplanation"),
+      CurtainProtectionBeforeFilling(quantity: 100, quantityExplanation: "quantityExplanation"),
+      WallMaterial(quantity: 100, quantityExplanation: "quantityExplanation"),
+      WallWorkmanShip(quantity: 100, quantityExplanation: "quantityExplanation"),
     ];
   }
 

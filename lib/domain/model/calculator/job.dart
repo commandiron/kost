@@ -113,6 +113,109 @@ class PouringConcrete extends Job {
   );
 }
 
+class Rebar extends Job {
+  Rebar(
+    {
+      super.nameTr = "Ø8-32 mm çapında betonarme çeliği temini ve döşenmesi",
+      super.mainCategory = MainCategory.roughConstructionJobs,
+      super.enabledUnitPriceCategories = const [UnitPriceCategory.s420Steel],
+      super.selectedUnitPriceCategory = UnitPriceCategory.s420Steel,
+      required super.quantity,
+      required super.quantityExplanation,
+    }
+  );
+}
+
+class HollowFloorFilling extends Job {
+  HollowFloorFilling(
+    {
+      super.nameTr = "Asmolen döşeme dolgusunun yapılması",
+      super.mainCategory = MainCategory.roughConstructionJobs,
+      super.enabledUnitPriceCategories = const [UnitPriceCategory.eps14Dns],
+      super.selectedUnitPriceCategory = UnitPriceCategory.eps14Dns,
+      required super.quantity,
+      required super.quantityExplanation,
+    }
+  );
+}
+
+class FoundationWaterproofing extends Job {
+  FoundationWaterproofing(
+    {
+      super.nameTr = "Temel altı su yalıtımı yapılması",
+      super.mainCategory = MainCategory.roughConstructionJobs,
+      super.enabledUnitPriceCategories = const [UnitPriceCategory.proofBitumenMembrane],
+      super.selectedUnitPriceCategory = UnitPriceCategory.proofBitumenMembrane,
+      required super.quantity,
+      required super.quantityExplanation,
+    }
+  );
+}
+
+class CurtainWaterproofing extends Job {
+  CurtainWaterproofing(
+    {
+      super.nameTr = "Perde su yalıtımının yapılması",
+      super.mainCategory = MainCategory.roughConstructionJobs,
+      super.enabledUnitPriceCategories = const [UnitPriceCategory.cementSliding, UnitPriceCategory.bitumenSliding],
+      super.selectedUnitPriceCategory = UnitPriceCategory.cementSliding,
+      required super.quantity,
+      required super.quantityExplanation,
+    }
+  );
+}
+
+class CurtainProtectionBeforeFilling extends Job {
+  CurtainProtectionBeforeFilling(
+    {
+      super.nameTr = "Geri dolgu öncesi perde yalıtımına koruyucu yapılması",
+      super.mainCategory = MainCategory.roughConstructionJobs,
+      super.enabledUnitPriceCategories = const [UnitPriceCategory.drainPlate],
+      super.selectedUnitPriceCategory =UnitPriceCategory.drainPlate,
+      required super.quantity,
+      required super.quantityExplanation,
+    }
+  );
+}
+
+class WallMaterial extends Job {
+  WallMaterial(
+    {
+      super.nameTr = "Duvar malzeme",
+      super.mainCategory = MainCategory.roughConstructionJobs,
+      super.enabledUnitPriceCategories = const [UnitPriceCategory.aeratedConcreteYtong],
+      super.selectedUnitPriceCategory = UnitPriceCategory.aeratedConcreteYtong,
+      required super.quantity,
+      required super.quantityExplanation,
+    }
+  );
+}
+
+class WallWorkmanShip extends Job {
+  WallWorkmanShip(
+    {
+      super.nameTr = "Duvar işçilik",
+      super.mainCategory = MainCategory.roughConstructionJobs,
+      super.enabledUnitPriceCategories = const [UnitPriceCategory.aeratedConcreteLabor],
+      super.selectedUnitPriceCategory = UnitPriceCategory.aeratedConcreteLabor,
+      required super.quantity,
+      required super.quantityExplanation,
+    }
+  );
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 class Roofing extends Job {
   Roofing(
     {
