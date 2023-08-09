@@ -45,29 +45,6 @@ abstract class CostCalculator {
   );
 }
 
-class EmptyCostCostCalculator extends CostCalculator {
-  EmptyCostCostCalculator(
-    {
-      super.name = "Boş Taslak",
-      required super.projectConstants,
-      super.landArea = 0,
-      super.landPerimeter = 0,
-      super.excavationArea = 0,
-      super.excavationPerimeter = 0,
-      super.coreCurtainLength = 0,
-      super.curtainsExceeding1MeterLength = 0,
-      super.basementCurtainLength = 0,
-      super.columnsLess1MeterPerimeter = 0,
-      super.elevationTowerArea = 0,
-      super.elevationTowerHeightWithoutSlab = 0,
-      super.floors = const [],
-      super.foundationArea = 0,
-      super.foundationPerimeter = 0,
-      super.foundationHeight = 0
-    }
-  );
-}
-
 class RoughConstructionCostCalculator extends CostCalculator {
   RoughConstructionCostCalculator(
     {
@@ -92,7 +69,8 @@ class RoughConstructionCostCalculator extends CostCalculator {
     enabledJobs = [
       Shoring(quantity: shoringArea, quantityExplanation: shoringAreaExplanation),
       Excavation(quantity: excavationVolume, quantityExplanation: excavationVolumeExplanation),
-      Breaker(quantity: breakerHour, quantityExplanation: breakerHourExplanation)
+      Breaker(quantity: breakerHour, quantityExplanation: breakerHourExplanation),
+      PouringConcrete(quantity: 100, quantityExplanation: "quantityExplanation")
       // CostCategory(MainCategory.roughConstructionJobs, JobCategory.foundationStabilization, UnitPriceCategory.foundationStabilizationGravel,),
       // CostCategory(MainCategory.roughConstructionJobs, JobCategory.subFoundationConcrete, UnitPriceCategory.c16Concrete,),
       // CostCategory(MainCategory.roughConstructionJobs, JobCategory.concreteFormWork, UnitPriceCategory.plywood,),

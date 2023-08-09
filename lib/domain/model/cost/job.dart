@@ -1,17 +1,19 @@
+import '../unit_price/unit_price.dart';
+
 class Job {
   Job({
     required this.id,
-    required this.mainCategory,
     required this.nameTr,
-    required this.unitPriceCategories,
+    required this.mainCategory,
+    required this.enabledUnitPriceCategories,
     required this.selectedUnitPriceCategoryIndex,
     required this.quantity,
     required this.quantityExplanation
   });
   final int id;
-  final MainCategory mainCategory;
   final String nameTr;
-  List<UnitPriceCategory> unitPriceCategories;
+  final MainCategory mainCategory;
+  List<UnitPriceCategory> enabledUnitPriceCategories;
   int selectedUnitPriceCategoryIndex;
   double quantity;
   String quantityExplanation;
@@ -21,9 +23,9 @@ class Shoring extends Job {
   Shoring(
     {
       super.id = 0,
-      super.mainCategory = MainCategory.excavationJobs,
       super.nameTr = "İksa Yapılması",
-      super.unitPriceCategories = const [UnitPriceCategory.shutCrete],
+      super.mainCategory = MainCategory.excavationJobs,
+      super.enabledUnitPriceCategories = const [UnitPriceCategory.shutCrete],
       super.selectedUnitPriceCategoryIndex = 0,
       required super.quantity,
       required super.quantityExplanation,
@@ -35,9 +37,9 @@ class Excavation extends Job {
   Excavation(
     {
       super.id = 1,
-      super.mainCategory = MainCategory.excavationJobs,
       super.nameTr = "Kazı Yapılması",
-      super.unitPriceCategories = const [UnitPriceCategory.excavation],
+      super.mainCategory = MainCategory.excavationJobs,
+      super.enabledUnitPriceCategories = const [UnitPriceCategory.excavation],
       super.selectedUnitPriceCategoryIndex = 0,
       required super.quantity,
       required super.quantityExplanation,
@@ -49,9 +51,24 @@ class Breaker extends Job {
   Breaker(
     {
       super.id = 2,
-      super.mainCategory = MainCategory.excavationJobs,
       super.nameTr = "Kırıcı Çalıştırılması",
-      super.unitPriceCategories = const [UnitPriceCategory.breaker],
+      super.mainCategory = MainCategory.excavationJobs,
+      super.enabledUnitPriceCategories = const [UnitPriceCategory.breaker],
+      super.selectedUnitPriceCategoryIndex = 0,
+      required super.quantity,
+      required super.quantityExplanation,
+    }
+  );
+}
+
+
+class PouringConcrete extends Job {
+  PouringConcrete(
+    {
+      super.id = 3,
+      super.nameTr = "Betonarme betonu temini ve dökülmesi",
+      super.mainCategory = MainCategory.excavationJobs,
+      super.enabledUnitPriceCategories = const [UnitPriceCategory.c30Concrete, UnitPriceCategory.c35Concrete, UnitPriceCategory.c40Concrete],
       super.selectedUnitPriceCategoryIndex = 0,
       required super.quantity,
       required super.quantityExplanation,
@@ -235,78 +252,3 @@ extension MainCategoryExtension on MainCategory {
 //     };
 //   }
 // }
-
-enum UnitPriceCategory {
-  shutCrete,
-  excavation,
-  breaker,
-  foundationStabilizationGravel,
-  c16Concrete,
-  plywood,
-  c30Concrete,
-  c35Concrete,
-  c40Concrete,
-  s420Steel,
-  eps14Dns,
-  proofBitumenMembrane,
-  bitumenSliding,
-  cementSliding,
-  drainPlate,
-  aeratedConcreteYtong,
-  aeratedConcreteLabor,
-  steelConstructionBraasRoof,
-  steelScaffolding,
-  windowJoineryRehau,
-  wroughtIronRailing,
-  aluminumRailing,
-  sinterFlexFacade,
-  precastFacade,
-  plaster,
-  painting,
-  cementBasedFlexInsulation,
-  drywall,
-  covingPlaster,
-  screed300Doses,
-  marbleFloorBilecik,
-  marbleStepBilecik,
-  marbleWindowsillBilecik,
-  ceramicTileVitraVersus,
-  laminatedSerifoglu,
-  steelDoorKale,
-  entranceDoor,
-  ironFireDoor,
-  lacqueredDoorArtella,
-  shinyLacqueredKitchenCupboardAster,
-  matteLacqueredKitchenCupboardAster,
-  quartzCountertopCimstone,
-  lacqueredCabinet,
-  lacqueredFloorPlinth,
-  mechanicalInfrastructure,
-  airConditionerArcelik,
-  vrfMultiSplitMitshubishiElectric,
-  ventilation,
-  galvanize25TonWaterTankEsinoks,
-  elevation10PersonKone,
-  elevation6PersonKone,
-  sinkVitra,
-  sinkBatteryVitra,
-  concealedCisternVitra,
-  showerHuppe100x100,
-  showerBatteryVitra,
-  kitchenFaucetAndSinkFranke,
-  electricalInfrastructure,
-  generatorAksa160,
-  paddleBoxBuiltInOvenCookTopDishwasherFranke,
-  averageGarden,
-  interlockingPavingStone,
-  carLift,
-  automaticBarrier,
-  trapezoidalSheetCurtain,
-  mobilizationDemobilization,
-  crane15Ton,
-  siteSafety,
-  siteExpenses,
-  sergeantGrossWage,
-  projectManagerGrossWage,
-  projectsFeesPayments;
-}
