@@ -34,10 +34,8 @@ class _FloorViewerState extends State<FloorViewer> {
   @override
   Widget build(BuildContext context) {
 
-    final double foundationWidth = widget.width;
-    final double foundationHeight = (widget.height / (widget.floors.length + 1)) * 0.5;
-    final double widthPerArea = foundationWidth / widget.foundationArea;
-    final double floorHeight = (widget.height - foundationHeight) / widget.floors.length;
+    final double widthPerArea = widget.width / widget.foundationArea;
+    final double floorHeight = widget.height / widget.floors.length;
 
     return GestureDetector(
       onTap: () {
@@ -50,7 +48,7 @@ class _FloorViewerState extends State<FloorViewer> {
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
         itemBuilder: (context, index) {
-          final floorWidth = _calculateFloorWidth(widthPerArea, index, foundationWidth);
+          final floorWidth = _calculateFloorWidth(widthPerArea, index, widget.width);
           return Align(
             alignment: Alignment.center,
             child: GestureDetector(
@@ -117,10 +115,10 @@ class _FloorViewerState extends State<FloorViewer> {
     );
   }
 
-  double _calculateFloorWidth(double widthPerArea, int index, double foundationWidth) {
+  double _calculateFloorWidth(double widthPerArea, int index, double totalWidth) {
     double floorWidth = widthPerArea * widget.floors[index].area;
-    if (floorWidth > foundationWidth) {
-      floorWidth = foundationWidth;
+    if (floorWidth > totalWidth) {
+      floorWidth = totalWidth;
     }
     if (floorWidth < widget.minWidth) {
       floorWidth = widget.minWidth;
