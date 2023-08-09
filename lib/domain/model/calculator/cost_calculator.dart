@@ -274,7 +274,6 @@ class InteriorCostCalculator extends CostCalculator {
       ElectricalInfrastructure(quantity: 100, quantityExplanation: "quantityExplanation"),
       Generator(quantity: 100, quantityExplanation: "quantityExplanation"),
       HouseholdAppliances(quantity: 100, quantityExplanation: "quantityExplanation"),
-
     ];
   }
 }
