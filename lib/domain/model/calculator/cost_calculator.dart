@@ -134,18 +134,6 @@ class RoughConstructionCostCalculator extends CostCalculator {
   }
 }
 
-// class RoofingCostTemplate extends CostTemplate {
-//   RoofingCostTemplate(
-//       {
-//         super.name = "Çatı Maliyeti"
-//       }
-//       ){
-//     enabledCostCategories = [
-//       CostCategory(MainCategory.roofJobs, JobCategory.roofing, UnitPriceCategory.steelConstructionBraasRoof,),
-//     ];
-//   }
-// }
-
 // class FacadeCostTemplate extends CostTemplate {
 //   FacadeCostTemplate(
 //       {
@@ -241,19 +229,3 @@ class RoughConstructionCostCalculator extends CostCalculator {
 //   }
 // }
 //
-// class BuildingCostTemplate extends CostTemplate {
-//   BuildingCostTemplate(
-//       {
-//         super.name = "Apartman Maliyeti"
-//       }
-//   ){
-//     enabledCostCategories = [
-//       ...RoughConstructionCostTemplate().enabledCostCategories,
-//       ...RoofingCostTemplate().enabledCostCategories,
-//       ...FacadeCostTemplate().enabledCostCategories,
-//       ...InteriorCostTemplate().enabledCostCategories,
-//       ...LandscapeCostTemplate().enabledCostCategories,
-//       ...GeneralExpensesCostTemplate().enabledCostCategories,
-//     ];
-//   }
-// }

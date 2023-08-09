@@ -113,6 +113,19 @@ class PouringConcrete extends Job {
   );
 }
 
+class Roofing extends Job {
+  Roofing(
+    {
+      super.nameTr = "Çatı Yapılması",
+      super.mainCategory = MainCategory.roofJobs,
+      super.enabledUnitPriceCategories = const [UnitPriceCategory.steelConstructionBraasRoof],
+      super.selectedUnitPriceCategory = UnitPriceCategory.steelConstructionBraasRoof,
+      required super.quantity,
+      required super.quantityExplanation,
+    }
+  );
+}
+
 enum MainCategory {
   excavationJobs,
   roughConstructionJobs,
