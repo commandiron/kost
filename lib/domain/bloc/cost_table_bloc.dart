@@ -2,11 +2,9 @@ import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kost/data/unit_price_repository.dart';
-import 'package:kost/domain/calculator/detailed/detailed_quantity_calculator.dart';
 import 'package:kost/domain/calculator/detailed/project_constants.dart';
 import 'package:kost/domain/calculator/detailed/room.dart';
 import 'package:kost/domain/calculator/detailed/window.dart';
-import 'package:kost/domain/calculator/quantity_calculator.dart';
 import 'package:kost/domain/helper/formattedNumber.dart';
 import 'package:kost/domain/model/unit_price/currency.dart';
 import 'package:kost/domain/model/cost/cost_template.dart';
@@ -24,40 +22,36 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
   CostTableBloc()
     : super(
       CostTableState(
-        costTemplate: EmptyCostTemplate(),
+        costCalculator: EmptyCostCostCalculator(projectConstants: ProjectConstants()),
         unitPricePool: const [],
         currencyRates: ManualCurrencyRates(),
-        quantityCalculator: InitialQuantityCalculator(projectConstants: ProjectConstants()),
         costs: const [],
         formattedSubTotalsTRY: const {},
         formattedGrandTotalTRY: ""
       ),
     ) {
     on<Init>((event, emit) {
-      final costTemplate = _fetchCostTemplate();
+      final costCalculator = _fetchCostCalculator();
       final unitPricePool = _fetchUnitPricePool();
       // final currencyRates = _fetchCurrencyRates();
-      final quantityCalculator = _createQuantityCalculator();
       emit(
         state.copyWith(
-          costTemplate: costTemplate,
+          costCalculator: costCalculator,
           unitPricePool: unitPricePool,
           //currencyRates: currencyRates,
-          quantityCalculator: quantityCalculator
         )
       );
       _refresh();
     });
     on<CreateCostTable>((event, emit) {
-      if (!_isAllUnitPricesInCostTemplateIncludedInUnitPricePool) {
+      if (!_isAllUnitPricesInCostCalculatorIncludedInUnitPricePool) {
         throw Exception(
-            "All enabled unit prices in the cost template are NOT included in fetched unit prices."); //Handle
+            "All enabled unit prices in the cost calculator are NOT included in fetched unit prices."); //Handle
       }
 
       final costs = _createCosts(
-          costTemplate: state.costTemplate,
+          costCalculator: state.costCalculator,
           unitPricePool: state.unitPricePool,
-          quantityCalculator: state.quantityCalculator,
           currencyRates: state.currencyRates);
 
       final mainCategorySet = costs.map((e) => e.category.mainCategory).toSet();
@@ -99,26 +93,26 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
       emit(state.copyWith(costs: List.of(state.costs)));
     });
     on<ReplaceUnitPrice>((event, emit) {
-      final replacedIndex = state.costTemplate.enabledCostCategories
+      final replacedIndex = state.costCalculator.enabledCostCategories
           .indexWhere((element) => element == event.oldCostCategory);
-      state.costTemplate.enabledCostCategories[replacedIndex] = CostCategory(
+      state.costCalculator.enabledCostCategories[replacedIndex] = CostCategory(
           event.oldCostCategory.mainCategory,
           event.oldCostCategory.jobCategory,
           event.newUnitPriceCategory);
       _refresh();
     });
     on<DeleteCostCategory>((event, emit) {
-      state.costTemplate.enabledCostCategories.remove(event.costCategory);
+      state.costCalculator.enabledCostCategories.remove(event.costCategory);
       _refresh();
     });
     on<ChangeQuantityManually>((event, emit) {
       final quantity = parseFormattedNumber(value: event.quantityText);
-      state.quantityCalculator.setQuantityManually(event.jobCategory, quantity);
+      state.costCalculator.enabledCostCategories.firstWhere((e) => e.jobCategory == event.jobCategory).jobCategory.quantity = quantity;
       _refresh();
     });
     on<FloorAreaChanged>((event, emit) {
       final floorArea = parseFormattedNumber(value: event.floorAreaText);
-      state.quantityCalculator.floors[event.index].area = floorArea;
+      // state.quantityCalculator.floors[event.index].area = floorArea;
     });
     on<CalculateCost>((event, emit) {
       _refresh();
@@ -132,16 +126,8 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
     add(const Init());
   }
 
-  CostTemplate _fetchCostTemplate() {
-    return BuildingCostTemplate();
-  }
-
-  List<UnitPrice> _fetchUnitPricePool() {
-    return _unitPriceRepository.getAllUnitPrices();
-  }
-
-  QuantityCalculator _createQuantityCalculator() {
-    final quantityCalculator = DetailedQuantityCalculator(
+  CostCalculator _fetchCostCalculator() {
+    return RoughConstructionCostCalculator(
       projectConstants: ProjectConstants(),
       landArea: 806.24,
       landPerimeter: 117.93,
@@ -168,11 +154,11 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
               isCeilingHollowSlab: true,
               windows: [
                 Window(
-                  width: 17,
-                  height: 2.5,
-                  hasRailing: true,
-                  hasWindowsill: true,
-                  count: 1
+                    width: 17,
+                    height: 2.5,
+                    hasRailing: true,
+                    hasWindowsill: true,
+                    count: 1
                 ),
               ],
               rooms: [
@@ -213,11 +199,11 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
           isCeilingHollowSlab: true,
           windows: [
             Window(
-              width: 14,
-              height: 2.5,
-              hasRailing: true,
-              hasWindowsill: true,
-              count: 1
+                width: 14,
+                height: 2.5,
+                hasRailing: true,
+                hasWindowsill: true,
+                count: 1
             ),
           ],
           rooms: [
@@ -273,11 +259,14 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
       foundationPerimeter: 94.42,
       foundationHeight: 1,
     );
-    return quantityCalculator;
   }
 
-  bool get _isAllUnitPricesInCostTemplateIncludedInUnitPricePool {
-    for (var enabledCostCategory in state.costTemplate.enabledCostCategories) {
+  List<UnitPrice> _fetchUnitPricePool() {
+    return _unitPriceRepository.getAllUnitPrices();
+  }
+
+  bool get _isAllUnitPricesInCostCalculatorIncludedInUnitPricePool {
+    for (var enabledCostCategory in state.costCalculator.enabledCostCategories) {
       if (!state.unitPricePool
           .map((e) => e.category)
           .toList()
@@ -289,14 +278,13 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
   }
 
   List<Cost> _createCosts({
-    required CostTemplate costTemplate,
+    required CostCalculator costCalculator,
     required List<UnitPrice> unitPricePool,
-    required QuantityCalculator quantityCalculator,
     required CurrencyRates currencyRates,
   }) {
     List<Cost> costs = [];
 
-    for (var enabledCostCategory in costTemplate.enabledCostCategories) {
+    for (var enabledCostCategory in costCalculator.enabledCostCategories) {
       final unitPrices = unitPricePool
           .where((unitPrice) =>
               unitPrice.category == enabledCostCategory.unitPriceCategory)
@@ -317,14 +305,12 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
           ? "$formattedFixedAmount + $formattedAmount"
           : formattedAmount;
 
-      final quantity =
-          quantityCalculator.calculateQuantity(enabledCostCategory.jobCategory);
+      final quantity = enabledCostCategory.jobCategory.quantity;
       final quantityText = getFormattedNumber(number: quantity);
 
       final quantityUnitText = lastDatedUnitPrice.unit.symbol;
 
-      final quantityExplanationText = quantityCalculator
-          .getQuantityExplanation(enabledCostCategory.jobCategory);
+      final quantityExplanationText = enabledCostCategory.jobCategory.quantityExplanation;
 
       final totalPriceTRY = (lastDatedUnitPrice.fixedAmount *
               lastDatedUnitPrice.currency.toLiraRate(currencyRates)) +
