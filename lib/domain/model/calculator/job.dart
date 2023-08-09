@@ -2,6 +2,34 @@ import 'package:uuid/uuid.dart';
 
 import '../unit_price/unit_price.dart';
 
+enum MainCategory {
+  excavationJobs,
+  roughConstructionJobs,
+  roofJobs,
+  facadeJobs,
+  interiorJobs,
+  mechanicalJobs,
+  electricalJobs,
+  landscapeJobs,
+  generalExpenses
+}
+
+extension MainCategoryExtension on MainCategory {
+  String get nameTr {
+    return switch (this) {
+    MainCategory.excavationJobs => "Hafriyat İşleri",
+    MainCategory.roughConstructionJobs => "Kaba Yapı İşleri",
+    MainCategory.roofJobs => "Çatı İşleri",
+    MainCategory.facadeJobs => "Cephe İşleri",
+    MainCategory.interiorJobs => "İç İmalatlar",
+    MainCategory.mechanicalJobs => "Mekanik Tesisat",
+    MainCategory.electricalJobs => "Elektrik Tesisat ",
+    MainCategory.landscapeJobs => "Peysaj İşleri",
+    MainCategory.generalExpenses => "Genel Giderler"
+  };
+  }
+}
+
 abstract class Job {
   Job({
     required this.nameTr,
@@ -722,34 +750,6 @@ class HouseholdAppliances extends Job {
       required super.quantityExplanation,
     }
   );
-}
-
-enum MainCategory {
-  excavationJobs,
-  roughConstructionJobs,
-  roofJobs,
-  facadeJobs,
-  interiorJobs,
-  mechanicalJobs,
-  electricalJobs,
-  landscapeJobs,
-  generalExpenses
-}
-
-extension MainCategoryExtension on MainCategory {
-  String get nameTr {
-    return switch (this) {
-    MainCategory.excavationJobs => "Hafriyat İşleri",
-    MainCategory.roughConstructionJobs => "Kaba Yapı İşleri",
-    MainCategory.roofJobs => "Çatı İşleri",
-    MainCategory.facadeJobs => "Cephe İşleri",
-    MainCategory.interiorJobs => "İç İmalatlar",
-    MainCategory.mechanicalJobs => "Mekanik Tesisat",
-    MainCategory.electricalJobs => "Elektrik Tesisat ",
-    MainCategory.landscapeJobs => "Peysaj İşleri",
-    MainCategory.generalExpenses => "Genel Giderler"
-  };
-  }
 }
 
 // enum JobCategory {
