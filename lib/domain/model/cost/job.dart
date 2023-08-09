@@ -7,6 +7,7 @@ class Job {
     required this.mainCategory,
     required this.enabledUnitPriceCategories,
     required this.selectedUnitPriceCategory,
+    this.selectedUnitPriceId,
     required this.quantity,
     required this.quantityExplanation
   });
@@ -15,6 +16,7 @@ class Job {
   final MainCategory mainCategory;
   List<UnitPriceCategory> enabledUnitPriceCategories;
   UnitPriceCategory selectedUnitPriceCategory;
+  String? selectedUnitPriceId;
   double quantity;
   String quantityExplanation;
 }

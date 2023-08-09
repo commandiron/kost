@@ -1,6 +1,5 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
-import 'package:kost/domain/model/unit_price/unit_price.dart';
 
 import '../model/cost/job.dart';
 
@@ -38,10 +37,10 @@ class ExpandCollapseAllMainCategory extends CostTableEvent {
 
 class ReplaceUnitPrice extends CostTableEvent {
   final int jobId;
-  final UnitPriceCategory selectedUnitPriceCategory;
-  const ReplaceUnitPrice(this.jobId, this.selectedUnitPriceCategory);
+  final String selectedUnitPriceId;
+  const ReplaceUnitPrice(this.jobId, this.selectedUnitPriceId);
   @override
-  List<Object?> get props => [jobId, selectedUnitPriceCategory];
+  List<Object?> get props => [jobId, selectedUnitPriceId];
 }
 
 class DeleteJob extends CostTableEvent {

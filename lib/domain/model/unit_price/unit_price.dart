@@ -1,7 +1,9 @@
 import 'package:kost/domain/model/unit_price/unit.dart';
+import 'package:uuid/uuid.dart';
 import 'currency.dart';
 
 class UnitPrice {
+  String id = const Uuid().v4();
   UnitPriceCategory category;
   String nameTr;
   double amount;

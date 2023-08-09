@@ -210,7 +210,7 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
       emit(state.copyWith(costs: List.of(state.costs)));
     });
     on<ReplaceUnitPrice>((event, emit) {
-      state.costCalculator.jobs.firstWhere((element) => element.id == event.jobId).selectedUnitPriceCategory = event.selectedUnitPriceCategory;
+      state.costCalculator.jobs.firstWhere((element) => element.id == event.jobId).selectedUnitPriceId = event.selectedUnitPriceId;
       add(const CreateCostTable());
     });
     on<DeleteJob>((event, emit) {
@@ -250,7 +250,14 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
     List<Cost> costs = [];
 
     for (var job in costCalculator.jobs) {
-      final unitPrice = unitPricePool.firstWhere((unitPrice) => unitPrice.category == job.selectedUnitPriceCategory);
+
+      final UnitPrice? unitPrice;
+      if(job.selectedUnitPriceId != null) {
+        unitPrice = unitPricePool.firstWhere((unitPrice) => unitPrice.id == job.selectedUnitPriceId);
+      } else {
+        final unitPrices = unitPricePool.where((unitPrice) => unitPrice.category == job.selectedUnitPriceCategory);
+        unitPrice = unitPrices.reduce((current, next) => current.dateTime.isAfter(next.dateTime) ? current : next);
+      }
 
       final unitPriceNameText = unitPrice.nameTr;
 
