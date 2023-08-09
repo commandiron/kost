@@ -45,6 +45,34 @@ abstract class CostCalculator {
   );
 }
 
+class ApartmentCostCalculator extends CostCalculator {
+  ApartmentCostCalculator({
+    super.name = "Apartman Maliyeti",
+    required super.projectConstants,
+    required super.landArea,
+    required super.landPerimeter,
+    required super.excavationArea,
+    required super.excavationPerimeter,
+    required super.coreCurtainLength,
+    required super.curtainsExceeding1MeterLength,
+    required super.basementCurtainLength,
+    required super.columnsLess1MeterPerimeter,
+    required super.elevationTowerArea,
+    required super.elevationTowerHeightWithoutSlab,
+    required super.floors,
+    required super.foundationArea,
+    required super.foundationPerimeter,
+    required super.foundationHeight
+  }){
+    final roughConstructionCostCalculator = RoughConstructionCostCalculator(projectConstants: projectConstants, landArea: landArea, landPerimeter: landPerimeter, excavationArea: excavationArea, excavationPerimeter: excavationPerimeter, coreCurtainLength: coreCurtainLength, curtainsExceeding1MeterLength: curtainsExceeding1MeterLength, basementCurtainLength: basementCurtainLength, columnsLess1MeterPerimeter: columnsLess1MeterPerimeter, elevationTowerArea: elevationTowerArea, elevationTowerHeightWithoutSlab: elevationTowerHeightWithoutSlab, floors: floors, foundationArea: foundationArea, foundationPerimeter: foundationPerimeter, foundationHeight: foundationHeight);
+    final roofCostCalculator = RoofCostCalculator(projectConstants: projectConstants, landArea: landArea, landPerimeter: landPerimeter, excavationArea: excavationArea, excavationPerimeter: excavationPerimeter, coreCurtainLength: coreCurtainLength, curtainsExceeding1MeterLength: curtainsExceeding1MeterLength, basementCurtainLength: basementCurtainLength, columnsLess1MeterPerimeter: columnsLess1MeterPerimeter, elevationTowerArea: elevationTowerArea, elevationTowerHeightWithoutSlab: elevationTowerHeightWithoutSlab, floors: floors, foundationArea: foundationArea, foundationPerimeter: foundationPerimeter, foundationHeight: foundationHeight);
+    jobs = [
+      ...roughConstructionCostCalculator.jobs,
+      ...roofCostCalculator.jobs,
+    ];
+  }
+}
+
 class RoughConstructionCostCalculator extends CostCalculator {
   RoughConstructionCostCalculator(
     {
@@ -131,6 +159,31 @@ class RoughConstructionCostCalculator extends CostCalculator {
 
   String get foundationStabilizationWeightExplanation {
     return "Hafriyat alanı: $excavationArea x Temel altı stabilizasyon malzemesi yüksekliği: ${projectConstants.stabilizationHeight} x 1 m3 mıcır: ${projectConstants.gravelTonForOneCubicMeter} ton";
+  }
+}
+
+class RoofCostCalculator extends CostCalculator {
+  RoofCostCalculator({
+    super.name = "Çatı Maliyeti",
+    required super.projectConstants,
+    required super.landArea,
+    required super.landPerimeter,
+    required super.excavationArea,
+    required super.excavationPerimeter,
+    required super.coreCurtainLength,
+    required super.curtainsExceeding1MeterLength,
+    required super.basementCurtainLength,
+    required super.columnsLess1MeterPerimeter,
+    required super.elevationTowerArea,
+    required super.elevationTowerHeightWithoutSlab,
+    required super.floors,
+    required super.foundationArea,
+    required super.foundationPerimeter,
+    required super.foundationHeight
+  }){
+    jobs = [
+      Roofing(quantity: 100, quantityExplanation: "quantityExplanation")
+    ];
   }
 }
 

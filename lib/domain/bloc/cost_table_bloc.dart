@@ -22,7 +22,7 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
   CostTableBloc()
     : super(
       CostTableState(
-        costCalculator: RoughConstructionCostCalculator(
+        costCalculator: ApartmentCostCalculator(
           projectConstants: ProjectConstants(),
           landArea: 806.24,
           landPerimeter: 117.93,
