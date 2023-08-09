@@ -283,8 +283,8 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
       final cost = Cost(
         mainCategory: job.mainCategory,
         jobId: job.id,
-        enabledUnitPrices: unitPricePool.where((unitPrice) => job.enabledUnitPriceCategories.contains(unitPrice.category)).toList(),
         jobName: job.nameTr,
+        enabledUnitPrices: unitPricePool.where((unitPrice) => job.enabledUnitPriceCategories.contains(unitPrice.category)).toList(),
         unitPriceNameText: unitPriceNameText,
         unitPriceAmountText: unitAmountText,
         quantityText: quantityText,
