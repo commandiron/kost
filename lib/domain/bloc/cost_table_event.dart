@@ -36,26 +36,26 @@ class ExpandCollapseAllMainCategory extends CostTableEvent {
 }
 
 class ReplaceUnitPrice extends CostTableEvent {
-  final CostCategory oldCostCategory;
-  final UnitPriceCategory newUnitPriceCategory;
-  const ReplaceUnitPrice(this.oldCostCategory, this.newUnitPriceCategory);
+  final int jobId;
+  final int newUnitPriceIndex;
+  const ReplaceUnitPrice(this.jobId, this.newUnitPriceIndex);
   @override
-  List<Object?> get props => [oldCostCategory, newUnitPriceCategory];
+  List<Object?> get props => [jobId, newUnitPriceIndex];
 }
 
 class DeleteCostCategory extends CostTableEvent {
-  final CostCategory costCategory;
-  const DeleteCostCategory(this.costCategory);
+  final int jobId;
+  const DeleteCostCategory(this.jobId);
   @override
-  List<Object?> get props => [costCategory];
+  List<Object?> get props => [jobId];
 }
 
 class ChangeQuantityManually extends CostTableEvent {
-  final JobCategory jobCategory;
+  final int jobId;
   final String quantityText;
-  const ChangeQuantityManually(this.jobCategory, this.quantityText);
+  const ChangeQuantityManually(this.jobId, this.quantityText);
   @override
-  List<Object?> get props => [quantityText];
+  List<Object?> get props => [jobId, quantityText];
 }
 
 class FloorAreaChanged extends CostTableEvent {

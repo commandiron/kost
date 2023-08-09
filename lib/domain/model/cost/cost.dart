@@ -1,7 +1,12 @@
+import 'package:kost/domain/model/unit_price/unit_price.dart';
+
 import 'category.dart';
 
 class Cost {
-  CostCategory category;
+  MainCategory mainCategory;
+  int jobId;
+  String jobName;
+  List<UnitPrice> enabledUnitPrices;
   String unitPriceNameText;
   String unitPriceAmountText;
   String quantityText;
@@ -12,7 +17,10 @@ class Cost {
   bool visible;
 
   Cost({
-    required this.category,
+    required this.mainCategory,
+    required this.jobId,
+    required this.jobName,
+    required this.enabledUnitPrices,
     required this.unitPriceNameText,
     required this.unitPriceAmountText,
     required this.quantityText,
@@ -24,7 +32,10 @@ class Cost {
   });
 
   Cost copyWith({
-    CostCategory? category,
+    MainCategory? mainCategory,
+    int? jobId,
+    String? jobName,
+    List<UnitPrice>? enabledUnitPrices,
     String? unitPriceNameText,
     String? unitPriceAmountText,
     String? quantityText,
@@ -35,7 +46,10 @@ class Cost {
     bool? visible,
   }) {
     return Cost(
-      category: category ?? this.category,
+      mainCategory: mainCategory ?? this.mainCategory,
+      jobId: jobId ?? this.jobId,
+      jobName: jobName ?? this.jobName,
+      enabledUnitPrices: enabledUnitPrices ?? this.enabledUnitPrices,
       unitPriceNameText: unitPriceNameText ?? this.unitPriceNameText,
       unitPriceAmountText: unitPriceAmountText ?? this.unitPriceAmountText,
       quantityText: quantityText ?? this.quantityText,

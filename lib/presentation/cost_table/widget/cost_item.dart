@@ -4,23 +4,20 @@ import 'package:kost/config/app_padding.dart';
 import 'package:kost/config/app_space.dart';
 import 'package:kost/config/app_text_style.dart';
 import 'package:kost/config/responsive.dart';
-import 'package:kost/domain/model/cost/category.dart';
 import 'package:kost/domain/model/cost/cost.dart';
 import 'package:kost/presentation/cost_table/widget/quantity_text_field.dart';
 import 'package:kost/presentation/cost_table/widget/unit_prices_alert_dialog.dart';
 
 import '../../../domain/bloc/cost_table_bloc.dart';
 import '../../../domain/bloc/cost_table_event.dart';
-import '../../../domain/model/unit_price/unit_price.dart';
 import 'delete_button.dart';
 
 class CostItem extends StatelessWidget {
-  const CostItem({Key? key, required this.cost, required this.index, required this.unitPrices})
+  const CostItem({Key? key, required this.cost, required this.index})
       : super(key: key);
 
   final Cost cost;
   final int index;
-  final List<UnitPrice> unitPrices;
 
   @override
   Widget build(BuildContext context) {
@@ -35,8 +32,8 @@ class CostItem extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Expanded(child: Text(cost.category.jobCategory.nameTr, style: AppTextStyle.b3b,)),
-                  DeleteButton(costCategory: cost.category)
+                  Expanded(child: Text(cost.jobName, style: AppTextStyle.b3b,)),
+                  DeleteButton(name: cost.jobName, jobId: cost.jobId,)
                 ],
               ),
             ),
@@ -45,18 +42,18 @@ class CostItem extends StatelessWidget {
             child: Row(
               children: [
                 if(!Responsive.isMobile(context))
-                  Expanded(child: Text(cost.category.jobCategory.nameTr, style: AppTextStyle.responsiveB1(context),)),
+                  Expanded(child: Text(cost.jobName, style: AppTextStyle.responsiveB1(context),)),
                 Expanded(
-                  child: unitPrices.length > 1
+                  child: cost.enabledUnitPrices.length > 1
                     ? TextButton(
                         onPressed: () {
                           showDialog(
                             context: context,
                             builder: (dialogContext) {
                               return UnitPricesAlertDialog(
-                                unitPrices: unitPrices,
+                                unitPrices: cost.enabledUnitPrices,
                                 onUnitPriceSelect: (index) {
-                                  context.read<CostTableBloc>().add(ReplaceUnitPrice(cost.category, unitPrices[index].category));
+                                  context.read<CostTableBloc>().add(ReplaceUnitPrice(cost.jobId, index));
                                   Navigator.of(context).pop();
                                 },
                               );
@@ -94,7 +91,7 @@ class CostItem extends StatelessWidget {
                             symbol: cost.quantityUnitText,
                             onFieldSubmitted: (value) {
                               context.read<CostTableBloc>().add(
-                                ChangeQuantityManually(cost.category.jobCategory, value)
+                                ChangeQuantityManually(cost.jobId, value)
                               );
                             },
                           ),
@@ -110,7 +107,7 @@ class CostItem extends StatelessWidget {
                     ],
                   )),
                 if(!Responsive.isMobile(context))
-                  DeleteButton(costCategory: cost.category)
+                  DeleteButton(name: cost.jobName, jobId: cost.jobId,)
               ],
             ),
           ),

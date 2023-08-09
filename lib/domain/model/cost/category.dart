@@ -1,12 +1,62 @@
-class CostCategory {
-  CostCategory(
-      this.mainCategory,
-      this.jobCategory,
-      this.unitPriceCategory
-      );
+class Job {
+  Job({
+    required this.id,
+    required this.mainCategory,
+    required this.nameTr,
+    required this.unitPriceCategories,
+    required this.selectedUnitPriceCategoryIndex,
+    required this.quantity,
+    required this.quantityExplanation
+  });
+  final int id;
   final MainCategory mainCategory;
-  final JobCategory jobCategory;
-  final UnitPriceCategory unitPriceCategory;
+  final String nameTr;
+  List<UnitPriceCategory> unitPriceCategories;
+  int selectedUnitPriceCategoryIndex;
+  double quantity;
+  String quantityExplanation;
+}
+
+class Shoring extends Job {
+  Shoring(
+    {
+      super.id = 0,
+      super.mainCategory = MainCategory.excavationJobs,
+      super.nameTr = "İksa Yapılması",
+      super.unitPriceCategories = const [UnitPriceCategory.shutCrete],
+      super.selectedUnitPriceCategoryIndex = 0,
+      required super.quantity,
+      required super.quantityExplanation,
+    }
+  );
+}
+
+class Excavation extends Job {
+  Excavation(
+    {
+      super.id = 1,
+      super.mainCategory = MainCategory.excavationJobs,
+      super.nameTr = "Kazı Yapılması",
+      super.unitPriceCategories = const [UnitPriceCategory.excavation],
+      super.selectedUnitPriceCategoryIndex = 0,
+      required super.quantity,
+      required super.quantityExplanation,
+    }
+  );
+}
+
+class Breaker extends Job {
+  Breaker(
+    {
+      super.id = 2,
+      super.mainCategory = MainCategory.excavationJobs,
+      super.nameTr = "Kırıcı Çalıştırılması",
+      super.unitPriceCategories = const [UnitPriceCategory.breaker],
+      super.selectedUnitPriceCategoryIndex = 0,
+      required super.quantity,
+      required super.quantityExplanation,
+    }
+  );
 }
 
 enum MainCategory {
@@ -24,63 +74,17 @@ enum MainCategory {
 extension MainCategoryExtension on MainCategory {
   String get nameTr {
     return switch (this) {
-      MainCategory.excavationJobs => "Hafriyat İşleri",
-      MainCategory.roughConstructionJobs => "Kaba Yapı İşleri",
-      MainCategory.roofJobs => "Çatı İşleri",
-      MainCategory.facadeJobs => "Cephe İşleri",
-      MainCategory.interiorJobs => "İç İmalatlar",
-      MainCategory.mechanicalJobs => "Mekanik - Tesisat",
-      MainCategory.electricalJobs => "Elektrik",
-      MainCategory.landscapeJobs => "Peysaj İşleri",
-      MainCategory.generalExpenses => "Genel Giderler"
-    };
+    MainCategory.excavationJobs => "Hafriyat İşleri",
+    MainCategory.roughConstructionJobs => "Kaba Yapı İşleri",
+    MainCategory.roofJobs => "Çatı İşleri",
+    MainCategory.facadeJobs => "Cephe İşleri",
+    MainCategory.interiorJobs => "İç İmalatlar",
+    MainCategory.mechanicalJobs => "Mekanik - Tesisat",
+    MainCategory.electricalJobs => "Elektrik",
+    MainCategory.landscapeJobs => "Peysaj İşleri",
+    MainCategory.generalExpenses => "Genel Giderler"
+  };
   }
-}
-
-class JobCategory {
-  JobCategory({
-    required this.nameTr,
-    required this.unitPriceCategories,
-    required this.quantity,
-    required this.quantityExplanation
-  });
-  final String nameTr;
-  List<UnitPriceCategory> unitPriceCategories;
-  double quantity;
-  String quantityExplanation;
-}
-
-class Shoring extends JobCategory {
-  Shoring(
-    {
-      super.nameTr = "İksa Yapılması",
-      super.unitPriceCategories = const [UnitPriceCategory.shutCrete],
-      required super.quantity,
-      required super.quantityExplanation,
-    }
-  );
-}
-
-class Excavation extends JobCategory {
-  Excavation(
-    {
-      super.nameTr = "Kazı Yapılması",
-      super.unitPriceCategories = const [UnitPriceCategory.excavation],
-      required super.quantity,
-      required super.quantityExplanation,
-    }
-  );
-}
-
-class Breaker extends JobCategory {
-  Breaker(
-    {
-      super.nameTr = "Kırıcı Çalıştırılması",
-      super.unitPriceCategories = const [UnitPriceCategory.breaker],
-      required super.quantity,
-      required super.quantityExplanation,
-    }
-  );
 }
 
 // enum JobCategory {

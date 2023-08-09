@@ -44,17 +44,12 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
       _refresh();
     });
     on<CreateCostTable>((event, emit) {
-      if (!_isAllUnitPricesInCostCalculatorIncludedInUnitPricePool) {
-        throw Exception(
-            "All enabled unit prices in the cost calculator are NOT included in fetched unit prices."); //Handle
-      }
-
       final costs = _createCosts(
           costCalculator: state.costCalculator,
           unitPricePool: state.unitPricePool,
           currencyRates: state.currencyRates);
 
-      final mainCategorySet = costs.map((e) => e.category.mainCategory).toSet();
+      final mainCategorySet = costs.map((e) => e.mainCategory).toSet();
       final Map<MainCategory, String> formattedSubTotalsTRY = {};
       for (var mainCategory in mainCategorySet) {
         final subTotal = _calculateSubTotal(costs, mainCategory);
@@ -73,7 +68,7 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
       ));
     });
     on<ExpandCollapseMainCategory>((event, emit) {
-      state.costs.where((cost) => cost.category.mainCategory == event.mainCategory).forEach(
+      state.costs.where((cost) => cost.mainCategory == event.mainCategory).forEach(
         (cost) {
           cost.visible = !cost.visible;
         }
@@ -93,21 +88,16 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
       emit(state.copyWith(costs: List.of(state.costs)));
     });
     on<ReplaceUnitPrice>((event, emit) {
-      final replacedIndex = state.costCalculator.enabledCostCategories
-          .indexWhere((element) => element == event.oldCostCategory);
-      state.costCalculator.enabledCostCategories[replacedIndex] = CostCategory(
-          event.oldCostCategory.mainCategory,
-          event.oldCostCategory.jobCategory,
-          event.newUnitPriceCategory);
+      state.costCalculator.enabledJobs.firstWhere((element) => element.id == event.jobId).selectedUnitPriceCategoryIndex = event.newUnitPriceIndex;
       _refresh();
     });
     on<DeleteCostCategory>((event, emit) {
-      state.costCalculator.enabledCostCategories.remove(event.costCategory);
+      state.costCalculator.enabledJobs.removeWhere((element) => element.id == event.jobId);
       _refresh();
     });
     on<ChangeQuantityManually>((event, emit) {
       final quantity = parseFormattedNumber(value: event.quantityText);
-      state.costCalculator.enabledCostCategories.firstWhere((e) => e.jobCategory == event.jobCategory).jobCategory.quantity = quantity;
+      state.costCalculator.enabledJobs.firstWhere((e) => e.id == event.jobId).quantity = quantity;
       _refresh();
     });
     on<FloorAreaChanged>((event, emit) {
@@ -265,18 +255,6 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
     return _unitPriceRepository.getAllUnitPrices();
   }
 
-  bool get _isAllUnitPricesInCostCalculatorIncludedInUnitPricePool {
-    for (var enabledCostCategory in state.costCalculator.enabledCostCategories) {
-      if (!state.unitPricePool
-          .map((e) => e.category)
-          .toList()
-          .contains(enabledCostCategory.unitPriceCategory)) {
-        return false;
-      }
-    }
-    return true;
-  }
-
   List<Cost> _createCosts({
     required CostCalculator costCalculator,
     required List<UnitPrice> unitPricePool,
@@ -284,10 +262,10 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
   }) {
     List<Cost> costs = [];
 
-    for (var enabledCostCategory in costCalculator.enabledCostCategories) {
+    for (var enabledJob in costCalculator.enabledJobs) {
       final unitPrices = unitPricePool
           .where((unitPrice) =>
-              unitPrice.category == enabledCostCategory.unitPriceCategory)
+              unitPrice.category == enabledJob.unitPriceCategories[enabledJob.selectedUnitPriceCategoryIndex])
           .toList();
       final lastDatedUnitPrice = unitPrices.reduce((current, next) =>
           current.dateTime.isAfter(next.dateTime) ? current : next);
@@ -305,12 +283,12 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
           ? "$formattedFixedAmount + $formattedAmount"
           : formattedAmount;
 
-      final quantity = enabledCostCategory.jobCategory.quantity;
+      final quantity = enabledJob.quantity;
       final quantityText = getFormattedNumber(number: quantity);
 
       final quantityUnitText = lastDatedUnitPrice.unit.symbol;
 
-      final quantityExplanationText = enabledCostCategory.jobCategory.quantityExplanation;
+      final quantityExplanationText = enabledJob.quantityExplanation;
 
       final totalPriceTRY = (lastDatedUnitPrice.fixedAmount *
               lastDatedUnitPrice.currency.toLiraRate(currencyRates)) +
@@ -321,7 +299,10 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
           getFormattedNumber(number: totalPriceTRY, unit: "TL");
 
       final cost = Cost(
-        category: enabledCostCategory,
+        mainCategory: enabledJob.mainCategory,
+        jobId: enabledJob.id,
+        enabledUnitPrices: unitPricePool.where((element) => enabledJob.unitPriceCategories.contains(element.category)).toList(),
+        jobName: enabledJob.nameTr,
         unitPriceNameText: unitPriceNameText,
         unitPriceAmountText: unitAmountText,
         quantityText: quantityText,
@@ -330,7 +311,7 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
         formattedTotalPriceTRY: formattedTotalPriceTRY,
         totalPriceTRY: totalPriceTRY,
         visible: state.costs.isNotEmpty
-          ? state.costs.firstWhereOrNull((cost) => cost.category == enabledCostCategory)?.visible ?? true
+          ? state.costs.firstWhereOrNull((cost) => cost.jobId == enabledJob.id)?.visible ?? true
           : true
       );
 
@@ -348,7 +329,7 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
 
   double _calculateSubTotal(List<Cost> costs, MainCategory mainCategory) {
     final categorizedCosts = costs
-        .where((cost) => cost.category.mainCategory == mainCategory)
+        .where((cost) => cost.mainCategory == mainCategory)
         .toList();
     return categorizedCosts
         .map((e) => e.totalPriceTRY)

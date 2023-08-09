@@ -5,11 +5,11 @@ import 'package:kost/config/app_text_style.dart';
 
 import '../../../domain/bloc/cost_table_bloc.dart';
 import '../../../domain/bloc/cost_table_event.dart';
-import '../../../domain/model/cost/category.dart';
 
 class DeleteButton extends StatelessWidget {
-  const DeleteButton({Key? key, required this.costCategory}) : super(key: key);
-  final CostCategory costCategory;
+  const DeleteButton({Key? key, required this.name, required this.jobId}) : super(key: key);
+  final String name;
+  final int jobId;
   @override
   Widget build(BuildContext context) {
     return IconButton(
@@ -22,7 +22,7 @@ class DeleteButton extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(costCategory.jobCategory.nameTr, style: AppTextStyle.b1!.copyWith(color: Theme.of(context).colorScheme.primary),),
+                  Text(name, style: AppTextStyle.b1!.copyWith(color: Theme.of(context).colorScheme.primary),),
                   AppSpace.vS!,
                   Text("pozunu silmek istediğinize emin misiniz?", style: AppTextStyle.b1!,),
                 ],
@@ -37,7 +37,7 @@ class DeleteButton extends StatelessWidget {
         await Future.delayed(const Duration(milliseconds: 150)); //Dialog close transition duration.
         if(result != null && result) {
           if(context.mounted) {
-            context.read<CostTableBloc>().add(DeleteCostCategory(costCategory));
+            context.read<CostTableBloc>().add(DeleteCostCategory(jobId));
           }
         }
       },

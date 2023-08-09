@@ -30,9 +30,9 @@ class CostsListView extends StatelessWidget {
     return GroupedListView<Cost, MainCategory>(
       shrinkWrap: true,
       elements: costs,
-      groupBy: (cost) => cost.category.mainCategory,
+      groupBy: (cost) => cost.mainCategory,
       groupSeparatorBuilder: (MainCategory mainCategory) {
-        final visible = costs.firstWhere((cost) => cost.category.mainCategory == mainCategory).visible;
+        final visible = costs.firstWhere((cost) => cost.mainCategory == mainCategory).visible;
         return InkWell(
           onTap: () => context.read<CostTableBloc>().add(ExpandCollapseMainCategory(mainCategory)),
           child: Container(
@@ -65,11 +65,6 @@ class CostsListView extends StatelessWidget {
           child: CostItem(
             cost: cost,
             index: index,
-            unitPrices: unitPricePool
-                .where((element) => cost
-                    .category.jobCategory.unitPriceCategories
-                    .contains(element.category))
-                .toList(),
           ),
         );
       },

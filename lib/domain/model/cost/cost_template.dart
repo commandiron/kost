@@ -4,7 +4,7 @@ import '../../calculator/detailed/floor.dart';
 import 'category.dart';
 
 abstract class CostCalculator {
-  List<CostCategory> enabledCostCategories;
+  List<Job> enabledJobs;
   final String name;
   final ProjectConstants projectConstants;
   final double landArea;
@@ -24,7 +24,7 @@ abstract class CostCalculator {
 
   CostCalculator(
     {
-      this.enabledCostCategories = const [],
+      this.enabledJobs = const [],
       required this.name,
       required this.projectConstants,
       required this.landArea,
@@ -89,10 +89,10 @@ class RoughConstructionCostCalculator extends CostCalculator {
       required super.foundationHeight,
     }
   ){
-    enabledCostCategories = [
-      CostCategory(MainCategory.excavationJobs, Shoring(quantity: shoringArea, quantityExplanation: shoringAreaExplanation), UnitPriceCategory.shutCrete,),
-      CostCategory(MainCategory.excavationJobs, Excavation(quantity: excavationVolume, quantityExplanation: excavationVolumeExplanation), UnitPriceCategory.excavation,),
-      CostCategory(MainCategory.excavationJobs, Breaker(quantity: breakerHour, quantityExplanation: breakerHourExplanation), UnitPriceCategory.breaker,),
+    enabledJobs = [
+      Shoring(quantity: shoringArea, quantityExplanation: shoringAreaExplanation),
+      Excavation(quantity: excavationVolume, quantityExplanation: excavationVolumeExplanation),
+      Breaker(quantity: breakerHour, quantityExplanation: breakerHourExplanation)
       // CostCategory(MainCategory.roughConstructionJobs, JobCategory.foundationStabilization, UnitPriceCategory.foundationStabilizationGravel,),
       // CostCategory(MainCategory.roughConstructionJobs, JobCategory.subFoundationConcrete, UnitPriceCategory.c16Concrete,),
       // CostCategory(MainCategory.roughConstructionJobs, JobCategory.concreteFormWork, UnitPriceCategory.plywood,),
