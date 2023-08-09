@@ -451,55 +451,278 @@ class EntranceDoor extends Job {
   );
 }
 
+class FireDoor extends Job {
+  FireDoor(
+    {
+      super.nameTr = "Yangın kapılarının yapılması",
+      super.mainCategory = MainCategory.interiorJobs,
+      super.enabledUnitPriceCategories = const [UnitPriceCategory.ironFireDoor],
+      super.selectedUnitPriceCategory = UnitPriceCategory.ironFireDoor,
+      required super.quantity,
+      required super.quantityExplanation,
+    }
+  );
+}
 
-//   fireDoor([UnitPriceCategory.ironFireDoor]),
-//   woodenDoor([UnitPriceCategory.lacqueredDoorArtella]),
-//   kitchenCupboard([UnitPriceCategory.shinyLacqueredKitchenCupboardAster, UnitPriceCategory.matteLacqueredKitchenCupboardAster]),
-//   kitchenCounter([UnitPriceCategory.quartzCountertopCimstone]),
-//   coatCabinet([UnitPriceCategory.lacqueredCabinet]),
-//   bathroomCabinet([UnitPriceCategory.lacqueredCabinet]),
-//   floorPlinth([UnitPriceCategory.lacqueredFloorPlinth]),
-//   mechanicalInfrastructure([UnitPriceCategory.mechanicalInfrastructure]),
-//   airConditioner([UnitPriceCategory.airConditionerArcelik, UnitPriceCategory.vrfMultiSplitMitshubishiElectric]),
-//   ventilation([UnitPriceCategory.ventilation]),
-//   waterTank([UnitPriceCategory.galvanize25TonWaterTankEsinoks]),
-//   elevation([UnitPriceCategory.elevation10PersonKone]),
-//   sink([UnitPriceCategory.sinkVitra]),
-//   sinkBattery([UnitPriceCategory.sinkBatteryVitra]),
-//   concealedCistern([UnitPriceCategory.concealedCisternVitra]),
-//   shower([UnitPriceCategory.showerHuppe100x100]),
-//   showerBattery([UnitPriceCategory.showerBatteryVitra]),
-//   kitchenFaucetAndSink([UnitPriceCategory.kitchenFaucetAndSinkFranke]),
-//   electricalInfrastructure([UnitPriceCategory.electricalInfrastructure]),
-//   generator([UnitPriceCategory.generatorAksa160]),
-//   householdAppliances([UnitPriceCategory.paddleBoxBuiltInOvenCookTopDishwasherFranke]),
+class WoodenDoor extends Job {
+  WoodenDoor(
+    {
+      super.nameTr = "Ahşap kapıların yapılması",
+      super.mainCategory = MainCategory.interiorJobs,
+      super.enabledUnitPriceCategories = const [UnitPriceCategory.lacqueredDoorArtella],
+      super.selectedUnitPriceCategory = UnitPriceCategory.lacqueredDoorArtella,
+      required super.quantity,
+      required super.quantityExplanation,
+    }
+  );
+}
 
-//       JobCategory.fireDoor => "Yangın kapılarının yapılması",
-//       JobCategory.woodenDoor => "Ahşap kapıların yapılması",
-//       JobCategory.kitchenCupboard => "Mutfak Dolabı",
-//       JobCategory.kitchenCounter => "Mutfak Tezgahı",
-//       JobCategory.coatCabinet => "Portmanto",
-//       JobCategory.bathroomCabinet => "Banyo Dolabı",
-//       JobCategory.floorPlinth => "Süpürgelik",
-//       JobCategory.mechanicalInfrastructure => "Mekanik Altyapı İşleri",
-//       JobCategory.airConditioner => "Klima - Vrf işleri",
-//       JobCategory.ventilation => "Havalandırma işleri",
-//       JobCategory.waterTank => "Su Deposu",
-//       JobCategory.elevation => "Asansör",
-//       JobCategory.sink => "Lavabo",
-//       JobCategory.sinkBattery => "Lavabo bataryası",
-//       JobCategory.concealedCistern => "Gömme rezervuar ve tuvalet taşı",
-//       JobCategory.shower => "Duşakabin",
-//       JobCategory.showerBattery => "Duş bataryasu",
-//       JobCategory.kitchenFaucetAndSink => "Mutfak bataryası ve evye",
-//       JobCategory.electricalInfrastructure => "Elektrik Altyapı",
-//       JobCategory.generator => "Jeneratör",
-//       JobCategory.householdAppliances => "Beyaz Eşya",
+class KitchenCupboard extends Job {
+  KitchenCupboard(
+    {
+      super.nameTr = "Mutfak Dolabı",
+      super.mainCategory = MainCategory.interiorJobs,
+      super.enabledUnitPriceCategories = const [UnitPriceCategory.shinyLacqueredKitchenCupboardAster, UnitPriceCategory.matteLacqueredKitchenCupboardAster],
+      super.selectedUnitPriceCategory = UnitPriceCategory.shinyLacqueredKitchenCupboardAster,
+      required super.quantity,
+      required super.quantityExplanation,
+    }
+  );
+}
 
+class KitchenCounter extends Job {
+  KitchenCounter(
+    {
+      super.nameTr = "Mutfak Tezgahı",
+      super.mainCategory = MainCategory.interiorJobs,
+      super.enabledUnitPriceCategories = const [UnitPriceCategory.quartzCountertopCimstone],
+      super.selectedUnitPriceCategory = UnitPriceCategory.quartzCountertopCimstone,
+      required super.quantity,
+      required super.quantityExplanation,
+    }
+  );
+}
 
+class CoatCabinet extends Job {
+  CoatCabinet(
+    {
+      super.nameTr = "Portmanto",
+      super.mainCategory = MainCategory.interiorJobs,
+      super.enabledUnitPriceCategories = const [UnitPriceCategory.lacqueredCabinet],
+      super.selectedUnitPriceCategory = UnitPriceCategory.lacqueredCabinet,
+      required super.quantity,
+      required super.quantityExplanation,
+    }
+  );
+}
 
+class BathroomCabinet extends Job {
+  BathroomCabinet(
+    {
+      super.nameTr = "Banyo Dolabı",
+      super.mainCategory = MainCategory.interiorJobs,
+      super.enabledUnitPriceCategories = const [UnitPriceCategory.lacqueredCabinet],
+      super.selectedUnitPriceCategory = UnitPriceCategory.lacqueredCabinet,
+      required super.quantity,
+      required super.quantityExplanation,
+    }
+  );
+}
 
+class FloorPlinth extends Job {
+  FloorPlinth(
+    {
+      super.nameTr = "Süpürgelik",
+      super.mainCategory = MainCategory.interiorJobs,
+      super.enabledUnitPriceCategories = const [UnitPriceCategory.lacqueredFloorPlinth],
+      super.selectedUnitPriceCategory = UnitPriceCategory.lacqueredFloorPlinth,
+      required super.quantity,
+      required super.quantityExplanation,
+    }
+  );
+}
 
+class MechanicalInfrastructure extends Job {
+  MechanicalInfrastructure(
+    {
+      super.nameTr = "Mekanik Altyapı İşleri",
+      super.mainCategory = MainCategory.mechanicalJobs,
+      super.enabledUnitPriceCategories = const [UnitPriceCategory.mechanicalInfrastructure],
+      super.selectedUnitPriceCategory = UnitPriceCategory.mechanicalInfrastructure,
+      required super.quantity,
+      required super.quantityExplanation,
+    }
+  );
+}
+
+class AirConditioner extends Job {
+  AirConditioner(
+    {
+      super.nameTr = "Mekanik Altyapı İşleri",
+      super.mainCategory = MainCategory.mechanicalJobs,
+      super.enabledUnitPriceCategories = const [UnitPriceCategory.airConditionerArcelik, UnitPriceCategory.vrfMultiSplitMitshubishiElectric],
+      super.selectedUnitPriceCategory = UnitPriceCategory.airConditionerArcelik,
+      required super.quantity,
+      required super.quantityExplanation,
+    }
+  );
+}
+
+class Ventilation extends Job {
+  Ventilation(
+    {
+      super.nameTr = "Havalandırma işleri",
+      super.mainCategory = MainCategory.mechanicalJobs,
+      super.enabledUnitPriceCategories = const [UnitPriceCategory.ventilation],
+      super.selectedUnitPriceCategory = UnitPriceCategory.ventilation,
+      required super.quantity,
+      required super.quantityExplanation,
+    }
+  );
+}
+
+class WaterTank extends Job {
+  WaterTank(
+    {
+      super.nameTr = "Su Deposu",
+      super.mainCategory = MainCategory.mechanicalJobs,
+      super.enabledUnitPriceCategories = const [UnitPriceCategory.galvanize25TonWaterTankEsinoks],
+      super.selectedUnitPriceCategory = UnitPriceCategory.galvanize25TonWaterTankEsinoks,
+      required super.quantity,
+      required super.quantityExplanation,
+    }
+  );
+}
+
+class Elevation extends Job {
+  Elevation(
+    {
+      super.nameTr = "Asansör",
+      super.mainCategory = MainCategory.mechanicalJobs,
+      super.enabledUnitPriceCategories = const [UnitPriceCategory.elevation10PersonKone],
+      super.selectedUnitPriceCategory = UnitPriceCategory.elevation10PersonKone,
+      required super.quantity,
+      required super.quantityExplanation,
+    }
+  );
+}
+
+class Sink extends Job {
+  Sink(
+    {
+      super.nameTr = "Lavabo",
+      super.mainCategory = MainCategory.mechanicalJobs,
+      super.enabledUnitPriceCategories = const [UnitPriceCategory.sinkVitra],
+      super.selectedUnitPriceCategory = UnitPriceCategory.sinkVitra,
+      required super.quantity,
+      required super.quantityExplanation,
+    }
+  );
+}
+
+class SinkBattery extends Job {
+  SinkBattery(
+    {
+      super.nameTr = "Lavabo bataryası",
+      super.mainCategory = MainCategory.mechanicalJobs,
+      super.enabledUnitPriceCategories = const [UnitPriceCategory.sinkBatteryVitra],
+      super.selectedUnitPriceCategory = UnitPriceCategory.sinkBatteryVitra,
+      required super.quantity,
+      required super.quantityExplanation,
+    }
+  );
+}
+
+class ConcealedCistern extends Job {
+  ConcealedCistern(
+    {
+      super.nameTr = "Gömme rezervuar ve tuvalet taşı",
+      super.mainCategory = MainCategory.mechanicalJobs,
+      super.enabledUnitPriceCategories = const [UnitPriceCategory.concealedCisternVitra],
+      super.selectedUnitPriceCategory = UnitPriceCategory.concealedCisternVitra,
+      required super.quantity,
+      required super.quantityExplanation,
+    }
+  );
+}
+
+class Shower extends Job {
+  Shower(
+    {
+      super.nameTr = "Duşakabin",
+      super.mainCategory = MainCategory.mechanicalJobs,
+      super.enabledUnitPriceCategories = const [UnitPriceCategory.showerHuppe100x100],
+      super.selectedUnitPriceCategory = UnitPriceCategory.showerHuppe100x100,
+      required super.quantity,
+      required super.quantityExplanation,
+    }
+  );
+}
+
+class ShowerBattery extends Job {
+  ShowerBattery(
+    {
+      super.nameTr = "Duş bataryası",
+      super.mainCategory = MainCategory.mechanicalJobs,
+      super.enabledUnitPriceCategories = const [UnitPriceCategory.showerBatteryVitra],
+      super.selectedUnitPriceCategory = UnitPriceCategory.showerBatteryVitra,
+      required super.quantity,
+      required super.quantityExplanation,
+    }
+  );
+}
+
+class KitchenFaucetAndSink extends Job {
+  KitchenFaucetAndSink(
+    {
+      super.nameTr = "Mutfak bataryası ve evye",
+      super.mainCategory = MainCategory.mechanicalJobs,
+      super.enabledUnitPriceCategories = const [UnitPriceCategory.kitchenFaucetAndSinkFranke],
+      super.selectedUnitPriceCategory = UnitPriceCategory.kitchenFaucetAndSinkFranke,
+      required super.quantity,
+      required super.quantityExplanation,
+    }
+  );
+}
+
+class ElectricalInfrastructure extends Job {
+  ElectricalInfrastructure(
+    {
+      super.nameTr = "Elektrik Altyapı",
+      super.mainCategory = MainCategory.electricalJobs,
+      super.enabledUnitPriceCategories = const [UnitPriceCategory.electricalInfrastructure],
+      super.selectedUnitPriceCategory = UnitPriceCategory.electricalInfrastructure,
+      required super.quantity,
+      required super.quantityExplanation,
+    }
+  );
+}
+
+class Generator extends Job {
+  Generator(
+    {
+      super.nameTr = "Jeneratör",
+      super.mainCategory = MainCategory.electricalJobs,
+      super.enabledUnitPriceCategories = const [UnitPriceCategory.generatorAksa160],
+      super.selectedUnitPriceCategory = UnitPriceCategory.generatorAksa160,
+      required super.quantity,
+      required super.quantityExplanation,
+    }
+  );
+}
+
+class HouseholdAppliances extends Job {
+  HouseholdAppliances(
+    {
+      super.nameTr = "Beyaz Eşya",
+      super.mainCategory = MainCategory.electricalJobs,
+      super.enabledUnitPriceCategories = const [UnitPriceCategory.paddleBoxBuiltInOvenCookTopDishwasherFranke],
+      super.selectedUnitPriceCategory = UnitPriceCategory.paddleBoxBuiltInOvenCookTopDishwasherFranke,
+      required super.quantity,
+      required super.quantityExplanation,
+    }
+  );
+}
 
 enum MainCategory {
   excavationJobs,
@@ -521,8 +744,8 @@ extension MainCategoryExtension on MainCategory {
     MainCategory.roofJobs => "Çatı İşleri",
     MainCategory.facadeJobs => "Cephe İşleri",
     MainCategory.interiorJobs => "İç İmalatlar",
-    MainCategory.mechanicalJobs => "Mekanik - Tesisat",
-    MainCategory.electricalJobs => "Elektrik",
+    MainCategory.mechanicalJobs => "Mekanik Tesisat",
+    MainCategory.electricalJobs => "Elektrik Tesisat ",
     MainCategory.landscapeJobs => "Peysaj İşleri",
     MainCategory.generalExpenses => "Genel Giderler"
   };

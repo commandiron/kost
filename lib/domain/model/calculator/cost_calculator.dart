@@ -1,4 +1,5 @@
 import 'package:kost/domain/calculator/detailed/project_constants.dart';
+import 'package:kost/domain/model/unit_price/unit_price.dart';
 
 import '../../calculator/detailed/floor.dart';
 import 'job.dart';
@@ -66,9 +67,11 @@ class ApartmentCostCalculator extends CostCalculator {
   }){
     final roughConstructionCostCalculator = RoughConstructionCostCalculator(projectConstants: projectConstants, landArea: landArea, landPerimeter: landPerimeter, excavationArea: excavationArea, excavationPerimeter: excavationPerimeter, coreCurtainLength: coreCurtainLength, curtainsExceeding1MeterLength: curtainsExceeding1MeterLength, basementCurtainLength: basementCurtainLength, columnsLess1MeterPerimeter: columnsLess1MeterPerimeter, elevationTowerArea: elevationTowerArea, elevationTowerHeightWithoutSlab: elevationTowerHeightWithoutSlab, floors: floors, foundationArea: foundationArea, foundationPerimeter: foundationPerimeter, foundationHeight: foundationHeight);
     final roofCostCalculator = RoofCostCalculator(projectConstants: projectConstants, landArea: landArea, landPerimeter: landPerimeter, excavationArea: excavationArea, excavationPerimeter: excavationPerimeter, coreCurtainLength: coreCurtainLength, curtainsExceeding1MeterLength: curtainsExceeding1MeterLength, basementCurtainLength: basementCurtainLength, columnsLess1MeterPerimeter: columnsLess1MeterPerimeter, elevationTowerArea: elevationTowerArea, elevationTowerHeightWithoutSlab: elevationTowerHeightWithoutSlab, floors: floors, foundationArea: foundationArea, foundationPerimeter: foundationPerimeter, foundationHeight: foundationHeight);
+    final interiorCostCalculator = InteriorCostCalculator(projectConstants: projectConstants, landArea: landArea, landPerimeter: landPerimeter, excavationArea: excavationArea, excavationPerimeter: excavationPerimeter, coreCurtainLength: coreCurtainLength, curtainsExceeding1MeterLength: curtainsExceeding1MeterLength, basementCurtainLength: basementCurtainLength, columnsLess1MeterPerimeter: columnsLess1MeterPerimeter, elevationTowerArea: elevationTowerArea, elevationTowerHeightWithoutSlab: elevationTowerHeightWithoutSlab, floors: floors, foundationArea: foundationArea, foundationPerimeter: foundationPerimeter, foundationHeight: foundationHeight);
     jobs = [
       ...roughConstructionCostCalculator.jobs,
       ...roofCostCalculator.jobs,
+      ...interiorCostCalculator.jobs,
     ];
   }
 }
@@ -235,60 +238,47 @@ class InteriorCostCalculator extends CostCalculator {
     required super.foundationHeight
   }){
     jobs = [
+      InteriorPlastering(quantity: 100, quantityExplanation: "quantityExplanation"),
+      InteriorPainting(quantity: 100, quantityExplanation: "quantityExplanation"),
+      InteriorWaterproofing(quantity: 100, quantityExplanation: "quantityExplanation"),
+      CeilingCovering(quantity: 100, quantityExplanation: "quantityExplanation"),
+      CovingPlaster(quantity: 100, quantityExplanation: "quantityExplanation"),
+      Screeding(quantity: 100, quantityExplanation: "quantityExplanation"),
+      Marble(quantity: 100, quantityExplanation: "quantityExplanation"),
+      MarbleStep(quantity: 100, quantityExplanation: "quantityExplanation"),
+      MarbleWindowsill(quantity: 100, quantityExplanation: "quantityExplanation"),
+      StairRailings(quantity: 100, quantityExplanation: "quantityExplanation"),
+      CeramicTile(quantity: 100, quantityExplanation: "quantityExplanation"),
+      ParquetTile(quantity: 100, quantityExplanation: "quantityExplanation"),
+      SteelDoor(quantity: 100, quantityExplanation: "quantityExplanation"),
+      EntranceDoor(quantity: 100, quantityExplanation: "quantityExplanation"),
+      FireDoor(quantity: 100, quantityExplanation: "quantityExplanation"),
+      WoodenDoor(quantity: 100, quantityExplanation: "quantityExplanation"),
+      KitchenCupboard(quantity: 100, quantityExplanation: "quantityExplanation"),
+      KitchenCounter(quantity: 100, quantityExplanation: "quantityExplanation"),
+      CoatCabinet(quantity: 100, quantityExplanation: "quantityExplanation"),
+      BathroomCabinet(quantity: 100, quantityExplanation: "quantityExplanation"),
+      FloorPlinth(quantity: 100, quantityExplanation: "quantityExplanation"),
+      MechanicalInfrastructure(quantity: 100, quantityExplanation: "quantityExplanation"),
+      AirConditioner(quantity: 100, quantityExplanation: "quantityExplanation"),
+      Ventilation(quantity: 100, quantityExplanation: "quantityExplanation"),
+      WaterTank(quantity: 100, quantityExplanation: "quantityExplanation"),
+      Elevation(quantity: 100, quantityExplanation: "quantityExplanation", selectedUnitPriceCategory: UnitPriceCategory.elevation10PersonKone),
+      Elevation(quantity: 100, quantityExplanation: "quantityExplanation", selectedUnitPriceCategory: UnitPriceCategory.elevation6PersonKone),
+      Sink(quantity: 100, quantityExplanation: "quantityExplanation"),
+      SinkBattery(quantity: 100, quantityExplanation: "quantityExplanation"),
+      ConcealedCistern(quantity: 100, quantityExplanation: "quantityExplanation"),
+      Shower(quantity: 100, quantityExplanation: "quantityExplanation"),
+      ShowerBattery(quantity: 100, quantityExplanation: "quantityExplanation"),
+      KitchenFaucetAndSink(quantity: 100, quantityExplanation: "quantityExplanation"),
+      ElectricalInfrastructure(quantity: 100, quantityExplanation: "quantityExplanation"),
+      Generator(quantity: 100, quantityExplanation: "quantityExplanation"),
+      HouseholdAppliances(quantity: 100, quantityExplanation: "quantityExplanation"),
 
     ];
   }
 }
 
-
-
-// class InteriorCostTemplate extends CostTemplate {
-//   InteriorCostTemplate(
-//       {
-//         super.name = "İç İmalat Maliyeti"
-//       }
-//       ){
-//     enabledCostCategories = [
-//       CostCategory(MainCategory.interiorJobs, JobCategory.interiorPlastering, UnitPriceCategory.plaster,),
-//       CostCategory(MainCategory.interiorJobs, JobCategory.interiorPainting, UnitPriceCategory.painting,),
-//       CostCategory(MainCategory.interiorJobs, JobCategory.interiorWaterproofing, UnitPriceCategory.cementBasedFlexInsulation,),
-//       CostCategory(MainCategory.interiorJobs, JobCategory.ceilingCovering, UnitPriceCategory.drywall,),
-//       CostCategory(MainCategory.interiorJobs, JobCategory.covingPlaster, UnitPriceCategory.covingPlaster,),
-//       CostCategory(MainCategory.interiorJobs, JobCategory.screeding, UnitPriceCategory.screed300Doses,),
-//       CostCategory(MainCategory.interiorJobs, JobCategory.marble, UnitPriceCategory.marbleFloorBilecik,),
-//       CostCategory(MainCategory.interiorJobs, JobCategory.marbleStep, UnitPriceCategory.marbleStepBilecik,),
-//       CostCategory(MainCategory.interiorJobs, JobCategory.marbleWindowsill, UnitPriceCategory.marbleWindowsillBilecik,),
-//       CostCategory(MainCategory.interiorJobs, JobCategory.stairRailings, UnitPriceCategory.aluminumRailing,),
-//       CostCategory(MainCategory.interiorJobs, JobCategory.ceramicTile, UnitPriceCategory.ceramicTileVitraVersus),
-//       CostCategory(MainCategory.interiorJobs, JobCategory.parquetTile, UnitPriceCategory.laminatedSerifoglu),
-//       CostCategory(MainCategory.interiorJobs, JobCategory.steelDoor, UnitPriceCategory.steelDoorKale),
-//       CostCategory(MainCategory.interiorJobs, JobCategory.entranceDoor, UnitPriceCategory.entranceDoor),
-//       CostCategory(MainCategory.interiorJobs, JobCategory.fireDoor, UnitPriceCategory.ironFireDoor),
-//       CostCategory(MainCategory.interiorJobs, JobCategory.woodenDoor, UnitPriceCategory.lacqueredDoorArtella),
-//       CostCategory(MainCategory.interiorJobs, JobCategory.kitchenCupboard, UnitPriceCategory.shinyLacqueredKitchenCupboardAster),
-//       CostCategory(MainCategory.interiorJobs, JobCategory.kitchenCounter, UnitPriceCategory.quartzCountertopCimstone),
-//       CostCategory(MainCategory.interiorJobs, JobCategory.coatCabinet, UnitPriceCategory.lacqueredCabinet),
-//       CostCategory(MainCategory.interiorJobs, JobCategory.bathroomCabinet, UnitPriceCategory.lacqueredCabinet),
-//       CostCategory(MainCategory.interiorJobs, JobCategory.floorPlinth, UnitPriceCategory.lacqueredFloorPlinth),
-//       CostCategory(MainCategory.mechanicalJobs, JobCategory.mechanicalInfrastructure, UnitPriceCategory.mechanicalInfrastructure),
-//       CostCategory(MainCategory.mechanicalJobs, JobCategory.airConditioner, UnitPriceCategory.airConditionerArcelik),
-//       CostCategory(MainCategory.mechanicalJobs, JobCategory.ventilation, UnitPriceCategory.ventilation),
-//       CostCategory(MainCategory.mechanicalJobs, JobCategory.waterTank, UnitPriceCategory.galvanize25TonWaterTankEsinoks),
-//       CostCategory(MainCategory.mechanicalJobs, JobCategory.elevation, UnitPriceCategory.elevation10PersonKone),
-//       CostCategory(MainCategory.mechanicalJobs, JobCategory.elevation, UnitPriceCategory.elevation6PersonKone),
-//       CostCategory(MainCategory.mechanicalJobs, JobCategory.sink, UnitPriceCategory.sinkVitra),
-//       CostCategory(MainCategory.mechanicalJobs, JobCategory.sinkBattery, UnitPriceCategory.sinkBatteryVitra),
-//       CostCategory(MainCategory.mechanicalJobs, JobCategory.concealedCistern, UnitPriceCategory.concealedCisternVitra),
-//       CostCategory(MainCategory.mechanicalJobs, JobCategory.shower, UnitPriceCategory.showerHuppe100x100),
-//       CostCategory(MainCategory.mechanicalJobs, JobCategory.showerBattery, UnitPriceCategory.showerBatteryVitra),
-//       CostCategory(MainCategory.mechanicalJobs, JobCategory.kitchenFaucetAndSink, UnitPriceCategory.kitchenFaucetAndSinkFranke),
-//       CostCategory(MainCategory.electricalJobs, JobCategory.electricalInfrastructure, UnitPriceCategory.electricalInfrastructure),
-//       CostCategory(MainCategory.electricalJobs, JobCategory.generator, UnitPriceCategory.generatorAksa160),
-//       CostCategory(MainCategory.electricalJobs, JobCategory.householdAppliances, UnitPriceCategory.paddleBoxBuiltInOvenCookTopDishwasherFranke),
-//     ];
-//   }
-// }
-//
 // class LandscapeCostTemplate extends CostTemplate {
 //   LandscapeCostTemplate(
 //       {
