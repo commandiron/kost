@@ -279,13 +279,10 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
 
       final quantityExplanationText = job.quantityExplanation;
 
-      final totalPriceTRY = (unitPrice.fixedAmount *
-          unitPrice.currency.toLiraRate(currencyRates)) +
-          (unitPrice.amount *
-              quantity *
-              unitPrice.currency.toLiraRate(currencyRates));
-      final formattedTotalPriceTRY =
-          getFormattedNumber(number: totalPriceTRY, unit: "TL");
+      final fixedPriceTRY = quantity != 0 ? unitPrice.fixedAmount * unitPrice.currency.toLiraRate(currencyRates) : 0;
+      final priceTRY = unitPrice.amount * quantity * unitPrice.currency.toLiraRate(currencyRates);
+      final totalPriceTRY = fixedPriceTRY + priceTRY;
+      final formattedTotalPriceTRY = getFormattedNumber(number: totalPriceTRY, unit: "TL");
 
       final cost = Cost(
         mainCategory: job.mainCategory,
