@@ -4,7 +4,7 @@ import '../../calculator/detailed/floor.dart';
 import 'job.dart';
 
 abstract class CostCalculator {
-  List<Job> enabledJobs;
+  List<Job> jobs;
   final String name;
   final ProjectConstants projectConstants;
   final double landArea;
@@ -24,7 +24,7 @@ abstract class CostCalculator {
 
   CostCalculator(
     {
-      this.enabledJobs = const [],
+      this.jobs = const [],
       required this.name,
       required this.projectConstants,
       required this.landArea,
@@ -66,7 +66,7 @@ class RoughConstructionCostCalculator extends CostCalculator {
       required super.foundationHeight,
     }
   ){
-    enabledJobs = [
+    jobs = [
       Shoring(quantity: shoringArea, quantityExplanation: shoringAreaExplanation),
       Excavation(quantity: excavationVolume, quantityExplanation: excavationVolumeExplanation),
       Breaker(quantity: breakerHour, quantityExplanation: breakerHourExplanation),

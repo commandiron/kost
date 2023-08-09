@@ -6,7 +6,7 @@ class Job {
     required this.nameTr,
     required this.mainCategory,
     required this.enabledUnitPriceCategories,
-    required this.selectedUnitPriceCategoryIndex,
+    required this.selectedUnitPriceCategory,
     required this.quantity,
     required this.quantityExplanation
   });
@@ -14,7 +14,7 @@ class Job {
   final String nameTr;
   final MainCategory mainCategory;
   List<UnitPriceCategory> enabledUnitPriceCategories;
-  int selectedUnitPriceCategoryIndex;
+  UnitPriceCategory selectedUnitPriceCategory;
   double quantity;
   String quantityExplanation;
 }
@@ -26,7 +26,7 @@ class Shoring extends Job {
       super.nameTr = "İksa Yapılması",
       super.mainCategory = MainCategory.excavationJobs,
       super.enabledUnitPriceCategories = const [UnitPriceCategory.shutCrete],
-      super.selectedUnitPriceCategoryIndex = 0,
+      super.selectedUnitPriceCategory = UnitPriceCategory.shutCrete,
       required super.quantity,
       required super.quantityExplanation,
     }
@@ -40,7 +40,7 @@ class Excavation extends Job {
       super.nameTr = "Kazı Yapılması",
       super.mainCategory = MainCategory.excavationJobs,
       super.enabledUnitPriceCategories = const [UnitPriceCategory.excavation],
-      super.selectedUnitPriceCategoryIndex = 0,
+      super.selectedUnitPriceCategory = UnitPriceCategory.excavation,
       required super.quantity,
       required super.quantityExplanation,
     }
@@ -54,7 +54,7 @@ class Breaker extends Job {
       super.nameTr = "Kırıcı Çalıştırılması",
       super.mainCategory = MainCategory.excavationJobs,
       super.enabledUnitPriceCategories = const [UnitPriceCategory.breaker],
-      super.selectedUnitPriceCategoryIndex = 0,
+      super.selectedUnitPriceCategory = UnitPriceCategory.breaker,
       required super.quantity,
       required super.quantityExplanation,
     }
@@ -69,7 +69,7 @@ class PouringConcrete extends Job {
       super.nameTr = "Betonarme betonu temini ve dökülmesi",
       super.mainCategory = MainCategory.excavationJobs,
       super.enabledUnitPriceCategories = const [UnitPriceCategory.c30Concrete, UnitPriceCategory.c35Concrete, UnitPriceCategory.c40Concrete],
-      super.selectedUnitPriceCategoryIndex = 0,
+      super.selectedUnitPriceCategory = UnitPriceCategory.c30Concrete,
       required super.quantity,
       required super.quantityExplanation,
     }

@@ -210,16 +210,16 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
       emit(state.copyWith(costs: List.of(state.costs)));
     });
     on<ReplaceUnitPrice>((event, emit) {
-      state.costCalculator.enabledJobs.firstWhere((element) => element.id == event.jobId).selectedUnitPriceCategoryIndex = event.selectedUnitPriceIndex;
+      state.costCalculator.jobs.firstWhere((element) => element.id == event.jobId).selectedUnitPriceCategory = event.selectedUnitPriceCategory;
       add(const CreateCostTable());
     });
     on<DeleteJob>((event, emit) {
-      state.costCalculator.enabledJobs.removeWhere((element) => element.id == event.jobId);
+      state.costCalculator.jobs.removeWhere((element) => element.id == event.jobId);
       add(const CreateCostTable());
     });
     on<ChangeQuantityManually>((event, emit) {
       final quantity = parseFormattedNumber(value: event.quantityText);
-      state.costCalculator.enabledJobs.firstWhere((e) => e.id == event.jobId).quantity = quantity;
+      state.costCalculator.jobs.firstWhere((e) => e.id == event.jobId).quantity = quantity;
       add(const CreateCostTable());
     });
     on<FloorAreaChanged>((event, emit) {
@@ -249,8 +249,8 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
   }) {
     List<Cost> costs = [];
 
-    for (var enabledJob in costCalculator.enabledJobs) {
-      final unitPrice = unitPricePool.firstWhere((unitPrice) => unitPrice.category == enabledJob.enabledUnitPriceCategories[enabledJob.selectedUnitPriceCategoryIndex]);
+    for (var job in costCalculator.jobs) {
+      final unitPrice = unitPricePool.firstWhere((unitPrice) => unitPrice.category == job.selectedUnitPriceCategory);
 
       final unitPriceNameText = unitPrice.nameTr;
 
@@ -265,12 +265,12 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
           ? "$formattedFixedAmount + $formattedAmount"
           : formattedAmount;
 
-      final quantity = enabledJob.quantity;
+      final quantity = job.quantity;
       final quantityText = getFormattedNumber(number: quantity);
 
       final quantityUnitText = unitPrice.unit.symbol;
 
-      final quantityExplanationText = enabledJob.quantityExplanation;
+      final quantityExplanationText = job.quantityExplanation;
 
       final totalPriceTRY = (unitPrice.fixedAmount *
           unitPrice.currency.toLiraRate(currencyRates)) +
@@ -281,10 +281,10 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
           getFormattedNumber(number: totalPriceTRY, unit: "TL");
 
       final cost = Cost(
-        mainCategory: enabledJob.mainCategory,
-        jobId: enabledJob.id,
-        enabledUnitPrices: unitPricePool.where((element) => enabledJob.enabledUnitPriceCategories.contains(element.category)).toList(),
-        jobName: enabledJob.nameTr,
+        mainCategory: job.mainCategory,
+        jobId: job.id,
+        enabledUnitPrices: unitPricePool.where((unitPrice) => job.enabledUnitPriceCategories.contains(unitPrice.category)).toList(),
+        jobName: job.nameTr,
         unitPriceNameText: unitPriceNameText,
         unitPriceAmountText: unitAmountText,
         quantityText: quantityText,
@@ -293,7 +293,7 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
         formattedTotalPriceTRY: formattedTotalPriceTRY,
         totalPriceTRY: totalPriceTRY,
         visible: state.costs.isNotEmpty
-          ? state.costs.firstWhereOrNull((cost) => cost.jobId == enabledJob.id)?.visible ?? true
+          ? state.costs.firstWhereOrNull((cost) => cost.jobId == job.id)?.visible ?? true
           : true
       );
 
