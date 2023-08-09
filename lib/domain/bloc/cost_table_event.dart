@@ -36,7 +36,7 @@ class ExpandCollapseAllMainCategory extends CostTableEvent {
 }
 
 class ReplaceUnitPrice extends CostTableEvent {
-  final int jobId;
+  final String jobId;
   final String selectedUnitPriceId;
   const ReplaceUnitPrice(this.jobId, this.selectedUnitPriceId);
   @override
@@ -44,14 +44,14 @@ class ReplaceUnitPrice extends CostTableEvent {
 }
 
 class DeleteJob extends CostTableEvent {
-  final int jobId;
+  final String jobId;
   const DeleteJob(this.jobId);
   @override
   List<Object?> get props => [jobId];
 }
 
 class ChangeQuantityManually extends CostTableEvent {
-  final int jobId;
+  final String jobId;
   final String quantityText;
   const ChangeQuantityManually(this.jobId, this.quantityText);
   @override

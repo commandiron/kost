@@ -9,7 +9,7 @@ import '../../../domain/bloc/cost_table_event.dart';
 class DeleteButton extends StatelessWidget {
   const DeleteButton({Key? key, required this.name, required this.jobId}) : super(key: key);
   final String name;
-  final int jobId;
+  final String jobId;
   @override
   Widget build(BuildContext context) {
     return IconButton(

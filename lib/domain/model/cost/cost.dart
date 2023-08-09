@@ -4,7 +4,7 @@ import 'job.dart';
 
 class Cost {
   MainCategory mainCategory;
-  int jobId;
+  String jobId;
   String jobName;
   List<UnitPrice> enabledUnitPrices;
   String unitPriceNameText;
@@ -33,7 +33,7 @@ class Cost {
 
   Cost copyWith({
     MainCategory? mainCategory,
-    int? jobId,
+    String? jobId,
     String? jobName,
     List<UnitPrice>? enabledUnitPrices,
     String? unitPriceNameText,

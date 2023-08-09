@@ -1,8 +1,9 @@
+import 'package:uuid/uuid.dart';
+
 import '../unit_price/unit_price.dart';
 
-class Job {
+abstract class Job {
   Job({
-    required this.id,
     required this.nameTr,
     required this.mainCategory,
     required this.enabledUnitPriceCategories,
@@ -11,7 +12,7 @@ class Job {
     required this.quantity,
     required this.quantityExplanation
   });
-  final int id;
+  String id = const Uuid().v4();
   final String nameTr;
   final MainCategory mainCategory;
   List<UnitPriceCategory> enabledUnitPriceCategories;
@@ -24,7 +25,6 @@ class Job {
 class Shoring extends Job {
   Shoring(
     {
-      super.id = 0,
       super.nameTr = "İksa Yapılması",
       super.mainCategory = MainCategory.excavationJobs,
       super.enabledUnitPriceCategories = const [UnitPriceCategory.shutCrete],
@@ -38,7 +38,6 @@ class Shoring extends Job {
 class Excavation extends Job {
   Excavation(
     {
-      super.id = 1,
       super.nameTr = "Kazı Yapılması",
       super.mainCategory = MainCategory.excavationJobs,
       super.enabledUnitPriceCategories = const [UnitPriceCategory.excavation],
@@ -52,7 +51,6 @@ class Excavation extends Job {
 class Breaker extends Job {
   Breaker(
     {
-      super.id = 2,
       super.nameTr = "Kırıcı Çalıştırılması",
       super.mainCategory = MainCategory.excavationJobs,
       super.enabledUnitPriceCategories = const [UnitPriceCategory.breaker],
@@ -63,15 +61,52 @@ class Breaker extends Job {
   );
 }
 
+class FoundationStabilization extends Job {
+  FoundationStabilization(
+    {
+      super.nameTr = "Temel altına stabilizasyon malzemesinin serilmesi",
+      super.mainCategory = MainCategory.roughConstructionJobs,
+      super.enabledUnitPriceCategories = const [UnitPriceCategory.foundationStabilizationGravel],
+      super.selectedUnitPriceCategory = UnitPriceCategory.foundationStabilizationGravel,
+      required super.quantity,
+      required super.quantityExplanation,
+    }
+  );
+}
+
+class SubFoundationConcrete extends Job {
+  SubFoundationConcrete(
+    {
+      super.nameTr = "Temel altı grobeton ve yalıtım koruma betonu atılması",
+      super.mainCategory = MainCategory.roughConstructionJobs,
+      super.enabledUnitPriceCategories = const [UnitPriceCategory.c16Concrete],
+      super.selectedUnitPriceCategory = UnitPriceCategory.c16Concrete,
+      required super.quantity,
+      required super.quantityExplanation,
+    }
+  );
+}
+
+class ConcreteFormWork extends Job {
+  ConcreteFormWork(
+    {
+      super.nameTr = "Temel altı grobeton ve yalıtım koruma betonu atılması",
+      super.mainCategory = MainCategory.roughConstructionJobs,
+      super.enabledUnitPriceCategories = const [UnitPriceCategory.plywood],
+      super.selectedUnitPriceCategory = UnitPriceCategory.plywood,
+      required super.quantity,
+      required super.quantityExplanation,
+    }
+  );
+}
 
 class PouringConcrete extends Job {
   PouringConcrete(
     {
-      super.id = 3,
-      super.nameTr = "Betonarme betonu temini ve dökülmesi",
-      super.mainCategory = MainCategory.excavationJobs,
+      super.nameTr = "Plywood ile düz yüzeyli beton ve betonarme kalıbı yapılması (Düz Ölçü)",
+      super.mainCategory = MainCategory.roughConstructionJobs,
       super.enabledUnitPriceCategories = const [UnitPriceCategory.c30Concrete, UnitPriceCategory.c35Concrete, UnitPriceCategory.c40Concrete],
-      super.selectedUnitPriceCategory = UnitPriceCategory.c30Concrete,
+      super.selectedUnitPriceCategory = UnitPriceCategory.c35Concrete,
       required super.quantity,
       required super.quantityExplanation,
     }

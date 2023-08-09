@@ -70,11 +70,10 @@ class RoughConstructionCostCalculator extends CostCalculator {
       Shoring(quantity: shoringArea, quantityExplanation: shoringAreaExplanation),
       Excavation(quantity: excavationVolume, quantityExplanation: excavationVolumeExplanation),
       Breaker(quantity: breakerHour, quantityExplanation: breakerHourExplanation),
+      FoundationStabilization(quantity: foundationStabilizationVolume, quantityExplanation: foundationStabilizationWeightExplanation),
+      SubFoundationConcrete(quantity: 100, quantityExplanation: "quantityExplanation"),
+      ConcreteFormWork(quantity: 100, quantityExplanation: "quantityExplanation"),
       PouringConcrete(quantity: 100, quantityExplanation: "quantityExplanation")
-      // CostCategory(MainCategory.roughConstructionJobs, JobCategory.foundationStabilization, UnitPriceCategory.foundationStabilizationGravel,),
-      // CostCategory(MainCategory.roughConstructionJobs, JobCategory.subFoundationConcrete, UnitPriceCategory.c16Concrete,),
-      // CostCategory(MainCategory.roughConstructionJobs, JobCategory.concreteFormWork, UnitPriceCategory.plywood,),
-      // CostCategory(MainCategory.roughConstructionJobs, JobCategory.pouringConcrete, UnitPriceCategory.c35Concrete,),
       // CostCategory(MainCategory.roughConstructionJobs, JobCategory.rebar, UnitPriceCategory.s420Steel,),
       // CostCategory(MainCategory.roughConstructionJobs, JobCategory.hollowFloorFilling, UnitPriceCategory.eps14Dns,),
       // CostCategory(MainCategory.roughConstructionJobs, JobCategory.foundationWaterproofing, UnitPriceCategory.proofBitumenMembrane,),
@@ -124,6 +123,14 @@ class RoughConstructionCostCalculator extends CostCalculator {
   }
   String get breakerHourExplanation {
     return "Hafriyat alanı: $excavationArea x Hafriyat yüksekliği: $_excavationHeight x Bir m3 orta sertlikte kaya içeren hafriyat için kırıcı çalışma süresi: ${projectConstants.breakerHourForOneCubicMeterMediumRockExcavation}";
+  }
+
+  double get foundationStabilizationVolume {
+    return excavationArea * projectConstants.stabilizationHeight * projectConstants.gravelTonForOneCubicMeter;
+  }
+
+  String get foundationStabilizationWeightExplanation {
+    return "Hafriyat alanı: $excavationArea x Temel altı stabilizasyon malzemesi yüksekliği: ${projectConstants.stabilizationHeight} x 1 m3 mıcır: ${projectConstants.gravelTonForOneCubicMeter} ton";
   }
 }
 
