@@ -759,6 +759,7 @@ extension MainCategoryExtension on MainCategory {
 //   outdoorParkingTile([UnitPriceCategory.interlockingPavingStone]),
 //   carLift([UnitPriceCategory.carLift]),
 //   automaticBarrier([UnitPriceCategory.automaticBarrier]),
+
 //   enclosingTheLand([UnitPriceCategory.trapezoidalSheetCurtain]),
 //   mobilizationDemobilization([UnitPriceCategory.mobilizationDemobilization]),
 //   crane([UnitPriceCategory.crane15Ton]),
@@ -783,6 +784,7 @@ extension MainCategoryExtension on MainCategory {
 //       JobCategory.outdoorParkingTile => "Açık Otopark Kaplama",
 //       JobCategory.carLift => "Araç Asansörü",
 //       JobCategory.automaticBarrier => "Garaj Otomatik Bariyer",
+
 //       JobCategory.enclosingTheLand => "Mevcut yapının etrafının kapatılması",
 //       JobCategory.mobilizationDemobilization => "Mobilizasyon - Demobilizasyon",
 //       JobCategory.crane => "Vinç",
