@@ -187,21 +187,61 @@ class RoofCostCalculator extends CostCalculator {
   }
 }
 
-// class FacadeCostTemplate extends CostTemplate {
-//   FacadeCostTemplate(
-//       {
-//         super.name = "Cephe Maliyeti"
-//       }
-//   ){
-//     enabledCostCategories = [
-//       CostCategory(MainCategory.facadeJobs, JobCategory.facadeScaffolding, UnitPriceCategory.steelScaffolding),
-//       CostCategory(MainCategory.facadeJobs, JobCategory.windows, UnitPriceCategory.windowJoineryRehau,),
-//       CostCategory(MainCategory.facadeJobs, JobCategory.facadeRails, UnitPriceCategory.aluminumRailing,),
-//       CostCategory(MainCategory.facadeJobs, JobCategory.facadeSystem, UnitPriceCategory.sinterFlexFacade,),
-//     ];
-//   }
-// }
-//
+class FacadeCostCalculator extends CostCalculator {
+  FacadeCostCalculator({
+    super.name = "Cephe Maliyeti",
+    required super.projectConstants,
+    required super.landArea,
+    required super.landPerimeter,
+    required super.excavationArea,
+    required super.excavationPerimeter,
+    required super.coreCurtainLength,
+    required super.curtainsExceeding1MeterLength,
+    required super.basementCurtainLength,
+    required super.columnsLess1MeterPerimeter,
+    required super.elevationTowerArea,
+    required super.elevationTowerHeightWithoutSlab,
+    required super.floors,
+    required super.foundationArea,
+    required super.foundationPerimeter,
+    required super.foundationHeight
+  }){
+    jobs = [
+      FacadeScaffolding(quantity: 100, quantityExplanation: "quantityExplanation"),
+      Windows(quantity: 100, quantityExplanation: "quantityExplanation"),
+      FacadeRails(quantity: 100, quantityExplanation: "quantityExplanation"),
+      FacadeSystem(quantity: 100, quantityExplanation: "quantityExplanation")
+    ];
+  }
+}
+
+class InteriorCostCalculator extends CostCalculator {
+  InteriorCostCalculator({
+    super.name = "İç İmalat Maliyeti",
+    required super.projectConstants,
+    required super.landArea,
+    required super.landPerimeter,
+    required super.excavationArea,
+    required super.excavationPerimeter,
+    required super.coreCurtainLength,
+    required super.curtainsExceeding1MeterLength,
+    required super.basementCurtainLength,
+    required super.columnsLess1MeterPerimeter,
+    required super.elevationTowerArea,
+    required super.elevationTowerHeightWithoutSlab,
+    required super.floors,
+    required super.foundationArea,
+    required super.foundationPerimeter,
+    required super.foundationHeight
+  }){
+    jobs = [
+
+    ];
+  }
+}
+
+
+
 // class InteriorCostTemplate extends CostTemplate {
 //   InteriorCostTemplate(
 //       {

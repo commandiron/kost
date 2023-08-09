@@ -204,18 +204,6 @@ class WallWorkmanShip extends Job {
   );
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
 class Roofing extends Job {
   Roofing(
     {
@@ -228,6 +216,290 @@ class Roofing extends Job {
     }
   );
 }
+
+class FacadeScaffolding extends Job {
+  FacadeScaffolding(
+    {
+      super.nameTr = "Cephe için iş iskelesi kurulması ve daha sonra sökülmesi (6ay)",
+      super.mainCategory = MainCategory.facadeJobs,
+      super.enabledUnitPriceCategories = const [UnitPriceCategory.steelScaffolding],
+      super.selectedUnitPriceCategory = UnitPriceCategory.steelScaffolding,
+      required super.quantity,
+      required super.quantityExplanation,
+    }
+  );
+}
+
+class Windows extends Job {
+  Windows(
+    {
+      super.nameTr = "Pencere ve Doğramaların yapılması",
+      super.mainCategory = MainCategory.facadeJobs,
+      super.enabledUnitPriceCategories = const [UnitPriceCategory.windowJoineryRehau],
+      super.selectedUnitPriceCategory = UnitPriceCategory.windowJoineryRehau,
+      required super.quantity,
+      required super.quantityExplanation,
+    }
+  );
+}
+
+class FacadeRails extends Job {
+  FacadeRails(
+    {
+      super.nameTr = "Cephe korkuluklarının yapılması",
+      super.mainCategory = MainCategory.facadeJobs,
+      super.enabledUnitPriceCategories = const [UnitPriceCategory.wroughtIronRailing, UnitPriceCategory.aluminumRailing],
+      super.selectedUnitPriceCategory = UnitPriceCategory.wroughtIronRailing,
+      required super.quantity,
+      required super.quantityExplanation,
+    }
+  );
+}
+
+class FacadeSystem extends Job {
+  FacadeSystem(
+    {
+      super.nameTr = "Cephe kaplama sisteminin yapılması",
+      super.mainCategory = MainCategory.facadeJobs,
+      super.enabledUnitPriceCategories = const [UnitPriceCategory.sinterFlexFacade, UnitPriceCategory.precastFacade],
+      super.selectedUnitPriceCategory = UnitPriceCategory.sinterFlexFacade,
+      required super.quantity,
+      required super.quantityExplanation,
+    }
+  );
+}
+
+class InteriorPlastering extends Job {
+  InteriorPlastering(
+    {
+      super.nameTr = "İç mekan sıvasının yapılması (Kaba + İnce)",
+      super.mainCategory = MainCategory.interiorJobs,
+      super.enabledUnitPriceCategories = const [UnitPriceCategory.plaster],
+      super.selectedUnitPriceCategory = UnitPriceCategory.plaster,
+      required super.quantity,
+      required super.quantityExplanation,
+    }
+  );
+}
+
+class InteriorPainting extends Job {
+  InteriorPainting(
+    {
+      super.nameTr = "İç mekan boyasının yapılması",
+      super.mainCategory = MainCategory.interiorJobs,
+      super.enabledUnitPriceCategories = const [UnitPriceCategory.painting],
+      super.selectedUnitPriceCategory = UnitPriceCategory.painting,
+      required super.quantity,
+      required super.quantityExplanation,
+    }
+  );
+}
+
+class InteriorWaterproofing extends Job {
+  InteriorWaterproofing(
+    {
+      super.nameTr = "İç mekan su yalıtımı yapılması",
+      super.mainCategory = MainCategory.interiorJobs,
+      super.enabledUnitPriceCategories = const [UnitPriceCategory.cementBasedFlexInsulation],
+      super.selectedUnitPriceCategory = UnitPriceCategory.cementBasedFlexInsulation,
+      required super.quantity,
+      required super.quantityExplanation,
+    }
+  );
+}
+
+class CeilingCovering extends Job {
+  CeilingCovering(
+    {
+      super.nameTr = "Tavan kaplamalarının yapılması",
+      super.mainCategory = MainCategory.interiorJobs,
+      super.enabledUnitPriceCategories = const [UnitPriceCategory.drywall],
+      super.selectedUnitPriceCategory = UnitPriceCategory.drywall,
+      required super.quantity,
+      required super.quantityExplanation,
+    }
+  );
+}
+
+class CovingPlaster extends Job {
+  CovingPlaster(
+    {
+      super.nameTr = "Kartonpiyer yapılması",
+      super.mainCategory = MainCategory.interiorJobs,
+      super.enabledUnitPriceCategories = const [UnitPriceCategory.covingPlaster],
+      super.selectedUnitPriceCategory = UnitPriceCategory.covingPlaster,
+      required super.quantity,
+      required super.quantityExplanation,
+    }
+  );
+}
+
+class Screeding extends Job {
+  Screeding(
+    {
+      super.nameTr = "Şap yapılması",
+      super.mainCategory = MainCategory.interiorJobs,
+      super.enabledUnitPriceCategories = const [UnitPriceCategory.screed300Doses],
+      super.selectedUnitPriceCategory = UnitPriceCategory.screed300Doses,
+      required super.quantity,
+      required super.quantityExplanation,
+    }
+  );
+}
+
+class Marble extends Job {
+  Marble(
+    {
+      super.nameTr = "Mermer zemin kaplamalarının yapılması",
+      super.mainCategory = MainCategory.interiorJobs,
+      super.enabledUnitPriceCategories = const [UnitPriceCategory.marbleFloorBilecik],
+      super.selectedUnitPriceCategory = UnitPriceCategory.marbleFloorBilecik,
+      required super.quantity,
+      required super.quantityExplanation,
+    }
+  );
+}
+
+class MarbleStep extends Job {
+  MarbleStep(
+    {
+      super.nameTr = "Mermer basamakların yapılması",
+      super.mainCategory = MainCategory.interiorJobs,
+      super.enabledUnitPriceCategories = const [UnitPriceCategory.marbleStepBilecik],
+      super.selectedUnitPriceCategory = UnitPriceCategory.marbleStepBilecik,
+      required super.quantity,
+      required super.quantityExplanation,
+    }
+  );
+}
+
+class MarbleWindowsill extends Job {
+  MarbleWindowsill(
+    {
+      super.nameTr = "Mermer denizliklerin yapılması",
+      super.mainCategory = MainCategory.interiorJobs,
+      super.enabledUnitPriceCategories = const [UnitPriceCategory.marbleWindowsillBilecik],
+      super.selectedUnitPriceCategory = UnitPriceCategory.marbleWindowsillBilecik,
+      required super.quantity,
+      required super.quantityExplanation,
+    }
+  );
+}
+
+class StairRailings extends Job {
+  StairRailings(
+    {
+      super.nameTr = "Merdiven korkuluklarının yapılması",
+      super.mainCategory = MainCategory.interiorJobs,
+      super.enabledUnitPriceCategories = const [UnitPriceCategory.aluminumRailing],
+      super.selectedUnitPriceCategory = UnitPriceCategory.aluminumRailing,
+      required super.quantity,
+      required super.quantityExplanation,
+    }
+  );
+}
+
+class CeramicTile extends Job {
+  CeramicTile(
+    {
+      super.nameTr = "Seramik kaplama yapılması",
+      super.mainCategory = MainCategory.interiorJobs,
+      super.enabledUnitPriceCategories = const [UnitPriceCategory.ceramicTileVitraVersus],
+      super.selectedUnitPriceCategory = UnitPriceCategory.ceramicTileVitraVersus,
+      required super.quantity,
+      required super.quantityExplanation,
+    }
+  );
+}
+
+class ParquetTile extends Job {
+  ParquetTile(
+    {
+      super.nameTr = "Parke kaplama yapılması",
+      super.mainCategory = MainCategory.interiorJobs,
+      super.enabledUnitPriceCategories = const [UnitPriceCategory.laminatedSerifoglu],
+      super.selectedUnitPriceCategory = UnitPriceCategory.laminatedSerifoglu,
+      required super.quantity,
+      required super.quantityExplanation,
+    }
+  );
+}
+
+class SteelDoor extends Job {
+  SteelDoor(
+    {
+      super.nameTr = "Daire çelik kapıların yapılması",
+      super.mainCategory = MainCategory.interiorJobs,
+      super.enabledUnitPriceCategories = const [UnitPriceCategory.steelDoorKale],
+      super.selectedUnitPriceCategory = UnitPriceCategory.steelDoorKale,
+      required super.quantity,
+      required super.quantityExplanation,
+    }
+  );
+}
+
+class EntranceDoor extends Job {
+  EntranceDoor(
+    {
+      super.nameTr = "Apartman giriş kapısının yapılması",
+      super.mainCategory = MainCategory.interiorJobs,
+      super.enabledUnitPriceCategories = const [UnitPriceCategory.entranceDoor],
+      super.selectedUnitPriceCategory = UnitPriceCategory.entranceDoor,
+      required super.quantity,
+      required super.quantityExplanation,
+    }
+  );
+}
+
+
+//   fireDoor([UnitPriceCategory.ironFireDoor]),
+//   woodenDoor([UnitPriceCategory.lacqueredDoorArtella]),
+//   kitchenCupboard([UnitPriceCategory.shinyLacqueredKitchenCupboardAster, UnitPriceCategory.matteLacqueredKitchenCupboardAster]),
+//   kitchenCounter([UnitPriceCategory.quartzCountertopCimstone]),
+//   coatCabinet([UnitPriceCategory.lacqueredCabinet]),
+//   bathroomCabinet([UnitPriceCategory.lacqueredCabinet]),
+//   floorPlinth([UnitPriceCategory.lacqueredFloorPlinth]),
+//   mechanicalInfrastructure([UnitPriceCategory.mechanicalInfrastructure]),
+//   airConditioner([UnitPriceCategory.airConditionerArcelik, UnitPriceCategory.vrfMultiSplitMitshubishiElectric]),
+//   ventilation([UnitPriceCategory.ventilation]),
+//   waterTank([UnitPriceCategory.galvanize25TonWaterTankEsinoks]),
+//   elevation([UnitPriceCategory.elevation10PersonKone]),
+//   sink([UnitPriceCategory.sinkVitra]),
+//   sinkBattery([UnitPriceCategory.sinkBatteryVitra]),
+//   concealedCistern([UnitPriceCategory.concealedCisternVitra]),
+//   shower([UnitPriceCategory.showerHuppe100x100]),
+//   showerBattery([UnitPriceCategory.showerBatteryVitra]),
+//   kitchenFaucetAndSink([UnitPriceCategory.kitchenFaucetAndSinkFranke]),
+//   electricalInfrastructure([UnitPriceCategory.electricalInfrastructure]),
+//   generator([UnitPriceCategory.generatorAksa160]),
+//   householdAppliances([UnitPriceCategory.paddleBoxBuiltInOvenCookTopDishwasherFranke]),
+
+//       JobCategory.fireDoor => "Yangın kapılarının yapılması",
+//       JobCategory.woodenDoor => "Ahşap kapıların yapılması",
+//       JobCategory.kitchenCupboard => "Mutfak Dolabı",
+//       JobCategory.kitchenCounter => "Mutfak Tezgahı",
+//       JobCategory.coatCabinet => "Portmanto",
+//       JobCategory.bathroomCabinet => "Banyo Dolabı",
+//       JobCategory.floorPlinth => "Süpürgelik",
+//       JobCategory.mechanicalInfrastructure => "Mekanik Altyapı İşleri",
+//       JobCategory.airConditioner => "Klima - Vrf işleri",
+//       JobCategory.ventilation => "Havalandırma işleri",
+//       JobCategory.waterTank => "Su Deposu",
+//       JobCategory.elevation => "Asansör",
+//       JobCategory.sink => "Lavabo",
+//       JobCategory.sinkBattery => "Lavabo bataryası",
+//       JobCategory.concealedCistern => "Gömme rezervuar ve tuvalet taşı",
+//       JobCategory.shower => "Duşakabin",
+//       JobCategory.showerBattery => "Duş bataryasu",
+//       JobCategory.kitchenFaucetAndSink => "Mutfak bataryası ve evye",
+//       JobCategory.electricalInfrastructure => "Elektrik Altyapı",
+//       JobCategory.generator => "Jeneratör",
+//       JobCategory.householdAppliances => "Beyaz Eşya",
+
+
+
+
+
 
 enum MainCategory {
   excavationJobs,
@@ -258,60 +530,8 @@ extension MainCategoryExtension on MainCategory {
 }
 
 // enum JobCategory {
-//   shoring([UnitPriceCategory.shutCrete]),
-//   excavation([UnitPriceCategory.excavation]),
-//   breaker([UnitPriceCategory.breaker]),
-//   foundationStabilization([UnitPriceCategory.foundationStabilizationGravel]),
-//   subFoundationConcrete([UnitPriceCategory.c16Concrete]),
-//   concreteFormWork([UnitPriceCategory.plywood]),
-//   pouringConcrete([UnitPriceCategory.c30Concrete, UnitPriceCategory.c35Concrete, UnitPriceCategory.c40Concrete]),
-//   rebar([UnitPriceCategory.s420Steel]),
-//   hollowFloorFilling([UnitPriceCategory.eps14Dns]),
-//   foundationWaterproofing([UnitPriceCategory.proofBitumenMembrane]),
-//   curtainWaterproofing([UnitPriceCategory.cementSliding, UnitPriceCategory.bitumenSliding]),
-//   curtainProtectionBeforeFilling([UnitPriceCategory.drainPlate]),
-//   wallMaterial([UnitPriceCategory.aeratedConcreteYtong]),
-//   wallWorkmanShip([UnitPriceCategory.aeratedConcreteLabor]),
-//   roofing([UnitPriceCategory.steelConstructionBraasRoof]),
-//   facadeScaffolding([UnitPriceCategory.steelScaffolding]),
-//   windows([UnitPriceCategory.windowJoineryRehau]),
-//   facadeRails([UnitPriceCategory.wroughtIronRailing, UnitPriceCategory.aluminumRailing]),
-//   facadeSystem([UnitPriceCategory.sinterFlexFacade, UnitPriceCategory.precastFacade]),
-//   interiorPlastering([UnitPriceCategory.plaster]),
-//   interiorPainting([UnitPriceCategory.painting]),
-//   interiorWaterproofing([UnitPriceCategory.cementBasedFlexInsulation]),
-//   ceilingCovering([UnitPriceCategory.drywall]),
-//   covingPlaster([UnitPriceCategory.covingPlaster]),
-//   screeding([UnitPriceCategory.screed300Doses]),
-//   marble([UnitPriceCategory.marbleFloorBilecik]),
-//   marbleStep([UnitPriceCategory.marbleStepBilecik]),
-//   marbleWindowsill([UnitPriceCategory.marbleStepBilecik]),
-//   stairRailings([UnitPriceCategory.aluminumRailing]),
-//   ceramicTile([UnitPriceCategory.ceramicTileVitraVersus]),
-//   parquetTile([UnitPriceCategory.laminatedSerifoglu]),
-//   steelDoor([UnitPriceCategory.steelDoorKale]),
-//   entranceDoor([UnitPriceCategory.entranceDoor]),
-//   fireDoor([UnitPriceCategory.ironFireDoor]),
-//   woodenDoor([UnitPriceCategory.lacqueredDoorArtella]),
-//   kitchenCupboard([UnitPriceCategory.shinyLacqueredKitchenCupboardAster, UnitPriceCategory.matteLacqueredKitchenCupboardAster]),
-//   kitchenCounter([UnitPriceCategory.quartzCountertopCimstone]),
-//   coatCabinet([UnitPriceCategory.lacqueredCabinet]),
-//   bathroomCabinet([UnitPriceCategory.lacqueredCabinet]),
-//   floorPlinth([UnitPriceCategory.lacqueredFloorPlinth]),
-//   mechanicalInfrastructure([UnitPriceCategory.mechanicalInfrastructure]),
-//   airConditioner([UnitPriceCategory.airConditionerArcelik, UnitPriceCategory.vrfMultiSplitMitshubishiElectric]),
-//   ventilation([UnitPriceCategory.ventilation]),
-//   waterTank([UnitPriceCategory.galvanize25TonWaterTankEsinoks]),
-//   elevation([UnitPriceCategory.elevation10PersonKone]),
-//   sink([UnitPriceCategory.sinkVitra]),
-//   sinkBattery([UnitPriceCategory.sinkBatteryVitra]),
-//   concealedCistern([UnitPriceCategory.concealedCisternVitra]),
-//   shower([UnitPriceCategory.showerHuppe100x100]),
-//   showerBattery([UnitPriceCategory.showerBatteryVitra]),
-//   kitchenFaucetAndSink([UnitPriceCategory.kitchenFaucetAndSinkFranke]),
-//   electricalInfrastructure([UnitPriceCategory.electricalInfrastructure]),
-//   generator([UnitPriceCategory.generatorAksa160]),
-//   householdAppliances([UnitPriceCategory.paddleBoxBuiltInOvenCookTopDishwasherFranke]),
+
+
 //   landScapeGarden([UnitPriceCategory.averageGarden,]),
 //   outdoorParkingTile([UnitPriceCategory.interlockingPavingStone]),
 //   carLift([UnitPriceCategory.carLift]),
@@ -336,60 +556,6 @@ extension MainCategoryExtension on MainCategory {
 // extension JobCategoryExtension on JobCategory {
 //   String get nameTr {
 //     return switch (this) {
-//       JobCategory.shoring => "İksa yapılması",
-//       JobCategory.excavation => "Kazı yapılması",
-//       JobCategory.breaker => "Kırıcı çalıştırılması",
-//       JobCategory.foundationStabilization => "Temel altına stabilizasyon malzemesinin serilmesi",
-//       JobCategory.subFoundationConcrete => "Temel altı grobeton ve yalıtım koruma betonu atılması",
-//       JobCategory.concreteFormWork => "Plywood ile düz yüzeyli beton ve betonarme kalıbı yapılması (Düz Ölçü)",
-//       JobCategory.pouringConcrete => "Betonarme betonu temini ve dökülmesi",
-//       JobCategory.rebar => "Ø8-32 mm çapında betonarme çeliği temini ve döşenmesi",
-//       JobCategory.hollowFloorFilling => "Asmolen döşeme dolgusunun yapılması",
-//       JobCategory.foundationWaterproofing => "Temel altı su yalıtımı yapılması",
-//       JobCategory.curtainWaterproofing => "Perde su yalıtımının yapılması",
-//       JobCategory.curtainProtectionBeforeFilling => "Geri dolgu öncesi perde yalıtımına koruyucu yapılması",
-//       JobCategory.wallMaterial => "Duvar malzeme",
-//       JobCategory.wallWorkmanShip => "Duvar işçilik",
-//       JobCategory.roofing => "Çatı Yapılması",
-//       JobCategory.facadeScaffolding => "Cephe için iş iskelesi kurulması ve daha sonra sökülmesi (6ay)",
-//       JobCategory.windows => "Pencere ve Doğramaların yapılması",
-//       JobCategory.facadeRails => "Cephe korkuluklarının yapılması",
-//       JobCategory.facadeSystem => "Cephe kaplama sisteminin yapılması",
-//       JobCategory.interiorPlastering => "İç mekan sıvasının yapılması (Kaba + İnce)",
-//       JobCategory.interiorPainting => "İç mekan boyasının yapılması",
-//       JobCategory.interiorWaterproofing => "İç mekan su yalıtımı yapılması",
-//       JobCategory.ceilingCovering => "Tavan kaplamalarının yapılması",
-//       JobCategory.covingPlaster => "Kartonpiyer yapılması",
-//       JobCategory.screeding => "Şap yapılması",
-//       JobCategory.marble => "Mermer zemin kaplamalarının yapılması",
-//       JobCategory.marbleStep => "Mermer basamakların yapılması",
-//       JobCategory.marbleWindowsill => "Mermer denizliklerin yapılması",
-//       JobCategory.stairRailings => "Merdiven korkuluklarının yapılması",
-//       JobCategory.ceramicTile => "Seramik kaplama yapılması",
-//       JobCategory.parquetTile => "Parke kaplama yapılması",
-//       JobCategory.steelDoor => "Daire çelik kapıların yapılması",
-//       JobCategory.entranceDoor => "Apartman giriş kapısının yapılması",
-//       JobCategory.fireDoor => "Yangın kapılarının yapılması",
-//       JobCategory.woodenDoor => "Ahşap kapıların yapılması",
-//       JobCategory.kitchenCupboard => "Mutfak Dolabı",
-//       JobCategory.kitchenCounter => "Mutfak Tezgahı",
-//       JobCategory.coatCabinet => "Portmanto",
-//       JobCategory.bathroomCabinet => "Banyo Dolabı",
-//       JobCategory.floorPlinth => "Süpürgelik",
-//       JobCategory.mechanicalInfrastructure => "Mekanik Altyapı İşleri",
-//       JobCategory.airConditioner => "Klima - Vrf işleri",
-//       JobCategory.ventilation => "Havalandırma işleri",
-//       JobCategory.waterTank => "Su Deposu",
-//       JobCategory.elevation => "Asansör",
-//       JobCategory.sink => "Lavabo",
-//       JobCategory.sinkBattery => "Lavabo bataryası",
-//       JobCategory.concealedCistern => "Gömme rezervuar ve tuvalet taşı",
-//       JobCategory.shower => "Duşakabin",
-//       JobCategory.showerBattery => "Duş bataryasu",
-//       JobCategory.kitchenFaucetAndSink => "Mutfak bataryası ve evye",
-//       JobCategory.electricalInfrastructure => "Elektrik Altyapı",
-//       JobCategory.generator => "Jeneratör",
-//       JobCategory.householdAppliances => "Beyaz Eşya",
 //       JobCategory.landScapeGarden => "Bahçe Yapımı",
 //       JobCategory.outdoorParkingTile => "Açık Otopark Kaplama",
 //       JobCategory.carLift => "Araç Asansörü",
