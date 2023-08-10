@@ -38,7 +38,8 @@ abstract class Job {
     required this.selectedUnitPriceCategory,
     this.selectedUnitPriceId,
     required this.quantity,
-    required this.quantityExplanation
+    required this.quantityExplanation,
+    this.disable = false
   });
   String id = const Uuid().v4();
   final String nameTr;
@@ -48,6 +49,7 @@ abstract class Job {
   String? selectedUnitPriceId;
   double quantity;
   String quantityExplanation;
+  bool disable;
 }
 
 class Shoring extends Job {
