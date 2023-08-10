@@ -50,7 +50,7 @@ abstract class CostCalculator {
     }
   );
 
-  List<Cost> calculate({required List<UnitPrice> unitPricePool, required CurrencyRates currencyRates, required List<Cost> oldCosts}){
+  List<Cost> calculate({required List<UnitPrice> unitPricePool, required CurrencyRates currencyRates, required List<Cost> previousCosts}){
     List<Cost> costs = [];
 
     for (var job in jobs) {
@@ -104,8 +104,8 @@ abstract class CostCalculator {
         quantityExplanationText: quantityExplanationText,
         formattedTotalPriceTRY: formattedTotalPriceTRY,
         totalPriceTRY: totalPriceTRY,
-        visible: oldCosts.isNotEmpty
-          ? oldCosts.firstWhereOrNull((cost) => cost.jobId == job.id)?.visible ?? true
+        visible: previousCosts.isNotEmpty
+          ? previousCosts.firstWhereOrNull((cost) => cost.jobId == job.id)?.visible ?? true
           : true
       );
 

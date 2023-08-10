@@ -166,7 +166,7 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
       _refresh();
     });
     on<CreateCosts>((event, emit) {
-      final costs = state.costCalculator.calculate(unitPricePool: state.unitPricePool, currencyRates: state.currencyRates, oldCosts: state.costs);
+      final costs = state.costCalculator.calculate(unitPricePool: state.unitPricePool, currencyRates: state.currencyRates, previousCosts: state.costs);
       emit(state.copyWith(costs: costs,));
     });
     on<CreateFormattedSubTotalsTRY>((event, emit) {
