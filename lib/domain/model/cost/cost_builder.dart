@@ -5,7 +5,7 @@ import 'package:kost/domain/model/unit_price/unit_price.dart';
 
 import '../../calculator/detailed/floor.dart';
 import '../../helper/formattedNumber.dart';
-import '../cost/cost.dart';
+import 'cost.dart';
 import '../unit_price/currency.dart';
 import 'job.dart';
 
