@@ -216,6 +216,7 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
       state.costCalculator.jobs.firstWhere((e) => e.id == event.jobId).quantity = quantity;
       _refresh();
     });
+    //Quantity Details Screen
     on<FloorAreaChanged>((event, emit) {
       final floorArea = parseFormattedNumber(value: event.floorAreaText);
       // state.quantityCalculator.floors[event.index].area = floorArea;
