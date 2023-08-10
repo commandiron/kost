@@ -31,7 +31,7 @@ class CostTableScreen extends StatelessWidget {
                   child: Column(
                     children: [
                       Text(
-                        state.costCalculator.name,
+                        state.costBuilder.name,
                         style: const TextStyle(fontSize: 26),
                       ),
                       ElevatedButton(

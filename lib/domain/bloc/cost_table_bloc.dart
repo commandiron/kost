@@ -20,7 +20,7 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
   CostTableBloc()
     : super(
       CostTableState(
-        costCalculator: ApartmentCostCalculator(
+        costBuilder: ApartmentCostBuilder(
           projectConstants: ProjectConstants(),
           landArea: 806.24,
           landPerimeter: 117.93,
@@ -166,7 +166,7 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
       _refresh();
     });
     on<CreateCosts>((event, emit) {
-      final costs = state.costCalculator.calculate(unitPricePool: state.unitPricePool, currencyRates: state.currencyRates, previousCosts: state.costs);
+      final costs = state.costBuilder.create(unitPricePool: state.unitPricePool, currencyRates: state.currencyRates, previousCosts: state.costs);
       emit(state.copyWith(costs: costs,));
     });
     on<CreateFormattedSubTotalsTRY>((event, emit) {
@@ -204,16 +204,16 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
       emit(state.copyWith(costs: List.of(state.costs)));
     });
     on<ReplaceUnitPrice>((event, emit) {
-      state.costCalculator.jobs.firstWhere((element) => element.id == event.jobId).selectedUnitPriceId = event.selectedUnitPriceId;
+      state.costBuilder.jobs.firstWhere((element) => element.id == event.jobId).selectedUnitPriceId = event.selectedUnitPriceId;
       _refresh();
     });
     on<DeleteJob>((event, emit) {
-      state.costCalculator.jobs.removeWhere((job) => job.id == event.jobId);
+      state.costBuilder.jobs.removeWhere((job) => job.id == event.jobId);
       _refresh();
     });
     on<ChangeQuantityManually>((event, emit) {
       final quantity = parseFormattedNumber(value: event.quantityText);
-      state.costCalculator.jobs.firstWhere((e) => e.id == event.jobId).quantity = quantity;
+      state.costBuilder.jobs.firstWhere((e) => e.id == event.jobId).quantity = quantity;
       _refresh();
     });
     //Quantity Details Screen
