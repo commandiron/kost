@@ -169,7 +169,7 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
       final costs = state.costCalculator.calculate(unitPricePool: state.unitPricePool, currencyRates: state.currencyRates, oldCosts: state.costs);
 
       final Map<MainCategory, String> formattedSubTotalsTRY = {};
-      final mainCategorySet = costs.map((e) => e.mainCategory).toSet();
+      final mainCategorySet = costs.map((cost) => cost.mainCategory).toSet();
       for (var mainCategory in mainCategorySet) {
         final subTotal = _calculateSubTotal(costs, mainCategory);
         formattedSubTotalsTRY.putIfAbsent(mainCategory, () => getFormattedNumber(number: subTotal, unit: "TL"));
