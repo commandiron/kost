@@ -3,11 +3,11 @@ import 'package:kost/domain/calculator/detailed/project_constants.dart';
 import 'package:kost/domain/model/unit_price/unit.dart';
 import 'package:kost/domain/model/unit_price/unit_price.dart';
 
-import '../../calculator/detailed/floor.dart';
-import '../../helper/formattedNumber.dart';
-import 'cost.dart';
-import '../unit_price/currency.dart';
-import 'job.dart';
+import '../../../calculator/detailed/floor.dart';
+import '../../../helper/formattedNumber.dart';
+import '../cost.dart';
+import '../../unit_price/currency.dart';
+import '../job.dart';
 
 abstract class CostBuilder {
   List<Job> jobs;

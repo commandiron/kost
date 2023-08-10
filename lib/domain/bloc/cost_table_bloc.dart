@@ -6,7 +6,7 @@ import 'package:kost/domain/calculator/detailed/room.dart';
 import 'package:kost/domain/calculator/detailed/window.dart';
 import 'package:kost/domain/helper/formattedNumber.dart';
 import 'package:kost/domain/model/unit_price/currency.dart';
-import 'package:kost/domain/model/cost/cost_builder.dart';
+import 'package:kost/domain/model/cost/builder/cost_builder.dart';
 import 'package:kost/domain/model/cost/cost.dart';
 import 'package:kost/presentation/cost_table/cost_table_screen.dart';
 

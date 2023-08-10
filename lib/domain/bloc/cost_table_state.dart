@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:kost/domain/model/unit_price/currency.dart';
-import 'package:kost/domain/model/cost/cost_builder.dart';
+import 'package:kost/domain/model/cost/builder/cost_builder.dart';
 import '../model/cost/job.dart';
 import '../model/cost/cost.dart';
 import '../model/unit_price/unit_price.dart';
