@@ -206,23 +206,23 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
     });
     on<ReplaceUnitPrice>((event, emit) {
       state.costCalculator.jobs.firstWhere((element) => element.id == event.jobId).selectedUnitPriceId = event.selectedUnitPriceId;
-      add(const CreateCostTable());
+      _refresh();
     });
     on<DeleteJob>((event, emit) {
       state.costCalculator.jobs.removeWhere((element) => element.id == event.jobId);
-      add(const CreateCostTable());
+      _refresh();
     });
     on<ChangeQuantityManually>((event, emit) {
       final quantity = parseFormattedNumber(value: event.quantityText);
       state.costCalculator.jobs.firstWhere((e) => e.id == event.jobId).quantity = quantity;
-      add(const CreateCostTable());
+      _refresh();
     });
     on<FloorAreaChanged>((event, emit) {
       final floorArea = parseFormattedNumber(value: event.floorAreaText);
       // state.quantityCalculator.floors[event.index].area = floorArea;
     });
     on<CalculateCost>((event, emit) {
-      add(const CreateCostTable());
+      _refresh();
       Navigator.of(event.context).pushNamed(CostTableScreen.route);
     });
   }
@@ -231,6 +231,10 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
 
   void init() {
     add(const Init());
+  }
+
+  void _refresh() {
+    add(const CreateCostTable());
   }
 
   List<UnitPrice> _fetchUnitPricePool() {
