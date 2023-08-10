@@ -163,26 +163,25 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
       final unitPricePool = _fetchUnitPricePool();
       //Fetch currency rates
       emit(state.copyWith(unitPricePool: unitPricePool,));
-      add(const CreateCostTable());
+      _refresh();
     });
-    on<CreateCostTable>((event, emit) {
+    on<CreateCosts>((event, emit) {
       final costs = state.costCalculator.calculate(unitPricePool: state.unitPricePool, currencyRates: state.currencyRates, oldCosts: state.costs);
-
+      emit(state.copyWith(costs: costs,));
+    });
+    on<CreateFormattedSubTotalsTRY>((event, emit) {
       final Map<MainCategory, String> formattedSubTotalsTRY = {};
-      final mainCategorySet = costs.map((cost) => cost.mainCategory).toSet();
+      final mainCategorySet = state.costs.map((cost) => cost.mainCategory).toSet();
       for (var mainCategory in mainCategorySet) {
-        final subTotal = _calculateSubTotal(costs, mainCategory);
+        final subTotal = _calculateSubTotal(state.costs, mainCategory);
         formattedSubTotalsTRY.putIfAbsent(mainCategory, () => getFormattedNumber(number: subTotal, unit: "TL"));
       }
-
-      final grandTotal = _calculateGrandTotal(costs);
+      emit(state.copyWith(formattedSubTotalsTRY: formattedSubTotalsTRY,));
+    });
+    on<CreateFormattedGrandTotalTRY>((event, emit) {
+      final grandTotal = _calculateGrandTotal(state.costs);
       final formattedGrandTotalTRY = getFormattedNumber(number: grandTotal, unit: "TL");
-
-      emit(state.copyWith(
-        costs: costs,
-        formattedSubTotalsTRY: formattedSubTotalsTRY,
-        formattedGrandTotalTRY: formattedGrandTotalTRY,
-      ));
+      emit(state.copyWith(formattedGrandTotalTRY: formattedGrandTotalTRY,));
     });
     on<ExpandCollapseMainCategory>((event, emit) {
       state.costs.where((cost) => cost.mainCategory == event.mainCategory).forEach(
@@ -209,7 +208,7 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
       _refresh();
     });
     on<DeleteJob>((event, emit) {
-      state.costCalculator.jobs.removeWhere((element) => element.id == event.jobId);
+      state.costCalculator.jobs.removeWhere((job) => job.id == event.jobId);
       _refresh();
     });
     on<ChangeQuantityManually>((event, emit) {
@@ -234,15 +233,9 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
   }
 
   void _refresh() {
-    add(const CreateCostTable());
-  }
-
-  void _updateCost(String jobId, newCost) {
-
-  }
-
-  void _removeCost(String jobId, newCost) {
-
+    add(const CreateCosts());
+    add(const CreateFormattedSubTotalsTRY());
+    add(const CreateFormattedGrandTotalTRY());
   }
 
   List<UnitPrice> _fetchUnitPricePool() {

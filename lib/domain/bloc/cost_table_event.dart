@@ -16,11 +16,24 @@ class Init extends CostTableEvent {
   List<Object?> get props => [];
 }
 
-class CreateCostTable extends CostTableEvent {
-  const CreateCostTable();
+class CreateCosts extends CostTableEvent {
+  const CreateCosts();
   @override
   List<Object?> get props => [];
 }
+
+class CreateFormattedSubTotalsTRY extends CostTableEvent {
+  const CreateFormattedSubTotalsTRY();
+  @override
+  List<Object?> get props => [];
+}
+
+class CreateFormattedGrandTotalTRY extends CostTableEvent {
+  const CreateFormattedGrandTotalTRY();
+  @override
+  List<Object?> get props => [];
+}
+
 
 class ExpandCollapseMainCategory extends CostTableEvent {
   final MainCategory mainCategory;
