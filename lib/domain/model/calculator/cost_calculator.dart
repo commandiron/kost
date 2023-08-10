@@ -54,7 +54,6 @@ abstract class CostCalculator {
     List<Cost> costs = [];
 
     for (var job in jobs) {
-
       final UnitPrice? unitPrice;
       if(job.selectedUnitPriceId != null) {
         unitPrice = unitPricePool.firstWhere((unitPrice) => unitPrice.id == job.selectedUnitPriceId);
