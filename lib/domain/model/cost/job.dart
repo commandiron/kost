@@ -104,10 +104,10 @@ class FoundationStabilization extends Job {
   );
 }
 
-class SubFoundationConcrete extends Job {
-  SubFoundationConcrete(
+class SubFoundationConcreteMaterial extends Job {
+  SubFoundationConcreteMaterial(
     {
-      super.nameTr = "Temel altı grobeton ve yalıtım koruma betonu atılması",
+      super.nameTr = "Temel altı grobeton ve yalıtım koruma betonu temini",
       super.mainCategory = MainCategory.roughConstructionJobs,
       super.enabledUnitPriceCategories = const [UnitPriceCategory.c16Concrete],
       super.selectedUnitPriceCategory = UnitPriceCategory.c16Concrete,
@@ -120,7 +120,7 @@ class SubFoundationConcrete extends Job {
 class ReinforcedConcreteWorkmanshipWithFormWorkMaterial extends Job {
   ReinforcedConcreteWorkmanshipWithFormWorkMaterial(
     {
-      super.nameTr = "Betonarme kalıbı temin edilmesi ve kalıp, beton, demir işçiliği",
+      super.nameTr = "Betonarme işçiliği ile beton kalıbı malzeme temini",
       super.mainCategory = MainCategory.roughConstructionJobs,
       super.enabledUnitPriceCategories = const [UnitPriceCategory.reinforcedConcreteWorkmanshipWithPlywood],
       super.selectedUnitPriceCategory = UnitPriceCategory.reinforcedConcreteWorkmanshipWithPlywood,
@@ -130,8 +130,8 @@ class ReinforcedConcreteWorkmanshipWithFormWorkMaterial extends Job {
   );
 }
 
-class Concrete extends Job {
-  Concrete(
+class ConcreteMaterial extends Job {
+  ConcreteMaterial(
     {
       super.nameTr = "Betonarme betonu temini",
       super.mainCategory = MainCategory.roughConstructionJobs,
@@ -143,8 +143,8 @@ class Concrete extends Job {
   );
 }
 
-class Rebar extends Job {
-  Rebar(
+class RebarMaterial extends Job {
+  RebarMaterial(
     {
       super.nameTr = "Ø8-32 mm çapında betonarme çeliği temini",
       super.mainCategory = MainCategory.roughConstructionJobs,
@@ -156,10 +156,10 @@ class Rebar extends Job {
   );
 }
 
-class HollowFloorFilling extends Job {
-  HollowFloorFilling(
+class HollowFloorFillingMaterial extends Job {
+  HollowFloorFillingMaterial(
     {
-      super.nameTr = "Asmolen döşeme dolgusunun yapılması",
+      super.nameTr = "Asmolen döşeme dolgusu temini",
       super.mainCategory = MainCategory.roughConstructionJobs,
       super.enabledUnitPriceCategories = const [UnitPriceCategory.eps14Dns],
       super.selectedUnitPriceCategory = UnitPriceCategory.eps14Dns,
