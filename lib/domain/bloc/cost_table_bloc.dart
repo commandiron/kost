@@ -237,6 +237,14 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
     add(const CreateCostTable());
   }
 
+  void _updateCost(String jobId, newCost) {
+
+  }
+
+  void _removeCost(String jobId, newCost) {
+
+  }
+
   List<UnitPrice> _fetchUnitPricePool() {
     return _unitPriceRepository.getAllUnitPrices();
   }
