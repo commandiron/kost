@@ -117,23 +117,23 @@ class SubFoundationConcrete extends Job {
   );
 }
 
-class ConcreteFormWork extends Job {
-  ConcreteFormWork(
+class ReinforcedConcreteWorkmanshipWithFormWorkMaterial extends Job {
+  ReinforcedConcreteWorkmanshipWithFormWorkMaterial(
     {
-      super.nameTr = "Temel altı grobeton ve yalıtım koruma betonu atılması",
+      super.nameTr = "Betonarme kalıbı temin edilmesi ve kalıp, beton, demir işçiliği",
       super.mainCategory = MainCategory.roughConstructionJobs,
-      super.enabledUnitPriceCategories = const [UnitPriceCategory.plywood],
-      super.selectedUnitPriceCategory = UnitPriceCategory.plywood,
+      super.enabledUnitPriceCategories = const [UnitPriceCategory.reinforcedConcreteWorkmanshipWithPlywood],
+      super.selectedUnitPriceCategory = UnitPriceCategory.reinforcedConcreteWorkmanshipWithPlywood,
       required super.quantity,
       required super.quantityExplanation,
     }
   );
 }
 
-class PouringConcrete extends Job {
-  PouringConcrete(
+class Concrete extends Job {
+  Concrete(
     {
-      super.nameTr = "Plywood ile düz yüzeyli beton ve betonarme kalıbı yapılması (Düz Ölçü)",
+      super.nameTr = "Betonarme betonu temini",
       super.mainCategory = MainCategory.roughConstructionJobs,
       super.enabledUnitPriceCategories = const [UnitPriceCategory.c30Concrete, UnitPriceCategory.c35Concrete, UnitPriceCategory.c40Concrete],
       super.selectedUnitPriceCategory = UnitPriceCategory.c35Concrete,
@@ -146,7 +146,7 @@ class PouringConcrete extends Job {
 class Rebar extends Job {
   Rebar(
     {
-      super.nameTr = "Ø8-32 mm çapında betonarme çeliği temini ve döşenmesi",
+      super.nameTr = "Ø8-32 mm çapında betonarme çeliği temini",
       super.mainCategory = MainCategory.roughConstructionJobs,
       super.enabledUnitPriceCategories = const [UnitPriceCategory.s420Steel],
       super.selectedUnitPriceCategory = UnitPriceCategory.s420Steel,

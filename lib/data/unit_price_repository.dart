@@ -46,7 +46,7 @@ class UnitPriceRepository {
 
     //Kalıp Yaşar ✓
     UnitPrice(
-        category: UnitPriceCategory.plywood,
+        category: UnitPriceCategory.reinforcedConcreteWorkmanshipWithPlywood,
         nameTr: "Plywood",
         amount: 800,
         currency: Currency.lira,
