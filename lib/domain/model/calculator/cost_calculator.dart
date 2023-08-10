@@ -1,7 +1,12 @@
+import 'package:collection/collection.dart';
 import 'package:kost/domain/calculator/detailed/project_constants.dart';
+import 'package:kost/domain/model/unit_price/unit.dart';
 import 'package:kost/domain/model/unit_price/unit_price.dart';
 
 import '../../calculator/detailed/floor.dart';
+import '../../helper/formattedNumber.dart';
+import '../cost/cost.dart';
+import '../unit_price/currency.dart';
 import 'job.dart';
 
 abstract class CostCalculator {
@@ -44,6 +49,66 @@ abstract class CostCalculator {
       required this.foundationHeight,
     }
   );
+
+  List<Cost> calculate({required List<UnitPrice> unitPricePool, required CurrencyRates currencyRates, required List<Cost> oldCosts}){
+    List<Cost> costs = [];
+
+    for (var job in jobs) {
+
+      final UnitPrice? unitPrice;
+      if(job.selectedUnitPriceId != null) {
+        unitPrice = unitPricePool.firstWhere((unitPrice) => unitPrice.id == job.selectedUnitPriceId);
+      } else {
+        final unitPrices = unitPricePool.where((unitPrice) => unitPrice.category == job.selectedUnitPriceCategory);
+        unitPrice = unitPrices.reduce((current, next) => current.dateTime.isAfter(next.dateTime) ? current : next);
+      }
+
+      final unitPriceNameText = unitPrice.nameTr;
+
+      final formattedFixedAmount = getFormattedNumber(
+          number: unitPrice.fixedAmount,
+          unit: unitPrice.currency.symbol);
+      final formattedAmount = getFormattedNumber(
+          number: unitPrice.amount,
+          unit: "${unitPrice.currency.symbol}/${unitPrice.unit.symbol}");
+
+      final unitAmountText = unitPrice.fixedAmount != 0
+          ? "$formattedFixedAmount + $formattedAmount"
+          : formattedAmount;
+
+      final quantity = job.quantity;
+      final quantityText = getFormattedNumber(number: quantity);
+
+      final quantityUnitText = unitPrice.unit.symbol;
+
+      final quantityExplanationText = job.quantityExplanation;
+
+      final fixedPriceTRY = quantity != 0 ? unitPrice.fixedAmount * unitPrice.currency.toLiraRate(currencyRates) : 0;
+      final priceTRY = unitPrice.amount * quantity * unitPrice.currency.toLiraRate(currencyRates);
+      final totalPriceTRY = fixedPriceTRY + priceTRY;
+      final formattedTotalPriceTRY = getFormattedNumber(number: totalPriceTRY, unit: "TL");
+
+      final cost = Cost(
+        mainCategory: job.mainCategory,
+        jobId: job.id,
+        jobName: job.nameTr,
+        enabledUnitPrices: unitPricePool.where((unitPrice) => job.enabledUnitPriceCategories.contains(unitPrice.category)).toList(),
+        unitPriceNameText: unitPriceNameText,
+        unitPriceAmountText: unitAmountText,
+        quantityText: quantityText,
+        quantityUnitText: quantityUnitText,
+        quantityExplanationText: quantityExplanationText,
+        formattedTotalPriceTRY: formattedTotalPriceTRY,
+        totalPriceTRY: totalPriceTRY,
+        visible: oldCosts.isNotEmpty
+          ? oldCosts.firstWhereOrNull((cost) => cost.jobId == job.id)?.visible ?? true
+          : true
+      );
+
+      costs.add(cost);
+    }
+    return costs;
+  }
 }
 
 class ApartmentCostCalculator extends CostCalculator {

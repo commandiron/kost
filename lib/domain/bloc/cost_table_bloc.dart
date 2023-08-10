@@ -1,4 +1,3 @@
-import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kost/data/unit_price_repository.dart';
@@ -8,7 +7,6 @@ import 'package:kost/domain/calculator/detailed/window.dart';
 import 'package:kost/domain/helper/formattedNumber.dart';
 import 'package:kost/domain/model/unit_price/currency.dart';
 import 'package:kost/domain/model/calculator/cost_calculator.dart';
-import 'package:kost/domain/model/unit_price/unit.dart';
 import 'package:kost/domain/model/cost/cost.dart';
 import 'package:kost/presentation/cost_table/cost_table_screen.dart';
 
@@ -168,10 +166,7 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
       add(const CreateCostTable());
     });
     on<CreateCostTable>((event, emit) {
-      final costs = _createCosts(
-          costCalculator: state.costCalculator,
-          unitPricePool: state.unitPricePool,
-          currencyRates: state.currencyRates);
+      final costs = state.costCalculator.calculate(unitPricePool: state.unitPricePool, currencyRates: state.currencyRates, oldCosts: state.costs);
 
       final Map<MainCategory, String> formattedSubTotalsTRY = {};
       final mainCategorySet = costs.map((e) => e.mainCategory).toSet();
@@ -240,70 +235,6 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
 
   List<UnitPrice> _fetchUnitPricePool() {
     return _unitPriceRepository.getAllUnitPrices();
-  }
-
-  List<Cost> _createCosts({
-    required CostCalculator costCalculator,
-    required List<UnitPrice> unitPricePool,
-    required CurrencyRates currencyRates,
-  }) {
-    List<Cost> costs = [];
-
-    for (var job in costCalculator.jobs) {
-
-      final UnitPrice? unitPrice;
-      if(job.selectedUnitPriceId != null) {
-        unitPrice = unitPricePool.firstWhere((unitPrice) => unitPrice.id == job.selectedUnitPriceId);
-      } else {
-        final unitPrices = unitPricePool.where((unitPrice) => unitPrice.category == job.selectedUnitPriceCategory);
-        unitPrice = unitPrices.reduce((current, next) => current.dateTime.isAfter(next.dateTime) ? current : next);
-      }
-
-      final unitPriceNameText = unitPrice.nameTr;
-
-      final formattedFixedAmount = getFormattedNumber(
-          number: unitPrice.fixedAmount,
-          unit: unitPrice.currency.symbol);
-      final formattedAmount = getFormattedNumber(
-          number: unitPrice.amount,
-          unit: "${unitPrice.currency.symbol}/${unitPrice.unit.symbol}");
-
-      final unitAmountText = unitPrice.fixedAmount != 0
-          ? "$formattedFixedAmount + $formattedAmount"
-          : formattedAmount;
-
-      final quantity = job.quantity;
-      final quantityText = getFormattedNumber(number: quantity);
-
-      final quantityUnitText = unitPrice.unit.symbol;
-
-      final quantityExplanationText = job.quantityExplanation;
-
-      final fixedPriceTRY = quantity != 0 ? unitPrice.fixedAmount * unitPrice.currency.toLiraRate(currencyRates) : 0;
-      final priceTRY = unitPrice.amount * quantity * unitPrice.currency.toLiraRate(currencyRates);
-      final totalPriceTRY = fixedPriceTRY + priceTRY;
-      final formattedTotalPriceTRY = getFormattedNumber(number: totalPriceTRY, unit: "TL");
-
-      final cost = Cost(
-        mainCategory: job.mainCategory,
-        jobId: job.id,
-        jobName: job.nameTr,
-        enabledUnitPrices: unitPricePool.where((unitPrice) => job.enabledUnitPriceCategories.contains(unitPrice.category)).toList(),
-        unitPriceNameText: unitPriceNameText,
-        unitPriceAmountText: unitAmountText,
-        quantityText: quantityText,
-        quantityUnitText: quantityUnitText,
-        quantityExplanationText: quantityExplanationText,
-        formattedTotalPriceTRY: formattedTotalPriceTRY,
-        totalPriceTRY: totalPriceTRY,
-        visible: state.costs.isNotEmpty
-          ? state.costs.firstWhereOrNull((cost) => cost.jobId == job.id)?.visible ?? true
-          : true
-      );
-
-      costs.add(cost);
-    }
-    return costs;
   }
 
   double _calculateGrandTotal(List<Cost> costs) {
