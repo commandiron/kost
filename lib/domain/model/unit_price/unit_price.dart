@@ -96,6 +96,6 @@ enum UnitPriceCategory {
   siteSafety,
   siteExpenses,
   sergeantGrossWage,
-  projectManagerGrossWage,
+  siteChiefGrossWage,
   projectsFeesPayments;
 }

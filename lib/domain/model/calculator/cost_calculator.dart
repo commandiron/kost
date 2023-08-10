@@ -278,36 +278,61 @@ class InteriorCostCalculator extends CostCalculator {
   }
 }
 
-// class LandscapeCostTemplate extends CostTemplate {
-//   LandscapeCostTemplate(
-//       {
-//         super.name = "Peysaj Maliyeti"
-//       }
-//       ){
-//     enabledCostCategories = [
-//       CostCategory(MainCategory.landscapeJobs, JobCategory.landScapeGarden, UnitPriceCategory.averageGarden),
-//       CostCategory(MainCategory.landscapeJobs, JobCategory.outdoorParkingTile, UnitPriceCategory.interlockingPavingStone),
-//       CostCategory(MainCategory.landscapeJobs, JobCategory.automaticBarrier, UnitPriceCategory.automaticBarrier),
-//     ];
-//   }
-// }
-//
-// class GeneralExpensesCostTemplate extends CostTemplate {
-//   GeneralExpensesCostTemplate(
-//       {
-//         super.name = "Genel Giderler"
-//       }
-//       ){
-//     enabledCostCategories = [
-//       CostCategory(MainCategory.generalExpenses, JobCategory.enclosingTheLand, UnitPriceCategory.trapezoidalSheetCurtain),
-//       CostCategory(MainCategory.generalExpenses, JobCategory.mobilizationDemobilization, UnitPriceCategory.mobilizationDemobilization),
-//       CostCategory(MainCategory.generalExpenses, JobCategory.crane, UnitPriceCategory.crane15Ton),
-//       CostCategory(MainCategory.generalExpenses, JobCategory.siteSafety, UnitPriceCategory.siteSafety),
-//       CostCategory(MainCategory.generalExpenses, JobCategory.siteExpenses, UnitPriceCategory.siteExpenses),
-//       CostCategory(MainCategory.generalExpenses, JobCategory.sergeant, UnitPriceCategory.sergeantGrossWage),
-//       CostCategory(MainCategory.generalExpenses, JobCategory.projectManager, UnitPriceCategory.projectManagerGrossWage),
-//       CostCategory(MainCategory.generalExpenses, JobCategory.projectsFeesPayments, UnitPriceCategory.projectsFeesPayments),
-//     ];
-//   }
-// }
-//
+class LandscapeCostCalculator extends CostCalculator {
+  LandscapeCostCalculator({
+    super.name = "Peysaj Maliyeti",
+    required super.projectConstants,
+    required super.landArea,
+    required super.landPerimeter,
+    required super.excavationArea,
+    required super.excavationPerimeter,
+    required super.coreCurtainLength,
+    required super.curtainsExceeding1MeterLength,
+    required super.basementCurtainLength,
+    required super.columnsLess1MeterPerimeter,
+    required super.elevationTowerArea,
+    required super.elevationTowerHeightWithoutSlab,
+    required super.floors,
+    required super.foundationArea,
+    required super.foundationPerimeter,
+    required super.foundationHeight
+  }){
+    jobs = [
+      LandScapeGarden(quantity: 100, quantityExplanation: "quantityExplanation"),
+      OutdoorParkingTile(quantity: 100, quantityExplanation: "quantityExplanation"),
+      CarLift(quantity: 100, quantityExplanation: "quantityExplanation"),
+      AutomaticBarrier(quantity: 100, quantityExplanation: "quantityExplanation"),
+    ];
+  }
+}
+class GeneralExpensesCostCalculator extends CostCalculator {
+  GeneralExpensesCostCalculator({
+    super.name = "Genel Giderler",
+    required super.projectConstants,
+    required super.landArea,
+    required super.landPerimeter,
+    required super.excavationArea,
+    required super.excavationPerimeter,
+    required super.coreCurtainLength,
+    required super.curtainsExceeding1MeterLength,
+    required super.basementCurtainLength,
+    required super.columnsLess1MeterPerimeter,
+    required super.elevationTowerArea,
+    required super.elevationTowerHeightWithoutSlab,
+    required super.floors,
+    required super.foundationArea,
+    required super.foundationPerimeter,
+    required super.foundationHeight
+  }){
+    jobs = [
+      EnclosingTheLand(quantity: 100, quantityExplanation: "quantityExplanation"),
+      MobilizationDemobilization(quantity: 100, quantityExplanation: "quantityExplanation"),
+      Crane(quantity: 100, quantityExplanation: "quantityExplanation"),
+      SiteSafety(quantity: 100, quantityExplanation: "quantityExplanation"),
+      SiteExpenses(quantity: 100, quantityExplanation: "quantityExplanation"),
+      Sergeant(quantity: 100, quantityExplanation: "quantityExplanation"),
+      SiteChief(quantity: 100, quantityExplanation: "quantityExplanation"),
+      ProjectsFeesPayments(quantity: 100, quantityExplanation: "quantityExplanation"),
+    ];
+  }
+}

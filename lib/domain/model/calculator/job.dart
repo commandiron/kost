@@ -752,47 +752,158 @@ class HouseholdAppliances extends Job {
   );
 }
 
-// enum JobCategory {
+class LandScapeGarden extends Job {
+  LandScapeGarden(
+    {
+      super.nameTr = "Bahçe Yapımı",
+      super.mainCategory = MainCategory.landscapeJobs,
+      super.enabledUnitPriceCategories = const [UnitPriceCategory.averageGarden],
+      super.selectedUnitPriceCategory = UnitPriceCategory.averageGarden,
+      required super.quantity,
+      required super.quantityExplanation,
+    }
+  );
+}
 
+class OutdoorParkingTile extends Job {
+  OutdoorParkingTile(
+    {
+      super.nameTr = "Açık Otopark Kaplama",
+      super.mainCategory = MainCategory.landscapeJobs,
+      super.enabledUnitPriceCategories = const [UnitPriceCategory.interlockingPavingStone],
+      super.selectedUnitPriceCategory = UnitPriceCategory.interlockingPavingStone,
+      required super.quantity,
+      required super.quantityExplanation,
+    }
+  );
+}
 
-//   landScapeGarden([UnitPriceCategory.averageGarden,]),
-//   outdoorParkingTile([UnitPriceCategory.interlockingPavingStone]),
-//   carLift([UnitPriceCategory.carLift]),
-//   automaticBarrier([UnitPriceCategory.automaticBarrier]),
+class CarLift extends Job {
+  CarLift(
+    {
+      super.nameTr = "Araç Asansörü",
+      super.mainCategory = MainCategory.landscapeJobs,
+      super.enabledUnitPriceCategories = const [UnitPriceCategory.carLift],
+      super.selectedUnitPriceCategory = UnitPriceCategory.carLift,
+      required super.quantity,
+      required super.quantityExplanation,
+    }
+  );
+}
 
-//   enclosingTheLand([UnitPriceCategory.trapezoidalSheetCurtain]),
-//   mobilizationDemobilization([UnitPriceCategory.mobilizationDemobilization]),
-//   crane([UnitPriceCategory.crane15Ton]),
-//   siteSafety([UnitPriceCategory.siteSafety]),
-//   siteExpenses([UnitPriceCategory.siteExpenses]),
-//   sergeant([UnitPriceCategory.sergeantGrossWage]),
-//   projectManager([UnitPriceCategory.projectManagerGrossWage]),
-//   projectsFeesPayments([UnitPriceCategory.projectsFeesPayments]);
-//
-//   const JobCategory(
-//     this.unitPriceCategories,
-//     {this.quantity = 0}
-//   );
-//   final List<UnitPriceCategory> unitPriceCategories;
-//   final double quantity;
-// }
+class AutomaticBarrier extends Job {
+  AutomaticBarrier(
+    {
+      super.nameTr = "Garaj Otomatik Bariyer",
+      super.mainCategory = MainCategory.landscapeJobs,
+      super.enabledUnitPriceCategories = const [UnitPriceCategory.automaticBarrier],
+      super.selectedUnitPriceCategory = UnitPriceCategory.automaticBarrier,
+      required super.quantity,
+      required super.quantityExplanation,
+    }
+  );
+}
 
-// extension JobCategoryExtension on JobCategory {
-//   String get nameTr {
-//     return switch (this) {
-//       JobCategory.landScapeGarden => "Bahçe Yapımı",
-//       JobCategory.outdoorParkingTile => "Açık Otopark Kaplama",
-//       JobCategory.carLift => "Araç Asansörü",
-//       JobCategory.automaticBarrier => "Garaj Otomatik Bariyer",
+class EnclosingTheLand extends Job {
+  EnclosingTheLand(
+    {
+      super.nameTr = "Mevcut yapının etrafının kapatılması",
+      super.mainCategory = MainCategory.generalExpenses,
+      super.enabledUnitPriceCategories = const [UnitPriceCategory.trapezoidalSheetCurtain],
+      super.selectedUnitPriceCategory = UnitPriceCategory.trapezoidalSheetCurtain,
+      required super.quantity,
+      required super.quantityExplanation,
+    }
+  );
+}
 
-//       JobCategory.enclosingTheLand => "Mevcut yapının etrafının kapatılması",
-//       JobCategory.mobilizationDemobilization => "Mobilizasyon - Demobilizasyon",
-//       JobCategory.crane => "Vinç",
-//       JobCategory.siteSafety => "Şantiye güvenlik önlemleri",
-//       JobCategory.siteExpenses => "Şantiye Giderleri",
-//       JobCategory.sergeant => "Şantiye Çavuşu",
-//       JobCategory.projectManager => "Proje Müdürü",
-//       JobCategory.projectsFeesPayments => "Projelerin çizilmesi, resmi harçlar ve ödemeler",
-//     };
-//   }
-// }
+class MobilizationDemobilization extends Job {
+  MobilizationDemobilization(
+    {
+      super.nameTr = "Mobilizasyon - Demobilizasyon",
+      super.mainCategory = MainCategory.generalExpenses,
+      super.enabledUnitPriceCategories = const [UnitPriceCategory.mobilizationDemobilization],
+      super.selectedUnitPriceCategory = UnitPriceCategory.mobilizationDemobilization,
+      required super.quantity,
+      required super.quantityExplanation,
+    }
+  );
+}
+
+class Crane extends Job {
+  Crane(
+    {
+      super.nameTr = "Vinç",
+      super.mainCategory = MainCategory.generalExpenses,
+      super.enabledUnitPriceCategories = const [UnitPriceCategory.crane15Ton],
+      super.selectedUnitPriceCategory = UnitPriceCategory.crane15Ton,
+      required super.quantity,
+      required super.quantityExplanation,
+    }
+  );
+}
+
+class SiteSafety extends Job {
+  SiteSafety(
+    {
+      super.nameTr = "Şantiye güvenlik önlemleri",
+      super.mainCategory = MainCategory.generalExpenses,
+      super.enabledUnitPriceCategories = const [UnitPriceCategory.siteSafety],
+      super.selectedUnitPriceCategory = UnitPriceCategory.siteSafety,
+      required super.quantity,
+      required super.quantityExplanation,
+    }
+  );
+}
+
+class SiteExpenses extends Job {
+  SiteExpenses(
+    {
+      super.nameTr = "Şantiye Giderleri",
+      super.mainCategory = MainCategory.generalExpenses,
+      super.enabledUnitPriceCategories = const [UnitPriceCategory.siteExpenses],
+      super.selectedUnitPriceCategory = UnitPriceCategory.siteExpenses,
+      required super.quantity,
+      required super.quantityExplanation,
+    }
+  );
+}
+
+class Sergeant extends Job {
+  Sergeant(
+    {
+      super.nameTr = "Şantiye Çavuşu",
+      super.mainCategory = MainCategory.generalExpenses,
+      super.enabledUnitPriceCategories = const [UnitPriceCategory.sergeantGrossWage],
+      super.selectedUnitPriceCategory = UnitPriceCategory.sergeantGrossWage,
+      required super.quantity,
+      required super.quantityExplanation,
+    }
+  );
+}
+
+class SiteChief extends Job {
+  SiteChief(
+    {
+      super.nameTr = "Şantiye Şefi",
+      super.mainCategory = MainCategory.generalExpenses,
+      super.enabledUnitPriceCategories = const [UnitPriceCategory.siteChiefGrossWage],
+      super.selectedUnitPriceCategory = UnitPriceCategory.siteChiefGrossWage,
+      required super.quantity,
+      required super.quantityExplanation,
+    }
+  );
+}
+
+class ProjectsFeesPayments extends Job {
+  ProjectsFeesPayments(
+    {
+      super.nameTr = "Projelerin çizilmesi, resmi harçlar ve ödemeler",
+      super.mainCategory = MainCategory.generalExpenses,
+      super.enabledUnitPriceCategories = const [UnitPriceCategory.projectsFeesPayments],
+      super.selectedUnitPriceCategory = UnitPriceCategory.projectsFeesPayments,
+      required super.quantity,
+      required super.quantityExplanation,
+    }
+  );
+}

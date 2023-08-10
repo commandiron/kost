@@ -628,8 +628,8 @@ class UnitPriceRepository {
         unit: Unit.month,
         dateTime: DateTime(2023, 08)),
     UnitPrice(
-        category: UnitPriceCategory.projectManagerGrossWage,
-        nameTr: "Proje Müdürü Brüt Maaş",
+        category: UnitPriceCategory.siteChiefGrossWage,
+        nameTr: "Şantiye Şefi Brüt Maaş",
         amount: 60000,
         currency: Currency.lira,
         unit: Unit.month,
