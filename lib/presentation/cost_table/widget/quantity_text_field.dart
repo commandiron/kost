@@ -46,9 +46,7 @@ class _QuantityTextFieldState extends State<QuantityTextField> {
           }
           return null;
         },
-        onTapOutside: (event) {
-
-        },
+        onTapOutside: (event) {},
         onFieldSubmitted: (value) {
           if (_key.currentState!.validate()) {
             if (widget.onFieldSubmitted != null) {
