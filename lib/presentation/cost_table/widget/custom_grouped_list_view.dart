@@ -57,12 +57,9 @@ class CostsListView extends StatelessWidget {
       },
       sort: false,
       indexedItemBuilder: (context, cost, index) {
-        return Visibility(
-          visible: cost.visible,
-          child: CostItem(
-            cost: cost,
-            index: index,
-          ),
+        return CostItem(
+          cost: cost,
+          index: index,
         );
       },
     );
