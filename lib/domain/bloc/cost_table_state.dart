@@ -23,7 +23,7 @@ class CostTableState extends Equatable {
   });
 
   CostTableState copyWith({
-    JobQuantityCalculator? quantityCalculator,
+    JobQuantityCalculator? jobQuantityCalculator,
     List<UnitPrice>? unitPricePool,
     CurrencyRates? currencyRates,
     List<Cost>? costs,
@@ -31,7 +31,7 @@ class CostTableState extends Equatable {
     String? formattedGrandTotalTRY,
   }) {
     return CostTableState(
-      jobQuantityCalculator: quantityCalculator ?? this.jobQuantityCalculator,
+      jobQuantityCalculator: jobQuantityCalculator ?? this.jobQuantityCalculator,
       unitPricePool: unitPricePool ?? this.unitPricePool,
       currencyRates: currencyRates ?? this.currencyRates,
       costs: costs ?? this.costs,
