@@ -39,7 +39,8 @@ abstract class Job {
     this.selectedUnitPriceId,
     required this.quantity,
     required this.quantityExplanation,
-    this.disable = false
+    this.visible = true,
+    this.disable = false,
   });
   String id = const Uuid().v4();
   final String nameTr;
@@ -49,6 +50,7 @@ abstract class Job {
   String? selectedUnitPriceId;
   double quantity;
   String quantityExplanation;
+  bool visible;
   bool disable;
 }
 

@@ -184,24 +184,24 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
       emit(state.copyWith(formattedGrandTotalTRY: formattedGrandTotalTRY,));
     });
     on<ExpandCollapseMainCategory>((event, emit) {
-      state.costs.where((cost) => cost.mainCategory == event.mainCategory).forEach(
-        (cost) {
-          cost.visible = !cost.visible;
+      state.costBuilder.jobs.where((job) => job.mainCategory == event.mainCategory).forEach(
+        (job) {
+          job.visible = !job.visible;
         }
       );
-      emit(state.copyWith(costs: List.of(state.costs)));
+      _refresh();
     });
     on<ExpandCollapseAllMainCategory>((event, emit) {
-      if(state.costs.any((cost) => cost.visible)) {
-        for (var cost in state.costs) {
-          cost.visible = false;
+      if(state.costBuilder.jobs.any((job) => job.visible)) {
+        for(var job in state.costBuilder.jobs) {
+          job.visible = false;
         }
       } else {
-        for (var cost in state.costs) {
-          cost.visible = true;
+        for(var job in state.costBuilder.jobs) {
+          job.visible = true;
         }
       }
-      emit(state.copyWith(costs: List.of(state.costs)));
+      _refresh();
     });
     on<ReplaceUnitPrice>((event, emit) {
       state.costBuilder.jobs.firstWhere((element) => element.id == event.jobId).selectedUnitPriceId = event.selectedUnitPriceId;

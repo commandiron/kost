@@ -104,9 +104,7 @@ abstract class CostBuilder {
         quantityExplanationText: quantityExplanationText,
         formattedTotalPriceTRY: formattedTotalPriceTRY,
         totalPriceTRY: totalPriceTRY,
-        visible: previousCosts.isNotEmpty
-          ? previousCosts.firstWhereOrNull((cost) => cost.jobId == job.id)?.visible ?? true
-          : true
+        visible: job.visible,
       );
 
       costs.add(cost);
