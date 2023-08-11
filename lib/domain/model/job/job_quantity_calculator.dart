@@ -1,15 +1,11 @@
-import 'package:collection/collection.dart';
+
 import 'package:kost/domain/calculator/detailed/project_constants.dart';
-import 'package:kost/domain/model/unit_price/unit.dart';
 import 'package:kost/domain/model/unit_price/unit_price.dart';
 
-import '../../../calculator/detailed/floor.dart';
-import '../../../helper/formattedNumber.dart';
-import '../cost.dart';
-import '../../unit_price/currency.dart';
-import '../job.dart';
+import '../../calculator/detailed/floor.dart';
+import 'job.dart';
 
-abstract class CostBuilder {
+abstract class JobQuantityCalculator {
   List<Job> jobs;
   final String name;
   final ProjectConstants projectConstants;
@@ -28,7 +24,7 @@ abstract class CostBuilder {
   final double foundationPerimeter;
   final double foundationHeight;
 
-  CostBuilder(
+  JobQuantityCalculator(
     {
       this.jobs = const [],
       required this.name,
@@ -49,72 +45,10 @@ abstract class CostBuilder {
       required this.foundationHeight,
     }
   );
-
-  List<Cost> create({required List<UnitPrice> unitPricePool, required CurrencyRates currencyRates, required List<Cost> previousCosts}){
-    List<Cost> costs = [];
-
-    for (var job in jobs) {
-
-      if(job.disable) {
-        continue;
-      }
-
-      final UnitPrice? unitPrice;
-      if(job.selectedUnitPriceId != null) {
-        unitPrice = unitPricePool.firstWhere((unitPrice) => unitPrice.id == job.selectedUnitPriceId);
-      } else {
-        final unitPrices = unitPricePool.where((unitPrice) => unitPrice.category == job.selectedUnitPriceCategory);
-        unitPrice = unitPrices.reduce((current, next) => current.dateTime.isAfter(next.dateTime) ? current : next);
-      }
-
-      final unitPriceNameText = unitPrice.nameTr;
-
-      final formattedFixedAmount = getFormattedNumber(
-          number: unitPrice.fixedAmount,
-          unit: unitPrice.currency.symbol);
-      final formattedAmount = getFormattedNumber(
-          number: unitPrice.amount,
-          unit: "${unitPrice.currency.symbol}/${unitPrice.unit.symbol}");
-
-      final unitAmountText = unitPrice.fixedAmount != 0
-          ? "$formattedFixedAmount + $formattedAmount"
-          : formattedAmount;
-
-      final quantity = job.quantity;
-      final quantityText = getFormattedNumber(number: quantity);
-
-      final quantityUnitText = unitPrice.unit.symbol;
-
-      final quantityExplanationText = job.quantityExplanation;
-
-      final fixedPriceTRY = quantity != 0 ? unitPrice.fixedAmount * unitPrice.currency.toLiraRate(currencyRates) : 0;
-      final priceTRY = unitPrice.amount * quantity * unitPrice.currency.toLiraRate(currencyRates);
-      final totalPriceTRY = fixedPriceTRY + priceTRY;
-      final formattedTotalPriceTRY = getFormattedNumber(number: totalPriceTRY, unit: "TL");
-
-      final cost = Cost(
-        mainCategory: job.mainCategory,
-        jobId: job.id,
-        jobName: job.nameTr,
-        enabledUnitPrices: unitPricePool.where((unitPrice) => job.enabledUnitPriceCategories.contains(unitPrice.category)).toList(),
-        unitPriceNameText: unitPriceNameText,
-        unitPriceAmountText: unitAmountText,
-        quantityText: quantityText,
-        quantityUnitText: quantityUnitText,
-        quantityExplanationText: quantityExplanationText,
-        formattedTotalPriceTRY: formattedTotalPriceTRY,
-        totalPriceTRY: totalPriceTRY,
-        visible: job.visible,
-      );
-
-      costs.add(cost);
-    }
-    return costs;
-  }
 }
 
-class ApartmentCostBuilder extends CostBuilder {
-  ApartmentCostBuilder({
+class ApartmentJobsQuantityCalculator extends JobQuantityCalculator {
+  ApartmentJobsQuantityCalculator({
     super.name = "Apartman Maliyeti",
     required super.projectConstants,
     required super.landArea,
@@ -132,23 +66,23 @@ class ApartmentCostBuilder extends CostBuilder {
     required super.foundationPerimeter,
     required super.foundationHeight
   }){
-    final roughConstructionCostBuilder = RoughConstructionCostBuilder(projectConstants: projectConstants, landArea: landArea, landPerimeter: landPerimeter, excavationArea: excavationArea, excavationPerimeter: excavationPerimeter, coreCurtainLength: coreCurtainLength, curtainsExceeding1MeterLength: curtainsExceeding1MeterLength, basementCurtainLength: basementCurtainLength, columnsLess1MeterPerimeter: columnsLess1MeterPerimeter, elevationTowerArea: elevationTowerArea, elevationTowerHeightWithoutSlab: elevationTowerHeightWithoutSlab, floors: floors, foundationArea: foundationArea, foundationPerimeter: foundationPerimeter, foundationHeight: foundationHeight);
-    final roofCostBuilder = RoofCostBuilder(projectConstants: projectConstants, landArea: landArea, landPerimeter: landPerimeter, excavationArea: excavationArea, excavationPerimeter: excavationPerimeter, coreCurtainLength: coreCurtainLength, curtainsExceeding1MeterLength: curtainsExceeding1MeterLength, basementCurtainLength: basementCurtainLength, columnsLess1MeterPerimeter: columnsLess1MeterPerimeter, elevationTowerArea: elevationTowerArea, elevationTowerHeightWithoutSlab: elevationTowerHeightWithoutSlab, floors: floors, foundationArea: foundationArea, foundationPerimeter: foundationPerimeter, foundationHeight: foundationHeight);
-    final interiorCostBuilder = InteriorCostBuilder(projectConstants: projectConstants, landArea: landArea, landPerimeter: landPerimeter, excavationArea: excavationArea, excavationPerimeter: excavationPerimeter, coreCurtainLength: coreCurtainLength, curtainsExceeding1MeterLength: curtainsExceeding1MeterLength, basementCurtainLength: basementCurtainLength, columnsLess1MeterPerimeter: columnsLess1MeterPerimeter, elevationTowerArea: elevationTowerArea, elevationTowerHeightWithoutSlab: elevationTowerHeightWithoutSlab, floors: floors, foundationArea: foundationArea, foundationPerimeter: foundationPerimeter, foundationHeight: foundationHeight);
-    final landscapeCostBuilder = LandscapeCostBuilder(projectConstants: projectConstants, landArea: landArea, landPerimeter: landPerimeter, excavationArea: excavationArea, excavationPerimeter: excavationPerimeter, coreCurtainLength: coreCurtainLength, curtainsExceeding1MeterLength: curtainsExceeding1MeterLength, basementCurtainLength: basementCurtainLength, columnsLess1MeterPerimeter: columnsLess1MeterPerimeter, elevationTowerArea: elevationTowerArea, elevationTowerHeightWithoutSlab: elevationTowerHeightWithoutSlab, floors: floors, foundationArea: foundationArea, foundationPerimeter: foundationPerimeter, foundationHeight: foundationHeight);
-    final generalExpensesCostBuilder = GeneralExpensesCostBuilder(projectConstants: projectConstants, landArea: landArea, landPerimeter: landPerimeter, excavationArea: excavationArea, excavationPerimeter: excavationPerimeter, coreCurtainLength: coreCurtainLength, curtainsExceeding1MeterLength: curtainsExceeding1MeterLength, basementCurtainLength: basementCurtainLength, columnsLess1MeterPerimeter: columnsLess1MeterPerimeter, elevationTowerArea: elevationTowerArea, elevationTowerHeightWithoutSlab: elevationTowerHeightWithoutSlab, floors: floors, foundationArea: foundationArea, foundationPerimeter: foundationPerimeter, foundationHeight: foundationHeight);
+    final roughConstructionQuantityCalculator = RoughConstructionJobsQuantityCalculator(projectConstants: projectConstants, landArea: landArea, landPerimeter: landPerimeter, excavationArea: excavationArea, excavationPerimeter: excavationPerimeter, coreCurtainLength: coreCurtainLength, curtainsExceeding1MeterLength: curtainsExceeding1MeterLength, basementCurtainLength: basementCurtainLength, columnsLess1MeterPerimeter: columnsLess1MeterPerimeter, elevationTowerArea: elevationTowerArea, elevationTowerHeightWithoutSlab: elevationTowerHeightWithoutSlab, floors: floors, foundationArea: foundationArea, foundationPerimeter: foundationPerimeter, foundationHeight: foundationHeight);
+    final roofQuantityCalculator = RoofJobsQuantityCalculator(projectConstants: projectConstants, landArea: landArea, landPerimeter: landPerimeter, excavationArea: excavationArea, excavationPerimeter: excavationPerimeter, coreCurtainLength: coreCurtainLength, curtainsExceeding1MeterLength: curtainsExceeding1MeterLength, basementCurtainLength: basementCurtainLength, columnsLess1MeterPerimeter: columnsLess1MeterPerimeter, elevationTowerArea: elevationTowerArea, elevationTowerHeightWithoutSlab: elevationTowerHeightWithoutSlab, floors: floors, foundationArea: foundationArea, foundationPerimeter: foundationPerimeter, foundationHeight: foundationHeight);
+    final interiorQuantityCalculator = InteriorJobsQuantityCalculator(projectConstants: projectConstants, landArea: landArea, landPerimeter: landPerimeter, excavationArea: excavationArea, excavationPerimeter: excavationPerimeter, coreCurtainLength: coreCurtainLength, curtainsExceeding1MeterLength: curtainsExceeding1MeterLength, basementCurtainLength: basementCurtainLength, columnsLess1MeterPerimeter: columnsLess1MeterPerimeter, elevationTowerArea: elevationTowerArea, elevationTowerHeightWithoutSlab: elevationTowerHeightWithoutSlab, floors: floors, foundationArea: foundationArea, foundationPerimeter: foundationPerimeter, foundationHeight: foundationHeight);
+    final landscapeQuantityCalculator = LandscapeJobsQuantityCalculator(projectConstants: projectConstants, landArea: landArea, landPerimeter: landPerimeter, excavationArea: excavationArea, excavationPerimeter: excavationPerimeter, coreCurtainLength: coreCurtainLength, curtainsExceeding1MeterLength: curtainsExceeding1MeterLength, basementCurtainLength: basementCurtainLength, columnsLess1MeterPerimeter: columnsLess1MeterPerimeter, elevationTowerArea: elevationTowerArea, elevationTowerHeightWithoutSlab: elevationTowerHeightWithoutSlab, floors: floors, foundationArea: foundationArea, foundationPerimeter: foundationPerimeter, foundationHeight: foundationHeight);
+    final generalExpensesQuantityCalculator = GeneralExpensesJobsQuantityCalculator(projectConstants: projectConstants, landArea: landArea, landPerimeter: landPerimeter, excavationArea: excavationArea, excavationPerimeter: excavationPerimeter, coreCurtainLength: coreCurtainLength, curtainsExceeding1MeterLength: curtainsExceeding1MeterLength, basementCurtainLength: basementCurtainLength, columnsLess1MeterPerimeter: columnsLess1MeterPerimeter, elevationTowerArea: elevationTowerArea, elevationTowerHeightWithoutSlab: elevationTowerHeightWithoutSlab, floors: floors, foundationArea: foundationArea, foundationPerimeter: foundationPerimeter, foundationHeight: foundationHeight);
     jobs = [
-      ...roughConstructionCostBuilder.jobs,
-      ...roofCostBuilder.jobs,
-      ...interiorCostBuilder.jobs,
-      ...landscapeCostBuilder.jobs,
-      ...generalExpensesCostBuilder.jobs
+      ...roughConstructionQuantityCalculator.jobs,
+      ...roofQuantityCalculator.jobs,
+      ...interiorQuantityCalculator.jobs,
+      ...landscapeQuantityCalculator.jobs,
+      ...generalExpensesQuantityCalculator.jobs
     ];
   }
 }
 
-class RoughConstructionCostBuilder extends CostBuilder {
-  RoughConstructionCostBuilder(
+class RoughConstructionJobsQuantityCalculator extends JobQuantityCalculator {
+  RoughConstructionJobsQuantityCalculator(
     {
       super.name = "Kaba İnşaat Maliyeti",
       required super.projectConstants,
@@ -236,8 +170,8 @@ class RoughConstructionCostBuilder extends CostBuilder {
   }
 }
 
-class RoofCostBuilder extends CostBuilder {
-  RoofCostBuilder({
+class RoofJobsQuantityCalculator extends JobQuantityCalculator {
+  RoofJobsQuantityCalculator({
     super.name = "Çatı Maliyeti",
     required super.projectConstants,
     required super.landArea,
@@ -261,8 +195,8 @@ class RoofCostBuilder extends CostBuilder {
   }
 }
 
-class FacadeCostBuilder extends CostBuilder {
-  FacadeCostBuilder({
+class FacadeJobsQuantityCalculator extends JobQuantityCalculator {
+  FacadeJobsQuantityCalculator({
     super.name = "Cephe Maliyeti",
     required super.projectConstants,
     required super.landArea,
@@ -289,8 +223,8 @@ class FacadeCostBuilder extends CostBuilder {
   }
 }
 
-class InteriorCostBuilder extends CostBuilder {
-  InteriorCostBuilder({
+class InteriorJobsQuantityCalculator extends JobQuantityCalculator {
+  InteriorJobsQuantityCalculator({
     super.name = "İç İmalat Maliyeti",
     required super.projectConstants,
     required super.landArea,
@@ -349,8 +283,8 @@ class InteriorCostBuilder extends CostBuilder {
   }
 }
 
-class LandscapeCostBuilder extends CostBuilder {
-  LandscapeCostBuilder({
+class LandscapeJobsQuantityCalculator extends JobQuantityCalculator {
+  LandscapeJobsQuantityCalculator({
     super.name = "Peysaj Maliyeti",
     required super.projectConstants,
     required super.landArea,
@@ -376,8 +310,8 @@ class LandscapeCostBuilder extends CostBuilder {
     ];
   }
 }
-class GeneralExpensesCostBuilder extends CostBuilder {
-  GeneralExpensesCostBuilder({
+class GeneralExpensesJobsQuantityCalculator extends JobQuantityCalculator {
+  GeneralExpensesJobsQuantityCalculator({
     super.name = "Genel Giderler",
     required super.projectConstants,
     required super.landArea,

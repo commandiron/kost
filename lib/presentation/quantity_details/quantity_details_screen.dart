@@ -38,8 +38,8 @@ class QuantityDetailsScreen extends StatelessWidget {
                     FloorViewer(
                       width: MediaQuery.of(context).size.width / 1.2,
                       height: MediaQuery.of(context).size.height / 1.4,
-                      foundationArea: state.costBuilder.foundationArea,
-                      floors: state.costBuilder.floors,
+                      foundationArea: state.jobQuantityCalculator.foundationArea,
+                      floors: state.jobQuantityCalculator.floors,
                       onFloorAreaChanged: (String floorAreaText, int index) {
                         context
                             .read<CostTableBloc>()
@@ -54,8 +54,8 @@ class QuantityDetailsScreen extends StatelessWidget {
                     AppSpace.vL!,
                     Column(
                       children: [
-                        Text(state.costBuilder.landArea.toString()),
-                        Text(state.costBuilder.landPerimeter.toString()),
+                        Text(state.jobQuantityCalculator.landArea.toString()),
+                        Text(state.jobQuantityCalculator.landPerimeter.toString()),
                         ElevatedButton(
                             onPressed:() => context.read<CostTableBloc>().add(CalculateCost(context)),
                             child: const Text("Maliyet Hesapla"))

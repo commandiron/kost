@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 
-import '../model/cost/job.dart';
+import '../model/job/job.dart';
 
 abstract class CostTableEvent extends Equatable {
   const CostTableEvent();
@@ -16,24 +16,11 @@ class Init extends CostTableEvent {
   List<Object?> get props => [];
 }
 
-class CreateCosts extends CostTableEvent {
-  const CreateCosts();
+class CreateCostTable extends CostTableEvent {
+  const CreateCostTable();
   @override
   List<Object?> get props => [];
 }
-
-class CreateFormattedSubTotalsTRY extends CostTableEvent {
-  const CreateFormattedSubTotalsTRY();
-  @override
-  List<Object?> get props => [];
-}
-
-class CreateFormattedGrandTotalTRY extends CostTableEvent {
-  const CreateFormattedGrandTotalTRY();
-  @override
-  List<Object?> get props => [];
-}
-
 
 class ExpandCollapseMainCategory extends CostTableEvent {
   final MainCategory mainCategory;

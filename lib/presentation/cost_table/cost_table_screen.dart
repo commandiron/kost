@@ -31,7 +31,7 @@ class CostTableScreen extends StatelessWidget {
                   child: Column(
                     children: [
                       Text(
-                        state.costBuilder.name,
+                        state.jobQuantityCalculator.name,
                         style: const TextStyle(fontSize: 26),
                       ),
                       ElevatedButton(
@@ -39,9 +39,9 @@ class CostTableScreen extends StatelessWidget {
                         child: const Text("Collapse All")
                       ),
                       CostsListView(
-                          costs: state.costs,
-                          formattedSubTotalsTRY: state.formattedSubTotalsTRY,
-                          unitPricePool: state.unitPricePool),
+                        costs: state.costs,
+                        formattedSubTotalsTRY: state.formattedSubTotalsTRY,
+                      ),
                     ],
                   ),
                 )

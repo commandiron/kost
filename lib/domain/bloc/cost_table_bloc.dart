@@ -6,21 +6,27 @@ import 'package:kost/domain/calculator/detailed/room.dart';
 import 'package:kost/domain/calculator/detailed/window.dart';
 import 'package:kost/domain/helper/formattedNumber.dart';
 import 'package:kost/domain/model/unit_price/currency.dart';
-import 'package:kost/domain/model/cost/builder/cost_builder.dart';
+import 'package:kost/domain/model/job/job_quantity_calculator.dart';
 import 'package:kost/domain/model/cost/cost.dart';
+import 'package:kost/domain/model/unit_price/unit.dart';
 import 'package:kost/presentation/cost_table/cost_table_screen.dart';
 
 import '../calculator/detailed/floor.dart';
-import '../model/cost/job.dart';
+import '../model/job/job.dart';
 import '../model/unit_price/unit_price.dart';
 import 'cost_table_event.dart';
 import 'cost_table_state.dart';
 
 class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
+
+  void init() {
+    add(const Init());
+  }
+
   CostTableBloc()
     : super(
       CostTableState(
-        costBuilder: ApartmentCostBuilder(
+        jobQuantityCalculator: ApartmentJobsQuantityCalculator(
           projectConstants: ProjectConstants(),
           landArea: 806.24,
           landPerimeter: 117.93,
@@ -165,26 +171,29 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
       emit(state.copyWith(unitPricePool: unitPricePool,));
       _refresh();
     });
-    on<CreateCosts>((event, emit) {
-      final costs = state.costBuilder.create(unitPricePool: state.unitPricePool, currencyRates: state.currencyRates, previousCosts: state.costs);
-      emit(state.copyWith(costs: costs,));
-    });
-    on<CreateFormattedSubTotalsTRY>((event, emit) {
+    on<CreateCostTable>((event, emit) {
+      final costs = state.jobQuantityCalculator.jobs.map((job) => _jobToCost(cost: job, unitPricePool: state.unitPricePool, currencyRates: state.currencyRates)).toList();
+
       final Map<MainCategory, String> formattedSubTotalsTRY = {};
-      final mainCategorySet = state.costs.map((cost) => cost.mainCategory).toSet();
+      final mainCategorySet = costs.map((cost) => cost.mainCategory).toSet();
       for (var mainCategory in mainCategorySet) {
-        final subTotal = _calculateSubTotal(state.costs, mainCategory);
+        final subTotal = _calculateSubTotal(costs, mainCategory);
         formattedSubTotalsTRY.putIfAbsent(mainCategory, () => getFormattedNumber(number: subTotal, unit: "TL"));
       }
-      emit(state.copyWith(formattedSubTotalsTRY: formattedSubTotalsTRY,));
-    });
-    on<CreateFormattedGrandTotalTRY>((event, emit) {
-      final grandTotal = _calculateGrandTotal(state.costs);
+
+      final grandTotal = _calculateGrandTotal(costs);
       final formattedGrandTotalTRY = getFormattedNumber(number: grandTotal, unit: "TL");
-      emit(state.copyWith(formattedGrandTotalTRY: formattedGrandTotalTRY,));
+
+      emit(
+        state.copyWith(
+          costs: costs,
+          formattedSubTotalsTRY: formattedSubTotalsTRY,
+          formattedGrandTotalTRY: formattedGrandTotalTRY,
+        )
+      );
     });
     on<ExpandCollapseMainCategory>((event, emit) {
-      state.costBuilder.jobs.where((job) => job.mainCategory == event.mainCategory).forEach(
+      state.jobQuantityCalculator.jobs.where((job) => job.mainCategory == event.mainCategory).forEach(
         (job) {
           job.visible = !job.visible;
         }
@@ -192,28 +201,28 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
       _refresh();
     });
     on<ExpandCollapseAllMainCategory>((event, emit) {
-      if(state.costBuilder.jobs.any((job) => job.visible)) {
-        for(var job in state.costBuilder.jobs) {
+      if(state.jobQuantityCalculator.jobs.any((job) => job.visible)) {
+        for(var job in state.jobQuantityCalculator.jobs) {
           job.visible = false;
         }
       } else {
-        for(var job in state.costBuilder.jobs) {
+        for(var job in state.jobQuantityCalculator.jobs) {
           job.visible = true;
         }
       }
       _refresh();
     });
     on<ReplaceUnitPrice>((event, emit) {
-      state.costBuilder.jobs.firstWhere((element) => element.id == event.jobId).selectedUnitPriceId = event.selectedUnitPriceId;
+      state.jobQuantityCalculator.jobs.firstWhere((element) => element.id == event.jobId).selectedUnitPriceId = event.selectedUnitPriceId;
       _refresh();
     });
     on<DeleteJob>((event, emit) {
-      state.costBuilder.jobs.removeWhere((job) => job.id == event.jobId);
+      state.jobQuantityCalculator.jobs.removeWhere((job) => job.id == event.jobId);
       _refresh();
     });
     on<ChangeQuantityManually>((event, emit) {
       final quantity = parseFormattedNumber(value: event.quantityText);
-      state.costBuilder.jobs.firstWhere((e) => e.id == event.jobId).quantity = quantity;
+      state.jobQuantityCalculator.jobs.firstWhere((e) => e.id == event.jobId).quantity = quantity;
       _refresh();
     });
     //Quantity Details Screen
@@ -229,25 +238,62 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
 
   final UnitPriceRepository _unitPriceRepository = UnitPriceRepository();
 
-  void init() {
-    add(const Init());
-  }
-
-  void _refresh() {
-    add(const CreateCosts());
-    add(const CreateFormattedSubTotalsTRY());
-    add(const CreateFormattedGrandTotalTRY());
-  }
-
   List<UnitPrice> _fetchUnitPricePool() {
     return _unitPriceRepository.getAllUnitPrices();
   }
 
-  double _calculateGrandTotal(List<Cost> costs) {
-    return costs
-        .map((cost) => cost.totalPriceTRY)
-        .toList()
-        .fold(0, (p, c) => p + c);
+  void _refresh() {
+    add(const CreateCostTable());
+  }
+
+  Cost _jobToCost({required Job cost, required List<UnitPrice> unitPricePool, required CurrencyRates currencyRates}) {
+
+    final UnitPrice? unitPrice;
+    if(cost.selectedUnitPriceId != null) {
+      unitPrice = unitPricePool.firstWhere((unitPrice) => unitPrice.id == cost.selectedUnitPriceId);
+    } else {
+      final unitPrices = unitPricePool.where((unitPrice) => unitPrice.category == cost.selectedUnitPriceCategory);
+      unitPrice = unitPrices.reduce((current, next) => current.dateTime.isAfter(next.dateTime) ? current : next);
+    }
+
+    final unitPriceNameText = unitPrice.nameTr;
+
+    final formattedFixedAmount = getFormattedNumber(
+        number: unitPrice.fixedAmount,
+        unit: unitPrice.currency.symbol);
+    final formattedAmount = getFormattedNumber(
+        number: unitPrice.amount,
+        unit: "${unitPrice.currency.symbol}/${unitPrice.unit.symbol}");
+
+    final unitAmountText = unitPrice.fixedAmount != 0
+        ? "$formattedFixedAmount + $formattedAmount"
+        : formattedAmount;
+
+    final quantityText = getFormattedNumber(number: cost.quantity);
+
+    final quantityUnitText = unitPrice.unit.symbol;
+
+    final quantityExplanationText = cost.quantityExplanation;
+
+    final fixedPriceTRY = cost.quantity != 0 ? unitPrice.fixedAmount * unitPrice.currency.toLiraRate(currencyRates) : 0;
+    final priceTRY = unitPrice.amount * cost.quantity * unitPrice.currency.toLiraRate(currencyRates);
+    final totalPriceTRY = fixedPriceTRY + priceTRY;
+    final formattedTotalPriceTRY = getFormattedNumber(number: totalPriceTRY, unit: "TL");
+
+    return Cost(
+      mainCategory: cost.mainCategory,
+      jobId: cost.id,
+      jobName: cost.nameTr,
+      enabledUnitPrices: unitPricePool.where((unitPrice) => cost.enabledUnitPriceCategories.contains(unitPrice.category)).toList(),
+      unitPriceNameText: unitPriceNameText,
+      unitPriceAmountText: unitAmountText,
+      quantityText: quantityText,
+      quantityUnitText: quantityUnitText,
+      quantityExplanationText: quantityExplanationText,
+      formattedTotalPriceTRY: formattedTotalPriceTRY,
+      totalPriceTRY: totalPriceTRY,
+      visible: cost.visible,
+    );
   }
 
   double _calculateSubTotal(List<Cost> costs, MainCategory mainCategory) {
@@ -258,5 +304,12 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
         .map((e) => e.totalPriceTRY)
         .toList()
         .fold(0.0, (p, c) => p + c);
+  }
+
+  double _calculateGrandTotal(List<Cost> costs) {
+    return costs
+        .map((cost) => cost.totalPriceTRY)
+        .toList()
+        .fold(0, (p, c) => p + c);
   }
 }

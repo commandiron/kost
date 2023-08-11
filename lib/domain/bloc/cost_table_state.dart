@@ -1,12 +1,12 @@
 import 'package:equatable/equatable.dart';
 import 'package:kost/domain/model/unit_price/currency.dart';
-import 'package:kost/domain/model/cost/builder/cost_builder.dart';
-import '../model/cost/job.dart';
+import 'package:kost/domain/model/job/job_quantity_calculator.dart';
+import '../model/job/job.dart';
 import '../model/cost/cost.dart';
 import '../model/unit_price/unit_price.dart';
 
 class CostTableState extends Equatable {
-  final CostBuilder costBuilder;
+  final JobQuantityCalculator jobQuantityCalculator;
   final List<UnitPrice> unitPricePool;
   final CurrencyRates currencyRates;
   final List<Cost> costs;
@@ -14,7 +14,7 @@ class CostTableState extends Equatable {
   final String formattedGrandTotalTRY;
 
   const CostTableState({
-    required this.costBuilder,
+    required this.jobQuantityCalculator,
     required this.unitPricePool,
     required this.currencyRates,
     required this.costs,
@@ -23,7 +23,7 @@ class CostTableState extends Equatable {
   });
 
   CostTableState copyWith({
-    CostBuilder? costBuilder,
+    JobQuantityCalculator? quantityCalculator,
     List<UnitPrice>? unitPricePool,
     CurrencyRates? currencyRates,
     List<Cost>? costs,
@@ -31,7 +31,7 @@ class CostTableState extends Equatable {
     String? formattedGrandTotalTRY,
   }) {
     return CostTableState(
-      costBuilder: costBuilder ?? this.costBuilder,
+      jobQuantityCalculator: quantityCalculator ?? this.jobQuantityCalculator,
       unitPricePool: unitPricePool ?? this.unitPricePool,
       currencyRates: currencyRates ?? this.currencyRates,
       costs: costs ?? this.costs,
@@ -42,7 +42,7 @@ class CostTableState extends Equatable {
 
   @override
   List<Object?> get props => [
-    costBuilder,
+    jobQuantityCalculator,
     unitPricePool,
     currencyRates,
     costs.hashCode,

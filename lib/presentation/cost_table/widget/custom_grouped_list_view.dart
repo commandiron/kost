@@ -7,9 +7,8 @@ import 'package:kost/domain/bloc/cost_table_bloc.dart';
 import 'package:kost/domain/bloc/cost_table_event.dart';
 
 import '../../../config/app_padding.dart';
-import '../../../domain/model/cost/job.dart';
+import '../../../domain/model/job/job.dart';
 import '../../../domain/model/cost/cost.dart';
-import '../../../domain/model/unit_price/unit_price.dart';
 import 'cost_item.dart';
 import 'main_category_title.dart';
 
@@ -17,13 +16,11 @@ class CostsListView extends StatelessWidget {
   const CostsListView(
       {Key? key,
       required this.costs,
-      required this.formattedSubTotalsTRY,
-      required this.unitPricePool})
+      required this.formattedSubTotalsTRY})
       : super(key: key);
 
   final List<Cost> costs;
   final Map<MainCategory, String> formattedSubTotalsTRY;
-  final List<UnitPrice> unitPricePool;
 
   @override
   Widget build(BuildContext context) {
