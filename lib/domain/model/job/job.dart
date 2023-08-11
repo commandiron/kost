@@ -62,6 +62,7 @@ class Shoring extends Job {
       super.selectedUnitPriceCategory = UnitPriceCategory.shutCrete,
       required super.quantity,
       required super.quantityExplanation,
+      super.disable,
     }
   );
 }
@@ -75,6 +76,7 @@ class Excavation extends Job {
       super.selectedUnitPriceCategory = UnitPriceCategory.excavation,
       required super.quantity,
       required super.quantityExplanation,
+      super.disable,
     }
   );
 }
@@ -88,6 +90,7 @@ class Breaker extends Job {
       super.selectedUnitPriceCategory = UnitPriceCategory.breaker,
       required super.quantity,
       required super.quantityExplanation,
+      super.disable,
     }
   );
 }
@@ -101,6 +104,7 @@ class FoundationStabilization extends Job {
       super.selectedUnitPriceCategory = UnitPriceCategory.foundationStabilizationGravel,
       required super.quantity,
       required super.quantityExplanation,
+      super.disable,
     }
   );
 }
@@ -114,6 +118,7 @@ class SubFoundationConcreteMaterial extends Job {
       super.selectedUnitPriceCategory = UnitPriceCategory.c16Concrete,
       required super.quantity,
       required super.quantityExplanation,
+      super.disable,
     }
   );
 }
@@ -127,6 +132,7 @@ class ReinforcedConcreteWorkmanshipWithFormWorkMaterial extends Job {
       super.selectedUnitPriceCategory = UnitPriceCategory.reinforcedConcreteWorkmanshipWithPlywood,
       required super.quantity,
       required super.quantityExplanation,
+      super.disable,
     }
   );
 }
@@ -140,6 +146,7 @@ class ConcreteMaterial extends Job {
       super.selectedUnitPriceCategory = UnitPriceCategory.c35Concrete,
       required super.quantity,
       required super.quantityExplanation,
+      super.disable,
     }
   );
 }
@@ -153,6 +160,7 @@ class RebarMaterial extends Job {
       super.selectedUnitPriceCategory = UnitPriceCategory.s420Steel,
       required super.quantity,
       required super.quantityExplanation,
+      super.disable,
     }
   );
 }
@@ -166,6 +174,7 @@ class HollowFloorFillingMaterial extends Job {
       super.selectedUnitPriceCategory = UnitPriceCategory.eps14Dns,
       required super.quantity,
       required super.quantityExplanation,
+      super.disable,
     }
   );
 }
@@ -179,6 +188,7 @@ class FoundationWaterproofing extends Job {
       super.selectedUnitPriceCategory = UnitPriceCategory.proofBitumenMembrane,
       required super.quantity,
       required super.quantityExplanation,
+      super.disable,
     }
   );
 }
@@ -192,6 +202,7 @@ class CurtainWaterproofing extends Job {
       super.selectedUnitPriceCategory = UnitPriceCategory.cementSliding,
       required super.quantity,
       required super.quantityExplanation,
+      super.disable,
     }
   );
 }
@@ -205,6 +216,7 @@ class CurtainProtectionBeforeFilling extends Job {
       super.selectedUnitPriceCategory =UnitPriceCategory.drainPlate,
       required super.quantity,
       required super.quantityExplanation,
+      super.disable,
     }
   );
 }
@@ -218,6 +230,7 @@ class WallMaterial extends Job {
       super.selectedUnitPriceCategory = UnitPriceCategory.aeratedConcreteYtong,
       required super.quantity,
       required super.quantityExplanation,
+      super.disable,
     }
   );
 }
@@ -231,6 +244,7 @@ class WallWorkmanShip extends Job {
       super.selectedUnitPriceCategory = UnitPriceCategory.aeratedConcreteLabor,
       required super.quantity,
       required super.quantityExplanation,
+      super.disable,
     }
   );
 }
@@ -244,6 +258,7 @@ class Roofing extends Job {
       super.selectedUnitPriceCategory = UnitPriceCategory.steelConstructionBraasRoof,
       required super.quantity,
       required super.quantityExplanation,
+      super.disable,
     }
   );
 }
@@ -257,6 +272,7 @@ class FacadeScaffolding extends Job {
       super.selectedUnitPriceCategory = UnitPriceCategory.steelScaffolding,
       required super.quantity,
       required super.quantityExplanation,
+      super.disable,
     }
   );
 }
@@ -270,6 +286,7 @@ class Windows extends Job {
       super.selectedUnitPriceCategory = UnitPriceCategory.windowJoineryRehau,
       required super.quantity,
       required super.quantityExplanation,
+      super.disable,
     }
   );
 }
@@ -283,6 +300,7 @@ class FacadeRails extends Job {
       super.selectedUnitPriceCategory = UnitPriceCategory.wroughtIronRailing,
       required super.quantity,
       required super.quantityExplanation,
+      super.disable,
     }
   );
 }
@@ -296,6 +314,7 @@ class FacadeSystem extends Job {
       super.selectedUnitPriceCategory = UnitPriceCategory.sinterFlexFacade,
       required super.quantity,
       required super.quantityExplanation,
+      super.disable,
     }
   );
 }
@@ -309,6 +328,7 @@ class InteriorPlastering extends Job {
       super.selectedUnitPriceCategory = UnitPriceCategory.plaster,
       required super.quantity,
       required super.quantityExplanation,
+      super.disable,
     }
   );
 }
@@ -322,6 +342,7 @@ class InteriorPainting extends Job {
       super.selectedUnitPriceCategory = UnitPriceCategory.painting,
       required super.quantity,
       required super.quantityExplanation,
+      super.disable,
     }
   );
 }
@@ -335,6 +356,7 @@ class InteriorWaterproofing extends Job {
       super.selectedUnitPriceCategory = UnitPriceCategory.cementBasedFlexInsulation,
       required super.quantity,
       required super.quantityExplanation,
+      super.disable,
     }
   );
 }
@@ -348,6 +370,7 @@ class CeilingCovering extends Job {
       super.selectedUnitPriceCategory = UnitPriceCategory.drywall,
       required super.quantity,
       required super.quantityExplanation,
+      super.disable,
     }
   );
 }
@@ -361,6 +384,7 @@ class CovingPlaster extends Job {
       super.selectedUnitPriceCategory = UnitPriceCategory.covingPlaster,
       required super.quantity,
       required super.quantityExplanation,
+      super.disable,
     }
   );
 }
@@ -374,6 +398,7 @@ class Screeding extends Job {
       super.selectedUnitPriceCategory = UnitPriceCategory.screed300Doses,
       required super.quantity,
       required super.quantityExplanation,
+      super.disable,
     }
   );
 }
@@ -387,6 +412,7 @@ class Marble extends Job {
       super.selectedUnitPriceCategory = UnitPriceCategory.marbleFloorBilecik,
       required super.quantity,
       required super.quantityExplanation,
+      super.disable,
     }
   );
 }
@@ -400,6 +426,7 @@ class MarbleStep extends Job {
       super.selectedUnitPriceCategory = UnitPriceCategory.marbleStepBilecik,
       required super.quantity,
       required super.quantityExplanation,
+      super.disable,
     }
   );
 }
@@ -413,6 +440,7 @@ class MarbleWindowsill extends Job {
       super.selectedUnitPriceCategory = UnitPriceCategory.marbleWindowsillBilecik,
       required super.quantity,
       required super.quantityExplanation,
+      super.disable,
     }
   );
 }
@@ -426,6 +454,7 @@ class StairRailings extends Job {
       super.selectedUnitPriceCategory = UnitPriceCategory.aluminumRailing,
       required super.quantity,
       required super.quantityExplanation,
+      super.disable,
     }
   );
 }
@@ -439,6 +468,7 @@ class CeramicTile extends Job {
       super.selectedUnitPriceCategory = UnitPriceCategory.ceramicTileVitraVersus,
       required super.quantity,
       required super.quantityExplanation,
+      super.disable,
     }
   );
 }
@@ -452,6 +482,7 @@ class ParquetTile extends Job {
       super.selectedUnitPriceCategory = UnitPriceCategory.laminatedSerifoglu,
       required super.quantity,
       required super.quantityExplanation,
+      super.disable,
     }
   );
 }
@@ -465,6 +496,7 @@ class SteelDoor extends Job {
       super.selectedUnitPriceCategory = UnitPriceCategory.steelDoorKale,
       required super.quantity,
       required super.quantityExplanation,
+      super.disable,
     }
   );
 }
@@ -478,6 +510,7 @@ class EntranceDoor extends Job {
       super.selectedUnitPriceCategory = UnitPriceCategory.entranceDoor,
       required super.quantity,
       required super.quantityExplanation,
+      super.disable,
     }
   );
 }
@@ -491,6 +524,7 @@ class FireDoor extends Job {
       super.selectedUnitPriceCategory = UnitPriceCategory.ironFireDoor,
       required super.quantity,
       required super.quantityExplanation,
+      super.disable,
     }
   );
 }
@@ -504,6 +538,7 @@ class WoodenDoor extends Job {
       super.selectedUnitPriceCategory = UnitPriceCategory.lacqueredDoorArtella,
       required super.quantity,
       required super.quantityExplanation,
+      super.disable,
     }
   );
 }
@@ -517,6 +552,7 @@ class KitchenCupboard extends Job {
       super.selectedUnitPriceCategory = UnitPriceCategory.shinyLacqueredKitchenCupboardAster,
       required super.quantity,
       required super.quantityExplanation,
+      super.disable,
     }
   );
 }
@@ -530,6 +566,7 @@ class KitchenCounter extends Job {
       super.selectedUnitPriceCategory = UnitPriceCategory.quartzCountertopCimstone,
       required super.quantity,
       required super.quantityExplanation,
+      super.disable,
     }
   );
 }
@@ -543,6 +580,7 @@ class CoatCabinet extends Job {
       super.selectedUnitPriceCategory = UnitPriceCategory.lacqueredCabinet,
       required super.quantity,
       required super.quantityExplanation,
+      super.disable,
     }
   );
 }
@@ -556,6 +594,7 @@ class BathroomCabinet extends Job {
       super.selectedUnitPriceCategory = UnitPriceCategory.lacqueredCabinet,
       required super.quantity,
       required super.quantityExplanation,
+      super.disable,
     }
   );
 }
@@ -569,6 +608,7 @@ class FloorPlinth extends Job {
       super.selectedUnitPriceCategory = UnitPriceCategory.lacqueredFloorPlinth,
       required super.quantity,
       required super.quantityExplanation,
+      super.disable,
     }
   );
 }
@@ -582,6 +622,7 @@ class MechanicalInfrastructure extends Job {
       super.selectedUnitPriceCategory = UnitPriceCategory.mechanicalInfrastructure,
       required super.quantity,
       required super.quantityExplanation,
+      super.disable,
     }
   );
 }
@@ -595,6 +636,7 @@ class AirConditioner extends Job {
       super.selectedUnitPriceCategory = UnitPriceCategory.airConditionerArcelik,
       required super.quantity,
       required super.quantityExplanation,
+      super.disable,
     }
   );
 }
@@ -608,6 +650,7 @@ class Ventilation extends Job {
       super.selectedUnitPriceCategory = UnitPriceCategory.ventilation,
       required super.quantity,
       required super.quantityExplanation,
+      super.disable,
     }
   );
 }
@@ -621,6 +664,7 @@ class WaterTank extends Job {
       super.selectedUnitPriceCategory = UnitPriceCategory.galvanize25TonWaterTankEsinoks,
       required super.quantity,
       required super.quantityExplanation,
+      super.disable,
     }
   );
 }
@@ -634,6 +678,7 @@ class Elevation extends Job {
       super.selectedUnitPriceCategory = UnitPriceCategory.elevation10PersonKone,
       required super.quantity,
       required super.quantityExplanation,
+      super.disable,
     }
   );
 }
@@ -647,6 +692,7 @@ class Sink extends Job {
       super.selectedUnitPriceCategory = UnitPriceCategory.sinkVitra,
       required super.quantity,
       required super.quantityExplanation,
+      super.disable,
     }
   );
 }
@@ -660,6 +706,7 @@ class SinkBattery extends Job {
       super.selectedUnitPriceCategory = UnitPriceCategory.sinkBatteryVitra,
       required super.quantity,
       required super.quantityExplanation,
+      super.disable,
     }
   );
 }
@@ -673,6 +720,7 @@ class ConcealedCistern extends Job {
       super.selectedUnitPriceCategory = UnitPriceCategory.concealedCisternVitra,
       required super.quantity,
       required super.quantityExplanation,
+      super.disable,
     }
   );
 }
@@ -686,6 +734,7 @@ class Shower extends Job {
       super.selectedUnitPriceCategory = UnitPriceCategory.showerHuppe100x100,
       required super.quantity,
       required super.quantityExplanation,
+      super.disable,
     }
   );
 }
@@ -699,6 +748,7 @@ class ShowerBattery extends Job {
       super.selectedUnitPriceCategory = UnitPriceCategory.showerBatteryVitra,
       required super.quantity,
       required super.quantityExplanation,
+      super.disable,
     }
   );
 }
@@ -712,6 +762,7 @@ class KitchenFaucetAndSink extends Job {
       super.selectedUnitPriceCategory = UnitPriceCategory.kitchenFaucetAndSinkFranke,
       required super.quantity,
       required super.quantityExplanation,
+      super.disable,
     }
   );
 }
@@ -725,6 +776,7 @@ class ElectricalInfrastructure extends Job {
       super.selectedUnitPriceCategory = UnitPriceCategory.electricalInfrastructure,
       required super.quantity,
       required super.quantityExplanation,
+      super.disable,
     }
   );
 }
@@ -738,6 +790,7 @@ class Generator extends Job {
       super.selectedUnitPriceCategory = UnitPriceCategory.generatorAksa160,
       required super.quantity,
       required super.quantityExplanation,
+      super.disable,
     }
   );
 }
@@ -751,6 +804,7 @@ class HouseholdAppliances extends Job {
       super.selectedUnitPriceCategory = UnitPriceCategory.paddleBoxBuiltInOvenCookTopDishwasherFranke,
       required super.quantity,
       required super.quantityExplanation,
+      super.disable,
     }
   );
 }
@@ -764,6 +818,7 @@ class LandScapeGarden extends Job {
       super.selectedUnitPriceCategory = UnitPriceCategory.averageGarden,
       required super.quantity,
       required super.quantityExplanation,
+      super.disable,
     }
   );
 }
@@ -777,6 +832,7 @@ class OutdoorParkingTile extends Job {
       super.selectedUnitPriceCategory = UnitPriceCategory.interlockingPavingStone,
       required super.quantity,
       required super.quantityExplanation,
+      super.disable,
     }
   );
 }
@@ -790,6 +846,7 @@ class CarLift extends Job {
       super.selectedUnitPriceCategory = UnitPriceCategory.carLift,
       required super.quantity,
       required super.quantityExplanation,
+      super.disable,
     }
   );
 }
@@ -803,6 +860,7 @@ class AutomaticBarrier extends Job {
       super.selectedUnitPriceCategory = UnitPriceCategory.automaticBarrier,
       required super.quantity,
       required super.quantityExplanation,
+      super.disable,
     }
   );
 }
@@ -816,6 +874,7 @@ class EnclosingTheLand extends Job {
       super.selectedUnitPriceCategory = UnitPriceCategory.trapezoidalSheetCurtain,
       required super.quantity,
       required super.quantityExplanation,
+      super.disable,
     }
   );
 }
@@ -829,6 +888,7 @@ class MobilizationDemobilization extends Job {
       super.selectedUnitPriceCategory = UnitPriceCategory.mobilizationDemobilization,
       required super.quantity,
       required super.quantityExplanation,
+      super.disable,
     }
   );
 }
@@ -842,6 +902,7 @@ class Crane extends Job {
       super.selectedUnitPriceCategory = UnitPriceCategory.crane15Ton,
       required super.quantity,
       required super.quantityExplanation,
+      super.disable,
     }
   );
 }
@@ -855,6 +916,7 @@ class SiteSafety extends Job {
       super.selectedUnitPriceCategory = UnitPriceCategory.siteSafety,
       required super.quantity,
       required super.quantityExplanation,
+      super.disable,
     }
   );
 }
@@ -868,6 +930,7 @@ class SiteExpenses extends Job {
       super.selectedUnitPriceCategory = UnitPriceCategory.siteExpenses,
       required super.quantity,
       required super.quantityExplanation,
+      super.disable,
     }
   );
 }
@@ -881,6 +944,7 @@ class Sergeant extends Job {
       super.selectedUnitPriceCategory = UnitPriceCategory.sergeantGrossWage,
       required super.quantity,
       required super.quantityExplanation,
+      super.disable,
     }
   );
 }
@@ -894,6 +958,7 @@ class SiteChief extends Job {
       super.selectedUnitPriceCategory = UnitPriceCategory.siteChiefGrossWage,
       required super.quantity,
       required super.quantityExplanation,
+      super.disable,
     }
   );
 }
@@ -907,6 +972,7 @@ class ProjectsFeesPayments extends Job {
       super.selectedUnitPriceCategory = UnitPriceCategory.projectsFeesPayments,
       required super.quantity,
       required super.quantityExplanation,
+      super.disable,
     }
   );
 }

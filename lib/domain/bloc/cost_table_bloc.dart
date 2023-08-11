@@ -172,7 +172,13 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
       _refresh();
     });
     on<CreateCostTable>((event, emit) {
-      final costs = state.jobQuantityCalculator.jobs.map((job) => _jobToCost(cost: job, unitPricePool: state.unitPricePool, currencyRates: state.currencyRates)).toList();
+      final List<Cost> costs = [];
+      for (var job in state.jobQuantityCalculator.jobs) {
+        final cost = _jobToCost(job: job, unitPricePool: state.unitPricePool, currencyRates: state.currencyRates);
+        if(cost != null) {
+          costs.add(cost);
+        }
+      }
 
       final Map<MainCategory, String> formattedSubTotalsTRY = {};
       final mainCategorySet = costs.map((cost) => cost.mainCategory).toSet();
@@ -246,13 +252,17 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
     add(const CreateCostTable());
   }
 
-  Cost _jobToCost({required Job cost, required List<UnitPrice> unitPricePool, required CurrencyRates currencyRates}) {
+  Cost? _jobToCost({required Job job, required List<UnitPrice> unitPricePool, required CurrencyRates currencyRates}) {
+
+    if(job.disable) {
+      return null;
+    }
 
     final UnitPrice? unitPrice;
-    if(cost.selectedUnitPriceId != null) {
-      unitPrice = unitPricePool.firstWhere((unitPrice) => unitPrice.id == cost.selectedUnitPriceId);
+    if(job.selectedUnitPriceId != null) {
+      unitPrice = unitPricePool.firstWhere((unitPrice) => unitPrice.id == job.selectedUnitPriceId);
     } else {
-      final unitPrices = unitPricePool.where((unitPrice) => unitPrice.category == cost.selectedUnitPriceCategory);
+      final unitPrices = unitPricePool.where((unitPrice) => unitPrice.category == job.selectedUnitPriceCategory);
       unitPrice = unitPrices.reduce((current, next) => current.dateTime.isAfter(next.dateTime) ? current : next);
     }
 
@@ -269,22 +279,22 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
         ? "$formattedFixedAmount + $formattedAmount"
         : formattedAmount;
 
-    final quantityText = getFormattedNumber(number: cost.quantity);
+    final quantityText = getFormattedNumber(number: job.quantity);
 
     final quantityUnitText = unitPrice.unit.symbol;
 
-    final quantityExplanationText = cost.quantityExplanation;
+    final quantityExplanationText = job.quantityExplanation;
 
-    final fixedPriceTRY = cost.quantity != 0 ? unitPrice.fixedAmount * unitPrice.currency.toLiraRate(currencyRates) : 0;
-    final priceTRY = unitPrice.amount * cost.quantity * unitPrice.currency.toLiraRate(currencyRates);
+    final fixedPriceTRY = job.quantity != 0 ? unitPrice.fixedAmount * unitPrice.currency.toLiraRate(currencyRates) : 0;
+    final priceTRY = unitPrice.amount * job.quantity * unitPrice.currency.toLiraRate(currencyRates);
     final totalPriceTRY = fixedPriceTRY + priceTRY;
     final formattedTotalPriceTRY = getFormattedNumber(number: totalPriceTRY, unit: "TL");
 
     return Cost(
-      mainCategory: cost.mainCategory,
-      jobId: cost.id,
-      jobName: cost.nameTr,
-      enabledUnitPrices: unitPricePool.where((unitPrice) => cost.enabledUnitPriceCategories.contains(unitPrice.category)).toList(),
+      mainCategory: job.mainCategory,
+      jobId: job.id,
+      jobName: job.nameTr,
+      enabledUnitPrices: unitPricePool.where((unitPrice) => job.enabledUnitPriceCategories.contains(unitPrice.category)).toList(),
       unitPriceNameText: unitPriceNameText,
       unitPriceAmountText: unitAmountText,
       quantityText: quantityText,
@@ -292,7 +302,7 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
       quantityExplanationText: quantityExplanationText,
       formattedTotalPriceTRY: formattedTotalPriceTRY,
       totalPriceTRY: totalPriceTRY,
-      visible: cost.visible,
+      visible: job.visible,
     );
   }
 
