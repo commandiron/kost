@@ -181,16 +181,22 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
         }
       }
 
-      final Map<MainCategory, String> formattedSubTotalsTRY = {};
-      final Map<MainCategory, bool> categoryVisibilities = {};
       final mainCategorySet = costs.map((cost) => cost.mainCategory).toSet();
 
+      Map<MainCategory, bool> categoryVisibilities = {};
+      if(state.categoryVisibilities.isEmpty) {
+        for (var mainCategory in mainCategorySet) {
+          categoryVisibilities.putIfAbsent(mainCategory, () => true);
+        }
+      } else {
+        categoryVisibilities = state.categoryVisibilities;
+      }
+
+      final Map<MainCategory, String> formattedSubTotalsTRY = {};
       for (var mainCategory in mainCategorySet) {
-        categoryVisibilities.putIfAbsent(mainCategory, () => true);
         final subTotal = _calculateSubTotal(costs, mainCategory);
         formattedSubTotalsTRY.putIfAbsent(mainCategory, () => getFormattedNumber(number: subTotal, unit: "TL"));
       }
-
 
       final grandTotal = _calculateGrandTotal(costs);
       final formattedGrandTotalTRY = getFormattedNumber(number: grandTotal, unit: "TL");
