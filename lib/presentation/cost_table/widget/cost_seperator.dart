@@ -10,14 +10,14 @@ import '../../../domain/bloc/cost_table_event.dart';
 import 'main_category_title.dart';
 
 class CostSeparator extends StatelessWidget {
-  const CostSeparator({Key? key, required this.mainCategory, required this.visible, required this.formattedSubTotalsTRY}) : super(key: key);
+  const CostSeparator({Key? key, required this.mainCategory, required this.formattedSubTotalsTRY}) : super(key: key);
 
   final MainCategory mainCategory;
-  final bool visible;
   final Map<MainCategory, String> formattedSubTotalsTRY;
 
   @override
   Widget build(BuildContext context) {
+    final visible = context.read<CostTableBloc>().state.categoryVisibilities[mainCategory] ?? true;
     return InkWell(
       onTap: () => context.read<CostTableBloc>().add(ExpandCollapseMainCategory(mainCategory)),
       child: Container(

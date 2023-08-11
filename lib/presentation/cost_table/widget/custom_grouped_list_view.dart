@@ -23,8 +23,7 @@ class CostsListView extends StatelessWidget {
       elements: costs,
       groupBy: (cost) => cost.mainCategory,
       groupSeparatorBuilder: (MainCategory mainCategory) {
-        final visible = costs.firstWhere((cost) => cost.mainCategory == mainCategory).visible;
-        return CostSeparator(mainCategory: mainCategory, visible: visible, formattedSubTotalsTRY: formattedSubTotalsTRY);
+        return CostSeparator(mainCategory: mainCategory, formattedSubTotalsTRY: formattedSubTotalsTRY);
       },
       sort: false,
       indexedItemBuilder: (context, cost, index) {

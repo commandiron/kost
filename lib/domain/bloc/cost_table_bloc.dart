@@ -161,6 +161,7 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
         unitPricePool: const [],
         currencyRates: ManualCurrencyRates(),
         costs: const [],
+        categoryVisibilities: const {},
         formattedSubTotalsTRY: const {},
         formattedGrandTotalTRY: ""
       ),
@@ -181,11 +182,15 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
       }
 
       final Map<MainCategory, String> formattedSubTotalsTRY = {};
+      final Map<MainCategory, bool> categoryVisibilities = {};
       final mainCategorySet = costs.map((cost) => cost.mainCategory).toSet();
+
       for (var mainCategory in mainCategorySet) {
+        categoryVisibilities.putIfAbsent(mainCategory, () => true);
         final subTotal = _calculateSubTotal(costs, mainCategory);
         formattedSubTotalsTRY.putIfAbsent(mainCategory, () => getFormattedNumber(number: subTotal, unit: "TL"));
       }
+
 
       final grandTotal = _calculateGrandTotal(costs);
       final formattedGrandTotalTRY = getFormattedNumber(number: grandTotal, unit: "TL");
@@ -193,30 +198,25 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
       emit(
         state.copyWith(
           costs: costs,
+          categoryVisibilities: categoryVisibilities,
           formattedSubTotalsTRY: formattedSubTotalsTRY,
           formattedGrandTotalTRY: formattedGrandTotalTRY,
         )
       );
     });
     on<ExpandCollapseMainCategory>((event, emit) {
-      state.jobQuantityCalculator.jobs.where((job) => job.mainCategory == event.mainCategory).forEach(
-        (job) {
-          job.visible = !job.visible;
-        }
-      );
-      _refresh();
+      final categoryVisibilities = state.categoryVisibilities;
+      categoryVisibilities[event.mainCategory] = !(categoryVisibilities[event.mainCategory] ?? false);
+      emit(state.copyWith(categoryVisibilities: Map.of(categoryVisibilities)));
     });
     on<ExpandCollapseAllMainCategory>((event, emit) {
-      if(state.jobQuantityCalculator.jobs.any((job) => job.visible)) {
-        for(var job in state.jobQuantityCalculator.jobs) {
-          job.visible = false;
-        }
+      final categoryVisibilities = state.categoryVisibilities;
+      if(categoryVisibilities.values.any((visible) => visible)) {
+        categoryVisibilities.updateAll((key, value) => value = false);
       } else {
-        for(var job in state.jobQuantityCalculator.jobs) {
-          job.visible = true;
-        }
+        categoryVisibilities.updateAll((key, value) => value = true);
       }
-      _refresh();
+      emit(state.copyWith(categoryVisibilities: Map.of(categoryVisibilities)));
     });
     on<ReplaceUnitPrice>((event, emit) {
       state.jobQuantityCalculator.jobs.firstWhere((element) => element.id == event.jobId).selectedUnitPriceId = event.selectedUnitPriceId;
@@ -302,7 +302,6 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
       quantityExplanationText: quantityExplanationText,
       formattedTotalPriceTRY: formattedTotalPriceTRY,
       totalPriceTRY: totalPriceTRY,
-      visible: job.visible,
     );
   }
 

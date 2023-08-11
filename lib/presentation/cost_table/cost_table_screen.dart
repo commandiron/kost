@@ -36,7 +36,7 @@ class CostTableScreen extends StatelessWidget {
                       ),
                       ElevatedButton(
                         onPressed: () => context.read<CostTableBloc>().add(const ExpandCollapseAllMainCategory()),
-                        child: const Text("Collapse All")
+                        child: Text(state.categoryVisibilities.values.any((visible) => visible) ? "Collapse All" : "Expand All")
                       ),
                       CostsListView(
                         costs: state.costs,

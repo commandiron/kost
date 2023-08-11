@@ -10,6 +10,7 @@ class CostTableState extends Equatable {
   final List<UnitPrice> unitPricePool;
   final CurrencyRates currencyRates;
   final List<Cost> costs;
+  final Map<MainCategory, bool> categoryVisibilities;
   final Map<MainCategory, String> formattedSubTotalsTRY;
   final String formattedGrandTotalTRY;
 
@@ -18,6 +19,7 @@ class CostTableState extends Equatable {
     required this.unitPricePool,
     required this.currencyRates,
     required this.costs,
+    required this.categoryVisibilities,
     required this.formattedSubTotalsTRY,
     required this.formattedGrandTotalTRY,
   });
@@ -27,6 +29,7 @@ class CostTableState extends Equatable {
     List<UnitPrice>? unitPricePool,
     CurrencyRates? currencyRates,
     List<Cost>? costs,
+    Map<MainCategory, bool>? categoryVisibilities,
     Map<MainCategory, String>? formattedSubTotalsTRY,
     String? formattedGrandTotalTRY,
   }) {
@@ -35,6 +38,7 @@ class CostTableState extends Equatable {
       unitPricePool: unitPricePool ?? this.unitPricePool,
       currencyRates: currencyRates ?? this.currencyRates,
       costs: costs ?? this.costs,
+      categoryVisibilities: categoryVisibilities ?? this.categoryVisibilities,
       formattedSubTotalsTRY: formattedSubTotalsTRY ?? this.formattedSubTotalsTRY,
       formattedGrandTotalTRY: formattedGrandTotalTRY ?? this.formattedGrandTotalTRY
     );
@@ -46,6 +50,7 @@ class CostTableState extends Equatable {
     unitPricePool,
     currencyRates,
     costs.hashCode,
+    categoryVisibilities.hashCode,
     formattedSubTotalsTRY,
     formattedGrandTotalTRY
   ];

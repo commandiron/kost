@@ -21,9 +21,10 @@ class CostItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final visible = context.read<CostTableBloc>().state.categoryVisibilities[cost.mainCategory] ?? true;
     return Visibility(
       key: ValueKey(cost.jobId),
-      visible: cost.visible,
+      visible: visible,
       maintainState: true,
       child: Container(
         color: index.isOdd ? Colors.grey.shade400 : Colors.grey.shade200,
