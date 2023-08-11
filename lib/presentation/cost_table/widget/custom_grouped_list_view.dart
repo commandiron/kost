@@ -1,16 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:grouped_list/grouped_list.dart';
-import 'package:kost/config/app_text_style.dart';
-import 'package:kost/config/responsive.dart';
-import 'package:kost/domain/bloc/cost_table_bloc.dart';
-import 'package:kost/domain/bloc/cost_table_event.dart';
+import 'package:kost/presentation/cost_table/widget/cost_seperator.dart';
 
-import '../../../config/app_padding.dart';
 import '../../../domain/model/job/job.dart';
 import '../../../domain/model/cost/cost.dart';
 import 'cost_item.dart';
-import 'main_category_title.dart';
 
 class CostsListView extends StatelessWidget {
   const CostsListView(
@@ -30,30 +24,7 @@ class CostsListView extends StatelessWidget {
       groupBy: (cost) => cost.mainCategory,
       groupSeparatorBuilder: (MainCategory mainCategory) {
         final visible = costs.firstWhere((cost) => cost.mainCategory == mainCategory).visible;
-        return InkWell(
-          onTap: () => context.read<CostTableBloc>().add(ExpandCollapseMainCategory(mainCategory)),
-          child: Container(
-            height: 80,
-            padding: Responsive.value(context, AppPadding.hS , AppPadding.hM, AppPadding.hM),
-            decoration: BoxDecoration(
-              border: visible ? null : Border.all()
-            ),
-            child: Row(
-              children: [
-                Expanded(
-                  flex: 4, child: MainCategoryTitle(text: mainCategory.nameTr)),
-                Expanded(
-                  flex: Responsive.value(context, 2, 1, 1),
-                  child: Text(formattedSubTotalsTRY[mainCategory] ?? "", style: AppTextStyle.responsiveH5B(context),),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8),
-                  child: Icon(visible ? Icons.arrow_drop_down : Icons.arrow_right, size: 24,),
-                )
-              ],
-            ),
-          ),
-        );
+        return CostSeparator(mainCategory: mainCategory, visible: visible, formattedSubTotalsTRY: formattedSubTotalsTRY);
       },
       sort: false,
       indexedItemBuilder: (context, cost, index) {
