@@ -1,5 +1,4 @@
 import 'package:uuid/uuid.dart';
-
 import '../unit_price/unit_price.dart';
 
 enum MainCategory {
