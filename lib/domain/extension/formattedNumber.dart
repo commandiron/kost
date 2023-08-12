@@ -1,7 +1,7 @@
 import 'package:intl/intl.dart';
 
 extension DoubleFormatting on double {
-  String getFormattedNumber({
+  String toFormattedText({
     String pattern = "#,##0.00",
     String locale = "tr_TR",
     String unit = "",
@@ -11,7 +11,7 @@ extension DoubleFormatting on double {
 }
 
 extension DoubleParsing on String {
-  double parseFormattedNumber({
+  double toNumber({
     String pattern = "#,##0.00",
     String locale = "tr_TR",
   }) {

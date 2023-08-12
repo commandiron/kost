@@ -33,7 +33,6 @@ class _FloorViewerState extends State<FloorViewer> {
 
   @override
   Widget build(BuildContext context) {
-
     final double widthPerArea = widget.width / widget.foundationArea;
     final double floorHeight = widget.height / widget.floors.length;
 
@@ -48,7 +47,8 @@ class _FloorViewerState extends State<FloorViewer> {
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
         itemBuilder: (context, index) {
-          final floorWidth = _calculateFloorWidth(widthPerArea, index, widget.width);
+          final floorWidth =
+              _calculateFloorWidth(widthPerArea, index, widget.width);
           return Align(
             alignment: Alignment.center,
             child: GestureDetector(
@@ -75,11 +75,11 @@ class _FloorViewerState extends State<FloorViewer> {
                               SizedBox(
                                   width: 100,
                                   child: QuantityTextField(
-                                    formattedQuantity: widget.floors[index].area.getFormattedNumber(unit: "TL"),
+                                    formattedQuantity: widget.floors[index].area
+                                        .toFormattedText(unit: "TL"),
                                     symbol: "m2",
                                     onChanged: (value) {
-                                      widget.onFloorAreaChanged(
-                                          value, index);
+                                      widget.onFloorAreaChanged(value, index);
                                     },
                                   ))
                             ],
@@ -114,7 +114,8 @@ class _FloorViewerState extends State<FloorViewer> {
     );
   }
 
-  double _calculateFloorWidth(double widthPerArea, int index, double totalWidth) {
+  double _calculateFloorWidth(
+      double widthPerArea, int index, double totalWidth) {
     double floorWidth = widthPerArea * widget.floors[index].area;
     if (floorWidth > totalWidth) {
       floorWidth = totalWidth;
