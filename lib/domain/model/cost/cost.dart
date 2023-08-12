@@ -12,8 +12,8 @@ class Cost {
   String quantityText;
   String quantityUnitText;
   String quantityExplanationText;
-  String formattedTotalPriceTRY;
   double totalPriceTRY;
+  String formattedTotalPriceTRY;
 
   Cost({
     required this.mainCategory,
@@ -25,8 +25,8 @@ class Cost {
     required this.quantityText,
     required this.quantityUnitText,
     required this.quantityExplanationText,
-    required this.formattedTotalPriceTRY,
     required this.totalPriceTRY,
+    required this.formattedTotalPriceTRY,
   });
 
   Cost copyWith({
@@ -39,8 +39,8 @@ class Cost {
     String? quantityText,
     String? quantityUnitText,
     String? quantityExplanationText,
-    String? formattedTotalPriceTRY,
     double? totalPriceTRY,
+    String? formattedTotalPriceTRY,
   }) {
     return Cost(
       mainCategory: mainCategory ?? this.mainCategory,
@@ -52,8 +52,8 @@ class Cost {
       quantityText: quantityText ?? this.quantityText,
       quantityUnitText: quantityUnitText ?? this.quantityUnitText,
       quantityExplanationText: quantityExplanationText ?? this.quantityExplanationText,
-      formattedTotalPriceTRY: formattedTotalPriceTRY ?? this.formattedTotalPriceTRY,
       totalPriceTRY: totalPriceTRY ?? this.totalPriceTRY,
+      formattedTotalPriceTRY: formattedTotalPriceTRY ?? this.formattedTotalPriceTRY,
     );
   }
 }
