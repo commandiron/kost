@@ -18,6 +18,7 @@ import 'cost_table_event.dart';
 import 'cost_table_state.dart';
 
 class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
+
   void init() {
     add(const Init());
   }
@@ -189,16 +190,7 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
       emit(state.copyWith(
         unitPricePool: unitPricePool,
       ));
-      _refresh();
-    });
-    on<CreateCostTable>((event, emit) {
-      final costs = _createCosts(state.jobQuantityCalculator.jobs);
-      emit(state.copyWith(
-        costs: costs,
-        categoryVisibilities: _createCategoryVisibilities(costs),
-        formattedSubTotalsTRY: _createFormattedSubTotalsTRY(costs),
-        formattedGrandTotalTRY: _createFormattedGrandTotalTRY(costs),
-      ));
+      _refreshCostTable(emit);
     });
     on<ExpandCollapseMainCategory>((event, emit) {
       final categoryVisibilities = state.categoryVisibilities;
@@ -219,19 +211,19 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
       state.jobQuantityCalculator.jobs
           .firstWhere((element) => element.id == event.jobId)
           .selectedUnitPriceId = event.selectedUnitPriceId;
-      _refresh();
+      _refreshCostTable(emit);
     });
     on<DeleteJob>((event, emit) {
       state.jobQuantityCalculator.jobs
           .removeWhere((job) => job.id == event.jobId);
-      _refresh();
+      _refreshCostTable(emit);
     });
     on<ChangeQuantityManually>((event, emit) {
       final quantity = event.quantityText.toNumber();
       state.jobQuantityCalculator.jobs
           .firstWhere((e) => e.id == event.jobId)
           .quantity = quantity;
-      _refresh();
+      _refreshCostTable(emit);
     });
     //Quantity Details Screen
     on<FloorAreaChanged>((event, emit) {
@@ -239,7 +231,7 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
       // state.quantityCalculator.floors[event.index].area = floorArea;
     });
     on<CalculateCost>((event, emit) {
-      _refresh();
+      _refreshCostTable(emit);
       Navigator.of(event.context).pushNamed(CostTableScreen.route);
     });
   }
@@ -250,22 +242,42 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
     return _unitPriceRepository.getAllUnitPrices();
   }
 
-  void _refresh() {
-    add(const CreateCostTable());
+  void _refreshCostTable(Emitter<CostTableState> emit) {
+    final costs = _createCosts(state.jobQuantityCalculator.jobs);
+    emit(state.copyWith(
+      costs: costs,
+      categoryVisibilities: _createCategoryVisibilities(costs),
+      formattedSubTotalsTRY: _createFormattedSubTotalsTRY(costs),
+      formattedGrandTotalTRY: _createFormattedGrandTotalTRY(costs),
+    ));
+  }
+
+  List<Cost> _createCosts(List<Job> jobs) {
+    final List<Cost> costs = [];
+    for (var job in state.jobQuantityCalculator.jobs) {
+      final cost = _jobToCost(
+          job: job,
+          unitPricePool: state.unitPricePool,
+          currencyRates: state.currencyRates);
+      if (cost != null) {
+        costs.add(cost);
+      }
+    }
+    return costs;
   }
 
   Cost? _jobToCost(
       {required Job job,
       required List<UnitPrice> unitPricePool,
       required CurrencyRates currencyRates}) {
-        
     if (job.disable) {
       return null;
     }
 
     final enabledUnitPrices = unitPricePool
-      .where((unitPrice) =>job.enabledUnitPriceCategories.contains(unitPrice.category))
-      .toList();
+        .where((unitPrice) =>
+            job.enabledUnitPriceCategories.contains(unitPrice.category))
+        .toList();
 
     final UnitPrice? unitPrice;
     if (job.selectedUnitPriceId != null) {
@@ -307,20 +319,6 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
         quantityExplanationText: job.quantityExplanation,
         totalPriceTRY: totalPriceTRY,
         formattedTotalPriceTRY: totalPriceTRY.toFormattedText(unit: "TL"));
-  }
-
-  List<Cost> _createCosts(List<Job> jobs) {
-    final List<Cost> costs = [];
-    for (var job in state.jobQuantityCalculator.jobs) {
-      final cost = _jobToCost(
-          job: job,
-          unitPricePool: state.unitPricePool,
-          currencyRates: state.currencyRates);
-      if (cost != null) {
-        costs.add(cost);
-      }
-    }
-    return costs;
   }
 
   Map<MainCategory, bool> _createCategoryVisibilities(List<Cost> costs) {

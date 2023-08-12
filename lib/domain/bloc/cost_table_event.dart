@@ -16,12 +16,6 @@ class Init extends CostTableEvent {
   List<Object?> get props => [];
 }
 
-class CreateCostTable extends CostTableEvent {
-  const CreateCostTable();
-  @override
-  List<Object?> get props => [];
-}
-
 class ExpandCollapseMainCategory extends CostTableEvent {
   final MainCategory mainCategory;
   const ExpandCollapseMainCategory(this.mainCategory);
