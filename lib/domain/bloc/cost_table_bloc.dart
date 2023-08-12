@@ -216,14 +216,12 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
       emit(state.copyWith(categoryVisibilities: Map.of(categoryVisibilities)));
     });
     on<ReplaceUnitPrice>((event, emit) {
-      state.jobQuantityCalculator.jobs
-          .firstWhere((element) => element.id == event.jobId)
+      state.jobQuantityCalculator.jobs.firstWhere((element) => element.id == event.jobId)
           .selectedUnitPriceId = event.selectedUnitPriceId;
       _refresh();
     });
     on<DeleteJob>((event, emit) {
-      state.jobQuantityCalculator.jobs
-          .removeWhere((job) => job.id == event.jobId);
+      state.jobQuantityCalculator.jobs.removeWhere((job) => job.id == event.jobId);
       _refresh();
     });
     on<ChangeQuantityManually>((event, emit) {
