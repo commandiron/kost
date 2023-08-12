@@ -34,7 +34,6 @@ class DeleteButton extends StatelessWidget {
             );
           },
         );
-        await Future.delayed(const Duration(milliseconds: 150)); //Dialog close transition duration.
         if(result != null && result) {
           if(context.mounted) {
             context.read<CostTableBloc>().add(DeleteJob(jobId));
