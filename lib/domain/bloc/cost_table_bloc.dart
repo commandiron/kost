@@ -181,32 +181,12 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
         }
       }
 
-      final mainCategorySet = costs.map((cost) => cost.mainCategory).toSet();
-
-      Map<MainCategory, bool> categoryVisibilities = {};
-      if(state.categoryVisibilities.isEmpty) {
-        for (var mainCategory in mainCategorySet) {
-          categoryVisibilities.putIfAbsent(mainCategory, () => true);
-        }
-      } else {
-        categoryVisibilities = state.categoryVisibilities;
-      }
-
-      final Map<MainCategory, String> formattedSubTotalsTRY = {};
-      for (var mainCategory in mainCategorySet) {
-        final subTotal = _calculateSubTotal(costs, mainCategory);
-        formattedSubTotalsTRY.putIfAbsent(mainCategory, () => getFormattedNumber(number: subTotal, unit: "TL"));
-      }
-
-      final grandTotal = _calculateGrandTotal(costs);
-      final formattedGrandTotalTRY = getFormattedNumber(number: grandTotal, unit: "TL");
-
       emit(
         state.copyWith(
           costs: costs,
-          categoryVisibilities: categoryVisibilities,
-          formattedSubTotalsTRY: formattedSubTotalsTRY,
-          formattedGrandTotalTRY: formattedGrandTotalTRY,
+          categoryVisibilities: _createCategoryVisibilities(costs),
+          formattedSubTotalsTRY: _createFormattedSubTotalsTRY(costs),
+          formattedGrandTotalTRY: _createFormattedGrandTotalTRY(costs),
         )
       );
     });
@@ -311,6 +291,19 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
     );
   }
 
+  Map<MainCategory, bool> _createCategoryVisibilities (List<Cost> costs) {
+    final mainCategorySet = costs.map((cost) => cost.mainCategory).toSet();
+    Map<MainCategory, bool> categoryVisibilities = {};
+    if(state.categoryVisibilities.isEmpty) {
+      for (var mainCategory in mainCategorySet) {
+        categoryVisibilities.putIfAbsent(mainCategory, () => true);
+      }
+    } else {
+      categoryVisibilities = state.categoryVisibilities;
+    }
+    return categoryVisibilities;
+  }
+
   double _calculateSubTotal(List<Cost> costs, MainCategory mainCategory) {
     final categorizedCosts = costs
         .where((cost) => cost.mainCategory == mainCategory)
@@ -320,11 +313,25 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
         .toList()
         .fold(0.0, (p, c) => p + c);
   }
+  Map<MainCategory, String> _createFormattedSubTotalsTRY(List<Cost> costs) {
+    final mainCategorySet = costs.map((cost) => cost.mainCategory).toSet();
+    final Map<MainCategory, String> formattedSubTotalsTRY = {};
+    for (var mainCategory in mainCategorySet) {
+      final subTotal = _calculateSubTotal(costs, mainCategory);
+      formattedSubTotalsTRY.putIfAbsent(mainCategory, () => getFormattedNumber(number: subTotal, unit: "TL"));
+    }
+    return formattedSubTotalsTRY;
+  }
 
   double _calculateGrandTotal(List<Cost> costs) {
     return costs
         .map((cost) => cost.totalPriceTRY)
         .toList()
         .fold(0, (p, c) => p + c);
+  }
+  String _createFormattedGrandTotalTRY(List<Cost> costs) {
+    final grandTotal = _calculateGrandTotal(costs);
+    final formattedGrandTotalTRY = getFormattedNumber(number: grandTotal, unit: "TL");
+    return formattedGrandTotalTRY;
   }
 }
