@@ -1,18 +1,20 @@
 import 'package:intl/intl.dart';
 
-String getFormattedNumber({
+extension DoubleFormatting on double {
+  String getFormattedNumber({
     String pattern = "#,##0.00",
     String locale = "tr_TR",
-    required double number,
-    String unit = "",
+    String unit = "TL",
   }) {
-    return "${NumberFormat(pattern, locale).format(number)}${unit.isEmpty ? "" : " $unit"}";
+    return "${NumberFormat(pattern, locale).format(this)}${unit.isEmpty ? "" : " $unit"}";
   }
+}
 
+extension DoubleParsing on String {
   double parseFormattedNumber({
     String pattern = "#,##0.00",
     String locale = "tr_TR",
-    required String value,
   }) {
-    return NumberFormat(pattern, locale).parse(value).toDouble();
+    return NumberFormat(pattern, locale).parse(this).toDouble();
   }
+}
