@@ -4,7 +4,7 @@ import 'package:kost/data/unit_price_repository.dart';
 import 'package:kost/domain/calculator/detailed/project_constants.dart';
 import 'package:kost/domain/calculator/detailed/room.dart';
 import 'package:kost/domain/calculator/detailed/window.dart';
-import 'package:kost/domain/helper/formattedNumber.dart';
+import 'package:kost/domain/extension/formattedNumber.dart';
 import 'package:kost/domain/model/unit_price/currency.dart';
 import 'package:kost/domain/model/job/job_quantity_calculator.dart';
 import 'package:kost/domain/model/cost/cost.dart';
@@ -271,11 +271,11 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
       enabledUnitPrices: unitPricePool.where((unitPrice) => job.enabledUnitPriceCategories.contains(unitPrice.category)).toList(),
       unitPriceNameText: unitPrice.nameTr,
       unitPriceAmountText: unitAmountText,
-      quantityText: job.quantity.getFormattedNumber(unit: ""),
+      quantityText: job.quantity.getFormattedNumber(),
       quantityUnitText: unitPrice.unit.symbol,
       quantityExplanationText: job.quantityExplanation,
       totalPriceTRY: totalPriceTRY,
-      formattedTotalPriceTRY: totalPriceTRY.getFormattedNumber()
+      formattedTotalPriceTRY: totalPriceTRY.getFormattedNumber(unit: "TL")
     );
   }
 
@@ -306,7 +306,7 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
     final Map<MainCategory, String> formattedSubTotalsTRY = {};
     for (var mainCategory in mainCategorySet) {
       final subTotal = _calculateSubTotal(costs, mainCategory);
-      formattedSubTotalsTRY.putIfAbsent(mainCategory, () => subTotal.getFormattedNumber());
+      formattedSubTotalsTRY.putIfAbsent(mainCategory, () => subTotal.getFormattedNumber(unit: "TL"));
     }
     return formattedSubTotalsTRY;
   }
@@ -319,7 +319,7 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
   }
   String _createFormattedGrandTotalTRY(List<Cost> costs) {
     final grandTotal = _calculateGrandTotal(costs);
-    final formattedGrandTotalTRY = grandTotal.getFormattedNumber();
+    final formattedGrandTotalTRY = grandTotal.getFormattedNumber(unit: "TL");
     return formattedGrandTotalTRY;
   }
 }

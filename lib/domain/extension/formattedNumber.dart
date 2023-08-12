@@ -4,7 +4,7 @@ extension DoubleFormatting on double {
   String getFormattedNumber({
     String pattern = "#,##0.00",
     String locale = "tr_TR",
-    String unit = "TL",
+    String unit = "",
   }) {
     return "${NumberFormat(pattern, locale).format(this)}${unit.isEmpty ? "" : " $unit"}";
   }

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:kost/domain/helper/formattedNumber.dart';
+import 'package:kost/domain/extension/formattedNumber.dart';
 import 'package:kost/presentation/cost_table/widget/quantity_text_field.dart';
 
 import '../../../config/app_space.dart';
@@ -75,7 +75,7 @@ class _FloorViewerState extends State<FloorViewer> {
                               SizedBox(
                                   width: 100,
                                   child: QuantityTextField(
-                                    formattedQuantity: widget.floors[index].area.getFormattedNumber(),
+                                    formattedQuantity: widget.floors[index].area.getFormattedNumber(unit: "TL"),
                                     symbol: "m2",
                                     onChanged: (value) {
                                       widget.onFloorAreaChanged(
