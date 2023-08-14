@@ -292,7 +292,7 @@ class UnitPriceRepository {
     UnitPrice(
         category: UnitPriceCategory.quartzCountertopCimstone,
         nameTr: "Çimstone Mutfak Tezgahı",
-        amount: 3800,
+        amount: 4000,
         currency: Currency.lira,
         unit: Unit.meter,
         dateTime: DateTime(2023, 08),
