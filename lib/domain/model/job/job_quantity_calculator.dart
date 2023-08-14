@@ -1,5 +1,6 @@
 
 import 'package:kost/domain/calculator/detailed/project_constants.dart';
+import 'package:kost/domain/calculator/detailed/room.dart';
 import 'package:kost/domain/model/unit_price/unit_price.dart';
 
 import '../../calculator/detailed/floor.dart';
@@ -115,7 +116,7 @@ class RoughConstructionJobsQuantityCalculator extends JobQuantityCalculator {
       FoundationWaterproofing(quantity: foundationWaterProofingArea, quantityExplanation: foundationWaterProofingAreaExplanation),
       CurtainWaterproofing(quantity: curtainWaterProofingArea, quantityExplanation: curtainWaterProofingAreaExplanation),
       CurtainProtectionBeforeFilling(quantity: curtainProtectionBeforeFillingArea, quantityExplanation: curtainProtectionBeforeFillingAreaExplanation),
-      WallMaterial(quantity: wallMaterialVolume, quantityExplanation: wallMaterialVolumeExplanation),
+      Wall(quantity: wallMaterialVolume, quantityExplanation: wallMaterialVolumeExplanation),
       WallWorkmanShip(quantity: wallWorkmanShipArea, quantityExplanation: wallWorkmanShipAreaExplanation),
     ];
   }
@@ -317,8 +318,22 @@ class RoofJobsQuantityCalculator extends JobQuantityCalculator {
     required super.foundationHeight
   }){
     jobs = [
-      Roofing(quantity: 100, quantityExplanation: "quantityExplanation")
+      Roofing(quantity: roofingArea, quantityExplanation: roofingAreaExplanation)
     ];
+  }
+
+  Floor get _topFloor {
+    final topFloor = floors.reduce((current, next) {
+      return current.no > next.no ? current : next;
+    });
+    return topFloor;
+  }
+
+  double get roofingArea {
+    return _topFloor.ceilingArea;
+  }
+  String get roofingAreaExplanation {
+    return "En üst kat tavan alanı: ${_topFloor.ceilingArea}";
   }
 }
 
@@ -342,11 +357,63 @@ class FacadeJobsQuantityCalculator extends JobQuantityCalculator {
     required super.foundationHeight
   }){
     jobs = [
-      FacadeScaffolding(quantity: 100, quantityExplanation: "quantityExplanation"),
-      Windows(quantity: 100, quantityExplanation: "quantityExplanation"),
-      FacadeRails(quantity: 100, quantityExplanation: "quantityExplanation"),
-      FacadeSystem(quantity: 100, quantityExplanation: "quantityExplanation")
+      FacadeScaffolding(quantity: facadeScaffoldingArea, quantityExplanation: facadeScaffoldingAreaExplanation),
+      Windows(quantity: windowsArea, quantityExplanation: windowAreaExplanation),
+      FacadeRails(quantity: facadeRailsLength, quantityExplanation: facadeRailsLengthExplanation),
+      FacadeSystem(quantity: facadeSystemArea, quantityExplanation: facadeSystemAreaExplanation)
     ];
+  }
+  List<Floor> get _aboveBasementFloors {
+    return floors.where((floor) => floor.no >= 0).toList();
+  }
+  double get _totalFacadeArea {
+    return _aboveBasementFloors.map((floor) => floor.perimeter * floor.fullHeight).fold(0.0, (p, c) => p + c);
+  }
+  double get _totalWindowArea {
+    double totalWindowArea = 0;
+    for (var floor in floors) {
+      final windowAreas = floor.windows.map((window) => window.width * window.height * window.count);
+      totalWindowArea += windowAreas.fold(0.0, (p, c) => p + c);
+    }
+    return totalWindowArea;
+  }
+  double get _totalFacadeRailingLength {
+    double totalFacadeRailingLength = 0;
+    for (var floor in floors) {
+      final facadeRailingLengths = floor.windows.map((window) => window.hasRailing ? window.width * window.count : 0);
+      totalFacadeRailingLength += facadeRailingLengths.fold(0.0, (p, c) => p + c);
+    }
+    return totalFacadeRailingLength;
+  }
+
+
+  //Calculations
+  double get facadeScaffoldingArea {
+    return _totalFacadeArea;
+  }
+  String get facadeScaffoldingAreaExplanation {
+    return "Toplam cephe alanı: $_totalFacadeArea";
+  }
+
+  double get windowsArea {
+    return _totalWindowArea;
+  }
+  String get windowAreaExplanation {
+    return "Toplam pencere alanı: $_totalWindowArea";
+  }
+
+  double get facadeRailsLength {
+    return _totalFacadeRailingLength;
+  }
+  String get facadeRailsLengthExplanation {
+    return "Toplam cephe korkuluğu uzunluğu: $_totalFacadeRailingLength";
+  }
+
+  double get facadeSystemArea {
+    return _totalFacadeArea;
+  }
+  String get facadeSystemAreaExplanation {
+    return "Toplam cephe alanı: $_totalFacadeArea";
   }
 }
 
@@ -370,16 +437,16 @@ class InteriorJobsQuantityCalculator extends JobQuantityCalculator {
     required super.foundationHeight
   }){
     jobs = [
-      InteriorPlastering(quantity: 100, quantityExplanation: "quantityExplanation"),
-      InteriorPainting(quantity: 100, quantityExplanation: "quantityExplanation"),
-      InteriorWaterproofing(quantity: 100, quantityExplanation: "quantityExplanation"),
-      CeilingCovering(quantity: 100, quantityExplanation: "quantityExplanation"),
-      CovingPlaster(quantity: 100, quantityExplanation: "quantityExplanation"),
-      Screeding(quantity: 100, quantityExplanation: "quantityExplanation"),
-      Marble(quantity: 100, quantityExplanation: "quantityExplanation"),
-      MarbleStep(quantity: 100, quantityExplanation: "quantityExplanation"),
-      MarbleWindowsill(quantity: 100, quantityExplanation: "quantityExplanation"),
-      StairRailings(quantity: 100, quantityExplanation: "quantityExplanation"),
+      InteriorPlastering(quantity: interiorPlasteringArea, quantityExplanation: interiorPlasteringAreaExplanation),
+      InteriorPainting(quantity: interiorPaintingArea, quantityExplanation: interiorPaintingAreaExplanation),
+      InteriorWaterproofing(quantity: interiorWaterproofingArea, quantityExplanation: interiorWaterproofingAreaExplanation),
+      CeilingCovering(quantity: ceilingCoveringArea, quantityExplanation: ceilingCoveringAreaExplanation),
+      CovingPlaster(quantity: covingPlasterLength, quantityExplanation: covingPlasterLengthExplanation),
+      Screeding(quantity: screedingArea, quantityExplanation: screedingAreaExplanation),
+      Marble(quantity: marbleArea, quantityExplanation: marbleAreaExplanation),
+      MarbleStep(quantity: marbleStepLength, quantityExplanation: marbleStepLengthExplanation),
+      MarbleWindowsill(quantity: marbleWindowsillLength, quantityExplanation: marbleWindowsillLengthExplanation),
+      StairRailings(quantity: stairRailingsLength, quantityExplanation: stairRailingsLengthExplanation),
       CeramicTile(quantity: 100, quantityExplanation: "quantityExplanation"),
       ParquetTile(quantity: 100, quantityExplanation: "quantityExplanation"),
       SteelDoor(quantity: 100, quantityExplanation: "quantityExplanation"),
@@ -407,6 +474,193 @@ class InteriorJobsQuantityCalculator extends JobQuantityCalculator {
       Generator(quantity: 100, quantityExplanation: "quantityExplanation"),
       HouseholdAppliances(quantity: 100, quantityExplanation: "quantityExplanation"),
     ];
+  }
+
+  double get _totalPlasterArea {
+    double area = 0;
+    for (var floor in floors) {
+      for (var room in floor.rooms) {
+        if (room.wallMaterial == WallMaterial.painting) {
+          area += (room.perimeter * floor.heightWithoutSlab);
+        }
+        if(room.ceilingMaterial == CeilingMaterial.plaster) {
+          area += room.area;
+        }
+      }
+    }
+    return area;
+  }
+  double get _totalPaintingArea {
+    double area = 0;
+    for (var floor in floors) {
+      for (var room in floor.rooms) {
+        if (room.wallMaterial == WallMaterial.painting) {
+          area += (room.perimeter * floor.heightWithoutSlab);
+        }
+        if(room.ceilingMaterial == CeilingMaterial.drywall || room.ceilingMaterial == CeilingMaterial.plaster) {
+          area += room.area;
+        }
+      }
+    }
+    return area;
+  }
+  double get _totalInteriorWetFloorArea {
+    double area = 0;
+    for (var floor in floors) {
+      for (var room in floor.rooms) {
+        if (room.isFloorWet) {
+          area += room.area;
+        }
+      }
+    }
+    return area;
+  }
+  double get _totalDryWallArea {
+    double area = 0;
+    for (var floor in floors) {
+      for (var room in floor.rooms) {
+        if (room.ceilingMaterial == CeilingMaterial.drywall) {
+          area += room.area;
+        }
+      }
+    }
+    return area;
+  }
+  double get _totalCovingPlasterLength {
+    double length = 0;
+    for (var floor in floors) {
+      for (var room in floor.rooms) {
+        if (room.hasCovingPlaster) {
+          length += room.perimeter;
+        }
+      }
+    }
+    return length;
+  }
+  double get _totalScreedArea {
+    double area = 0;
+    for (var floor in floors) {
+      for (var room in floor.rooms) {
+        if (room.hasScreed) {
+          area += room.area;
+        }
+      }
+    }
+    return area;
+  }
+  double get _totalMarbleArea {
+    double area = 0;
+    for (var floor in floors) {
+      for (var room in floor.rooms) {
+        if (room.floorMaterial == FloorMaterial.marble) {
+          area += room.area;
+        }
+      }
+    }
+    return area;
+  }
+  double get _totalMarbleStepLength {
+    double length = 0;
+    for (var floor in floors) {
+      for (var room in floor.rooms) {
+        if (room.floorMaterial == FloorMaterial.marbleStep) {
+          final stepCount = floor.fullHeight / projectConstants.stairRiserHeight;
+          length += (projectConstants.stairLength * stepCount);
+        }
+      }
+    }
+    return length;
+  }
+  double get _totalWindowsillLength {
+    double totalWindowsillLength = 0;
+    for (var floor in floors) {
+      final windowsillLengths = floor.windows.map((window) => window.hasWindowsill ? window.width * window.count : 0);
+      totalWindowsillLength += windowsillLengths.fold(0.0, (p, c) => p + c);
+    }
+    return totalWindowsillLength;
+  }
+  double get _totalStairRailingsLength {
+    double length = 0;
+    for (var floor in floors) {
+      for (var room in floor.rooms) {
+        if (room.floorMaterial == FloorMaterial.marbleStep) {
+          final stepCount = floor.fullHeight / projectConstants.stairRiserHeight;
+          length += stepCount * projectConstants.stairTreadDepth;
+        }
+      }
+    }
+    return length;
+  }
+
+  //Calculations
+  double get interiorPlasteringArea {
+    return _totalPlasterArea;
+  }
+  String get interiorPlasteringAreaExplanation {
+    return "Toplam sıva alanı: $_totalPlasterArea";
+  }
+
+  double get interiorPaintingArea {
+    return _totalPaintingArea;
+  }
+  String get interiorPaintingAreaExplanation {
+    return "Toplam boya alanı: $_totalPaintingArea";
+  }
+
+  double get interiorWaterproofingArea {
+    return _totalInteriorWetFloorArea;
+  }
+  String get interiorWaterproofingAreaExplanation {
+    return "Toplam iç mekan ıslak zemin alanı: $_totalInteriorWetFloorArea";
+  }
+
+  double get ceilingCoveringArea {
+    return _totalDryWallArea;
+  }
+  String get ceilingCoveringAreaExplanation {
+    return "Toplam alçıpan alanı: $_totalDryWallArea";
+  }
+
+  double get covingPlasterLength {
+    return _totalCovingPlasterLength;
+  }
+  String get covingPlasterLengthExplanation {
+    return "Toplam kartonpiyer uzunluğu: $_totalCovingPlasterLength";
+  }
+
+  double get screedingArea {
+    return _totalScreedArea;
+  }
+  String get screedingAreaExplanation {
+    return "Toplam şap alanı: $_totalScreedArea";
+  }
+
+  double get marbleArea {
+    return _totalMarbleArea;
+  }
+  String get marbleAreaExplanation {
+    return "Toplam mermer alanı: $_totalMarbleArea";
+  }
+
+  double get marbleStepLength {
+    return _totalMarbleStepLength;
+  }
+  String get marbleStepLengthExplanation {
+    return "Toplam basamak uzunluğu: $_totalMarbleStepLength";
+  }
+
+  double get marbleWindowsillLength {
+    return _totalWindowsillLength;
+  }
+  String get marbleWindowsillLengthExplanation {
+    return "Toplam denizlikli pencere uzunluğu: $_totalWindowsillLength";
+  }
+
+  double get stairRailingsLength {
+    return _totalStairRailingsLength;
+  }
+  String get stairRailingsLengthExplanation {
+    return "Toplam merdiven korkuluğu uzunluğu: $_totalStairRailingsLength";
   }
 }
 

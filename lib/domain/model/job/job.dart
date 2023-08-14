@@ -219,8 +219,8 @@ class CurtainProtectionBeforeFilling extends Job {
   );
 }
 
-class WallMaterial extends Job {
-  WallMaterial(
+class Wall extends Job {
+  Wall(
     {
       super.nameTr = "Duvar malzeme",
       super.mainCategory = MainCategory.roughConstructionJobs,
