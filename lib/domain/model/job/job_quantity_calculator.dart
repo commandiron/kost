@@ -926,7 +926,7 @@ class InteriorJobsQuantityCalculator extends JobQuantityCalculator {
     return 1;
   }
   String get waterTankNumberExplanation {
-    return "Bodrumlar su deposu sayısı: $waterTankNumber";
+    return "Götürü bedel";
   }
 
   double get elevationStop {
@@ -990,7 +990,7 @@ class InteriorJobsQuantityCalculator extends JobQuantityCalculator {
     return 1;
   }
   String get generatorNumberExplanation {
-    return "Jeneratör Sayısı: $generatorNumber";
+    return "Götürü bedel";
   }
 
   double get householdAppliancesApartment {
@@ -1021,11 +1021,57 @@ class LandscapeJobsQuantityCalculator extends JobQuantityCalculator {
     required super.foundationHeight
   }){
     jobs = [
-      LandScapeGarden(quantity: 100, quantityExplanation: "quantityExplanation"),
-      OutdoorParkingTile(quantity: 100, quantityExplanation: "quantityExplanation"),
-      CarLift(quantity: 100, quantityExplanation: "quantityExplanation"),
-      AutomaticBarrier(quantity: 100, quantityExplanation: "quantityExplanation"),
+      LandScapeGarden(quantity: landScapeGardenArea, quantityExplanation: landScapeGardenAreaExplanation),
+      OutdoorParkingTile(quantity: outdoorParkingTileArea, quantityExplanation: outdoorParkingTileAreaExplanation),
+      CarLift(quantity: carLiftStop, quantityExplanation: carLiftStopExplanation),
+      AutomaticBarrier(quantity: automaticBarrierNumber, quantityExplanation: automaticBarrierNumberExplanation),
     ];
+  }
+
+  Floor get _groundFloor {
+    final groundFloor = floors.firstWhere(
+          (floor) => floor.no == 0,
+      orElse: () => throw Exception("No ground floor"),
+    );
+    return groundFloor;
+  }
+  List<Floor> get _basementFloors {
+    final basementFloors = floors.where((element) => element.no < 0).toList();
+    if (basementFloors.isEmpty) {
+      throw Exception("No basement floor");
+    }
+    return basementFloors;
+  }
+
+  //Calculations
+  double get landScapeGardenArea {
+    return (landArea - _groundFloor.area) *
+        projectConstants.gardenOutdoorParkingAreaRate;
+  }
+  String get landScapeGardenAreaExplanation {
+    return "Arsa alanı: $landArea - Zemin kat alanı: ${_groundFloor.area} x Bahçe Oranı: ${projectConstants.gardenOutdoorParkingAreaRate}";
+  }
+
+  double get outdoorParkingTileArea {
+    return (landArea - _groundFloor.area) *
+        (1 - projectConstants.gardenOutdoorParkingAreaRate);
+  }
+  String get outdoorParkingTileAreaExplanation {
+    return "Arsa alanı: $landArea - Zemin kat alanı: ${_groundFloor.area} x Açık otopark oranı: 1 - Bahçe Oranı: ${projectConstants.gardenOutdoorParkingAreaRate}";
+  }
+
+  double get carLiftStop {
+    return _basementFloors.length + 1;
+  }
+  String get carLiftStopExplanation {
+    return "Bodrum kat adedi: ${_basementFloors.length} + Zemin kat adedi: 1";
+  }
+
+  double get automaticBarrierNumber {
+    return projectConstants.automaticBarrierNumber.toDouble();
+  }
+  String get automaticBarrierNumberExplanation {
+    return "Otomatik bariyer adedi: ${projectConstants.automaticBarrierNumber}";
   }
 }
 class GeneralExpensesJobsQuantityCalculator extends JobQuantityCalculator {
@@ -1048,14 +1094,84 @@ class GeneralExpensesJobsQuantityCalculator extends JobQuantityCalculator {
     required super.foundationHeight
   }){
     jobs = [
-      EnclosingTheLand(quantity: 100, quantityExplanation: "quantityExplanation"),
-      MobilizationDemobilization(quantity: 100, quantityExplanation: "quantityExplanation"),
-      Crane(quantity: 100, quantityExplanation: "quantityExplanation"),
-      SiteSafety(quantity: 100, quantityExplanation: "quantityExplanation"),
-      SiteExpenses(quantity: 100, quantityExplanation: "quantityExplanation"),
-      Sergeant(quantity: 100, quantityExplanation: "quantityExplanation"),
-      SiteChief(quantity: 100, quantityExplanation: "quantityExplanation"),
-      ProjectsFeesPayments(quantity: 100, quantityExplanation: "quantityExplanation"),
+      EnclosingTheLand(quantity: enclosingTheLandLength, quantityExplanation: enclosingTheLandLengthExplanation),
+      MobilizationDemobilization(quantity: mobilizationDemobilizationNumber, quantityExplanation: mobilizationDemobilizationNumberExplanation),
+      Crane(quantity: craneHour, quantityExplanation: craneHourExplanation),
+      SiteSafety(quantity: siteSafetyMonth, quantityExplanation: siteSafetyMonthExplanation),
+      SiteExpenses(quantity: siteExpensesMonth, quantityExplanation: siteExpensesMonthExplanation),
+      Sergeant(quantity: sergeantMonth, quantityExplanation: sergeantMonthExplanation),
+      SiteChief(quantity: siteChiefMonth, quantityExplanation: siteChiefMonthExplanation),
+      ProjectsFeesPayments(quantity: projectsFeesPaymentsNumber, quantityExplanation: projectsFeesPaymentsNumberExplanation),
     ];
+  }
+
+  double get _roughConstructionArea {
+    double roughConstructionArea = 0;
+    roughConstructionArea += foundationArea;
+    for (var floor in floors) {
+      roughConstructionArea += floor.ceilingArea;
+    }
+    roughConstructionArea += elevationTowerArea;
+    return roughConstructionArea;
+  }
+
+  //Calculations
+  double get enclosingTheLandLength {
+    return landPerimeter;
+  }
+  String get enclosingTheLandLengthExplanation {
+    return "Arsa çevresi: $landPerimeter";
+  }
+
+  //BURAYA BAK!!!!!!!!!!!!!!!!!!
+  double get mobilizationDemobilizationNumber {
+    return 1;
+  }
+  String get mobilizationDemobilizationNumberExplanation {
+    return "Götürü bedel";
+  }
+
+  double get craneHour {
+    return _roughConstructionArea *
+        projectConstants.craneHourForOneSquareMeterRoughConstructionArea;
+  }
+  String get craneHourExplanation {
+    return "Kaba inşaat alanı: $_roughConstructionArea x 1 metre kare kaba inşaat alanı için vinç çalışma saati: ${projectConstants.craneHourForOneSquareMeterRoughConstructionArea}";
+  }
+
+  double get siteSafetyMonth {
+    return projectConstants.projectDurationMonth;
+  }
+  String get siteSafetyMonthExplanation {
+    return "Proje süresi: ${projectConstants.projectDurationMonth}";
+  }
+
+  double get siteExpensesMonth {
+    return projectConstants.projectDurationMonth;
+  }
+  String get siteExpensesMonthExplanation {
+    return "Proje süresi: ${projectConstants.projectDurationMonth}";
+  }
+
+  double get sergeantMonth {
+    return projectConstants.projectDurationMonth;
+  }
+  String get sergeantMonthExplanation {
+    return "Proje süresi: ${projectConstants.projectDurationMonth}";
+  }
+
+  double get siteChiefMonth {
+    return projectConstants.projectDurationMonth;
+  }
+  String get siteChiefMonthExplanation {
+    return "Proje süresi: ${projectConstants.projectDurationMonth}";
+  }
+
+  //BURAYA BAK!!!!!!!!!!!!!!!!!!
+  double get projectsFeesPaymentsNumber {
+    return 1;
+  }
+  String get projectsFeesPaymentsNumberExplanation {
+    return "Götürü bedel";
   }
 }
