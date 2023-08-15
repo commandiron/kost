@@ -41,6 +41,7 @@ class CostTableScreen extends StatelessWidget {
                       CostsListView(
                         costs: state.costs,
                         formattedSubTotalsTRY: state.formattedSubTotalsTRY,
+                        categoryVisibilities: state.categoryVisibilities,
                       ),
                     ],
                   ),

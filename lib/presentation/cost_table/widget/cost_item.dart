@@ -13,15 +13,15 @@ import '../../../domain/bloc/cost_table_event.dart';
 import 'delete_button.dart';
 
 class CostItem extends StatelessWidget {
-  const CostItem({Key? key, required this.cost, required this.index})
+  const CostItem({Key? key, required this.cost, required this.index, required this.visible})
       : super(key: key);
 
   final Cost cost;
   final int index;
+  final bool visible;
 
   @override
   Widget build(BuildContext context) {
-    final visible = context.read<CostTableBloc>().state.categoryVisibilities[cost.mainCategory] ?? true;
     return Visibility(
       key: ValueKey(cost.jobId),
       visible: visible,
