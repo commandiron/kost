@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kost/data/unit_price_repository.dart';
-import 'package:kost/domain/calculator/detailed/project_constants.dart';
-import 'package:kost/domain/calculator/detailed/room.dart';
-import 'package:kost/domain/calculator/detailed/window.dart';
+import 'package:kost/domain/model/job/calculator/project_constants.dart';
+import 'package:kost/domain/model/job/calculator/room.dart';
+import 'package:kost/domain/model/job/calculator/window.dart';
 import 'package:kost/domain/extension/formattedNumber.dart';
 import 'package:kost/domain/model/unit_price/currency.dart';
-import 'package:kost/domain/model/job/job_quantity_calculator.dart';
+import 'package:kost/domain/model/job/calculator/job_quantity_calculator.dart';
 import 'package:kost/domain/model/cost/cost.dart';
 import 'package:kost/domain/model/unit_price/unit.dart';
 import 'package:kost/presentation/cost_table/cost_table_screen.dart';
 
-import '../calculator/detailed/floor.dart';
+import '../model/job/calculator/floor.dart';
 import '../model/job/job.dart';
 import '../model/unit_price/unit_price.dart';
 import 'cost_table_event.dart';

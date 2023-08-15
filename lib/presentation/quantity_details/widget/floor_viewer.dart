@@ -4,7 +4,7 @@ import 'package:kost/presentation/cost_table/widget/quantity_text_field.dart';
 
 import '../../../config/app_space.dart';
 import '../../../config/app_text_style.dart';
-import '../../../domain/calculator/detailed/floor.dart';
+import '../../../domain/model/job/calculator/floor.dart';
 
 class FloorViewer extends StatefulWidget {
   const FloorViewer({
