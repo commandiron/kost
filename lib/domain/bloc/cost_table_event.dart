@@ -54,10 +54,17 @@ class ChangeQuantityManually extends CostTableEvent {
 
 class FloorAreaChanged extends CostTableEvent {
   final String floorAreaText;
-  final int index;
-  const FloorAreaChanged(this.floorAreaText, this.index);
+  final int no;
+  const FloorAreaChanged(this.floorAreaText, this.no);
   @override
-  List<Object?> get props => [floorAreaText, index];
+  List<Object?> get props => [floorAreaText, no];
+}
+
+class FloorDelete extends CostTableEvent {
+  final int no;
+  const FloorDelete(this.no);
+  @override
+  List<Object?> get props => [no];
 }
 
 class CalculateCost extends CostTableEvent {

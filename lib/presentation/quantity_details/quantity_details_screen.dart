@@ -40,10 +40,11 @@ class QuantityDetailsScreen extends StatelessWidget {
                       height: MediaQuery.of(context).size.height / 1.4,
                       foundationArea: state.jobQuantityCalculator.foundationArea,
                       floors: state.jobQuantityCalculator.floors,
-                      onFloorAreaChanged: (String floorAreaText, int index) {
-                        context
-                            .read<CostTableBloc>()
-                            .add(FloorAreaChanged(floorAreaText, index));
+                      onFloorAreaChanged: (String floorAreaText, int no) {
+                        context.read<CostTableBloc>().add(FloorAreaChanged(floorAreaText, no));
+                      },
+                      onFloorDelete: (no) {
+                        context.read<CostTableBloc>().add(FloorDelete(no));
                       },
                     ),
                     AppSpace.vL!,

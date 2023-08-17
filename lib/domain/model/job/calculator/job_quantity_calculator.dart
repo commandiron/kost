@@ -47,6 +47,7 @@ abstract class JobQuantityCalculator {
       required this.foundationHeight,
     }
   ){
+    //Order floors descending by no
     floors = floors.sorted((a, b) => a.no.compareTo(b.no)).reversed.toList();
   }
 }

@@ -229,11 +229,14 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
     //Quantity Details Screen
     on<FloorAreaChanged>((event, emit) {
       final floorArea = event.floorAreaText.toNumber();
-      state.jobQuantityCalculator.floors[event.index].area = floorArea;
+      state.jobQuantityCalculator.floors.firstWhere((floor) => floor.no == event.no).area = floorArea;
+    });
+    on<FloorDelete>((event, emit) {
+      state.jobQuantityCalculator.floors.removeWhere((floor) => floor.no == event.no);
     });
     on<CalculateCost>((event, emit) {
-      _refreshCostTable(emit);
       Navigator.of(event.context).pushNamed(CostTableScreen.route);
+      _refreshCostTable(emit);
     });
   }
 

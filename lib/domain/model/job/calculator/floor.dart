@@ -2,7 +2,7 @@ import 'package:kost/domain/model/job/calculator/room.dart';
 import 'package:kost/domain/model/job/calculator/window.dart';
 
 class Floor {
-  final int no;
+  int no;
   final double ceilingArea;
   final double ceilingPerimeter;
   final double fullHeight;

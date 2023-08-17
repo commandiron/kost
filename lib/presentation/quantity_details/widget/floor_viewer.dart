@@ -15,6 +15,7 @@ class FloorViewer extends StatefulWidget {
     required this.foundationArea,
     required this.floors,
     required this.onFloorAreaChanged,
+    required this.onFloorDelete,
   }) : super(key: key);
 
   final double width;
@@ -22,7 +23,8 @@ class FloorViewer extends StatefulWidget {
   final double height;
   final double foundationArea;
   final List<Floor> floors;
-  final void Function(String floorAreaText, int index) onFloorAreaChanged;
+  final void Function(String floorAreaText, int no) onFloorAreaChanged;
+  final void Function(int no) onFloorDelete;
 
   @override
   State<FloorViewer> createState() => _FloorViewerState();
@@ -73,18 +75,27 @@ class _FloorViewerState extends State<FloorViewer> {
                             children: [
                               const Text("Alan:"),
                               SizedBox(
-                                  width: 100,
-                                  child: QuantityTextField(
-                                    formattedQuantity: widget.floors[index].area.toFormattedText(),
-                                    symbol: "m2",
-                                    onChanged: (value) {
-                                      widget.onFloorAreaChanged(value, index);
-                                    },
-                                  ))
+                                width: 100,
+                                child: QuantityTextField(
+                                  formattedQuantity: widget.floors[index].area.toFormattedText(),
+                                  symbol: "m2",
+                                  onChanged: (value) {
+                                    widget.onFloorAreaChanged(value, widget.floors[index].no);
+                                  },
+                                )
+                              )
                             ],
-                          )
+                          ),
+                          ElevatedButton(
+                            onPressed: () {
+                              widget.onFloorDelete(widget.floors[index].no);
+                              setState(() {
+                                _isHighlighted.clear();
+                              });
+                            },
+                            child: const Text("Sil"))
                         ],
-                      )
+                    )
                     : Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         mainAxisSize: MainAxisSize.min,
