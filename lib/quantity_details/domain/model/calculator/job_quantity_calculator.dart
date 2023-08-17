@@ -6,7 +6,6 @@ import '../job.dart';
 import '../../../../../quantity_details/domain/model/calculator/floor.dart';
 
 abstract class JobQuantityCalculator {
-  List<Job> jobs;
   final String name;
   final ProjectConstants projectConstants;
   final double landArea;
@@ -26,7 +25,6 @@ abstract class JobQuantityCalculator {
 
   JobQuantityCalculator(
     {
-      this.jobs = const [],
       required this.name,
       required this.projectConstants,
       required this.landArea,
@@ -46,10 +44,10 @@ abstract class JobQuantityCalculator {
     }
   ){
     floors = floors.sorted((a, b) => a.no.compareTo(b.no)).reversed.toList();
-    refreshJobs();
+    createJobs();
   }
 
-  void refreshJobs();
+  List<Job> createJobs();
 }
 
 class ApartmentJobsQuantityCalculator extends JobQuantityCalculator {
@@ -73,18 +71,18 @@ class ApartmentJobsQuantityCalculator extends JobQuantityCalculator {
   });
 
   @override
-  void refreshJobs() {
+  List<Job> createJobs() {
     final roughConstructionQuantityCalculator = RoughConstructionJobsQuantityCalculator(projectConstants: projectConstants, landArea: landArea, landPerimeter: landPerimeter, excavationArea: excavationArea, excavationPerimeter: excavationPerimeter, coreCurtainLength: coreCurtainLength, curtainsExceeding1MeterLength: curtainsExceeding1MeterLength, basementCurtainLength: basementCurtainLength, columnsLess1MeterPerimeter: columnsLess1MeterPerimeter, elevationTowerArea: elevationTowerArea, elevationTowerHeightWithoutSlab: elevationTowerHeightWithoutSlab, floors: floors, foundationArea: foundationArea, foundationPerimeter: foundationPerimeter, foundationHeight: foundationHeight);
     final roofQuantityCalculator = RoofJobsQuantityCalculator(projectConstants: projectConstants, landArea: landArea, landPerimeter: landPerimeter, excavationArea: excavationArea, excavationPerimeter: excavationPerimeter, coreCurtainLength: coreCurtainLength, curtainsExceeding1MeterLength: curtainsExceeding1MeterLength, basementCurtainLength: basementCurtainLength, columnsLess1MeterPerimeter: columnsLess1MeterPerimeter, elevationTowerArea: elevationTowerArea, elevationTowerHeightWithoutSlab: elevationTowerHeightWithoutSlab, floors: floors, foundationArea: foundationArea, foundationPerimeter: foundationPerimeter, foundationHeight: foundationHeight);
     final interiorQuantityCalculator = InteriorJobsQuantityCalculator(projectConstants: projectConstants, landArea: landArea, landPerimeter: landPerimeter, excavationArea: excavationArea, excavationPerimeter: excavationPerimeter, coreCurtainLength: coreCurtainLength, curtainsExceeding1MeterLength: curtainsExceeding1MeterLength, basementCurtainLength: basementCurtainLength, columnsLess1MeterPerimeter: columnsLess1MeterPerimeter, elevationTowerArea: elevationTowerArea, elevationTowerHeightWithoutSlab: elevationTowerHeightWithoutSlab, floors: floors, foundationArea: foundationArea, foundationPerimeter: foundationPerimeter, foundationHeight: foundationHeight);
     final landscapeQuantityCalculator = LandscapeJobsQuantityCalculator(projectConstants: projectConstants, landArea: landArea, landPerimeter: landPerimeter, excavationArea: excavationArea, excavationPerimeter: excavationPerimeter, coreCurtainLength: coreCurtainLength, curtainsExceeding1MeterLength: curtainsExceeding1MeterLength, basementCurtainLength: basementCurtainLength, columnsLess1MeterPerimeter: columnsLess1MeterPerimeter, elevationTowerArea: elevationTowerArea, elevationTowerHeightWithoutSlab: elevationTowerHeightWithoutSlab, floors: floors, foundationArea: foundationArea, foundationPerimeter: foundationPerimeter, foundationHeight: foundationHeight);
     final generalExpensesQuantityCalculator = GeneralExpensesJobsQuantityCalculator(projectConstants: projectConstants, landArea: landArea, landPerimeter: landPerimeter, excavationArea: excavationArea, excavationPerimeter: excavationPerimeter, coreCurtainLength: coreCurtainLength, curtainsExceeding1MeterLength: curtainsExceeding1MeterLength, basementCurtainLength: basementCurtainLength, columnsLess1MeterPerimeter: columnsLess1MeterPerimeter, elevationTowerArea: elevationTowerArea, elevationTowerHeightWithoutSlab: elevationTowerHeightWithoutSlab, floors: floors, foundationArea: foundationArea, foundationPerimeter: foundationPerimeter, foundationHeight: foundationHeight);
-    jobs = [
-      ...roughConstructionQuantityCalculator.jobs,
-      ...roofQuantityCalculator.jobs,
-      ...interiorQuantityCalculator.jobs,
-      ...landscapeQuantityCalculator.jobs,
-      ...generalExpensesQuantityCalculator.jobs
+    return [
+      ...roughConstructionQuantityCalculator.createJobs(),
+      ...roofQuantityCalculator.createJobs(),
+      ...interiorQuantityCalculator.createJobs(),
+      ...landscapeQuantityCalculator.createJobs(),
+      ...generalExpensesQuantityCalculator.createJobs()
     ];
   }
 }
@@ -112,8 +110,8 @@ class RoughConstructionJobsQuantityCalculator extends JobQuantityCalculator {
   );
 
   @override
-  void refreshJobs() {
-    jobs = [
+  List<Job> createJobs() {
+    return [
       Shoring(quantity: shoringArea, quantityExplanation: shoringAreaExplanation),
       Excavation(quantity: excavationVolume, quantityExplanation: excavationVolumeExplanation),
       Breaker(quantity: breakerHour, quantityExplanation: breakerHourExplanation),
@@ -329,8 +327,8 @@ class RoofJobsQuantityCalculator extends JobQuantityCalculator {
   });
 
   @override
-  void refreshJobs() {
-    jobs = [
+  List<Job> createJobs() {
+    return [
       Roofing(quantity: roofingArea, quantityExplanation: roofingAreaExplanation)
     ];
   }
@@ -371,8 +369,8 @@ class FacadeJobsQuantityCalculator extends JobQuantityCalculator {
   });
 
   @override
-  void refreshJobs() {
-    jobs = [
+  List<Job> createJobs() {
+    return [
       FacadeScaffolding(quantity: facadeScaffoldingArea, quantityExplanation: facadeScaffoldingAreaExplanation),
       Windows(quantity: windowsArea, quantityExplanation: windowAreaExplanation),
       FacadeRails(quantity: facadeRailsLength, quantityExplanation: facadeRailsLengthExplanation),
@@ -454,8 +452,8 @@ class InteriorJobsQuantityCalculator extends JobQuantityCalculator {
   });
 
   @override
-  void refreshJobs() {
-    jobs = [
+  List<Job> createJobs() {
+    return [
       InteriorPlastering(quantity: interiorPlasteringArea, quantityExplanation: interiorPlasteringAreaExplanation),
       InteriorPainting(quantity: interiorPaintingArea, quantityExplanation: interiorPaintingAreaExplanation),
       InteriorWaterproofing(quantity: interiorWaterproofingArea, quantityExplanation: interiorWaterproofingAreaExplanation),
@@ -1041,8 +1039,8 @@ class LandscapeJobsQuantityCalculator extends JobQuantityCalculator {
   });
 
   @override
-  void refreshJobs() {
-    jobs = [
+  List<Job> createJobs() {
+    return [
       LandScapeGarden(quantity: landScapeGardenArea, quantityExplanation: landScapeGardenAreaExplanation),
       OutdoorParkingTile(quantity: outdoorParkingTileArea, quantityExplanation: outdoorParkingTileAreaExplanation),
       CarLift(quantity: carLiftStop, quantityExplanation: carLiftStopExplanation),
@@ -1118,8 +1116,8 @@ class GeneralExpensesJobsQuantityCalculator extends JobQuantityCalculator {
   });
 
   @override
-  void refreshJobs() {
-    jobs = [
+  List<Job> createJobs() {
+    return [
       EnclosingTheLand(quantity: enclosingTheLandLength, quantityExplanation: enclosingTheLandLengthExplanation),
       MobilizationDemobilization(quantity: mobilizationDemobilizationNumber, quantityExplanation: mobilizationDemobilizationNumberExplanation),
       Crane(quantity: craneHour, quantityExplanation: craneHourExplanation),
