@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:grouped_list/grouped_list.dart';
-import 'package:kost/presentation/cost_table/widget/cost_seperator.dart';
+import 'package:kost/cost_table/presentation/widget/cost_seperator.dart';
 
-import '../../../domain/model/job/job.dart';
-import '../../../domain/model/cost/cost.dart';
+import '../../../quantity_details/domain/model/job.dart';
+import '../../domain/model/cost/cost.dart';
 import 'cost_item.dart';
 
 class CostsListView extends StatelessWidget {

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:kost/domain/model/job/job.dart';
+import 'package:kost/quantity_details/domain/model/job.dart';
 
 import '../../../config/app_padding.dart';
 import '../../../config/app_text_style.dart';
 import '../../../config/responsive.dart';
-import '../../../domain/bloc/cost_table_bloc.dart';
-import '../../../domain/bloc/cost_table_event.dart';
+import '../../domain/bloc/cost_table_bloc.dart';
+import '../../domain/bloc/cost_table_event.dart';
 import 'main_category_title.dart';
 
 class CostSeparator extends StatelessWidget {

@@ -2,11 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kost/config/app_space.dart';
 import 'package:kost/config/app_text_style.dart';
-import 'package:kost/domain/bloc/cost_table_event.dart';
-import 'package:kost/presentation/quantity_details/widget/floor_viewer.dart';
-
-import '../../domain/bloc/cost_table_bloc.dart';
-import '../../domain/bloc/cost_table_state.dart';
+import 'package:kost/quantity_details/presentation/widget/floor_viewer.dart';
+import '../domain/bloc/quantity_details_bloc.dart';
+import '../domain/bloc/quantity_details_event.dart';
+import '../domain/bloc/quantity_details_state.dart';
 
 class QuantityDetailsScreen extends StatelessWidget {
   const QuantityDetailsScreen({Key? key}) : super(key: key);
@@ -17,7 +16,7 @@ class QuantityDetailsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: BlocBuilder<CostTableBloc, CostTableState>(
+        body: BlocBuilder<QuantityDetailsBloc, QuantityDetailsState>(
           builder: (context, state) {
             return CustomScrollView(
               slivers: [
@@ -41,10 +40,10 @@ class QuantityDetailsScreen extends StatelessWidget {
                       foundationArea: state.jobQuantityCalculator.foundationArea,
                       floors: state.jobQuantityCalculator.floors,
                       onFloorAreaChanged: (String floorAreaText, int no) {
-                        context.read<CostTableBloc>().add(FloorAreaChanged(floorAreaText, no));
+                        context.read<QuantityDetailsBloc>().add(FloorAreaChanged(floorAreaText, no));
                       },
                       onFloorDelete: (no) {
-                        context.read<CostTableBloc>().add(FloorDelete(no));
+                        context.read<QuantityDetailsBloc>().add(FloorDelete(no));
                       },
                     ),
                     AppSpace.vL!,
@@ -58,7 +57,7 @@ class QuantityDetailsScreen extends StatelessWidget {
                         Text(state.jobQuantityCalculator.landArea.toString()),
                         Text(state.jobQuantityCalculator.landPerimeter.toString()),
                         ElevatedButton(
-                            onPressed:() => context.read<CostTableBloc>().add(CalculateCost(context)),
+                            onPressed:() => context.read<QuantityDetailsBloc>().add(CalculateCost(context)),
                             child: const Text("Maliyet Hesapla"))
                       ],
                     ),

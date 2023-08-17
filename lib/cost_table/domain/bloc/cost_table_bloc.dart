@@ -1,18 +1,16 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:kost/data/unit_price_repository.dart';
-import 'package:kost/domain/model/job/calculator/project_constants.dart';
-import 'package:kost/domain/model/job/calculator/room.dart';
-import 'package:kost/domain/model/job/calculator/window.dart';
-import 'package:kost/domain/extension/formattedNumber.dart';
-import 'package:kost/domain/model/unit_price/currency.dart';
-import 'package:kost/domain/model/job/calculator/job_quantity_calculator.dart';
-import 'package:kost/domain/model/cost/cost.dart';
-import 'package:kost/domain/model/unit_price/unit.dart';
-import 'package:kost/presentation/cost_table/cost_table_screen.dart';
+import 'package:kost/cost_table/data/unit_price_repository.dart';
+import 'package:kost/quantity_details/domain/model/calculator/project_constants.dart';
+import 'package:kost/quantity_details/domain/model/calculator/room.dart';
+import 'package:kost/quantity_details/domain/model/calculator/window.dart';
+import 'package:kost/extension/formattedNumber.dart';
+import 'package:kost/cost_table/domain/model/unit_price/currency.dart';
+import 'package:kost/cost_table/domain/model/cost/cost.dart';
+import 'package:kost/cost_table/domain/model/unit_price/unit.dart';
 
-import '../model/job/calculator/floor.dart';
-import '../model/job/job.dart';
+import '../../../quantity_details/domain/model/calculator/floor.dart';
+import '../../../quantity_details/domain/model/calculator/job_quantity_calculator.dart';
+import '../../../quantity_details/domain/model/job.dart';
 import '../model/unit_price/unit_price.dart';
 import 'cost_table_event.dart';
 import 'cost_table_state.dart';
@@ -224,18 +222,6 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
       state.jobQuantityCalculator.jobs
           .firstWhere((e) => e.id == event.jobId)
           .quantity = quantity;
-      _refreshCostTable(emit);
-    });
-    //Quantity Details Screen
-    on<FloorAreaChanged>((event, emit) {
-      final floorArea = event.floorAreaText.toNumber();
-      state.jobQuantityCalculator.floors.firstWhere((floor) => floor.no == event.no).area = floorArea;
-    });
-    on<FloorDelete>((event, emit) {
-      state.jobQuantityCalculator.floors.removeWhere((floor) => floor.no == event.no);
-    });
-    on<CalculateCost>((event, emit) {
-      Navigator.of(event.context).pushNamed(CostTableScreen.route);
       _refreshCostTable(emit);
     });
   }

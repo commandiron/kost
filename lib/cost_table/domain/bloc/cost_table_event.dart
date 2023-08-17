@@ -1,7 +1,6 @@
 import 'package:equatable/equatable.dart';
-import 'package:flutter/material.dart';
 
-import '../model/job/job.dart';
+import '../../../quantity_details/domain/model/job.dart';
 
 abstract class CostTableEvent extends Equatable {
   const CostTableEvent();
@@ -50,26 +49,4 @@ class ChangeQuantityManually extends CostTableEvent {
   const ChangeQuantityManually(this.jobId, this.quantityText);
   @override
   List<Object?> get props => [jobId, quantityText];
-}
-
-class FloorAreaChanged extends CostTableEvent {
-  final String floorAreaText;
-  final int no;
-  const FloorAreaChanged(this.floorAreaText, this.no);
-  @override
-  List<Object?> get props => [floorAreaText, no];
-}
-
-class FloorDelete extends CostTableEvent {
-  final int no;
-  const FloorDelete(this.no);
-  @override
-  List<Object?> get props => [no];
-}
-
-class CalculateCost extends CostTableEvent {
-  final BuildContext context;
-  const CalculateCost(this.context);
-  @override
-  List<Object?> get props => [context];
 }

@@ -1,11 +1,9 @@
-
 import 'package:collection/collection.dart';
-import 'package:kost/domain/model/job/calculator/project_constants.dart';
-import 'package:kost/domain/model/job/calculator/room.dart';
-import 'package:kost/domain/model/unit_price/unit_price.dart';
-
-import 'floor.dart';
+import 'package:kost/quantity_details/domain/model/calculator/project_constants.dart';
+import 'package:kost/quantity_details/domain/model/calculator/room.dart';
+import '../../../../cost_table/domain/model/unit_price/unit_price.dart';
 import '../job.dart';
+import '../../../../../quantity_details/domain/model/calculator/floor.dart';
 
 abstract class JobQuantityCalculator {
   List<Job> jobs;

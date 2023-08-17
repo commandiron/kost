@@ -1,5 +1,5 @@
-import 'package:kost/domain/model/job/calculator/room.dart';
-import 'package:kost/domain/model/job/calculator/window.dart';
+import 'package:kost/quantity_details/domain/model/calculator/room.dart';
+import 'package:kost/quantity_details/domain/model/calculator/window.dart';
 
 class Floor {
   int no;

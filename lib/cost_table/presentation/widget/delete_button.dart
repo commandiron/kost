@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kost/config/app_space.dart';
 import 'package:kost/config/app_text_style.dart';
 
-import '../../../domain/bloc/cost_table_bloc.dart';
-import '../../../domain/bloc/cost_table_event.dart';
+import '../../domain/bloc/cost_table_bloc.dart';
+import '../../domain/bloc/cost_table_event.dart';
 
 class DeleteButton extends StatelessWidget {
   const DeleteButton({Key? key, required this.name, required this.jobId}) : super(key: key);

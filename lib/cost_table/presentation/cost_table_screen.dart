@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kost/config/app_text_style.dart';
-import 'package:kost/domain/bloc/cost_table_event.dart';
-import 'package:kost/presentation/cost_table/widget/custom_grouped_list_view.dart';
+import 'package:kost/cost_table/presentation/widget/custom_grouped_list_view.dart';
 
-import '../../domain/bloc/cost_table_bloc.dart';
-import '../../domain/bloc/cost_table_state.dart';
+import '../domain/bloc/cost_table_bloc.dart';
+import '../domain/bloc/cost_table_event.dart';
+import '../domain/bloc/cost_table_state.dart';
 
 class CostTableScreen extends StatelessWidget {
   const CostTableScreen({Key? key}) : super(key: key);
