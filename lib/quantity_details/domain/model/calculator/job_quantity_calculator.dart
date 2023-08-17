@@ -45,9 +45,11 @@ abstract class JobQuantityCalculator {
       required this.foundationHeight,
     }
   ){
-    //Order floors descending by no
     floors = floors.sorted((a, b) => a.no.compareTo(b.no)).reversed.toList();
+    refreshJobs();
   }
+
+  void refreshJobs();
 }
 
 class ApartmentJobsQuantityCalculator extends JobQuantityCalculator {
@@ -68,7 +70,10 @@ class ApartmentJobsQuantityCalculator extends JobQuantityCalculator {
     required super.foundationArea,
     required super.foundationPerimeter,
     required super.foundationHeight
-  }){
+  });
+
+  @override
+  void refreshJobs() {
     final roughConstructionQuantityCalculator = RoughConstructionJobsQuantityCalculator(projectConstants: projectConstants, landArea: landArea, landPerimeter: landPerimeter, excavationArea: excavationArea, excavationPerimeter: excavationPerimeter, coreCurtainLength: coreCurtainLength, curtainsExceeding1MeterLength: curtainsExceeding1MeterLength, basementCurtainLength: basementCurtainLength, columnsLess1MeterPerimeter: columnsLess1MeterPerimeter, elevationTowerArea: elevationTowerArea, elevationTowerHeightWithoutSlab: elevationTowerHeightWithoutSlab, floors: floors, foundationArea: foundationArea, foundationPerimeter: foundationPerimeter, foundationHeight: foundationHeight);
     final roofQuantityCalculator = RoofJobsQuantityCalculator(projectConstants: projectConstants, landArea: landArea, landPerimeter: landPerimeter, excavationArea: excavationArea, excavationPerimeter: excavationPerimeter, coreCurtainLength: coreCurtainLength, curtainsExceeding1MeterLength: curtainsExceeding1MeterLength, basementCurtainLength: basementCurtainLength, columnsLess1MeterPerimeter: columnsLess1MeterPerimeter, elevationTowerArea: elevationTowerArea, elevationTowerHeightWithoutSlab: elevationTowerHeightWithoutSlab, floors: floors, foundationArea: foundationArea, foundationPerimeter: foundationPerimeter, foundationHeight: foundationHeight);
     final interiorQuantityCalculator = InteriorJobsQuantityCalculator(projectConstants: projectConstants, landArea: landArea, landPerimeter: landPerimeter, excavationArea: excavationArea, excavationPerimeter: excavationPerimeter, coreCurtainLength: coreCurtainLength, curtainsExceeding1MeterLength: curtainsExceeding1MeterLength, basementCurtainLength: basementCurtainLength, columnsLess1MeterPerimeter: columnsLess1MeterPerimeter, elevationTowerArea: elevationTowerArea, elevationTowerHeightWithoutSlab: elevationTowerHeightWithoutSlab, floors: floors, foundationArea: foundationArea, foundationPerimeter: foundationPerimeter, foundationHeight: foundationHeight);
@@ -104,7 +109,10 @@ class RoughConstructionJobsQuantityCalculator extends JobQuantityCalculator {
       required super.foundationPerimeter,
       required super.foundationHeight,
     }
-  ){
+  );
+
+  @override
+  void refreshJobs() {
     jobs = [
       Shoring(quantity: shoringArea, quantityExplanation: shoringAreaExplanation),
       Excavation(quantity: excavationVolume, quantityExplanation: excavationVolumeExplanation),
@@ -318,7 +326,10 @@ class RoofJobsQuantityCalculator extends JobQuantityCalculator {
     required super.foundationArea,
     required super.foundationPerimeter,
     required super.foundationHeight
-  }){
+  });
+
+  @override
+  void refreshJobs() {
     jobs = [
       Roofing(quantity: roofingArea, quantityExplanation: roofingAreaExplanation)
     ];
@@ -357,7 +368,10 @@ class FacadeJobsQuantityCalculator extends JobQuantityCalculator {
     required super.foundationArea,
     required super.foundationPerimeter,
     required super.foundationHeight
-  }){
+  });
+
+  @override
+  void refreshJobs() {
     jobs = [
       FacadeScaffolding(quantity: facadeScaffoldingArea, quantityExplanation: facadeScaffoldingAreaExplanation),
       Windows(quantity: windowsArea, quantityExplanation: windowAreaExplanation),
@@ -365,6 +379,7 @@ class FacadeJobsQuantityCalculator extends JobQuantityCalculator {
       FacadeSystem(quantity: facadeSystemArea, quantityExplanation: facadeSystemAreaExplanation)
     ];
   }
+
   List<Floor> get _aboveBasementFloors {
     return floors.where((floor) => floor.no >= 0).toList();
   }
@@ -387,7 +402,6 @@ class FacadeJobsQuantityCalculator extends JobQuantityCalculator {
     }
     return totalFacadeRailingLength;
   }
-
 
   //Calculations
   double get facadeScaffoldingArea {
@@ -437,7 +451,10 @@ class InteriorJobsQuantityCalculator extends JobQuantityCalculator {
     required super.foundationArea,
     required super.foundationPerimeter,
     required super.foundationHeight
-  }){
+  });
+
+  @override
+  void refreshJobs() {
     jobs = [
       InteriorPlastering(quantity: interiorPlasteringArea, quantityExplanation: interiorPlasteringAreaExplanation),
       InteriorPainting(quantity: interiorPaintingArea, quantityExplanation: interiorPaintingAreaExplanation),
@@ -1021,7 +1038,10 @@ class LandscapeJobsQuantityCalculator extends JobQuantityCalculator {
     required super.foundationArea,
     required super.foundationPerimeter,
     required super.foundationHeight
-  }){
+  });
+
+  @override
+  void refreshJobs() {
     jobs = [
       LandScapeGarden(quantity: landScapeGardenArea, quantityExplanation: landScapeGardenAreaExplanation),
       OutdoorParkingTile(quantity: outdoorParkingTileArea, quantityExplanation: outdoorParkingTileAreaExplanation),
@@ -1095,7 +1115,10 @@ class GeneralExpensesJobsQuantityCalculator extends JobQuantityCalculator {
     required super.foundationArea,
     required super.foundationPerimeter,
     required super.foundationHeight
-  }){
+  });
+
+  @override
+  void refreshJobs() {
     jobs = [
       EnclosingTheLand(quantity: enclosingTheLandLength, quantityExplanation: enclosingTheLandLengthExplanation),
       MobilizationDemobilization(quantity: mobilizationDemobilizationNumber, quantityExplanation: mobilizationDemobilizationNumberExplanation),
