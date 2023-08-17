@@ -1,25 +1,25 @@
 import 'package:equatable/equatable.dart';
 
-import '../model/calculator/job_quantity_calculator.dart';
+import '../model/calculator/job_calculator.dart';
 
 class QuantityDetailsState extends Equatable {
-  final JobQuantityCalculator jobQuantityCalculator;
+  final JobCalculator jobCalculator;
 
 
   const QuantityDetailsState({
-    required this.jobQuantityCalculator,
+    required this.jobCalculator,
   });
 
   QuantityDetailsState copyWith({
-    JobQuantityCalculator? jobQuantityCalculator,
+    JobCalculator? jobCalculator,
   }) {
     return QuantityDetailsState(
-      jobQuantityCalculator: jobQuantityCalculator ?? this.jobQuantityCalculator,
+      jobCalculator: jobCalculator ?? this.jobCalculator,
     );
   }
 
   @override
   List<Object?> get props => [
-    jobQuantityCalculator,
+    jobCalculator,
   ];
 }

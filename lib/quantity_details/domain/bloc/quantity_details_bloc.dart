@@ -5,7 +5,7 @@ import 'package:kost/quantity_details/domain/bloc/quantity_details_event.dart';
 import 'package:kost/quantity_details/domain/bloc/quantity_details_state.dart';
 
 import '../model/calculator/floor.dart';
-import '../model/calculator/job_quantity_calculator.dart';
+import '../model/calculator/job_calculator.dart';
 import '../model/calculator/project_constants.dart';
 import '../model/calculator/room.dart';
 import '../model/calculator/window.dart';
@@ -15,7 +15,7 @@ class QuantityDetailsBloc extends Bloc<QuantityDetailsEvent, QuantityDetailsStat
 
   QuantityDetailsBloc() : super(
     QuantityDetailsState(
-      jobQuantityCalculator: ApartmentJobsQuantityCalculator(
+      jobCalculator: ApartmentJobsCalculator(
         projectConstants: ProjectConstants(),
         landArea: 806.24,
         landPerimeter: 117.93,
@@ -170,15 +170,15 @@ class QuantityDetailsBloc extends Bloc<QuantityDetailsEvent, QuantityDetailsStat
   ){
     on<FloorAreaChanged>((event, emit) {
       final floorArea = event.floorAreaText.toNumber();
-      state.jobQuantityCalculator.floors.firstWhere((floor) => floor.no == event.no).area = floorArea;
+      state.jobCalculator.floors.firstWhere((floor) => floor.no == event.no).area = floorArea;
     });
     on<FloorDelete>((event, emit) {
-      state.jobQuantityCalculator.floors.removeWhere((floor) => floor.no == event.no);
+      state.jobCalculator.floors.removeWhere((floor) => floor.no == event.no);
     });
     on<CalculateCost>((event, emit) {
       Navigator.of(event.context).pushNamed(
         CostTableScreen.route,
-        arguments: state.jobQuantityCalculator.createJobs()
+        arguments: state.jobCalculator.createJobs()
       );
     });
   }
