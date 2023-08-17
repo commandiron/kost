@@ -19,7 +19,7 @@ class CostTableScreen extends StatelessWidget {
     final jobs= ModalRoute.of(context)!.settings.arguments as List<Job>?;
 
     return BlocProvider(
-      create: (context) => CostTableBloc(jobs: jobs ?? [])..init(),
+      create: (context) => CostTableBloc(jobs: jobs ?? [])..add(const Init()),
       child: const CostTablePage(),
     );
   }

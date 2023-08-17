@@ -11,11 +11,6 @@ import 'cost_table_event.dart';
 import 'cost_table_state.dart';
 
 class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
-
-  void init() {
-    add(const Init());
-  }
-
   CostTableBloc({required List<Job> jobs})
       : super(
           CostTableState(
