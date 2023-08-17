@@ -16,7 +16,7 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
     add(const Init());
   }
 
-  CostTableBloc(List<Job> jobs)
+  CostTableBloc({required List<Job> jobs})
       : super(
           CostTableState(
             tableName: "Apartman Maliyeti",
