@@ -1074,6 +1074,7 @@ class LandscapeJobsQuantityCalculator extends JobQuantityCalculator {
     return "Otomatik bariyer adedi: ${projectConstants.automaticBarrierNumber}";
   }
 }
+
 class GeneralExpensesJobsQuantityCalculator extends JobQuantityCalculator {
   GeneralExpensesJobsQuantityCalculator({
     super.name = "Genel Giderler",
