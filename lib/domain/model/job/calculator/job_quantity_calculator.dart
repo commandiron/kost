@@ -1,4 +1,5 @@
 
+import 'package:collection/collection.dart';
 import 'package:kost/domain/model/job/calculator/project_constants.dart';
 import 'package:kost/domain/model/job/calculator/room.dart';
 import 'package:kost/domain/model/unit_price/unit_price.dart';
@@ -45,7 +46,9 @@ abstract class JobQuantityCalculator {
       required this.foundationPerimeter,
       required this.foundationHeight,
     }
-  );
+  ){
+    floors = floors.sorted((a, b) => a.no.compareTo(b.no)).reversed.toList();
+  }
 }
 
 class ApartmentJobsQuantityCalculator extends JobQuantityCalculator {
