@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kost/extension/formattedNumber.dart';
 import 'package:kost/quantity_details/domain/bloc/quantity_details_event.dart';
@@ -176,7 +176,10 @@ class QuantityDetailsBloc extends Bloc<QuantityDetailsEvent, QuantityDetailsStat
       state.jobQuantityCalculator.floors.removeWhere((floor) => floor.no == event.no);
     });
     on<CalculateCost>((event, emit) {
-      Navigator.of(event.context).pushNamed(CostTableScreen.route);
+      Navigator.of(event.context).pushNamed(
+        CostTableScreen.route,
+        arguments: state.jobQuantityCalculator.jobs
+      );
     });
   }
 }
