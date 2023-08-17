@@ -14,6 +14,18 @@ class CostTableScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (context) => CostTableBloc()..init(),
+      child: const CostTablePage(),
+    );
+  }
+}
+
+class CostTablePage extends StatelessWidget {
+  const CostTablePage({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -35,8 +47,8 @@ class CostTableScreen extends StatelessWidget {
                         style: const TextStyle(fontSize: 26),
                       ),
                       ElevatedButton(
-                        onPressed: () => context.read<CostTableBloc>().add(const ExpandCollapseAllMainCategory()),
-                        child: Text(state.categoryVisibilities.values.any((visible) => visible) ? "Collapse All" : "Expand All")
+                          onPressed: () => context.read<CostTableBloc>().add(const ExpandCollapseAllMainCategory()),
+                          child: Text(state.categoryVisibilities.values.any((visible) => visible) ? "Collapse All" : "Expand All")
                       ),
                       CostsListView(
                         costs: state.costs,
