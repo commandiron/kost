@@ -228,8 +228,8 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
     });
     //Quantity Details Screen
     on<FloorAreaChanged>((event, emit) {
-      // final floorArea = parseFormattedNumber(value: event.floorAreaText);
-      // state.quantityCalculator.floors[event.index].area = floorArea;
+      final floorArea = event.floorAreaText.toNumber();
+      state.jobQuantityCalculator.floors[event.index].area = floorArea;
     });
     on<CalculateCost>((event, emit) {
       _refreshCostTable(emit);

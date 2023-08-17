@@ -75,8 +75,7 @@ class _FloorViewerState extends State<FloorViewer> {
                               SizedBox(
                                   width: 100,
                                   child: QuantityTextField(
-                                    formattedQuantity: widget.floors[index].area
-                                        .toFormattedText(unit: "TL"),
+                                    formattedQuantity: widget.floors[index].area.toFormattedText(),
                                     symbol: "m2",
                                     onChanged: (value) {
                                       widget.onFloorAreaChanged(value, index);
