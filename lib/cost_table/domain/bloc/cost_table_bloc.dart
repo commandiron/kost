@@ -91,7 +91,7 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
   void _refreshCostTable(Emitter<CostTableState> emit) {
     final costs = _createCosts(state.jobs);
     emit(state.copyWith(
-      screenState: CompletedScreenState(),
+      screenState: CompletedScreenState(data: null),
       costs: costs,
       categoryVisibilities: _createCategoryVisibilities(costs),
       formattedSubTotalsTRY: _createFormattedSubTotalsTRY(costs),

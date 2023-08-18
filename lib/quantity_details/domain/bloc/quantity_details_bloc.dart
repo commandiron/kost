@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:kost/common/bloc/screen_state.dart';
 import 'package:kost/common/extension/formatted_number.dart';
 import 'package:kost/quantity_details/domain/bloc/quantity_details_event.dart';
 import 'package:kost/quantity_details/domain/bloc/quantity_details_state.dart';
@@ -9,12 +9,12 @@ import '../model/calculator/job_calculator.dart';
 import '../model/calculator/project_constants.dart';
 import '../model/calculator/room.dart';
 import '../model/calculator/window.dart';
-import '../../../cost_table/presentation/cost_table_screen.dart';
 
 class QuantityDetailsBloc extends Bloc<QuantityDetailsEvent, QuantityDetailsState> {
 
   QuantityDetailsBloc() : super(
     QuantityDetailsState(
+      screenState: InitialScreenState(),
       jobCalculator: ApartmentJobsCalculator(
         projectConstants: ProjectConstants(),
         landArea: 806.24,
@@ -176,14 +176,11 @@ class QuantityDetailsBloc extends Bloc<QuantityDetailsEvent, QuantityDetailsStat
     on<FloorDelete>((event, emit) {
 
       if(event.no == -1) {
-        ScaffoldMessenger.of(event.context).removeCurrentSnackBar();
-        ScaffoldMessenger.of(event.context).showSnackBar(const SnackBar(content: Text("İlk bodrum kat silinemez")));
+        emit(state.copyWith(snackBarMessage: "İlk bodrum kat silinemez"));
         return;
       }
-
       if(event.no == 0) {
-        ScaffoldMessenger.of(event.context).removeCurrentSnackBar();
-        ScaffoldMessenger.of(event.context).showSnackBar(const SnackBar(content: Text("Zemin kat silinemez")));
+        emit(state.copyWith(snackBarMessage: "Zemin kat silinemez"));
         return;
       }
 
@@ -200,13 +197,8 @@ class QuantityDetailsBloc extends Bloc<QuantityDetailsEvent, QuantityDetailsStat
       }
     });
     on<CalculateCost>((event, emit) {
-
       //Validate...
-
-      Navigator.of(event.context).pushNamed(
-        CostTableScreen.route,
-        arguments: state.jobCalculator.createJobs()
-      );
+      emit(state.copyWith(screenState: CompletedScreenState(data: state.jobCalculator.createJobs())));
     });
   }
 }
