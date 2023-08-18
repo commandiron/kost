@@ -173,9 +173,31 @@ class QuantityDetailsBloc extends Bloc<QuantityDetailsEvent, QuantityDetailsStat
       state.jobCalculator.floors.firstWhere((floor) => floor.no == event.no).area = floorArea;
     });
     on<FloorDelete>((event, emit) {
-      state.jobCalculator.floors.removeWhere((floor) => floor.no == event.no);
+      int? removedNo;
+      state.jobCalculator.floors.removeWhere(
+        (floor) {
+          if(floor.no == event.no) {
+            removedNo = floor.no;
+            return true;
+          }
+          return false;
+        }
+      );
+
+      if(removedNo != null) {
+        for (var floor in state.jobCalculator.floors) {
+          if(floor.no > removedNo!) {
+            if(removedNo! > 0) {
+              floor.no -= 1;
+            }
+          }
+        }
+      }
     });
     on<CalculateCost>((event, emit) {
+
+      //Validate...
+
       Navigator.of(event.context).pushNamed(
         CostTableScreen.route,
         arguments: state.jobCalculator.createJobs()
