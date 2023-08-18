@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:kost/config/app_text_style.dart';
+import 'package:kost/common/config/app_text_style.dart';
 
 class MainCategoryTitle extends StatelessWidget {
   const MainCategoryTitle({Key? key, required this.text}) : super(key: key);

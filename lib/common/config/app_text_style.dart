@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:kost/config/responsive.dart';
+import 'package:kost/common/config/responsive.dart';
 
 class AppTextStyle {
   // Headings

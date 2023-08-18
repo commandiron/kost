@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:kost/bloc/screen_state.dart';
+import 'package:kost/common/bloc/screen_state.dart';
 import 'package:kost/cost_table/domain/model/unit_price/currency.dart';
 import '../../../quantity_details/domain/model/job.dart';
 import '../model/cost/cost.dart';

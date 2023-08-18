@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:kost/extension/formattedNumber.dart';
+import 'package:kost/common/extension/formattedNumber.dart';
 
-import '../../../config/app_space.dart';
-import '../../../config/app_text_style.dart';
+import '../../../common/config/app_space.dart';
+import '../../../common/config/app_text_style.dart';
 import '../../domain/model/calculator/floor.dart';
-import '../../../widget/quantity_text_field.dart';
+import '../../../common/widget/quantity_text_field.dart';
 
 class FloorViewer extends StatefulWidget {
   const FloorViewer({

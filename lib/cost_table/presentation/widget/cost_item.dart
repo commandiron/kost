@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:kost/config/app_padding.dart';
-import 'package:kost/config/app_space.dart';
-import 'package:kost/config/app_text_style.dart';
-import 'package:kost/config/responsive.dart';
+import 'package:kost/common/config/app_padding.dart';
+import 'package:kost/common/config/app_space.dart';
+import 'package:kost/common/config/app_text_style.dart';
+import 'package:kost/common/config/responsive.dart';
 import 'package:kost/cost_table/domain/model/cost/cost.dart';
-import 'package:kost/widget/quantity_text_field.dart';
+import 'package:kost/common/widget/quantity_text_field.dart';
 import 'package:kost/cost_table/presentation/widget/unit_prices_alert_dialog.dart';
 
 import '../../domain/bloc/cost_table_bloc.dart';
