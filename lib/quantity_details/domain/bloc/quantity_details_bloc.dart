@@ -176,12 +176,14 @@ class QuantityDetailsBloc extends Bloc<QuantityDetailsEvent, QuantityDetailsStat
     on<FloorDelete>((event, emit) {
 
       if(event.no == -1) {
-        emit(state.copyWith(snackBarMessage: "İlk bodrum kat silinemez"));
+        ScaffoldMessenger.of(event.context).removeCurrentSnackBar();
+        ScaffoldMessenger.of(event.context).showSnackBar(const SnackBar(content: Text("İlk bodrum kat silinemez")));
         return;
       }
 
       if(event.no == 0) {
-        emit(state.copyWith(snackBarMessage: "Zemin kat silinemez"));
+        ScaffoldMessenger.of(event.context).removeCurrentSnackBar();
+        ScaffoldMessenger.of(event.context).showSnackBar(const SnackBar(content: Text("Zemin kat silinemez")));
         return;
       }
 

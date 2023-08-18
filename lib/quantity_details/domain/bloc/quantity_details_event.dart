@@ -17,10 +17,11 @@ class FloorAreaChanged extends QuantityDetailsEvent {
 }
 
 class FloorDelete extends QuantityDetailsEvent {
+  final BuildContext context;
   final int no;
-  const FloorDelete(this.no);
+  const FloorDelete(this.context, this.no);
   @override
-  List<Object?> get props => [no];
+  List<Object?> get props => [context, no];
 }
 
 class CalculateCost extends QuantityDetailsEvent {

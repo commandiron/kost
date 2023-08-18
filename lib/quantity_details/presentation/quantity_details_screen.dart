@@ -28,8 +28,7 @@ class QuantityDetailsView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<QuantityDetailsBloc, QuantityDetailsState>(
       listener: (context, state) {
-        ScaffoldMessenger.of(context).removeCurrentSnackBar();
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(state.snackBarMessage)));
+
       },
       builder: (context, state) {
         return Scaffold(
@@ -58,7 +57,7 @@ class QuantityDetailsView extends StatelessWidget {
                           context.read<QuantityDetailsBloc>().add(FloorAreaChanged(floorAreaText, no));
                         },
                         onFloorDelete: (no) {
-                          context.read<QuantityDetailsBloc>().add(FloorDelete(no));
+                          context.read<QuantityDetailsBloc>().add(FloorDelete(context, no));
                         },
                       ),
                       AppSpace.vL!,
