@@ -49,8 +49,7 @@ class _FloorViewerState extends State<FloorViewer> {
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
         itemBuilder: (context, index) {
-          final floorWidth =
-              _calculateFloorWidth(widthPerArea, index, widget.width);
+          final floorWidth = _calculateFloorWidth(widthPerArea, index, widget.width);
           return Align(
             alignment: Alignment.center,
             child: GestureDetector(
