@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:kost/common/extension/formattedNumber.dart';
+import 'package:kost/common/extension/formatted_number.dart';
 
 import '../../../common/config/app_space.dart';
 import '../../../common/config/app_text_style.dart';
