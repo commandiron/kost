@@ -1,5 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:kost/common/bloc/screen_state.dart';
+import 'package:kost/common/bloc/bloc_state.dart';
 import 'package:kost/common/extension/formatted_number.dart';
 import 'package:kost/quantity_details/domain/bloc/quantity_details_event.dart';
 import 'package:kost/quantity_details/domain/bloc/quantity_details_state.dart';

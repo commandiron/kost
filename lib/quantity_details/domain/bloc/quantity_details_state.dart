@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:kost/common/bloc/screen_state.dart';
+import 'package:kost/common/bloc/bloc_state.dart';
 import '../model/calculator/job_calculator.dart';
 
 class QuantityDetailsState extends Equatable {

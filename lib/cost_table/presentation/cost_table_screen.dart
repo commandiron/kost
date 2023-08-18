@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:kost/common/bloc/screen_state.dart';
+import 'package:kost/common/bloc/bloc_state.dart';
 import 'package:kost/common/config/app_text_style.dart';
 import 'package:kost/cost_table/presentation/widget/custom_grouped_list_view.dart';
 
