@@ -1,7 +1,4 @@
 import 'package:equatable/equatable.dart';
-import 'package:flutter/material.dart';
-
-
 import '../../../quantity_details/domain/model/job.dart';
 
 abstract class CostTableEvent extends Equatable {
@@ -13,10 +10,9 @@ abstract class CostTableEvent extends Equatable {
 
 class Init extends CostTableEvent {
   final List<Job>? jobs;
-  final BuildContext context;
-  const Init(this.jobs, this.context);
+  const Init(this.jobs);
   @override
-  List<Object?> get props => [jobs, context];
+  List<Object?> get props => [jobs];
 }
 
 class ExpandCollapseMainCategory extends CostTableEvent {

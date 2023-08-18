@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kost/common/bloc/screen_state.dart';
 import 'package:kost/cost_table/data/unit_price_repository.dart';
@@ -8,7 +7,6 @@ import 'package:kost/cost_table/domain/model/cost/cost.dart';
 import 'package:kost/cost_table/domain/model/unit_price/unit.dart';
 
 import '../../../quantity_details/domain/model/job.dart';
-import '../../../quantity_details/presentation/quantity_details_screen.dart';
 import '../model/unit_price/unit_price.dart';
 import 'cost_table_event.dart';
 import 'cost_table_state.dart';
@@ -33,7 +31,7 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
       emit(state.copyWith(screenState: LoadingScreenState()));
 
       if(event.jobs == null) {
-        Navigator.of(event.context).pushReplacementNamed(QuantityDetailsScreen.route);
+        emit(state.copyWith(screenState: ErrorScreenState(message: "Gerekli bilgiler verilmedi.")));
         return;
       }
 
