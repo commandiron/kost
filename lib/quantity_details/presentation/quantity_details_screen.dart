@@ -16,13 +16,13 @@ class QuantityDetailsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => QuantityDetailsBloc(),
-      child: const QuantityDetailsPage(),
+      child: const QuantityDetailsView(),
     );
   }
 }
 
-class QuantityDetailsPage extends StatelessWidget {
-  const QuantityDetailsPage({Key? key}) : super(key: key);
+class QuantityDetailsView extends StatelessWidget {
+  const QuantityDetailsView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

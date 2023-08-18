@@ -20,13 +20,13 @@ class CostTableScreen extends StatelessWidget {
 
     return BlocProvider(
       create: (context) => CostTableBloc(jobs: jobs ?? [])..add(const Init()),
-      child: const CostTablePage(),
+      child: const CostTableView(),
     );
   }
 }
 
-class CostTablePage extends StatelessWidget {
-  const CostTablePage({Key? key}) : super(key: key);
+class CostTableView extends StatelessWidget {
+  const CostTableView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
