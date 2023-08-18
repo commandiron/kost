@@ -15,12 +15,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     AppConfig.init(context);
-    return MaterialApp(
-      initialRoute: QuantityDetailsScreen.route,
-      routes: {
-        QuantityDetailsScreen.route : (context) => const QuantityDetailsScreen(),
-        CostTableScreen.route : (context) => const CostTableScreen(),
-      },
+    return SafeArea(
+      child: MaterialApp(
+        initialRoute: QuantityDetailsScreen.route,
+        routes: {
+          QuantityDetailsScreen.route : (context) => const QuantityDetailsScreen(),
+          CostTableScreen.route : (context) => const CostTableScreen(),
+        },
+      ),
     );
   }
 }

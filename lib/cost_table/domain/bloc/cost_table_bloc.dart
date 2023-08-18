@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:kost/bloc/screen_state.dart';
 import 'package:kost/cost_table/data/unit_price_repository.dart';
 import 'package:kost/extension/formattedNumber.dart';
 import 'package:kost/cost_table/domain/model/unit_price/currency.dart';
@@ -16,6 +17,7 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
   CostTableBloc()
       : super(
           CostTableState(
+            screenState: InitialScreenState(),
             tableName: "Apartman Maliyeti",
             jobs: const [],
             unitPricePool: const [],
@@ -27,6 +29,8 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
           ),
         ) {
     on<Init>((event, emit) {
+
+      emit(state.copyWith(screenState: LoadingScreenState()));
 
       if(event.jobs == null) {
         Navigator.of(event.context).pushReplacementNamed(QuantityDetailsScreen.route);
@@ -87,6 +91,7 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
   void _refreshCostTable(Emitter<CostTableState> emit) {
     final costs = _createCosts(state.jobs);
     emit(state.copyWith(
+      screenState: CompletedScreenState(),
       costs: costs,
       categoryVisibilities: _createCategoryVisibilities(costs),
       formattedSubTotalsTRY: _createFormattedSubTotalsTRY(costs),
