@@ -35,6 +35,7 @@ class QuantityDetailsView extends StatelessWidget {
           listener: (context, state) {
             final screenState = state.screenState;
             if(screenState is CompletedScreenState) {
+              ScaffoldMessenger.of(context).removeCurrentSnackBar();
               Navigator.of(context).pushNamed(
                   CostTableScreen.route,
                   arguments: screenState.data
@@ -79,7 +80,7 @@ class QuantityDetailsView extends StatelessWidget {
                               context.read<QuantityDetailsBloc>().add(FloorAreaChanged(floorAreaText, no));
                             },
                             onFloorDelete: (no) {
-                              context.read<QuantityDetailsBloc>().add(FloorDelete(context, no));
+                              context.read<QuantityDetailsBloc>().add(FloorDelete(no));
                             },
                           ),
                           AppSpace.vL!,
@@ -93,7 +94,7 @@ class QuantityDetailsView extends StatelessWidget {
                               Text(state.jobCalculator.landArea.toString()),
                               Text(state.jobCalculator.landPerimeter.toString()),
                               ElevatedButton(
-                                  onPressed:() => context.read<QuantityDetailsBloc>().add(CalculateCost(context)),
+                                  onPressed:() => context.read<QuantityDetailsBloc>().add(const CalculateCost()),
                                   child: const Text("Maliyet Hesapla")
                               )
                             ],

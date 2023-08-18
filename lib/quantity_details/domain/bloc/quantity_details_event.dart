@@ -1,5 +1,4 @@
 import 'package:equatable/equatable.dart';
-import 'package:flutter/material.dart';
 
 abstract class QuantityDetailsEvent extends Equatable {
   const QuantityDetailsEvent();
@@ -17,16 +16,14 @@ class FloorAreaChanged extends QuantityDetailsEvent {
 }
 
 class FloorDelete extends QuantityDetailsEvent {
-  final BuildContext context;
   final int no;
-  const FloorDelete(this.context, this.no);
+  const FloorDelete(this.no);
   @override
-  List<Object?> get props => [context, no];
+  List<Object?> get props => [no];
 }
 
 class CalculateCost extends QuantityDetailsEvent {
-  final BuildContext context;
-  const CalculateCost(this.context);
+  const CalculateCost();
   @override
-  List<Object?> get props => [context];
+  List<Object?> get props => [];
 }
