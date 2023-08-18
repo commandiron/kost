@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kost/cost_table/data/unit_price_repository.dart';
 import 'package:kost/extension/formattedNumber.dart';
@@ -6,16 +7,17 @@ import 'package:kost/cost_table/domain/model/cost/cost.dart';
 import 'package:kost/cost_table/domain/model/unit_price/unit.dart';
 
 import '../../../quantity_details/domain/model/job.dart';
+import '../../../quantity_details/presentation/quantity_details_screen.dart';
 import '../model/unit_price/unit_price.dart';
 import 'cost_table_event.dart';
 import 'cost_table_state.dart';
 
 class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
-  CostTableBloc({required List<Job> jobs})
+  CostTableBloc()
       : super(
           CostTableState(
             tableName: "Apartman Maliyeti",
-            jobs: jobs,
+            jobs: const [],
             unitPricePool: const [],
             currencyRates: ManualCurrencyRates(),
             costs: const [],
@@ -25,11 +27,19 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
           ),
         ) {
     on<Init>((event, emit) {
+
+      if(event.jobs == null) {
+        Navigator.of(event.context).pushReplacementNamed(QuantityDetailsScreen.route);
+        return;
+      }
+
       final unitPricePool = _fetchUnitPricePool();
       //Fetch currency rates
       emit(state.copyWith(
+        jobs: event.jobs,
         unitPricePool: unitPricePool,
       ));
+
       _refreshCostTable(emit);
     });
     on<ExpandCollapseMainCategory>((event, emit) {

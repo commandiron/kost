@@ -15,11 +15,9 @@ class CostTableScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     final jobs= ModalRoute.of(context)!.settings.arguments as List<Job>?;
-
     return BlocProvider(
-      create: (context) => CostTableBloc(jobs: jobs ?? [])..add(const Init()),
+      create: (context) => CostTableBloc()..add(Init(jobs, context)),
       child: const CostTableView(),
     );
   }
@@ -27,7 +25,6 @@ class CostTableScreen extends StatelessWidget {
 
 class CostTableView extends StatelessWidget {
   const CostTableView({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
