@@ -26,13 +26,16 @@ class QuantityDetailsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: BlocBuilder<QuantityDetailsBloc, QuantityDetailsState>(
-          builder: (context, state) {
-            return CustomScrollView(
-              slivers: [
-                SliverToBoxAdapter(
+    return BlocConsumer<QuantityDetailsBloc, QuantityDetailsState>(
+      listener: (context, state) {
+        ScaffoldMessenger.of(context).removeCurrentSnackBar();
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(state.snackBarMessage)));
+      },
+      builder: (context, state) {
+        return Scaffold(
+          body: CustomScrollView(
+            slivers: [
+              SliverToBoxAdapter(
                   child: Column(
                     children: [
                       AppSpace.vL!,
@@ -69,19 +72,18 @@ class QuantityDetailsView extends StatelessWidget {
                           Text(state.jobCalculator.landArea.toString()),
                           Text(state.jobCalculator.landPerimeter.toString()),
                           ElevatedButton(
-                            onPressed:() => context.read<QuantityDetailsBloc>().add(CalculateCost(context)),
-                            child: const Text("Maliyet Hesapla")
+                              onPressed:() => context.read<QuantityDetailsBloc>().add(CalculateCost(context)),
+                              child: const Text("Maliyet Hesapla")
                           )
                         ],
                       ),
                     ],
                   )
-                ),
-              ],
-            );
-          },
-        ),
-      ),
+              ),
+            ],
+          ),
+        );
+      },
     );
   }
 }

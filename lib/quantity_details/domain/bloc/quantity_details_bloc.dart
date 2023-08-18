@@ -166,6 +166,7 @@ class QuantityDetailsBloc extends Bloc<QuantityDetailsEvent, QuantityDetailsStat
         foundationPerimeter: 94.42,
         foundationHeight: 1,
       ),
+      snackBarMessage: ""
     ),
   ){
     on<FloorAreaChanged>((event, emit) {
@@ -173,23 +174,25 @@ class QuantityDetailsBloc extends Bloc<QuantityDetailsEvent, QuantityDetailsStat
       state.jobCalculator.floors.firstWhere((floor) => floor.no == event.no).area = floorArea;
     });
     on<FloorDelete>((event, emit) {
-      int? removedNo;
+
+      if(event.no == -1) {
+        emit(state.copyWith(snackBarMessage: "İlk bodrum kat silinemez"));
+        return;
+      }
+
+      if(event.no == 0) {
+        emit(state.copyWith(snackBarMessage: "Zemin kat silinemez"));
+        return;
+      }
+
       state.jobCalculator.floors.removeWhere(
-        (floor) {
-          if(floor.no == event.no) {
-            removedNo = floor.no;
-            return true;
-          }
-          return false;
-        }
+        (floor) => floor.no == event.no
       );
 
-      if(removedNo != null) {
-        for (var floor in state.jobCalculator.floors) {
-          if(floor.no > removedNo!) {
-            if(removedNo! > 0) {
-              floor.no -= 1;
-            }
+      for (var floor in state.jobCalculator.floors) {
+        if(floor.no > event.no) {
+          if(event.no > 0) {
+            floor.no -= 1;
           }
         }
       }
