@@ -3,24 +3,24 @@ import 'package:kost/common/bloc/screen_state.dart';
 import '../model/calculator/job_calculator.dart';
 
 class QuantityDetailsState extends Equatable {
-  final ScreenState screenState;
+  final BlocState blocState;
   final JobCalculator jobCalculator;
   final String snackBarMessage;
 
 
   const QuantityDetailsState({
-    required this.screenState,
+    required this.blocState,
     required this.jobCalculator,
     required this.snackBarMessage,
   });
 
   QuantityDetailsState copyWith({
-    ScreenState? screenState,
+    BlocState? blocState,
     JobCalculator? jobCalculator,
     String? snackBarMessage,
   }) {
     return QuantityDetailsState(
-      screenState: screenState ?? this.screenState,
+      blocState: blocState ?? this.blocState,
       jobCalculator: jobCalculator ?? this.jobCalculator,
       snackBarMessage: snackBarMessage ?? this.snackBarMessage,
     );
@@ -28,7 +28,7 @@ class QuantityDetailsState extends Equatable {
 
   @override
   List<Object?> get props => [
-    screenState,
+    blocState,
     jobCalculator,
     snackBarMessage,
   ];

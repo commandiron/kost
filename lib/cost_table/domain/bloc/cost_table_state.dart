@@ -6,7 +6,7 @@ import '../model/cost/cost.dart';
 import '../model/unit_price/unit_price.dart';
 
 class CostTableState extends Equatable {
-  final ScreenState screenState;
+  final BlocState blocState;
   final String tableName;
   final List<Job> jobs;
   final List<UnitPrice> unitPricePool;
@@ -17,7 +17,7 @@ class CostTableState extends Equatable {
   final String formattedGrandTotalTRY;
 
   const CostTableState({
-    required this.screenState,
+    required this.blocState,
     required this.tableName,
     required this.jobs,
     required this.unitPricePool,
@@ -29,7 +29,7 @@ class CostTableState extends Equatable {
   });
 
   CostTableState copyWith({
-    ScreenState? screenState,
+    BlocState? blocState,
     String? tableName,
     List<Job>? jobs,
     List<UnitPrice>? unitPricePool,
@@ -40,7 +40,7 @@ class CostTableState extends Equatable {
     String? formattedGrandTotalTRY,
   }) {
     return CostTableState(
-      screenState: screenState ?? this.screenState,
+      blocState: blocState ?? this.blocState,
       tableName: tableName ?? this.tableName,
       jobs: jobs ?? this.jobs,
       unitPricePool: unitPricePool ?? this.unitPricePool,
@@ -54,7 +54,7 @@ class CostTableState extends Equatable {
 
   @override
   List<Object?> get props => [
-    screenState,
+    blocState,
     tableName,
     jobs,
     unitPricePool,

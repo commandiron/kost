@@ -30,16 +30,16 @@ class CostTableView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocListener<CostTableBloc, CostTableState>(
-      listenWhen: (previous, current) => previous.screenState != current.screenState,
+      listenWhen: (previous, current) => previous.blocState != current.blocState,
       listener: (context, state) {
-        final screenState = state.screenState;
-        if(screenState is ErrorScreenState) {
+        final blocState = state.blocState;
+        if(blocState is Error) {
           Navigator.of(context).pushReplacementNamed(QuantityDetailsScreen.route);
         }
       },
       child: BlocBuilder<CostTableBloc, CostTableState>(
           builder: (context, state) {
-            if(state.screenState is! CompletedScreenState) {
+            if(state.blocState is! Completed) {
               return const Center(child: CircularProgressIndicator());
             }
             return Scaffold(

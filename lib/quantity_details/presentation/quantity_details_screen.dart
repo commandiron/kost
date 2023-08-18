@@ -31,16 +31,15 @@ class QuantityDetailsView extends StatelessWidget {
     return MultiBlocListener(
       listeners: [
         BlocListener<QuantityDetailsBloc, QuantityDetailsState>(
-          listenWhen: (previous, current) => previous.screenState != current.screenState,
+          listenWhen: (previous, current) => previous.blocState != current.blocState,
           listener: (context, state) {
-            final screenState = state.screenState;
-            if(screenState is CompletedScreenState) {
+            final blocState = state.blocState;
+            if(blocState is Completed) {
               ScaffoldMessenger.of(context).removeCurrentSnackBar();
               Navigator.of(context).pushNamed(
-                  CostTableScreen.route,
-                  arguments: screenState.data
+                CostTableScreen.route,
+                arguments: blocState.data
               );
-              return;
             }
           },
         ),

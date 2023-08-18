@@ -14,7 +14,7 @@ class QuantityDetailsBloc extends Bloc<QuantityDetailsEvent, QuantityDetailsStat
 
   QuantityDetailsBloc() : super(
     QuantityDetailsState(
-      screenState: InitialScreenState(),
+      blocState: Initial(),
       jobCalculator: ApartmentJobsCalculator(
         projectConstants: ProjectConstants(),
         landArea: 806.24,
@@ -198,7 +198,7 @@ class QuantityDetailsBloc extends Bloc<QuantityDetailsEvent, QuantityDetailsStat
     });
     on<CalculateCost>((event, emit) {
       //Validate...
-      emit(state.copyWith(screenState: CompletedScreenState(data: state.jobCalculator.createJobs())));
+      emit(state.copyWith(blocState: Completed(data: state.jobCalculator.createJobs())));
     });
   }
 }

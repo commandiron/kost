@@ -15,7 +15,7 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
   CostTableBloc()
       : super(
           CostTableState(
-            screenState: InitialScreenState(),
+            blocState: Initial(),
             tableName: "Apartman Maliyeti",
             jobs: const [],
             unitPricePool: const [],
@@ -28,10 +28,10 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
         ) {
     on<Init>((event, emit) {
 
-      emit(state.copyWith(screenState: LoadingScreenState()));
+      emit(state.copyWith(blocState: Loading()));
 
       if(event.jobs == null) {
-        emit(state.copyWith(screenState: ErrorScreenState(message: "Gerekli bilgiler verilmedi.")));
+        emit(state.copyWith(blocState: Error(message: "Gerekli bilgiler verilmedi.")));
         return;
       }
 
@@ -89,7 +89,7 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
   void _refreshCostTable(Emitter<CostTableState> emit) {
     final costs = _createCosts(state.jobs);
     emit(state.copyWith(
-      screenState: CompletedScreenState(data: null),
+      blocState: Completed(data: null),
       costs: costs,
       categoryVisibilities: _createCategoryVisibilities(costs),
       formattedSubTotalsTRY: _createFormattedSubTotalsTRY(costs),

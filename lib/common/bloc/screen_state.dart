@@ -1,15 +1,15 @@
-abstract class ScreenState {}
+abstract class BlocState {}
 
-class InitialScreenState extends ScreenState {}
+class Initial extends BlocState {}
 
-class LoadingScreenState extends ScreenState {}
+class Loading extends BlocState {}
 
-class ErrorScreenState extends ScreenState {
+class Error extends BlocState {
   final String message;
-  ErrorScreenState({required this.message});
+  Error({required this.message});
 }
 
-class CompletedScreenState extends ScreenState {
+class Completed extends BlocState {
   final dynamic data;
-  CompletedScreenState({this.data});
+  Completed({this.data});
 }
