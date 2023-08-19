@@ -68,8 +68,6 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
       _refreshCostTable(emit);
     });
     on<DeleteJob>((event, emit) async {
-      await Future.delayed(const Duration(
-          milliseconds: 160)); //Dialog close transition duration.
       state.jobs.removeWhere((job) => job.id == event.jobId);
       _refreshCostTable(emit);
     });
