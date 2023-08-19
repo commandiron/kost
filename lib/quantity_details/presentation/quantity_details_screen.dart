@@ -56,6 +56,17 @@ class QuantityDetailsView extends StatelessWidget {
       child: BlocBuilder<QuantityDetailsBloc, QuantityDetailsState>(
         builder: (context, state) {
           return Scaffold(
+            appBar: AppBar(
+                actions: [
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: ElevatedButton(
+                      onPressed: () => context.read<QuantityDetailsBloc>().add(const CalculateCost()), 
+                      child: const Text("Hesapla")
+                    ),
+                  )
+                ],
+            ),
             body: CustomScrollView(
               slivers: [
                 SliverToBoxAdapter(
@@ -105,11 +116,6 @@ class QuantityDetailsView extends StatelessWidget {
                       children: [
                         Text(state.jobCalculator.landArea.toString()),
                         Text(state.jobCalculator.landPerimeter.toString()),
-                        ElevatedButton(
-                            onPressed: () => context
-                                .read<QuantityDetailsBloc>()
-                                .add(const CalculateCost()),
-                            child: const Text("Maliyet Hesapla"))
                       ],
                     ),
                   ],
