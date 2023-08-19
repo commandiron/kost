@@ -15,23 +15,25 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
   CostTableBloc()
       : super(
           CostTableState(
-            blocState: Initial(),
-            tableName: "Apartman Maliyeti",
-            jobs: const [],
-            unitPricePool: const [],
-            currencyRates: ManualCurrencyRates(),
-            costs: const [],
-            categoryVisibilities: const {},
-            formattedSubTotalsTRY: const {},
-            formattedGrandTotalTRY: ""
-          ),
+              blocState: Initial(),
+              tableName: "Apartman Maliyeti",
+              jobs: const [],
+              unitPricePool: const [],
+              currencyRates: ManualCurrencyRates(),
+              costs: const [],
+              categoryVisibilities: const {},
+              formattedSubTotalsTRY: const {},
+              formattedGrandTotalTRY: ""),
         ) {
-    on<Init>((event, emit) {
-
+    on<Init>((event, emit) async {
+      
       emit(state.copyWith(blocState: Loading()));
 
-      if(event.jobs == null) {
-        emit(state.copyWith(blocState: Error(message: "Gerekli bilgiler verilmedi.")));
+      await Future.delayed(const Duration(seconds: 1)); //Fake delay
+
+      if (event.jobs == null) {
+        emit(state.copyWith(
+            blocState: Error(message: "Gerekli bilgiler verilmedi.")));
         return;
       }
 
@@ -66,16 +68,14 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
       _refreshCostTable(emit);
     });
     on<DeleteJob>((event, emit) async {
-      await Future.delayed(const Duration(milliseconds: 160)); //Dialog close transition duration.
-      state.jobs
-          .removeWhere((job) => job.id == event.jobId);
+      await Future.delayed(const Duration(
+          milliseconds: 160)); //Dialog close transition duration.
+      state.jobs.removeWhere((job) => job.id == event.jobId);
       _refreshCostTable(emit);
     });
     on<ChangeQuantityManually>((event, emit) {
       final quantity = event.quantityText.toNumber();
-      state.jobs
-          .firstWhere((e) => e.id == event.jobId)
-          .quantity = quantity;
+      state.jobs.firstWhere((e) => e.id == event.jobId).quantity = quantity;
       _refreshCostTable(emit);
     });
   }
