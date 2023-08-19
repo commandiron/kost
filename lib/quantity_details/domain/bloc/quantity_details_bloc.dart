@@ -169,9 +169,8 @@ class QuantityDetailsBloc extends Bloc<QuantityDetailsEvent, QuantityDetailsStat
       snackBarMessage: ""
     ),
   ){
-    on<FloorAreaChanged>((event, emit) {
-      final floorArea = event.floorAreaText.toNumber();
-      state.jobCalculator.floors.firstWhere((floor) => floor.no == event.no).area = floorArea;
+    on<FloorAdd>((event, emit) {
+      // Add Floor
     });
     on<FloorDelete>((event, emit) {
 
@@ -195,6 +194,10 @@ class QuantityDetailsBloc extends Bloc<QuantityDetailsEvent, QuantityDetailsStat
           }
         }
       }
+    });
+    on<FloorAreaChanged>((event, emit) {
+      final floorArea = event.floorAreaText.toNumber();
+      state.jobCalculator.floors.firstWhere((floor) => floor.no == event.no).area = floorArea;
     });
     on<CalculateCost>((event, emit) {
       //Validate...

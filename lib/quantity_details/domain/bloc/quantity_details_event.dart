@@ -7,12 +7,10 @@ abstract class QuantityDetailsEvent extends Equatable {
   List<Object?> get props => [];
 }
 
-class FloorAreaChanged extends QuantityDetailsEvent {
-  final String floorAreaText;
-  final int no;
-  const FloorAreaChanged(this.floorAreaText, this.no);
+class FloorAdd extends QuantityDetailsEvent {
+  const FloorAdd();
   @override
-  List<Object?> get props => [floorAreaText, no];
+  List<Object?> get props => [];
 }
 
 class FloorDelete extends QuantityDetailsEvent {
@@ -20,6 +18,14 @@ class FloorDelete extends QuantityDetailsEvent {
   const FloorDelete(this.no);
   @override
   List<Object?> get props => [no];
+}
+
+class FloorAreaChanged extends QuantityDetailsEvent {
+  final String floorAreaText;
+  final int no;
+  const FloorAreaChanged(this.floorAreaText, this.no);
+  @override
+  List<Object?> get props => [floorAreaText, no];
 }
 
 class CalculateCost extends QuantityDetailsEvent {
