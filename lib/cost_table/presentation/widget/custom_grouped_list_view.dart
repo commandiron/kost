@@ -6,7 +6,7 @@ import '../../../quantity_details/domain/model/job.dart';
 import '../../domain/model/cost/cost.dart';
 import 'cost_item.dart';
 
-class CostsListView extends StatefulWidget {
+class CostsListView extends StatelessWidget {
   const CostsListView(
       {Key? key,
       required this.costs,
@@ -19,50 +19,34 @@ class CostsListView extends StatefulWidget {
   final Map<MainCategory, bool> categoryVisibilities;
 
   @override
-  State<CostsListView> createState() => _CostsListViewState();
-}
-
-class _CostsListViewState extends State<CostsListView> {
-  bool _isListViewRenderFinished = false;
-
-  @override
-  void initState() {
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      setState(() {
-        _isListViewRenderFinished = true;
-      });
-    });
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        if(!_isListViewRenderFinished)
-          Container(
-            color: Colors.white,
-            height: double.infinity,
-          ),
-        GroupedListView<Cost, MainCategory>(
-          shrinkWrap: true,
-          elements: widget.costs,
-          groupBy: (cost) => cost.mainCategory,
-          groupSeparatorBuilder: (MainCategory mainCategory) {
-            return CostSeparator(
-                mainCategory: mainCategory,
-                formattedSubTotalsTRY: widget.formattedSubTotalsTRY);
-          },
-          sort: false,
-          indexedItemBuilder: (context, cost, index) {
-            return CostItem(
-              cost: cost,
-              index: index,
-              visible: widget.categoryVisibilities[cost.mainCategory] ?? true,
-            );
-          },
-        ),
-      ],
+    if (!categoryVisibilities.values.any((value) => value)) {
+      return ListView.builder(
+        itemCount: formattedSubTotalsTRY.keys.length,
+        itemBuilder: (context, index) {
+          return CostSeparator(
+            mainCategory: costs.map((e) => e.mainCategory).toSet().toList()[index],
+            formattedSubTotalsTRY: formattedSubTotalsTRY
+          );
+        },
+      );
+    }
+    return GroupedListView<Cost, MainCategory>(
+      elements: costs,
+      groupBy: (cost) => cost.mainCategory,
+      groupSeparatorBuilder: (MainCategory mainCategory) {
+        return CostSeparator(
+            mainCategory: mainCategory,
+            formattedSubTotalsTRY: formattedSubTotalsTRY);
+      },
+      sort: false,
+      indexedItemBuilder: (context, cost, index) {
+        return CostItem(
+          cost: cost,
+          index: index,
+          visible: categoryVisibilities[cost.mainCategory] ?? true,
+        );
+      },
     );
   }
 }

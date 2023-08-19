@@ -17,7 +17,7 @@ class CostTableScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final jobs= ModalRoute.of(context)!.settings.arguments as List<Job>?;
+    final jobs = ModalRoute.of(context)!.settings.arguments as List<Job>?;
     return BlocProvider(
       create: (context) => CostTableBloc()..add(Init(jobs)),
       child: const CostTableView(),
@@ -30,52 +30,54 @@ class CostTableView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocListener<CostTableBloc, CostTableState>(
-      listenWhen: (previous, current) => previous.blocState != current.blocState,
+      listenWhen: (previous, current) =>
+          previous.blocState != current.blocState,
       listener: (context, state) {
         final blocState = state.blocState;
-        if(blocState is Error) {
-          Navigator.of(context).pushReplacementNamed(QuantityDetailsScreen.route);
+        if (blocState is Error) {
+          Navigator.of(context)
+              .pushReplacementNamed(QuantityDetailsScreen.route);
         }
       },
-      child: Scaffold(
-        appBar: AppBar(
-          title: BlocBuilder<CostTableBloc, CostTableState>(
+      child: Scaffold(appBar: AppBar(
+        title: BlocBuilder<CostTableBloc, CostTableState>(
             builder: (context, state) {
-              return Text(state.formattedGrandTotalTRY, style: AppTextStyle.b1,);
-            }
+          return Text(
+            state.formattedGrandTotalTRY,
+            style: AppTextStyle.b1,
+          );
+        }),
+      ), body:
+          BlocBuilder<CostTableBloc, CostTableState>(builder: (context, state) {
+        if (state.blocState is! Completed) {
+          return const Center(child: CircularProgressIndicator());
+        }
+        return Center(
+          child: Column(
+            children: [
+              Text(
+                state.tableName,
+                style: const TextStyle(fontSize: 26),
+              ),
+              ElevatedButton(
+                  onPressed: () => context
+                      .read<CostTableBloc>()
+                      .add(const ExpandCollapseAllMainCategory()),
+                  child: Text(
+                      state.categoryVisibilities.values.any((visible) => visible)
+                          ? "Collapse All"
+                          : "Expand All")),
+              Expanded(
+                child: CostsListView(
+                  costs: state.costs,
+                  formattedSubTotalsTRY: state.formattedSubTotalsTRY,
+                  categoryVisibilities: state.categoryVisibilities,
+                ),
+              ),
+            ],
           ),
-        ),
-        body: BlocBuilder<CostTableBloc, CostTableState>(
-          builder: (context, state) {
-            if(state.blocState is! Completed) {
-              return const Center(child: CircularProgressIndicator());
-            }
-            return CustomScrollView(
-              slivers: [
-                SliverToBoxAdapter(
-                  child: Column(
-                    children: [
-                      Text(
-                        state.tableName,
-                        style: const TextStyle(fontSize: 26),
-                      ),
-                      ElevatedButton(
-                          onPressed: () => context.read<CostTableBloc>().add(const ExpandCollapseAllMainCategory()),
-                          child: Text(state.categoryVisibilities.values.any((visible) => visible) ? "Collapse All" : "Expand All")
-                      ),
-                      CostsListView(
-                        costs: state.costs,
-                        formattedSubTotalsTRY: state.formattedSubTotalsTRY,
-                        categoryVisibilities: state.categoryVisibilities,
-                      ),
-                    ],
-                  ),
-                )
-              ],
-            );
-          }
-        )
-      ),
+        );
+      })),
     );
   }
 }
