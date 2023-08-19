@@ -37,41 +37,45 @@ class CostTableView extends StatelessWidget {
           Navigator.of(context).pushReplacementNamed(QuantityDetailsScreen.route);
         }
       },
-      child: BlocBuilder<CostTableBloc, CostTableState>(
+      child: Scaffold(
+        appBar: AppBar(
+          title: BlocBuilder<CostTableBloc, CostTableState>(
+            builder: (context, state) {
+              return Text(state.formattedGrandTotalTRY, style: AppTextStyle.b1,);
+            }
+          ),
+        ),
+        body: BlocBuilder<CostTableBloc, CostTableState>(
           builder: (context, state) {
             if(state.blocState is! Completed) {
               return const Center(child: CircularProgressIndicator());
             }
-            return Scaffold(
-              appBar: AppBar(
-                title: Text(state.formattedGrandTotalTRY, style: AppTextStyle.b1,),
-              ),
-              body: CustomScrollView(
-                slivers: [
-                  SliverToBoxAdapter(
-                    child: Column(
-                      children: [
-                        Text(
-                          state.tableName,
-                          style: const TextStyle(fontSize: 26),
-                        ),
-                        ElevatedButton(
-                            onPressed: () => context.read<CostTableBloc>().add(const ExpandCollapseAllMainCategory()),
-                            child: Text(state.categoryVisibilities.values.any((visible) => visible) ? "Collapse All" : "Expand All")
-                        ),
-                        CostsListView(
-                          costs: state.costs,
-                          formattedSubTotalsTRY: state.formattedSubTotalsTRY,
-                          categoryVisibilities: state.categoryVisibilities,
-                        ),
-                      ],
-                    ),
-                  )
-                ],
-              )
+            return CustomScrollView(
+              slivers: [
+                SliverToBoxAdapter(
+                  child: Column(
+                    children: [
+                      Text(
+                        state.tableName,
+                        style: const TextStyle(fontSize: 26),
+                      ),
+                      ElevatedButton(
+                          onPressed: () => context.read<CostTableBloc>().add(const ExpandCollapseAllMainCategory()),
+                          child: Text(state.categoryVisibilities.values.any((visible) => visible) ? "Collapse All" : "Expand All")
+                      ),
+                      CostsListView(
+                        costs: state.costs,
+                        formattedSubTotalsTRY: state.formattedSubTotalsTRY,
+                        categoryVisibilities: state.categoryVisibilities,
+                      ),
+                    ],
+                  ),
+                )
+              ],
             );
-          },
-        ),
+          }
+        )
+      ),
     );
   }
 }
