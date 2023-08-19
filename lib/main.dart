@@ -17,6 +17,7 @@ class MyApp extends StatelessWidget {
     AppConfig.init(context);
     return SafeArea(
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         initialRoute: QuantityDetailsScreen.route,
         routes: {
           QuantityDetailsScreen.route : (context) => const QuantityDetailsScreen(),
