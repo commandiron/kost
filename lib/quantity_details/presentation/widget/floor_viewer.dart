@@ -13,8 +13,6 @@ class FloorViewer extends StatelessWidget {
     required this.floors,
     required this.onFloorAdd,
     required this.onFloorClick,
-    required this.onFloorDelete,
-    required this.onFloorAreaChanged,
   }) : super(key: key);
 
   final double width;
@@ -23,9 +21,7 @@ class FloorViewer extends StatelessWidget {
   final double foundationArea;
   final List<Floor> floors;
   final void Function() onFloorAdd;
-  final void Function(int no) onFloorClick;
-  final void Function(int no) onFloorDelete;
-  final void Function(String floorAreaText, int no) onFloorAreaChanged;
+  final void Function(Floor floor) onFloorClick;
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +41,7 @@ class FloorViewer extends StatelessWidget {
             return Center(
               child: GestureDetector(
                 onTap: () {
-                  onFloorClick(floors[index].no);
+                  onFloorClick(floors[index]);
                 },
                 child: Container(
                   width: floorWidth,

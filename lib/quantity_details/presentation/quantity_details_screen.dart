@@ -4,11 +4,13 @@ import 'package:kost/common/bloc/bloc_state.dart';
 import 'package:kost/common/config/app_space.dart';
 import 'package:kost/common/config/app_text_style.dart';
 import 'package:kost/quantity_details/presentation/widget/add_floor_dialog.dart';
+import 'package:kost/quantity_details/presentation/widget/edit_floor_dialog.dart';
 import 'package:kost/quantity_details/presentation/widget/floor_viewer.dart';
 import '../../cost_table/presentation/cost_table_screen.dart';
 import '../domain/bloc/quantity_details_bloc.dart';
 import '../domain/bloc/quantity_details_event.dart';
 import '../domain/bloc/quantity_details_state.dart';
+import '../domain/model/calculator/floor.dart';
 
 class QuantityDetailsScreen extends StatelessWidget {
   const QuantityDetailsScreen({Key? key}) : super(key: key);
@@ -95,18 +97,25 @@ class QuantityDetailsView extends StatelessWidget {
                           },
                         );
                       },
-                      onFloorClick: (int no) {
-                        
-                      },
-                      onFloorDelete: (int no) {
-                        context
-                            .read<QuantityDetailsBloc>()
-                            .add(FloorDelete(no));
-                      },
-                      onFloorAreaChanged: (String floorAreaText, int no) {
-                        context
-                            .read<QuantityDetailsBloc>()
-                            .add(FloorAreaChanged(floorAreaText, no));
+                      onFloorClick: (Floor floor) {
+                        showDialog(
+                          context: context,
+                          builder: (context) {
+                            return EditFloorDialog(
+                              floor: floor,
+                              onFloorDelete: (int no) {
+                                context
+                                  .read<QuantityDetailsBloc>()
+                                  .add(FloorDelete(no));
+                              },
+                              onFloorAreaChanged: (floorAreaText, no) {
+                                context
+                                  .read<QuantityDetailsBloc>()
+                                  .add(FloorAreaChanged(floorAreaText, no));
+                              },
+                            );
+                          },
+                        );
                       },
                     ),
                     AppSpace.vL!,

@@ -69,6 +69,12 @@ class AppTextStyle {
     l2b = l2!.copyWith(fontWeight: bold);
   }
 
+  static TextStyle responsiveH3(BuildContext context) {
+    return Responsive.value(context, AppTextStyle.h5, AppTextStyle.h4, AppTextStyle.h3);
+  }
+  static TextStyle responsiveH3B(BuildContext context) {
+    return Responsive.value(context, AppTextStyle.h5b, AppTextStyle.h4b, AppTextStyle.h3b);
+  }
   static TextStyle responsiveH4B(BuildContext context) {
     return Responsive.value(context, AppTextStyle.b1b, AppTextStyle.h5b, AppTextStyle.h4b);
   }
