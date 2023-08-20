@@ -14,7 +14,7 @@ class EditFloorDialog extends StatelessWidget {
       required this.onFloorAreaChanged});
 
   final Floor floor;
-  final void Function(int no) onFloorDelete;
+  final void Function() onFloorDelete;
   final void Function(String floorAreaText, int no) onFloorAreaChanged;
 
   @override
@@ -23,29 +23,37 @@ class EditFloorDialog extends StatelessWidget {
       titlePadding: AppPadding.zero!,
       contentPadding: AppPadding.zero!,
       title: Container(
-        color: Theme.of(context).colorScheme.primary,
-        padding: AppPadding.allS!,
-        alignment: Alignment.center,
-        child: Text(
-          "${floor.floorName} Detayları",
-          style: AppTextStyle.responsiveH3(context).copyWith(
-            color: Theme.of(context).colorScheme.onPrimary
-          ),
-        )
-      ),
+          color: Theme.of(context).colorScheme.primary,
+          padding: AppPadding.allS!,
+          alignment: Alignment.center,
+          child: Text(
+            "${floor.floorName} Detayları",
+            style: AppTextStyle.responsiveH3(context)
+                .copyWith(color: Theme.of(context).colorScheme.onPrimary),
+          )),
       actions: [
         ElevatedButton(
-          onPressed: () {
-            
-          }, 
-          child: Text("İptal", style: AppTextStyle.responsiveH5(context),)
-        ),
+            onPressed: onFloorDelete,
+            child: Text(
+              "Sil",
+              style: AppTextStyle.responsiveH5(context),
+            )),
         ElevatedButton(
-          onPressed: () {
-            
-          }, 
-          child: Text("Onayla", style: AppTextStyle.responsiveH5(context),)
-        )
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            child: Text(
+              "İptal",
+              style: AppTextStyle.responsiveH5(context),
+            )),
+        ElevatedButton(
+            onPressed: () {
+              //Validate form
+            },
+            child: Text(
+              "Onayla",
+              style: AppTextStyle.responsiveH5(context),
+            ))
       ],
       content: SingleChildScrollView(
         child: Column(

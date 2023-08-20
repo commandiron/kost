@@ -59,15 +59,16 @@ class QuantityDetailsView extends StatelessWidget {
         builder: (context, state) {
           return Scaffold(
             appBar: AppBar(
-                actions: [
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: ElevatedButton(
-                      onPressed: () => context.read<QuantityDetailsBloc>().add(const CalculateCost()), 
-                      child: const Text("Hesapla")
-                    ),
-                  )
-                ],
+              actions: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: ElevatedButton(
+                      onPressed: () => context
+                          .read<QuantityDetailsBloc>()
+                          .add(const CalculateCost()),
+                      child: const Text("Hesapla")),
+                )
+              ],
             ),
             body: CustomScrollView(
               slivers: [
@@ -100,18 +101,19 @@ class QuantityDetailsView extends StatelessWidget {
                       onFloorClick: (Floor floor) {
                         showDialog(
                           context: context,
-                          builder: (context) {
+                          builder: (dialogContext) {
                             return EditFloorDialog(
                               floor: floor,
-                              onFloorDelete: (int no) {
+                              onFloorDelete: () {
                                 context
-                                  .read<QuantityDetailsBloc>()
-                                  .add(FloorDelete(no));
+                                    .read<QuantityDetailsBloc>()
+                                    .add(FloorDelete(floor.no));
+                                Navigator.of(context).pop();
                               },
                               onFloorAreaChanged: (floorAreaText, no) {
                                 context
-                                  .read<QuantityDetailsBloc>()
-                                  .add(FloorAreaChanged(floorAreaText, no));
+                                    .read<QuantityDetailsBloc>()
+                                    .add(FloorAreaChanged(floorAreaText, no));
                               },
                             );
                           },
