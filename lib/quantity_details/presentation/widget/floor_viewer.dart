@@ -42,8 +42,7 @@ class FloorViewer extends StatelessWidget {
           itemBuilder: (context, index) {
             final floorWidth =
                 _calculateFloorWidth(widthPerArea, index, width);
-            return Align(
-              alignment: Alignment.center,
+            return Center(
               child: GestureDetector(
                 onTap: () {
                   onFloorClick(floors[index].no);
