@@ -15,6 +15,7 @@ class FloorViewer extends StatefulWidget {
     required this.foundationArea,
     required this.floors,
     required this.onFloorAdd,
+    required this.onFloorClick,
     required this.onFloorDelete,
     required this.onFloorAreaChanged,
   }) : super(key: key);
@@ -25,6 +26,7 @@ class FloorViewer extends StatefulWidget {
   final double foundationArea;
   final List<Floor> floors;
   final void Function() onFloorAdd;
+  final void Function(int no) onFloorClick;
   final void Function(int no) onFloorDelete;
   final void Function(String floorAreaText, int no) onFloorAreaChanged;
 
@@ -33,8 +35,6 @@ class FloorViewer extends StatefulWidget {
 }
 
 class _FloorViewerState extends State<FloorViewer> {
-  final Map<int, bool> _isHighlighted = {};
-
   @override
   Widget build(BuildContext context) {
     final double widthPerArea = widget.width / widget.foundationArea;
@@ -42,92 +42,48 @@ class _FloorViewerState extends State<FloorViewer> {
 
     return Column(
       children: [
-        IconButton(
-          onPressed: widget.onFloorAdd, 
-          icon: const Icon(Icons.add)
-        ),
-        GestureDetector(
-          onTap: () {
-            setState(() {
-              _isHighlighted.clear();
-            });
-          },
-          child: ListView.builder(
-            itemCount: widget.floors.length,
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            itemBuilder: (context, index) {
-              final floorWidth = _calculateFloorWidth(widthPerArea, index, widget.width);
-              return Align(
-                alignment: Alignment.center,
-                child: GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      _isHighlighted[index] = !(_isHighlighted[index] ?? false);
-                    });
-                  },
-                  child: Container(
-                    width: _isHighlighted[index] ?? false
-                        ? floorWidth * 2
-                        : floorWidth,
-                    height: _isHighlighted[index] ?? false
-                        ? floorHeight * 4
-                        : floorHeight,
-                    decoration: BoxDecoration(border: Border.all()),
-                    child: _isHighlighted[index] ?? false
-                        ? Column(
-                            children: [
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  const Text("Alan:"),
-                                  SizedBox(
-                                    width: 100,
-                                    child: QuantityTextField(
-                                      formattedQuantity: widget.floors[index].area.toFormattedText(),
-                                      symbol: "m2",
-                                      onChanged: (value) {
-                                        widget.onFloorAreaChanged(value, widget.floors[index].no);
-                                      },
-                                    )
-                                  )
-                                ],
-                              ),
-                              ElevatedButton(
-                                onPressed: () {
-                                  widget.onFloorDelete(widget.floors[index].no);
-                                  setState(() {
-                                    _isHighlighted.clear();
-                                  });
-                                },
-                                child: const Text("Sil"))
-                            ],
-                        )
-                        : Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Text(
-                                widget.floors[index].floorName,
-                                style: AppTextStyle.responsiveB1(context),
-                              ),
-                              AppSpace.hS!,
-                              Text(
-                                widget.floors[index].area.toString(),
-                                style: AppTextStyle.responsiveB1(context),
-                              ),
-                              AppSpace.hS!,
-                              Text(
-                                "m²",
-                                style: AppTextStyle.responsiveB1(context),
-                              ),
-                            ],
-                          ),
+        IconButton(onPressed: widget.onFloorAdd, icon: const Icon(Icons.add)),
+        ListView.builder(
+          itemCount: widget.floors.length,
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          itemBuilder: (context, index) {
+            final floorWidth =
+                _calculateFloorWidth(widthPerArea, index, widget.width);
+            return Align(
+              alignment: Alignment.center,
+              child: GestureDetector(
+                onTap: () {
+                  widget.onFloorClick(widget.floors[index].no);
+                },
+                child: Container(
+                  width: floorWidth,
+                  height: floorHeight,
+                  decoration: BoxDecoration(border: Border.all()),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                        widget.floors[index].floorName,
+                        style: AppTextStyle.responsiveB1(context),
+                      ),
+                      AppSpace.hS!,
+                      Text(
+                        widget.floors[index].area.toString(),
+                        style: AppTextStyle.responsiveB1(context),
+                      ),
+                      AppSpace.hS!,
+                      Text(
+                        "m²",
+                        style: AppTextStyle.responsiveB1(context),
+                      ),
+                    ],
                   ),
                 ),
-              );
-            },
-          ),
+              ),
+            );
+          },
         ),
       ],
     );
