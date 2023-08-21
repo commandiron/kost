@@ -15,7 +15,7 @@ class EditFloorDialog extends StatefulWidget {
 
   final Floor floor;
   final void Function() onFloorDelete;
-  final void Function(Floor floor) onFloorApproved;
+  final void Function(Floor? floor) onFloorApproved;
 
   @override
   State<EditFloorDialog> createState() => _EditFloorDialogState();
@@ -23,7 +23,6 @@ class EditFloorDialog extends StatefulWidget {
 
 class _EditFloorDialogState extends State<EditFloorDialog> {
   Floor? _edittedFloor;
-
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
@@ -69,9 +68,7 @@ class _EditFloorDialogState extends State<EditFloorDialog> {
             )),
         ElevatedButton(
             onPressed: () {
-              if (_edittedFloor != null) {
-                widget.onFloorApproved(_edittedFloor!);
-              }
+              widget.onFloorApproved(_edittedFloor);
             },
             child: Text(
               "Onayla",
@@ -152,12 +149,14 @@ class FloorAttrTextField extends StatelessWidget {
     required this.formattedQuantity,
     required this.symbol,
     this.onChanged,
+    this.onFieldSubmitted,
   });
 
   final String title;
   final String formattedQuantity;
   final String symbol;
   final Function(String value)? onChanged;
+  final Function(String value)? onFieldSubmitted;
 
   @override
   Widget build(BuildContext context) {
@@ -177,6 +176,7 @@ class FloorAttrTextField extends StatelessWidget {
               formattedQuantity: formattedQuantity,
               symbol: symbol,
               onChanged: onChanged,
+              onFieldSubmitted: onFieldSubmitted,
             ),
           ),
         ],

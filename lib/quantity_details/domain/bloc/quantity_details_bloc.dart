@@ -202,12 +202,18 @@ class QuantityDetailsBloc
       emit(state.copyWith(snackBarMessage: ""));
     });
     on<EdittedFloorApproved>((event, emit) {
+      if (event.floor == null) {
+        emit(state.copyWith(snackBarMessage: "Deşiklik yapılmadı."));
+        emit(state.copyWith(snackBarMessage: ""));
+        return;
+      }
+
       final floorIndex = state.jobCalculator.floors
-          .indexWhere((element) => element.no == event.floor.no);
-      state.jobCalculator.floors[floorIndex] = event.floor;
+          .indexWhere((element) => element.no == event.floor!.no);
+      state.jobCalculator.floors[floorIndex] = event.floor!;
 
       emit(state.copyWith(
-          snackBarMessage: "${event.floor.floorName} Değiştirildi."));
+          snackBarMessage: "${event.floor!.floorName} Değiştirildi."));
       emit(state.copyWith(snackBarMessage: ""));
     });
     on<CalculateCost>((event, emit) {

@@ -127,7 +127,7 @@ class QuantityDetailsView extends StatelessWidget {
                                   },
                                 );
                               },
-                              onFloorApproved: (Floor floor) {
+                              onFloorApproved: (Floor? floor) {
                                 context
                                     .read<QuantityDetailsBloc>()
                                     .add(EdittedFloorApproved(floor));

@@ -23,7 +23,7 @@ class FloorDelete extends QuantityDetailsEvent {
 }
 
 class EdittedFloorApproved extends QuantityDetailsEvent {
-  final Floor floor;
+  final Floor? floor;
   const EdittedFloorApproved(this.floor);
   @override
   List<Object?> get props => [floor];
