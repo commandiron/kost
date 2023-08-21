@@ -15,6 +15,22 @@ import '../domain/model/calculator/floor.dart';
 class QuantityDetailsView extends StatelessWidget {
   const QuantityDetailsView({Key? key}) : super(key: key);
 
+  Future<bool?> showAreYouSureDialog(BuildContext context) {
+    return showDialog<bool?>(
+      context: context,
+      builder: (_) {
+        return AreYouSureDialog(
+          onDeclinePressed: () {
+            Navigator.of(context).pop(false);
+          },
+          onApprovePressed: () {
+            Navigator.of(context).pop(true);
+          },
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<QuantityDetailsBloc, QuantityDetailsState>(
@@ -66,24 +82,16 @@ class QuantityDetailsView extends StatelessWidget {
                         builder: (_) {
                           return EditFloorDialog(
                             floor: floor,
-                            onDeleteFloor: () {
-                              showDialog(
-                                context: context,
-                                builder: (_) {
-                                  return AreYouSureDialog(
-                                    onDeclinePressed: () {
-                                      Navigator.of(context).pop();
-                                    },
-                                    onApprovePressed: () {
-                                      context
-                                          .read<QuantityDetailsBloc>()
-                                          .add(DeleteFloor(floor));
-                                      Navigator.of(context).pop();
-                                      Navigator.of(context).pop();
-                                    },
-                                  );
-                                },
-                              );
+                            onDeleteFloor: () async {
+                              final result = await showAreYouSureDialog(context) ?? false;
+                              if (context.mounted) {
+                                if (result) {
+                                  context
+                                      .read<QuantityDetailsBloc>()
+                                      .add(DeleteFloor(floor));
+                                  Navigator.of(context).pop();
+                                }
+                              }
                             },
                             onEditFloor: (Floor? edittedFloor) {
                               context
