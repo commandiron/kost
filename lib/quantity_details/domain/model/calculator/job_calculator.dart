@@ -44,7 +44,6 @@ abstract class JobCalculator {
     }
   ){
     floors = floors.sorted((a, b) => a.no.compareTo(b.no)).reversed.toList();
-    createJobs();
   }
 
   List<Job> createJobs();
