@@ -49,6 +49,9 @@ class QuantityDetailsView extends StatelessWidget {
           listenWhen: (previous, current) =>
               previous.snackBarMessage != current.snackBarMessage,
           listener: (context, state) {
+            if (state.snackBarMessage.isEmpty) {
+              return;
+            }
             ScaffoldMessenger.of(context).removeCurrentSnackBar();
             ScaffoldMessenger.of(context)
                 .showSnackBar(SnackBar(content: Text(state.snackBarMessage)));

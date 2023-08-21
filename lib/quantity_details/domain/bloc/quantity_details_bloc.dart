@@ -175,10 +175,12 @@ class QuantityDetailsBloc
     });
     on<FloorDelete>((event, emit) {
       if (event.floor.no == -1) {
+        emit(state.copyWith(snackBarMessage: ""));
         emit(state.copyWith(snackBarMessage: "İlk bodrum kat silinemez"));
         return;
       }
       if (event.floor.no == 0) {
+        emit(state.copyWith(snackBarMessage: ""));
         emit(state.copyWith(snackBarMessage: "Zemin kat silinemez"));
         return;
       }
