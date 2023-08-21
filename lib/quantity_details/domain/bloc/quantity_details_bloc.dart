@@ -175,12 +175,10 @@ class QuantityDetailsBloc
     });
     on<FloorDelete>((event, emit) {
       if (event.floor.no == -1) {
-        emit(state.copyWith(snackBarMessage: ""));
         emit(state.copyWith(snackBarMessage: "İlk bodrum kat silinemez"));
         return;
       }
       if (event.floor.no == 0) {
-        emit(state.copyWith(snackBarMessage: ""));
         emit(state.copyWith(snackBarMessage: "Zemin kat silinemez"));
         return;
       }
@@ -198,8 +196,9 @@ class QuantityDetailsBloc
       //JobCalculator'u state'e okutamadığımdan emit edemiyorum, aşağıdaki şekilde
       //Bir yöntem buldum fakat elegant olmadı. Bunu daha sonra düzeltmenin
       //Yolunu arayacağım.
-      emit(state.copyWith(snackBarMessage: ""));
+      
       emit(state.copyWith(snackBarMessage: "${event.floor.floorName} Silindi."));
+      emit(state.copyWith(snackBarMessage: ""));
     });
     on<FloorAreaChanged>((event, emit) {
       final floorArea = event.floorAreaText.toNumber();
