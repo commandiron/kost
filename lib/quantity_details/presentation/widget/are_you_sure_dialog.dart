@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
-class AreYouSureDialog extends StatelessWidget {
-  const AreYouSureDialog({super.key, this.onDeclinePressed, this.onApprovePressed});
+class AreYouSureDeleteDialog extends StatelessWidget {
+  const AreYouSureDeleteDialog(
+      {super.key, this.onDeclinePressed, this.onApprovePressed});
 
   final void Function()? onDeclinePressed;
   final void Function()? onApprovePressed;
@@ -9,7 +10,7 @@ class AreYouSureDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      content: const Text("Emin misiniz?"),
+      content: const Text("Silmek istediğinize emin misiniz?"),
       actions: [
         ElevatedButton(
           onPressed: onDeclinePressed,

@@ -15,11 +15,11 @@ import '../domain/model/calculator/floor.dart';
 class QuantityDetailsView extends StatelessWidget {
   const QuantityDetailsView({Key? key}) : super(key: key);
 
-  Future<bool?> showAreYouSureDialog(BuildContext context) {
+  Future<bool?> showAreYouSureDeleteDialog(BuildContext context) {
     return showDialog<bool?>(
       context: context,
       builder: (_) {
-        return AreYouSureDialog(
+        return AreYouSureDeleteDialog(
           onDeclinePressed: () {
             Navigator.of(context).pop(false);
           },
@@ -83,7 +83,8 @@ class QuantityDetailsView extends StatelessWidget {
                           return EditFloorDialog(
                             floor: floor,
                             onDeleteFloor: () async {
-                              final result = await showAreYouSureDialog(context) ?? false;
+                              final result =
+                                  await showAreYouSureDeleteDialog(context) ?? false;
                               if (context.mounted) {
                                 if (result) {
                                   context
