@@ -97,7 +97,7 @@ class QuantityDetailsView extends StatelessWidget {
                       onFloorAdd: () {
                         showDialog(
                           context: context,
-                          builder: (context) {
+                          builder: (_) {
                             return const AddFloorDialog();
                           },
                         );
@@ -105,13 +105,13 @@ class QuantityDetailsView extends StatelessWidget {
                       onFloorClick: (Floor floor) {
                         showDialog(
                           context: context,
-                          builder: (dialog1Context) {
+                          builder: (_) {
                             return EditFloorDialog(
                               floor: floor,
                               onFloorDelete: () {
                                 showDialog(
-                                  context: dialog1Context,
-                                  builder: (dialog2Context) {
+                                  context: context,
+                                  builder: (_) {
                                     return AreYouSureDialog(
                                       onDeclinePressed: () {
                                         Navigator.of(context).pop();
