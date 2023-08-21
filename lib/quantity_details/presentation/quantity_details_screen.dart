@@ -22,7 +22,9 @@ class QuantityDetailsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => QuantityDetailsBloc(),
-      child: const QuantityDetailsView(),
+      child: const QuantityDetailsListener(
+        child: QuantityDetailsView()
+      ),
     );
   }
 }
@@ -32,131 +34,139 @@ class QuantityDetailsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocListener(
-      listeners: [
-        BlocListener<QuantityDetailsBloc, QuantityDetailsState>(
-          listenWhen: (previous, current) =>
-              previous.blocState != current.blocState,
-          listener: (context, state) {
-            final blocState = state.blocState;
-            if (blocState is Completed) {
-              ScaffoldMessenger.of(context).removeCurrentSnackBar();
-              Navigator.of(context)
-                  .pushNamed(CostTableScreen.route, arguments: blocState.data);
-            }
-          },
-        ),
-        BlocListener<QuantityDetailsBloc, QuantityDetailsState>(
-          listenWhen: (previous, current) =>
-              previous.snackBarMessage != current.snackBarMessage,
-          listener: (context, state) {
-            if (state.snackBarMessage.isEmpty) {
-              return;
-            }
+    return BlocBuilder<QuantityDetailsBloc, QuantityDetailsState>(
+      builder: (context, state) {
+        return Scaffold(
+          appBar: AppBar(
+            actions: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: ElevatedButton(
+                    onPressed: () => context
+                        .read<QuantityDetailsBloc>()
+                        .add(const CalculateCost()),
+                    child: const Text("Hesapla")),
+              )
+            ],
+          ),
+          body: CustomScrollView(
+            slivers: [
+              SliverToBoxAdapter(
+                  child: Column(
+                children: [
+                  AppSpace.vL!,
+                  Text(
+                    "Bina Bilgileri",
+                    style: AppTextStyle.responsiveH4B(context),
+                  ),
+                  AppSpace.vS!,
+                  Text("Detaylarını görmek istediğiniz kata dokunun",
+                      style: AppTextStyle.responsiveB2(context)
+                          .copyWith(color: Colors.grey)),
+                  AppSpace.vL!,
+                  FloorViewer(
+                    width: MediaQuery.of(context).size.width / 1.2,
+                    height: MediaQuery.of(context).size.height / 1.4,
+                    foundationArea: state.jobCalculator.foundationArea,
+                    floors: state.jobCalculator.floors,
+                    onFloorAdd: () {
+                      showDialog(
+                        context: context,
+                        builder: (_) {
+                          return const AddFloorDialog();
+                        },
+                      );
+                    },
+                    onFloorClick: (Floor floor) {
+                      showDialog(
+                        context: context,
+                        builder: (_) {
+                          return EditFloorDialog(
+                            floor: floor,
+                            onDeleteFloor: () {
+                              showDialog(
+                                context: context,
+                                builder: (_) {
+                                  return AreYouSureDialog(
+                                    onDeclinePressed: () {
+                                      Navigator.of(context).pop();
+                                    },
+                                    onApprovePressed: () {
+                                      context
+                                          .read<QuantityDetailsBloc>()
+                                          .add(DeleteFloor(floor));
+                                      Navigator.of(context).pop();
+                                      Navigator.of(context).pop();
+                                    },
+                                  );
+                                },
+                              );
+                            },
+                            onEditFloor: (Floor? edittedFloor) {
+                              context
+                                  .read<QuantityDetailsBloc>()
+                                  .add(EditFloor(edittedFloor));
+                              Navigator.of(context).pop();
+                            },
+                          );
+                        },
+                      );
+                    },
+                  ),
+                  AppSpace.vL!,
+                  Text(
+                    "Diğer Bilgiler",
+                    style: AppTextStyle.b1,
+                  ),
+                  AppSpace.vL!,
+                  Column(
+                    children: [
+                      Text(state.jobCalculator.landArea.toString()),
+                      Text(state.jobCalculator.landPerimeter.toString()),
+                    ],
+                  ),
+                ],
+              )),
+            ],
+          ),
+        );
+      },
+    );
+  }
+}
+
+class QuantityDetailsListener extends StatelessWidget {
+  const QuantityDetailsListener({super.key, required this.child});
+
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) {
+    return MultiBlocListener(listeners: [
+      BlocListener<QuantityDetailsBloc, QuantityDetailsState>(
+        listenWhen: (previous, current) =>
+            previous.blocState != current.blocState,
+        listener: (context, state) {
+          final blocState = state.blocState;
+          if (blocState is Completed) {
             ScaffoldMessenger.of(context).removeCurrentSnackBar();
-            ScaffoldMessenger.of(context)
-                .showSnackBar(SnackBar(content: Text(state.snackBarMessage)));
-          },
-        ),
-      ],
-      child: BlocBuilder<QuantityDetailsBloc, QuantityDetailsState>(
-        builder: (context, state) {
-          return Scaffold(
-            appBar: AppBar(
-              actions: [
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: ElevatedButton(
-                      onPressed: () => context
-                          .read<QuantityDetailsBloc>()
-                          .add(const CalculateCost()),
-                      child: const Text("Hesapla")),
-                )
-              ],
-            ),
-            body: CustomScrollView(
-              slivers: [
-                SliverToBoxAdapter(
-                    child: Column(
-                  children: [
-                    AppSpace.vL!,
-                    Text(
-                      "Bina Bilgileri",
-                      style: AppTextStyle.responsiveH4B(context),
-                    ),
-                    AppSpace.vS!,
-                    Text("Detaylarını görmek istediğiniz kata dokunun",
-                        style: AppTextStyle.responsiveB2(context)
-                            .copyWith(color: Colors.grey)),
-                    AppSpace.vL!,
-                    FloorViewer(
-                      width: MediaQuery.of(context).size.width / 1.2,
-                      height: MediaQuery.of(context).size.height / 1.4,
-                      foundationArea: state.jobCalculator.foundationArea,
-                      floors: state.jobCalculator.floors,
-                      onFloorAdd: () {
-                        showDialog(
-                          context: context,
-                          builder: (_) {
-                            return const AddFloorDialog();
-                          },
-                        );
-                      },
-                      onFloorClick: (Floor floor) {
-                        showDialog(
-                          context: context,
-                          builder: (_) {
-                            return EditFloorDialog(
-                              floor: floor,
-                              onDeleteFloor: () {
-                                showDialog(
-                                  context: context,
-                                  builder: (_) {
-                                    return AreYouSureDialog(
-                                      onDeclinePressed: () {
-                                        Navigator.of(context).pop();
-                                      },
-                                      onApprovePressed: () {
-                                        context
-                                            .read<QuantityDetailsBloc>()
-                                            .add(DeleteFloor(floor));
-                                        Navigator.of(context).pop();
-                                        Navigator.of(context).pop();
-                                      },
-                                    );
-                                  },
-                                );
-                              },
-                              onEditFloor: (Floor? edittedFloor) {
-                                context
-                                    .read<QuantityDetailsBloc>()
-                                    .add(EditFloor(floor));
-                                Navigator.of(context).pop();
-                              },
-                            );
-                          },
-                        );
-                      },
-                    ),
-                    AppSpace.vL!,
-                    Text(
-                      "Diğer Bilgiler",
-                      style: AppTextStyle.b1,
-                    ),
-                    AppSpace.vL!,
-                    Column(
-                      children: [
-                        Text(state.jobCalculator.landArea.toString()),
-                        Text(state.jobCalculator.landPerimeter.toString()),
-                      ],
-                    ),
-                  ],
-                )),
-              ],
-            ),
-          );
+            Navigator.of(context)
+                .pushNamed(CostTableScreen.route, arguments: blocState.data);
+          }
         },
       ),
-    );
+      BlocListener<QuantityDetailsBloc, QuantityDetailsState>(
+        listenWhen: (previous, current) =>
+            previous.snackBarMessage != current.snackBarMessage,
+        listener: (context, state) {
+          if (state.snackBarMessage.isEmpty) {
+            return;
+          }
+          ScaffoldMessenger.of(context).removeCurrentSnackBar();
+          ScaffoldMessenger.of(context)
+              .showSnackBar(SnackBar(content: Text(state.snackBarMessage)));
+        },
+      ),
+    ], child: child);
   }
 }
