@@ -108,7 +108,7 @@ class QuantityDetailsView extends StatelessWidget {
                           builder: (_) {
                             return EditFloorDialog(
                               floor: floor,
-                              onFloorDelete: () {
+                              onDeleteFloor: () {
                                 showDialog(
                                   context: context,
                                   builder: (_) {
@@ -119,7 +119,7 @@ class QuantityDetailsView extends StatelessWidget {
                                       onApprovePressed: () {
                                         context
                                             .read<QuantityDetailsBloc>()
-                                            .add(FloorDelete(floor));
+                                            .add(DeleteFloor(floor));
                                         Navigator.of(context).pop();
                                         Navigator.of(context).pop();
                                       },
@@ -127,10 +127,10 @@ class QuantityDetailsView extends StatelessWidget {
                                   },
                                 );
                               },
-                              onFloorApproved: (Floor? floor) {
+                              onEditFloor: (Floor? edittedFloor) {
                                 context
                                     .read<QuantityDetailsBloc>()
-                                    .add(EdittedFloorApproved(floor));
+                                    .add(EditFloor(floor));
                                 Navigator.of(context).pop();
                               },
                             );

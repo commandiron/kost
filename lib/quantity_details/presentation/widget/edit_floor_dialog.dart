@@ -10,12 +10,12 @@ class EditFloorDialog extends StatefulWidget {
   const EditFloorDialog(
       {super.key,
       required this.floor,
-      required this.onFloorDelete,
-      required this.onFloorApproved});
+      required this.onDeleteFloor,
+      required this.onEditFloor});
 
   final Floor floor;
-  final void Function() onFloorDelete;
-  final void Function(Floor? floor) onFloorApproved;
+  final void Function() onDeleteFloor;
+  final void Function(Floor? edittedFloor) onEditFloor;
 
   @override
   State<EditFloorDialog> createState() => _EditFloorDialogState();
@@ -23,6 +23,7 @@ class EditFloorDialog extends StatefulWidget {
 
 class _EditFloorDialogState extends State<EditFloorDialog> {
   Floor? _edittedFloor;
+
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
@@ -43,7 +44,7 @@ class _EditFloorDialogState extends State<EditFloorDialog> {
               Row(
                 children: [
                   InkWell(
-                    onTap: widget.onFloorDelete,
+                    onTap: widget.onDeleteFloor,
                     child: CircleAvatar(
                         backgroundColor: Colors.white,
                         minRadius: 16,
@@ -68,7 +69,7 @@ class _EditFloorDialogState extends State<EditFloorDialog> {
             )),
         ElevatedButton(
             onPressed: () {
-              widget.onFloorApproved(_edittedFloor);
+              widget.onEditFloor(_edittedFloor);
             },
             child: Text(
               "Onayla",

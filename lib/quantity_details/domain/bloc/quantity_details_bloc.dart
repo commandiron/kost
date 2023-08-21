@@ -1,6 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kost/common/bloc/bloc_state.dart';
-import 'package:kost/common/extension/formatted_number.dart';
 import 'package:kost/quantity_details/domain/bloc/quantity_details_event.dart';
 import 'package:kost/quantity_details/domain/bloc/quantity_details_state.dart';
 
@@ -170,10 +169,10 @@ class QuantityDetailsBloc
             ),
           ),
         ) {
-    on<FloorAdd>((event, emit) {
+    on<AddFloor>((event, emit) {
       // Add Floor
     });
-    on<FloorDelete>((event, emit) {
+    on<DeleteFloor>((event, emit) {
       if (event.floor.no == -1) {
         emit(state.copyWith(snackBarMessage: "İlk bodrum kat silinemez"));
         return;
@@ -197,29 +196,26 @@ class QuantityDetailsBloc
       //Bir yöntem buldum fakat elegant olmadı. Bunu daha sonra düzeltmenin
       //Yolunu arayacağım.
 
-      emit(
-          state.copyWith(snackBarMessage: "${event.floor.floorName} Silindi."));
+      emit(state.copyWith(snackBarMessage: "${event.floor.floorName} Silindi."));
       emit(state.copyWith(snackBarMessage: ""));
     });
-    on<EdittedFloorApproved>((event, emit) {
+    on<EditFloor>((event, emit) {
+
       if (event.floor == null) {
         emit(state.copyWith(snackBarMessage: "Deşiklik yapılmadı."));
         emit(state.copyWith(snackBarMessage: ""));
         return;
       }
 
-      final floorIndex = state.jobCalculator.floors
-          .indexWhere((element) => element.no == event.floor!.no);
+      final floorIndex = state.jobCalculator.floors.indexWhere((element) => element.no == event.floor!.no);
       state.jobCalculator.floors[floorIndex] = event.floor!;
 
-      emit(state.copyWith(
-          snackBarMessage: "${event.floor!.floorName} Değiştirildi."));
+      emit(state.copyWith(snackBarMessage: "${event.floor!.floorName} Değiştirildi."));
       emit(state.copyWith(snackBarMessage: ""));
     });
     on<CalculateCost>((event, emit) {
       //Validate...
-      emit(state.copyWith(
-          blocState: Completed(data: state.jobCalculator.createJobs())));
+      emit(state.copyWith(blocState: Completed(data: state.jobCalculator.createJobs())));
     });
   }
 }

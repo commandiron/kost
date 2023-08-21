@@ -9,15 +9,15 @@ class AreYouSureDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      content: Text("Emin misiniz?"),
+      content: const Text("Emin misiniz?"),
       actions: [
         ElevatedButton(
           onPressed: onDeclinePressed,
-          child: Text("Hayır"),
+          child: const Text("Hayır"),
         ),
         ElevatedButton(
           onPressed: onApprovePressed,
-          child: Text("Evet"),
+          child: const Text("Evet"),
         )
       ],
     );
