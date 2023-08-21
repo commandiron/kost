@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:kost/common/config/app_padding.dart';
-import 'package:kost/common/config/app_space.dart';
 import 'package:kost/common/config/app_text_style.dart';
 import 'package:kost/common/extension/formatted_number.dart';
 import 'package:kost/common/widget/quantity_text_field.dart';
