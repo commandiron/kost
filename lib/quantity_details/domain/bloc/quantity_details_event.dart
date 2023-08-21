@@ -1,5 +1,7 @@
 import 'package:equatable/equatable.dart';
 
+import '../model/calculator/floor.dart';
+
 abstract class QuantityDetailsEvent extends Equatable {
   const QuantityDetailsEvent();
 
@@ -14,10 +16,10 @@ class FloorAdd extends QuantityDetailsEvent {
 }
 
 class FloorDelete extends QuantityDetailsEvent {
-  final int no;
-  const FloorDelete(this.no);
+  final Floor floor;
+  const FloorDelete(this.floor);
   @override
-  List<Object?> get props => [no];
+  List<Object?> get props => [floor];
 }
 
 class FloorAreaChanged extends QuantityDetailsEvent {

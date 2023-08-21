@@ -107,7 +107,7 @@ class QuantityDetailsView extends StatelessWidget {
                               onFloorDelete: () {
                                 context
                                     .read<QuantityDetailsBloc>()
-                                    .add(FloorDelete(floor.no));
+                                    .add(FloorDelete(floor));
                                 Navigator.of(context).pop();
                               },
                               onFloorAreaChanged: (floorAreaText, no) {
