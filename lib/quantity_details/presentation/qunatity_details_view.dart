@@ -65,7 +65,7 @@ class QuantityDetailsView extends StatelessWidget {
                   AppSpace.vL!,
                   FloorViewer(
                     width: MediaQuery.of(context).size.width / 1.2,
-                    height: MediaQuery.of(context).size.height / 1.4,
+                    height: MediaQuery.of(context).size.height / 1.6,
                     foundationArea: state.jobCalculator.foundationArea,
                     floors: state.jobCalculator.floors,
                     onAddFloor: () {
