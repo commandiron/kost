@@ -11,8 +11,8 @@ class FloorViewer extends StatelessWidget {
     required this.height,
     required this.foundationArea,
     required this.floors,
-    required this.onFloorAdd,
-    required this.onFloorClick,
+    required this.onAddFloor,
+    required this.onClickFloor,
   }) : super(key: key);
 
   final double width;
@@ -20,8 +20,8 @@ class FloorViewer extends StatelessWidget {
   final double height;
   final double foundationArea;
   final List<Floor> floors;
-  final void Function() onFloorAdd;
-  final void Function(Floor floor) onFloorClick;
+  final void Function() onAddFloor;
+  final void Function(Floor floor) onClickFloor;
 
   @override
   Widget build(BuildContext context) {
@@ -30,18 +30,17 @@ class FloorViewer extends StatelessWidget {
 
     return Column(
       children: [
-        IconButton(onPressed: onFloorAdd, icon: const Icon(Icons.add)),
+        IconButton(onPressed: onAddFloor, icon: const Icon(Icons.add)),
         ListView.builder(
           itemCount: floors.length,
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
           itemBuilder: (context, index) {
-            final floorWidth =
-                _calculateFloorWidth(widthPerArea, index, width);
+            final floorWidth = _calculateFloorWidth(widthPerArea, index, width);
             return Center(
               child: GestureDetector(
                 onTap: () {
-                  onFloorClick(floors[index]);
+                  onClickFloor(floors[index]);
                 },
                 child: Container(
                   width: floorWidth,

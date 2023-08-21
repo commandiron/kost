@@ -68,7 +68,7 @@ class QuantityDetailsView extends StatelessWidget {
                     height: MediaQuery.of(context).size.height / 1.4,
                     foundationArea: state.jobCalculator.foundationArea,
                     floors: state.jobCalculator.floors,
-                    onFloorAdd: () {
+                    onAddFloor: () {
                       showDialog(
                         context: context,
                         builder: (_) {
@@ -76,7 +76,7 @@ class QuantityDetailsView extends StatelessWidget {
                         },
                       );
                     },
-                    onFloorClick: (Floor floor) {
+                    onClickFloor: (Floor floor) {
                       showDialog(
                         context: context,
                         builder: (_) {
@@ -84,7 +84,8 @@ class QuantityDetailsView extends StatelessWidget {
                             floor: floor,
                             onDeleteFloor: () async {
                               final result =
-                                  await showAreYouSureDeleteDialog(context) ?? false;
+                                  await showAreYouSureDeleteDialog(context) ??
+                                      false;
                               if (context.mounted) {
                                 if (result) {
                                   context
