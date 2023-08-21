@@ -169,7 +169,7 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
     Map<MainCategory, bool> categoryVisibilities = {};
     if (state.categoryVisibilities.isEmpty) {
       for (var mainCategory in mainCategorySet) {
-        categoryVisibilities.putIfAbsent(mainCategory, () => true);
+        categoryVisibilities.putIfAbsent(mainCategory, () => false);
       }
     } else {
       categoryVisibilities = state.categoryVisibilities;

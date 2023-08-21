@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kost/common/bloc/bloc_state.dart';
+import 'package:kost/common/config/app_space.dart';
 import 'package:kost/common/config/app_text_style.dart';
 import 'package:kost/cost_table/presentation/widget/custom_grouped_list_view.dart';
 
@@ -50,7 +51,16 @@ class CostTableView extends StatelessWidget {
       ), body:
           BlocBuilder<CostTableBloc, CostTableState>(builder: (context, state) {
         if (state.blocState is! Completed) {
-          return const Center(child: CircularProgressIndicator());
+          return Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Text("Maliyet Hesaplanıyor..."),
+                AppSpace.vL!,
+                const CircularProgressIndicator(),      
+              ],
+            ),
+          );
         }
         return Center(
           child: Column(
