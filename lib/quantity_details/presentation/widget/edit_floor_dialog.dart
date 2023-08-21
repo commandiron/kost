@@ -104,6 +104,7 @@ class EditFloorDialog extends StatelessWidget {
                 symbol: "m"),
             FloorAttrCheckBox(
                 title: "Döşeme tipi Asmolen", value: floor.isCeilingHollowSlab),
+            //Aşağıdan devam et
             SizedBox(
               height: 300,
               width: 400,
