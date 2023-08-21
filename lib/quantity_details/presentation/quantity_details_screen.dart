@@ -118,20 +118,20 @@ class QuantityDetailsView extends StatelessWidget {
                                       },
                                       onApprovePressed: () {
                                         context
-                                          .read<QuantityDetailsBloc>()
-                                          .add(FloorDelete(floor));
+                                            .read<QuantityDetailsBloc>()
+                                            .add(FloorDelete(floor));
                                         Navigator.of(context).pop();
                                         Navigator.of(context).pop();
                                       },
                                     );
                                   },
                                 );
-                                
                               },
-                              onFloorAreaChanged: (floorAreaText, no) {
+                              onFloorApproved: (Floor floor) {
                                 context
                                     .read<QuantityDetailsBloc>()
-                                    .add(FloorAreaChanged(floorAreaText, no));
+                                    .add(EdittedFloorApproved(floor));
+                                Navigator.of(context).pop();
                               },
                             );
                           },

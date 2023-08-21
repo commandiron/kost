@@ -196,15 +196,19 @@ class QuantityDetailsBloc
       //JobCalculator'u state'e okutamadığımdan emit edemiyorum, aşağıdaki şekilde
       //Bir yöntem buldum fakat elegant olmadı. Bunu daha sonra düzeltmenin
       //Yolunu arayacağım.
-      
-      emit(state.copyWith(snackBarMessage: "${event.floor.floorName} Silindi."));
+
+      emit(
+          state.copyWith(snackBarMessage: "${event.floor.floorName} Silindi."));
       emit(state.copyWith(snackBarMessage: ""));
     });
-    on<FloorAreaChanged>((event, emit) {
-      final floorArea = event.floorAreaText.toNumber();
-      state.jobCalculator.floors
-          .firstWhere((floor) => floor.no == event.no)
-          .area = floorArea;
+    on<EdittedFloorApproved>((event, emit) {
+      final floorIndex = state.jobCalculator.floors
+          .indexWhere((element) => element.no == event.floor.no);
+      state.jobCalculator.floors[floorIndex] = event.floor;
+
+      emit(state.copyWith(
+          snackBarMessage: "${event.floor.floorName} Değiştirildi."));
+      emit(state.copyWith(snackBarMessage: ""));
     });
     on<CalculateCost>((event, emit) {
       //Validate...

@@ -6,16 +6,23 @@ import 'package:kost/common/widget/quantity_text_field.dart';
 
 import '../../domain/model/calculator/floor.dart';
 
-class EditFloorDialog extends StatelessWidget {
+class EditFloorDialog extends StatefulWidget {
   const EditFloorDialog(
       {super.key,
       required this.floor,
       required this.onFloorDelete,
-      required this.onFloorAreaChanged});
+      required this.onFloorApproved});
 
   final Floor floor;
   final void Function() onFloorDelete;
-  final void Function(String floorAreaText, int no) onFloorAreaChanged;
+  final void Function(Floor floor) onFloorApproved;
+
+  @override
+  State<EditFloorDialog> createState() => _EditFloorDialogState();
+}
+
+class _EditFloorDialogState extends State<EditFloorDialog> {
+  Floor? _edittedFloor;
 
   @override
   Widget build(BuildContext context) {
@@ -30,19 +37,22 @@ class EditFloorDialog extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                "${floor.floorName} Detayları",
+                "${widget.floor.floorName} Detayları",
                 style: AppTextStyle.responsiveH4(context)
                     .copyWith(color: Theme.of(context).colorScheme.onPrimary),
               ),
               Row(
                 children: [
                   InkWell(
-                    onTap: onFloorDelete,
+                    onTap: widget.onFloorDelete,
                     child: CircleAvatar(
-                      backgroundColor: Colors.white,
-                      minRadius: 16,
-                      child: Icon(Icons.delete, color: Theme.of(context).colorScheme.error, size: 20,)
-                    ),
+                        backgroundColor: Colors.white,
+                        minRadius: 16,
+                        child: Icon(
+                          Icons.delete,
+                          color: Theme.of(context).colorScheme.error,
+                          size: 20,
+                        )),
                   ),
                 ],
               )
@@ -59,7 +69,9 @@ class EditFloorDialog extends StatelessWidget {
             )),
         ElevatedButton(
             onPressed: () {
-              //Validate form
+              if (_edittedFloor != null) {
+                widget.onFloorApproved(_edittedFloor!);
+              }
             },
             child: Text(
               "Onayla",
@@ -71,48 +83,57 @@ class EditFloorDialog extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             FloorAttrTextField(
-                title: "Alan:",
-                formattedQuantity: floor.area.toFormattedText(),
-                symbol: "m²"),
+              title: "Alan:",
+              formattedQuantity: widget.floor.area.toFormattedText(),
+              symbol: "m²",
+              onChanged: (String value) {
+                _edittedFloor = widget.floor.copyWith(area: value.toNumber());
+              },
+            ),
             FloorAttrTextField(
                 title: "Çevre Uzunluğu:",
-                formattedQuantity: floor.perimeter.toFormattedText(),
+                formattedQuantity: widget.floor.perimeter.toFormattedText(),
                 symbol: "m"),
             FloorAttrTextField(
                 title: "Döşeme Hariç Yükseklik:",
-                formattedQuantity: floor.heightWithoutSlab.toFormattedText(),
+                formattedQuantity:
+                    widget.floor.heightWithoutSlab.toFormattedText(),
                 symbol: "m"),
             FloorAttrTextField(
                 title: "Tavan Alanı:",
-                formattedQuantity: floor.ceilingArea.toFormattedText(),
+                formattedQuantity: widget.floor.ceilingArea.toFormattedText(),
                 symbol: "m²"),
             FloorAttrTextField(
                 title: "Tavan Çevre Uzunluğu:",
-                formattedQuantity: floor.ceilingPerimeter.toFormattedText(),
+                formattedQuantity:
+                    widget.floor.ceilingPerimeter.toFormattedText(),
                 symbol: "m"),
             FloorAttrTextField(
                 title: "Toplam Kat Yüksekliği:",
-                formattedQuantity: floor.fullHeight.toFormattedText(),
+                formattedQuantity: widget.floor.fullHeight.toFormattedText(),
                 symbol: "m"),
             FloorAttrTextField(
                 title: "Kalın Duvar Uzunluğu:",
-                formattedQuantity: floor.thickWallLength.toFormattedText(),
+                formattedQuantity:
+                    widget.floor.thickWallLength.toFormattedText(),
                 symbol: "m"),
             FloorAttrTextField(
                 title: "İnce Duvar Uzunluğu:",
-                formattedQuantity: floor.thinWallLength.toFormattedText(),
+                formattedQuantity:
+                    widget.floor.thinWallLength.toFormattedText(),
                 symbol: "m"),
             FloorAttrCheckBox(
-                title: "Döşeme tipi Asmolen", value: floor.isCeilingHollowSlab),
+                title: "Döşeme tipi Asmolen",
+                value: widget.floor.isCeilingHollowSlab),
             //Aşağıdan devam et
             SizedBox(
               height: 300,
               width: 400,
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
-                itemCount: floor.windows.length,
+                itemCount: widget.floor.windows.length,
                 itemBuilder: (context, index) {
-                  final window = floor.windows[index];
+                  final window = widget.floor.windows[index];
                   return Text(window.width.toString());
                 },
               ),
@@ -125,15 +146,18 @@ class EditFloorDialog extends StatelessWidget {
 }
 
 class FloorAttrTextField extends StatelessWidget {
-  const FloorAttrTextField(
-      {super.key,
-      required this.title,
-      required this.formattedQuantity,
-      required this.symbol});
+  const FloorAttrTextField({
+    super.key,
+    required this.title,
+    required this.formattedQuantity,
+    required this.symbol,
+    this.onChanged,
+  });
 
   final String title;
   final String formattedQuantity;
   final String symbol;
+  final Function(String value)? onChanged;
 
   @override
   Widget build(BuildContext context) {
@@ -152,6 +176,7 @@ class FloorAttrTextField extends StatelessWidget {
             child: QuantityTextField(
               formattedQuantity: formattedQuantity,
               symbol: symbol,
+              onChanged: onChanged,
             ),
           ),
         ],

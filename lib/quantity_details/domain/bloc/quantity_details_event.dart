@@ -22,12 +22,11 @@ class FloorDelete extends QuantityDetailsEvent {
   List<Object?> get props => [floor];
 }
 
-class FloorAreaChanged extends QuantityDetailsEvent {
-  final String floorAreaText;
-  final int no;
-  const FloorAreaChanged(this.floorAreaText, this.no);
+class EdittedFloorApproved extends QuantityDetailsEvent {
+  final Floor floor;
+  const EdittedFloorApproved(this.floor);
   @override
-  List<Object?> get props => [floorAreaText, no];
+  List<Object?> get props => [floor];
 }
 
 class CalculateCost extends QuantityDetailsEvent {

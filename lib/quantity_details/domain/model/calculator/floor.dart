@@ -27,8 +27,37 @@ class Floor {
       required this.thinWallLength,
       required this.isCeilingHollowSlab,
       required this.windows,
-      required this.rooms}
+      required this.rooms});
+
+  Floor copyWith({
+    int? no,
+    final double? ceilingArea,
+    final double? ceilingPerimeter,
+    final double? fullHeight,
+    double? area,
+    final double? perimeter,
+    final double? heightWithoutSlab,
+    final double? thickWallLength,
+    final double? thinWallLength,
+    final bool? isCeilingHollowSlab,
+    final List<Window>? windows,
+    final List<Room>? rooms,
+  }) {
+    return Floor(
+        no: no ?? this.no,
+        ceilingArea: ceilingArea ?? this.ceilingArea,
+        ceilingPerimeter: ceilingPerimeter ?? this.ceilingPerimeter,
+        fullHeight: fullHeight ?? this.fullHeight,
+        area: area ?? this.area,
+        perimeter: perimeter ?? this.perimeter,
+        heightWithoutSlab: heightWithoutSlab ?? this.heightWithoutSlab,
+        thickWallLength: thickWallLength ?? this.thickWallLength,
+        thinWallLength: thinWallLength ?? this.thinWallLength,
+        isCeilingHollowSlab: isCeilingHollowSlab ?? this.isCeilingHollowSlab,
+        windows: windows ?? this.windows,
+        rooms: rooms ?? this.rooms
     );
+  }
 
   static List<Floor> duplicateFloors(Floor floor, int count) {
     if (floor.no == -3 || floor.no == -2 || floor.no == -1 || floor.no == 0) {
