@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kost/quantity_details/presentation/widget/add_floor_dialog.dart';
-import 'package:kost/quantity_details/presentation/widget/are_you_sure_dialog.dart';
+import 'package:kost/common/widget/are_you_sure_dialog.dart';
 import 'package:kost/quantity_details/presentation/widget/edit_floor_dialog.dart';
 import 'package:kost/quantity_details/presentation/widget/floor_viewer.dart';
 
@@ -14,23 +14,6 @@ import '../domain/model/calculator/floor.dart';
 
 class QuantityDetailsView extends StatelessWidget {
   const QuantityDetailsView({Key? key}) : super(key: key);
-
-  Future<bool?> showAreYouSureDeleteDialog(BuildContext context) {
-    return showDialog<bool?>(
-      context: context,
-      builder: (_) {
-        return AreYouSureDeleteDialog(
-          onDeclinePressed: () {
-            Navigator.of(context).pop(false);
-          },
-          onApprovePressed: () {
-            Navigator.of(context).pop(true);
-          },
-        );
-      },
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<QuantityDetailsBloc, QuantityDetailsState>(
@@ -84,8 +67,7 @@ class QuantityDetailsView extends StatelessWidget {
                             floor: floor,
                             onDeleteFloor: () async {
                               final result =
-                                  await showAreYouSureDeleteDialog(context) ??
-                                      false;
+                                  await showAreYouSureDialog(context, frontTitle: "Silmek istediğinize") ?? false;
                               if (context.mounted) {
                                 if (result) {
                                   context
