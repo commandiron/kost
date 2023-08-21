@@ -16,6 +16,7 @@ class QuantityDetailsBloc
       : super(
           QuantityDetailsState(
               blocState: Initial(),
+              snackBarMessage: "",
               jobCalculator: ApartmentJobsCalculator(
                 projectConstants: ProjectConstants(),
                 landArea: 806.24,
@@ -167,7 +168,7 @@ class QuantityDetailsBloc
                 foundationPerimeter: 94.42,
                 foundationHeight: 1,
               ),
-              snackBarMessage: ""),
+          ),
         ) {
     on<FloorAdd>((event, emit) {
       // Add Floor

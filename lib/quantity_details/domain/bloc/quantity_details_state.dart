@@ -4,25 +4,25 @@ import '../model/calculator/job_calculator.dart';
 
 class QuantityDetailsState extends Equatable {
   final BlocState blocState;
-  final JobCalculator jobCalculator;
   final String snackBarMessage;
-
+  final JobCalculator jobCalculator;
 
   const QuantityDetailsState({
     required this.blocState,
-    required this.jobCalculator,
     required this.snackBarMessage,
+    required this.jobCalculator,
+    
   });
 
   QuantityDetailsState copyWith({
     BlocState? blocState,
-    JobCalculator? jobCalculator,
     String? snackBarMessage,
+    JobCalculator? jobCalculator,
   }) {
     return QuantityDetailsState(
       blocState: blocState ?? this.blocState,
-      jobCalculator: jobCalculator ?? this.jobCalculator,
       snackBarMessage: snackBarMessage ?? this.snackBarMessage,
+      jobCalculator: jobCalculator ?? this.jobCalculator,
     );
   }
 
