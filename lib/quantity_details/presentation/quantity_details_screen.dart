@@ -4,6 +4,7 @@ import 'package:kost/common/bloc/bloc_state.dart';
 import 'package:kost/common/config/app_space.dart';
 import 'package:kost/common/config/app_text_style.dart';
 import 'package:kost/quantity_details/presentation/widget/add_floor_dialog.dart';
+import 'package:kost/quantity_details/presentation/widget/are_you_sure_dialog.dart';
 import 'package:kost/quantity_details/presentation/widget/edit_floor_dialog.dart';
 import 'package:kost/quantity_details/presentation/widget/floor_viewer.dart';
 import '../../cost_table/presentation/cost_table_screen.dart';
@@ -104,14 +105,28 @@ class QuantityDetailsView extends StatelessWidget {
                       onFloorClick: (Floor floor) {
                         showDialog(
                           context: context,
-                          builder: (dialogContext) {
+                          builder: (dialog1Context) {
                             return EditFloorDialog(
                               floor: floor,
                               onFloorDelete: () {
-                                context
-                                    .read<QuantityDetailsBloc>()
-                                    .add(FloorDelete(floor));
-                                Navigator.of(context).pop();
+                                showDialog(
+                                  context: dialog1Context,
+                                  builder: (dialog2Context) {
+                                    return AreYouSureDialog(
+                                      onDeclinePressed: () {
+                                        Navigator.of(context).pop();
+                                      },
+                                      onApprovePressed: () {
+                                        context
+                                          .read<QuantityDetailsBloc>()
+                                          .add(FloorDelete(floor));
+                                        Navigator.of(context).pop();
+                                        Navigator.of(context).pop();
+                                      },
+                                    );
+                                  },
+                                );
+                                
                               },
                               onFloorAreaChanged: (floorAreaText, no) {
                                 context
