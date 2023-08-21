@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kost/common/config/app_padding.dart';
+import 'package:kost/common/config/app_space.dart';
 import 'package:kost/common/config/app_text_style.dart';
 import 'package:kost/common/extension/formatted_number.dart';
 import 'package:kost/common/widget/quantity_text_field.dart';
@@ -24,12 +25,28 @@ class EditFloorDialog extends StatelessWidget {
       contentPadding: AppPadding.zero!,
       title: Container(
           color: Theme.of(context).colorScheme.primary,
-          padding: AppPadding.allS!,
+          padding: AppPadding.vS!.add(AppPadding.hM!),
           alignment: Alignment.center,
-          child: Text(
-            "${floor.floorName} Detayları",
-            style: AppTextStyle.responsiveH3(context)
-                .copyWith(color: Theme.of(context).colorScheme.onPrimary),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                "${floor.floorName} Detayları",
+                style: AppTextStyle.responsiveH3(context)
+                    .copyWith(color: Theme.of(context).colorScheme.onPrimary),
+              ),
+              Row(
+                children: [
+                  InkWell(
+                    onTap: onFloorDelete,
+                    child: CircleAvatar(
+                      backgroundColor: Colors.white,
+                      child: Icon(Icons.delete, color: Theme.of(context).colorScheme.error,)
+                    ),
+                  ),
+                ],
+              )
+            ],
           )),
       actions: [
         ElevatedButton(
