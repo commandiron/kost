@@ -25,14 +25,14 @@ class EditFloorDialog extends StatelessWidget {
       contentPadding: AppPadding.zero!,
       title: Container(
           color: Theme.of(context).colorScheme.primary,
-          padding: AppPadding.vS!.add(AppPadding.hM!),
+          padding: AppPadding.allS!,
           alignment: Alignment.center,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
                 "${floor.floorName} Detayları",
-                style: AppTextStyle.responsiveH3(context)
+                style: AppTextStyle.responsiveH4(context)
                     .copyWith(color: Theme.of(context).colorScheme.onPrimary),
               ),
               Row(
@@ -41,7 +41,8 @@ class EditFloorDialog extends StatelessWidget {
                     onTap: onFloorDelete,
                     child: CircleAvatar(
                       backgroundColor: Colors.white,
-                      child: Icon(Icons.delete, color: Theme.of(context).colorScheme.error,)
+                      minRadius: 16,
+                      child: Icon(Icons.delete, color: Theme.of(context).colorScheme.error, size: 20,)
                     ),
                   ),
                 ],
@@ -49,12 +50,6 @@ class EditFloorDialog extends StatelessWidget {
             ],
           )),
       actions: [
-        ElevatedButton(
-            onPressed: onFloorDelete,
-            child: Text(
-              "Sil",
-              style: AppTextStyle.responsiveH5(context),
-            )),
         ElevatedButton(
             onPressed: () {
               Navigator.of(context).pop();
