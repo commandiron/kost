@@ -16,6 +16,9 @@ class QuantityDetailsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<QuantityDetailsBloc, QuantityDetailsState>(
+      buildWhen: (previous, current) {
+        return previous.jobCalculator != current.jobCalculator;
+      },
       builder: (context, state) {
         return Scaffold(
           appBar: AppBar(
