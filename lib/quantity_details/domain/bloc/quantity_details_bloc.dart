@@ -162,6 +162,76 @@ class QuantityDetailsBloc
                     TechnicalArea(area: 52.6, perimeter: 33.6),
                   ],
                 ),
+                Floor(
+                  no: -2,
+                  ceilingArea: 800,
+                  ceilingPerimeter: 94.42,
+                  fullHeight: 3.15,
+                  area: 800,
+                  perimeter: 94.42,
+                  heightWithoutSlab: 3,
+                  thickWallLength: 39.13,
+                  thinWallLength: 0,
+                  isCeilingHollowSlab: false,
+                  windows: [],
+                  rooms: [
+                    ElevatorShaft(area: 8.61, perimeter: 12.8),
+                    Shaft(
+                      area: 1.05,
+                      perimeter: 5.2,
+                    ),
+                    Stairs(area: 7.2, perimeter: 10.9),
+                    Stairs(area: 5.1, perimeter: 10.9),
+                    FloorHall(
+                        area: 6.07,
+                        perimeter: 11.1,
+                        doors: [Door(count: 1, doorType: DoorType.fire)]),
+                    FireEscapeHall(
+                        area: 17.62,
+                        perimeter: 20.9,
+                        doors: [Door(count: 1, doorType: DoorType.fire)]),
+                    ParkingArea(area: 296.25, perimeter: 94.82),
+                    TechnicalArea(area: 7.10, perimeter: 10.7),
+                    TechnicalArea(area: 7.25, perimeter: 10.8),
+                    TechnicalArea(area: 17, perimeter: 16.6),
+                    TechnicalArea(area: 52.6, perimeter: 33.6),
+                  ],
+                ),
+                Floor(
+                  no: -3,
+                  ceilingArea: 800,
+                  ceilingPerimeter: 94.42,
+                  fullHeight: 3.15,
+                  area: 800,
+                  perimeter: 94.42,
+                  heightWithoutSlab: 3,
+                  thickWallLength: 39.13,
+                  thinWallLength: 0,
+                  isCeilingHollowSlab: false,
+                  windows: [],
+                  rooms: [
+                    ElevatorShaft(area: 8.61, perimeter: 12.8),
+                    Shaft(
+                      area: 1.05,
+                      perimeter: 5.2,
+                    ),
+                    Stairs(area: 7.2, perimeter: 10.9),
+                    Stairs(area: 5.1, perimeter: 10.9),
+                    FloorHall(
+                        area: 6.07,
+                        perimeter: 11.1,
+                        doors: [Door(count: 1, doorType: DoorType.fire)]),
+                    FireEscapeHall(
+                        area: 17.62,
+                        perimeter: 20.9,
+                        doors: [Door(count: 1, doorType: DoorType.fire)]),
+                    ParkingArea(area: 296.25, perimeter: 94.82),
+                    TechnicalArea(area: 7.10, perimeter: 10.7),
+                    TechnicalArea(area: 7.25, perimeter: 10.8),
+                    TechnicalArea(area: 17, perimeter: 16.6),
+                    TechnicalArea(area: 52.6, perimeter: 33.6),
+                  ],
+                ),
               ],
               foundationArea: 477,
               foundationPerimeter: 94.42,
@@ -176,7 +246,8 @@ class QuantityDetailsBloc
       }
 
       if (event.floor!.no >= 16) {
-        emit(state.copyWith(snackBarMessage: "Maksimum kat yüksekliğine ulaşıldı."));
+        emit(state.copyWith(
+            snackBarMessage: "Maksimum kat yüksekliğine ulaşıldı."));
         return;
       }
 
@@ -189,7 +260,9 @@ class QuantityDetailsBloc
       ));
     });
     on<DeleteFloor>((event, emit) {
-      if (event.floor.no == -1) {
+      final basementFloorsCount =
+          state.jobCalculator.floors.where((element) => element.no < 0).length;
+      if (event.floor.no == -1 && basementFloorsCount == 1) {
         emit(state.copyWith(snackBarMessage: "İlk bodrum kat silinemez"));
         return;
       }
@@ -204,6 +277,10 @@ class QuantityDetailsBloc
         if (floor.no > event.floor.no) {
           if (event.floor.no > 0) {
             floor.no -= 1;
+          }
+        } else {
+          if (event.floor.no < 0) {
+            floor.no += 1;
           }
         }
       }
@@ -223,9 +300,8 @@ class QuantityDetailsBloc
       state.jobCalculator.floors[floorIndex] = event.floor!;
 
       emit(state.copyWith(
-        snackBarMessage: "${event.floor!.floorName} Değiştirildi.",
-        jobCalculator: state.jobCalculator.toNewInstance()
-      ));
+          snackBarMessage: "${event.floor!.floorName} Değiştirildi.",
+          jobCalculator: state.jobCalculator.toNewInstance()));
     });
     on<CalculateCost>((event, emit) {
       //Validate...
