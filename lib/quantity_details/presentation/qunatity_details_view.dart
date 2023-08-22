@@ -58,9 +58,7 @@ class QuantityDetailsView extends StatelessWidget {
                         context: context,
                         builder: (_) {
                           return AddEditFloorDialog(
-                            floor: InitialFloor(
-                              no: newFloorNo
-                            ),
+                            floor: InitialFloor(no: newFloorNo),
                             onSubmitFloor: (Floor? submittedFloor) {
                               context
                                   .read<QuantityDetailsBloc>()
@@ -76,7 +74,7 @@ class QuantityDetailsView extends StatelessWidget {
                         context: context,
                         builder: (_) {
                           return AddEditFloorDialog(
-                            isEditMode: true,
+                            editMode: true,
                             floor: floor,
                             onDeleteFloor: () async {
                               final result = await showAreYouSureDialog(context,
