@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:kost/quantity_details/presentation/widget/add_floor_dialog.dart';
 import 'package:kost/common/widget/are_you_sure_dialog.dart';
-import 'package:kost/quantity_details/presentation/widget/edit_floor_dialog/edit_floor_dialog.dart';
+import 'package:kost/quantity_details/presentation/widget/edit_floor_dialog/add_edit_floor_dialog.dart';
 import 'package:kost/quantity_details/presentation/widget/floor_viewer.dart';
 
 import '../../common/config/app_space.dart';
@@ -55,7 +54,33 @@ class QuantityDetailsView extends StatelessWidget {
                       showDialog(
                         context: context,
                         builder: (_) {
-                          return const AddFloorDialog();
+                          return AddEditFloorDialog(
+                            floor: Floor(
+                                no: state.jobCalculator.floors
+                                        .reduce((value, element) =>
+                                            element.no > value.no
+                                                ? element
+                                                : value)
+                                        .no +
+                                    1,
+                                ceilingArea: 0,
+                                ceilingPerimeter: 0,
+                                fullHeight: 0,
+                                area: 0,
+                                perimeter: 0,
+                                heightWithoutSlab: 0,
+                                thickWallLength: 0,
+                                thinWallLength: 0,
+                                isCeilingHollowSlab: true,
+                                windows: [],
+                                rooms: []),
+                            onSubmitFloor: (submittedFloor) {
+                              context
+                                  .read<QuantityDetailsBloc>()
+                                  .add(AddFloor(submittedFloor));
+                              Navigator.of(context).pop();
+                            },
+                          );
                         },
                       );
                     },
@@ -63,11 +88,13 @@ class QuantityDetailsView extends StatelessWidget {
                       showDialog(
                         context: context,
                         builder: (_) {
-                          return EditFloorDialog(
+                          return AddEditFloorDialog(
+                            isEditMode: true,
                             floor: floor,
                             onDeleteFloor: () async {
-                              final result =
-                                  await showAreYouSureDialog(context, frontTitle: "Silmek istediğinize") ?? false;
+                              final result = await showAreYouSureDialog(context,
+                                      frontTitle: "Silmek istediğinize") ??
+                                  false;
                               if (context.mounted) {
                                 if (result) {
                                   context
@@ -77,10 +104,10 @@ class QuantityDetailsView extends StatelessWidget {
                                 }
                               }
                             },
-                            onEditFloor: (Floor? edittedFloor) {
+                            onSubmitFloor: (Floor? submittedFloor) {
                               context
                                   .read<QuantityDetailsBloc>()
-                                  .add(EditFloor(edittedFloor));
+                                  .add(EditFloor(submittedFloor));
                               Navigator.of(context).pop();
                             },
                           );

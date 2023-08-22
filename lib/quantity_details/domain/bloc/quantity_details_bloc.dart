@@ -170,7 +170,23 @@ class QuantityDetailsBloc
           ),
         ) {
     on<AddFloor>((event, emit) {
-      // Add Floor
+      if (event.floor == null) {
+        emit(state.copyWith(snackBarMessage: "Deşiklik yapılmadı."));
+        emit(state.copyWith(snackBarMessage: ""));
+        return;
+      }
+
+      if (event.floor!.no >= 16) {
+        emit(state.copyWith(snackBarMessage: "Maksimum kat yüksekliğine ulaşıldı."));
+        return;
+      }
+
+      state.jobCalculator.floors.add(event.floor!);
+      state.jobCalculator.sortFloors();
+
+      emit(state.copyWith(
+          snackBarMessage: "${event.floor!.floorName} Eklendi."));
+      emit(state.copyWith(snackBarMessage: ""));
     });
     on<DeleteFloor>((event, emit) {
       if (event.floor.no == -1) {
@@ -196,26 +212,29 @@ class QuantityDetailsBloc
       //Bir yöntem buldum fakat elegant olmadı. Bunu daha sonra düzeltmenin
       //Yolunu arayacağım.
 
-      emit(state.copyWith(snackBarMessage: "${event.floor.floorName} Silindi."));
+      emit(
+          state.copyWith(snackBarMessage: "${event.floor.floorName} Silindi."));
       emit(state.copyWith(snackBarMessage: ""));
     });
     on<EditFloor>((event, emit) {
-
       if (event.floor == null) {
         emit(state.copyWith(snackBarMessage: "Deşiklik yapılmadı."));
         emit(state.copyWith(snackBarMessage: ""));
         return;
       }
 
-      final floorIndex = state.jobCalculator.floors.indexWhere((element) => element.no == event.floor!.no);
+      final floorIndex = state.jobCalculator.floors
+          .indexWhere((element) => element.no == event.floor!.no);
       state.jobCalculator.floors[floorIndex] = event.floor!;
 
-      emit(state.copyWith(snackBarMessage: "${event.floor!.floorName} Değiştirildi."));
+      emit(state.copyWith(
+          snackBarMessage: "${event.floor!.floorName} Değiştirildi."));
       emit(state.copyWith(snackBarMessage: ""));
     });
     on<CalculateCost>((event, emit) {
       //Validate...
-      emit(state.copyWith(blocState: Completed(data: state.jobCalculator.createJobs())));
+      emit(state.copyWith(
+          blocState: Completed(data: state.jobCalculator.createJobs())));
     });
   }
 }

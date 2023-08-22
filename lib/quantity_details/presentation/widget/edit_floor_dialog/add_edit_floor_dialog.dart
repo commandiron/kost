@@ -7,23 +7,25 @@ import '../../../domain/model/calculator/floor.dart';
 import 'floor_attr_check_box.dart';
 import 'floor_attr_text_field.dart';
 
-class EditFloorDialog extends StatefulWidget {
-  const EditFloorDialog(
+class AddEditFloorDialog extends StatefulWidget {
+  const AddEditFloorDialog(
       {super.key,
+      this.isEditMode = false,
       required this.floor,
-      required this.onDeleteFloor,
-      required this.onEditFloor});
+      this.onDeleteFloor,
+      required this.onSubmitFloor});
 
+  final bool isEditMode;
   final Floor floor;
-  final void Function() onDeleteFloor;
-  final void Function(Floor? edittedFloor) onEditFloor;
+  final void Function()? onDeleteFloor;
+  final void Function(Floor? submittedFloor) onSubmitFloor;
 
   @override
-  State<EditFloorDialog> createState() => _EditFloorDialogState();
+  State<AddEditFloorDialog> createState() => _AddEditFloorDialogState();
 }
 
-class _EditFloorDialogState extends State<EditFloorDialog> {
-  Floor? _edittedFloor;
+class _AddEditFloorDialogState extends State<AddEditFloorDialog> {
+  Floor? _submittedFloor;
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +36,8 @@ class _EditFloorDialogState extends State<EditFloorDialog> {
           color: Theme.of(context).colorScheme.primary,
           padding: AppPadding.allS!,
           alignment: Alignment.center,
-          child: Row(
+          child: widget.isEditMode 
+          ? Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
@@ -58,7 +61,12 @@ class _EditFloorDialogState extends State<EditFloorDialog> {
                 ],
               )
             ],
-          )),
+          ) : Text(
+            "Kat Ekle",
+            style: AppTextStyle.responsiveH4(context)
+                    .copyWith(color: Theme.of(context).colorScheme.onPrimary),
+          )
+      ),
       actions: [
         ElevatedButton(
             onPressed: () {
@@ -70,10 +78,10 @@ class _EditFloorDialogState extends State<EditFloorDialog> {
             )),
         ElevatedButton(
             onPressed: () {
-              widget.onEditFloor(_edittedFloor);
+              widget.onSubmitFloor(_submittedFloor);
             },
             child: Text(
-              "Onayla",
+              widget.isEditMode ? "Onayla" : "Ekle",
               style: AppTextStyle.responsiveH5(context),
             ))
       ],
@@ -86,7 +94,7 @@ class _EditFloorDialogState extends State<EditFloorDialog> {
               formattedQuantity: widget.floor.area.toFormattedText(),
               symbol: "m²",
               onChanged: (String value) {
-                _edittedFloor = widget.floor.copyWith(area: value.toNumber());
+                _submittedFloor = widget.floor.copyWith(area: value.toNumber());
               },
             ),
             FloorAttrTextField(
@@ -122,11 +130,12 @@ class _EditFloorDialogState extends State<EditFloorDialog> {
                     widget.floor.thinWallLength.toFormattedText(),
                 symbol: "m"),
             FloorAttrCheckBox(
-                title: "Tavan Döşeme tipi Asmolen:",
-                value: widget.floor.isCeilingHollowSlab,
-                onChanged: (value) {
-                  _edittedFloor = widget.floor.copyWith(isCeilingHollowSlab: value);
-                },
+              title: "Tavan Döşeme tipi Asmolen:",
+              value: widget.floor.isCeilingHollowSlab,
+              onChanged: (value) {
+                _submittedFloor =
+                    widget.floor.copyWith(isCeilingHollowSlab: value);
+              },
             ),
             //Aşağıdan devam et
             SizedBox(
