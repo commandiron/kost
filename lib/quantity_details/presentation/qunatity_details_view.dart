@@ -59,13 +59,7 @@ class QuantityDetailsView extends StatelessWidget {
                         builder: (_) {
                           return AddEditFloorDialog(
                             floor: Floor(
-                                no: state.jobCalculator.floors
-                                        .reduce((value, element) =>
-                                            element.no > value.no
-                                                ? element
-                                                : value)
-                                        .no +
-                                    1,
+                                no: 0,
                                 ceilingArea: 0,
                                 ceilingPerimeter: 0,
                                 fullHeight: 0,

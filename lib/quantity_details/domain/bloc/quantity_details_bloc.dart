@@ -245,13 +245,19 @@ class QuantityDetailsBloc
         return;
       }
 
-      if (event.floor!.no >= 16) {
+      final topFloorNo = state.jobCalculator.floors
+          .reduce((value, element) => element.no > value.no ? element : value)
+          .no;
+
+      if (topFloorNo >= 16) {
         emit(state.copyWith(
             snackBarMessage: "Maksimum kat yüksekliğine ulaşıldı."));
         return;
       }
 
-      state.jobCalculator.floors.add(event.floor!);
+      final addedFloor = event.floor!;
+      addedFloor.no = topFloorNo + 1;
+      state.jobCalculator.floors.add(addedFloor);
       state.jobCalculator.sortFloors();
 
       emit(state.copyWith(
