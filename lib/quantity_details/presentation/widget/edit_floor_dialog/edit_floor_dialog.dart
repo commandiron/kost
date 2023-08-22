@@ -23,6 +23,8 @@ class EditFloorDialog extends StatefulWidget {
 }
 
 class _EditFloorDialogState extends State<EditFloorDialog> {
+
+  final _formKey = GlobalKey<FormState>();
   Floor? _submittedFloor;
 
   @override
@@ -78,96 +80,101 @@ class _EditFloorDialogState extends State<EditFloorDialog> {
             ))
       ],
       content: SingleChildScrollView(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            FloorAttrTextField(
-              title: "Alan:",
-              formattedQuantity: widget.floor.area.toFormattedText(),
-              symbol: "m²",
-              onChanged: (String value) {
-                _submittedFloor = widget.floor.copyWith(area: value.toNumber());
-              },
-            ),
-            FloorAttrTextField(
-                title: "Çevre Uzunluğu:",
-                formattedQuantity: widget.floor.perimeter.toFormattedText(),
-                symbol: "m"),
-            FloorAttrTextField(
-                title: "Döşeme Hariç Yükseklik:",
-                formattedQuantity:
-                    widget.floor.heightWithoutSlab.toFormattedText(),
-                symbol: "m"),
-            FloorAttrTextField(
-                title: "Tavan Alanı:",
-                formattedQuantity: widget.floor.ceilingArea.toFormattedText(),
-                symbol: "m²"),
-            FloorAttrTextField(
-                title: "Tavan Çevre Uzunluğu:",
-                formattedQuantity:
-                    widget.floor.ceilingPerimeter.toFormattedText(),
-                symbol: "m"),
-            FloorAttrTextField(
-                title: "Toplam Kat Yüksekliği:",
-                formattedQuantity: widget.floor.fullHeight.toFormattedText(),
-                symbol: "m"),
-            FloorAttrTextField(
-                title: "Kalın Duvar Uzunluğu:",
-                formattedQuantity:
-                    widget.floor.thickWallLength.toFormattedText(),
-                symbol: "m"),
-            FloorAttrTextField(
-                title: "İnce Duvar Uzunluğu:",
-                formattedQuantity:
-                    widget.floor.thinWallLength.toFormattedText(),
-                symbol: "m"),
-            FloorAttrCheckBox(
-              title: "Tavan Döşeme tipi Asmolen:",
-              value: widget.floor.isCeilingHollowSlab,
-              onChanged: (value) {
-                _submittedFloor =
-                    widget.floor.copyWith(isCeilingHollowSlab: value);
-              },
-            ),
-            //Aşağıdan devam et
-            SizedBox(
-              height: 300,
-              width: 400,
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: widget.floor.windows.length,
-                itemBuilder: (context, index) {
-                  final window = widget.floor.windows[index];
-                  return Column(
-                    children: [
-                      Text("Pencere ${index + 1}"),
-                      Text("Uzunluk: ${window.width.toString()}"),
-                      Text("Yükseklik: ${window.height.toString()}"),
-                      Text("Adet: ${window.count}"),
-                      Row(
-                        children: [
-                          const Text("Korkuluk: "),
-                          Checkbox(
-                            value: window.hasRailing,
-                            onChanged: (value) {},
-                          ),
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          const Text("Denizlik: "),
-                          Checkbox(
-                            value: window.hasWindowsill,
-                            onChanged: (value) {},
-                          ),
-                        ],
-                      ),
-                    ],
-                  );
+        child: Form(
+          key: _formKey,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              FloorAttrTextField(
+                title: "Alan:",
+                formattedQuantity: widget.floor.area.toFormattedText(),
+                symbol: "m²",
+                onChanged: (String value) {
+                  if(_formKey.currentState!.validate()) {
+                    _submittedFloor = widget.floor.copyWith(area: value.toNumber());
+                  }
                 },
               ),
-            )
-          ],
+              FloorAttrTextField(
+                  title: "Çevre Uzunluğu:",
+                  formattedQuantity: widget.floor.perimeter.toFormattedText(),
+                  symbol: "m"),
+              FloorAttrTextField(
+                  title: "Döşeme Hariç Yükseklik:",
+                  formattedQuantity:
+                      widget.floor.heightWithoutSlab.toFormattedText(),
+                  symbol: "m"),
+              FloorAttrTextField(
+                  title: "Tavan Alanı:",
+                  formattedQuantity: widget.floor.ceilingArea.toFormattedText(),
+                  symbol: "m²"),
+              FloorAttrTextField(
+                  title: "Tavan Çevre Uzunluğu:",
+                  formattedQuantity:
+                      widget.floor.ceilingPerimeter.toFormattedText(),
+                  symbol: "m"),
+              FloorAttrTextField(
+                  title: "Toplam Kat Yüksekliği:",
+                  formattedQuantity: widget.floor.fullHeight.toFormattedText(),
+                  symbol: "m"),
+              FloorAttrTextField(
+                  title: "Kalın Duvar Uzunluğu:",
+                  formattedQuantity:
+                      widget.floor.thickWallLength.toFormattedText(),
+                  symbol: "m"),
+              FloorAttrTextField(
+                  title: "İnce Duvar Uzunluğu:",
+                  formattedQuantity:
+                      widget.floor.thinWallLength.toFormattedText(),
+                  symbol: "m"),
+              FloorAttrCheckBox(
+                title: "Tavan Döşeme tipi Asmolen:",
+                value: widget.floor.isCeilingHollowSlab,
+                onChanged: (value) {
+                  _submittedFloor =
+                      widget.floor.copyWith(isCeilingHollowSlab: value);
+                },
+              ),
+              //Aşağıdan devam et
+              SizedBox(
+                height: 300,
+                width: 400,
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: widget.floor.windows.length,
+                  itemBuilder: (context, index) {
+                    final window = widget.floor.windows[index];
+                    return Column(
+                      children: [
+                        Text("Pencere ${index + 1}"),
+                        Text("Uzunluk: ${window.width.toString()}"),
+                        Text("Yükseklik: ${window.height.toString()}"),
+                        Text("Adet: ${window.count}"),
+                        Row(
+                          children: [
+                            const Text("Korkuluk: "),
+                            Checkbox(
+                              value: window.hasRailing,
+                              onChanged: (value) {},
+                            ),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            const Text("Denizlik: "),
+                            Checkbox(
+                              value: window.hasWindowsill,
+                              onChanged: (value) {},
+                            ),
+                          ],
+                        ),
+                      ],
+                    );
+                  },
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );
