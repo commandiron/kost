@@ -53,12 +53,14 @@ class QuantityDetailsView extends StatelessWidget {
                     height: MediaQuery.of(context).size.height / 1.6,
                     foundationArea: state.jobCalculator.foundationArea,
                     floors: state.jobCalculator.floors,
-                    onAddFloor: () {
+                    onAddFloor: (int newNo) {
                       showDialog(
                         context: context,
                         builder: (_) {
                           return AddEditFloorDialog(
-                            floor: InitialFloor(),
+                            floor: InitialFloor(
+                              no: newNo
+                            ),
                             onSubmitFloor: (Floor? submittedFloor) {
                               context
                                   .read<QuantityDetailsBloc>()

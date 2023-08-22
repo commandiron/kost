@@ -20,7 +20,7 @@ class FloorViewer extends StatelessWidget {
   final double height;
   final double foundationArea;
   final List<Floor> floors;
-  final void Function() onAddFloor;
+  final void Function(int newNo) onAddFloor;
   final void Function(Floor floor) onClickFloor;
 
   @override
@@ -30,7 +30,16 @@ class FloorViewer extends StatelessWidget {
 
     return Column(
       children: [
-        IconButton(onPressed: onAddFloor, icon: const Icon(Icons.add)),
+        IconButton(
+          onPressed: () {
+            onAddFloor(
+              floors.reduce(
+                (value, element) => element.no > value.no ? element : value
+              ).no + 1
+            );
+          }, 
+          icon: const Icon(Icons.add)
+        ),
         ListView.builder(
           itemCount: floors.length,
           shrinkWrap: true,
@@ -70,6 +79,16 @@ class FloorViewer extends StatelessWidget {
               ),
             );
           },
+        ),
+        IconButton(
+          onPressed: () {
+            onAddFloor(
+              floors.reduce(
+                (value, element) => element.no < value.no ? element : value
+              ).no - 1
+            );
+          }, 
+          icon: const Icon(Icons.add)
         ),
       ],
     );

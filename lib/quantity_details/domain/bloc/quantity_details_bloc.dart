@@ -245,19 +245,19 @@ class QuantityDetailsBloc
         return;
       }
 
-      final topFloorNo = state.jobCalculator.floors
-          .reduce((value, element) => element.no > value.no ? element : value)
-          .no;
-
-      if (topFloorNo >= 16) {
+      if (event.floor!.no >= 16) {
         emit(state.copyWith(
-            snackBarMessage: "Maksimum kat yüksekliğine ulaşıldı."));
+            snackBarMessage: "Maksimum kat sayısına ulaşıldı."));
         return;
       }
 
-      final addedFloor = event.floor!;
-      addedFloor.no = topFloorNo + 1;
-      state.jobCalculator.floors.add(addedFloor);
+      if(event.floor!.no <= -4) {
+        emit(state.copyWith(
+            snackBarMessage: "Maksimum bodrum kat sayısına ulaşıldı."));
+        return;
+      }
+
+      state.jobCalculator.floors.add(event.floor!);
       state.jobCalculator.sortFloors();
 
       emit(state.copyWith(
