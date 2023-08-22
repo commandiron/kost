@@ -12,11 +12,11 @@ class EditFloorDialog extends StatefulWidget {
       {super.key,
       required this.floor,
       this.onDeleteFloor,
-      required this.onSubmitFloor});
+      required this.onSubmit});
 
   final Floor floor;
   final void Function()? onDeleteFloor;
-  final void Function(Floor? submittedFloor) onSubmitFloor;
+  final void Function(Floor? submittedFloor) onSubmit;
 
   @override
   State<EditFloorDialog> createState() => _EditFloorDialogState();
@@ -31,35 +31,34 @@ class _EditFloorDialogState extends State<EditFloorDialog> {
       titlePadding: AppPadding.zero!,
       contentPadding: AppPadding.zero!,
       title: Container(
-        color: Theme.of(context).colorScheme.primary,
-        padding: AppPadding.allS!,
-        alignment: Alignment.center,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              "${widget.floor.floorName} Detayları",
-              style: AppTextStyle.responsiveH4(context).copyWith(
-                  color: Theme.of(context).colorScheme.onPrimary),
-            ),
-            Row(
-              children: [
-                InkWell(
-                  onTap: widget.onDeleteFloor,
-                  child: CircleAvatar(
-                      backgroundColor: Colors.white,
-                      minRadius: 16,
-                      child: Icon(
-                        Icons.delete,
-                        color: Theme.of(context).colorScheme.error,
-                        size: 20,
-                      )),
-                ),
-              ],
-            )
-          ],
-        )
-      ),              
+          color: Theme.of(context).colorScheme.primary,
+          padding: AppPadding.allS!,
+          alignment: Alignment.center,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                "${widget.floor.floorName} Detayları",
+                style: AppTextStyle.responsiveH4(context)
+                    .copyWith(color: Theme.of(context).colorScheme.onPrimary),
+              ),
+              Row(
+                children: [
+                  InkWell(
+                    onTap: widget.onDeleteFloor,
+                    child: CircleAvatar(
+                        backgroundColor: Colors.white,
+                        minRadius: 16,
+                        child: Icon(
+                          Icons.delete,
+                          color: Theme.of(context).colorScheme.error,
+                          size: 20,
+                        )),
+                  ),
+                ],
+              )
+            ],
+          )),
       actions: [
         ElevatedButton(
             onPressed: () {
@@ -71,7 +70,7 @@ class _EditFloorDialogState extends State<EditFloorDialog> {
             )),
         ElevatedButton(
             onPressed: () {
-              widget.onSubmitFloor(_submittedFloor);
+              widget.onSubmit(_submittedFloor);
             },
             child: Text(
               "Onayla",
