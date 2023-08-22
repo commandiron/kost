@@ -20,7 +20,7 @@ class FloorViewer extends StatelessWidget {
   final double height;
   final double foundationArea;
   final List<Floor> floors;
-  final void Function(int newNo) onAddFloor;
+  final void Function(int newFloorNo) onAddFloor;
   final void Function(Floor floor) onClickFloor;
 
   @override

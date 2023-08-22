@@ -245,7 +245,7 @@ class QuantityDetailsBloc
         return;
       }
 
-      if (event.floor!.no >= 16) {
+      if (event.floor!.no >= 17) {
         emit(state.copyWith(
             snackBarMessage: "Maksimum kat sayısına ulaşıldı."));
         return;
