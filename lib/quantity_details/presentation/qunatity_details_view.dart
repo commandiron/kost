@@ -59,7 +59,7 @@ class QuantityDetailsView extends StatelessWidget {
                         builder: (_) {
                           return AddEditFloorDialog(
                             floor: InitialFloor(),
-                            onSubmitFloor: (submittedFloor) {
+                            onSubmitFloor: (Floor? submittedFloor) {
                               context
                                   .read<QuantityDetailsBloc>()
                                   .add(AddFloor(submittedFloor));
