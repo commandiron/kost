@@ -1,6 +1,23 @@
 import 'package:kost/quantity_details/domain/model/calculator/room.dart';
 import 'package:kost/quantity_details/domain/model/calculator/window.dart';
 
+class InitialFloor extends Floor {
+  InitialFloor({
+    super.no = 0, 
+    super.ceilingArea = 0, 
+    super.ceilingPerimeter = 0, 
+    super.fullHeight = 0, 
+    super.area = 0, 
+    super.perimeter = 0, 
+    super.heightWithoutSlab = 0, 
+    super.thickWallLength = 0, 
+    super.thinWallLength = 0, 
+    super.isCeilingHollowSlab = true, 
+    super.windows = const [],
+    super.rooms = const []
+  });
+}
+
 class Floor {
   int no;
   final double ceilingArea;
