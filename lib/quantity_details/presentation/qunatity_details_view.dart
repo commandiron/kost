@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kost/quantity_details/presentation/widget/add_floor_dialog.dart';
 import 'package:kost/common/widget/are_you_sure_dialog.dart';
-import 'package:kost/quantity_details/presentation/widget/edit_floor_dialog.dart';
+import 'package:kost/quantity_details/presentation/widget/edit_floor_dialog/edit_floor_dialog.dart';
 import 'package:kost/quantity_details/presentation/widget/floor_viewer.dart';
 
 import '../../common/config/app_space.dart';

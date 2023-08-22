@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:kost/common/config/app_padding.dart';
 import 'package:kost/common/config/app_text_style.dart';
 import 'package:kost/common/extension/formatted_number.dart';
-import 'package:kost/common/widget/quantity_text_field.dart';
 
-import '../../domain/model/calculator/floor.dart';
+import '../../../domain/model/calculator/floor.dart';
+import 'floor_attr_check_box.dart';
+import 'floor_attr_text_field.dart';
 
 class EditFloorDialog extends StatefulWidget {
   const EditFloorDialog(
@@ -121,8 +122,12 @@ class _EditFloorDialogState extends State<EditFloorDialog> {
                     widget.floor.thinWallLength.toFormattedText(),
                 symbol: "m"),
             FloorAttrCheckBox(
-                title: "Döşeme tipi Asmolen",
-                value: widget.floor.isCeilingHollowSlab),
+                title: "Tavan Döşeme tipi Asmolen:",
+                value: widget.floor.isCeilingHollowSlab,
+                onChanged: (value) {
+                  _edittedFloor = widget.floor.copyWith(isCeilingHollowSlab: value);
+                },
+            ),
             //Aşağıdan devam et
             SizedBox(
               height: 300,
@@ -132,84 +137,37 @@ class _EditFloorDialogState extends State<EditFloorDialog> {
                 itemCount: widget.floor.windows.length,
                 itemBuilder: (context, index) {
                   final window = widget.floor.windows[index];
-                  return Text(window.width.toString());
+                  return Column(
+                    children: [
+                      Text("Pencere ${index + 1}"),
+                      Text("Uzunluk: ${window.width.toString()}"),
+                      Text("Yükseklik: ${window.height.toString()}"),
+                      Text("Adet: ${window.count}"),
+                      Row(
+                        children: [
+                          const Text("Korkuluk: "),
+                          Checkbox(
+                            value: window.hasRailing,
+                            onChanged: (value) {},
+                          ),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          const Text("Denizlik: "),
+                          Checkbox(
+                            value: window.hasWindowsill,
+                            onChanged: (value) {},
+                          ),
+                        ],
+                      ),
+                    ],
+                  );
                 },
               ),
             )
           ],
         ),
-      ),
-    );
-  }
-}
-
-class FloorAttrTextField extends StatelessWidget {
-  const FloorAttrTextField({
-    super.key,
-    required this.title,
-    required this.formattedQuantity,
-    required this.symbol,
-    this.onChanged,
-    this.onFieldSubmitted,
-  });
-
-  final String title;
-  final String formattedQuantity;
-  final String symbol;
-  final Function(String value)? onChanged;
-  final Function(String value)? onFieldSubmitted;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: AppPadding.hM!.add(AppPadding.vS!),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Expanded(
-              child: Text(
-            title,
-            style: AppTextStyle.responsiveH5(context),
-          )),
-          Expanded(
-            flex: 2,
-            child: QuantityTextField(
-              formattedQuantity: formattedQuantity,
-              symbol: symbol,
-              onChanged: onChanged,
-              onFieldSubmitted: onFieldSubmitted,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class FloorAttrCheckBox extends StatelessWidget {
-  const FloorAttrCheckBox(
-      {super.key, required this.title, required this.value});
-
-  final String title;
-  final bool value;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: AppPadding.hM!.add(AppPadding.vS!),
-      child: Row(
-        children: [
-          Expanded(
-            child: Text(title, style: AppTextStyle.responsiveH5(context)),
-          ),
-          Expanded(
-            flex: 2,
-            child: Checkbox(
-              value: value,
-              onChanged: (value) {},
-            ),
-          ),
-        ],
       ),
     );
   }
