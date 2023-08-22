@@ -21,7 +21,6 @@ class QuantityTextField extends StatefulWidget {
 
 class _QuantityTextFieldState extends State<QuantityTextField> {
   final _key = GlobalKey<FormState>();
-  final _focusNode = FocusNode();
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +34,6 @@ class _QuantityTextFieldState extends State<QuantityTextField> {
         ),
         style: AppTextStyle.responsiveB1(context),
         textAlign: TextAlign.center,
-        focusNode: _focusNode,
         validator: (value) {
           const String message = "Lütfen sayı giriniz.";
           if (value == null) {
