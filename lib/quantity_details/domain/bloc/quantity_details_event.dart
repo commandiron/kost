@@ -35,3 +35,9 @@ class CalculateCost extends QuantityDetailsEvent {
   @override
   List<Object?> get props => [];
 }
+
+class ClearSnackbarMessage extends QuantityDetailsEvent {
+  const ClearSnackbarMessage();
+  @override
+  List<Object?> get props => [];
+}

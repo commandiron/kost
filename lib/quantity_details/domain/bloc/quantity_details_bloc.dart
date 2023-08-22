@@ -232,7 +232,8 @@ class QuantityDetailsBloc
       emit(state.copyWith(
           blocState: Completed(data: state.jobCalculator.createJobs())));
     });
+    on<ClearSnackbarMessage>((event, emit) {
+      emit(state.copyWith(snackBarMessage: ""));
+    });
   }
-
-
 }
