@@ -178,6 +178,7 @@ class QuantityDetailsBloc
 
       if (event.floor!.no >= 16) {
         emit(state.copyWith(snackBarMessage: "Maksimum kat yüksekliğine ulaşıldı."));
+        emit(state.copyWith(snackBarMessage: ""));
         return;
       }
 
@@ -191,10 +192,12 @@ class QuantityDetailsBloc
     on<DeleteFloor>((event, emit) {
       if (event.floor.no == -1) {
         emit(state.copyWith(snackBarMessage: "İlk bodrum kat silinemez"));
+        emit(state.copyWith(snackBarMessage: ""));
         return;
       }
       if (event.floor.no == 0) {
         emit(state.copyWith(snackBarMessage: "Zemin kat silinemez"));
+        emit(state.copyWith(snackBarMessage: ""));
         return;
       }
 
