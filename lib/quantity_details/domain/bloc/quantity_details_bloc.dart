@@ -184,8 +184,8 @@ class QuantityDetailsBloc
       state.jobCalculator.sortFloors();
 
       emit(state.copyWith(
-          jobCalculator: state.jobCalculator.toNewInstance(),
-          snackBarMessage: "${event.floor!.floorName} Eklendi."
+        snackBarMessage: "${event.floor!.floorName} Eklendi.",
+        jobCalculator: state.jobCalculator.toNewInstance(),
       ));
     });
     on<DeleteFloor>((event, emit) {
