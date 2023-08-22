@@ -29,7 +29,7 @@ class QuantityDetailsState extends Equatable {
   @override
   List<Object?> get props => [
     blocState,
-    jobCalculator,
     snackBarMessage,
+    jobCalculator,
   ];
 }

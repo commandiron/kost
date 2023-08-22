@@ -172,13 +172,11 @@ class QuantityDetailsBloc
     on<AddFloor>((event, emit) {
       if (event.floor == null) {
         emit(state.copyWith(snackBarMessage: "Deşiklik yapılmadı."));
-        emit(state.copyWith(snackBarMessage: ""));
         return;
       }
 
       if (event.floor!.no >= 16) {
         emit(state.copyWith(snackBarMessage: "Maksimum kat yüksekliğine ulaşıldı."));
-        emit(state.copyWith(snackBarMessage: ""));
         return;
       }
 
@@ -186,18 +184,17 @@ class QuantityDetailsBloc
       state.jobCalculator.sortFloors();
 
       emit(state.copyWith(
-          snackBarMessage: "${event.floor!.floorName} Eklendi."));
-      emit(state.copyWith(snackBarMessage: ""));
+          jobCalculator: state.jobCalculator.toNewInstance(),
+          snackBarMessage: "${event.floor!.floorName} Eklendi."
+      ));
     });
     on<DeleteFloor>((event, emit) {
       if (event.floor.no == -1) {
         emit(state.copyWith(snackBarMessage: "İlk bodrum kat silinemez"));
-        emit(state.copyWith(snackBarMessage: ""));
         return;
       }
       if (event.floor.no == 0) {
         emit(state.copyWith(snackBarMessage: "Zemin kat silinemez"));
-        emit(state.copyWith(snackBarMessage: ""));
         return;
       }
 
@@ -211,18 +208,13 @@ class QuantityDetailsBloc
         }
       }
 
-      //JobCalculator'u state'e okutamadığımdan emit edemiyorum, aşağıdaki şekilde
-      //Bir yöntem buldum fakat elegant olmadı. Bunu daha sonra düzeltmenin
-      //Yolunu arayacağım.
-
-      emit(
-          state.copyWith(snackBarMessage: "${event.floor.floorName} Silindi."));
-      emit(state.copyWith(snackBarMessage: ""));
+      emit(state.copyWith(
+          snackBarMessage: "${event.floor.floorName} Silindi.",
+          jobCalculator: state.jobCalculator.toNewInstance()));
     });
     on<EditFloor>((event, emit) {
       if (event.floor == null) {
         emit(state.copyWith(snackBarMessage: "Deşiklik yapılmadı."));
-        emit(state.copyWith(snackBarMessage: ""));
         return;
       }
 
@@ -231,8 +223,9 @@ class QuantityDetailsBloc
       state.jobCalculator.floors[floorIndex] = event.floor!;
 
       emit(state.copyWith(
-          snackBarMessage: "${event.floor!.floorName} Değiştirildi."));
-      emit(state.copyWith(snackBarMessage: ""));
+        snackBarMessage: "${event.floor!.floorName} Değiştirildi.",
+        jobCalculator: state.jobCalculator.toNewInstance()
+      ));
     });
     on<CalculateCost>((event, emit) {
       //Validate...
@@ -240,4 +233,6 @@ class QuantityDetailsBloc
           blocState: Completed(data: state.jobCalculator.createJobs())));
     });
   }
+
+
 }

@@ -48,6 +48,8 @@ abstract class JobCalculator {
     floors = floors.sorted((a, b) => a.no.compareTo(b.no)).reversed.toList();
   }
 
+  JobCalculator toNewInstance();
+
   List<Job> createJobs();
 }
 
@@ -69,6 +71,26 @@ class ApartmentJobsCalculator extends JobCalculator {
       required super.foundationArea,
       required super.foundationPerimeter,
       required super.foundationHeight});
+
+  @override
+  JobCalculator toNewInstance() {
+    return ApartmentJobsCalculator(
+        projectConstants: projectConstants,
+        landArea: landArea,
+        landPerimeter: landPerimeter,
+        excavationArea: excavationArea,
+        excavationPerimeter: excavationPerimeter,
+        coreCurtainLength: coreCurtainLength,
+        curtainsExceeding1MeterLength: curtainsExceeding1MeterLength,
+        basementCurtainLength: basementCurtainLength,
+        columnsLess1MeterPerimeter: columnsLess1MeterPerimeter,
+        elevationTowerArea: elevationTowerArea,
+        elevationTowerHeightWithoutSlab: elevationTowerHeightWithoutSlab,
+        floors: floors,
+        foundationArea: foundationArea,
+        foundationPerimeter: foundationPerimeter,
+        foundationHeight: foundationHeight);
+  }
 
   @override
   List<Job> createJobs() {
@@ -181,6 +203,26 @@ class RoughConstructionJobsCalculator extends JobCalculator {
     required super.foundationPerimeter,
     required super.foundationHeight,
   });
+
+  @override
+  JobCalculator toNewInstance() {
+    return RoughConstructionJobsCalculator(
+        projectConstants: projectConstants,
+        landArea: landArea,
+        landPerimeter: landPerimeter,
+        excavationArea: excavationArea,
+        excavationPerimeter: excavationPerimeter,
+        coreCurtainLength: coreCurtainLength,
+        curtainsExceeding1MeterLength: curtainsExceeding1MeterLength,
+        basementCurtainLength: basementCurtainLength,
+        columnsLess1MeterPerimeter: columnsLess1MeterPerimeter,
+        elevationTowerArea: elevationTowerArea,
+        elevationTowerHeightWithoutSlab: elevationTowerHeightWithoutSlab,
+        floors: floors,
+        foundationArea: foundationArea,
+        foundationPerimeter: foundationPerimeter,
+        foundationHeight: foundationHeight);
+  }
 
   @override
   List<Job> createJobs() {
@@ -481,6 +523,26 @@ class RoofJobsCalculator extends JobCalculator {
       required super.foundationHeight});
 
   @override
+  JobCalculator toNewInstance() {
+    return RoofJobsCalculator(
+        projectConstants: projectConstants,
+        landArea: landArea,
+        landPerimeter: landPerimeter,
+        excavationArea: excavationArea,
+        excavationPerimeter: excavationPerimeter,
+        coreCurtainLength: coreCurtainLength,
+        curtainsExceeding1MeterLength: curtainsExceeding1MeterLength,
+        basementCurtainLength: basementCurtainLength,
+        columnsLess1MeterPerimeter: columnsLess1MeterPerimeter,
+        elevationTowerArea: elevationTowerArea,
+        elevationTowerHeightWithoutSlab: elevationTowerHeightWithoutSlab,
+        floors: floors,
+        foundationArea: foundationArea,
+        foundationPerimeter: foundationPerimeter,
+        foundationHeight: foundationHeight);
+  }
+
+  @override
   List<Job> createJobs() {
     return [
       Roofing(
@@ -522,6 +584,26 @@ class FacadeJobsCalculator extends JobCalculator {
       required super.foundationArea,
       required super.foundationPerimeter,
       required super.foundationHeight});
+
+  @override
+  JobCalculator toNewInstance() {
+    return FacadeJobsCalculator(
+        projectConstants: projectConstants,
+        landArea: landArea,
+        landPerimeter: landPerimeter,
+        excavationArea: excavationArea,
+        excavationPerimeter: excavationPerimeter,
+        coreCurtainLength: coreCurtainLength,
+        curtainsExceeding1MeterLength: curtainsExceeding1MeterLength,
+        basementCurtainLength: basementCurtainLength,
+        columnsLess1MeterPerimeter: columnsLess1MeterPerimeter,
+        elevationTowerArea: elevationTowerArea,
+        elevationTowerHeightWithoutSlab: elevationTowerHeightWithoutSlab,
+        floors: floors,
+        foundationArea: foundationArea,
+        foundationPerimeter: foundationPerimeter,
+        foundationHeight: foundationHeight);
+  }
 
   @override
   List<Job> createJobs() {
@@ -623,6 +705,26 @@ class InteriorJobsCalculator extends JobCalculator {
       required super.foundationArea,
       required super.foundationPerimeter,
       required super.foundationHeight});
+
+  @override
+  JobCalculator toNewInstance() {
+    return InteriorJobsCalculator(
+        projectConstants: projectConstants,
+        landArea: landArea,
+        landPerimeter: landPerimeter,
+        excavationArea: excavationArea,
+        excavationPerimeter: excavationPerimeter,
+        coreCurtainLength: coreCurtainLength,
+        curtainsExceeding1MeterLength: curtainsExceeding1MeterLength,
+        basementCurtainLength: basementCurtainLength,
+        columnsLess1MeterPerimeter: columnsLess1MeterPerimeter,
+        elevationTowerArea: elevationTowerArea,
+        elevationTowerHeightWithoutSlab: elevationTowerHeightWithoutSlab,
+        floors: floors,
+        foundationArea: foundationArea,
+        foundationPerimeter: foundationPerimeter,
+        foundationHeight: foundationHeight);
+  }
 
   @override
   List<Job> createJobs() {
@@ -1344,6 +1446,26 @@ class LandscapeJobsCalculator extends JobCalculator {
       required super.foundationHeight});
 
   @override
+  JobCalculator toNewInstance() {
+    return LandscapeJobsCalculator(
+        projectConstants: projectConstants,
+        landArea: landArea,
+        landPerimeter: landPerimeter,
+        excavationArea: excavationArea,
+        excavationPerimeter: excavationPerimeter,
+        coreCurtainLength: coreCurtainLength,
+        curtainsExceeding1MeterLength: curtainsExceeding1MeterLength,
+        basementCurtainLength: basementCurtainLength,
+        columnsLess1MeterPerimeter: columnsLess1MeterPerimeter,
+        elevationTowerArea: elevationTowerArea,
+        elevationTowerHeightWithoutSlab: elevationTowerHeightWithoutSlab,
+        floors: floors,
+        foundationArea: foundationArea,
+        foundationPerimeter: foundationPerimeter,
+        foundationHeight: foundationHeight);
+  }
+
+  @override
   List<Job> createJobs() {
     return [
       LandScapeGarden(
@@ -1430,6 +1552,26 @@ class GeneralExpensesJobsCalculator extends JobCalculator {
       required super.foundationArea,
       required super.foundationPerimeter,
       required super.foundationHeight});
+
+  @override
+  JobCalculator toNewInstance() {
+    return GeneralExpensesJobsCalculator(
+        projectConstants: projectConstants,
+        landArea: landArea,
+        landPerimeter: landPerimeter,
+        excavationArea: excavationArea,
+        excavationPerimeter: excavationPerimeter,
+        coreCurtainLength: coreCurtainLength,
+        curtainsExceeding1MeterLength: curtainsExceeding1MeterLength,
+        basementCurtainLength: basementCurtainLength,
+        columnsLess1MeterPerimeter: columnsLess1MeterPerimeter,
+        elevationTowerArea: elevationTowerArea,
+        elevationTowerHeightWithoutSlab: elevationTowerHeightWithoutSlab,
+        floors: floors,
+        foundationArea: foundationArea,
+        foundationPerimeter: foundationPerimeter,
+        foundationHeight: foundationHeight);
+  }
 
   @override
   List<Job> createJobs() {
