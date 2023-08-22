@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kost/common/widget/are_you_sure_dialog.dart';
-import 'package:kost/quantity_details/presentation/widget/edit_floor_dialog/add_edit_floor_dialog.dart';
+import 'package:kost/quantity_details/presentation/widget/edit_floor_dialog/edit_floor_dialog.dart';
 import 'package:kost/quantity_details/presentation/widget/floor_viewer.dart';
 
 import '../../common/config/app_space.dart';
@@ -57,7 +57,7 @@ class QuantityDetailsView extends StatelessWidget {
                       showDialog(
                         context: context,
                         builder: (_) {
-                          return AddEditFloorDialog(
+                          return EditFloorDialog(
                             floor: InitialFloor(no: newFloorNo),
                             onSubmitFloor: (Floor? submittedFloor) {
                               context
@@ -73,8 +73,7 @@ class QuantityDetailsView extends StatelessWidget {
                       showDialog(
                         context: context,
                         builder: (_) {
-                          return AddEditFloorDialog(
-                            editMode: true,
+                          return EditFloorDialog(
                             floor: floor,
                             onDeleteFloor: () async {
                               final result = await showAreYouSureDialog(context,

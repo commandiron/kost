@@ -7,24 +7,22 @@ import '../../../domain/model/calculator/floor.dart';
 import 'floor_attr_check_box.dart';
 import 'floor_attr_text_field.dart';
 
-class AddEditFloorDialog extends StatefulWidget {
-  const AddEditFloorDialog(
+class EditFloorDialog extends StatefulWidget {
+  const EditFloorDialog(
       {super.key,
-      this.editMode = false,
       required this.floor,
       this.onDeleteFloor,
       required this.onSubmitFloor});
 
-  final bool editMode;
   final Floor floor;
   final void Function()? onDeleteFloor;
   final void Function(Floor? submittedFloor) onSubmitFloor;
 
   @override
-  State<AddEditFloorDialog> createState() => _AddEditFloorDialogState();
+  State<EditFloorDialog> createState() => _EditFloorDialogState();
 }
 
-class _AddEditFloorDialogState extends State<AddEditFloorDialog> {
+class _EditFloorDialogState extends State<EditFloorDialog> {
   Floor? _submittedFloor;
 
   @override
@@ -33,40 +31,35 @@ class _AddEditFloorDialogState extends State<AddEditFloorDialog> {
       titlePadding: AppPadding.zero!,
       contentPadding: AppPadding.zero!,
       title: Container(
-          color: Theme.of(context).colorScheme.primary,
-          padding: AppPadding.allS!,
-          alignment: Alignment.center,
-          child: widget.editMode
-              ? Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      "${widget.floor.floorName} Detayları",
-                      style: AppTextStyle.responsiveH4(context).copyWith(
-                          color: Theme.of(context).colorScheme.onPrimary),
-                    ),
-                    Row(
-                      children: [
-                        InkWell(
-                          onTap: widget.onDeleteFloor,
-                          child: CircleAvatar(
-                              backgroundColor: Colors.white,
-                              minRadius: 16,
-                              child: Icon(
-                                Icons.delete,
-                                color: Theme.of(context).colorScheme.error,
-                                size: 20,
-                              )),
-                        ),
-                      ],
-                    )
-                  ],
-                )
-              : Text(
-                  "Kat Ekle",
-                  style: AppTextStyle.responsiveH4(context)
-                      .copyWith(color: Theme.of(context).colorScheme.onPrimary),
-                )),
+        color: Theme.of(context).colorScheme.primary,
+        padding: AppPadding.allS!,
+        alignment: Alignment.center,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              "${widget.floor.floorName} Detayları",
+              style: AppTextStyle.responsiveH4(context).copyWith(
+                  color: Theme.of(context).colorScheme.onPrimary),
+            ),
+            Row(
+              children: [
+                InkWell(
+                  onTap: widget.onDeleteFloor,
+                  child: CircleAvatar(
+                      backgroundColor: Colors.white,
+                      minRadius: 16,
+                      child: Icon(
+                        Icons.delete,
+                        color: Theme.of(context).colorScheme.error,
+                        size: 20,
+                      )),
+                ),
+              ],
+            )
+          ],
+        )
+      ),              
       actions: [
         ElevatedButton(
             onPressed: () {
@@ -81,7 +74,7 @@ class _AddEditFloorDialogState extends State<AddEditFloorDialog> {
               widget.onSubmitFloor(_submittedFloor);
             },
             child: Text(
-              widget.editMode ? "Onayla" : "Ekle",
+              "Onayla",
               style: AppTextStyle.responsiveH5(context),
             ))
       ],

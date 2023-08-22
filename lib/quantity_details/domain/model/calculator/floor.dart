@@ -104,6 +104,7 @@ class Floor {
 extension FloorExtension on Floor {
   String get floorName {
     return switch (no) {
+      -4 => "4. Bodrum Kat",
       -3 => "3. Bodrum Kat",
       -2 => "2. Bodrum Kat",
       -1 => "1. Bodrum Kat",
