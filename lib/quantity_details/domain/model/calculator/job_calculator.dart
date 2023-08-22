@@ -48,7 +48,7 @@ abstract class JobCalculator {
     floors = floors.sorted((a, b) => a.no.compareTo(b.no)).reversed.toList();
   }
 
-  JobCalculator toNewInstance();
+  JobCalculator get newInstance;
 
   List<Job> createJobs();
 }
@@ -73,7 +73,7 @@ class ApartmentJobsCalculator extends JobCalculator {
       required super.foundationHeight});
 
   @override
-  JobCalculator toNewInstance() {
+  JobCalculator get newInstance {
     return ApartmentJobsCalculator(
         projectConstants: projectConstants,
         landArea: landArea,
@@ -205,7 +205,7 @@ class RoughConstructionJobsCalculator extends JobCalculator {
   });
 
   @override
-  JobCalculator toNewInstance() {
+  JobCalculator get newInstance {
     return RoughConstructionJobsCalculator(
         projectConstants: projectConstants,
         landArea: landArea,
@@ -523,7 +523,7 @@ class RoofJobsCalculator extends JobCalculator {
       required super.foundationHeight});
 
   @override
-  JobCalculator toNewInstance() {
+  JobCalculator get newInstance {
     return RoofJobsCalculator(
         projectConstants: projectConstants,
         landArea: landArea,
@@ -586,7 +586,7 @@ class FacadeJobsCalculator extends JobCalculator {
       required super.foundationHeight});
 
   @override
-  JobCalculator toNewInstance() {
+  JobCalculator get newInstance {
     return FacadeJobsCalculator(
         projectConstants: projectConstants,
         landArea: landArea,
@@ -707,7 +707,7 @@ class InteriorJobsCalculator extends JobCalculator {
       required super.foundationHeight});
 
   @override
-  JobCalculator toNewInstance() {
+  JobCalculator get newInstance {
     return InteriorJobsCalculator(
         projectConstants: projectConstants,
         landArea: landArea,
@@ -1446,7 +1446,7 @@ class LandscapeJobsCalculator extends JobCalculator {
       required super.foundationHeight});
 
   @override
-  JobCalculator toNewInstance() {
+  JobCalculator get newInstance {
     return LandscapeJobsCalculator(
         projectConstants: projectConstants,
         landArea: landArea,
@@ -1554,7 +1554,7 @@ class GeneralExpensesJobsCalculator extends JobCalculator {
       required super.foundationHeight});
 
   @override
-  JobCalculator toNewInstance() {
+  JobCalculator get newInstance {
     return GeneralExpensesJobsCalculator(
         projectConstants: projectConstants,
         landArea: landArea,

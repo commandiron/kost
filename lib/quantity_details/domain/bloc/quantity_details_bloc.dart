@@ -256,7 +256,7 @@ class QuantityDetailsBloc
 
       emit(state.copyWith(
         snackBarMessage: "${event.floor!.floorName} Eklendi.",
-        jobCalculator: state.jobCalculator.toNewInstance(),
+        jobCalculator: state.jobCalculator.newInstance,
       ));
     });
     on<DeleteFloor>((event, emit) {
@@ -287,7 +287,7 @@ class QuantityDetailsBloc
 
       emit(state.copyWith(
           snackBarMessage: "${event.floor.floorName} Silindi.",
-          jobCalculator: state.jobCalculator.toNewInstance()));
+          jobCalculator: state.jobCalculator.newInstance));
     });
     on<EditFloor>((event, emit) {
       if (event.floor == null) {
@@ -301,7 +301,7 @@ class QuantityDetailsBloc
 
       emit(state.copyWith(
           snackBarMessage: "${event.floor!.floorName} Değiştirildi.",
-          jobCalculator: state.jobCalculator.toNewInstance()));
+          jobCalculator: state.jobCalculator.newInstance));
     });
     on<CalculateCost>((event, emit) {
       //Validate...
