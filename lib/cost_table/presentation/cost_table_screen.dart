@@ -5,7 +5,7 @@ import 'package:kost/common/config/app_space.dart';
 import 'package:kost/common/config/app_text_style.dart';
 import 'package:kost/cost_table/presentation/widget/custom_grouped_list_view.dart';
 
-import '../../quantity_details/domain/model/job.dart';
+import '../../quantity_details/domain/model/job_calculator/job.dart';
 import '../../quantity_details/presentation/quantity_details_screen.dart';
 import '../domain/bloc/cost_table_bloc.dart';
 import '../domain/bloc/cost_table_event.dart';

@@ -1,6 +1,6 @@
 import 'package:kost/cost_table/domain/model/unit_price/unit_price.dart';
 
-import '../../../../quantity_details/domain/model/job.dart';
+import '../../../../quantity_details/domain/model/job_calculator/job.dart';
 
 class Cost {
   MainCategory mainCategory;

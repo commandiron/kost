@@ -6,7 +6,7 @@ import 'package:kost/cost_table/domain/model/unit_price/currency.dart';
 import 'package:kost/cost_table/domain/model/cost/cost.dart';
 import 'package:kost/cost_table/domain/model/unit_price/unit.dart';
 
-import '../../../quantity_details/domain/model/job.dart';
+import '../../../quantity_details/domain/model/job_calculator/job.dart';
 import '../model/unit_price/unit_price.dart';
 import 'cost_table_event.dart';
 import 'cost_table_state.dart';

@@ -1,5 +1,5 @@
 import '../floor.dart';
-import '../job.dart';
+import 'job.dart';
 import 'job_calculator.dart';
 
 class LandscapeJobCalculator extends JobCalculator {

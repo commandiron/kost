@@ -1,7 +1,7 @@
 import 'package:kost/quantity_details/domain/model/job_calculator/roof_job_calculator.dart';
 import 'package:kost/quantity_details/domain/model/job_calculator/rough_construction_job_calculator.dart';
 
-import '../job.dart';
+import 'job.dart';
 import 'general_expenses_job_calculator.dart';
 import 'interior_job_calculator.dart';
 import 'job_calculator.dart';

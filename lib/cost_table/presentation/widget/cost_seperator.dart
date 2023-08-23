@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:kost/quantity_details/domain/model/job.dart';
+import 'package:kost/quantity_details/domain/model/job_calculator/job.dart';
 
 import '../../../common/config/app_padding.dart';
 import '../../../common/config/app_text_style.dart';
