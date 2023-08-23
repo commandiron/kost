@@ -107,51 +107,26 @@ class _EditFloorDialogState extends State<EditFloorDialog> {
                 },
               ),
               FloorAttrTextField(
-                title: "Döşeme Hariç Yükseklik:",
-                formattedQuantity:
-                    widget.floor.heightWithoutSlab.toFormattedText(),
-                symbol: "m",
-                onChanged: (String value) {
-                  if (_formKey.currentState!.validate()) {
-                    _submittedFloor = widget.floor
-                        .copyWith(heightWithoutSlab: value.toNumber());
-                  }
-                }
-              ),
+                  title: "Döşeme Dahil Yükseklik:",
+                  formattedQuantity:
+                      widget.floor.heightWithSlab.toFormattedText(),
+                  symbol: "m",
+                  onChanged: (String value) {
+                    if (_formKey.currentState!.validate()) {
+                      _submittedFloor = widget.floor
+                          .copyWith(heightWithSlab: value.toNumber());
+                    }
+                  }),
               FloorAttrTextField(
-                title: "Tavan Alanı:",
-                formattedQuantity: widget.floor.ceilingArea.toFormattedText(),
-                symbol: "m²",
-                onChanged: (String value) {
-                  if (_formKey.currentState!.validate()) {
-                    _submittedFloor = widget.floor
-                        .copyWith(ceilingArea: value.toNumber());
-                  }
-                }
-              ),
-              FloorAttrTextField(
-                title: "Tavan Çevre Uzunluğu:",
-                formattedQuantity:
-                    widget.floor.ceilingPerimeter.toFormattedText(),
-                symbol: "m",
-                onChanged: (String value) {
-                  if (_formKey.currentState!.validate()) {
-                    _submittedFloor = widget.floor
-                        .copyWith(ceilingPerimeter: value.toNumber());
-                  }
-                }
-              ),
-              FloorAttrTextField(
-                title: "Toplam Kat Yüksekliği:",
-                formattedQuantity: widget.floor.fullHeight.toFormattedText(),
-                symbol: "m",
-                onChanged: (String value) {
-                  if (_formKey.currentState!.validate()) {
-                    _submittedFloor = widget.floor
-                        .copyWith(fullHeight: value.toNumber());
-                  }
-                }
-              ),
+                  title: "Döşeme kalınlığı:",
+                  formattedQuantity: widget.floor.slabHeight.toFormattedText(),
+                  symbol: "m",
+                  onChanged: (String value) {
+                    if (_formKey.currentState!.validate()) {
+                      _submittedFloor =
+                          widget.floor.copyWith(slabHeight: value.toNumber());
+                    }
+                  }),
               FloorAttrTextField(
                   title: "Kalın Duvar Uzunluğu:",
                   formattedQuantity:
@@ -162,26 +137,24 @@ class _EditFloorDialogState extends State<EditFloorDialog> {
                       _submittedFloor = widget.floor
                           .copyWith(thickWallLength: value.toNumber());
                     }
-                  }
-              ),
+                  }),
               FloorAttrTextField(
-                title: "İnce Duvar Uzunluğu:",
-                formattedQuantity:
-                    widget.floor.thinWallLength.toFormattedText(),
-                symbol: "m",
-                onChanged: (String value) {
-                  if (_formKey.currentState!.validate()) {
-                    _submittedFloor = widget.floor
-                        .copyWith(thinWallLength: value.toNumber());
-                  }
-                }
-              ),
+                  title: "İnce Duvar Uzunluğu:",
+                  formattedQuantity:
+                      widget.floor.thinWallLength.toFormattedText(),
+                  symbol: "m",
+                  onChanged: (String value) {
+                    if (_formKey.currentState!.validate()) {
+                      _submittedFloor = widget.floor
+                          .copyWith(thinWallLength: value.toNumber());
+                    }
+                  }),
               FloorAttrCheckBox(
-                title: "Tavan Döşeme tipi Asmolen:",
-                value: widget.floor.isCeilingHollowSlab,
+                title: "Döşeme tipi Asmolen:",
+                value: widget.floor.isHollowSlab,
                 onChanged: (value) {
                   _submittedFloor =
-                      widget.floor.copyWith(isCeilingHollowSlab: value);
+                      widget.floor.copyWith(isHollowSlab: value);
                 },
               ),
             ],

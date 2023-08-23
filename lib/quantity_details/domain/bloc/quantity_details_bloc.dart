@@ -32,15 +32,13 @@ class QuantityDetailsBloc
                 ...Floor.duplicateFloors(
                     Floor(
                       no: 1,
-                      ceilingArea: 213,
-                      ceilingPerimeter: 64.3,
-                      fullHeight: 3.3,
                       area: 213,
                       perimeter: 64.3,
-                      heightWithoutSlab: 3,
+                      heightWithSlab: 3.3,
+                      slabHeight: 0.3,
+                      isHollowSlab: true,
                       thickWallLength: 72.97,
                       thinWallLength: 36.28,
-                      isCeilingHollowSlab: true,
                       windows: [
                         Window(
                             width: 17,
@@ -82,15 +80,13 @@ class QuantityDetailsBloc
                     11),
                 Floor(
                   no: 0,
-                  ceilingArea: 177.15,
-                  ceilingPerimeter: 61.3,
-                  fullHeight: 3.3,
                   area: 177.15,
                   perimeter: 61.3,
-                  heightWithoutSlab: 3,
+                  heightWithSlab: 3.3,
+                  slabHeight: 0.3,
                   thickWallLength: 66.29,
                   thinWallLength: 21.67,
-                  isCeilingHollowSlab: true,
+                  isHollowSlab: true,
                   windows: [
                     Window(
                         width: 14,
@@ -129,15 +125,13 @@ class QuantityDetailsBloc
                 ),
                 Floor(
                   no: -1,
-                  ceilingArea: 477,
-                  ceilingPerimeter: 94.42,
-                  fullHeight: 3.15,
                   area: 477,
                   perimeter: 94.42,
-                  heightWithoutSlab: 3,
+                  heightWithSlab: 3.3,
+                  slabHeight: 0.3,
                   thickWallLength: 39.13,
                   thinWallLength: 0,
-                  isCeilingHollowSlab: false,
+                  isHollowSlab: false,
                   windows: [],
                   rooms: [
                     ElevatorShaft(area: 8.61, perimeter: 12.8),
@@ -164,15 +158,13 @@ class QuantityDetailsBloc
                 ),
                 Floor(
                   no: -2,
-                  ceilingArea: 800,
-                  ceilingPerimeter: 94.42,
-                  fullHeight: 3.15,
                   area: 800,
                   perimeter: 94.42,
-                  heightWithoutSlab: 3,
+                  heightWithSlab: 3.3,
+                  slabHeight: 0.3,
                   thickWallLength: 39.13,
                   thinWallLength: 0,
-                  isCeilingHollowSlab: false,
+                  isHollowSlab: false,
                   windows: [],
                   rooms: [
                     ElevatorShaft(area: 8.61, perimeter: 12.8),
@@ -199,15 +191,13 @@ class QuantityDetailsBloc
                 ),
                 Floor(
                   no: -3,
-                  ceilingArea: 800,
-                  ceilingPerimeter: 94.42,
-                  fullHeight: 3.15,
                   area: 800,
                   perimeter: 94.42,
-                  heightWithoutSlab: 3,
+                  heightWithSlab: 3.3,
+                  slabHeight: 0.3,
                   thickWallLength: 39.13,
                   thinWallLength: 0,
-                  isCeilingHollowSlab: false,
+                  isHollowSlab: false,
                   windows: [],
                   rooms: [
                     ElevatorShaft(area: 8.61, perimeter: 12.8),
@@ -246,12 +236,12 @@ class QuantityDetailsBloc
       }
 
       if (event.floor!.no >= 17) {
-        emit(state.copyWith(
-            snackBarMessage: "Maksimum kat sayısına ulaşıldı."));
+        emit(
+            state.copyWith(snackBarMessage: "Maksimum kat sayısına ulaşıldı."));
         return;
       }
 
-      if(event.floor!.no <= -4) {
+      if (event.floor!.no <= -4) {
         emit(state.copyWith(
             snackBarMessage: "Maksimum bodrum kat sayısına ulaşıldı."));
         return;

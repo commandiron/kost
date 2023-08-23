@@ -278,7 +278,7 @@ class RoughConstructionJobsCalculator extends JobCalculator {
 
   double get _basementsHeight {
     return _basementFloors
-        .map((floor) => floor.fullHeight)
+        .map((floor) => floor.heightWithSlab)
         .fold(0.0, (p, c) => p + c);
   }
 
@@ -290,19 +290,31 @@ class RoughConstructionJobsCalculator extends JobCalculator {
         _basementsHeight;
   }
 
+  Floor get _topFloor {
+    final topFloor = floors.reduce((current, next) {
+      return current.no > next.no ? current : next;
+    });
+    return topFloor;
+  }
+
   double get _roughConstructionArea {
     double roughConstructionArea = 0;
-    roughConstructionArea += foundationArea;
     for (var floor in floors) {
-      roughConstructionArea += floor.ceilingArea;
+      if (floor.no == 0) {
+        roughConstructionArea +=
+            floors.firstWhere((floor) => floor.no == -1).area;
+      } else {
+        roughConstructionArea += floor.area;
+      }
     }
+    roughConstructionArea += _topFloor.area;
     roughConstructionArea += elevationTowerArea;
     return roughConstructionArea;
   }
 
   double get _buildingHeightWithoutSlabs {
     return floors
-        .map((floor) => floor.heightWithoutSlab)
+        .map((floor) => floor.heightWithSlab - floor.slabHeight)
         .fold(0.0, (p, c) => p + c);
   }
 
@@ -317,7 +329,7 @@ class RoughConstructionJobsCalculator extends JobCalculator {
 
   double get _basementsHeightWithoutSlab {
     return _basementFloors
-        .map((floor) => floor.heightWithoutSlab)
+        .map((floor) => floor.heightWithSlab - floor.slabHeight)
         .fold(0.0, (p, c) => p + c);
   }
 
@@ -327,14 +339,14 @@ class RoughConstructionJobsCalculator extends JobCalculator {
 
   double get _hollowSlabRoughConstructionArea {
     return floors
-        .where((floor) => floor.isCeilingHollowSlab)
-        .map((ceilingSlabFloor) => ceilingSlabFloor.ceilingArea)
+        .where((floor) => floor.isHollowSlab)
+        .map((ceilingSlabFloor) => ceilingSlabFloor.area)
         .fold(0.0, (p, c) => p + c);
   }
 
   double get _basementsOuterCurtainArea {
     return _basementFloors
-        .map((floor) => floor.perimeter * floor.fullHeight)
+        .map((floor) => floor.perimeter * floor.heightWithSlab)
         .fold(0.0, (p, c) => p + c);
   }
 
@@ -354,12 +366,13 @@ class RoughConstructionJobsCalculator extends JobCalculator {
   }
 
   double get _wetAreaAboveBasement {
-    return _topMostBasementFloor.ceilingArea - _groundFloor.area;
+    return _topMostBasementFloor.area - _groundFloor.area;
   }
 
   double get _thickWallArea {
     return floors
-        .map((floor) => floor.thickWallLength * floor.heightWithoutSlab)
+        .map((floor) =>
+            floor.thickWallLength * (floor.heightWithSlab - floor.slabHeight))
         .fold(0.0, (p, c) => p + c);
   }
 
@@ -369,7 +382,8 @@ class RoughConstructionJobsCalculator extends JobCalculator {
 
   double get _thinWallArea {
     return floors
-        .map((floor) => floor.thinWallLength * floor.heightWithoutSlab)
+        .map((floor) =>
+            floor.thinWallLength * (floor.heightWithSlab - floor.slabHeight))
         .fold(0.0, (p, c) => p + c);
   }
 
@@ -558,11 +572,11 @@ class RoofJobsCalculator extends JobCalculator {
   }
 
   double get roofingArea {
-    return _topFloor.ceilingArea;
+    return _topFloor.area;
   }
 
   String get roofingAreaExplanation {
-    return "En üst kat tavan alanı: ${_topFloor.ceilingArea}";
+    return "En üst kat alanı: ${_topFloor.area}";
   }
 }
 
@@ -628,7 +642,7 @@ class FacadeJobsCalculator extends JobCalculator {
 
   double get _totalFacadeArea {
     return _aboveBasementFloors
-        .map((floor) => floor.perimeter * floor.fullHeight)
+        .map((floor) => floor.perimeter * floor.heightWithSlab)
         .fold(0.0, (p, c) => p + c);
   }
 
@@ -842,7 +856,7 @@ class InteriorJobsCalculator extends JobCalculator {
     for (var floor in floors) {
       for (var room in floor.rooms) {
         if (room.wallMaterial == WallMaterial.painting) {
-          area += (room.perimeter * floor.heightWithoutSlab);
+          area += (room.perimeter * (floor.heightWithSlab - floor.slabHeight));
         }
         if (room.ceilingMaterial == CeilingMaterial.plaster) {
           area += room.area;
@@ -857,7 +871,7 @@ class InteriorJobsCalculator extends JobCalculator {
     for (var floor in floors) {
       for (var room in floor.rooms) {
         if (room.wallMaterial == WallMaterial.painting) {
-          area += (room.perimeter * floor.heightWithoutSlab);
+          area += (room.perimeter * (floor.heightWithSlab - floor.slabHeight));
         }
         if (room.ceilingMaterial == CeilingMaterial.drywall ||
             room.ceilingMaterial == CeilingMaterial.plaster) {
@@ -934,7 +948,7 @@ class InteriorJobsCalculator extends JobCalculator {
       for (var room in floor.rooms) {
         if (room.floorMaterial == FloorMaterial.marbleStep) {
           final stepCount =
-              floor.fullHeight / projectConstants.stairRiserHeight;
+              floor.heightWithSlab / projectConstants.stairRiserHeight;
           length += (projectConstants.stairLength * stepCount);
         }
       }
@@ -958,7 +972,7 @@ class InteriorJobsCalculator extends JobCalculator {
       for (var room in floor.rooms) {
         if (room.floorMaterial == FloorMaterial.marbleStep) {
           final stepCount =
-              floor.fullHeight / projectConstants.stairRiserHeight;
+              floor.heightWithSlab / projectConstants.stairRiserHeight;
           length += stepCount * projectConstants.stairTreadDepth;
         }
       }
@@ -983,7 +997,7 @@ class InteriorJobsCalculator extends JobCalculator {
     for (var floor in floors) {
       for (var room in floor.rooms) {
         if (room.wallMaterial == WallMaterial.ceramic) {
-          area += room.perimeter * floor.heightWithoutSlab;
+          area += room.perimeter * (floor.heightWithSlab - floor.slabHeight);
         }
       }
     }
@@ -1601,12 +1615,24 @@ class GeneralExpensesJobsCalculator extends JobCalculator {
     ];
   }
 
+  Floor get _topFloor {
+    final topFloor = floors.reduce((current, next) {
+      return current.no > next.no ? current : next;
+    });
+    return topFloor;
+  }
+
   double get _roughConstructionArea {
     double roughConstructionArea = 0;
-    roughConstructionArea += foundationArea;
     for (var floor in floors) {
-      roughConstructionArea += floor.ceilingArea;
+      if (floor.no == 0) {
+        roughConstructionArea +=
+            floors.firstWhere((floor) => floor.no == -1).area;
+      } else {
+        roughConstructionArea += floor.area;
+      }
     }
+    roughConstructionArea += _topFloor.area;
     roughConstructionArea += elevationTowerArea;
     return roughConstructionArea;
   }

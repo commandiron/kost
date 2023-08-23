@@ -2,78 +2,66 @@ import 'package:kost/quantity_details/domain/model/calculator/room.dart';
 import 'package:kost/quantity_details/domain/model/calculator/window.dart';
 
 class InitialFloor extends Floor {
-  InitialFloor({
-    super.no = 0, 
-    super.ceilingArea = 0, 
-    super.ceilingPerimeter = 0, 
-    super.fullHeight = 3.3, 
-    super.area = 0, 
-    super.perimeter = 0, 
-    super.heightWithoutSlab = 3, 
-    super.thickWallLength = 0, 
-    super.thinWallLength = 0, 
-    super.isCeilingHollowSlab = true, 
-    super.windows = const [],
-    super.rooms = const []
-  });
+  InitialFloor(
+      {super.no = 0,
+      super.area = 0,
+      super.perimeter = 0,
+      super.heightWithSlab = 3.3,
+      super.slabHeight = 0.3,
+      super.thickWallLength = 0,
+      super.thinWallLength = 0,
+      super.isHollowSlab = true,
+      super.windows = const [],
+      super.rooms = const []});
 }
 
 class Floor {
   int no;
-  final double ceilingArea;
-  final double ceilingPerimeter;
-  final double fullHeight;
   double area;
   final double perimeter;
-  final double heightWithoutSlab;
+  final double heightWithSlab;
+  final double slabHeight;
+  final bool isHollowSlab;
   final double thickWallLength;
   final double thinWallLength;
-  final bool isCeilingHollowSlab;
   final List<Window> windows;
   final List<Room> rooms;
 
   Floor(
       {required this.no,
-      required this.ceilingArea,
-      required this.ceilingPerimeter,
-      required this.fullHeight,
       required this.area,
       required this.perimeter,
-      required this.heightWithoutSlab,
+      required this.heightWithSlab,
+      required this.slabHeight,
+      required this.isHollowSlab,
       required this.thickWallLength,
       required this.thinWallLength,
-      required this.isCeilingHollowSlab,
       required this.windows,
       required this.rooms});
 
   Floor copyWith({
     int? no,
-    final double? ceilingArea,
-    final double? ceilingPerimeter,
-    final double? fullHeight,
     double? area,
     final double? perimeter,
-    final double? heightWithoutSlab,
+    final double? heightWithSlab,
+    final double? slabHeight,
+    final bool? isHollowSlab,
     final double? thickWallLength,
     final double? thinWallLength,
-    final bool? isCeilingHollowSlab,
     final List<Window>? windows,
     final List<Room>? rooms,
   }) {
     return Floor(
         no: no ?? this.no,
-        ceilingArea: ceilingArea ?? this.ceilingArea,
-        ceilingPerimeter: ceilingPerimeter ?? this.ceilingPerimeter,
-        fullHeight: fullHeight ?? this.fullHeight,
         area: area ?? this.area,
         perimeter: perimeter ?? this.perimeter,
-        heightWithoutSlab: heightWithoutSlab ?? this.heightWithoutSlab,
+        heightWithSlab: heightWithSlab ?? this.heightWithSlab,
+        slabHeight: slabHeight ?? this.slabHeight,
+        isHollowSlab: isHollowSlab ?? this.isHollowSlab,
         thickWallLength: thickWallLength ?? this.thickWallLength,
         thinWallLength: thinWallLength ?? this.thinWallLength,
-        isCeilingHollowSlab: isCeilingHollowSlab ?? this.isCeilingHollowSlab,
         windows: windows ?? this.windows,
-        rooms: rooms ?? this.rooms
-    );
+        rooms: rooms ?? this.rooms);
   }
 
   static List<Floor> duplicateFloors(Floor floor, int count) {
@@ -84,18 +72,17 @@ class Floor {
     final List<Floor> duplicatedFloors = [];
     for (var i = floor.no; i <= count; i++) {
       duplicatedFloors.add(Floor(
-          ceilingArea: floor.ceilingArea,
-          ceilingPerimeter: floor.ceilingPerimeter,
-          fullHeight: floor.fullHeight,
+          no: i,
           area: floor.area,
           perimeter: floor.perimeter,
-          heightWithoutSlab: floor.heightWithoutSlab,
+          heightWithSlab: floor.heightWithSlab,
+          slabHeight: floor.slabHeight,
+          isHollowSlab: floor.isHollowSlab,
           thickWallLength: floor.thickWallLength,
           thinWallLength: floor.thinWallLength,
-          isCeilingHollowSlab: floor.isCeilingHollowSlab,
           windows: floor.windows,
           rooms: floor.rooms,
-          no: i));
+          ));
     }
     return duplicatedFloors;
   }
