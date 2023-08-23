@@ -47,7 +47,7 @@ class QuantityDetailsView extends StatelessWidget {
                   Text("Detaylarını görmek istediğiniz kata dokunun",
                       style: AppTextStyle.responsiveB2(context)
                           .copyWith(color: Colors.grey)),
-                  AppSpace.vL!,
+                  AppSpace.vS!,
                   FloorViewer(
                     width: MediaQuery.of(context).size.width / 1.2,
                     height: MediaQuery.of(context).size.height / 1.6,
@@ -97,18 +97,6 @@ class QuantityDetailsView extends StatelessWidget {
                         },
                       );
                     },
-                  ),
-                  AppSpace.vL!,
-                  Text(
-                    "Diğer Bilgiler",
-                    style: AppTextStyle.b1,
-                  ),
-                  AppSpace.vL!,
-                  Column(
-                    children: [
-                      Text(state.jobCalculator.landArea.toString()),
-                      Text(state.jobCalculator.landPerimeter.toString()),
-                    ],
                   ),
                 ],
               )),

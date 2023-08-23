@@ -7,7 +7,7 @@ class FloorViewer extends StatelessWidget {
   const FloorViewer({
     Key? key,
     required this.width,
-    this.minWidth = 80,
+    this.minWidth = 100,
     required this.height,
     required this.floors,
     required this.onAddFloor,
