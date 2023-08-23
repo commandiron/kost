@@ -127,6 +127,14 @@ class _EditFloorDialogState extends State<EditFloorDialog> {
                           widget.floor.copyWith(slabHeight: value.toNumber());
                     }
                   }),
+              FloorAttrCheckBox(
+                title: "Döşeme tipi Asmolen:",
+                value: widget.floor.isHollowSlab,
+                onChanged: (value) {
+                  _submittedFloor =
+                      widget.floor.copyWith(isHollowSlab: value);
+                },
+              ),
               FloorAttrTextField(
                   title: "Kalın Duvar Uzunluğu:",
                   formattedQuantity:
@@ -149,14 +157,6 @@ class _EditFloorDialogState extends State<EditFloorDialog> {
                           .copyWith(thinWallLength: value.toNumber());
                     }
                   }),
-              FloorAttrCheckBox(
-                title: "Döşeme tipi Asmolen:",
-                value: widget.floor.isHollowSlab,
-                onChanged: (value) {
-                  _submittedFloor =
-                      widget.floor.copyWith(isHollowSlab: value);
-                },
-              ),
             ],
           ),
         ),

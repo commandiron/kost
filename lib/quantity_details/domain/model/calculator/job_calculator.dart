@@ -19,9 +19,6 @@ abstract class JobCalculator {
   final double elevationTowerArea;
   final double elevationTowerHeightWithoutSlab;
   List<Floor> floors;
-  final double foundationArea;
-  final double foundationPerimeter;
-  final double foundationHeight;
 
   JobCalculator({
     required this.name,
@@ -36,10 +33,7 @@ abstract class JobCalculator {
     required this.columnsLess1MeterPerimeter,
     required this.elevationTowerArea,
     required this.elevationTowerHeightWithoutSlab,
-    required this.floors,
-    required this.foundationArea,
-    required this.foundationPerimeter,
-    required this.foundationHeight,
+    required this.floors
   }) {
     sortFloors();
   }
@@ -67,10 +61,7 @@ class ApartmentJobsCalculator extends JobCalculator {
       required super.columnsLess1MeterPerimeter,
       required super.elevationTowerArea,
       required super.elevationTowerHeightWithoutSlab,
-      required super.floors,
-      required super.foundationArea,
-      required super.foundationPerimeter,
-      required super.foundationHeight});
+      required super.floors});
 
   @override
   JobCalculator get newInstance {
@@ -86,10 +77,7 @@ class ApartmentJobsCalculator extends JobCalculator {
         columnsLess1MeterPerimeter: columnsLess1MeterPerimeter,
         elevationTowerArea: elevationTowerArea,
         elevationTowerHeightWithoutSlab: elevationTowerHeightWithoutSlab,
-        floors: floors,
-        foundationArea: foundationArea,
-        foundationPerimeter: foundationPerimeter,
-        foundationHeight: foundationHeight);
+        floors: floors);
   }
 
   @override
@@ -106,10 +94,7 @@ class ApartmentJobsCalculator extends JobCalculator {
         columnsLess1MeterPerimeter: columnsLess1MeterPerimeter,
         elevationTowerArea: elevationTowerArea,
         elevationTowerHeightWithoutSlab: elevationTowerHeightWithoutSlab,
-        floors: floors,
-        foundationArea: foundationArea,
-        foundationPerimeter: foundationPerimeter,
-        foundationHeight: foundationHeight);
+        floors: floors);
     final roofQuantityCalculator = RoofJobsCalculator(
         projectConstants: projectConstants,
         landArea: landArea,
@@ -122,10 +107,7 @@ class ApartmentJobsCalculator extends JobCalculator {
         columnsLess1MeterPerimeter: columnsLess1MeterPerimeter,
         elevationTowerArea: elevationTowerArea,
         elevationTowerHeightWithoutSlab: elevationTowerHeightWithoutSlab,
-        floors: floors,
-        foundationArea: foundationArea,
-        foundationPerimeter: foundationPerimeter,
-        foundationHeight: foundationHeight);
+        floors: floors);
     final interiorQuantityCalculator = InteriorJobsCalculator(
         projectConstants: projectConstants,
         landArea: landArea,
@@ -138,10 +120,7 @@ class ApartmentJobsCalculator extends JobCalculator {
         columnsLess1MeterPerimeter: columnsLess1MeterPerimeter,
         elevationTowerArea: elevationTowerArea,
         elevationTowerHeightWithoutSlab: elevationTowerHeightWithoutSlab,
-        floors: floors,
-        foundationArea: foundationArea,
-        foundationPerimeter: foundationPerimeter,
-        foundationHeight: foundationHeight);
+        floors: floors);
     final landscapeQuantityCalculator = LandscapeJobsCalculator(
         projectConstants: projectConstants,
         landArea: landArea,
@@ -154,10 +133,7 @@ class ApartmentJobsCalculator extends JobCalculator {
         columnsLess1MeterPerimeter: columnsLess1MeterPerimeter,
         elevationTowerArea: elevationTowerArea,
         elevationTowerHeightWithoutSlab: elevationTowerHeightWithoutSlab,
-        floors: floors,
-        foundationArea: foundationArea,
-        foundationPerimeter: foundationPerimeter,
-        foundationHeight: foundationHeight);
+        floors: floors);
     final generalExpensesQuantityCalculator = GeneralExpensesJobsCalculator(
         projectConstants: projectConstants,
         landArea: landArea,
@@ -170,10 +146,7 @@ class ApartmentJobsCalculator extends JobCalculator {
         columnsLess1MeterPerimeter: columnsLess1MeterPerimeter,
         elevationTowerArea: elevationTowerArea,
         elevationTowerHeightWithoutSlab: elevationTowerHeightWithoutSlab,
-        floors: floors,
-        foundationArea: foundationArea,
-        foundationPerimeter: foundationPerimeter,
-        foundationHeight: foundationHeight);
+        floors: floors);
     return [
       ...roughConstructionQuantityCalculator.createJobs(),
       ...roofQuantityCalculator.createJobs(),
@@ -198,10 +171,7 @@ class RoughConstructionJobsCalculator extends JobCalculator {
     required super.columnsLess1MeterPerimeter,
     required super.elevationTowerArea,
     required super.elevationTowerHeightWithoutSlab,
-    required super.floors,
-    required super.foundationArea,
-    required super.foundationPerimeter,
-    required super.foundationHeight,
+    required super.floors
   });
 
   @override
@@ -218,10 +188,7 @@ class RoughConstructionJobsCalculator extends JobCalculator {
         columnsLess1MeterPerimeter: columnsLess1MeterPerimeter,
         elevationTowerArea: elevationTowerArea,
         elevationTowerHeightWithoutSlab: elevationTowerHeightWithoutSlab,
-        floors: floors,
-        foundationArea: foundationArea,
-        foundationPerimeter: foundationPerimeter,
-        foundationHeight: foundationHeight);
+        floors: floors);
   }
 
   @override
@@ -286,7 +253,7 @@ class RoughConstructionJobsCalculator extends JobCalculator {
     return projectConstants.stabilizationHeight +
         projectConstants.leanConcreteHeight +
         projectConstants.insulationConcreteHeight +
-        foundationHeight +
+        projectConstants.foundationHeight +
         _basementsHeight;
   }
 
@@ -355,6 +322,13 @@ class RoughConstructionJobsCalculator extends JobCalculator {
       return current.no > next.no ? current : next;
     });
     return topMostBasementFloor;
+  }
+
+  Floor get _bottomMostBasementFloor {
+    final bottomMostBasementFloor = _basementFloors.reduce((current, next) {
+      return current.no < next.no ? current : next;
+    });
+    return bottomMostBasementFloor;
   }
 
   Floor get _groundFloor {
@@ -477,11 +451,11 @@ class RoughConstructionJobsCalculator extends JobCalculator {
   }
 
   double get foundationWaterProofingArea {
-    return foundationArea + (foundationPerimeter * foundationHeight);
+    return _bottomMostBasementFloor.area + (_bottomMostBasementFloor.perimeter * projectConstants.foundationHeight);
   }
 
   String get foundationWaterProofingAreaExplanation {
-    return "Temel alanı: $foundationArea + (Temel çevre uzunluğu: $foundationPerimeter x Temel yüksekliği: $foundationHeight)";
+    return "En alt bodrum alanı: ${_bottomMostBasementFloor.area} + (En alt bodrum çevre uzunluğu: ${_bottomMostBasementFloor.perimeter} x Temel yüksekliği: ${projectConstants.foundationHeight})";
   }
 
   double get curtainWaterProofingArea {
@@ -531,10 +505,7 @@ class RoofJobsCalculator extends JobCalculator {
       required super.columnsLess1MeterPerimeter,
       required super.elevationTowerArea,
       required super.elevationTowerHeightWithoutSlab,
-      required super.floors,
-      required super.foundationArea,
-      required super.foundationPerimeter,
-      required super.foundationHeight});
+      required super.floors});
 
   @override
   JobCalculator get newInstance {
@@ -550,10 +521,7 @@ class RoofJobsCalculator extends JobCalculator {
         columnsLess1MeterPerimeter: columnsLess1MeterPerimeter,
         elevationTowerArea: elevationTowerArea,
         elevationTowerHeightWithoutSlab: elevationTowerHeightWithoutSlab,
-        floors: floors,
-        foundationArea: foundationArea,
-        foundationPerimeter: foundationPerimeter,
-        foundationHeight: foundationHeight);
+        floors: floors);
   }
 
   @override
@@ -594,10 +562,7 @@ class FacadeJobsCalculator extends JobCalculator {
       required super.columnsLess1MeterPerimeter,
       required super.elevationTowerArea,
       required super.elevationTowerHeightWithoutSlab,
-      required super.floors,
-      required super.foundationArea,
-      required super.foundationPerimeter,
-      required super.foundationHeight});
+      required super.floors});
 
   @override
   JobCalculator get newInstance {
@@ -613,10 +578,7 @@ class FacadeJobsCalculator extends JobCalculator {
         columnsLess1MeterPerimeter: columnsLess1MeterPerimeter,
         elevationTowerArea: elevationTowerArea,
         elevationTowerHeightWithoutSlab: elevationTowerHeightWithoutSlab,
-        floors: floors,
-        foundationArea: foundationArea,
-        foundationPerimeter: foundationPerimeter,
-        foundationHeight: foundationHeight);
+        floors: floors);
   }
 
   @override
@@ -715,10 +677,7 @@ class InteriorJobsCalculator extends JobCalculator {
       required super.columnsLess1MeterPerimeter,
       required super.elevationTowerArea,
       required super.elevationTowerHeightWithoutSlab,
-      required super.floors,
-      required super.foundationArea,
-      required super.foundationPerimeter,
-      required super.foundationHeight});
+      required super.floors});
 
   @override
   JobCalculator get newInstance {
@@ -734,10 +693,7 @@ class InteriorJobsCalculator extends JobCalculator {
         columnsLess1MeterPerimeter: columnsLess1MeterPerimeter,
         elevationTowerArea: elevationTowerArea,
         elevationTowerHeightWithoutSlab: elevationTowerHeightWithoutSlab,
-        floors: floors,
-        foundationArea: foundationArea,
-        foundationPerimeter: foundationPerimeter,
-        foundationHeight: foundationHeight);
+        floors: floors);
   }
 
   @override
@@ -1454,10 +1410,7 @@ class LandscapeJobsCalculator extends JobCalculator {
       required super.columnsLess1MeterPerimeter,
       required super.elevationTowerArea,
       required super.elevationTowerHeightWithoutSlab,
-      required super.floors,
-      required super.foundationArea,
-      required super.foundationPerimeter,
-      required super.foundationHeight});
+      required super.floors});
 
   @override
   JobCalculator get newInstance {
@@ -1473,10 +1426,7 @@ class LandscapeJobsCalculator extends JobCalculator {
         columnsLess1MeterPerimeter: columnsLess1MeterPerimeter,
         elevationTowerArea: elevationTowerArea,
         elevationTowerHeightWithoutSlab: elevationTowerHeightWithoutSlab,
-        floors: floors,
-        foundationArea: foundationArea,
-        foundationPerimeter: foundationPerimeter,
-        foundationHeight: foundationHeight);
+        floors: floors);
   }
 
   @override
@@ -1562,10 +1512,7 @@ class GeneralExpensesJobsCalculator extends JobCalculator {
       required super.columnsLess1MeterPerimeter,
       required super.elevationTowerArea,
       required super.elevationTowerHeightWithoutSlab,
-      required super.floors,
-      required super.foundationArea,
-      required super.foundationPerimeter,
-      required super.foundationHeight});
+      required super.floors});
 
   @override
   JobCalculator get newInstance {
@@ -1581,10 +1528,7 @@ class GeneralExpensesJobsCalculator extends JobCalculator {
         columnsLess1MeterPerimeter: columnsLess1MeterPerimeter,
         elevationTowerArea: elevationTowerArea,
         elevationTowerHeightWithoutSlab: elevationTowerHeightWithoutSlab,
-        floors: floors,
-        foundationArea: foundationArea,
-        foundationPerimeter: foundationPerimeter,
-        foundationHeight: foundationHeight);
+        floors: floors);
   }
 
   @override

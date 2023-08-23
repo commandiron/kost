@@ -1,5 +1,6 @@
 class ProjectConstants {
   final double projectDurationMonth;
+  final double foundationHeight;
   final double insulationConcreteHeight;
   final double leanConcreteHeight;
   final double stabilizationHeight;
@@ -24,8 +25,8 @@ class ProjectConstants {
   final double craneHourForOneSquareMeterRoughConstructionArea;
 
   ProjectConstants(
-    {
-      this.projectDurationMonth = 14,
+      {this.projectDurationMonth = 14,
+      this.foundationHeight = 1,
       this.insulationConcreteHeight = 0.05,
       this.leanConcreteHeight = 0.10,
       this.stabilizationHeight = 0.30,
@@ -47,7 +48,5 @@ class ProjectConstants {
       this.coatCabinetArea = 5,
       this.gardenOutdoorParkingAreaRate = 0.50,
       this.automaticBarrierNumber = 1,
-      this.craneHourForOneSquareMeterRoughConstructionArea = 0.02
-    }
-  );
+      this.craneHourForOneSquareMeterRoughConstructionArea = 0.02});
 }

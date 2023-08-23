@@ -223,9 +223,6 @@ class QuantityDetailsBloc
                   ],
                 ),
               ],
-              foundationArea: 477,
-              foundationPerimeter: 94.42,
-              foundationHeight: 1,
             ),
           ),
         ) {

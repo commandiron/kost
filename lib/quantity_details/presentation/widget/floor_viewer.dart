@@ -9,7 +9,6 @@ class FloorViewer extends StatelessWidget {
     required this.width,
     this.minWidth = 80,
     required this.height,
-    required this.foundationArea,
     required this.floors,
     required this.onAddFloor,
     required this.onClickFloor,
@@ -18,14 +17,17 @@ class FloorViewer extends StatelessWidget {
   final double width;
   final double minWidth;
   final double height;
-  final double foundationArea;
   final List<Floor> floors;
   final void Function(int newFloorNo) onAddFloor;
   final void Function(Floor floor) onClickFloor;
 
   @override
   Widget build(BuildContext context) {
-    final double widthPerArea = width / foundationArea;
+    final basementFloors = floors.where((element) => element.no < 0).toList();
+    final bottomMostBasementFloor = basementFloors.reduce((current, next) {
+      return current.no < next.no ? current : next;
+    });
+    final double widthPerArea = width / bottomMostBasementFloor.area;
     final double floorHeight = height / floors.length;
 
     return Column(
