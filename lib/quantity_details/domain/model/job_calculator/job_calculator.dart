@@ -1,7 +1,5 @@
 import 'package:collection/collection.dart';
 import 'package:kost/quantity_details/domain/model/project_constants.dart';
-import 'package:kost/quantity_details/domain/model/room.dart';
-import '../../../../cost_table/domain/model/unit_price/unit_price.dart';
 import 'job.dart';
 import '../floor.dart';
 
