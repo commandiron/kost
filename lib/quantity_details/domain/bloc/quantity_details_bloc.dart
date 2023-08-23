@@ -4,7 +4,7 @@ import 'package:kost/quantity_details/domain/bloc/quantity_details_event.dart';
 import 'package:kost/quantity_details/domain/bloc/quantity_details_state.dart';
 
 import '../model/floor.dart';
-import '../model/job_calculator/apartment_job_calculator.dart';
+import '../model/job/calculators/combined/apartment_job_calculator.dart';
 import '../model/project_constants.dart';
 import '../model/room.dart';
 import '../model/window.dart';

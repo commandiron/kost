@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:kost/common/bloc/bloc_state.dart';
 import 'package:kost/cost_table/domain/model/unit_price/currency.dart';
-import '../../../quantity_details/domain/model/job_calculator/job.dart';
+import '../../../quantity_details/domain/model/job/job.dart';
 import '../model/cost/cost.dart';
 import '../model/unit_price/unit_price.dart';
 

@@ -1,11 +1,11 @@
-import 'package:kost/quantity_details/domain/model/job_calculator/roof_job_calculator.dart';
-import 'package:kost/quantity_details/domain/model/job_calculator/rough_construction_job_calculator.dart';
+import 'package:kost/quantity_details/domain/model/job/calculators/solo/roof_job_calculator.dart';
+import 'package:kost/quantity_details/domain/model/job/calculators/solo/rough_construction_job_calculator.dart';
 
-import 'job.dart';
-import 'general_expenses_job_calculator.dart';
-import 'interior_job_calculator.dart';
-import 'job_calculator.dart';
-import 'landscape_job_calculator.dart';
+import '../../job.dart';
+import '../solo/general_expenses_job_calculator.dart';
+import '../solo/interior_job_calculator.dart';
+import '../../job_calculator.dart';
+import '../solo/landscape_job_calculator.dart';
 
 class ApartmentJobsCalculator extends JobCalculator {
   ApartmentJobsCalculator(
