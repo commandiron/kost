@@ -17,7 +17,7 @@ class InitialFloor extends Floor {
 
 class Floor {
   int no;
-  double area;
+  final double area;
   final double perimeter;
   final double heightWithSlab;
   final double slabHeight;
