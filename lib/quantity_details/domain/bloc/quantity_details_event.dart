@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 
-import '../model/calculator/floor.dart';
+import '../model/floor.dart';
 
 abstract class QuantityDetailsEvent extends Equatable {
   const QuantityDetailsEvent();

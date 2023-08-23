@@ -3,7 +3,7 @@ import 'package:kost/common/config/app_padding.dart';
 import 'package:kost/common/config/app_text_style.dart';
 import 'package:kost/common/extension/formatted_number.dart';
 
-import '../../../domain/model/calculator/floor.dart';
+import '../../../domain/model/floor.dart';
 import 'floor_attr_check_box.dart';
 import 'floor_attr_text_field.dart';
 
@@ -43,21 +43,18 @@ class _EditFloorDialogState extends State<EditFloorDialog> {
                 style: AppTextStyle.responsiveH4(context)
                     .copyWith(color: Theme.of(context).colorScheme.onPrimary),
               ),
-              Row(
-                children: [
-                  InkWell(
-                    onTap: widget.onDeleteFloor,
-                    child: CircleAvatar(
-                        backgroundColor: Colors.white,
-                        minRadius: 16,
-                        child: Icon(
-                          Icons.delete,
-                          color: Theme.of(context).colorScheme.error,
-                          size: 20,
-                        )),
-                  ),
-                ],
-              )
+              if(widget.onDeleteFloor != null)
+                InkWell(
+                  onTap: widget.onDeleteFloor,
+                  child: CircleAvatar(
+                      backgroundColor: Colors.white,
+                      minRadius: 16,
+                      child: Icon(
+                        Icons.delete,
+                        color: Theme.of(context).colorScheme.error,
+                        size: 20,
+                      )),
+                )
             ],
           )),
       actions: [

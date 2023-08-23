@@ -3,11 +3,11 @@ import 'package:kost/common/bloc/bloc_state.dart';
 import 'package:kost/quantity_details/domain/bloc/quantity_details_event.dart';
 import 'package:kost/quantity_details/domain/bloc/quantity_details_state.dart';
 
-import '../model/calculator/floor.dart';
-import '../model/calculator/job_calculator.dart';
-import '../model/calculator/project_constants.dart';
-import '../model/calculator/room.dart';
-import '../model/calculator/window.dart';
+import '../model/floor.dart';
+import '../model/job_calculator/apartment_job_calculator.dart';
+import '../model/project_constants.dart';
+import '../model/room.dart';
+import '../model/window.dart';
 
 class QuantityDetailsBloc
     extends Bloc<QuantityDetailsEvent, QuantityDetailsState> {
