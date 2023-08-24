@@ -14,14 +14,15 @@ class QuantityDetailsListener extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocListener(listeners: [
       BlocListener<QuantityDetailsBloc, QuantityDetailsState>(
-        listenWhen: (previous, current) =>
-            previous.blocState != current.blocState,
+        listenWhen: (previous, current) => previous.blocState != current.blocState,
         listener: (context, state) {
           final blocState = state.blocState;
           if (blocState is Completed) {
             ScaffoldMessenger.of(context).removeCurrentSnackBar();
-            Navigator.of(context)
-                .pushNamed(CostTableScreen.route, arguments: blocState.data);
+            Navigator.of(context).pushNamed(
+              CostTableScreen.route,
+              arguments: blocState.data,
+            );
           }
         },
       ),
@@ -31,7 +32,9 @@ class QuantityDetailsListener extends StatelessWidget {
             previous.snackBarMessage != current.snackBarMessage,
         listener: (context, state) {
           ScaffoldMessenger.of(context).removeCurrentSnackBar();
-          ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(state.snackBarMessage)));
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text(state.snackBarMessage)),
+          );
           context.read<QuantityDetailsBloc>().add(const ClearSnackbarMessage());
         },
       ),

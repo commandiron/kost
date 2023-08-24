@@ -33,15 +33,10 @@ class FloorViewer extends StatelessWidget {
     return Column(
       children: [
         IconButton(
-          onPressed: () {
-            onAddFloor(
-              floors.reduce(
-                (value, element) => element.no > value.no ? element : value
-              ).no + 1
-            );
-          }, 
-          icon: const Icon(Icons.add)
-        ),
+            onPressed: () {
+              onAddFloor(floors.reduce((value, element) => element.no > value.no ? element : value).no + 1);
+            },
+            icon: const Icon(Icons.add)),
         ListView.builder(
           itemCount: floors.length,
           shrinkWrap: true,
@@ -83,21 +78,15 @@ class FloorViewer extends StatelessWidget {
           },
         ),
         IconButton(
-          onPressed: () {
-            onAddFloor(
-              floors.reduce(
-                (value, element) => element.no < value.no ? element : value
-              ).no - 1
-            );
-          }, 
-          icon: const Icon(Icons.add)
-        ),
+            onPressed: () {
+              onAddFloor(floors.reduce((value, element) => element.no < value.no ? element : value).no - 1,);
+            },
+            icon: const Icon(Icons.add)),
       ],
     );
   }
 
-  double _calculateFloorWidth(
-      double widthPerArea, int index, double totalWidth) {
+  double _calculateFloorWidth(double widthPerArea, int index, double totalWidth) {
     double floorWidth = widthPerArea * floors[index].area;
     if (floorWidth > totalWidth) {
       floorWidth = totalWidth;
