@@ -3,10 +3,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:grouped_list/grouped_list.dart';
 import 'package:kost/cost_table/presentation/widget/cost_seperator.dart';
 
-import '../../../quantity_details/domain/model/job/job.dart';
+import '../../../common/model/job.dart';
 import '../../domain/bloc/cost_table_bloc.dart';
 import '../../domain/bloc/cost_table_event.dart';
-import '../../domain/model/cost/cost.dart';
+import '../../domain/model/cost.dart';
 import 'cost_item.dart';
 
 class CostsListView extends StatelessWidget {

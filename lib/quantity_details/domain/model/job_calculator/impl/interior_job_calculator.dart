@@ -1,8 +1,8 @@
-import '../../../../cost_table/domain/model/unit_price/unit_price.dart';
-import '../floor/floor.dart';
-import 'job.dart';
-import '../floor/room.dart';
-import 'job_calculator.dart';
+import '../../../../../common/model/unit_price/unit_price.dart';
+import '../../floor/floor.dart';
+import '../../../../../common/model/job.dart';
+import '../../floor/room.dart';
+import '../job_calculator.dart';
 
 class InteriorJobCalculator extends JobCalculator {
   InteriorJobCalculator(

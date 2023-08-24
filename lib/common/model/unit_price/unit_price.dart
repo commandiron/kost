@@ -1,6 +1,6 @@
-import 'package:kost/cost_table/domain/model/unit_price/unit.dart';
+import 'package:kost/common/model/unit_price/unit.dart';
 import 'package:uuid/uuid.dart';
-import 'currency.dart';
+import '../currency.dart';
 
 class UnitPrice {
   String id = const Uuid().v4();

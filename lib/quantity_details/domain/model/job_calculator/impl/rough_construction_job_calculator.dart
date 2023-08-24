@@ -1,6 +1,6 @@
-import '../floor/floor.dart';
-import 'job.dart';
-import 'job_calculator.dart';
+import '../../floor/floor.dart';
+import '../../../../../common/model/job.dart';
+import '../job_calculator.dart';
 
 class RoughConstructionJobCalculator extends JobCalculator {
   RoughConstructionJobCalculator(

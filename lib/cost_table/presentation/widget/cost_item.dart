@@ -4,7 +4,7 @@ import 'package:kost/common/config/app_padding.dart';
 import 'package:kost/common/config/app_space.dart';
 import 'package:kost/common/config/app_text_style.dart';
 import 'package:kost/common/config/responsive.dart';
-import 'package:kost/cost_table/domain/model/cost/cost.dart';
+import 'package:kost/cost_table/domain/model/cost.dart';
 import 'package:kost/common/widget/quantity_text_field.dart';
 import 'package:kost/cost_table/presentation/widget/unit_prices_alert_dialog.dart';
 

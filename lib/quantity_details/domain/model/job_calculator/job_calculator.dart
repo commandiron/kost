@@ -1,6 +1,6 @@
 import 'package:kost/quantity_details/domain/model/project_constants.dart';
 import '../project_variables.dart';
-import 'job.dart';
+import '../../../../common/model/job.dart';
 import '../floor/floor.dart';
 
 abstract class JobCalculator {

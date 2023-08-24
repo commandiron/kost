@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import '../../../quantity_details/domain/model/job/job.dart';
+import '../../../common/model/job.dart';
 
 abstract class CostTableEvent extends Equatable {
   const CostTableEvent();

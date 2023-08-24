@@ -2,7 +2,7 @@ import 'package:equatable/equatable.dart';
 import 'package:kost/common/bloc/bloc_state.dart';
 import 'package:kost/quantity_details/domain/model/project_constants.dart';
 import '../model/floor/floor.dart';
-import '../model/job/job_calculator.dart';
+import '../model/job_calculator/job_calculator.dart';
 import '../model/project_variables.dart';
 
 class QuantityDetailsState extends Equatable {
