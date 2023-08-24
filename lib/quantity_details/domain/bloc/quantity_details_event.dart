@@ -4,7 +4,6 @@ import '../model/floor/floor.dart';
 
 abstract class QuantityDetailsEvent extends Equatable {
   const QuantityDetailsEvent();
-
   @override
   List<Object?> get props => [];
 }
