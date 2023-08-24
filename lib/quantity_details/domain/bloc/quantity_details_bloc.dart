@@ -168,9 +168,7 @@ class QuantityDetailsBloc
           ),
         ) {
     on<Init>((event, emit) {
-      List<Floor> floors = state.floors;
-      floors = floors.sorted((a, b) => a.no.compareTo(b.no)).reversed.toList();
-      emit(state.copyWith(floors: floors));
+      emit(state.copyWith(floors: getSortedFloors(state.floors)));
     });
     on<AddFloor>((event, emit) {
       if (event.floor == null) {
@@ -194,11 +192,9 @@ class QuantityDetailsBloc
 
       floors.add(event.floor!);
 
-      floors = floors.sorted((a, b) => a.no.compareTo(b.no)).reversed.toList();
-
       emit(state.copyWith(
         snackBarMessage: "${event.floor!.floorName} Eklendi.",
-        floors: floors,
+        floors: getSortedFloors(floors),
       ));
     });
     on<DeleteFloor>((event, emit) {
@@ -257,6 +253,10 @@ class QuantityDetailsBloc
     on<ClearSnackbarMessage>((event, emit) {
       emit(state.copyWith(snackBarMessage: ""));
     });
+  }
+
+  List<Floor> getSortedFloors(List<Floor> floors) {
+    return floors.sorted((a, b) => a.no.compareTo(b.no)).reversed.toList();
   }
 
   List<Job> createJobs() {
