@@ -26,9 +26,7 @@ class QuantityDetailsView extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: ElevatedButton(
-                  onPressed: () => context
-                      .read<QuantityDetailsBloc>()
-                      .add(const CalculateCost()),
+                  onPressed: () => context.read<QuantityDetailsBloc>().add(const CalculateCost()),
                   child: const Text("Hesapla"),
                 ),
               )
@@ -45,9 +43,10 @@ class QuantityDetailsView extends StatelessWidget {
                       style: AppTextStyle.responsiveH4B(context),
                     ),
                     AppSpace.vS!,
-                    Text("Detaylarını görmek istediğiniz kata dokunun",
-                        style: AppTextStyle.responsiveB2(context)
-                            .copyWith(color: Colors.grey)),
+                    Text(
+                      "Detaylarını görmek istediğiniz kata dokunun",
+                      style: AppTextStyle.responsiveB2(context).copyWith(color: Colors.grey),
+                    ),
                     AppSpace.vS!,
                     FloorViewer(
                       width: MediaQuery.of(context).size.width / 1.2,
@@ -60,9 +59,7 @@ class QuantityDetailsView extends StatelessWidget {
                             return EditFloorDialog(
                               floor: InitialFloor(no: newFloorNo),
                               onSubmit: (Floor? submittedFloor) {
-                                context
-                                    .read<QuantityDetailsBloc>()
-                                    .add(AddFloor(submittedFloor));
+                                context.read<QuantityDetailsBloc>().add(AddFloor(submittedFloor));
                                 Navigator.of(context).pop();
                               },
                             );
@@ -83,17 +80,13 @@ class QuantityDetailsView extends StatelessWidget {
                                     false;
                                 if (context.mounted) {
                                   if (result) {
-                                    context
-                                        .read<QuantityDetailsBloc>()
-                                        .add(DeleteFloor(floor));
+                                    context.read<QuantityDetailsBloc>().add(DeleteFloor(floor));
                                     Navigator.of(context).pop();
                                   }
                                 }
                               },
                               onSubmit: (Floor? submittedFloor) {
-                                context
-                                    .read<QuantityDetailsBloc>()
-                                    .add(EditFloor(submittedFloor));
+                                context.read<QuantityDetailsBloc>().add(EditFloor(submittedFloor));
                                 Navigator.of(context).pop();
                               },
                             );
