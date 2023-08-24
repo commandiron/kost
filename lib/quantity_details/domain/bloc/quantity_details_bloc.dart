@@ -247,12 +247,12 @@ class QuantityDetailsBloc
           snackBarMessage: "${event.floor!.floorName} Değiştirildi.",
           floors: floors));
     });
+    on<ClearSnackbarMessage>((event, emit) {
+      emit(state.copyWith(snackBarMessage: ""));
+    });
     on<CalculateCost>((event, emit) {
       //Validate...
       emit(state.copyWith(blocState: Completed(data: createJobs())));
-    });
-    on<ClearSnackbarMessage>((event, emit) {
-      emit(state.copyWith(snackBarMessage: ""));
     });
   }
 

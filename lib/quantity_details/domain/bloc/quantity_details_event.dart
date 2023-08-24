@@ -36,14 +36,14 @@ class EditFloor extends QuantityDetailsEvent {
   List<Object?> get props => [floor];
 }
 
-class CalculateCost extends QuantityDetailsEvent {
-  const CalculateCost();
+class ClearSnackbarMessage extends QuantityDetailsEvent {
+  const ClearSnackbarMessage();
   @override
   List<Object?> get props => [];
 }
 
-class ClearSnackbarMessage extends QuantityDetailsEvent {
-  const ClearSnackbarMessage();
+class CalculateCost extends QuantityDetailsEvent {
+  const CalculateCost();
   @override
   List<Object?> get props => [];
 }
