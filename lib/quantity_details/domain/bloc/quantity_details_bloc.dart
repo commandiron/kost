@@ -290,6 +290,7 @@ class QuantityDetailsBloc
       projectVariables: state.projectVariables,
       floors: state.floors,
     );
+    
     final generalExpensesJobCalculator = GeneralExpensesJobCalculator(
       projectConstants: state.projectConstants,
       projectVariables: state.projectVariables,
