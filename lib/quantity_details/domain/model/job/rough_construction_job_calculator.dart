@@ -3,54 +3,71 @@ import 'job.dart';
 import 'job_calculator.dart';
 
 class RoughConstructionJobCalculator extends JobCalculator {
-  RoughConstructionJobCalculator({
-    super.name = "Kaba İnşaat Maliyeti",
-    required super.projectConstants,
-    required super.projectVariables,
-    required super.floors
-  });
+  RoughConstructionJobCalculator(
+      {super.name = "Kaba İnşaat Maliyeti",
+      required super.projectConstants,
+      required super.projectVariables,
+      required super.floors});
 
   @override
   List<Job> createJobs() {
     return [
       Shoring(
-          quantity: shoringArea, quantityExplanation: shoringAreaExplanation),
+        quantity: shoringArea,
+        quantityExplanation: shoringAreaExplanation,
+      ),
       Excavation(
-          quantity: excavationVolume,
-          quantityExplanation: excavationVolumeExplanation),
+        quantity: excavationVolume,
+        quantityExplanation: excavationVolumeExplanation,
+      ),
       Breaker(
-          quantity: breakerHour, quantityExplanation: breakerHourExplanation),
+        quantity: breakerHour,
+        quantityExplanation: breakerHourExplanation,
+      ),
       FoundationStabilization(
-          quantity: foundationStabilizationWeight,
-          quantityExplanation: foundationStabilizationWeightExplanation),
+        quantity: foundationStabilizationWeight,
+        quantityExplanation: foundationStabilizationWeightExplanation,
+      ),
       SubFoundationConcreteMaterial(
-          quantity: subFoundationConcreteVolume,
-          quantityExplanation: subFoundationConcreteVolumeExplanation),
+        quantity: subFoundationConcreteVolume,
+        quantityExplanation: subFoundationConcreteVolumeExplanation,
+      ),
       ReinforcedConcreteWorkmanshipWithFormWorkMaterial(
-          quantity: formWorkArea, quantityExplanation: formWorkAreaExplanation),
+        quantity: formWorkArea,
+        quantityExplanation: formWorkAreaExplanation,
+      ),
       ConcreteMaterial(
-          quantity: concreteVolume,
-          quantityExplanation: concreteVolumeExplanation),
+        quantity: concreteVolume,
+        quantityExplanation: concreteVolumeExplanation,
+      ),
       RebarMaterial(
-          quantity: rebarWeight, quantityExplanation: rebarWeightExplanation),
+        quantity: rebarWeight,
+        quantityExplanation: rebarWeightExplanation,
+      ),
       HollowFloorFillingMaterial(
-          quantity: hollowFloorFillingVolume,
-          quantityExplanation: hollowFloorFillingVolumeExplanation),
+        quantity: hollowFloorFillingVolume,
+        quantityExplanation: hollowFloorFillingVolumeExplanation,
+      ),
       FoundationWaterproofing(
-          quantity: foundationWaterProofingArea,
-          quantityExplanation: foundationWaterProofingAreaExplanation),
+        quantity: foundationWaterProofingArea,
+        quantityExplanation: foundationWaterProofingAreaExplanation,
+      ),
       CurtainWaterproofing(
-          quantity: curtainWaterProofingArea,
-          quantityExplanation: curtainWaterProofingAreaExplanation),
+        quantity: curtainWaterProofingArea,
+        quantityExplanation: curtainWaterProofingAreaExplanation,
+      ),
       CurtainProtectionBeforeFilling(
-          quantity: curtainProtectionBeforeFillingArea,
-          quantityExplanation: curtainProtectionBeforeFillingAreaExplanation),
+        quantity: curtainProtectionBeforeFillingArea,
+        quantityExplanation: curtainProtectionBeforeFillingAreaExplanation,
+      ),
       Wall(
-          quantity: wallMaterialVolume,
-          quantityExplanation: wallMaterialVolumeExplanation),
+        quantity: wallMaterialVolume,
+        quantityExplanation: wallMaterialVolumeExplanation,
+      ),
       WallWorkmanShip(
-          quantity: wallWorkmanShipArea,
-          quantityExplanation: wallWorkmanShipAreaExplanation),
+        quantity: wallWorkmanShipArea,
+        quantityExplanation: wallWorkmanShipAreaExplanation,
+      ),
     ];
   }
 
@@ -106,11 +123,13 @@ class RoughConstructionJobCalculator extends JobCalculator {
 
   double get _coreCurtainAreaWithoutSlab {
     return projectVariables.coreCurtainLength *
-        (_buildingHeightWithoutSlabs + projectVariables.elevationTowerHeightWithoutSlab);
+        (_buildingHeightWithoutSlabs +
+            projectVariables.elevationTowerHeightWithoutSlab);
   }
 
   double get _curtainsExceeding1MeterAreaWithoutSlab {
-    return projectVariables.curtainsExceeding1MeterLength * _buildingHeightWithoutSlabs;
+    return projectVariables.curtainsExceeding1MeterLength *
+        _buildingHeightWithoutSlabs;
   }
 
   double get _basementsHeightWithoutSlab {
@@ -270,7 +289,9 @@ class RoughConstructionJobCalculator extends JobCalculator {
   }
 
   double get foundationWaterProofingArea {
-    return _bottomMostBasementFloor.area + (_bottomMostBasementFloor.perimeter * projectConstants.foundationHeight);
+    return _bottomMostBasementFloor.area +
+        (_bottomMostBasementFloor.perimeter *
+            projectConstants.foundationHeight);
   }
 
   String get foundationWaterProofingAreaExplanation {

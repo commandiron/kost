@@ -13,16 +13,21 @@ class LandscapeJobCalculator extends JobCalculator {
   List<Job> createJobs() {
     return [
       LandScapeGarden(
-          quantity: landScapeGardenArea,
-          quantityExplanation: landScapeGardenAreaExplanation),
+        quantity: landScapeGardenArea,
+        quantityExplanation: landScapeGardenAreaExplanation,
+      ),
       OutdoorParkingTile(
-          quantity: outdoorParkingTileArea,
-          quantityExplanation: outdoorParkingTileAreaExplanation),
+        quantity: outdoorParkingTileArea,
+        quantityExplanation: outdoorParkingTileAreaExplanation,
+      ),
       CarLift(
-          quantity: carLiftStop, quantityExplanation: carLiftStopExplanation),
+        quantity: carLiftStop,
+        quantityExplanation: carLiftStopExplanation,
+      ),
       AutomaticBarrier(
-          quantity: automaticBarrierNumber,
-          quantityExplanation: automaticBarrierNumberExplanation),
+        quantity: automaticBarrierNumber,
+        quantityExplanation: automaticBarrierNumberExplanation,
+      ),
     ];
   }
 

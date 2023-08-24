@@ -13,7 +13,9 @@ class RoofJobCalculator extends JobCalculator {
   List<Job> createJobs() {
     return [
       Roofing(
-          quantity: roofingArea, quantityExplanation: roofingAreaExplanation)
+        quantity: roofingArea,
+        quantityExplanation: roofingAreaExplanation,
+      )
     ];
   }
 

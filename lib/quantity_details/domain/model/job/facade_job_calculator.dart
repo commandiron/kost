@@ -13,16 +13,21 @@ class FacadeJobCalculator extends JobCalculator {
   List<Job> createJobs() {
     return [
       FacadeScaffolding(
-          quantity: facadeScaffoldingArea,
-          quantityExplanation: facadeScaffoldingAreaExplanation),
+        quantity: facadeScaffoldingArea,
+        quantityExplanation: facadeScaffoldingAreaExplanation,
+      ),
       Windows(
-          quantity: windowsArea, quantityExplanation: windowAreaExplanation),
+        quantity: windowsArea,
+        quantityExplanation: windowAreaExplanation,
+      ),
       FacadeRails(
-          quantity: facadeRailsLength,
-          quantityExplanation: facadeRailsLengthExplanation),
+        quantity: facadeRailsLength,
+        quantityExplanation: facadeRailsLengthExplanation,
+      ),
       FacadeSystem(
-          quantity: facadeSystemArea,
-          quantityExplanation: facadeSystemAreaExplanation)
+        quantity: facadeSystemArea,
+        quantityExplanation: facadeSystemAreaExplanation,
+      )
     ];
   }
 

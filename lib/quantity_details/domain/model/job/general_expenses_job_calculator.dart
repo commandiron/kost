@@ -13,27 +13,37 @@ class GeneralExpensesJobCalculator extends JobCalculator {
   List<Job> createJobs() {
     return [
       EnclosingTheLand(
-          quantity: enclosingTheLandLength,
-          quantityExplanation: enclosingTheLandLengthExplanation),
+        quantity: enclosingTheLandLength,
+        quantityExplanation: enclosingTheLandLengthExplanation,
+      ),
       MobilizationDemobilization(
-          quantity: mobilizationDemobilizationNumber,
-          quantityExplanation: mobilizationDemobilizationNumberExplanation),
-      Crane(quantity: craneHour, quantityExplanation: craneHourExplanation),
+        quantity: mobilizationDemobilizationNumber,
+        quantityExplanation: mobilizationDemobilizationNumberExplanation,
+      ),
+      Crane(
+        quantity: craneHour,
+        quantityExplanation: craneHourExplanation,
+      ),
       SiteSafety(
-          quantity: siteSafetyMonth,
-          quantityExplanation: siteSafetyMonthExplanation),
+        quantity: siteSafetyMonth,
+        quantityExplanation: siteSafetyMonthExplanation,
+      ),
       SiteExpenses(
-          quantity: siteExpensesMonth,
-          quantityExplanation: siteExpensesMonthExplanation),
+        quantity: siteExpensesMonth,
+        quantityExplanation: siteExpensesMonthExplanation,
+      ),
       Sergeant(
-          quantity: sergeantMonth,
-          quantityExplanation: sergeantMonthExplanation),
+        quantity: sergeantMonth,
+        quantityExplanation: sergeantMonthExplanation,
+      ),
       SiteChief(
-          quantity: siteChiefMonth,
-          quantityExplanation: siteChiefMonthExplanation),
+        quantity: siteChiefMonth,
+        quantityExplanation: siteChiefMonthExplanation,
+      ),
       ProjectsFeesPayments(
-          quantity: projectsFeesPaymentsNumber,
-          quantityExplanation: projectsFeesPaymentsNumberExplanation),
+        quantity: projectsFeesPaymentsNumber,
+        quantityExplanation: projectsFeesPaymentsNumberExplanation,
+      ),
     ];
   }
 
