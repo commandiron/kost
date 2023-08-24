@@ -197,8 +197,9 @@ class QuantityDetailsBloc
       floors = floors.sorted((a, b) => a.no.compareTo(b.no)).reversed.toList();
 
       emit(state.copyWith(
-          snackBarMessage: "${event.floor!.floorName} Eklendi.",
-          floors: floors));
+        snackBarMessage: "${event.floor!.floorName} Eklendi.",
+        floors: floors,
+      ));
     });
     on<DeleteFloor>((event, emit) {
       final basementFloorsCount =
