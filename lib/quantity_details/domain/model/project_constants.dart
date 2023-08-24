@@ -1,4 +1,6 @@
-class ProjectConstants {
+import 'package:equatable/equatable.dart';
+
+class ProjectConstants extends Equatable {
   final double projectDurationMonth;
   final double foundationHeight;
   final double insulationConcreteHeight;
@@ -24,29 +26,58 @@ class ProjectConstants {
   final int automaticBarrierNumber;
   final double craneHourForOneSquareMeterRoughConstructionArea;
 
-  ProjectConstants(
-      {this.projectDurationMonth = 14,
-      this.foundationHeight = 1,
-      this.insulationConcreteHeight = 0.05,
-      this.leanConcreteHeight = 0.10,
-      this.stabilizationHeight = 0.30,
-      this.hollowFillingThickness = 0.2,
-      this.breakerHourForOneCubicMeterMediumRockExcavation = 0.0436,
-      this.gravelTonForOneCubicMeter = 1.8,
-      this.concreteCubicMeterForOneSquareMeterFormWork = 0.35,
-      this.rebarTonForOneCubicMeterConcrete = 0.16,
-      this.hollowAreaForOneSquareMeterConstructionArea = 0.40,
-      this.thickWallThickness = 0.135,
-      this.thinWallThickness = 0.085,
-      this.stairRiserHeight = 0.18,
-      this.stairTreadDepth = 0.26,
-      this.stairLength = 1,
-      this.buildingEntranceDoorArea = 6,
-      this.airConditionerNumberForOneApartment = 2,
-      this.bathroomCabinetArea = 1,
-      this.kitchenLength = 5,
-      this.coatCabinetArea = 5,
-      this.gardenOutdoorParkingAreaRate = 0.50,
-      this.automaticBarrierNumber = 1,
-      this.craneHourForOneSquareMeterRoughConstructionArea = 0.02});
+  const ProjectConstants({
+    this.projectDurationMonth = 14,
+    this.foundationHeight = 1,
+    this.insulationConcreteHeight = 0.05,
+    this.leanConcreteHeight = 0.10,
+    this.stabilizationHeight = 0.30,
+    this.hollowFillingThickness = 0.2,
+    this.breakerHourForOneCubicMeterMediumRockExcavation = 0.0436,
+    this.gravelTonForOneCubicMeter = 1.8,
+    this.concreteCubicMeterForOneSquareMeterFormWork = 0.35,
+    this.rebarTonForOneCubicMeterConcrete = 0.16,
+    this.hollowAreaForOneSquareMeterConstructionArea = 0.40,
+    this.thickWallThickness = 0.135,
+    this.thinWallThickness = 0.085,
+    this.stairRiserHeight = 0.18,
+    this.stairTreadDepth = 0.26,
+    this.stairLength = 1,
+    this.buildingEntranceDoorArea = 6,
+    this.airConditionerNumberForOneApartment = 2,
+    this.bathroomCabinetArea = 1,
+    this.kitchenLength = 5,
+    this.coatCabinetArea = 5,
+    this.gardenOutdoorParkingAreaRate = 0.50,
+    this.automaticBarrierNumber = 1,
+    this.craneHourForOneSquareMeterRoughConstructionArea = 0.02,
+  });
+
+  @override
+  List<Object?> get props => [
+        projectDurationMonth,
+        foundationHeight,
+        insulationConcreteHeight,
+        leanConcreteHeight,
+        stabilizationHeight,
+        hollowFillingThickness,
+        breakerHourForOneCubicMeterMediumRockExcavation,
+        gravelTonForOneCubicMeter,
+        concreteCubicMeterForOneSquareMeterFormWork,
+        rebarTonForOneCubicMeterConcrete,
+        hollowAreaForOneSquareMeterConstructionArea,
+        thickWallThickness,
+        thinWallThickness,
+        stairRiserHeight,
+        stairTreadDepth,
+        stairLength,
+        buildingEntranceDoorArea,
+        airConditionerNumberForOneApartment,
+        bathroomCabinetArea,
+        kitchenLength,
+        coatCabinetArea,
+        gardenOutdoorParkingAreaRate,
+        automaticBarrierNumber,
+        craneHourForOneSquareMeterRoughConstructionArea,
+      ];
 }

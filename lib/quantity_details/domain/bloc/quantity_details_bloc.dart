@@ -6,15 +6,16 @@ import 'package:kost/quantity_details/domain/bloc/quantity_details_state.dart';
 import 'package:kost/quantity_details/domain/model/job/rough_construction_job_calculator.dart';
 import 'package:kost/quantity_details/domain/model/job/job.dart';
 
-import '../model/floor.dart';
+import '../model/floor/floor.dart';
 import '../model/job/facade_job_calculator.dart';
 import '../model/job/general_expenses_job_calculator.dart';
 import '../model/job/interior_job_calculator.dart';
 import '../model/job/landscape_job_calculator.dart';
 import '../model/job/roof_job_calculator.dart';
 import '../model/project_constants.dart';
-import '../model/room.dart';
-import '../model/window.dart';
+import '../model/project_variables.dart';
+import '../model/floor/room.dart';
+import '../model/floor/window.dart';
 
 class QuantityDetailsBloc
     extends Bloc<QuantityDetailsEvent, QuantityDetailsState> {
@@ -23,7 +24,7 @@ class QuantityDetailsBloc
           QuantityDetailsState(
             blocState: Initial(),
             snackBarMessage: "",
-            projectConstants: ProjectConstants(),
+            projectConstants: const ProjectConstants(),
             projectVariables: const ProjectVariables(
               landArea: 806.24,
               landPerimeter: 117.93,

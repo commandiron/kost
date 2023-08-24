@@ -3,7 +3,7 @@ import 'package:kost/common/config/app_padding.dart';
 import 'package:kost/common/config/app_text_style.dart';
 import 'package:kost/common/extension/formatted_number.dart';
 
-import '../../../domain/model/floor.dart';
+import '../../../domain/model/floor/floor.dart';
 import 'floor_attr_check_box.dart';
 import 'floor_attr_text_field.dart';
 

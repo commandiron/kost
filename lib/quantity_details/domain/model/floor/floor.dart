@@ -1,5 +1,5 @@
-import 'package:kost/quantity_details/domain/model/room.dart';
-import 'package:kost/quantity_details/domain/model/window.dart';
+import 'package:kost/quantity_details/domain/model/floor/room.dart';
+import 'package:kost/quantity_details/domain/model/floor/window.dart';
 
 class InitialFloor extends Floor {
   InitialFloor(

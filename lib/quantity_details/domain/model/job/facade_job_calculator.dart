@@ -1,4 +1,4 @@
-import '../floor.dart';
+import '../floor/floor.dart';
 import 'job.dart';
 import 'job_calculator.dart';
 

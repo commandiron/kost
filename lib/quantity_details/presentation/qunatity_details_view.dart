@@ -9,7 +9,7 @@ import '../../common/config/app_text_style.dart';
 import '../domain/bloc/quantity_details_bloc.dart';
 import '../domain/bloc/quantity_details_event.dart';
 import '../domain/bloc/quantity_details_state.dart';
-import '../domain/model/floor.dart';
+import '../domain/model/floor/floor.dart';
 
 class QuantityDetailsView extends StatelessWidget {
   const QuantityDetailsView({Key? key}) : super(key: key);

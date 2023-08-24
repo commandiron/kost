@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../../common/config/app_space.dart';
 import '../../../common/config/app_text_style.dart';
-import '../../domain/model/floor.dart';
+import '../../domain/model/floor/floor.dart';
 
 class FloorViewer extends StatelessWidget {
   const FloorViewer({
