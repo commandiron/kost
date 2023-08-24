@@ -1,4 +1,3 @@
-import 'package:collection/collection.dart';
 import 'package:kost/quantity_details/domain/model/project_constants.dart';
 import '../../bloc/quantity_details_state.dart';
 import 'job.dart';
