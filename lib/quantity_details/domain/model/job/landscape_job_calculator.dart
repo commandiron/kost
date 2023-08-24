@@ -1,39 +1,13 @@
-import '../../../floor.dart';
-import '../../job.dart';
-import '../../job_calculator.dart';
+import '../floor.dart';
+import 'job.dart';
+import 'job_calculator.dart';
 
 class LandscapeJobCalculator extends JobCalculator {
   LandscapeJobCalculator(
       {super.name = "Peysaj Maliyeti",
       required super.projectConstants,
-      required super.landArea,
-      required super.landPerimeter,
-      required super.excavationArea,
-      required super.excavationPerimeter,
-      required super.coreCurtainLength,
-      required super.curtainsExceeding1MeterLength,
-      required super.basementCurtainLength,
-      required super.columnsLess1MeterPerimeter,
-      required super.elevationTowerArea,
-      required super.elevationTowerHeightWithoutSlab,
+      required super.projectVariables,
       required super.floors});
-
-  @override
-  JobCalculator get newInstance {
-    return LandscapeJobCalculator(
-        projectConstants: projectConstants,
-        landArea: landArea,
-        landPerimeter: landPerimeter,
-        excavationArea: excavationArea,
-        excavationPerimeter: excavationPerimeter,
-        coreCurtainLength: coreCurtainLength,
-        curtainsExceeding1MeterLength: curtainsExceeding1MeterLength,
-        basementCurtainLength: basementCurtainLength,
-        columnsLess1MeterPerimeter: columnsLess1MeterPerimeter,
-        elevationTowerArea: elevationTowerArea,
-        elevationTowerHeightWithoutSlab: elevationTowerHeightWithoutSlab,
-        floors: floors);
-  }
 
   @override
   List<Job> createJobs() {
@@ -70,21 +44,21 @@ class LandscapeJobCalculator extends JobCalculator {
 
   //Calculations
   double get landScapeGardenArea {
-    return (landArea - _groundFloor.area) *
+    return (projectVariables.landArea - _groundFloor.area) *
         projectConstants.gardenOutdoorParkingAreaRate;
   }
 
   String get landScapeGardenAreaExplanation {
-    return "Arsa alanı: $landArea - Zemin kat alanı: ${_groundFloor.area} x Bahçe Oranı: ${projectConstants.gardenOutdoorParkingAreaRate}";
+    return "Arsa alanı: ${projectVariables.landArea}- Zemin kat alanı: ${_groundFloor.area} x Bahçe Oranı: ${projectConstants.gardenOutdoorParkingAreaRate}";
   }
 
   double get outdoorParkingTileArea {
-    return (landArea - _groundFloor.area) *
+    return (projectVariables.landArea - _groundFloor.area) *
         (1 - projectConstants.gardenOutdoorParkingAreaRate);
   }
 
   String get outdoorParkingTileAreaExplanation {
-    return "Arsa alanı: $landArea - Zemin kat alanı: ${_groundFloor.area} x Açık otopark oranı: 1 - Bahçe Oranı: ${projectConstants.gardenOutdoorParkingAreaRate}";
+    return "Arsa alanı: ${projectVariables.landArea} - Zemin kat alanı: ${_groundFloor.area} x Açık otopark oranı: 1 - Bahçe Oranı: ${projectConstants.gardenOutdoorParkingAreaRate}";
   }
 
   double get carLiftStop {

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:kost/quantity_details/domain/bloc/quantity_details_event.dart';
 import 'package:kost/quantity_details/presentation/quantity_details_listener.dart';
 import 'package:kost/quantity_details/presentation/qunatity_details_view.dart';
 
@@ -13,7 +14,7 @@ class QuantityDetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => QuantityDetailsBloc(),
+      create: (context) => QuantityDetailsBloc()..add(const Init()),
       child: const QuantityDetailsListener(
         child: QuantityDetailsView()
       ),

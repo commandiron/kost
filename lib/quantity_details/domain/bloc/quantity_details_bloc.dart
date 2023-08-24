@@ -1,10 +1,17 @@
+import 'package:collection/collection.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kost/common/bloc/bloc_state.dart';
 import 'package:kost/quantity_details/domain/bloc/quantity_details_event.dart';
 import 'package:kost/quantity_details/domain/bloc/quantity_details_state.dart';
+import 'package:kost/quantity_details/domain/model/job/rough_construction_job_calculator.dart';
+import 'package:kost/quantity_details/domain/model/job/job.dart';
 
 import '../model/floor.dart';
-import '../model/job/calculators/combined/apartment_job_calculator.dart';
+import '../model/job/facade_job_calculator.dart';
+import '../model/job/general_expenses_job_calculator.dart';
+import '../model/job/interior_job_calculator.dart';
+import '../model/job/landscape_job_calculator.dart';
+import '../model/job/roof_job_calculator.dart';
 import '../model/project_constants.dart';
 import '../model/room.dart';
 import '../model/window.dart';
@@ -16,8 +23,8 @@ class QuantityDetailsBloc
           QuantityDetailsState(
             blocState: Initial(),
             snackBarMessage: "",
-            jobCalculator: ApartmentJobsCalculator(
-              projectConstants: ProjectConstants(),
+            projectConstants: ProjectConstants(),
+            projectVariables: const ProjectVariables(
               landArea: 806.24,
               landPerimeter: 117.93,
               excavationArea: 576.52,
@@ -28,204 +35,143 @@ class QuantityDetailsBloc
               columnsLess1MeterPerimeter: 9,
               elevationTowerArea: 30,
               elevationTowerHeightWithoutSlab: 3,
-              floors: [
-                ...Floor.duplicateFloors(
-                    Floor(
-                      no: 1,
-                      area: 213,
-                      perimeter: 64.3,
-                      heightWithSlab: 3.3,
-                      slabHeight: 0.3,
-                      isHollowSlab: true,
-                      thickWallLength: 72.97,
-                      thinWallLength: 36.28,
-                      windows: [
-                        Window(
-                            width: 17,
-                            height: 2.5,
-                            hasRailing: true,
-                            hasWindowsill: true,
-                            count: 1),
-                      ],
-                      rooms: [
-                        ElevatorShaft(area: 8.61, perimeter: 12.8),
-                        Shaft(
-                          area: 1.05,
-                          perimeter: 5.2,
-                        ),
-                        FloorHall(area: 8.1, perimeter: 13.8),
-                        FireEscapeHall(area: 11.1, perimeter: 20.9),
-                        Stairs(area: 7.2, perimeter: 10.9),
-                        Stairs(area: 5.1, perimeter: 10.9),
-                        ApartmentEntree(area: 0, perimeter: 0),
-                        SaloonWithKitchen(
-                          area: 39.38,
-                          perimeter: 35.3,
-                        ),
-                        NormalRoom(area: 18.37, perimeter: 18.5),
-                        NormalRoom(area: 10.76, perimeter: 13.6),
-                        Bathroom(area: 6.41, perimeter: 11.1),
-                        Bathroom(area: 3.16, perimeter: 7.5),
-                        ApartmentEntree(area: 0, perimeter: 0),
-                        SaloonWithKitchen(
-                          area: 35.7,
-                          perimeter: 34.2,
-                        ),
-                        NormalRoom(area: 15.56, perimeter: 16.2),
-                        NormalRoom(area: 10.06, perimeter: 13.2),
-                        Bathroom(area: 5.63, perimeter: 10.10),
-                        Bathroom(area: 3.16, perimeter: 7.5),
-                      ],
-                    ),
-                    11),
-                Floor(
-                  no: 0,
-                  area: 177.15,
-                  perimeter: 61.3,
-                  heightWithSlab: 3.3,
-                  slabHeight: 0.3,
-                  isHollowSlab: true,
-                  thickWallLength: 66.29,
-                  thinWallLength: 21.67,
-                  windows: [
-                    Window(
-                        width: 14,
-                        height: 2.5,
-                        hasRailing: true,
-                        hasWindowsill: true,
-                        count: 1),
-                  ],
-                  rooms: [
-                    ElevatorShaft(area: 8.61, perimeter: 12.8),
-                    Shaft(
-                      area: 1.05,
-                      perimeter: 5.2,
-                    ),
-                    FireEscapeHall(area: 11.1, perimeter: 20.9),
-                    BuildingHall(area: 15.92, perimeter: 21.1),
-                    Stairs(area: 7.2, perimeter: 10.9),
-                    Stairs(area: 5.1, perimeter: 10.9),
-                    ApartmentEntree(area: 0, perimeter: 0),
-                    SaloonWithKitchen(
-                      area: 33.40,
-                      perimeter: 30.65,
-                    ),
-                    NormalRoom(area: 12.43, perimeter: 14.2),
-                    Bathroom(area: 4.26, perimeter: 8.6),
-                    Bathroom(area: 3.16, perimeter: 7.5),
-                    ApartmentEntree(area: 0, perimeter: 0),
-                    SaloonWithKitchen(
-                      area: 33.40,
-                      perimeter: 30.65,
-                    ),
-                    NormalRoom(area: 12.43, perimeter: 14.2),
-                    Bathroom(area: 4.26, perimeter: 8.6),
-                    Bathroom(area: 3.16, perimeter: 7.5),
-                  ],
-                ),
-                Floor(
-                  no: -1,
-                  area: 477,
-                  perimeter: 94.42,
-                  heightWithSlab: 3.3,
-                  slabHeight: 0.3,
-                  isHollowSlab: false,
-                  thickWallLength: 39.13,
-                  thinWallLength: 0,
-                  windows: [],
-                  rooms: [
-                    ElevatorShaft(area: 8.61, perimeter: 12.8),
-                    Shaft(
-                      area: 1.05,
-                      perimeter: 5.2,
-                    ),
-                    Stairs(area: 7.2, perimeter: 10.9),
-                    Stairs(area: 5.1, perimeter: 10.9),
-                    FloorHall(
-                        area: 6.07,
-                        perimeter: 11.1,
-                        doors: [Door(count: 1, doorType: DoorType.fire)]),
-                    FireEscapeHall(
-                        area: 17.62,
-                        perimeter: 20.9,
-                        doors: [Door(count: 1, doorType: DoorType.fire)]),
-                    ParkingArea(area: 296.25, perimeter: 94.82),
-                    TechnicalArea(area: 7.10, perimeter: 10.7),
-                    TechnicalArea(area: 7.25, perimeter: 10.8),
-                    TechnicalArea(area: 17, perimeter: 16.6),
-                    TechnicalArea(area: 52.6, perimeter: 33.6),
-                  ],
-                ),
-                Floor(
-                  no: -2,
-                  area: 800,
-                  perimeter: 94.42,
-                  heightWithSlab: 3.3,
-                  slabHeight: 0.3,
-                  isHollowSlab: false,
-                  thickWallLength: 39.13,
-                  thinWallLength: 0,
-                  windows: [],
-                  rooms: [
-                    ElevatorShaft(area: 8.61, perimeter: 12.8),
-                    Shaft(
-                      area: 1.05,
-                      perimeter: 5.2,
-                    ),
-                    Stairs(area: 7.2, perimeter: 10.9),
-                    Stairs(area: 5.1, perimeter: 10.9),
-                    FloorHall(
-                        area: 6.07,
-                        perimeter: 11.1,
-                        doors: [Door(count: 1, doorType: DoorType.fire)]),
-                    FireEscapeHall(
-                        area: 17.62,
-                        perimeter: 20.9,
-                        doors: [Door(count: 1, doorType: DoorType.fire)]),
-                    ParkingArea(area: 296.25, perimeter: 94.82),
-                    TechnicalArea(area: 7.10, perimeter: 10.7),
-                    TechnicalArea(area: 7.25, perimeter: 10.8),
-                    TechnicalArea(area: 17, perimeter: 16.6),
-                    TechnicalArea(area: 52.6, perimeter: 33.6),
-                  ],
-                ),
-                Floor(
-                  no: -3,
-                  area: 800,
-                  perimeter: 94.42,
-                  heightWithSlab: 3.3,
-                  slabHeight: 0.3,
-                  isHollowSlab: false,
-                  thickWallLength: 39.13,
-                  thinWallLength: 0,
-                  windows: [],
-                  rooms: [
-                    ElevatorShaft(area: 8.61, perimeter: 12.8),
-                    Shaft(
-                      area: 1.05,
-                      perimeter: 5.2,
-                    ),
-                    Stairs(area: 7.2, perimeter: 10.9),
-                    Stairs(area: 5.1, perimeter: 10.9),
-                    FloorHall(
-                        area: 6.07,
-                        perimeter: 11.1,
-                        doors: [Door(count: 1, doorType: DoorType.fire)]),
-                    FireEscapeHall(
-                        area: 17.62,
-                        perimeter: 20.9,
-                        doors: [Door(count: 1, doorType: DoorType.fire)]),
-                    ParkingArea(area: 296.25, perimeter: 94.82),
-                    TechnicalArea(area: 7.10, perimeter: 10.7),
-                    TechnicalArea(area: 7.25, perimeter: 10.8),
-                    TechnicalArea(area: 17, perimeter: 16.6),
-                    TechnicalArea(area: 52.6, perimeter: 33.6),
-                  ],
-                ),
-              ],
             ),
+            floors: [
+              ...Floor.duplicateFloors(
+                  Floor(
+                    no: 1,
+                    area: 213,
+                    perimeter: 64.3,
+                    heightWithSlab: 3.3,
+                    slabHeight: 0.3,
+                    isHollowSlab: true,
+                    thickWallLength: 72.97,
+                    thinWallLength: 36.28,
+                    windows: [
+                      Window(
+                          width: 17,
+                          height: 2.5,
+                          hasRailing: true,
+                          hasWindowsill: true,
+                          count: 1),
+                    ],
+                    rooms: [
+                      ElevatorShaft(area: 8.61, perimeter: 12.8),
+                      Shaft(
+                        area: 1.05,
+                        perimeter: 5.2,
+                      ),
+                      FloorHall(area: 8.1, perimeter: 13.8),
+                      FireEscapeHall(area: 11.1, perimeter: 20.9),
+                      Stairs(area: 7.2, perimeter: 10.9),
+                      Stairs(area: 5.1, perimeter: 10.9),
+                      ApartmentEntree(area: 0, perimeter: 0),
+                      SaloonWithKitchen(
+                        area: 39.38,
+                        perimeter: 35.3,
+                      ),
+                      NormalRoom(area: 18.37, perimeter: 18.5),
+                      NormalRoom(area: 10.76, perimeter: 13.6),
+                      Bathroom(area: 6.41, perimeter: 11.1),
+                      Bathroom(area: 3.16, perimeter: 7.5),
+                      ApartmentEntree(area: 0, perimeter: 0),
+                      SaloonWithKitchen(
+                        area: 35.7,
+                        perimeter: 34.2,
+                      ),
+                      NormalRoom(area: 15.56, perimeter: 16.2),
+                      NormalRoom(area: 10.06, perimeter: 13.2),
+                      Bathroom(area: 5.63, perimeter: 10.10),
+                      Bathroom(area: 3.16, perimeter: 7.5),
+                    ],
+                  ),
+                  11),
+              Floor(
+                no: 0,
+                area: 177.15,
+                perimeter: 61.3,
+                heightWithSlab: 3.3,
+                slabHeight: 0.3,
+                isHollowSlab: true,
+                thickWallLength: 66.29,
+                thinWallLength: 21.67,
+                windows: [
+                  Window(
+                      width: 14,
+                      height: 2.5,
+                      hasRailing: true,
+                      hasWindowsill: true,
+                      count: 1),
+                ],
+                rooms: [
+                  ElevatorShaft(area: 8.61, perimeter: 12.8),
+                  Shaft(
+                    area: 1.05,
+                    perimeter: 5.2,
+                  ),
+                  FireEscapeHall(area: 11.1, perimeter: 20.9),
+                  BuildingHall(area: 15.92, perimeter: 21.1),
+                  Stairs(area: 7.2, perimeter: 10.9),
+                  Stairs(area: 5.1, perimeter: 10.9),
+                  ApartmentEntree(area: 0, perimeter: 0),
+                  SaloonWithKitchen(
+                    area: 33.40,
+                    perimeter: 30.65,
+                  ),
+                  NormalRoom(area: 12.43, perimeter: 14.2),
+                  Bathroom(area: 4.26, perimeter: 8.6),
+                  Bathroom(area: 3.16, perimeter: 7.5),
+                  ApartmentEntree(area: 0, perimeter: 0),
+                  SaloonWithKitchen(
+                    area: 33.40,
+                    perimeter: 30.65,
+                  ),
+                  NormalRoom(area: 12.43, perimeter: 14.2),
+                  Bathroom(area: 4.26, perimeter: 8.6),
+                  Bathroom(area: 3.16, perimeter: 7.5),
+                ],
+              ),
+              Floor(
+                no: -1,
+                area: 477,
+                perimeter: 94.42,
+                heightWithSlab: 3.3,
+                slabHeight: 0.3,
+                isHollowSlab: false,
+                thickWallLength: 39.13,
+                thinWallLength: 0,
+                windows: [],
+                rooms: [
+                  ElevatorShaft(area: 8.61, perimeter: 12.8),
+                  Shaft(
+                    area: 1.05,
+                    perimeter: 5.2,
+                  ),
+                  Stairs(area: 7.2, perimeter: 10.9),
+                  Stairs(area: 5.1, perimeter: 10.9),
+                  FloorHall(
+                      area: 6.07,
+                      perimeter: 11.1,
+                      doors: [Door(count: 1, doorType: DoorType.fire)]),
+                  FireEscapeHall(
+                      area: 17.62,
+                      perimeter: 20.9,
+                      doors: [Door(count: 1, doorType: DoorType.fire)]),
+                  ParkingArea(area: 296.25, perimeter: 94.82),
+                  TechnicalArea(area: 7.10, perimeter: 10.7),
+                  TechnicalArea(area: 7.25, perimeter: 10.8),
+                  TechnicalArea(area: 17, perimeter: 16.6),
+                  TechnicalArea(area: 52.6, perimeter: 33.6),
+                ],
+              ),
+            ],
           ),
         ) {
+    on<Init>((event, emit) {
+      List<Floor> floors = state.floors;
+      floors = floors.sorted((a, b) => a.no.compareTo(b.no)).reversed.toList();
+      emit(state.copyWith(floors: floors));
+    });
     on<AddFloor>((event, emit) {
       if (event.floor == null) {
         emit(state.copyWith(snackBarMessage: "Deşiklik yapılmadı."));
@@ -244,17 +190,19 @@ class QuantityDetailsBloc
         return;
       }
 
-      state.jobCalculator.floors.add(event.floor!);
-      state.jobCalculator.sortFloors();
+      List<Floor> floors = state.floors;
+
+      floors.add(event.floor!);
+
+      floors = floors.sorted((a, b) => a.no.compareTo(b.no)).reversed.toList();
 
       emit(state.copyWith(
-        snackBarMessage: "${event.floor!.floorName} Eklendi.",
-        jobCalculator: state.jobCalculator.newInstance,
-      ));
+          snackBarMessage: "${event.floor!.floorName} Eklendi.",
+          floors: floors));
     });
     on<DeleteFloor>((event, emit) {
       final basementFloorsCount =
-          state.jobCalculator.floors.where((element) => element.no < 0).length;
+          state.floors.where((element) => element.no < 0).length;
       if (event.floor.no == -1 && basementFloorsCount == 1) {
         emit(state.copyWith(snackBarMessage: "İlk bodrum kat silinemez"));
         return;
@@ -264,9 +212,11 @@ class QuantityDetailsBloc
         return;
       }
 
-      state.jobCalculator.floors.remove(event.floor);
+      final floors = state.floors;
 
-      for (var floor in state.jobCalculator.floors) {
+      floors.remove(event.floor);
+
+      for (var floor in floors) {
         if (floor.no > event.floor.no) {
           if (event.floor.no > 0) {
             floor.no -= 1;
@@ -280,7 +230,7 @@ class QuantityDetailsBloc
 
       emit(state.copyWith(
           snackBarMessage: "${event.floor.floorName} Silindi.",
-          jobCalculator: state.jobCalculator.newInstance));
+          floors: floors));
     });
     on<EditFloor>((event, emit) {
       if (event.floor == null) {
@@ -288,21 +238,69 @@ class QuantityDetailsBloc
         return;
       }
 
-      final floorIndex = state.jobCalculator.floors
-          .indexWhere((element) => element.no == event.floor!.no);
-      state.jobCalculator.floors[floorIndex] = event.floor!;
+      final floors = state.floors;
+
+      final floorIndex =
+          floors.indexWhere((element) => element.no == event.floor!.no);
+
+      floors[floorIndex] = event.floor!;
 
       emit(state.copyWith(
           snackBarMessage: "${event.floor!.floorName} Değiştirildi.",
-          jobCalculator: state.jobCalculator.newInstance));
+          floors: floors));
     });
     on<CalculateCost>((event, emit) {
       //Validate...
-      emit(state.copyWith(
-          blocState: Completed(data: state.jobCalculator.createJobs())));
+      emit(state.copyWith(blocState: Completed(data: createJobs())));
     });
     on<ClearSnackbarMessage>((event, emit) {
       emit(state.copyWith(snackBarMessage: ""));
     });
+  }
+
+  List<Job> createJobs() {
+    final roughConstructionJobCalculator = RoughConstructionJobCalculator(
+      projectConstants: state.projectConstants,
+      projectVariables: state.projectVariables,
+      floors: state.floors,
+    );
+
+    final roofJobCalculator = RoofJobCalculator(
+      projectConstants: state.projectConstants,
+      projectVariables: state.projectVariables,
+      floors: state.floors,
+    );
+
+    final facadeJobCalculator = FacadeJobCalculator(
+      projectConstants: state.projectConstants,
+      projectVariables: state.projectVariables,
+      floors: state.floors,
+    );
+
+    final interiorJobCalculator = InteriorJobCalculator(
+      projectConstants: state.projectConstants,
+      projectVariables: state.projectVariables,
+      floors: state.floors,
+    );
+
+    final landscapeJobCalculator = LandscapeJobCalculator(
+      projectConstants: state.projectConstants,
+      projectVariables: state.projectVariables,
+      floors: state.floors,
+    );
+    final generalExpensesJobCalculator = GeneralExpensesJobCalculator(
+      projectConstants: state.projectConstants,
+      projectVariables: state.projectVariables,
+      floors: state.floors,
+    );
+
+    return [
+      ...roughConstructionJobCalculator.createJobs(),
+      ...roofJobCalculator.createJobs(),
+      ...facadeJobCalculator.createJobs(),
+      ...interiorJobCalculator.createJobs(),
+      ...landscapeJobCalculator.createJobs(),
+      ...generalExpensesJobCalculator.createJobs()
+    ];
   }
 }

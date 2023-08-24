@@ -16,9 +16,6 @@ class QuantityDetailsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<QuantityDetailsBloc, QuantityDetailsState>(
-      buildWhen: (previous, current) {
-        return previous.jobCalculator != current.jobCalculator;
-      },
       builder: (context, state) {
         return Scaffold(
           appBar: AppBar(
@@ -51,7 +48,7 @@ class QuantityDetailsView extends StatelessWidget {
                     FloorViewer(
                       width: MediaQuery.of(context).size.width / 1.2,
                       height: MediaQuery.of(context).size.height / 1.6,
-                      floors: state.jobCalculator.floors,
+                      floors: state.floors,
                       onAddFloor: (int newFloorNo) {
                         showDialog(
                           context: context,

@@ -1,41 +1,15 @@
-import '../../../../../../cost_table/domain/model/unit_price/unit_price.dart';
-import '../../../floor.dart';
-import '../../job.dart';
-import '../../../room.dart';
-import '../../job_calculator.dart';
+import '../../../../cost_table/domain/model/unit_price/unit_price.dart';
+import '../floor.dart';
+import 'job.dart';
+import '../room.dart';
+import 'job_calculator.dart';
 
 class InteriorJobCalculator extends JobCalculator {
   InteriorJobCalculator(
       {super.name = "İç İmalat Maliyeti",
       required super.projectConstants,
-      required super.landArea,
-      required super.landPerimeter,
-      required super.excavationArea,
-      required super.excavationPerimeter,
-      required super.coreCurtainLength,
-      required super.curtainsExceeding1MeterLength,
-      required super.basementCurtainLength,
-      required super.columnsLess1MeterPerimeter,
-      required super.elevationTowerArea,
-      required super.elevationTowerHeightWithoutSlab,
+      required super.projectVariables,
       required super.floors});
-
-  @override
-  JobCalculator get newInstance {
-    return InteriorJobCalculator(
-        projectConstants: projectConstants,
-        landArea: landArea,
-        landPerimeter: landPerimeter,
-        excavationArea: excavationArea,
-        excavationPerimeter: excavationPerimeter,
-        coreCurtainLength: coreCurtainLength,
-        curtainsExceeding1MeterLength: curtainsExceeding1MeterLength,
-        basementCurtainLength: basementCurtainLength,
-        columnsLess1MeterPerimeter: columnsLess1MeterPerimeter,
-        elevationTowerArea: elevationTowerArea,
-        elevationTowerHeightWithoutSlab: elevationTowerHeightWithoutSlab,
-        floors: floors);
-  }
 
   @override
   List<Job> createJobs() {

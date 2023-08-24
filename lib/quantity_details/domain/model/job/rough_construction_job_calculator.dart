@@ -1,40 +1,14 @@
-import '../../../floor.dart';
-import '../../job.dart';
-import '../../job_calculator.dart';
+import '../floor.dart';
+import 'job.dart';
+import 'job_calculator.dart';
 
 class RoughConstructionJobCalculator extends JobCalculator {
   RoughConstructionJobCalculator({
     super.name = "Kaba İnşaat Maliyeti",
     required super.projectConstants,
-    required super.landArea,
-    required super.landPerimeter,
-    required super.excavationArea,
-    required super.excavationPerimeter,
-    required super.coreCurtainLength,
-    required super.curtainsExceeding1MeterLength,
-    required super.basementCurtainLength,
-    required super.columnsLess1MeterPerimeter,
-    required super.elevationTowerArea,
-    required super.elevationTowerHeightWithoutSlab,
+    required super.projectVariables,
     required super.floors
   });
-
-  @override
-  JobCalculator get newInstance {
-    return RoughConstructionJobCalculator(
-        projectConstants: projectConstants,
-        landArea: landArea,
-        landPerimeter: landPerimeter,
-        excavationArea: excavationArea,
-        excavationPerimeter: excavationPerimeter,
-        coreCurtainLength: coreCurtainLength,
-        curtainsExceeding1MeterLength: curtainsExceeding1MeterLength,
-        basementCurtainLength: basementCurtainLength,
-        columnsLess1MeterPerimeter: columnsLess1MeterPerimeter,
-        elevationTowerArea: elevationTowerArea,
-        elevationTowerHeightWithoutSlab: elevationTowerHeightWithoutSlab,
-        floors: floors);
-  }
 
   @override
   List<Job> createJobs() {
@@ -120,7 +94,7 @@ class RoughConstructionJobCalculator extends JobCalculator {
       }
     }
     roughConstructionArea += _topFloor.area;
-    roughConstructionArea += elevationTowerArea;
+    roughConstructionArea += projectVariables.elevationTowerArea;
     return roughConstructionArea;
   }
 
@@ -131,12 +105,12 @@ class RoughConstructionJobCalculator extends JobCalculator {
   }
 
   double get _coreCurtainAreaWithoutSlab {
-    return coreCurtainLength *
-        (_buildingHeightWithoutSlabs + elevationTowerHeightWithoutSlab);
+    return projectVariables.coreCurtainLength *
+        (_buildingHeightWithoutSlabs + projectVariables.elevationTowerHeightWithoutSlab);
   }
 
   double get _curtainsExceeding1MeterAreaWithoutSlab {
-    return curtainsExceeding1MeterLength * _buildingHeightWithoutSlabs;
+    return projectVariables.curtainsExceeding1MeterLength * _buildingHeightWithoutSlabs;
   }
 
   double get _basementsHeightWithoutSlab {
@@ -146,7 +120,7 @@ class RoughConstructionJobCalculator extends JobCalculator {
   }
 
   double get _basementsCurtainAreaWithoutSlab {
-    return basementCurtainLength * _basementsHeightWithoutSlab;
+    return projectVariables.basementCurtainLength * _basementsHeightWithoutSlab;
   }
 
   double get _hollowSlabRoughConstructionArea {
@@ -212,49 +186,49 @@ class RoughConstructionJobCalculator extends JobCalculator {
 
   //Calculations
   double get shoringArea {
-    return excavationPerimeter * _excavationHeight;
+    return projectVariables.excavationPerimeter * _excavationHeight;
   }
 
   String get shoringAreaExplanation {
-    return "Hafriyat çevre uzunluğu: $excavationPerimeter x Hafriyat yüksekliği: $_excavationHeight";
+    return "Hafriyat çevre uzunluğu: ${projectVariables.excavationPerimeter} x Hafriyat yüksekliği: $_excavationHeight";
   }
 
   double get excavationVolume {
-    return excavationArea * _excavationHeight;
+    return projectVariables.excavationArea * _excavationHeight;
   }
 
   String get excavationVolumeExplanation {
-    return "Hafriyat alanı: $excavationArea x Hafriyat yüksekliği: $_excavationHeight";
+    return "Hafriyat alanı: ${projectVariables.excavationArea} x Hafriyat yüksekliği: $_excavationHeight";
   }
 
   double get breakerHour {
-    return excavationArea *
+    return projectVariables.excavationArea *
         _excavationHeight *
         projectConstants.breakerHourForOneCubicMeterMediumRockExcavation;
   }
 
   String get breakerHourExplanation {
-    return "Hafriyat alanı: $excavationArea x Hafriyat yüksekliği: $_excavationHeight x Bir m3 orta sertlikte kaya içeren hafriyat için kırıcı çalışma süresi: ${projectConstants.breakerHourForOneCubicMeterMediumRockExcavation}";
+    return "Hafriyat alanı: ${projectVariables.excavationArea} x Hafriyat yüksekliği: $_excavationHeight x Bir m3 orta sertlikte kaya içeren hafriyat için kırıcı çalışma süresi: ${projectConstants.breakerHourForOneCubicMeterMediumRockExcavation}";
   }
 
   double get foundationStabilizationWeight {
-    return excavationArea *
+    return projectVariables.excavationArea *
         projectConstants.stabilizationHeight *
         projectConstants.gravelTonForOneCubicMeter;
   }
 
   String get foundationStabilizationWeightExplanation {
-    return "Hafriyat alanı: $excavationArea x Temel altı stabilizasyon malzemesi yüksekliği: ${projectConstants.stabilizationHeight} x 1 m3 mıcır: ${projectConstants.gravelTonForOneCubicMeter} ton";
+    return "Hafriyat alanı: ${projectVariables.excavationArea} x Temel altı stabilizasyon malzemesi yüksekliği: ${projectConstants.stabilizationHeight} x 1 m3 mıcır: ${projectConstants.gravelTonForOneCubicMeter} ton";
   }
 
   double get subFoundationConcreteVolume {
-    return excavationArea *
+    return projectVariables.excavationArea *
         (projectConstants.leanConcreteHeight +
             projectConstants.insulationConcreteHeight);
   }
 
   String get subFoundationConcreteVolumeExplanation {
-    return "Hafriyat alanı: $excavationArea x (Grobeton yüksekliği: ${projectConstants.leanConcreteHeight} + Yalıtım koruma betonu yüksekliği: ${projectConstants.insulationConcreteHeight})";
+    return "Hafriyat alanı: ${projectVariables.excavationArea} x (Grobeton yüksekliği: ${projectConstants.leanConcreteHeight} + Yalıtım koruma betonu yüksekliği: ${projectConstants.insulationConcreteHeight})";
   }
 
   double get formWorkArea {

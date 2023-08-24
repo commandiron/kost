@@ -9,6 +9,12 @@ abstract class QuantityDetailsEvent extends Equatable {
   List<Object?> get props => [];
 }
 
+class Init extends QuantityDetailsEvent {
+  const Init();
+  @override
+  List<Object?> get props => [];
+}
+
 class AddFloor extends QuantityDetailsEvent {
   final Floor? floor;
   const AddFloor(this.floor);

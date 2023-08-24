@@ -1,39 +1,13 @@
-import '../../../floor.dart';
-import '../../job.dart';
-import '../../job_calculator.dart';
+import '../floor.dart';
+import 'job.dart';
+import 'job_calculator.dart';
 
 class GeneralExpensesJobCalculator extends JobCalculator {
   GeneralExpensesJobCalculator(
       {super.name = "Genel Giderler",
       required super.projectConstants,
-      required super.landArea,
-      required super.landPerimeter,
-      required super.excavationArea,
-      required super.excavationPerimeter,
-      required super.coreCurtainLength,
-      required super.curtainsExceeding1MeterLength,
-      required super.basementCurtainLength,
-      required super.columnsLess1MeterPerimeter,
-      required super.elevationTowerArea,
-      required super.elevationTowerHeightWithoutSlab,
+      required super.projectVariables,
       required super.floors});
-
-  @override
-  JobCalculator get newInstance {
-    return GeneralExpensesJobCalculator(
-        projectConstants: projectConstants,
-        landArea: landArea,
-        landPerimeter: landPerimeter,
-        excavationArea: excavationArea,
-        excavationPerimeter: excavationPerimeter,
-        coreCurtainLength: coreCurtainLength,
-        curtainsExceeding1MeterLength: curtainsExceeding1MeterLength,
-        basementCurtainLength: basementCurtainLength,
-        columnsLess1MeterPerimeter: columnsLess1MeterPerimeter,
-        elevationTowerArea: elevationTowerArea,
-        elevationTowerHeightWithoutSlab: elevationTowerHeightWithoutSlab,
-        floors: floors);
-  }
 
   @override
   List<Job> createJobs() {
@@ -81,17 +55,17 @@ class GeneralExpensesJobCalculator extends JobCalculator {
       }
     }
     roughConstructionArea += _topFloor.area;
-    roughConstructionArea += elevationTowerArea;
+    roughConstructionArea += projectVariables.elevationTowerArea;
     return roughConstructionArea;
   }
 
   //Calculations
   double get enclosingTheLandLength {
-    return landPerimeter;
+    return projectVariables.landPerimeter;
   }
 
   String get enclosingTheLandLengthExplanation {
-    return "Arsa çevresi: $landPerimeter";
+    return "Arsa çevresi: ${projectVariables.landPerimeter}";
   }
 
   //BURAYA BAK!!!!!!!!!!!!!!!!!!
