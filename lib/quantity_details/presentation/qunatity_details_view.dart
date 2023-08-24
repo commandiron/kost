@@ -26,10 +26,11 @@ class QuantityDetailsView extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: ElevatedButton(
-                    onPressed: () => context
-                        .read<QuantityDetailsBloc>()
-                        .add(const CalculateCost()),
-                    child: const Text("Hesapla")),
+                  onPressed: () => context
+                      .read<QuantityDetailsBloc>()
+                      .add(const CalculateCost()),
+                  child: const Text("Hesapla"),
+                ),
               )
             ],
           ),
@@ -75,8 +76,10 @@ class QuantityDetailsView extends StatelessWidget {
                           return EditFloorDialog(
                             floor: floor,
                             onDeleteFloor: () async {
-                              final result = await showAreYouSureDialog(context,
-                                      frontTitle: "Silmek istediğinize") ??
+                              final result = await showAreYouSureDialog(
+                                    context,
+                                    frontTitle: "Silmek istediğinize",
+                                  ) ??
                                   false;
                               if (context.mounted) {
                                 if (result) {
