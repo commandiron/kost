@@ -227,8 +227,9 @@ class QuantityDetailsBloc
       }
 
       emit(state.copyWith(
-          snackBarMessage: "${event.floor.floorName} Silindi.",
-          floors: floors));
+        snackBarMessage: "${event.floor.floorName} Silindi.",
+        floors: floors,
+      ));
     });
     on<EditFloor>((event, emit) {
       if (event.floor == null) {
@@ -290,7 +291,7 @@ class QuantityDetailsBloc
       projectVariables: state.projectVariables,
       floors: state.floors,
     );
-    
+
     final generalExpensesJobCalculator = GeneralExpensesJobCalculator(
       projectConstants: state.projectConstants,
       projectVariables: state.projectVariables,
