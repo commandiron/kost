@@ -3,7 +3,6 @@ import '../../floor/floor.dart';
 import '../../../../../common/model/job.dart';
 import '../../floor/room.dart';
 import '../../project_constants.dart';
-import '../../project_variables.dart';
 import '../job_calculator.dart';
 
 class InteriorJobCalculator extends JobCalculator {
