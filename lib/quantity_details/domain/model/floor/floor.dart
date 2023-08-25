@@ -10,7 +10,7 @@ class InitialFloor extends Floor {
       super.slabHeight = 0.3,
       super.thickWallLength = 0,
       super.thinWallLength = 0,
-      super.isHollowSlab = true,
+      super.isSlabHollow = true,
       super.windows = const [],
       super.rooms = const []});
 }
@@ -21,7 +21,7 @@ class Floor {
   final double perimeter;
   final double heightWithSlab;
   final double slabHeight;
-  final bool isHollowSlab;
+  final bool isSlabHollow;
   final double thickWallLength;
   final double thinWallLength;
   final List<Window> windows;
@@ -33,7 +33,7 @@ class Floor {
       required this.perimeter,
       required this.heightWithSlab,
       required this.slabHeight,
-      required this.isHollowSlab,
+      required this.isSlabHollow,
       required this.thickWallLength,
       required this.thinWallLength,
       required this.windows,
@@ -45,7 +45,7 @@ class Floor {
     final double? perimeter,
     final double? heightWithSlab,
     final double? slabHeight,
-    final bool? isHollowSlab,
+    final bool? isSlabHollow,
     final double? thickWallLength,
     final double? thinWallLength,
     final List<Window>? windows,
@@ -57,7 +57,7 @@ class Floor {
         perimeter: perimeter ?? this.perimeter,
         heightWithSlab: heightWithSlab ?? this.heightWithSlab,
         slabHeight: slabHeight ?? this.slabHeight,
-        isHollowSlab: isHollowSlab ?? this.isHollowSlab,
+        isSlabHollow: isSlabHollow ?? this.isSlabHollow,
         thickWallLength: thickWallLength ?? this.thickWallLength,
         thinWallLength: thinWallLength ?? this.thinWallLength,
         windows: windows ?? this.windows,
@@ -72,17 +72,17 @@ class Floor {
     final List<Floor> duplicatedFloors = [];
     for (var i = floor.no; i <= count; i++) {
       duplicatedFloors.add(Floor(
-          no: i,
-          area: floor.area,
-          perimeter: floor.perimeter,
-          heightWithSlab: floor.heightWithSlab,
-          slabHeight: floor.slabHeight,
-          isHollowSlab: floor.isHollowSlab,
-          thickWallLength: floor.thickWallLength,
-          thinWallLength: floor.thinWallLength,
-          windows: floor.windows,
-          rooms: floor.rooms,
-          ));
+        no: i,
+        area: floor.area,
+        perimeter: floor.perimeter,
+        heightWithSlab: floor.heightWithSlab,
+        slabHeight: floor.slabHeight,
+        isSlabHollow: floor.isSlabHollow,
+        thickWallLength: floor.thickWallLength,
+        thinWallLength: floor.thinWallLength,
+        windows: floor.windows,
+        rooms: floor.rooms,
+      ));
     }
     return duplicatedFloors;
   }

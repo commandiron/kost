@@ -78,12 +78,41 @@ class RoughConstructionJobCalculator extends JobCalculator {
     ];
   }
 
+  Floor get _topFloor {
+    final topFloor = floors.reduce((current, next) {
+      return current.no > next.no ? current : next;
+    });
+    return topFloor;
+  }
+
+  Floor get _groundFloor {
+    final groundFloor = floors.firstWhere(
+      (floor) => floor.no == 0,
+      orElse: () => throw Exception("No ground floor"),
+    );
+    return groundFloor;
+  }
+
   List<Floor> get _basementFloors {
     final basementFloors = floors.where((element) => element.no < 0).toList();
     if (basementFloors.isEmpty) {
       throw Exception("No basement floor");
     }
     return basementFloors;
+  }
+
+  Floor get _topMostBasementFloor {
+    final topMostBasementFloor = _basementFloors.reduce((current, next) {
+      return current.no > next.no ? current : next;
+    });
+    return topMostBasementFloor;
+  }
+
+  Floor get _bottomMostBasementFloor {
+    final bottomMostBasementFloor = _basementFloors.reduce((current, next) {
+      return current.no < next.no ? current : next;
+    });
+    return bottomMostBasementFloor;
   }
 
   double get _basementsHeight {
@@ -98,13 +127,6 @@ class RoughConstructionJobCalculator extends JobCalculator {
         projectConstants.insulationConcreteHeight +
         projectConstants.foundationHeight +
         _basementsHeight;
-  }
-
-  Floor get _topFloor {
-    final topFloor = floors.reduce((current, next) {
-      return current.no > next.no ? current : next;
-    });
-    return topFloor;
   }
 
   double get _roughConstructionArea {
@@ -151,7 +173,7 @@ class RoughConstructionJobCalculator extends JobCalculator {
 
   double get _hollowSlabRoughConstructionArea {
     return floors
-        .where((floor) => floor.isHollowSlab)
+        .where((floor) => floor.isSlabHollow)
         .map((ceilingSlabFloor) => ceilingSlabFloor.area)
         .fold(0.0, (p, c) => p + c);
   }
@@ -160,28 +182,6 @@ class RoughConstructionJobCalculator extends JobCalculator {
     return _basementFloors
         .map((floor) => floor.perimeter * floor.heightWithSlab)
         .fold(0.0, (p, c) => p + c);
-  }
-
-  Floor get _topMostBasementFloor {
-    final topMostBasementFloor = _basementFloors.reduce((current, next) {
-      return current.no > next.no ? current : next;
-    });
-    return topMostBasementFloor;
-  }
-
-  Floor get _bottomMostBasementFloor {
-    final bottomMostBasementFloor = _basementFloors.reduce((current, next) {
-      return current.no < next.no ? current : next;
-    });
-    return bottomMostBasementFloor;
-  }
-
-  Floor get _groundFloor {
-    final groundFloor = floors.firstWhere(
-      (floor) => floor.no == 0,
-      orElse: () => throw Exception("No ground floor"),
-    );
-    return groundFloor;
   }
 
   double get _wetAreaAboveBasement {

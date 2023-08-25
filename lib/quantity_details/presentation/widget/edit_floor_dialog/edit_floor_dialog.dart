@@ -43,7 +43,7 @@ class _EditFloorDialogState extends State<EditFloorDialog> {
                 style: AppTextStyle.responsiveH4(context)
                     .copyWith(color: Theme.of(context).colorScheme.onPrimary),
               ),
-              if(widget.onDeleteFloor != null)
+              if (widget.onDeleteFloor != null)
                 InkWell(
                   onTap: widget.onDeleteFloor,
                   child: CircleAvatar(
@@ -126,10 +126,9 @@ class _EditFloorDialogState extends State<EditFloorDialog> {
                   }),
               FloorAttrCheckBox(
                 title: "Döşeme tipi Asmolen:",
-                value: widget.floor.isHollowSlab,
+                value: widget.floor.isSlabHollow,
                 onChanged: (value) {
-                  _submittedFloor =
-                      widget.floor.copyWith(isHollowSlab: value);
+                  _submittedFloor = widget.floor.copyWith(isSlabHollow: value);
                 },
               ),
               FloorAttrTextField(
