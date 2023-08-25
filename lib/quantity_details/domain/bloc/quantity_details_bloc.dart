@@ -245,8 +245,9 @@ class QuantityDetailsBloc
       floors[floorIndex] = event.floor!;
 
       emit(state.copyWith(
-          snackBarMessage: "${event.floor!.floorName} Değiştirildi.",
-          floors: floors));
+        snackBarMessage: "${event.floor!.floorName} Değiştirildi.",
+        floors: floors,
+      ));
     });
     on<ClearSnackbarMessage>((event, emit) {
       emit(state.copyWith(snackBarMessage: ""));
