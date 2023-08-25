@@ -115,18 +115,34 @@ class RoughConstructionJobCalculator extends JobCalculator {
     return bottomMostBasementFloor;
   }
 
-  double get _basementsHeight {
-    return _basementFloors
-        .map((floor) => floor.heightWithSlab)
-        .fold(0.0, (p, c) => p + c);
-  }
-
   double get _excavationHeight {
     return projectConstants.stabilizationHeight +
         projectConstants.leanConcreteHeight +
         projectConstants.insulationConcreteHeight +
         projectConstants.foundationHeight +
         _basementsHeight;
+  }
+
+  double get _basementsHeight {
+    return _basementFloors
+        .map((floor) => floor.heightWithSlab)
+        .fold(0.0, (p, c) => p + c);
+  }
+
+  double get _basementsHeightWithoutSlab {
+    return _basementFloors
+        .map((floor) => floor.heightWithSlab - floor.slabHeight)
+        .fold(0.0, (p, c) => p + c);
+  }
+
+  double get _basementsCurtainAreaWithoutSlab {
+    return projectVariables.basementCurtainLength * _basementsHeightWithoutSlab;
+  }
+
+  double get _basementsOuterCurtainArea {
+    return _basementFloors
+        .map((floor) => floor.perimeter * floor.heightWithSlab)
+        .fold(0.0, (p, c) => p + c);
   }
 
   double get _roughConstructionArea {
@@ -161,26 +177,10 @@ class RoughConstructionJobCalculator extends JobCalculator {
         _buildingHeightWithoutSlabs;
   }
 
-  double get _basementsHeightWithoutSlab {
-    return _basementFloors
-        .map((floor) => floor.heightWithSlab - floor.slabHeight)
-        .fold(0.0, (p, c) => p + c);
-  }
-
-  double get _basementsCurtainAreaWithoutSlab {
-    return projectVariables.basementCurtainLength * _basementsHeightWithoutSlab;
-  }
-
   double get _hollowSlabRoughConstructionArea {
     return floors
         .where((floor) => floor.isSlabHollow)
         .map((ceilingSlabFloor) => ceilingSlabFloor.area)
-        .fold(0.0, (p, c) => p + c);
-  }
-
-  double get _basementsOuterCurtainArea {
-    return _basementFloors
-        .map((floor) => floor.perimeter * floor.heightWithSlab)
         .fold(0.0, (p, c) => p + c);
   }
 
