@@ -2,14 +2,18 @@ import '../../../../../common/model/unit_price/unit_price.dart';
 import '../../floor/floor.dart';
 import '../../../../../common/model/job.dart';
 import '../../floor/room.dart';
+import '../../project_constants.dart';
+import '../../project_variables.dart';
 import '../job_calculator.dart';
 
 class InteriorJobCalculator extends JobCalculator {
   InteriorJobCalculator(
       {super.name = "İç İmalat Maliyeti",
-      required super.projectConstants,
-      required super.projectVariables,
-      required super.floors});
+      required this.projectConstants,
+      required this.floors});
+
+  final ProjectConstants projectConstants;
+  final List<Floor> floors;
 
   @override
   List<Job> createJobs() {

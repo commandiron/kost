@@ -270,20 +270,15 @@ class QuantityDetailsBloc
     );
 
     final roofJobCalculator = RoofJobCalculator(
-      projectConstants: state.projectConstants,
-      projectVariables: state.projectVariables,
       floors: state.floors,
     );
 
     final facadeJobCalculator = FacadeJobCalculator(
-      projectConstants: state.projectConstants,
-      projectVariables: state.projectVariables,
       floors: state.floors,
     );
 
     final interiorJobCalculator = InteriorJobCalculator(
       projectConstants: state.projectConstants,
-      projectVariables: state.projectVariables,
       floors: state.floors,
     );
 

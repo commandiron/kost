@@ -5,9 +5,9 @@ import '../job_calculator.dart';
 class RoofJobCalculator extends JobCalculator {
   RoofJobCalculator(
       {super.name = "Çatı Maliyeti",
-      required super.projectConstants,
-      required super.projectVariables,
-      required super.floors});
+      required this.floors});
+
+  final List<Floor> floors;
 
   @override
   List<Job> createJobs() {

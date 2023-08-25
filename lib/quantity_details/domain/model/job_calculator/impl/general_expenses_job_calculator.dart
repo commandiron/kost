@@ -1,13 +1,19 @@
 import '../../floor/floor.dart';
 import '../../../../../common/model/job.dart';
+import '../../project_constants.dart';
+import '../../project_variables.dart';
 import '../job_calculator.dart';
 
 class GeneralExpensesJobCalculator extends JobCalculator {
   GeneralExpensesJobCalculator(
       {super.name = "Genel Giderler",
-      required super.projectConstants,
-      required super.projectVariables,
-      required super.floors});
+      required this.projectConstants,
+      required this.projectVariables,
+      required this.floors});
+
+  final ProjectConstants projectConstants;
+  final ProjectVariables projectVariables;
+  final List<Floor> floors;
 
   @override
   List<Job> createJobs() {
