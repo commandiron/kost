@@ -2,15 +2,15 @@ import '../../floor/floor.dart';
 import '../../../../../common/model/job.dart';
 import '../../project_constants.dart';
 import '../../project_variables.dart';
-import '../job_calculator.dart';
+import '../jobs_generator.dart';
 
-class LandscapeJobCalculator extends JobCalculator {
-  LandscapeJobCalculator(
-      {super.name = "Peysaj Maliyeti",
-      required this.projectConstants,
-      required this.projectVariables,
-      required this.floors});
-  
+class LandscapeJobsGenerator extends JobsGenerator {
+  LandscapeJobsGenerator({
+    required this.projectConstants,
+    required this.projectVariables,
+    required this.floors,
+  });
+
   final ProjectConstants projectConstants;
   final ProjectVariables projectVariables;
   final List<Floor> floors;

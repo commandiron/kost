@@ -3,14 +3,14 @@ import 'package:kost/quantity_details/domain/model/project_variables.dart';
 
 import '../../floor/floor.dart';
 import '../../../../../common/model/job.dart';
-import '../job_calculator.dart';
+import '../../jobs_generator/jobs_generator.dart';
 
-class RoughConstructionJobCalculator extends JobCalculator {
-  RoughConstructionJobCalculator(
-      {super.name = "Kaba İnşaat Maliyeti",
-      required this.projectConstants,
-      required this.projectVariables,
-      required this.floors});
+class RoughConstructionJobsGenerator extends JobsGenerator {
+  RoughConstructionJobsGenerator({
+    required this.projectConstants,
+    required this.projectVariables,
+    required this.floors,
+  });
 
   final ProjectConstants projectConstants;
   final ProjectVariables projectVariables;

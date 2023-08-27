@@ -3,13 +3,13 @@ import '../../floor/floor.dart';
 import '../../../../../common/model/job.dart';
 import '../../floor/room.dart';
 import '../../project_constants.dart';
-import '../job_calculator.dart';
+import '../jobs_generator.dart';
 
-class InteriorJobCalculator extends JobCalculator {
-  InteriorJobCalculator(
-      {super.name = "İç İmalat Maliyeti",
-      required this.projectConstants,
-      required this.floors});
+class InteriorJobsGenerator extends JobsGenerator {
+  InteriorJobsGenerator({
+    required this.projectConstants,
+    required this.floors,
+  });
 
   final ProjectConstants projectConstants;
   final List<Floor> floors;

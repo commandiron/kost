@@ -2,14 +2,14 @@ import '../../floor/floor.dart';
 import '../../../../../common/model/job.dart';
 import '../../project_constants.dart';
 import '../../project_variables.dart';
-import '../job_calculator.dart';
+import '../jobs_generator.dart';
 
-class GeneralExpensesJobCalculator extends JobCalculator {
-  GeneralExpensesJobCalculator(
-      {super.name = "Genel Giderler",
-      required this.projectConstants,
-      required this.projectVariables,
-      required this.floors});
+class GeneralExpensesJobsGenerator extends JobsGenerator {
+  GeneralExpensesJobsGenerator({
+    required this.projectConstants,
+    required this.projectVariables,
+    required this.floors,
+  });
 
   final ProjectConstants projectConstants;
   final ProjectVariables projectVariables;

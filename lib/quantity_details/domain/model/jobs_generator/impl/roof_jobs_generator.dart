@@ -1,11 +1,11 @@
 import '../../floor/floor.dart';
 import '../../../../../common/model/job.dart';
-import '../job_calculator.dart';
+import '../jobs_generator.dart';
 
-class RoofJobCalculator extends JobCalculator {
-  RoofJobCalculator(
-      {super.name = "Çatı Maliyeti",
-      required this.floors});
+class RoofJobsGenerator extends JobsGenerator {
+  RoofJobsGenerator({
+    required this.floors,
+  });
 
   final List<Floor> floors;
 

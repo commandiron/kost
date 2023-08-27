@@ -3,15 +3,16 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kost/common/bloc/bloc_state.dart';
 import 'package:kost/quantity_details/domain/bloc/quantity_details_event.dart';
 import 'package:kost/quantity_details/domain/bloc/quantity_details_state.dart';
-import 'package:kost/quantity_details/domain/model/job_calculator/impl/rough_construction_job_calculator.dart';
+import 'package:kost/quantity_details/domain/model/job_calculator/impl/rough_construction_jobs_generatordart';
 import 'package:kost/common/model/job.dart';
+import 'package:kost/quantity_details/domain/model/jobs_generator/impl/apartment_jobs_generator.dart';
 
 import '../model/floor/floor.dart';
-import '../model/job_calculator/impl/facade_job_calculator.dart';
-import '../model/job_calculator/impl/general_expenses_job_calculator.dart';
-import '../model/job_calculator/impl/interior_job_calculator.dart';
-import '../model/job_calculator/impl/landscape_job_calculator.dart';
-import '../model/job_calculator/impl/roof_job_calculator.dart';
+import '../model/jobs_generator/impl/facade_jobs_generator.dart';
+import '../model/jobs_generator/impl/general_expenses_jobs_generator.dart';
+import '../model/jobs_generator/impl/interior_jobs_generator.dart';
+import '../model/jobs_generator/impl/landscape_jobs_generator.dart';
+import '../model/jobs_generator/impl/roof_jobs_generator.dart';
 import '../model/project_constants.dart';
 import '../model/project_variables.dart';
 import '../model/floor/room.dart';
@@ -253,54 +254,22 @@ class QuantityDetailsBloc
       emit(state.copyWith(snackBarMessage: ""));
     });
     on<CalculateCost>((event, emit) {
-      //Validate...
-      emit(state.copyWith(blocState: Completed(data: createJobs())));
+      final apartmentJobsGenerator = ApartmentJobsGenerator(
+        projectConstants: state.projectConstants,
+        projectVariables: state.projectVariables,
+        floors: state.floors,
+      );
+      emit(
+        state.copyWith(
+          blocState: Completed(
+            data: apartmentJobsGenerator.createJobs(),
+          ),
+        ),
+      );
     });
   }
 
   List<Floor> getSortedFloors(List<Floor> floors) {
     return floors.sorted((a, b) => a.no.compareTo(b.no)).reversed.toList();
-  }
-
-  List<Job> createJobs() {
-    final roughConstructionJobCalculator = RoughConstructionJobCalculator(
-      projectConstants: state.projectConstants,
-      projectVariables: state.projectVariables,
-      floors: state.floors,
-    );
-
-    final roofJobCalculator = RoofJobCalculator(
-      floors: state.floors,
-    );
-
-    final facadeJobCalculator = FacadeJobCalculator(
-      floors: state.floors,
-    );
-
-    final interiorJobCalculator = InteriorJobCalculator(
-      projectConstants: state.projectConstants,
-      floors: state.floors,
-    );
-
-    final landscapeJobCalculator = LandscapeJobCalculator(
-      projectConstants: state.projectConstants,
-      projectVariables: state.projectVariables,
-      floors: state.floors,
-    );
-
-    final generalExpensesJobCalculator = GeneralExpensesJobCalculator(
-      projectConstants: state.projectConstants,
-      projectVariables: state.projectVariables,
-      floors: state.floors,
-    );
-
-    return [
-      ...roughConstructionJobCalculator.createJobs(),
-      ...roofJobCalculator.createJobs(),
-      ...facadeJobCalculator.createJobs(),
-      ...interiorJobCalculator.createJobs(),
-      ...landscapeJobCalculator.createJobs(),
-      ...generalExpensesJobCalculator.createJobs()
-    ];
   }
 }
