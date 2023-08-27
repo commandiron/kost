@@ -4,6 +4,7 @@ import '../jobs_generator.dart';
 
 class FacadeJobsGenerator extends JobsGenerator {
   FacadeJobsGenerator({
+    super.name = "Cephe",
     required this.floors,
   });
 

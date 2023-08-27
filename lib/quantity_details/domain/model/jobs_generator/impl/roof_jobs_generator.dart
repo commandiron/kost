@@ -4,6 +4,7 @@ import '../jobs_generator.dart';
 
 class RoofJobsGenerator extends JobsGenerator {
   RoofJobsGenerator({
+    super.name = "Çatı",
     required this.floors,
   });
 

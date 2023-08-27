@@ -7,6 +7,7 @@ import '../../jobs_generator/jobs_generator.dart';
 
 class RoughConstructionJobsGenerator extends JobsGenerator {
   RoughConstructionJobsGenerator({
+    super.name = "Kaba İnşaat",
     required this.projectConstants,
     required this.projectVariables,
     required this.floors,

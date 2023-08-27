@@ -6,6 +6,7 @@ import '../jobs_generator.dart';
 
 class GeneralExpensesJobsGenerator extends JobsGenerator {
   GeneralExpensesJobsGenerator({
+    super.name = "Gener Giderler",
     required this.projectConstants,
     required this.projectVariables,
     required this.floors,

@@ -40,6 +40,7 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
       final unitPricePool = _fetchUnitPricePool();
       //Fetch currency rates
       emit(state.copyWith(
+        tableName: event.tableName,
         jobs: event.jobs,
         unitPricePool: unitPricePool,
       ));

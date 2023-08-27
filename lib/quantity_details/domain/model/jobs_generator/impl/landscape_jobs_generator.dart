@@ -6,6 +6,7 @@ import '../jobs_generator.dart';
 
 class LandscapeJobsGenerator extends JobsGenerator {
   LandscapeJobsGenerator({
+    super.name = "Peysaj",
     required this.projectConstants,
     required this.projectVariables,
     required this.floors,

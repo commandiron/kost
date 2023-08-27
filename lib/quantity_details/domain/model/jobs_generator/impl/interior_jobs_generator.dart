@@ -7,6 +7,7 @@ import '../jobs_generator.dart';
 
 class InteriorJobsGenerator extends JobsGenerator {
   InteriorJobsGenerator({
+    super.name = "İç İmalatlar",
     required this.projectConstants,
     required this.floors,
   });

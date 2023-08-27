@@ -1,9 +1,9 @@
 import 'package:kost/common/model/job.dart';
 import 'package:kost/quantity_details/domain/model/jobs_generator/impl/roof_jobs_generator.dart';
+import 'package:kost/quantity_details/domain/model/jobs_generator/impl/rough_construction_jobs_generator.dart';
 import 'package:kost/quantity_details/domain/model/jobs_generator/jobs_generator.dart';
 
 import '../../floor/floor.dart';
-import '../../job_calculator/impl/rough_construction_jobs_generatordart';
 import '../../project_constants.dart';
 import '../../project_variables.dart';
 import 'facade_jobs_generator.dart';
@@ -12,8 +12,8 @@ import 'interior_jobs_generator.dart';
 import 'landscape_jobs_generator.dart';
 
 class ApartmentJobsGenerator extends JobsGenerator {
-
   ApartmentJobsGenerator({
+    super.name = "Apartman",
     required this.projectConstants,
     required this.projectVariables,
     required this.floors,

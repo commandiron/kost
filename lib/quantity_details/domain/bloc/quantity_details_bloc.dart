@@ -1,6 +1,7 @@
 import 'package:collection/collection.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kost/common/bloc/bloc_state.dart';
+import 'package:kost/cost_table/presentation/cost_table_screen.dart';
 import 'package:kost/quantity_details/domain/bloc/quantity_details_event.dart';
 import 'package:kost/quantity_details/domain/bloc/quantity_details_state.dart';
 import 'package:kost/quantity_details/domain/model/jobs_generator/impl/apartment_jobs_generator.dart';
@@ -255,7 +256,10 @@ class QuantityDetailsBloc
       emit(
         state.copyWith(
           blocState: Completed(
-            data: apartmentJobsGenerator.createJobs(),
+            data: CostTableArguments(
+              tableName: "${apartmentJobsGenerator.name} Maliyeti",
+              jobs: apartmentJobsGenerator.createJobs(),
+            ),
           ),
         ),
       );

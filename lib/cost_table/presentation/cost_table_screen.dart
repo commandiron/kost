@@ -11,6 +11,15 @@ import '../domain/bloc/cost_table_bloc.dart';
 import '../domain/bloc/cost_table_event.dart';
 import '../domain/bloc/cost_table_state.dart';
 
+class CostTableArguments {
+  CostTableArguments({
+    required this.tableName,
+    required this.jobs,
+  });
+  final String tableName;
+  final List<Job> jobs;
+}
+
 class CostTableScreen extends StatelessWidget {
   const CostTableScreen({Key? key}) : super(key: key);
 
@@ -18,9 +27,11 @@ class CostTableScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final jobs = ModalRoute.of(context)!.settings.arguments as List<Job>?;
+    final arguments =
+        ModalRoute.of(context)!.settings.arguments as CostTableArguments?;
     return BlocProvider(
-      create: (context) => CostTableBloc()..add(Init(jobs)),
+      create: (context) =>
+          CostTableBloc()..add(Init(arguments?.tableName, arguments?.jobs)),
       child: const CostTableView(),
     );
   }
@@ -57,7 +68,7 @@ class CostTableView extends StatelessWidget {
               children: [
                 const Text("Maliyet Hesaplanıyor..."),
                 AppSpace.vL!,
-                const CircularProgressIndicator(),      
+                const CircularProgressIndicator(),
               ],
             ),
           );
@@ -73,10 +84,10 @@ class CostTableView extends StatelessWidget {
                   onPressed: () => context
                       .read<CostTableBloc>()
                       .add(const ExpandCollapseAllMainCategory()),
-                  child: Text(
-                      state.categoryVisibilities.values.any((visible) => visible)
-                          ? "Collapse All"
-                          : "Expand All")),
+                  child: Text(state.categoryVisibilities.values
+                          .any((visible) => visible)
+                      ? "Collapse All"
+                      : "Expand All")),
               Expanded(
                 child: CostsListView(
                   costs: state.costs,

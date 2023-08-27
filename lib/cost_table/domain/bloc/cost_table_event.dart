@@ -9,10 +9,11 @@ abstract class CostTableEvent extends Equatable {
 }
 
 class Init extends CostTableEvent {
+  final String? tableName;
   final List<Job>? jobs;
-  const Init(this.jobs);
+  const Init(this.tableName, this.jobs);
   @override
-  List<Object?> get props => [jobs];
+  List<Object?> get props => [tableName, jobs];
 }
 
 class ExpandCollapseMainCategory extends CostTableEvent {
