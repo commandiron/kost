@@ -3,16 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kost/common/bloc/bloc_state.dart';
 import 'package:kost/quantity_details/domain/bloc/quantity_details_event.dart';
 import 'package:kost/quantity_details/domain/bloc/quantity_details_state.dart';
-import 'package:kost/quantity_details/domain/model/job_calculator/impl/rough_construction_jobs_generatordart';
-import 'package:kost/common/model/job.dart';
 import 'package:kost/quantity_details/domain/model/jobs_generator/impl/apartment_jobs_generator.dart';
 
 import '../model/floor/floor.dart';
-import '../model/jobs_generator/impl/facade_jobs_generator.dart';
-import '../model/jobs_generator/impl/general_expenses_jobs_generator.dart';
-import '../model/jobs_generator/impl/interior_jobs_generator.dart';
-import '../model/jobs_generator/impl/landscape_jobs_generator.dart';
-import '../model/jobs_generator/impl/roof_jobs_generator.dart';
 import '../model/project_constants.dart';
 import '../model/project_variables.dart';
 import '../model/floor/room.dart';
