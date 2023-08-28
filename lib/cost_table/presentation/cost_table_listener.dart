@@ -16,9 +16,7 @@ class CostTableListener extends StatelessWidget {
           previous.blocState != current.blocState,
       listener: (context, state) {
         final blocState = state.blocState;
-        print(blocState);
         if (blocState is Error) {
-          print("1");
           Navigator.of(context)
               .pushReplacementNamed(QuantityDetailsScreen.route);
         }
