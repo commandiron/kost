@@ -8,7 +8,7 @@ abstract class Room {
   final bool hasFloorPlinth;
   final bool hasScreed;
   final bool isFloorWet;
-  late List<DoorType> doors;
+  late List<Door> doors;
 
   Room({
     required this.area,
@@ -38,17 +38,7 @@ enum CeilingMaterial {
   drywall,
 }
 
-class Door {
-  final int count;
-  final DoorType doorType;
-
-  Door({
-    required this.count,
-    required this.doorType,
-  });
-}
-
-enum DoorType {
+enum Door {
   buildingEntrance,
   apartmentEntrance,
   room,
@@ -66,7 +56,7 @@ class ApartmentEntree extends Room {
     super.hasFloorPlinth = true,
     super.hasScreed = true,
     super.isFloorWet = false,
-    super.doors = const [DoorType.apartmentEntrance],
+    super.doors = const [Door.apartmentEntrance],
   });
 }
 
@@ -81,7 +71,7 @@ class Saloon extends Room {
     super.hasFloorPlinth = true,
     super.hasScreed = true,
     super.isFloorWet = false,
-    super.doors = const [DoorType.room, DoorType.room],
+    super.doors = const [Door.room, Door.room],
   });
 }
 
@@ -111,7 +101,7 @@ class Kitchen extends Room {
     super.hasFloorPlinth = true,
     super.hasScreed = true,
     super.isFloorWet = false,
-    super.doors = const [DoorType.room],
+    super.doors = const [Door.room],
   });
 }
 
@@ -126,7 +116,7 @@ class NormalRoom extends Room {
     super.hasFloorPlinth = true,
     super.hasScreed = true,
     super.isFloorWet = false,
-    super.doors = const [DoorType.room],
+    super.doors = const [Door.room],
   });
 }
 
@@ -156,7 +146,7 @@ class Wc extends Room {
     super.hasFloorPlinth = false,
     super.hasScreed = true,
     super.isFloorWet = true,
-    super.doors = const [DoorType.room],
+    super.doors = const [Door.room],
   });
 }
 
@@ -172,8 +162,8 @@ class EscapeHallWc extends Room {
     super.hasScreed = true,
     super.isFloorWet = true,
     super.doors = const [
-      DoorType.fire,
-      DoorType.fire,
+      Door.fire,
+      Door.fire,
     ],
   });
 }
@@ -189,7 +179,7 @@ class Bathroom extends Room {
     super.hasFloorPlinth = false,
     super.hasScreed = true,
     super.isFloorWet = true,
-    super.doors = const [DoorType.room],
+    super.doors = const [Door.room],
   });
 }
 
@@ -205,8 +195,8 @@ class EscapeHallBathroom extends Room {
     super.hasScreed = true,
     super.isFloorWet = true,
     super.doors = const [
-      DoorType.fire,
-      DoorType.fire,
+      Door.fire,
+      Door.fire,
     ],
   });
 }
@@ -253,8 +243,8 @@ class FireEscapeHall extends Room {
     super.hasScreed = false,
     super.isFloorWet = false,
     super.doors = const [
-      DoorType.fire,
-      DoorType.fire,
+      Door.fire,
+      Door.fire,
     ],
   });
 }
@@ -270,7 +260,7 @@ class BuildingHall extends Room {
     super.hasFloorPlinth = false,
     super.hasScreed = false,
     super.isFloorWet = false,
-    super.doors = const [DoorType.buildingEntrance],
+    super.doors = const [Door.buildingEntrance],
   });
 }
 
@@ -300,7 +290,7 @@ class TechnicalArea extends Room {
     super.hasFloorPlinth = false,
     super.hasScreed = true,
     super.isFloorWet = false,
-    super.doors = const [DoorType.fire],
+    super.doors = const [Door.fire],
   });
 }
 

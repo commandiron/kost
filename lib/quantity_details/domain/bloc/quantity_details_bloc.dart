@@ -145,14 +145,9 @@ class QuantityDetailsBloc
                   ),
                   Stairs(area: 7.2, perimeter: 10.9),
                   Stairs(area: 5.1, perimeter: 10.9),
-                  FloorHall(
-                      area: 6.07,
-                      perimeter: 11.1,
-                      doors: [DoorType.fire]),
+                  FloorHall(area: 6.07, perimeter: 11.1, doors: [Door.fire]),
                   FireEscapeHall(
-                      area: 17.62,
-                      perimeter: 20.9,
-                      doors: [DoorType.fire]),
+                      area: 17.62, perimeter: 20.9, doors: [Door.fire]),
                   ParkingArea(area: 296.25, perimeter: 94.82),
                   TechnicalArea(area: 7.10, perimeter: 10.7),
                   TechnicalArea(area: 7.25, perimeter: 10.8),

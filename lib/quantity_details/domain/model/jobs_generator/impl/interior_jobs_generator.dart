@@ -337,7 +337,7 @@ class InteriorJobsGenerator extends JobsGenerator {
     for (var floor in floors) {
       for (var room in floor.rooms) {
         for (var door in room.doors) {
-          if (door == DoorType.apartmentEntrance) {
+          if (door == Door.apartmentEntrance) {
             number++;
           }
         }
@@ -351,7 +351,7 @@ class InteriorJobsGenerator extends JobsGenerator {
     for (var floor in floors) {
       for (var room in floor.rooms) {
         for (var door in room.doors) {
-          if (door == DoorType.buildingEntrance) {
+          if (door == Door.buildingEntrance) {
             number++;
           }
         }
@@ -365,7 +365,7 @@ class InteriorJobsGenerator extends JobsGenerator {
     for (var floor in floors) {
       for (var room in floor.rooms) {
         for (var door in room.doors) {
-          if (door == DoorType.fire) {
+          if (door == Door.fire) {
             number++;
           }
         }
@@ -379,7 +379,7 @@ class InteriorJobsGenerator extends JobsGenerator {
     for (var floor in floors) {
       for (var room in floor.rooms) {
         for (var door in room.doors) {
-          if (door == DoorType.room) {
+          if (door == Door.room) {
             number++;
           }
         }
