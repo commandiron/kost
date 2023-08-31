@@ -336,11 +336,9 @@ class InteriorJobsGenerator extends JobsGenerator {
     int number = 0;
     for (var floor in floors) {
       for (var room in floor.rooms) {
-        if (room.doors != null) {
-          for (var door in room.doors!) {
-            if (door.doorType == DoorType.apartmentEntrance) {
-              number += door.count;
-            }
+        for (var door in room.doors) {
+          if (door == DoorType.apartmentEntrance) {
+            number++;
           }
         }
       }
@@ -352,11 +350,9 @@ class InteriorJobsGenerator extends JobsGenerator {
     int number = 0;
     for (var floor in floors) {
       for (var room in floor.rooms) {
-        if (room.doors != null) {
-          for (var door in room.doors!) {
-            if (door.doorType == DoorType.buildingEntrance) {
-              number += door.count;
-            }
+        for (var door in room.doors) {
+          if (door == DoorType.buildingEntrance) {
+            number++;
           }
         }
       }
@@ -368,11 +364,9 @@ class InteriorJobsGenerator extends JobsGenerator {
     int number = 0;
     for (var floor in floors) {
       for (var room in floor.rooms) {
-        if (room.doors != null) {
-          for (var door in room.doors!) {
-            if (door.doorType == DoorType.fire) {
-              number += door.count;
-            }
+        for (var door in room.doors) {
+          if (door == DoorType.fire) {
+            number++;
           }
         }
       }
@@ -384,11 +378,9 @@ class InteriorJobsGenerator extends JobsGenerator {
     int number = 0;
     for (var floor in floors) {
       for (var room in floor.rooms) {
-        if (room.doors != null) {
-          for (var door in room.doors!) {
-            if (door.doorType == DoorType.room) {
-              number += door.count;
-            }
+        for (var door in room.doors) {
+          if (door == DoorType.room) {
+            number++;
           }
         }
       }

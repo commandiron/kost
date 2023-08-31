@@ -148,11 +148,11 @@ class QuantityDetailsBloc
                   FloorHall(
                       area: 6.07,
                       perimeter: 11.1,
-                      doors: [Door(count: 1, doorType: DoorType.fire)]),
+                      doors: [DoorType.fire]),
                   FireEscapeHall(
                       area: 17.62,
                       perimeter: 20.9,
-                      doors: [Door(count: 1, doorType: DoorType.fire)]),
+                      doors: [DoorType.fire]),
                   ParkingArea(area: 296.25, perimeter: 94.82),
                   TechnicalArea(area: 7.10, perimeter: 10.7),
                   TechnicalArea(area: 7.25, perimeter: 10.8),
