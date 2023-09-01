@@ -21,18 +21,19 @@ class QuantityDetailsBloc
             snackBarMessage: "",
             projectConstants: const ProjectConstants(),
             projectVariables: const ProjectVariables(
-              landArea: 806.24,
-              landPerimeter: 117.93,
-              excavationArea: 576.52,
-              excavationPerimeter: 102.46,
-              coreCurtainLength: 19.36,
-              curtainsExceeding1MeterLength: 15.7,
-              basementCurtainLength: 108.12,
-              columnsLess1MeterPerimeter: 9,
-              elevationTowerArea: 30,
+              landArea: 773.29,
+              landPerimeter: 116.91,
+              excavationArea: 660.41,
+              excavationPerimeter: 108.90,
+              coreCurtainLength: 21.14,
+              curtainsExceeding1MeterLength: 0,
+              basementCurtainLength: 108.90,
+              columnsLess1MeterPerimeter: 24.8,
+              elevationTowerArea: 27,
               elevationTowerHeightWithoutSlab: 3,
             ),
             floors: [
+              //berilin projesi burdan itibaren.
               ...Floor.duplicateFloors(
                 Floor(
                   no: 1,
