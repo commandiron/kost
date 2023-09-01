@@ -82,7 +82,7 @@ class QuantityDetailsBloc
                     Bathroom(area: 3.16, perimeter: 7.5),
                   ],
                 ),
-                count: 11,
+                count: 9,
               ),
               Floor(
                 no: 0,
