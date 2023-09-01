@@ -82,20 +82,20 @@ class QuantityDetailsBloc
                     Bathroom(area: 3.16, perimeter: 7.5),
                   ],
                 ),
-                11,
+                count: 11,
               ),
               Floor(
                 no: 0,
-                area: 177.15,
-                perimeter: 61.3,
+                area: 166.68,
+                perimeter: 59.6,
                 heightWithSlab: 3.3,
                 slabHeight: 0.3,
                 isSlabHollow: true,
-                thickWallLength: 66.29,
-                thinWallLength: 21.67,
+                thickWallLength: 65.71,
+                thinWallLength: 15.5,
                 windows: [
                   Window(
-                      width: 14,
+                      width: 17.4,
                       height: 2.5,
                       hasRailing: true,
                       hasWindowsill: true,
@@ -107,26 +107,32 @@ class QuantityDetailsBloc
                     area: 1.05,
                     perimeter: 5.2,
                   ),
-                  FireEscapeHall(area: 11.1, perimeter: 20.9),
-                  BuildingHall(area: 15.92, perimeter: 21.1),
-                  Stairs(area: 7.2, perimeter: 10.9),
-                  Stairs(area: 5.1, perimeter: 10.9),
+                  ElevatorShaft(area: 9.5, perimeter: 12.6),
+                  Stairs(area: 6.86, perimeter: 10.5),
+                  Stairs(area: 14.73, perimeter: 15.5),
+                  FloorHall(area: 4.65, perimeter: 9.25,),
                   ApartmentEntree(area: 0, perimeter: 0),
                   SaloonWithKitchen(
-                    area: 33.40,
-                    perimeter: 30.65,
+                    area: 28.06,
+                    perimeter: 30.95,
+                    doors: [
+                      Door.room
+                    ]
                   ),
-                  NormalRoom(area: 12.43, perimeter: 14.2),
-                  Bathroom(area: 4.26, perimeter: 8.6),
-                  Bathroom(area: 3.16, perimeter: 7.5),
+                  NormalRoom(area: 12.93, perimeter: 18.6),
+                  Bathroom(area: 4.74, perimeter: 8.75),
+                  EscapeHallBathroom(area: 3.37, perimeter: 7.35),
                   ApartmentEntree(area: 0, perimeter: 0),
                   SaloonWithKitchen(
-                    area: 33.40,
-                    perimeter: 30.65,
+                      area: 28.06,
+                      perimeter: 30.95,
+                      doors: [
+                        Door.room
+                      ]
                   ),
-                  NormalRoom(area: 12.43, perimeter: 14.2),
-                  Bathroom(area: 4.26, perimeter: 8.6),
-                  Bathroom(area: 3.16, perimeter: 7.5),
+                  NormalRoom(area: 12.93, perimeter: 18.6),
+                  Bathroom(area: 4.74, perimeter: 8.75),
+                  EscapeHallBathroom(area: 3.37, perimeter: 7.35),
                 ],
               ),
               Floor(

@@ -64,7 +64,7 @@ class Floor {
         rooms: rooms ?? this.rooms);
   }
 
-  static List<Floor> duplicateFloors(Floor floor, int count) {
+  static List<Floor> duplicateFloors(Floor floor, {required int count}) {
     if (floor.no == -3 || floor.no == -2 || floor.no == -1 || floor.no == 0) {
       throw (Exception("Basements or ground floor cannot be duplicate"));
     }
