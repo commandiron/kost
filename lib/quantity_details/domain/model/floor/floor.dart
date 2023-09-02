@@ -3,7 +3,8 @@ import 'package:kost/quantity_details/domain/model/floor/window.dart';
 
 class InitialFloor extends Floor {
   InitialFloor(
-      {super.no = 0,
+    {
+      super.no = 0,
       super.area = 0,
       super.perimeter = 0,
       super.heightWithSlab = 3.3,
@@ -12,7 +13,9 @@ class InitialFloor extends Floor {
       super.thinWallLength = 0,
       super.isSlabHollow = true,
       super.windows = const [],
-      super.rooms = const []});
+      super.rooms = const []
+    }
+  );
 }
 
 class Floor {
