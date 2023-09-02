@@ -14,7 +14,7 @@ class RoofJobsGenerator extends JobsGenerator {
   List<Job> createJobs() {
     return [
       Roofing(
-        quantityCalculationBuilder: () {
+        quantityBuilder: () {
           return _topFloor.area;
         },
         quantityExplanationBuilder: () {

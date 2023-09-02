@@ -73,7 +73,7 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
     });
     on<ChangeQuantityManually>((event, emit) {
       final quantity = event.quantityText.toNumber();
-      state.jobs.firstWhere((e) => e.id == event.jobId).quantityCalculationBuilder = (){return quantity;};
+      state.jobs.firstWhere((e) => e.id == event.jobId).quantityBuilder = (){return quantity;};
       _refreshCostTable(emit);
     });
   }
@@ -142,11 +142,11 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
         ? "$formattedFixedAmount + $formattedAmount"
         : formattedAmount;
 
-    final fixedPriceTRY = job.quantityCalculationBuilder.call() != 0
+    final fixedPriceTRY = job.quantityBuilder.call() != 0
         ? unitPrice.fixedAmount * unitPrice.currency.toLiraRate(currencyRates)
         : 0;
     final priceTRY = unitPrice.amount *
-        job.quantityCalculationBuilder.call() *
+        job.quantityBuilder.call() *
         unitPrice.currency.toLiraRate(currencyRates);
     final totalPriceTRY = fixedPriceTRY + priceTRY;
 
@@ -157,7 +157,7 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
         enabledUnitPrices: enabledUnitPrices,
         unitPriceNameText: unitPrice.nameTr,
         unitPriceAmountText: unitAmountText,
-        quantityText: job.quantityCalculationBuilder.call().toFormattedText(),
+        quantityText: job.quantityBuilder.call().toFormattedText(),
         quantityUnitText: unitPrice.unit.symbol,
         quantityExplanationText: job.quantityExplanationBuilder.call(),
         totalPriceTRY: totalPriceTRY,

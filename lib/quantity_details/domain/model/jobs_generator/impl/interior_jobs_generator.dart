@@ -21,7 +21,7 @@ class InteriorJobsGenerator extends JobsGenerator {
   List<Job> createJobs() {
     return [
       InteriorPlastering(
-        quantityCalculationBuilder: () {
+        quantityBuilder: () {
           return _totalPlasterArea;
         },
         quantityExplanationBuilder: () {
@@ -29,7 +29,7 @@ class InteriorJobsGenerator extends JobsGenerator {
         },
       ),
       InteriorPainting(
-        quantityCalculationBuilder: () {
+        quantityBuilder: () {
           return _totalPaintingArea;
         },
         quantityExplanationBuilder: () {
@@ -37,7 +37,7 @@ class InteriorJobsGenerator extends JobsGenerator {
         },
       ),
       InteriorWaterproofing(
-        quantityCalculationBuilder: () {
+        quantityBuilder: () {
           return _totalInteriorWetFloorArea;
         },
         quantityExplanationBuilder: () {
@@ -45,7 +45,7 @@ class InteriorJobsGenerator extends JobsGenerator {
         },
       ),
       CeilingCovering(
-        quantityCalculationBuilder: () {
+        quantityBuilder: () {
           return _totalDryWallArea;
         },
         quantityExplanationBuilder: () {
@@ -53,7 +53,7 @@ class InteriorJobsGenerator extends JobsGenerator {
         },
       ),
       CovingPlaster(
-        quantityCalculationBuilder: () {
+        quantityBuilder: () {
           return _totalCovingPlasterLength;
         },
         quantityExplanationBuilder: () {
@@ -61,7 +61,7 @@ class InteriorJobsGenerator extends JobsGenerator {
         },
       ),
       Screeding(
-        quantityCalculationBuilder: () {
+        quantityBuilder: () {
           return _totalScreedArea;
         },
         quantityExplanationBuilder: () {
@@ -69,7 +69,7 @@ class InteriorJobsGenerator extends JobsGenerator {
         },
       ),
       Marble(
-        quantityCalculationBuilder: () {
+        quantityBuilder: () {
           return _totalMarbleArea;
         },
         quantityExplanationBuilder: () {
@@ -77,7 +77,7 @@ class InteriorJobsGenerator extends JobsGenerator {
         },
       ),
       MarbleStep(
-        quantityCalculationBuilder: () {
+        quantityBuilder: () {
           return _totalMarbleStepLength;
         },
         quantityExplanationBuilder: () {
@@ -85,7 +85,7 @@ class InteriorJobsGenerator extends JobsGenerator {
         },
       ),
       MarbleWindowsill(
-        quantityCalculationBuilder: () {
+        quantityBuilder: () {
           return _totalWindowsillLength;
         },
         quantityExplanationBuilder: () {
@@ -93,7 +93,7 @@ class InteriorJobsGenerator extends JobsGenerator {
         },
       ),
       StairRailings(
-        quantityCalculationBuilder: () {
+        quantityBuilder: () {
           return _totalStairRailingsLength;
         },
         quantityExplanationBuilder: () {
@@ -101,7 +101,7 @@ class InteriorJobsGenerator extends JobsGenerator {
         },
       ),
       CeramicTile(
-        quantityCalculationBuilder: () {
+        quantityBuilder: () {
           return _totalCeramicFloorArea + _totalCeramicWallArea;
         },
         quantityExplanationBuilder: () {
@@ -109,7 +109,7 @@ class InteriorJobsGenerator extends JobsGenerator {
         },
       ),
       ParquetTile(
-        quantityCalculationBuilder: () {
+        quantityBuilder: () {
           return _totalParquetFloorArea;
         },
         quantityExplanationBuilder: () {
@@ -117,7 +117,7 @@ class InteriorJobsGenerator extends JobsGenerator {
         },
       ),
       SteelDoor(
-        quantityCalculationBuilder: () {
+        quantityBuilder: () {
           return _steelDoorNumber.toDouble();
         },
         quantityExplanationBuilder: () {
@@ -125,7 +125,7 @@ class InteriorJobsGenerator extends JobsGenerator {
         },
       ),
       EntranceDoor(
-        quantityCalculationBuilder: () {
+        quantityBuilder: () {
           return _buildingEntranceDoorNumber *
               projectConstants.buildingEntranceDoorArea;
         },
@@ -134,7 +134,7 @@ class InteriorJobsGenerator extends JobsGenerator {
         },
       ),
       FireDoor(
-        quantityCalculationBuilder: () {
+        quantityBuilder: () {
           return _fireDoorNumber.toDouble();
         },
         quantityExplanationBuilder: () {
@@ -142,7 +142,7 @@ class InteriorJobsGenerator extends JobsGenerator {
         },
       ),
       WoodenDoor(
-        quantityCalculationBuilder: () {
+        quantityBuilder: () {
           return _woodenDoorNumber.toDouble();
         },
         quantityExplanationBuilder: () {
@@ -150,7 +150,7 @@ class InteriorJobsGenerator extends JobsGenerator {
         },
       ),
       KitchenCupboard(
-        quantityCalculationBuilder: () {
+        quantityBuilder: () {
           return _kitchenNumber * projectConstants.kitchenLength * 2;
         },
         quantityExplanationBuilder: () {
@@ -158,7 +158,7 @@ class InteriorJobsGenerator extends JobsGenerator {
         },
       ),
       KitchenCounter(
-        quantityCalculationBuilder: () {
+        quantityBuilder: () {
           return _kitchenNumber * projectConstants.kitchenLength;
         },
         quantityExplanationBuilder: () {
@@ -166,7 +166,7 @@ class InteriorJobsGenerator extends JobsGenerator {
         },
       ),
       CoatCabinet(
-        quantityCalculationBuilder: () {
+        quantityBuilder: () {
           return _apartmentNumber * projectConstants.coatCabinetArea;
         },
         quantityExplanationBuilder: () {
@@ -174,7 +174,7 @@ class InteriorJobsGenerator extends JobsGenerator {
         },
       ),
       BathroomCabinet(
-        quantityCalculationBuilder: () {
+        quantityBuilder: () {
           return _toiletNumber * projectConstants.bathroomCabinetArea;
         },
         quantityExplanationBuilder: () {
@@ -182,7 +182,7 @@ class InteriorJobsGenerator extends JobsGenerator {
         },
       ),
       FloorPlinth(
-        quantityCalculationBuilder: () {
+        quantityBuilder: () {
           return _totalFloorPlinthLength;
         },
         quantityExplanationBuilder: () {
@@ -190,7 +190,7 @@ class InteriorJobsGenerator extends JobsGenerator {
         },
       ),
       MechanicalInfrastructure(
-        quantityCalculationBuilder: () {
+        quantityBuilder: () {
           return _apartmentNumber.toDouble();
         },
         quantityExplanationBuilder: () {
@@ -198,7 +198,7 @@ class InteriorJobsGenerator extends JobsGenerator {
         },
       ),
       AirConditioner(
-        quantityCalculationBuilder: () {
+        quantityBuilder: () {
           return _apartmentNumber *
               projectConstants.airConditionerNumberForOneApartment.toDouble();
         },
@@ -207,7 +207,7 @@ class InteriorJobsGenerator extends JobsGenerator {
         },
       ),
       Ventilation(
-        quantityCalculationBuilder: () {
+        quantityBuilder: () {
           return _basementsArea;
         },
         quantityExplanationBuilder: () {
@@ -215,7 +215,7 @@ class InteriorJobsGenerator extends JobsGenerator {
         },
       ),
       WaterTank(
-        quantityCalculationBuilder: () {
+        quantityBuilder: () {
           //BURAYA BAK!!!!!!!!!!!!!!!!
           return 1;
         },
@@ -224,7 +224,7 @@ class InteriorJobsGenerator extends JobsGenerator {
         },
       ),
       Elevation(
-        quantityCalculationBuilder: () {
+        quantityBuilder: () {
           return (_basementFloors.length + 1 + _normalFloors.length).toDouble();
         },
         quantityExplanationBuilder: () {
@@ -233,7 +233,7 @@ class InteriorJobsGenerator extends JobsGenerator {
         selectedUnitPriceCategory: UnitPriceCategory.elevation10PersonKone,
       ),
       Elevation(
-        quantityCalculationBuilder: () {
+        quantityBuilder: () {
           return (_basementFloors.length + 1 + _normalFloors.length).toDouble();
         },
         quantityExplanationBuilder: () {
@@ -242,7 +242,7 @@ class InteriorJobsGenerator extends JobsGenerator {
         selectedUnitPriceCategory: UnitPriceCategory.elevation6PersonKone,
       ),
       Sink(
-        quantityCalculationBuilder: () {
+        quantityBuilder: () {
           return _toiletNumber.toDouble();
         },
         quantityExplanationBuilder: () {
@@ -250,7 +250,7 @@ class InteriorJobsGenerator extends JobsGenerator {
         },
       ),
       SinkBattery(
-        quantityCalculationBuilder: () {
+        quantityBuilder: () {
           return _toiletNumber.toDouble();
         },
         quantityExplanationBuilder: () {
@@ -258,7 +258,7 @@ class InteriorJobsGenerator extends JobsGenerator {
         },
       ),
       ConcealedCistern(
-        quantityCalculationBuilder: () {
+        quantityBuilder: () {
           return _toiletNumber.toDouble();
         },
         quantityExplanationBuilder: () {
@@ -266,7 +266,7 @@ class InteriorJobsGenerator extends JobsGenerator {
         },
       ),
       Shower(
-        quantityCalculationBuilder: () {
+        quantityBuilder: () {
           return _bathroomNumber.toDouble();
         },
         quantityExplanationBuilder: () {
@@ -274,7 +274,7 @@ class InteriorJobsGenerator extends JobsGenerator {
         },
       ),
       ShowerBattery(
-        quantityCalculationBuilder: () {
+        quantityBuilder: () {
           return _bathroomNumber.toDouble();
         },
         quantityExplanationBuilder: () {
@@ -282,7 +282,7 @@ class InteriorJobsGenerator extends JobsGenerator {
         },
       ),
       KitchenFaucetAndSink(
-        quantityCalculationBuilder: () {
+        quantityBuilder: () {
           return _kitchenNumber.toDouble();
         },
         quantityExplanationBuilder: () {
@@ -290,7 +290,7 @@ class InteriorJobsGenerator extends JobsGenerator {
         },
       ),
       ElectricalInfrastructure(
-        quantityCalculationBuilder: () {
+        quantityBuilder: () {
           return _apartmentNumber.toDouble();
         },
         quantityExplanationBuilder: () {
@@ -298,7 +298,7 @@ class InteriorJobsGenerator extends JobsGenerator {
         },
       ),
       Generator(
-        quantityCalculationBuilder: () {
+        quantityBuilder: () {
           //BURAYA BAK !!!!!!!!!!!!!!!!!!
           return 1;
         },
@@ -307,7 +307,7 @@ class InteriorJobsGenerator extends JobsGenerator {
         },
       ),
       HouseholdAppliances(
-        quantityCalculationBuilder: () {
+        quantityBuilder: () {
           return _apartmentNumber.toDouble();
         },
         quantityExplanationBuilder: () {

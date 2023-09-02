@@ -21,7 +21,7 @@ class RoughConstructionJobsGenerator extends JobsGenerator {
   List<Job> createJobs() {
     return [
       Shoring(
-        quantityCalculationBuilder: () {
+        quantityBuilder: () {
           return projectVariables.excavationPerimeter * _excavationHeight;
         },
         quantityExplanationBuilder: () {
@@ -29,7 +29,7 @@ class RoughConstructionJobsGenerator extends JobsGenerator {
         },
       ),
       Excavation(
-        quantityCalculationBuilder: () {
+        quantityBuilder: () {
           return projectVariables.excavationArea * _excavationHeight;
         },
         quantityExplanationBuilder: () {
@@ -37,7 +37,7 @@ class RoughConstructionJobsGenerator extends JobsGenerator {
         },
       ),
       Breaker(
-        quantityCalculationBuilder: () {
+        quantityBuilder: () {
           return projectVariables.excavationArea *
               _excavationHeight *
               projectConstants.breakerHourForOneCubicMeterMediumRockExcavation;
@@ -47,7 +47,7 @@ class RoughConstructionJobsGenerator extends JobsGenerator {
         },
       ),
       FoundationStabilization(
-        quantityCalculationBuilder: () {
+        quantityBuilder: () {
           return projectVariables.excavationArea *
               projectConstants.stabilizationHeight *
               projectConstants.gravelTonForOneCubicMeter;
@@ -57,7 +57,7 @@ class RoughConstructionJobsGenerator extends JobsGenerator {
         },
       ),
       SubFoundationConcreteMaterial(
-        quantityCalculationBuilder: () {
+        quantityBuilder: () {
           return projectVariables.excavationArea *
               (projectConstants.leanConcreteHeight +
                   projectConstants.insulationConcreteHeight);
@@ -67,7 +67,7 @@ class RoughConstructionJobsGenerator extends JobsGenerator {
         },
       ),
       ReinforcedConcreteWorkmanshipWithFormWorkMaterial(
-        quantityCalculationBuilder: () {
+        quantityBuilder: () {
           return _roughConstructionArea +
               _coreCurtainAreaWithoutSlab +
               _curtainsExceeding1MeterAreaWithoutSlab +
@@ -78,7 +78,7 @@ class RoughConstructionJobsGenerator extends JobsGenerator {
         },
       ),
       ConcreteMaterial(
-        quantityCalculationBuilder: () {
+        quantityBuilder: () {
           return _formWorkArea *
               projectConstants.concreteCubicMeterForOneSquareMeterFormWork;
         },
@@ -87,7 +87,7 @@ class RoughConstructionJobsGenerator extends JobsGenerator {
         },
       ),
       RebarMaterial(
-        quantityCalculationBuilder: () {
+        quantityBuilder: () {
           return _concreteVolume * projectConstants.rebarTonForOneCubicMeterConcrete;
         },
         quantityExplanationBuilder: () {
@@ -95,7 +95,7 @@ class RoughConstructionJobsGenerator extends JobsGenerator {
         },
       ),
       HollowFloorFillingMaterial(
-        quantityCalculationBuilder: () {
+        quantityBuilder: () {
           return projectConstants.hollowAreaForOneSquareMeterConstructionArea *
               _hollowSlabRoughConstructionArea *
               projectConstants.hollowFillingThickness;
@@ -105,7 +105,7 @@ class RoughConstructionJobsGenerator extends JobsGenerator {
         },
       ),
       FoundationWaterproofing(
-        quantityCalculationBuilder: () {
+        quantityBuilder: () {
           return _bottomMostBasementFloor.area +
               (_bottomMostBasementFloor.perimeter *
                   projectConstants.foundationHeight);
@@ -115,7 +115,7 @@ class RoughConstructionJobsGenerator extends JobsGenerator {
         },
       ),
       CurtainWaterproofing(
-        quantityCalculationBuilder: () {
+        quantityBuilder: () {
           return _basementsOuterCurtainArea + _wetAreaAboveBasement;
         },
         quantityExplanationBuilder: () {
@@ -123,7 +123,7 @@ class RoughConstructionJobsGenerator extends JobsGenerator {
         },
       ),
       CurtainProtectionBeforeFilling(
-        quantityCalculationBuilder: () {
+        quantityBuilder: () {
           return _basementsOuterCurtainArea;
         },
         quantityExplanationBuilder: () {
@@ -131,7 +131,7 @@ class RoughConstructionJobsGenerator extends JobsGenerator {
         },
       ),
       Wall(
-        quantityCalculationBuilder: () {
+        quantityBuilder: () {
           return _thickWallVolume + _thinWallVolume;
         },
         quantityExplanationBuilder: () {
@@ -139,7 +139,7 @@ class RoughConstructionJobsGenerator extends JobsGenerator {
         },
       ),
       WallWorkmanShip(
-        quantityCalculationBuilder: () {
+        quantityBuilder: () {
           return _thickWallArea + _thinWallArea;
         },
         quantityExplanationBuilder: () {

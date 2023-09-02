@@ -20,7 +20,7 @@ class GeneralExpensesJobsGenerator extends JobsGenerator {
   List<Job> createJobs() {
     return [
       EnclosingTheLand(
-        quantityCalculationBuilder: () {
+        quantityBuilder: () {
           return projectVariables.landPerimeter;
         },
         quantityExplanationBuilder: () {
@@ -28,7 +28,7 @@ class GeneralExpensesJobsGenerator extends JobsGenerator {
         },
       ),
       MobilizationDemobilization(
-        quantityCalculationBuilder: () {
+        quantityBuilder: () {
           //BURAYA BAK!!!!!!!!!!!!!!!!!!
           return 1;
         },
@@ -37,7 +37,7 @@ class GeneralExpensesJobsGenerator extends JobsGenerator {
         },
       ),
       Crane(
-        quantityCalculationBuilder: () {
+        quantityBuilder: () {
           return _roughConstructionArea *
               projectConstants.craneHourForOneSquareMeterRoughConstructionArea;
         },
@@ -46,7 +46,7 @@ class GeneralExpensesJobsGenerator extends JobsGenerator {
         },
       ),
       SiteSafety(
-        quantityCalculationBuilder: () {
+        quantityBuilder: () {
           return projectConstants.projectDurationMonth;
         },
         quantityExplanationBuilder: () {
@@ -54,7 +54,7 @@ class GeneralExpensesJobsGenerator extends JobsGenerator {
         },
       ),
       SiteExpenses(
-        quantityCalculationBuilder: () {
+        quantityBuilder: () {
           return projectConstants.projectDurationMonth;
         },
         quantityExplanationBuilder: () {
@@ -62,7 +62,7 @@ class GeneralExpensesJobsGenerator extends JobsGenerator {
         },
       ),
       Sergeant(
-        quantityCalculationBuilder: () {
+        quantityBuilder: () {
           return projectConstants.projectDurationMonth;
         },
         quantityExplanationBuilder: () {
@@ -70,7 +70,7 @@ class GeneralExpensesJobsGenerator extends JobsGenerator {
         },
       ),
       SiteChief(
-        quantityCalculationBuilder: () {
+        quantityBuilder: () {
           return projectConstants.projectDurationMonth;
         },
         quantityExplanationBuilder: () {
@@ -78,7 +78,7 @@ class GeneralExpensesJobsGenerator extends JobsGenerator {
         },
       ),
       ProjectsFeesPayments(
-        quantityCalculationBuilder: () {
+        quantityBuilder: () {
           return 1;
         },
         quantityExplanationBuilder: () {

@@ -20,7 +20,7 @@ class LandscapeJobsGenerator extends JobsGenerator {
   List<Job> createJobs() {
     return [
       LandScapeGarden(
-        quantityCalculationBuilder: () {
+        quantityBuilder: () {
           return (projectVariables.landArea - _groundFloor.area) *
               projectConstants.gardenOutdoorParkingAreaRate;
         },
@@ -29,7 +29,7 @@ class LandscapeJobsGenerator extends JobsGenerator {
         },
       ),
       OutdoorParkingTile(
-        quantityCalculationBuilder: () {
+        quantityBuilder: () {
           return (projectVariables.landArea - _groundFloor.area) *
               (1 - projectConstants.gardenOutdoorParkingAreaRate);
         },
@@ -38,7 +38,7 @@ class LandscapeJobsGenerator extends JobsGenerator {
         },
       ),
       CarLift(
-        quantityCalculationBuilder: () {
+        quantityBuilder: () {
           return _basementFloors.length + 1;
         },
         quantityExplanationBuilder: () {
@@ -46,7 +46,7 @@ class LandscapeJobsGenerator extends JobsGenerator {
         },
       ),
       AutomaticBarrier(
-        quantityCalculationBuilder: () {
+        quantityBuilder: () {
           return projectConstants.automaticBarrierNumber.toDouble();
         },
         quantityExplanationBuilder: () {

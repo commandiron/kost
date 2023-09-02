@@ -14,7 +14,7 @@ class FacadeJobsGenerator extends JobsGenerator {
   List<Job> createJobs() {
     return [
       FacadeScaffolding(
-        quantityCalculationBuilder: () {
+        quantityBuilder: () {
           return _totalFacadeArea;
         },
         quantityExplanationBuilder: () {
@@ -22,7 +22,7 @@ class FacadeJobsGenerator extends JobsGenerator {
         },
       ),
       Windows(
-        quantityCalculationBuilder: () {
+        quantityBuilder: () {
           return _totalWindowArea;
         },
         quantityExplanationBuilder: () {
@@ -30,7 +30,7 @@ class FacadeJobsGenerator extends JobsGenerator {
         },
       ),
       FacadeRails(
-        quantityCalculationBuilder: () {
+        quantityBuilder: () {
           return _totalFacadeRailingLength;
         },
         quantityExplanationBuilder: () {
@@ -38,7 +38,7 @@ class FacadeJobsGenerator extends JobsGenerator {
         },
       ),
       FacadeSystem(
-        quantityCalculationBuilder: () {
+        quantityBuilder: () {
           return _totalFacadeArea;
         },
         quantityExplanationBuilder: () {
