@@ -20,7 +20,7 @@ class RoughConstructionJobsGenerator extends JobsGenerator {
   @override
   List<Job> createJobs() {
     return [
-      Shoring(
+      Shoring( //✓
         quantityBuilder: () {
           return projectVariables.excavationPerimeter * _excavationHeight;
         },
@@ -28,7 +28,7 @@ class RoughConstructionJobsGenerator extends JobsGenerator {
           return "Hafriyat çevre uzunluğu: ${projectVariables.excavationPerimeter} x Hafriyat yüksekliği: $_excavationHeight";
         },
       ),
-      Excavation(
+      Excavation( //✓
         quantityBuilder: () {
           return projectVariables.excavationArea * _excavationHeight;
         },
@@ -36,14 +36,12 @@ class RoughConstructionJobsGenerator extends JobsGenerator {
           return "Hafriyat alanı: ${projectVariables.excavationArea} x Hafriyat yüksekliği: $_excavationHeight";
         },
       ),
-      Breaker(
+      Breaker( //✓
         quantityBuilder: () {
-          return projectVariables.excavationArea *
-              _excavationHeight *
-              projectConstants.breakerHourForOneCubicMeterMediumRockExcavation;
+          return _excavationVolume * projectConstants.excavationAreaRockDensityConstant.breakerHourForOneCubicMeterExcavation;
         },
         quantityExplanationBuilder: () {
-          return "Hafriyat alanı: ${projectVariables.excavationArea} x Hafriyat yüksekliği: $_excavationHeight x Bir m3 orta sertlikte kaya içeren hafriyat için kırıcı çalışma süresi: ${projectConstants.breakerHourForOneCubicMeterMediumRockExcavation}";
+          return "Hafriyat hacmi: $_excavationVolume x Bir m3 hafriyat hacmi için kırıcı çalışma saati: ${projectConstants.excavationAreaRockDensityConstant.breakerHourForOneCubicMeterExcavation}";
         },
       ),
       FoundationStabilization(
@@ -130,6 +128,11 @@ class RoughConstructionJobsGenerator extends JobsGenerator {
           return "Bodrum dış perdesi ıslak alanı: $_basementsOuterCurtainArea";
         },
       ),
+      // Duvar metrajı hesaplanırken hiç bir şekilde minha yapmıyorum,
+      // proje üzerinden kapıların düşülmediğini, pencere lento üstü
+      // duvarlarında eklenmediğini kabul ediyorum.
+      // Bu şekilde tam olarak doğru olmasa da, gerçeğe yakın olarak
+      // kabul ediyorum.
       Wall(
         quantityBuilder: () {
           return _thickWallVolume + _thinWallVolume;
@@ -164,8 +167,8 @@ class RoughConstructionJobsGenerator extends JobsGenerator {
     return groundFloor;
   }
 
-  List<Floor> get _basementFloors {
-    final basementFloors = floors.where((element) => element.no < 0).toList();
+  List<Floor> get _basementFloors { //✓
+    final basementFloors = floors.where((floor) => floor.no < 0).toList();
     if (basementFloors.isEmpty) {
       throw Exception("No basement floor");
     }
@@ -186,7 +189,7 @@ class RoughConstructionJobsGenerator extends JobsGenerator {
     return bottomMostBasementFloor;
   }
 
-  double get _excavationHeight {
+  double get _excavationHeight { //✓
     return projectConstants.stabilizationHeight +
         projectConstants.leanConcreteHeight +
         projectConstants.insulationConcreteHeight +
@@ -194,7 +197,11 @@ class RoughConstructionJobsGenerator extends JobsGenerator {
         _basementsHeight;
   }
 
-  double get _basementsHeight {
+  double get _excavationVolume {
+    return projectVariables.excavationArea * _excavationHeight;
+  }
+
+  double get _basementsHeight { //✓
     return _basementFloors
         .map((floor) => floor.heightWithSlab)
         .fold(0.0, (p, c) => p + c);

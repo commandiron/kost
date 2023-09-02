@@ -7,7 +7,7 @@ class ProjectConstants extends Equatable {
   final double leanConcreteHeight;
   final double stabilizationHeight;
   final double hollowFillingThickness;
-  final double breakerHourForOneCubicMeterMediumRockExcavation;
+  final ExcavationAreaRockDensityConstant excavationAreaRockDensityConstant;
   final double gravelTonForOneCubicMeter;
   final double concreteCubicMeterForOneSquareMeterFormWork;
   final double rebarTonForOneCubicMeterConcrete;
@@ -33,7 +33,7 @@ class ProjectConstants extends Equatable {
     this.leanConcreteHeight = 0.10,
     this.stabilizationHeight = 0.30,
     this.hollowFillingThickness = 0.2,
-    this.breakerHourForOneCubicMeterMediumRockExcavation = 0.0436,
+    this.excavationAreaRockDensityConstant = ExcavationAreaRockDensityConstant.medium,
     this.gravelTonForOneCubicMeter = 1.8,
     this.concreteCubicMeterForOneSquareMeterFormWork = 0.35,
     this.rebarTonForOneCubicMeterConcrete = 0.16,
@@ -55,29 +55,38 @@ class ProjectConstants extends Equatable {
 
   @override
   List<Object?> get props => [
-        projectDurationMonth,
-        foundationHeight,
-        insulationConcreteHeight,
-        leanConcreteHeight,
-        stabilizationHeight,
-        hollowFillingThickness,
-        breakerHourForOneCubicMeterMediumRockExcavation,
-        gravelTonForOneCubicMeter,
-        concreteCubicMeterForOneSquareMeterFormWork,
-        rebarTonForOneCubicMeterConcrete,
-        hollowAreaForOneSquareMeterConstructionArea,
-        thickWallThickness,
-        thinWallThickness,
-        stairRiserHeight,
-        stairTreadDepth,
-        stairLength,
-        buildingEntranceDoorArea,
-        airConditionerNumberForOneApartment,
-        bathroomCabinetArea,
-        kitchenLength,
-        coatCabinetArea,
-        gardenOutdoorParkingAreaRate,
-        automaticBarrierNumber,
-        craneHourForOneSquareMeterRoughConstructionArea,
-      ];
+    projectDurationMonth,
+    foundationHeight,
+    insulationConcreteHeight,
+    leanConcreteHeight,
+    stabilizationHeight,
+    hollowFillingThickness,
+    excavationAreaRockDensityConstant,
+    gravelTonForOneCubicMeter,
+    concreteCubicMeterForOneSquareMeterFormWork,
+    rebarTonForOneCubicMeterConcrete,
+    hollowAreaForOneSquareMeterConstructionArea,
+    thickWallThickness,
+    thinWallThickness,
+    stairRiserHeight,
+    stairTreadDepth,
+    stairLength,
+    buildingEntranceDoorArea,
+    airConditionerNumberForOneApartment,
+    bathroomCabinetArea,
+    kitchenLength,
+    coatCabinetArea,
+    gardenOutdoorParkingAreaRate,
+    automaticBarrierNumber,
+    craneHourForOneSquareMeterRoughConstructionArea,
+  ];
+}
+
+enum ExcavationAreaRockDensityConstant {
+  zero(0.0),
+  low(0.02),
+  medium(0.0436),
+  hard(0.08);
+  const ExcavationAreaRockDensityConstant(this.breakerHourForOneCubicMeterExcavation);
+  final double breakerHourForOneCubicMeterExcavation;
 }

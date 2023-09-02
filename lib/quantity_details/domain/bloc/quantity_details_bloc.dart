@@ -22,10 +22,10 @@ class QuantityDetailsBloc
             snackBarMessage: "",
             projectConstants: const ProjectConstants(),
             projectVariables: const ProjectVariables(
-              landArea: 773.29,
-              landPerimeter: 116.91,
-              excavationArea: 660.41,
-              excavationPerimeter: 108.90,
+              landArea: 773.29, //✓
+              landPerimeter: 116.91, //✓
+              excavationArea: 660.41, //✓
+              excavationPerimeter: 108.90, //✓
               coreCurtainLength: 21.14,
               curtainsExceeding1MeterLength: 0,
               basementCurtainLength: 108.90,
