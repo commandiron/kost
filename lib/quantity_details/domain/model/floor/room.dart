@@ -40,24 +40,8 @@ enum CeilingMaterial {
 
 enum Door {
   buildingEntrance,
-  apartmentEntrance,
   room,
   fire,
-}
-
-class ApartmentEntree extends Room {
-  ApartmentEntree({
-    required super.area,
-    required super.perimeter,
-    super.floorMaterial = FloorMaterial.ceramic,
-    super.wallMaterial = WallMaterial.painting,
-    super.ceilingMaterial = CeilingMaterial.drywall,
-    super.hasCovingPlaster = true,
-    super.hasFloorPlinth = true,
-    super.hasScreed = true,
-    super.isFloorWet = false,
-    super.doors = const [Door.apartmentEntrance],
-  });
 }
 
 class Saloon extends Room {

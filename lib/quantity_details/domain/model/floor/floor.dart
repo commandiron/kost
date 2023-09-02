@@ -1,5 +1,6 @@
-import 'package:kost/quantity_details/domain/model/floor/room.dart';
 import 'package:kost/quantity_details/domain/model/floor/window.dart';
+
+import 'floor_section.dart';
 
 class InitialFloor extends Floor {
   InitialFloor(
@@ -13,7 +14,7 @@ class InitialFloor extends Floor {
       super.thinWallLength = 0,
       super.isSlabHollow = true,
       super.windows = const [],
-      super.rooms = const []
+      super.floorSections = const []
     }
   );
 }
@@ -28,7 +29,8 @@ class Floor {
   final double thickWallLength;
   final double thinWallLength;
   final List<Window> windows;
-  final List<Room> rooms;
+  final List<FloorSection> floorSections;
+
 
   Floor(
       {required this.no,
@@ -40,7 +42,7 @@ class Floor {
       required this.thickWallLength,
       required this.thinWallLength,
       required this.windows,
-      required this.rooms});
+      required this.floorSections});
 
   Floor copyWith({
     int? no,
@@ -52,19 +54,20 @@ class Floor {
     final double? thickWallLength,
     final double? thinWallLength,
     final List<Window>? windows,
-    final List<Room>? rooms,
+    final List<FloorSection>? floorSections,
   }) {
     return Floor(
-        no: no ?? this.no,
-        area: area ?? this.area,
-        perimeter: perimeter ?? this.perimeter,
-        heightWithSlab: heightWithSlab ?? this.heightWithSlab,
-        slabHeight: slabHeight ?? this.slabHeight,
-        isSlabHollow: isSlabHollow ?? this.isSlabHollow,
-        thickWallLength: thickWallLength ?? this.thickWallLength,
-        thinWallLength: thinWallLength ?? this.thinWallLength,
-        windows: windows ?? this.windows,
-        rooms: rooms ?? this.rooms);
+      no: no ?? this.no,
+      area: area ?? this.area,
+      perimeter: perimeter ?? this.perimeter,
+      heightWithSlab: heightWithSlab ?? this.heightWithSlab,
+      slabHeight: slabHeight ?? this.slabHeight,
+      isSlabHollow: isSlabHollow ?? this.isSlabHollow,
+      thickWallLength: thickWallLength ?? this.thickWallLength,
+      thinWallLength: thinWallLength ?? this.thinWallLength,
+      windows: windows ?? this.windows,
+      floorSections: floorSections ?? this.floorSections
+    );
   }
 
   static List<Floor> duplicateFloors(Floor floor, {required int count}) {
@@ -84,7 +87,7 @@ class Floor {
         thickWallLength: floor.thickWallLength,
         thinWallLength: floor.thinWallLength,
         windows: floor.windows,
-        rooms: floor.rooms,
+        floorSections: floor.floorSections
       ));
     }
     return duplicatedFloors;

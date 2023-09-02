@@ -4,6 +4,7 @@ import 'package:kost/common/bloc/bloc_state.dart';
 import 'package:kost/cost_table/presentation/cost_table_screen.dart';
 import 'package:kost/quantity_details/domain/bloc/quantity_details_event.dart';
 import 'package:kost/quantity_details/domain/bloc/quantity_details_state.dart';
+import 'package:kost/quantity_details/domain/model/floor/floor_section.dart';
 import 'package:kost/quantity_details/domain/model/jobs_generator/impl/apartment_jobs_generator.dart';
 
 import '../model/floor/floor.dart';
@@ -51,33 +52,41 @@ class QuantityDetailsBloc
                         hasWindowsill: true,
                         count: 1),
                   ],
-                  rooms: [
-                    ElevatorShaft(area: 9.5, perimeter: 12.6),
-                    Stairs(area: 6.86, perimeter: 10.5),
-                    Stairs(area: 14.73, perimeter: 15.5),
-                    FloorHall(area: 4.65, perimeter: 9.25,),
-
-                    ApartmentEntree(area: 0, perimeter: 0),
-                    Hall(area: 10.66, perimeter: 20.65),
-                    Saloon(area: 27.36, perimeter: 23.20),
-                    Kitchen(area: 7.58, perimeter: 11.55),
-                    NormalRoom(area: 7.45, perimeter: 10.95),
-                    NormalRoom(area: 7.96, perimeter: 11.85),
-                    NormalRoom(area: 12.11, perimeter: 15.15),
-                    Bathroom(area: 4.87, perimeter: 9.05),
-                    EscapeHallBathroom(area: 3.08, perimeter: 7.05),
-                    Balcony(area: 2.53, perimeter: 6.40),
-
-                    ApartmentEntree(area: 0, perimeter: 0),
-                    Hall(area: 10.66, perimeter: 20.65),
-                    Saloon(area: 27.36, perimeter: 23.20),
-                    Kitchen(area: 7.58, perimeter: 11.55),
-                    NormalRoom(area: 7.45, perimeter: 10.95),
-                    NormalRoom(area: 7.96, perimeter: 11.85),
-                    NormalRoom(area: 12.11, perimeter: 15.15),
-                    Bathroom(area: 4.87, perimeter: 9.05),
-                    EscapeHallBathroom(area: 3.08, perimeter: 7.05),
-                    Balcony(area: 2.53, perimeter: 6.40),
+                  floorSections: [
+                    CommonArea(
+                      rooms: [
+                        ElevatorShaft(area: 9.5, perimeter: 12.6),
+                        Stairs(area: 6.86, perimeter: 10.5),
+                        Stairs(area: 14.73, perimeter: 15.5),
+                        FloorHall(area: 4.65, perimeter: 9.25,),
+                      ]
+                    ),
+                    Apartment(
+                      rooms: [
+                        Hall(area: 10.66, perimeter: 20.65),
+                        Saloon(area: 27.36, perimeter: 23.20),
+                        Kitchen(area: 7.58, perimeter: 11.55),
+                        NormalRoom(area: 7.45, perimeter: 10.95),
+                        NormalRoom(area: 7.96, perimeter: 11.85),
+                        NormalRoom(area: 12.11, perimeter: 15.15),
+                        Bathroom(area: 4.87, perimeter: 9.05),
+                        EscapeHallBathroom(area: 3.08, perimeter: 7.05),
+                        Balcony(area: 2.53, perimeter: 6.40),
+                      ]
+                    ),
+                    Apartment(
+                      rooms: [
+                        Hall(area: 10.66, perimeter: 20.65),
+                        Saloon(area: 27.36, perimeter: 23.20),
+                        Kitchen(area: 7.58, perimeter: 11.55),
+                        NormalRoom(area: 7.45, perimeter: 10.95),
+                        NormalRoom(area: 7.96, perimeter: 11.85),
+                        NormalRoom(area: 12.11, perimeter: 15.15),
+                        Bathroom(area: 4.87, perimeter: 9.05),
+                        EscapeHallBathroom(area: 3.08, perimeter: 7.05),
+                        Balcony(area: 2.53, perimeter: 6.40),
+                      ]
+                    )
                   ],
                 ),
                 count: 9,
@@ -99,23 +108,31 @@ class QuantityDetailsBloc
                       hasWindowsill: true,
                       count: 1),
                 ],
-                rooms: [
-                  ElevatorShaft(area: 9.5, perimeter: 12.6),
-                  Stairs(area: 6.86, perimeter: 10.5),
-                  Stairs(area: 14.73, perimeter: 15.5),
-                  FloorHall(area: 4.65, perimeter: 9.25,),
-
-                  ApartmentEntree(area: 0, perimeter: 0),
-                  SaloonWithKitchen(area: 28.06, perimeter: 30.95,),
-                  NormalRoom(area: 12.93, perimeter: 18.6),
-                  Bathroom(area: 4.74, perimeter: 8.75),
-                  EscapeHallBathroom(area: 3.37, perimeter: 7.35),
-
-                  ApartmentEntree(area: 0, perimeter: 0),
-                  SaloonWithKitchen(area: 28.06, perimeter: 30.95,),
-                  NormalRoom(area: 12.93, perimeter: 18.6),
-                  Bathroom(area: 4.74, perimeter: 8.75),
-                  EscapeHallBathroom(area: 3.37, perimeter: 7.35),
+                floorSections: [
+                  CommonArea(
+                    rooms: [
+                      ElevatorShaft(area: 9.5, perimeter: 12.6),
+                      Stairs(area: 6.86, perimeter: 10.5),
+                      Stairs(area: 14.73, perimeter: 15.5),
+                      FloorHall(area: 4.65, perimeter: 9.25,),
+                    ]
+                  ),
+                  Apartment(
+                    rooms: [
+                      SaloonWithKitchen(area: 28.06, perimeter: 30.95,),
+                      NormalRoom(area: 12.93, perimeter: 18.6),
+                      Bathroom(area: 4.74, perimeter: 8.75),
+                      EscapeHallBathroom(area: 3.37, perimeter: 7.35),
+                    ]
+                  ),
+                  Apartment(
+                    rooms: [
+                      SaloonWithKitchen(area: 28.06, perimeter: 30.95,),
+                      NormalRoom(area: 12.93, perimeter: 18.6),
+                      Bathroom(area: 4.74, perimeter: 8.75),
+                      EscapeHallBathroom(area: 3.37, perimeter: 7.35),
+                    ]
+                  )
                 ],
               ),
               Floor(
@@ -128,17 +145,21 @@ class QuantityDetailsBloc
                 thickWallLength: 50,
                 thinWallLength: 0,
                 windows: [],
-                rooms: [
-                  ElevatorShaft(area: 9.5, perimeter: 12.6),
-                  Stairs(area: 6.86, perimeter: 10.5),
-                  Stairs(area: 14.73, perimeter: 15.5),
-                  FloorHall(area: 4.65, perimeter: 9.25, doors: [Door.fire]),
-                  FireEscapeHall(area: 3.08, perimeter: 7.05),
-                  ParkingArea(area: 500, perimeter: 120),
-                  TechnicalArea(area: 7.10, perimeter: 10.7),
-                  TechnicalArea(area: 7.25, perimeter: 10.8),
-                  TechnicalArea(area: 17, perimeter: 16.6),
-                  TechnicalArea(area: 52.6, perimeter: 33.6),
+                floorSections: [
+                  CommonArea(
+                    rooms: [
+                      ElevatorShaft(area: 9.5, perimeter: 12.6),
+                      Stairs(area: 6.86, perimeter: 10.5),
+                      Stairs(area: 14.73, perimeter: 15.5),
+                      FloorHall(area: 4.65, perimeter: 9.25, doors: [Door.fire]),
+                      FireEscapeHall(area: 3.08, perimeter: 7.05),
+                      ParkingArea(area: 500, perimeter: 120),
+                      TechnicalArea(area: 7.10, perimeter: 10.7),
+                      TechnicalArea(area: 7.25, perimeter: 10.8),
+                      TechnicalArea(area: 17, perimeter: 16.6),
+                      TechnicalArea(area: 52.6, perimeter: 33.6),
+                    ]
+                  )
                 ],
               ),
             ],
