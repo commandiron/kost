@@ -200,6 +200,23 @@ class Balcony extends Room {
   });
 }
 
+class ApartmentFloorHall extends Room {
+  ApartmentFloorHall({
+    required super.area,
+    required super.perimeter,
+    super.floorMaterial = FloorMaterial.marble,
+    super.wallMaterial = WallMaterial.painting,
+    super.ceilingMaterial = CeilingMaterial.drywall,
+    super.hasCovingPlaster = false,
+    super.hasFloorPlinth = false,
+    super.hasScreed = false,
+    super.isFloorWet = false,
+    super.doors = const [
+      Door.buildingEntrance
+    ],
+  });
+}
+
 class FloorHall extends Room {
   FloorHall({
     required super.area,

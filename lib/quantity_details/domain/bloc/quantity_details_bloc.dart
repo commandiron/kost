@@ -114,7 +114,7 @@ class QuantityDetailsBloc
                       ElevatorShaft(area: 9.5, perimeter: 12.6),
                       Stairs(area: 6.86, perimeter: 10.5),
                       Stairs(area: 14.73, perimeter: 15.5),
-                      FloorHall(area: 4.65, perimeter: 9.25,),
+                      ApartmentFloorHall(area: 4.65, perimeter: 9.25,),
                     ]
                   ),
                   Apartment(
