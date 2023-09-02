@@ -44,7 +44,7 @@ class RoughConstructionJobsGenerator extends JobsGenerator {
           return "Hafriyat hacmi: $_excavationVolume x Bir m3 hafriyat hacmi için kırıcı çalışma saati: ${projectConstants.excavationAreaRockDensityConstant.breakerHourForOneCubicMeterExcavation}";
         },
       ),
-      FoundationStabilization(
+      FoundationStabilization( //KONTROL ETMEYE BURDA KALDIM
         quantityBuilder: () {
           return projectVariables.excavationArea *
               projectConstants.stabilizationHeight *
