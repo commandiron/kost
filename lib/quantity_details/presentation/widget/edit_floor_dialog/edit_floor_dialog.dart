@@ -24,7 +24,14 @@ class EditFloorDialog extends StatefulWidget {
 
 class _EditFloorDialogState extends State<EditFloorDialog> {
   final _formKey = GlobalKey<FormState>();
-  Floor? _submittedFloor;
+  bool _isAnyChange = false;
+  late Floor _submittedFloor;
+
+  @override
+  void initState() {
+    _submittedFloor = widget.floor;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -68,7 +75,11 @@ class _EditFloorDialogState extends State<EditFloorDialog> {
             )),
         ElevatedButton(
             onPressed: () {
-              widget.onSubmit(_submittedFloor);
+              if(_isAnyChange) {
+                widget.onSubmit(_submittedFloor);
+              } else {
+                widget.onSubmit(null);
+              }
             },
             child: Text(
               "Onayla",
@@ -87,8 +98,8 @@ class _EditFloorDialogState extends State<EditFloorDialog> {
                 symbol: "m²",
                 onChanged: (String value) {
                   if (_formKey.currentState!.validate()) {
-                    _submittedFloor =
-                        widget.floor.copyWith(area: value.toNumber());
+                    _isAnyChange = true;
+                    _submittedFloor = _submittedFloor.copyWith(area: value.toNumber());
                   }
                 },
               ),
@@ -98,8 +109,8 @@ class _EditFloorDialogState extends State<EditFloorDialog> {
                 symbol: "m",
                 onChanged: (String value) {
                   if (_formKey.currentState!.validate()) {
-                    _submittedFloor =
-                        widget.floor.copyWith(perimeter: value.toNumber());
+                    _isAnyChange = true;
+                    _submittedFloor = _submittedFloor.copyWith(perimeter: value.toNumber());
                   }
                 },
               ),
@@ -110,8 +121,8 @@ class _EditFloorDialogState extends State<EditFloorDialog> {
                   symbol: "m",
                   onChanged: (String value) {
                     if (_formKey.currentState!.validate()) {
-                      _submittedFloor = widget.floor
-                          .copyWith(heightWithSlab: value.toNumber());
+                      _isAnyChange = true;
+                      _submittedFloor = _submittedFloor.copyWith(heightWithSlab: value.toNumber());
                     }
                   }),
               FloorAttrTextField(
@@ -120,15 +131,16 @@ class _EditFloorDialogState extends State<EditFloorDialog> {
                   symbol: "m",
                   onChanged: (String value) {
                     if (_formKey.currentState!.validate()) {
-                      _submittedFloor =
-                          widget.floor.copyWith(slabHeight: value.toNumber());
+                      _isAnyChange = true;
+                      _submittedFloor = _submittedFloor.copyWith(slabHeight: value.toNumber());
                     }
                   }),
               FloorAttrCheckBox(
                 title: "Döşeme tipi Asmolen:",
                 value: widget.floor.isSlabHollow,
                 onChanged: (value) {
-                  _submittedFloor = widget.floor.copyWith(isSlabHollow: value);
+                  _isAnyChange = true;
+                  _submittedFloor = _submittedFloor.copyWith(isSlabHollow: value);
                 },
               ),
               FloorAttrTextField(
@@ -138,8 +150,9 @@ class _EditFloorDialogState extends State<EditFloorDialog> {
                   symbol: "m",
                   onChanged: (String value) {
                     if (_formKey.currentState!.validate()) {
-                      _submittedFloor = widget.floor
-                          .copyWith(thickWallLength: value.toNumber());
+                      _isAnyChange = true;
+                      print("1");
+                      _submittedFloor = _submittedFloor.copyWith(thickWallLength: value.toNumber());
                     }
                   }),
               FloorAttrTextField(
@@ -149,8 +162,8 @@ class _EditFloorDialogState extends State<EditFloorDialog> {
                   symbol: "m",
                   onChanged: (String value) {
                     if (_formKey.currentState!.validate()) {
-                      _submittedFloor = widget.floor
-                          .copyWith(thinWallLength: value.toNumber());
+                      _isAnyChange = true;
+                      _submittedFloor = _submittedFloor.copyWith(thinWallLength: value.toNumber());
                     }
                   }),
             ],
