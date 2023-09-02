@@ -1,30 +1,30 @@
 import 'package:equatable/equatable.dart';
 
 class ProjectConstants extends Equatable {
-  final double projectDurationMonth;
-  final double foundationHeight;
-  final double insulationConcreteHeight;
-  final double leanConcreteHeight;
-  final double stabilizationHeight;
-  final double hollowFillingThickness;
-  final ExcavationAreaRockDensityConstant excavationAreaRockDensityConstant;
-  final double gravelTonForOneCubicMeter;
-  final double concreteCubicMeterForOneSquareMeterFormWork;
-  final double rebarTonForOneCubicMeterConcrete;
-  final double hollowAreaForOneSquareMeterConstructionArea;
-  final double thickWallThickness;
-  final double thinWallThickness;
-  final double stairRiserHeight;
-  final double stairTreadDepth;
-  final double stairLength;
-  final double buildingEntranceDoorArea;
-  final int airConditionerNumberForOneApartment;
-  final double bathroomCabinetArea;
-  final double kitchenLength;
-  final double coatCabinetArea;
-  final double gardenOutdoorParkingAreaRate;
-  final int automaticBarrierNumber;
-  final double craneHourForOneSquareMeterRoughConstructionArea;
+  final double projectDurationMonth; //✓
+  final double foundationHeight; //✓
+  final double insulationConcreteHeight; //✓
+  final double leanConcreteHeight; //✓
+  final double stabilizationHeight; //✓
+  final double hollowFillingThickness; //✓
+  final ExcavationAreaRockDensityConstant excavationAreaRockDensityConstant; //✓
+  final double gravelTonForOneCubicMeter; //✓
+  final double concreteCubicMeterForOneSquareMeterFormWork; //✓
+  final double rebarTonForOneCubicMeterConcrete; //✓
+  final double hollowAreaForOneSquareMeterConstructionArea; //✓
+  final double thickWallThickness; //✓
+  final double thinWallThickness; //✓
+  final double stairRiserHeight; //✓
+  final double stairTreadDepth; //✓
+  final double stairLength; //✓
+  final double buildingEntranceDoorArea; //✓
+  final int airConditionerNumberForOneApartment; //✓
+  final double bathroomCabinetArea; //✓
+  final double kitchenLength; //✓
+  final double coatCabinetArea; //✓
+  final double gardenOutdoorParkingAreaRate; //✓
+  final int automaticBarrierNumber; //✓
+  final double craneHourForOneSquareMeterRoughConstructionArea; //✓
 
   const ProjectConstants({
     this.projectDurationMonth = 14,
@@ -46,8 +46,8 @@ class ProjectConstants extends Equatable {
     this.buildingEntranceDoorArea = 6,
     this.airConditionerNumberForOneApartment = 2,
     this.bathroomCabinetArea = 1,
-    this.kitchenLength = 5,
-    this.coatCabinetArea = 5,
+    this.kitchenLength = 6,
+    this.coatCabinetArea = 4,
     this.gardenOutdoorParkingAreaRate = 0.50,
     this.automaticBarrierNumber = 1,
     this.craneHourForOneSquareMeterRoughConstructionArea = 0.02,
