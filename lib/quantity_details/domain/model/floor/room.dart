@@ -1,3 +1,23 @@
+enum FloorMaterial { none, parquet, ceramic, marble, marbleStep, epoxy }
+
+enum WallMaterial {
+  none,
+  painting,
+  ceramic,
+}
+
+enum CeilingMaterial {
+  none,
+  plaster,
+  drywall,
+}
+
+enum Door {
+  buildingEntrance,
+  room,
+  fire,
+}
+
 abstract class Room {
   final double area;
   final double perimeter;
@@ -22,26 +42,6 @@ abstract class Room {
     required this.isFloorWet,
     required this.doors,
   });
-}
-
-enum FloorMaterial { none, parquet, ceramic, marble, marbleStep, epoxy }
-
-enum WallMaterial {
-  none,
-  painting,
-  ceramic,
-}
-
-enum CeilingMaterial {
-  none,
-  plaster,
-  drywall,
-}
-
-enum Door {
-  buildingEntrance,
-  room,
-  fire,
 }
 
 class Saloon extends Room {
