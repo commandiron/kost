@@ -20,20 +20,38 @@ class LandscapeJobsGenerator extends JobsGenerator {
   List<Job> createJobs() {
     return [
       LandScapeGarden(
-        quantity: landScapeGardenArea,
-        quantityExplanation: landScapeGardenAreaExplanation,
+        quantityCalculationBuilder: () {
+          return (projectVariables.landArea - _groundFloor.area) *
+              projectConstants.gardenOutdoorParkingAreaRate;
+        },
+        quantityExplanationBuilder: () {
+          return "Arsa alanı: ${projectVariables.landArea}- Zemin kat alanı: ${_groundFloor.area} x Bahçe Oranı: ${projectConstants.gardenOutdoorParkingAreaRate}";
+        },
       ),
       OutdoorParkingTile(
-        quantity: outdoorParkingTileArea,
-        quantityExplanation: outdoorParkingTileAreaExplanation,
+        quantityCalculationBuilder: () {
+          return (projectVariables.landArea - _groundFloor.area) *
+              (1 - projectConstants.gardenOutdoorParkingAreaRate);
+        },
+        quantityExplanationBuilder: () {
+          return "Arsa alanı: ${projectVariables.landArea} - Zemin kat alanı: ${_groundFloor.area} x Açık otopark oranı: 1 - Bahçe Oranı: ${projectConstants.gardenOutdoorParkingAreaRate}";
+        },
       ),
       CarLift(
-        quantity: carLiftStop,
-        quantityExplanation: carLiftStopExplanation,
+        quantityCalculationBuilder: () {
+          return _basementFloors.length + 1;
+        },
+        quantityExplanationBuilder: () {
+          return "Bodrum kat adedi: ${_basementFloors.length} + Zemin kat adedi: 1";
+        },
       ),
       AutomaticBarrier(
-        quantity: automaticBarrierNumber,
-        quantityExplanation: automaticBarrierNumberExplanation,
+        quantityCalculationBuilder: () {
+          return projectConstants.automaticBarrierNumber.toDouble();
+        },
+        quantityExplanationBuilder: () {
+          return "Otomatik bariyer adedi: ${projectConstants.automaticBarrierNumber}";
+        },
       ),
     ];
   }
@@ -52,40 +70,5 @@ class LandscapeJobsGenerator extends JobsGenerator {
       throw Exception("No basement floor");
     }
     return basementFloors;
-  }
-
-  //Calculations
-  double get landScapeGardenArea {
-    return (projectVariables.landArea - _groundFloor.area) *
-        projectConstants.gardenOutdoorParkingAreaRate;
-  }
-
-  String get landScapeGardenAreaExplanation {
-    return "Arsa alanı: ${projectVariables.landArea}- Zemin kat alanı: ${_groundFloor.area} x Bahçe Oranı: ${projectConstants.gardenOutdoorParkingAreaRate}";
-  }
-
-  double get outdoorParkingTileArea {
-    return (projectVariables.landArea - _groundFloor.area) *
-        (1 - projectConstants.gardenOutdoorParkingAreaRate);
-  }
-
-  String get outdoorParkingTileAreaExplanation {
-    return "Arsa alanı: ${projectVariables.landArea} - Zemin kat alanı: ${_groundFloor.area} x Açık otopark oranı: 1 - Bahçe Oranı: ${projectConstants.gardenOutdoorParkingAreaRate}";
-  }
-
-  double get carLiftStop {
-    return _basementFloors.length + 1;
-  }
-
-  String get carLiftStopExplanation {
-    return "Bodrum kat adedi: ${_basementFloors.length} + Zemin kat adedi: 1";
-  }
-
-  double get automaticBarrierNumber {
-    return projectConstants.automaticBarrierNumber.toDouble();
-  }
-
-  String get automaticBarrierNumberExplanation {
-    return "Otomatik bariyer adedi: ${projectConstants.automaticBarrierNumber}";
   }
 }

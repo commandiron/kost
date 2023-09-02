@@ -14,20 +14,36 @@ class FacadeJobsGenerator extends JobsGenerator {
   List<Job> createJobs() {
     return [
       FacadeScaffolding(
-        quantity: facadeScaffoldingArea,
-        quantityExplanation: facadeScaffoldingAreaExplanation,
+        quantityCalculationBuilder: () {
+          return _totalFacadeArea;
+        },
+        quantityExplanationBuilder: () {
+          return "Toplam cephe alanı: $_totalFacadeArea";
+        },
       ),
       Windows(
-        quantity: windowsArea,
-        quantityExplanation: windowAreaExplanation,
+        quantityCalculationBuilder: () {
+          return _totalWindowArea;
+        },
+        quantityExplanationBuilder: () {
+          return "Toplam pencere alanı: $_totalWindowArea";
+        },
       ),
       FacadeRails(
-        quantity: facadeRailsLength,
-        quantityExplanation: facadeRailsLengthExplanation,
+        quantityCalculationBuilder: () {
+          return _totalFacadeRailingLength;
+        },
+        quantityExplanationBuilder: () {
+          return "Toplam cephe korkuluğu uzunluğu: $_totalFacadeRailingLength";
+        },
       ),
       FacadeSystem(
-        quantity: facadeSystemArea,
-        quantityExplanation: facadeSystemAreaExplanation,
+        quantityCalculationBuilder: () {
+          return _totalFacadeArea;
+        },
+        quantityExplanationBuilder: () {
+          return "Toplam cephe alanı: $_totalFacadeArea";
+        },
       )
     ];
   }
@@ -61,38 +77,5 @@ class FacadeJobsGenerator extends JobsGenerator {
           facadeRailingLengths.fold(0.0, (p, c) => p + c);
     }
     return totalFacadeRailingLength;
-  }
-
-  //Calculations
-  double get facadeScaffoldingArea {
-    return _totalFacadeArea;
-  }
-
-  String get facadeScaffoldingAreaExplanation {
-    return "Toplam cephe alanı: $_totalFacadeArea";
-  }
-
-  double get windowsArea {
-    return _totalWindowArea;
-  }
-
-  String get windowAreaExplanation {
-    return "Toplam pencere alanı: $_totalWindowArea";
-  }
-
-  double get facadeRailsLength {
-    return _totalFacadeRailingLength;
-  }
-
-  String get facadeRailsLengthExplanation {
-    return "Toplam cephe korkuluğu uzunluğu: $_totalFacadeRailingLength";
-  }
-
-  double get facadeSystemArea {
-    return _totalFacadeArea;
-  }
-
-  String get facadeSystemAreaExplanation {
-    return "Toplam cephe alanı: $_totalFacadeArea";
   }
 }

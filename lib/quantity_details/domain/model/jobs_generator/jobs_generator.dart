@@ -10,4 +10,11 @@ abstract class JobsGenerator {
   final String name;
 
   List<Job> createJobs();
+
+  double calculation(double Function() value) {
+    return value.call();
+  }
+  String explanation(String Function() value) {
+    return value.call();
+  }
 }

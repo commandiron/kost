@@ -20,36 +20,70 @@ class GeneralExpensesJobsGenerator extends JobsGenerator {
   List<Job> createJobs() {
     return [
       EnclosingTheLand(
-        quantity: enclosingTheLandLength,
-        quantityExplanation: enclosingTheLandLengthExplanation,
+        quantityCalculationBuilder: () {
+          return projectVariables.landPerimeter;
+        },
+        quantityExplanationBuilder: () {
+          return "Arsa çevresi: ${projectVariables.landPerimeter}";
+        },
       ),
       MobilizationDemobilization(
-        quantity: mobilizationDemobilizationNumber,
-        quantityExplanation: mobilizationDemobilizationNumberExplanation,
+        quantityCalculationBuilder: () {
+          //BURAYA BAK!!!!!!!!!!!!!!!!!!
+          return 1;
+        },
+        quantityExplanationBuilder: () {
+          return "Götürü bedel";
+        },
       ),
       Crane(
-        quantity: craneHour,
-        quantityExplanation: craneHourExplanation,
+        quantityCalculationBuilder: () {
+          return _roughConstructionArea *
+              projectConstants.craneHourForOneSquareMeterRoughConstructionArea;
+        },
+        quantityExplanationBuilder: () {
+          return "Kaba inşaat alanı: $_roughConstructionArea x 1 metre kare kaba inşaat alanı için vinç çalışma saati: ${projectConstants.craneHourForOneSquareMeterRoughConstructionArea}";
+        },
       ),
       SiteSafety(
-        quantity: siteSafetyMonth,
-        quantityExplanation: siteSafetyMonthExplanation,
+        quantityCalculationBuilder: () {
+          return projectConstants.projectDurationMonth;
+        },
+        quantityExplanationBuilder: () {
+          return "Proje süresi: ${projectConstants.projectDurationMonth}";
+        },
       ),
       SiteExpenses(
-        quantity: siteExpensesMonth,
-        quantityExplanation: siteExpensesMonthExplanation,
+        quantityCalculationBuilder: () {
+          return projectConstants.projectDurationMonth;
+        },
+        quantityExplanationBuilder: () {
+          return "Proje süresi: ${projectConstants.projectDurationMonth}";
+        },
       ),
       Sergeant(
-        quantity: sergeantMonth,
-        quantityExplanation: sergeantMonthExplanation,
+        quantityCalculationBuilder: () {
+          return projectConstants.projectDurationMonth;
+        },
+        quantityExplanationBuilder: () {
+          return "Proje süresi: ${projectConstants.projectDurationMonth}";
+        },
       ),
       SiteChief(
-        quantity: siteChiefMonth,
-        quantityExplanation: siteChiefMonthExplanation,
+        quantityCalculationBuilder: () {
+          return projectConstants.projectDurationMonth;
+        },
+        quantityExplanationBuilder: () {
+          return "Proje süresi: ${projectConstants.projectDurationMonth}";
+        },
       ),
       ProjectsFeesPayments(
-        quantity: projectsFeesPaymentsNumber,
-        quantityExplanation: projectsFeesPaymentsNumberExplanation,
+        quantityCalculationBuilder: () {
+          return 1;
+        },
+        quantityExplanationBuilder: () {
+          return "Götürü bedel";
+        },
       ),
     ];
   }
@@ -74,73 +108,5 @@ class GeneralExpensesJobsGenerator extends JobsGenerator {
     roughConstructionArea += _topFloor.area;
     roughConstructionArea += projectVariables.elevationTowerArea;
     return roughConstructionArea;
-  }
-
-  //Calculations
-  double get enclosingTheLandLength {
-    return projectVariables.landPerimeter;
-  }
-
-  String get enclosingTheLandLengthExplanation {
-    return "Arsa çevresi: ${projectVariables.landPerimeter}";
-  }
-
-  //BURAYA BAK!!!!!!!!!!!!!!!!!!
-  double get mobilizationDemobilizationNumber {
-    return 1;
-  }
-
-  String get mobilizationDemobilizationNumberExplanation {
-    return "Götürü bedel";
-  }
-
-  double get craneHour {
-    return _roughConstructionArea *
-        projectConstants.craneHourForOneSquareMeterRoughConstructionArea;
-  }
-
-  String get craneHourExplanation {
-    return "Kaba inşaat alanı: $_roughConstructionArea x 1 metre kare kaba inşaat alanı için vinç çalışma saati: ${projectConstants.craneHourForOneSquareMeterRoughConstructionArea}";
-  }
-
-  double get siteSafetyMonth {
-    return projectConstants.projectDurationMonth;
-  }
-
-  String get siteSafetyMonthExplanation {
-    return "Proje süresi: ${projectConstants.projectDurationMonth}";
-  }
-
-  double get siteExpensesMonth {
-    return projectConstants.projectDurationMonth;
-  }
-
-  String get siteExpensesMonthExplanation {
-    return "Proje süresi: ${projectConstants.projectDurationMonth}";
-  }
-
-  double get sergeantMonth {
-    return projectConstants.projectDurationMonth;
-  }
-
-  String get sergeantMonthExplanation {
-    return "Proje süresi: ${projectConstants.projectDurationMonth}";
-  }
-
-  double get siteChiefMonth {
-    return projectConstants.projectDurationMonth;
-  }
-
-  String get siteChiefMonthExplanation {
-    return "Proje süresi: ${projectConstants.projectDurationMonth}";
-  }
-
-  //BURAYA BAK!!!!!!!!!!!!!!!!!!
-  double get projectsFeesPaymentsNumber {
-    return 1;
-  }
-
-  String get projectsFeesPaymentsNumberExplanation {
-    return "Götürü bedel";
   }
 }

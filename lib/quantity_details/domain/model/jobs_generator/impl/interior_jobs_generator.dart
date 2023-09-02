@@ -21,150 +21,298 @@ class InteriorJobsGenerator extends JobsGenerator {
   List<Job> createJobs() {
     return [
       InteriorPlastering(
-        quantity: interiorPlasteringArea,
-        quantityExplanation: interiorPlasteringAreaExplanation,
+        quantityCalculationBuilder: () {
+          return _totalPlasterArea;
+        },
+        quantityExplanationBuilder: () {
+          return "Toplam sıva alanı: $_totalPlasterArea";
+        },
       ),
       InteriorPainting(
-        quantity: interiorPaintingArea,
-        quantityExplanation: interiorPaintingAreaExplanation,
+        quantityCalculationBuilder: () {
+          return _totalPaintingArea;
+        },
+        quantityExplanationBuilder: () {
+          return "Toplam boya alanı: $_totalPaintingArea";
+        },
       ),
       InteriorWaterproofing(
-        quantity: interiorWaterproofingArea,
-        quantityExplanation: interiorWaterproofingAreaExplanation,
+        quantityCalculationBuilder: () {
+          return _totalInteriorWetFloorArea;
+        },
+        quantityExplanationBuilder: () {
+          return "Toplam iç mekan ıslak zemin alanı: $_totalInteriorWetFloorArea";
+        },
       ),
       CeilingCovering(
-        quantity: ceilingCoveringArea,
-        quantityExplanation: ceilingCoveringAreaExplanation,
+        quantityCalculationBuilder: () {
+          return _totalDryWallArea;
+        },
+        quantityExplanationBuilder: () {
+          return "Toplam alçıpan alanı: $_totalDryWallArea";
+        },
       ),
       CovingPlaster(
-        quantity: covingPlasterLength,
-        quantityExplanation: covingPlasterLengthExplanation,
+        quantityCalculationBuilder: () {
+          return _totalCovingPlasterLength;
+        },
+        quantityExplanationBuilder: () {
+          return "Toplam kartonpiyer uzunluğu: $_totalCovingPlasterLength";
+        },
       ),
       Screeding(
-        quantity: screedingArea,
-        quantityExplanation: screedingAreaExplanation,
+        quantityCalculationBuilder: () {
+          return _totalScreedArea;
+        },
+        quantityExplanationBuilder: () {
+          return "Toplam şap alanı: $_totalScreedArea";
+        },
       ),
       Marble(
-        quantity: marbleArea,
-        quantityExplanation: marbleAreaExplanation,
+        quantityCalculationBuilder: () {
+          return _totalMarbleArea;
+        },
+        quantityExplanationBuilder: () {
+          return "Toplam mermer alanı: $_totalMarbleArea";
+        },
       ),
       MarbleStep(
-        quantity: marbleStepLength,
-        quantityExplanation: marbleStepLengthExplanation,
+        quantityCalculationBuilder: () {
+          return _totalMarbleStepLength;
+        },
+        quantityExplanationBuilder: () {
+          return "Toplam basamak uzunluğu: $_totalMarbleStepLength";
+        },
       ),
       MarbleWindowsill(
-        quantity: marbleWindowsillLength,
-        quantityExplanation: marbleWindowsillLengthExplanation,
+        quantityCalculationBuilder: () {
+          return _totalWindowsillLength;
+        },
+        quantityExplanationBuilder: () {
+          return "Toplam denizlikli pencere uzunluğu: $_totalWindowsillLength";
+        },
       ),
       StairRailings(
-        quantity: stairRailingsLength,
-        quantityExplanation: stairRailingsLengthExplanation,
+        quantityCalculationBuilder: () {
+          return _totalStairRailingsLength;
+        },
+        quantityExplanationBuilder: () {
+          return "Toplam merdiven korkuluğu uzunluğu: $_totalStairRailingsLength";
+        },
       ),
       CeramicTile(
-        quantity: ceramicTileArea,
-        quantityExplanation: ceramicTileAreaExplanation,
+        quantityCalculationBuilder: () {
+          return _totalCeramicFloorArea + _totalCeramicWallArea;
+        },
+        quantityExplanationBuilder: () {
+          return "Toplam yer seramik alanı: $_totalCeramicFloorArea + Toplam fayans alanı: $_totalCeramicWallArea";
+        },
       ),
       ParquetTile(
-        quantity: parquetTileArea,
-        quantityExplanation: parquetTileAreaExplanation,
+        quantityCalculationBuilder: () {
+          return _totalParquetFloorArea;
+        },
+        quantityExplanationBuilder: () {
+          return "Toplam parke alanı: $_totalParquetFloorArea";
+        },
       ),
       SteelDoor(
-        quantity: steelDoorNumber,
-        quantityExplanation: steelDoorNumberExplanation,
+        quantityCalculationBuilder: () {
+          return _steelDoorNumber.toDouble();
+        },
+        quantityExplanationBuilder: () {
+          return "Toplam çelik kapı adedi: $_steelDoorNumber";
+        },
       ),
       EntranceDoor(
-        quantity: entranceDoorArea,
-        quantityExplanation: entranceDoorAreaExplanation,
+        quantityCalculationBuilder: () {
+          return _buildingEntranceDoorNumber *
+              projectConstants.buildingEntranceDoorArea;
+        },
+        quantityExplanationBuilder: () {
+          return "Apartman giriş kapısı sayısı: $_buildingEntranceDoorNumber + Toplam apartman giriş kapısı alanı: ${projectConstants.buildingEntranceDoorArea}";
+        },
       ),
       FireDoor(
-        quantity: fireDoorNumber,
-        quantityExplanation: fireDoorNumberExplanation,
+        quantityCalculationBuilder: () {
+          return _fireDoorNumber.toDouble();
+        },
+        quantityExplanationBuilder: () {
+          return "Toplam yangın kapısı adedi: $_fireDoorNumber";
+        },
       ),
       WoodenDoor(
-        quantity: woodenDoorNumber,
-        quantityExplanation: woodenDoorNumberExplanation,
+        quantityCalculationBuilder: () {
+          return _woodenDoorNumber.toDouble();
+        },
+        quantityExplanationBuilder: () {
+          return "Toplam ahşap kapı adedi: $_woodenDoorNumber";
+        },
       ),
       KitchenCupboard(
-        quantity: kitchenCupboardLength,
-        quantityExplanation: kitchenCupboardLengthExplanation,
+        quantityCalculationBuilder: () {
+          return _kitchenNumber * projectConstants.kitchenLength * 2;
+        },
+        quantityExplanationBuilder: () {
+          return "Mutfak sayısı: $_kitchenNumber x Mutfak uzunluğu: ${projectConstants.kitchenLength} x 2(Alt - Üst dolap)";
+        },
       ),
       KitchenCounter(
-        quantity: kitchenCounterLength,
-        quantityExplanation: kitchenCounterLengthExplanation,
+        quantityCalculationBuilder: () {
+          return _kitchenNumber * projectConstants.kitchenLength;
+        },
+        quantityExplanationBuilder: () {
+          return "Mutfak sayısı: $_kitchenNumber x Mutfak uzunluğu: ${projectConstants.kitchenLength}";
+        },
       ),
       CoatCabinet(
-        quantity: coatCabinetArea,
-        quantityExplanation: coatCabinetAreaExplanation,
+        quantityCalculationBuilder: () {
+          return _apartmentNumber * projectConstants.coatCabinetArea;
+        },
+        quantityExplanationBuilder: () {
+          return "Daire sayısı: $_apartmentNumber x Portmanto alanı: ${projectConstants.coatCabinetArea}";
+        },
       ),
       BathroomCabinet(
-        quantity: bathroomCabinetArea,
-        quantityExplanation: bathroomCabinetAreaExplanation,
+        quantityCalculationBuilder: () {
+          return _toiletNumber * projectConstants.bathroomCabinetArea;
+        },
+        quantityExplanationBuilder: () {
+          return "Tuvalet sayısı: $_toiletNumber x Banyo dolabı alanı: ${projectConstants.bathroomCabinetArea}";
+        },
       ),
       FloorPlinth(
-        quantity: floorPlinthLength,
-        quantityExplanation: floorPlinthLengthExplanation,
+        quantityCalculationBuilder: () {
+          return _totalFloorPlinthLength;
+        },
+        quantityExplanationBuilder: () {
+          return "Toplam süpürgelik uzunluğu: $_totalFloorPlinthLength";
+        },
       ),
       MechanicalInfrastructure(
-        quantity: mechanicalInfrastructureApartment,
-        quantityExplanation: mechanicalInfrastructureApartmentExplanation,
+        quantityCalculationBuilder: () {
+          return _apartmentNumber.toDouble();
+        },
+        quantityExplanationBuilder: () {
+          return "Daire sayısı: $_apartmentNumber";
+        },
       ),
       AirConditioner(
-        quantity: airConditionerNumber,
-        quantityExplanation: airConditionerNumberExplanation,
+        quantityCalculationBuilder: () {
+          return _apartmentNumber *
+              projectConstants.airConditionerNumberForOneApartment.toDouble();
+        },
+        quantityExplanationBuilder: () {
+          return "Toplam daire sayısı: $_apartmentNumber x 1 daire için klima sayısı: ${projectConstants.airConditionerNumberForOneApartment}";
+        },
       ),
       Ventilation(
-        quantity: ventilationArea,
-        quantityExplanation: ventilationAreaExplanation,
+        quantityCalculationBuilder: () {
+          return _basementsArea;
+        },
+        quantityExplanationBuilder: () {
+          return "Bodrumlar toplam alanı: $_basementsArea";
+        },
       ),
       WaterTank(
-        quantity: waterTankNumber,
-        quantityExplanation: waterTankNumberExplanation,
+        quantityCalculationBuilder: () {
+          //BURAYA BAK!!!!!!!!!!!!!!!!
+          return 1;
+        },
+        quantityExplanationBuilder: () {
+          return "Götürü bedel";
+        },
       ),
       Elevation(
-        quantity: elevationStop,
-        quantityExplanation: elevationStopExplanation,
+        quantityCalculationBuilder: () {
+          return (_basementFloors.length + 1 + _normalFloors.length).toDouble();
+        },
+        quantityExplanationBuilder: () {
+          return "Bodrum kat adedi: ${_basementFloors.length} + Zemin kat adedi: 1 + Normal kat adedi: ${_normalFloors.length}";
+        },
         selectedUnitPriceCategory: UnitPriceCategory.elevation10PersonKone,
       ),
       Elevation(
-        quantity: elevationStop,
-        quantityExplanation: elevationStopExplanation,
+        quantityCalculationBuilder: () {
+          return (_basementFloors.length + 1 + _normalFloors.length).toDouble();
+        },
+        quantityExplanationBuilder: () {
+          return "Bodrum kat adedi: ${_basementFloors.length} + Zemin kat adedi: 1 + Normal kat adedi: ${_normalFloors.length}";
+        },
         selectedUnitPriceCategory: UnitPriceCategory.elevation6PersonKone,
       ),
       Sink(
-        quantity: sinkNumber,
-        quantityExplanation: sinkNumberExplanation,
+        quantityCalculationBuilder: () {
+          return _toiletNumber.toDouble();
+        },
+        quantityExplanationBuilder: () {
+          return "Toplam tuvalet sayısı: $_toiletNumber";
+        },
       ),
       SinkBattery(
-        quantity: sinkBatteryNumber,
-        quantityExplanation: sinkBatteryNumberExplanation,
+        quantityCalculationBuilder: () {
+          return _toiletNumber.toDouble();
+        },
+        quantityExplanationBuilder: () {
+          return "Toplam tuvalet sayısı: $_toiletNumber";
+        },
       ),
       ConcealedCistern(
-        quantity: concealedCisternNumber,
-        quantityExplanation: concealedCisternNumberExplanation,
+        quantityCalculationBuilder: () {
+          return _toiletNumber.toDouble();
+        },
+        quantityExplanationBuilder: () {
+          return "Toplam tuvalet sayısı: $_toiletNumber";
+        },
       ),
       Shower(
-        quantity: showerNumber,
-        quantityExplanation: showerNumberExplanation,
+        quantityCalculationBuilder: () {
+          return _bathroomNumber.toDouble();
+        },
+        quantityExplanationBuilder: () {
+          return "Toplam banyo sayısı: $_bathroomNumber";
+        },
       ),
       ShowerBattery(
-        quantity: showerBatteryNumber,
-        quantityExplanation: showerBatteryNumberExplanation,
+        quantityCalculationBuilder: () {
+          return _bathroomNumber.toDouble();
+        },
+        quantityExplanationBuilder: () {
+          return "Toplam banyo sayısı: $_bathroomNumber";
+        },
       ),
       KitchenFaucetAndSink(
-        quantity: kitchenFaucetAndSinkNumber,
-        quantityExplanation: kitchenFaucetAndSinkNumberExplanation,
+        quantityCalculationBuilder: () {
+          return _kitchenNumber.toDouble();
+        },
+        quantityExplanationBuilder: () {
+          return "Toplam mutfak sayısı: $_kitchenNumber";
+        },
       ),
       ElectricalInfrastructure(
-        quantity: electricalInfrastructureApartment,
-        quantityExplanation: electricalInfrastructureApartmentExplanation,
+        quantityCalculationBuilder: () {
+          return _apartmentNumber.toDouble();
+        },
+        quantityExplanationBuilder: () {
+          return "Toplam daire sayısı: $_apartmentNumber";
+        },
       ),
       Generator(
-        quantity: generatorNumber,
-        quantityExplanation: generatorNumberExplanation,
+        quantityCalculationBuilder: () {
+          //BURAYA BAK !!!!!!!!!!!!!!!!!!
+          return 1;
+        },
+        quantityExplanationBuilder: () {
+          return "Götürü bedel";
+        },
       ),
       HouseholdAppliances(
-        quantity: householdAppliancesApartment,
-        quantityExplanation: householdAppliancesApartmentExplanation,
+        quantityCalculationBuilder: () {
+          return _apartmentNumber.toDouble();
+        },
+        quantityExplanationBuilder: () {
+          return "Toplam daire sayısı: $_apartmentNumber";
+        },
       ),
     ];
   }
@@ -498,290 +646,5 @@ class InteriorJobsGenerator extends JobsGenerator {
       }
     }
     return number;
-  }
-
-  //Calculations
-  double get interiorPlasteringArea {
-    return _totalPlasterArea;
-  }
-
-  String get interiorPlasteringAreaExplanation {
-    return "Toplam sıva alanı: $_totalPlasterArea";
-  }
-
-  double get interiorPaintingArea {
-    return _totalPaintingArea;
-  }
-
-  String get interiorPaintingAreaExplanation {
-    return "Toplam boya alanı: $_totalPaintingArea";
-  }
-
-  double get interiorWaterproofingArea {
-    return _totalInteriorWetFloorArea;
-  }
-
-  String get interiorWaterproofingAreaExplanation {
-    return "Toplam iç mekan ıslak zemin alanı: $_totalInteriorWetFloorArea";
-  }
-
-  double get ceilingCoveringArea {
-    return _totalDryWallArea;
-  }
-
-  String get ceilingCoveringAreaExplanation {
-    return "Toplam alçıpan alanı: $_totalDryWallArea";
-  }
-
-  double get covingPlasterLength {
-    return _totalCovingPlasterLength;
-  }
-
-  String get covingPlasterLengthExplanation {
-    return "Toplam kartonpiyer uzunluğu: $_totalCovingPlasterLength";
-  }
-
-  double get screedingArea {
-    return _totalScreedArea;
-  }
-
-  String get screedingAreaExplanation {
-    return "Toplam şap alanı: $_totalScreedArea";
-  }
-
-  double get marbleArea {
-    return _totalMarbleArea;
-  }
-
-  String get marbleAreaExplanation {
-    return "Toplam mermer alanı: $_totalMarbleArea";
-  }
-
-  double get marbleStepLength {
-    return _totalMarbleStepLength;
-  }
-
-  String get marbleStepLengthExplanation {
-    return "Toplam basamak uzunluğu: $_totalMarbleStepLength";
-  }
-
-  double get marbleWindowsillLength {
-    return _totalWindowsillLength;
-  }
-
-  String get marbleWindowsillLengthExplanation {
-    return "Toplam denizlikli pencere uzunluğu: $_totalWindowsillLength";
-  }
-
-  double get stairRailingsLength {
-    return _totalStairRailingsLength;
-  }
-
-  String get stairRailingsLengthExplanation {
-    return "Toplam merdiven korkuluğu uzunluğu: $_totalStairRailingsLength";
-  }
-
-  double get ceramicTileArea {
-    return _totalCeramicFloorArea + _totalCeramicWallArea;
-  }
-
-  String get ceramicTileAreaExplanation {
-    return "Toplam yer seramik alanı: $_totalCeramicFloorArea + Toplam fayans alanı: $_totalCeramicWallArea";
-  }
-
-  double get parquetTileArea {
-    return _totalParquetFloorArea;
-  }
-
-  String get parquetTileAreaExplanation {
-    return "Toplam parke alanı: $_totalParquetFloorArea";
-  }
-
-  double get steelDoorNumber {
-    return _steelDoorNumber.toDouble();
-  }
-
-  String get steelDoorNumberExplanation {
-    return "Toplam çelik kapı adedi: $_steelDoorNumber";
-  }
-
-  double get entranceDoorArea {
-    return _buildingEntranceDoorNumber *
-        projectConstants.buildingEntranceDoorArea;
-  }
-
-  String get entranceDoorAreaExplanation {
-    return "Apartman giriş kapısı sayısı: $_buildingEntranceDoorNumber + Toplam apartman giriş kapısı alanı: ${projectConstants.buildingEntranceDoorArea}";
-  }
-
-  double get fireDoorNumber {
-    return _fireDoorNumber.toDouble();
-  }
-
-  String get fireDoorNumberExplanation {
-    return "Toplam yangın kapısı adedi: $_fireDoorNumber";
-  }
-
-  double get woodenDoorNumber {
-    return _woodenDoorNumber.toDouble();
-  }
-
-  String get woodenDoorNumberExplanation {
-    return "Toplam ahşap kapı adedi: $_woodenDoorNumber";
-  }
-
-  double get kitchenCupboardLength {
-    return _kitchenNumber * projectConstants.kitchenLength * 2;
-  }
-
-  String get kitchenCupboardLengthExplanation {
-    return "Mutfak sayısı: $_kitchenNumber x Mutfak uzunluğu: ${projectConstants.kitchenLength} x 2(Alt - Üst dolap)";
-  }
-
-  double get kitchenCounterLength {
-    return _kitchenNumber * projectConstants.kitchenLength;
-  }
-
-  String get kitchenCounterLengthExplanation {
-    return "Mutfak sayısı: $_kitchenNumber x Mutfak uzunluğu: ${projectConstants.kitchenLength}";
-  }
-
-  double get coatCabinetArea {
-    return _apartmentNumber * projectConstants.coatCabinetArea;
-  }
-
-  String get coatCabinetAreaExplanation {
-    return "Daire sayısı: $_apartmentNumber x Portmanto alanı: ${projectConstants.coatCabinetArea}";
-  }
-
-  double get bathroomCabinetArea {
-    return _toiletNumber * projectConstants.bathroomCabinetArea;
-  }
-
-  String get bathroomCabinetAreaExplanation {
-    return "Tuvalet sayısı: $_toiletNumber x Banyo dolabı alanı: ${projectConstants.bathroomCabinetArea}";
-  }
-
-  double get floorPlinthLength {
-    return _totalFloorPlinthLength;
-  }
-
-  String get floorPlinthLengthExplanation {
-    return "Toplam süpürgelik uzunluğu: $_totalFloorPlinthLength";
-  }
-
-  double get mechanicalInfrastructureApartment {
-    return _apartmentNumber.toDouble();
-  }
-
-  String get mechanicalInfrastructureApartmentExplanation {
-    return "Daire sayısı: $_apartmentNumber";
-  }
-
-  double get airConditionerNumber {
-    return _apartmentNumber *
-        projectConstants.airConditionerNumberForOneApartment.toDouble();
-  }
-
-  String get airConditionerNumberExplanation {
-    return "Toplam daire sayısı: $_apartmentNumber x 1 daire için klima sayısı: ${projectConstants.airConditionerNumberForOneApartment}";
-  }
-
-  double get ventilationArea {
-    return _basementsArea;
-  }
-
-  String get ventilationAreaExplanation {
-    return "Bodrumlar toplam alanı: $_basementsArea";
-  }
-
-  //BURAYA BAK!!!!!!!!!!!!!!!!
-  double get waterTankNumber {
-    return 1;
-  }
-
-  String get waterTankNumberExplanation {
-    return "Götürü bedel";
-  }
-
-  double get elevationStop {
-    return (_basementFloors.length + 1 + _normalFloors.length).toDouble();
-  }
-
-  String get elevationStopExplanation {
-    return "Bodrum kat adedi: ${_basementFloors.length} + Zemin kat adedi: 1 + Normal kat adedi: ${_normalFloors.length}";
-  }
-
-  double get sinkNumber {
-    return _toiletNumber.toDouble();
-  }
-
-  String get sinkNumberExplanation {
-    return "Toplam tuvalet sayısı: $_toiletNumber";
-  }
-
-  double get sinkBatteryNumber {
-    return _toiletNumber.toDouble();
-  }
-
-  String get sinkBatteryNumberExplanation {
-    return "Toplam tuvalet sayısı: $_toiletNumber";
-  }
-
-  double get concealedCisternNumber {
-    return _toiletNumber.toDouble();
-  }
-
-  String get concealedCisternNumberExplanation {
-    return "Toplam tuvalet sayısı: $_toiletNumber";
-  }
-
-  double get showerNumber {
-    return _bathroomNumber.toDouble();
-  }
-
-  String get showerNumberExplanation {
-    return "Toplam banyo sayısı: $_bathroomNumber";
-  }
-
-  double get showerBatteryNumber {
-    return _bathroomNumber.toDouble();
-  }
-
-  String get showerBatteryNumberExplanation {
-    return "Toplam banyo sayısı: $_bathroomNumber";
-  }
-
-  double get kitchenFaucetAndSinkNumber {
-    return _kitchenNumber.toDouble();
-  }
-
-  String get kitchenFaucetAndSinkNumberExplanation {
-    return "Toplam mutfak sayısı: $_kitchenNumber";
-  }
-
-  double get electricalInfrastructureApartment {
-    return _apartmentNumber.toDouble();
-  }
-
-  String get electricalInfrastructureApartmentExplanation {
-    return "Toplam daire sayısı: $_apartmentNumber";
-  }
-
-  //BURAYA BAK !!!!!!!!!!!!!!!!!!
-  double get generatorNumber {
-    return 1;
-  }
-
-  String get generatorNumberExplanation {
-    return "Götürü bedel";
-  }
-
-  double get householdAppliancesApartment {
-    return _apartmentNumber.toDouble();
-  }
-
-  String get householdAppliancesApartmentExplanation {
-    return "Toplam daire sayısı: $_apartmentNumber";
   }
 }

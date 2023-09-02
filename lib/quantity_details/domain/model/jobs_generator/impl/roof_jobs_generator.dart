@@ -14,8 +14,12 @@ class RoofJobsGenerator extends JobsGenerator {
   List<Job> createJobs() {
     return [
       Roofing(
-        quantity: roofingArea,
-        quantityExplanation: roofingAreaExplanation,
+        quantityCalculationBuilder: () {
+          return _topFloor.area;
+        },
+        quantityExplanationBuilder: () {
+          return "En üst kat alanı: ${_topFloor.area}";
+        },
       )
     ];
   }
@@ -25,13 +29,5 @@ class RoofJobsGenerator extends JobsGenerator {
       return current.no > next.no ? current : next;
     });
     return topFloor;
-  }
-
-  double get roofingArea {
-    return _topFloor.area;
-  }
-
-  String get roofingAreaExplanation {
-    return "En üst kat alanı: ${_topFloor.area}";
   }
 }
