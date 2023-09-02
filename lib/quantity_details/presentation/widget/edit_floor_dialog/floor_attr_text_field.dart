@@ -4,7 +4,7 @@ import '../../../../common/config/app_padding.dart';
 import '../../../../common/config/app_text_style.dart';
 import '../../../../common/widget/quantity_text_field.dart';
 
-class FloorAttrTextField extends StatelessWidget {
+class FloorAttrTextField extends StatefulWidget {
   const FloorAttrTextField({
     super.key,
     required this.title,
@@ -21,6 +21,14 @@ class FloorAttrTextField extends StatelessWidget {
   final Function(String value)? onFieldSubmitted;
 
   @override
+  State<FloorAttrTextField> createState() => _FloorAttrTextFieldState();
+}
+
+class _FloorAttrTextFieldState extends State<FloorAttrTextField> {
+
+  final _formKey = GlobalKey<FormState>();
+
+  @override
   Widget build(BuildContext context) {
     return Padding(
       padding: AppPadding.hM!.add(AppPadding.vS!),
@@ -29,16 +37,31 @@ class FloorAttrTextField extends StatelessWidget {
         children: [
           Expanded(
               child: Text(
-            title,
+            widget.title,
             style: AppTextStyle.responsiveH5(context),
           )),
           Expanded(
             flex: 2,
-            child: QuantityTextField(
-              formattedQuantity: formattedQuantity,
-              symbol: symbol,
-              onChanged: onChanged,
-              onFieldSubmitted: onFieldSubmitted,
+            child: Form(
+              key: _formKey,
+              child: QuantityTextField(
+                formattedQuantity: widget.formattedQuantity,
+                symbol: widget.symbol,
+                onChanged: (value) {
+                  if(widget.onChanged != null) {
+                    if(_formKey.currentState!.validate()){
+                      widget.onChanged!(value);
+                    }
+                  }
+                },
+                onFieldSubmitted: (value) {
+                  if(widget.onFieldSubmitted != null) {
+                    if(_formKey.currentState!.validate()){
+                      widget.onFieldSubmitted!(value);
+                    }
+                  }
+                },
+              ),
             ),
           ),
         ],
