@@ -21,58 +21,58 @@ class RoughConstructionJobsGenerator extends JobsGenerator {
   @override
   List<Job> createJobs() {
     return [
-      Shoring( //✓
+      Shoring(
         quantityBuilder: () {
           return projectVariables.excavationPerimeter * _excavationHeight;
         },
       ),
-      Excavation( //✓
+      Excavation(
         quantityBuilder: () {
           return _excavationVolume;
         },
       ),
-      Breaker( //✓
+      Breaker(
         quantityBuilder: () {
           return _excavationVolume * projectConstants.excavationAreaRockDensityConstant.breakerHourForOneCubicMeterExcavation;
         },
       ),
-      FoundationStabilization( //✓
+      FoundationStabilization(
         quantityBuilder: () {
           return projectVariables.excavationArea *
               projectConstants.stabilizationHeight *
               projectConstants.gravelTonForOneCubicMeter;
         },
       ),
-      SubFoundationConcreteMaterial( //✓
+      SubFoundationConcreteMaterial(
         quantityBuilder: () {
           return projectVariables.excavationArea *
               (projectConstants.leanConcreteHeight +
                   projectConstants.insulationConcreteHeight);
         },
       ),
-      ReinforcedConcreteWorkmanshipWithFormWorkMaterial( //✓
+      ReinforcedConcreteWorkmanshipWithFormWorkMaterial(
         quantityBuilder: () {
           return _formWorkArea;
         },
       ),
-      ConcreteMaterial( //✓
+      ConcreteMaterial(
         quantityBuilder: () {
           return _concreteVolume;
         },
       ),
-      RebarMaterial( //✓
+      RebarMaterial(
         quantityBuilder: () {
           return _concreteVolume * projectConstants.rebarTonForOneCubicMeterConcrete;
         },
       ),
-      HollowFloorFillingMaterial( //✓
+      HollowFloorFillingMaterial(
         quantityBuilder: () {
           return projectConstants.hollowAreaForOneSquareMeterConstructionArea *
               _hollowSlabRoughConstructionArea *
               projectConstants.hollowFillingThickness;
         },
       ),
-      FoundationWaterproofing( //✓
+      FoundationWaterproofing(
         quantityBuilder: () {
           return projectVariables.foundationArea +
               (projectVariables.foundationPerimeter *
@@ -107,10 +107,17 @@ class RoughConstructionJobsGenerator extends JobsGenerator {
     ];
   }
 
-  Floor get _topFloor {
-    final result = floors.reduce((current, next) {
-      return current.no > next.no ? current : next;
-    });
+  Map<Floor, double> get _floorToCeilingAreaMap {
+    Map<Floor, double> result = {};
+    for(var floor in floors) {
+      result.putIfAbsent(floor, () {
+        final ceilingArea = floors.firstWhereOrNull((e) => e.no == floor.no + 1)?.area ?? 0;
+        if(floor.area > ceilingArea) {
+          return floor.area;
+        }
+        return ceilingArea;
+      });
+    }
     return result;
   }
 
@@ -122,7 +129,7 @@ class RoughConstructionJobsGenerator extends JobsGenerator {
     return result;
   }
 
-  List<Floor> get _allBasementFloors { //✓
+  List<Floor> get _allBasementFloors {
     final result = floors.where((floor) => floor.no < 0).toList();
     if (result.isEmpty) {
       throw Exception("No basement floor");
@@ -130,12 +137,12 @@ class RoughConstructionJobsGenerator extends JobsGenerator {
     return result;
   }
 
-  Floor get _topMostBasementFloor { //✓
+  Floor get _topMostBasementFloor {
     final result = _allBasementFloors.firstWhere((floor) => floor.no == -1);
     return result;
   }
 
-  double get _excavationHeight { //✓
+  double get _excavationHeight {
     return projectConstants.stabilizationHeight
       +
       projectConstants.leanConcreteHeight
@@ -148,25 +155,25 @@ class RoughConstructionJobsGenerator extends JobsGenerator {
     ;
   }
 
-  double get _excavationVolume { //✓
+  double get _excavationVolume {
     final result = projectVariables.excavationArea * _excavationHeight;
     return result;
   }
 
-  double get _allBasementsHeight { //✓
+  double get _allBasementsHeight {
     final result = _allBasementFloors
         .map((floor) => floor.heightWithSlab)
         .fold(0.0, (p, c) => p + c);
     return result;
   }
 
-  double get _allBasementsHeightWithoutSlab { //✓
+  double get _allBasementsHeightWithoutSlab {
     return _allBasementFloors
         .map((floor) => floor.heightWithSlab - floor.slabHeight)
         .fold(0.0, (p, c) => p + c);
   }
 
-  double get _basementsCurtainAreaWithoutSlab { //✓
+  double get _basementsCurtainAreaWithoutSlab {
     return projectVariables.basementCurtainLength * _allBasementsHeightWithoutSlab;
   }
 
@@ -176,52 +183,41 @@ class RoughConstructionJobsGenerator extends JobsGenerator {
         .fold(0.0, (p, c) => p + c);
   }
 
-  double get _roughConstructionArea { //✓
+  double get _roughConstructionArea {
     double result = 0;
     result  += projectVariables.foundationArea;
-    for (var floor in floors) {
-      if (floor.no == 0) {
-        final firstFloorArea = floors.firstWhere((floor) => floor.no == 1).area;
-        result += firstFloorArea;
-        continue;
-      }
-      result += floor.area;
-    }
+    result += _floorToCeilingAreaMap.values.fold(0.0, (p, c) => p + c);
     result += projectVariables.elevationTowerArea;
     return result;
   }
 
-  double get _buildingHeightWithoutSlabs { //✓
+  double get _buildingHeightWithoutSlabs {
     final result = floors
         .map((floor) => floor.heightWithSlab - floor.slabHeight)
         .fold(0.0, (p, c) => p + c);
     return result;
   }
 
-  double get _coreCurtainAreaWithoutSlab { //✓
+  double get _coreCurtainAreaWithoutSlab {
     final result = projectVariables.coreCurtainLength *
         (_buildingHeightWithoutSlabs +
             projectVariables.elevationTowerHeightWithoutSlab);
     return result;
   }
 
-  double get _curtainsExceeding1MeterAreaWithoutSlab { //✓
+  double get _curtainsExceeding1MeterAreaWithoutSlab {
     final result = projectVariables.curtainsExceeding1MeterLength *
         _buildingHeightWithoutSlabs;
     return result;
   }
 
-  double get _hollowSlabRoughConstructionArea { //✓
+  double get _hollowSlabRoughConstructionArea {
     double result = 0;
-    final ceilingSlabHollowFloors = floors.where((floor) => floor.isCeilingSlabHollow);
-    for(var ceilingSlabHollowFloor in ceilingSlabHollowFloors) {
-      if(ceilingSlabHollowFloor == _topFloor) {
-        result += ceilingSlabHollowFloor.area;
-        continue;
+    _floorToCeilingAreaMap.forEach((floor, ceilingArea) {
+      if(floor.isCeilingSlabHollow) {
+        result += ceilingArea;
       }
-      final ceilingArea = floors.firstWhereOrNull((floor) => floor.no == ceilingSlabHollowFloor.no + 1)?.area;
-      result += ceilingArea ?? 0;
-    }
+    });
     return result;
   }
 
@@ -251,14 +247,14 @@ class RoughConstructionJobsGenerator extends JobsGenerator {
     return _thinWallArea * projectConstants.thinWallThickness;
   }
 
-  double get _formWorkArea { //✓
+  double get _formWorkArea {
     return _roughConstructionArea +
         _coreCurtainAreaWithoutSlab +
         _curtainsExceeding1MeterAreaWithoutSlab +
         _basementsCurtainAreaWithoutSlab;
   }
 
-  double get _concreteVolume { //✓
+  double get _concreteVolume {
     return _formWorkArea * projectConstants.concreteCubicMeterForOneSquareMeterFormWork;
   }
 }
