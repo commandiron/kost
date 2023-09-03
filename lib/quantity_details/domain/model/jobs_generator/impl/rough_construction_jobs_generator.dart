@@ -72,11 +72,11 @@ class RoughConstructionJobsGenerator extends JobsGenerator {
               projectConstants.hollowFillingThickness;
         },
       ),
-      FoundationWaterproofing(
+      FoundationWaterproofing( //✓
         quantityBuilder: () {
-          return _bottomMostBasementFloor.area +
-              (_bottomMostBasementFloor.perimeter *
-                  projectConstants.foundationHeight);
+          return projectVariables.foundationArea +
+              (projectVariables.foundationPerimeter *
+                  projectVariables.foundationHeight);
         },
       ),
       CurtainWaterproofing(
@@ -135,13 +135,6 @@ class RoughConstructionJobsGenerator extends JobsGenerator {
     return result;
   }
 
-  Floor get _bottomMostBasementFloor {
-    final result = _allBasementFloors.reduce((current, next) {
-      return current.no < next.no ? current : next;
-    });
-    return result;
-  }
-
   double get _excavationHeight { //✓
     return projectConstants.stabilizationHeight
       +
@@ -149,7 +142,7 @@ class RoughConstructionJobsGenerator extends JobsGenerator {
       +
       projectConstants.insulationConcreteHeight
       +
-      projectConstants.foundationHeight
+      projectVariables.foundationHeight
       +
       _allBasementsHeight
     ;
@@ -184,17 +177,18 @@ class RoughConstructionJobsGenerator extends JobsGenerator {
   }
 
   double get _roughConstructionArea { //✓
-    double roughConstructionArea = 0;
+    double result = 0;
+    result  += projectVariables.foundationArea;
     for (var floor in floors) {
       if (floor.no == 0) {
-        roughConstructionArea += _topMostBasementFloor.area;
-      } else {
-        roughConstructionArea += floor.area;
+        final firstFloorArea = floors.firstWhere((floor) => floor.no == 1).area;
+        result += firstFloorArea;
+        continue;
       }
+      result += floor.area;
     }
-    roughConstructionArea += _topFloor.area;
-    roughConstructionArea += projectVariables.elevationTowerArea;
-    return roughConstructionArea;
+    result += projectVariables.elevationTowerArea;
+    return result;
   }
 
   double get _buildingHeightWithoutSlabs { //✓

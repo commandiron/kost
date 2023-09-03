@@ -2,7 +2,6 @@ import 'package:equatable/equatable.dart';
 
 class ProjectConstants extends Equatable {
   final double projectDurationMonth; //✓
-  final double foundationHeight; //✓
   final double insulationConcreteHeight; //✓
   final double leanConcreteHeight; //✓
   final double stabilizationHeight; //✓
@@ -28,7 +27,6 @@ class ProjectConstants extends Equatable {
 
   const ProjectConstants({
     this.projectDurationMonth = 14,
-    this.foundationHeight = 1,
     this.insulationConcreteHeight = 0.05,
     this.leanConcreteHeight = 0.10,
     this.stabilizationHeight = 0.30,
@@ -56,7 +54,6 @@ class ProjectConstants extends Equatable {
   @override
   List<Object?> get props => [
     projectDurationMonth,
-    foundationHeight,
     insulationConcreteHeight,
     leanConcreteHeight,
     stabilizationHeight,

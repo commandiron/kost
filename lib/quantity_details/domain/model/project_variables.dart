@@ -3,6 +3,9 @@ import 'package:equatable/equatable.dart';
 class ProjectVariables extends Equatable {
   final double landArea;
   final double landPerimeter;
+  final double foundationArea;
+  final double foundationPerimeter;
+  final double foundationHeight;
   final double excavationArea;
   final double excavationPerimeter;
   final double coreCurtainLength;
@@ -15,6 +18,9 @@ class ProjectVariables extends Equatable {
   const ProjectVariables({
     this.landArea = 0,
     this.landPerimeter = 0,
+    this.foundationArea = 0,
+    this.foundationPerimeter = 0,
+    this.foundationHeight = 0,
     this.excavationArea = 0,
     this.excavationPerimeter = 0,
     this.coreCurtainLength = 0,
@@ -27,15 +33,18 @@ class ProjectVariables extends Equatable {
 
   @override
   List<Object?> get props => [
-        landArea,
-        landPerimeter,
-        excavationArea,
-        excavationPerimeter,
-        coreCurtainLength,
-        curtainsExceeding1MeterLength,
-        basementCurtainLength,
-        columnsLess1MeterPerimeter,
-        elevationTowerArea,
-        elevationTowerHeightWithoutSlab,
-      ];
+    landArea,
+    landPerimeter,
+    foundationArea,
+    foundationPerimeter,
+    foundationHeight,
+    excavationArea,
+    excavationPerimeter,
+    coreCurtainLength,
+    curtainsExceeding1MeterLength,
+    basementCurtainLength,
+    columnsLess1MeterPerimeter,
+    elevationTowerArea,
+    elevationTowerHeightWithoutSlab,
+  ];
 }
