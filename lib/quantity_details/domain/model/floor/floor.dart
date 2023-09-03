@@ -12,7 +12,7 @@ class InitialFloor extends Floor {
       super.slabHeight = 0.3,
       super.thickWallLength = 0,
       super.thinWallLength = 0,
-      super.isSlabHollow = true,
+      super.isCeilingSlabHollow = true,
       super.windows = const [],
       super.floorSections = const []
     }
@@ -25,7 +25,7 @@ class Floor {
   final double perimeter;
   final double heightWithSlab;
   final double slabHeight;
-  final bool isSlabHollow;
+  final bool isCeilingSlabHollow;
   final double thickWallLength;
   final double thinWallLength;
   final List<Window> windows;
@@ -38,7 +38,7 @@ class Floor {
       required this.perimeter,
       required this.heightWithSlab,
       required this.slabHeight,
-      required this.isSlabHollow,
+      required this.isCeilingSlabHollow,
       required this.thickWallLength,
       required this.thinWallLength,
       required this.windows,
@@ -62,7 +62,7 @@ class Floor {
       perimeter: perimeter ?? this.perimeter,
       heightWithSlab: heightWithSlab ?? this.heightWithSlab,
       slabHeight: slabHeight ?? this.slabHeight,
-      isSlabHollow: isSlabHollow ?? this.isSlabHollow,
+      isCeilingSlabHollow: isSlabHollow ?? this.isCeilingSlabHollow,
       thickWallLength: thickWallLength ?? this.thickWallLength,
       thinWallLength: thinWallLength ?? this.thinWallLength,
       windows: windows ?? this.windows,
@@ -83,7 +83,7 @@ class Floor {
         perimeter: floor.perimeter,
         heightWithSlab: floor.heightWithSlab,
         slabHeight: floor.slabHeight,
-        isSlabHollow: floor.isSlabHollow,
+        isCeilingSlabHollow: floor.isCeilingSlabHollow,
         thickWallLength: floor.thickWallLength,
         thinWallLength: floor.thinWallLength,
         windows: floor.windows,

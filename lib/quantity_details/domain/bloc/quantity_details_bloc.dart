@@ -41,7 +41,7 @@ class QuantityDetailsBloc
                   perimeter: 63.6,
                   heightWithSlab: 3.3,
                   slabHeight: 0.3,
-                  isSlabHollow: true,
+                  isCeilingSlabHollow: true,
                   thickWallLength: 69.24,
                   thinWallLength: 49.54,
                   windows: [
@@ -97,7 +97,7 @@ class QuantityDetailsBloc
                 perimeter: 59.6,
                 heightWithSlab: 3.3,
                 slabHeight: 0.3,
-                isSlabHollow: true,
+                isCeilingSlabHollow: true,
                 thickWallLength: 65.71,
                 thinWallLength: 15.5,
                 windows: [
@@ -141,7 +141,7 @@ class QuantityDetailsBloc
                 perimeter: 108.90,
                 heightWithSlab: 3.3,
                 slabHeight: 0.3,
-                isSlabHollow: false,
+                isCeilingSlabHollow: false,
                 thickWallLength: 50,
                 thinWallLength: 0,
                 windows: [],

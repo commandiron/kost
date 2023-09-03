@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:kost/quantity_details/domain/model/project_constants.dart';
 import 'package:kost/quantity_details/domain/model/project_variables.dart';
 
@@ -54,17 +55,17 @@ class RoughConstructionJobsGenerator extends JobsGenerator {
           return _formWorkArea;
         },
       ),
-      ConcreteMaterial(
+      ConcreteMaterial( //✓
         quantityBuilder: () {
-          return _formWorkArea * projectConstants.concreteCubicMeterForOneSquareMeterFormWork;
+          return _concreteVolume;
         },
       ),
-      RebarMaterial(
+      RebarMaterial( //✓
         quantityBuilder: () {
           return _concreteVolume * projectConstants.rebarTonForOneCubicMeterConcrete;
         },
       ),
-      HollowFloorFillingMaterial(
+      HollowFloorFillingMaterial( //✓
         quantityBuilder: () {
           return projectConstants.hollowAreaForOneSquareMeterConstructionArea *
               _hollowSlabRoughConstructionArea *
@@ -216,11 +217,18 @@ class RoughConstructionJobsGenerator extends JobsGenerator {
     return result;
   }
 
-  double get _hollowSlabRoughConstructionArea {
-    return floors
-        .where((floor) => floor.isSlabHollow)
-        .map((ceilingSlabFloor) => ceilingSlabFloor.area)
-        .fold(0.0, (p, c) => p + c);
+  double get _hollowSlabRoughConstructionArea { //✓
+    double result = 0;
+    final ceilingSlabHollowFloors = floors.where((floor) => floor.isCeilingSlabHollow);
+    for(var ceilingSlabHollowFloor in ceilingSlabHollowFloors) {
+      if(ceilingSlabHollowFloor == _topFloor) {
+        result += ceilingSlabHollowFloor.area;
+        continue;
+      }
+      final ceilingArea = floors.firstWhereOrNull((floor) => floor.no == ceilingSlabHollowFloor.no + 1)?.area;
+      result += ceilingArea ?? 0;
+    }
+    return result;
   }
 
   double get _wetAreaAboveBasement {
@@ -256,8 +264,7 @@ class RoughConstructionJobsGenerator extends JobsGenerator {
         _basementsCurtainAreaWithoutSlab;
   }
 
-  double get _concreteVolume {
-    return _formWorkArea *
-        projectConstants.concreteCubicMeterForOneSquareMeterFormWork;
+  double get _concreteVolume { //✓
+    return _formWorkArea * projectConstants.concreteCubicMeterForOneSquareMeterFormWork;
   }
 }

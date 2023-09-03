@@ -96,7 +96,6 @@ class FoundationStabilization extends Job {
       super.enabledUnitPriceCategories = const [UnitPriceCategory.foundationStabilizationGravel],
       super.selectedUnitPriceCategory = UnitPriceCategory.foundationStabilizationGravel,
       required super.quantityBuilder,
-
       super.disable,
     }
   );
@@ -110,7 +109,6 @@ class SubFoundationConcreteMaterial extends Job {
       super.enabledUnitPriceCategories = const [UnitPriceCategory.c16Concrete],
       super.selectedUnitPriceCategory = UnitPriceCategory.c16Concrete,
       required super.quantityBuilder,
-
       super.disable,
     }
   );
@@ -124,7 +122,6 @@ class ReinforcedConcreteWorkmanshipWithFormWorkMaterial extends Job {
       super.enabledUnitPriceCategories = const [UnitPriceCategory.reinforcedConcreteWorkmanshipWithPlywood],
       super.selectedUnitPriceCategory = UnitPriceCategory.reinforcedConcreteWorkmanshipWithPlywood,
       required super.quantityBuilder,
-
       super.disable,
     }
   );
@@ -138,7 +135,6 @@ class ConcreteMaterial extends Job {
       super.enabledUnitPriceCategories = const [UnitPriceCategory.c30Concrete, UnitPriceCategory.c35Concrete, UnitPriceCategory.c40Concrete],
       super.selectedUnitPriceCategory = UnitPriceCategory.c35Concrete,
       required super.quantityBuilder,
-
       super.disable,
     }
   );
@@ -152,7 +148,6 @@ class RebarMaterial extends Job {
       super.enabledUnitPriceCategories = const [UnitPriceCategory.s420Steel],
       super.selectedUnitPriceCategory = UnitPriceCategory.s420Steel,
       required super.quantityBuilder,
-
       super.disable,
     }
   );
@@ -166,7 +161,6 @@ class HollowFloorFillingMaterial extends Job {
       super.enabledUnitPriceCategories = const [UnitPriceCategory.eps14Dns],
       super.selectedUnitPriceCategory = UnitPriceCategory.eps14Dns,
       required super.quantityBuilder,
-
       super.disable,
     }
   );
@@ -180,7 +174,6 @@ class FoundationWaterproofing extends Job {
       super.enabledUnitPriceCategories = const [UnitPriceCategory.proofBitumenMembrane],
       super.selectedUnitPriceCategory = UnitPriceCategory.proofBitumenMembrane,
       required super.quantityBuilder,
-
       super.disable,
     }
   );
@@ -194,7 +187,6 @@ class CurtainWaterproofing extends Job {
       super.enabledUnitPriceCategories = const [UnitPriceCategory.cementSliding, UnitPriceCategory.bitumenSliding],
       super.selectedUnitPriceCategory = UnitPriceCategory.cementSliding,
       required super.quantityBuilder,
-
       super.disable,
     }
   );
@@ -208,7 +200,6 @@ class CurtainProtectionBeforeFilling extends Job {
       super.enabledUnitPriceCategories = const [UnitPriceCategory.drainPlate],
       super.selectedUnitPriceCategory =UnitPriceCategory.drainPlate,
       required super.quantityBuilder,
-
       super.disable,
     }
   );
@@ -222,7 +213,6 @@ class Wall extends Job {
       super.enabledUnitPriceCategories = const [UnitPriceCategory.aeratedConcreteYtong],
       super.selectedUnitPriceCategory = UnitPriceCategory.aeratedConcreteYtong,
       required super.quantityBuilder,
-
       super.disable,
     }
   );
@@ -236,7 +226,6 @@ class WallWorkmanShip extends Job {
       super.enabledUnitPriceCategories = const [UnitPriceCategory.aeratedConcreteLabor],
       super.selectedUnitPriceCategory = UnitPriceCategory.aeratedConcreteLabor,
       required super.quantityBuilder,
-
       super.disable,
     }
   );
@@ -250,7 +239,6 @@ class Roofing extends Job {
       super.enabledUnitPriceCategories = const [UnitPriceCategory.steelConstructionBraasRoof],
       super.selectedUnitPriceCategory = UnitPriceCategory.steelConstructionBraasRoof,
       required super.quantityBuilder,
-
       super.disable,
     }
   );
@@ -264,7 +252,6 @@ class FacadeScaffolding extends Job {
       super.enabledUnitPriceCategories = const [UnitPriceCategory.steelScaffolding],
       super.selectedUnitPriceCategory = UnitPriceCategory.steelScaffolding,
       required super.quantityBuilder,
-
       super.disable,
     }
   );
@@ -278,7 +265,6 @@ class Windows extends Job {
       super.enabledUnitPriceCategories = const [UnitPriceCategory.windowJoineryRehau],
       super.selectedUnitPriceCategory = UnitPriceCategory.windowJoineryRehau,
       required super.quantityBuilder,
-
       super.disable,
     }
   );
@@ -292,7 +278,6 @@ class FacadeRails extends Job {
       super.enabledUnitPriceCategories = const [UnitPriceCategory.wroughtIronRailing, UnitPriceCategory.aluminumRailing],
       super.selectedUnitPriceCategory = UnitPriceCategory.wroughtIronRailing,
       required super.quantityBuilder,
-
       super.disable,
     }
   );
@@ -306,7 +291,6 @@ class FacadeSystem extends Job {
       super.enabledUnitPriceCategories = const [UnitPriceCategory.sinterFlexFacade, UnitPriceCategory.precastFacade],
       super.selectedUnitPriceCategory = UnitPriceCategory.sinterFlexFacade,
       required super.quantityBuilder,
-
       super.disable,
     }
   );
@@ -320,7 +304,6 @@ class InteriorPlastering extends Job {
       super.enabledUnitPriceCategories = const [UnitPriceCategory.plaster],
       super.selectedUnitPriceCategory = UnitPriceCategory.plaster,
       required super.quantityBuilder,
-
       super.disable,
     }
   );
@@ -334,7 +317,6 @@ class InteriorPainting extends Job {
       super.enabledUnitPriceCategories = const [UnitPriceCategory.painting],
       super.selectedUnitPriceCategory = UnitPriceCategory.painting,
       required super.quantityBuilder,
-
       super.disable,
     }
   );
@@ -348,7 +330,6 @@ class InteriorWaterproofing extends Job {
       super.enabledUnitPriceCategories = const [UnitPriceCategory.cementBasedFlexInsulation],
       super.selectedUnitPriceCategory = UnitPriceCategory.cementBasedFlexInsulation,
       required super.quantityBuilder,
-
       super.disable,
     }
   );
@@ -362,7 +343,6 @@ class CeilingCovering extends Job {
       super.enabledUnitPriceCategories = const [UnitPriceCategory.drywall],
       super.selectedUnitPriceCategory = UnitPriceCategory.drywall,
       required super.quantityBuilder,
-
       super.disable,
     }
   );
@@ -376,7 +356,6 @@ class CovingPlaster extends Job {
       super.enabledUnitPriceCategories = const [UnitPriceCategory.covingPlaster],
       super.selectedUnitPriceCategory = UnitPriceCategory.covingPlaster,
       required super.quantityBuilder,
-
       super.disable,
     }
   );
@@ -390,7 +369,6 @@ class Screeding extends Job {
       super.enabledUnitPriceCategories = const [UnitPriceCategory.screed300Doses],
       super.selectedUnitPriceCategory = UnitPriceCategory.screed300Doses,
       required super.quantityBuilder,
-
       super.disable,
     }
   );
@@ -404,7 +382,6 @@ class Marble extends Job {
       super.enabledUnitPriceCategories = const [UnitPriceCategory.marbleFloorBilecik],
       super.selectedUnitPriceCategory = UnitPriceCategory.marbleFloorBilecik,
       required super.quantityBuilder,
-
       super.disable,
     }
   );
@@ -418,7 +395,6 @@ class MarbleStep extends Job {
       super.enabledUnitPriceCategories = const [UnitPriceCategory.marbleStepBilecik],
       super.selectedUnitPriceCategory = UnitPriceCategory.marbleStepBilecik,
       required super.quantityBuilder,
-
       super.disable,
     }
   );
@@ -432,7 +408,6 @@ class MarbleWindowsill extends Job {
       super.enabledUnitPriceCategories = const [UnitPriceCategory.marbleWindowsillBilecik],
       super.selectedUnitPriceCategory = UnitPriceCategory.marbleWindowsillBilecik,
       required super.quantityBuilder,
-
       super.disable,
     }
   );
@@ -446,7 +421,6 @@ class StairRailings extends Job {
       super.enabledUnitPriceCategories = const [UnitPriceCategory.aluminumRailing],
       super.selectedUnitPriceCategory = UnitPriceCategory.aluminumRailing,
       required super.quantityBuilder,
-
       super.disable,
     }
   );
@@ -460,7 +434,6 @@ class CeramicTile extends Job {
       super.enabledUnitPriceCategories = const [UnitPriceCategory.ceramicTileVitraVersus],
       super.selectedUnitPriceCategory = UnitPriceCategory.ceramicTileVitraVersus,
       required super.quantityBuilder,
-
       super.disable,
     }
   );
@@ -474,7 +447,6 @@ class ParquetTile extends Job {
       super.enabledUnitPriceCategories = const [UnitPriceCategory.laminatedSerifoglu],
       super.selectedUnitPriceCategory = UnitPriceCategory.laminatedSerifoglu,
       required super.quantityBuilder,
-
       super.disable,
     }
   );
@@ -488,7 +460,6 @@ class SteelDoor extends Job {
       super.enabledUnitPriceCategories = const [UnitPriceCategory.steelDoorKale],
       super.selectedUnitPriceCategory = UnitPriceCategory.steelDoorKale,
       required super.quantityBuilder,
-
       super.disable,
     }
   );
@@ -502,7 +473,6 @@ class EntranceDoor extends Job {
       super.enabledUnitPriceCategories = const [UnitPriceCategory.entranceDoor],
       super.selectedUnitPriceCategory = UnitPriceCategory.entranceDoor,
       required super.quantityBuilder,
-
       super.disable,
     }
   );
@@ -516,7 +486,6 @@ class FireDoor extends Job {
       super.enabledUnitPriceCategories = const [UnitPriceCategory.ironFireDoor],
       super.selectedUnitPriceCategory = UnitPriceCategory.ironFireDoor,
       required super.quantityBuilder,
-
       super.disable,
     }
   );
@@ -530,7 +499,6 @@ class WoodenDoor extends Job {
       super.enabledUnitPriceCategories = const [UnitPriceCategory.lacqueredDoorArtella],
       super.selectedUnitPriceCategory = UnitPriceCategory.lacqueredDoorArtella,
       required super.quantityBuilder,
-
       super.disable,
     }
   );
@@ -544,7 +512,6 @@ class KitchenCupboard extends Job {
       super.enabledUnitPriceCategories = const [UnitPriceCategory.shinyLacqueredKitchenCupboardAster, UnitPriceCategory.matteLacqueredKitchenCupboardAster],
       super.selectedUnitPriceCategory = UnitPriceCategory.shinyLacqueredKitchenCupboardAster,
       required super.quantityBuilder,
-
       super.disable,
     }
   );
@@ -558,7 +525,6 @@ class KitchenCounter extends Job {
       super.enabledUnitPriceCategories = const [UnitPriceCategory.quartzCountertopCimstone],
       super.selectedUnitPriceCategory = UnitPriceCategory.quartzCountertopCimstone,
       required super.quantityBuilder,
-
       super.disable,
     }
   );
@@ -572,7 +538,6 @@ class CoatCabinet extends Job {
       super.enabledUnitPriceCategories = const [UnitPriceCategory.lacqueredCabinet],
       super.selectedUnitPriceCategory = UnitPriceCategory.lacqueredCabinet,
       required super.quantityBuilder,
-
       super.disable,
     }
   );
@@ -586,7 +551,6 @@ class BathroomCabinet extends Job {
       super.enabledUnitPriceCategories = const [UnitPriceCategory.lacqueredCabinet],
       super.selectedUnitPriceCategory = UnitPriceCategory.lacqueredCabinet,
       required super.quantityBuilder,
-
       super.disable,
     }
   );
@@ -600,7 +564,6 @@ class FloorPlinth extends Job {
       super.enabledUnitPriceCategories = const [UnitPriceCategory.lacqueredFloorPlinth],
       super.selectedUnitPriceCategory = UnitPriceCategory.lacqueredFloorPlinth,
       required super.quantityBuilder,
-
       super.disable,
     }
   );
@@ -614,7 +577,6 @@ class MechanicalInfrastructure extends Job {
       super.enabledUnitPriceCategories = const [UnitPriceCategory.mechanicalInfrastructure],
       super.selectedUnitPriceCategory = UnitPriceCategory.mechanicalInfrastructure,
       required super.quantityBuilder,
-
       super.disable,
     }
   );
@@ -628,7 +590,6 @@ class AirConditioner extends Job {
       super.enabledUnitPriceCategories = const [UnitPriceCategory.airConditionerArcelik, UnitPriceCategory.vrfMultiSplitMitshubishiElectric],
       super.selectedUnitPriceCategory = UnitPriceCategory.airConditionerArcelik,
       required super.quantityBuilder,
-
       super.disable,
     }
   );
@@ -642,7 +603,6 @@ class Ventilation extends Job {
       super.enabledUnitPriceCategories = const [UnitPriceCategory.ventilation],
       super.selectedUnitPriceCategory = UnitPriceCategory.ventilation,
       required super.quantityBuilder,
-
       super.disable,
     }
   );
@@ -656,7 +616,6 @@ class WaterTank extends Job {
       super.enabledUnitPriceCategories = const [UnitPriceCategory.galvanize25TonWaterTankEsinoks],
       super.selectedUnitPriceCategory = UnitPriceCategory.galvanize25TonWaterTankEsinoks,
       required super.quantityBuilder,
-
       super.disable,
     }
   );
@@ -670,7 +629,6 @@ class Elevation extends Job {
       super.enabledUnitPriceCategories = const [UnitPriceCategory.elevation10PersonKone],
       super.selectedUnitPriceCategory = UnitPriceCategory.elevation10PersonKone,
       required super.quantityBuilder,
-
       super.disable,
     }
   );
@@ -684,7 +642,6 @@ class Sink extends Job {
       super.enabledUnitPriceCategories = const [UnitPriceCategory.sinkVitra],
       super.selectedUnitPriceCategory = UnitPriceCategory.sinkVitra,
       required super.quantityBuilder,
-
       super.disable,
     }
   );
@@ -698,7 +655,6 @@ class SinkBattery extends Job {
       super.enabledUnitPriceCategories = const [UnitPriceCategory.sinkBatteryVitra],
       super.selectedUnitPriceCategory = UnitPriceCategory.sinkBatteryVitra,
       required super.quantityBuilder,
-
       super.disable,
     }
   );
@@ -712,7 +668,6 @@ class ConcealedCistern extends Job {
       super.enabledUnitPriceCategories = const [UnitPriceCategory.concealedCisternVitra],
       super.selectedUnitPriceCategory = UnitPriceCategory.concealedCisternVitra,
       required super.quantityBuilder,
-
       super.disable,
     }
   );
@@ -726,7 +681,6 @@ class Shower extends Job {
       super.enabledUnitPriceCategories = const [UnitPriceCategory.showerHuppe100x100],
       super.selectedUnitPriceCategory = UnitPriceCategory.showerHuppe100x100,
       required super.quantityBuilder,
-
       super.disable,
     }
   );
@@ -740,7 +694,6 @@ class ShowerBattery extends Job {
       super.enabledUnitPriceCategories = const [UnitPriceCategory.showerBatteryVitra],
       super.selectedUnitPriceCategory = UnitPriceCategory.showerBatteryVitra,
       required super.quantityBuilder,
-
       super.disable,
     }
   );
@@ -754,7 +707,6 @@ class KitchenFaucetAndSink extends Job {
       super.enabledUnitPriceCategories = const [UnitPriceCategory.kitchenFaucetAndSinkFranke],
       super.selectedUnitPriceCategory = UnitPriceCategory.kitchenFaucetAndSinkFranke,
       required super.quantityBuilder,
-
       super.disable,
     }
   );
@@ -768,7 +720,6 @@ class ElectricalInfrastructure extends Job {
       super.enabledUnitPriceCategories = const [UnitPriceCategory.electricalInfrastructure],
       super.selectedUnitPriceCategory = UnitPriceCategory.electricalInfrastructure,
       required super.quantityBuilder,
-
       super.disable,
     }
   );
@@ -782,7 +733,6 @@ class Generator extends Job {
       super.enabledUnitPriceCategories = const [UnitPriceCategory.generatorAksa160],
       super.selectedUnitPriceCategory = UnitPriceCategory.generatorAksa160,
       required super.quantityBuilder,
-
       super.disable,
     }
   );
@@ -796,7 +746,6 @@ class HouseholdAppliances extends Job {
       super.enabledUnitPriceCategories = const [UnitPriceCategory.paddleBoxBuiltInOvenCookTopDishwasherFranke],
       super.selectedUnitPriceCategory = UnitPriceCategory.paddleBoxBuiltInOvenCookTopDishwasherFranke,
       required super.quantityBuilder,
-
       super.disable,
     }
   );
@@ -810,7 +759,6 @@ class LandScapeGarden extends Job {
       super.enabledUnitPriceCategories = const [UnitPriceCategory.averageGarden],
       super.selectedUnitPriceCategory = UnitPriceCategory.averageGarden,
       required super.quantityBuilder,
-
       super.disable,
     }
   );
@@ -824,7 +772,6 @@ class OutdoorParkingTile extends Job {
       super.enabledUnitPriceCategories = const [UnitPriceCategory.interlockingPavingStone],
       super.selectedUnitPriceCategory = UnitPriceCategory.interlockingPavingStone,
       required super.quantityBuilder,
-
       super.disable,
     }
   );
@@ -838,7 +785,6 @@ class CarLift extends Job {
       super.enabledUnitPriceCategories = const [UnitPriceCategory.carLift],
       super.selectedUnitPriceCategory = UnitPriceCategory.carLift,
       required super.quantityBuilder,
-
       super.disable,
     }
   );
@@ -852,7 +798,6 @@ class AutomaticBarrier extends Job {
       super.enabledUnitPriceCategories = const [UnitPriceCategory.automaticBarrier],
       super.selectedUnitPriceCategory = UnitPriceCategory.automaticBarrier,
       required super.quantityBuilder,
-
       super.disable,
     }
   );
@@ -866,7 +811,6 @@ class EnclosingTheLand extends Job {
       super.enabledUnitPriceCategories = const [UnitPriceCategory.trapezoidalSheetCurtain],
       super.selectedUnitPriceCategory = UnitPriceCategory.trapezoidalSheetCurtain,
       required super.quantityBuilder,
-
       super.disable,
     }
   );
@@ -880,7 +824,6 @@ class MobilizationDemobilization extends Job {
       super.enabledUnitPriceCategories = const [UnitPriceCategory.mobilizationDemobilization],
       super.selectedUnitPriceCategory = UnitPriceCategory.mobilizationDemobilization,
       required super.quantityBuilder,
-
       super.disable,
     }
   );
@@ -894,7 +837,6 @@ class Crane extends Job {
       super.enabledUnitPriceCategories = const [UnitPriceCategory.crane15Ton],
       super.selectedUnitPriceCategory = UnitPriceCategory.crane15Ton,
       required super.quantityBuilder,
-
       super.disable,
     }
   );
@@ -908,7 +850,6 @@ class SiteSafety extends Job {
       super.enabledUnitPriceCategories = const [UnitPriceCategory.siteSafety],
       super.selectedUnitPriceCategory = UnitPriceCategory.siteSafety,
       required super.quantityBuilder,
-
       super.disable,
     }
   );
@@ -922,7 +863,6 @@ class SiteExpenses extends Job {
       super.enabledUnitPriceCategories = const [UnitPriceCategory.siteExpenses],
       super.selectedUnitPriceCategory = UnitPriceCategory.siteExpenses,
       required super.quantityBuilder,
-
       super.disable,
     }
   );
@@ -936,7 +876,6 @@ class Sergeant extends Job {
       super.enabledUnitPriceCategories = const [UnitPriceCategory.sergeantGrossWage],
       super.selectedUnitPriceCategory = UnitPriceCategory.sergeantGrossWage,
       required super.quantityBuilder,
-
       super.disable,
     }
   );
@@ -950,7 +889,6 @@ class SiteChief extends Job {
       super.enabledUnitPriceCategories = const [UnitPriceCategory.siteChiefGrossWage],
       super.selectedUnitPriceCategory = UnitPriceCategory.siteChiefGrossWage,
       required super.quantityBuilder,
-
       super.disable,
     }
   );
@@ -964,7 +902,6 @@ class ProjectsFeesPayments extends Job {
       super.enabledUnitPriceCategories = const [UnitPriceCategory.projectsFeesPayments],
       super.selectedUnitPriceCategory = UnitPriceCategory.projectsFeesPayments,
       required super.quantityBuilder,
-
       super.disable,
     }
   );
