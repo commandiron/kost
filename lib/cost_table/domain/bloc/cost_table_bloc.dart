@@ -159,7 +159,6 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
         unitPriceAmountText: unitAmountText,
         quantityText: job.quantityBuilder.call().toFormattedText(),
         quantityUnitText: unitPrice.unit.symbol,
-        quantityExplanationText: job.quantityExplanationBuilder.call(),
         totalPriceTRY: totalPriceTRY,
         formattedTotalPriceTRY: totalPriceTRY.toFormattedText(unit: "TL"));
   }

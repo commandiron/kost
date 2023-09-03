@@ -24,33 +24,21 @@ class LandscapeJobsGenerator extends JobsGenerator {
           return (projectVariables.landArea - _groundFloor.area) *
               projectConstants.gardenOutdoorParkingAreaRate;
         },
-        quantityExplanationBuilder: () {
-          return "Arsa alanı: ${projectVariables.landArea}- Zemin kat alanı: ${_groundFloor.area} x Bahçe Oranı: ${projectConstants.gardenOutdoorParkingAreaRate}";
-        },
       ),
       OutdoorParkingTile(
         quantityBuilder: () {
           return (projectVariables.landArea - _groundFloor.area) *
               (1 - projectConstants.gardenOutdoorParkingAreaRate);
         },
-        quantityExplanationBuilder: () {
-          return "Arsa alanı: ${projectVariables.landArea} - Zemin kat alanı: ${_groundFloor.area} x Açık otopark oranı: 1 - Bahçe Oranı: ${projectConstants.gardenOutdoorParkingAreaRate}";
-        },
       ),
       CarLift(
         quantityBuilder: () {
           return _basementFloors.length + 1;
         },
-        quantityExplanationBuilder: () {
-          return "Bodrum kat adedi: ${_basementFloors.length} + Zemin kat adedi: 1";
-        },
       ),
       AutomaticBarrier(
         quantityBuilder: () {
           return projectConstants.automaticBarrierNumber.toDouble();
-        },
-        quantityExplanationBuilder: () {
-          return "Otomatik bariyer adedi: ${projectConstants.automaticBarrierNumber}";
         },
       ),
     ];

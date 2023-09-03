@@ -24,72 +24,44 @@ class RoughConstructionJobsGenerator extends JobsGenerator {
         quantityBuilder: () {
           return projectVariables.excavationPerimeter * _excavationHeight;
         },
-        quantityExplanationBuilder: () {
-          return "Hafriyat çevre uzunluğu: ${projectVariables.excavationPerimeter} x Hafriyat yüksekliği: $_excavationHeight";
-        },
       ),
       Excavation( //✓
         quantityBuilder: () {
-          return projectVariables.excavationArea * _excavationHeight;
-        },
-        quantityExplanationBuilder: () {
-          return "Hafriyat alanı: ${projectVariables.excavationArea} x Hafriyat yüksekliği: $_excavationHeight";
+          return _excavationVolume;
         },
       ),
       Breaker( //✓
         quantityBuilder: () {
           return _excavationVolume * projectConstants.excavationAreaRockDensityConstant.breakerHourForOneCubicMeterExcavation;
         },
-        quantityExplanationBuilder: () {
-          return "Hafriyat hacmi: $_excavationVolume x Bir m3 hafriyat hacmi için kırıcı çalışma saati: ${projectConstants.excavationAreaRockDensityConstant.breakerHourForOneCubicMeterExcavation}";
-        },
       ),
-      FoundationStabilization( //KONTROL ETMEYE BURDA KALDIM
+      FoundationStabilization( //✓
         quantityBuilder: () {
           return projectVariables.excavationArea *
               projectConstants.stabilizationHeight *
               projectConstants.gravelTonForOneCubicMeter;
         },
-        quantityExplanationBuilder: () {
-          return "Hafriyat alanı: ${projectVariables.excavationArea} x Temel altı stabilizasyon malzemesi yüksekliği: ${projectConstants.stabilizationHeight} x 1 m3 mıcır: ${projectConstants.gravelTonForOneCubicMeter} ton";
-        },
       ),
-      SubFoundationConcreteMaterial(
+      SubFoundationConcreteMaterial( //✓
         quantityBuilder: () {
           return projectVariables.excavationArea *
               (projectConstants.leanConcreteHeight +
                   projectConstants.insulationConcreteHeight);
         },
-        quantityExplanationBuilder: () {
-          return "Hafriyat alanı: ${projectVariables.excavationArea} x (Grobeton yüksekliği: ${projectConstants.leanConcreteHeight} + Yalıtım koruma betonu yüksekliği: ${projectConstants.insulationConcreteHeight})";
-        },
       ),
-      ReinforcedConcreteWorkmanshipWithFormWorkMaterial(
+      ReinforcedConcreteWorkmanshipWithFormWorkMaterial( //✓
         quantityBuilder: () {
-          return _roughConstructionArea +
-              _coreCurtainAreaWithoutSlab +
-              _curtainsExceeding1MeterAreaWithoutSlab +
-              _basementsCurtainAreaWithoutSlab;
-        },
-        quantityExplanationBuilder: () {
-          return "Kaba inşaat alanı: $_roughConstructionArea + Çekirdek perdesi alanı: $_coreCurtainAreaWithoutSlab + 1 metreyi geçen perdelerin alanı: $_curtainsExceeding1MeterAreaWithoutSlab + Bodrum perdeleri alanı: $_basementsCurtainAreaWithoutSlab";
+          return _formWorkArea;
         },
       ),
       ConcreteMaterial(
         quantityBuilder: () {
-          return _formWorkArea *
-              projectConstants.concreteCubicMeterForOneSquareMeterFormWork;
-        },
-        quantityExplanationBuilder: () {
-          return "Kalıp alanı (Düz ölçü): $_formWorkArea x 1 m2 kalıp için m3 biriminde beton hacmi: ${projectConstants.concreteCubicMeterForOneSquareMeterFormWork}";
+          return _formWorkArea * projectConstants.concreteCubicMeterForOneSquareMeterFormWork;
         },
       ),
       RebarMaterial(
         quantityBuilder: () {
           return _concreteVolume * projectConstants.rebarTonForOneCubicMeterConcrete;
-        },
-        quantityExplanationBuilder: () {
-          return "Beton hacmi: $_concreteVolume x 1 m3 beton için ton biriminde demir ağırlığı: ${projectConstants.rebarTonForOneCubicMeterConcrete}";
         },
       ),
       HollowFloorFillingMaterial(
@@ -98,9 +70,6 @@ class RoughConstructionJobsGenerator extends JobsGenerator {
               _hollowSlabRoughConstructionArea *
               projectConstants.hollowFillingThickness;
         },
-        quantityExplanationBuilder: () {
-          return "1 m2 kaba inşaat alanı için m2 biriminde asmolen alanı: ${projectConstants.hollowAreaForOneSquareMeterConstructionArea} x Asmolen döşeme inşaat alanı: $_hollowSlabRoughConstructionArea x Asmolen kalınlığı: ${projectConstants.hollowFillingThickness}";
-        },
       ),
       FoundationWaterproofing(
         quantityBuilder: () {
@@ -108,24 +77,15 @@ class RoughConstructionJobsGenerator extends JobsGenerator {
               (_bottomMostBasementFloor.perimeter *
                   projectConstants.foundationHeight);
         },
-        quantityExplanationBuilder: () {
-          return "En alt bodrum alanı: ${_bottomMostBasementFloor.area} + (En alt bodrum çevre uzunluğu: ${_bottomMostBasementFloor.perimeter} x Temel yüksekliği: ${projectConstants.foundationHeight})";
-        },
       ),
       CurtainWaterproofing(
         quantityBuilder: () {
           return _basementsOuterCurtainArea + _wetAreaAboveBasement;
         },
-        quantityExplanationBuilder: () {
-          return "Bodrum dış perdesi ıslak alanı: $_basementsOuterCurtainArea + Bodrum üstü ıslak alanı: $_wetAreaAboveBasement";
-        },
       ),
       CurtainProtectionBeforeFilling(
         quantityBuilder: () {
           return _basementsOuterCurtainArea;
-        },
-        quantityExplanationBuilder: () {
-          return "Bodrum dış perdesi ıslak alanı: $_basementsOuterCurtainArea";
         },
       ),
       // Duvar metrajı hesaplanırken hiç bir şekilde minha yapmıyorum,
@@ -137,98 +97,96 @@ class RoughConstructionJobsGenerator extends JobsGenerator {
         quantityBuilder: () {
           return _thickWallVolume + _thinWallVolume;
         },
-        quantityExplanationBuilder: () {
-          return "Kalın duvar hacmi (kalınlık: ${projectConstants.thickWallThickness}): $_thickWallVolume + İnce duvar hacmi(kalınlık: ${projectConstants.thinWallThickness}): $_thinWallVolume";
-        },
       ),
       WallWorkmanShip(
         quantityBuilder: () {
           return _thickWallArea + _thinWallArea;
-        },
-        quantityExplanationBuilder: () {
-          return "Kalın duvar alanı: $_thickWallArea + İnce duvar alanı: $_thinWallArea";
         },
       ),
     ];
   }
 
   Floor get _topFloor {
-    final topFloor = floors.reduce((current, next) {
+    final result = floors.reduce((current, next) {
       return current.no > next.no ? current : next;
     });
-    return topFloor;
+    return result;
   }
 
   Floor get _groundFloor {
-    final groundFloor = floors.firstWhere(
+    final result = floors.firstWhere(
       (floor) => floor.no == 0,
       orElse: () => throw Exception("No ground floor"),
     );
-    return groundFloor;
+    return result;
   }
 
-  List<Floor> get _basementFloors { //✓
-    final basementFloors = floors.where((floor) => floor.no < 0).toList();
-    if (basementFloors.isEmpty) {
+  List<Floor> get _allBasementFloors { //✓
+    final result = floors.where((floor) => floor.no < 0).toList();
+    if (result.isEmpty) {
       throw Exception("No basement floor");
     }
-    return basementFloors;
+    return result;
   }
 
-  Floor get _topMostBasementFloor {
-    final topMostBasementFloor = _basementFloors.reduce((current, next) {
-      return current.no > next.no ? current : next;
-    });
-    return topMostBasementFloor;
+  Floor get _topMostBasementFloor { //✓
+    final result = _allBasementFloors.firstWhere((floor) => floor.no == -1);
+    return result;
   }
 
   Floor get _bottomMostBasementFloor {
-    final bottomMostBasementFloor = _basementFloors.reduce((current, next) {
+    final result = _allBasementFloors.reduce((current, next) {
       return current.no < next.no ? current : next;
     });
-    return bottomMostBasementFloor;
+    return result;
   }
 
   double get _excavationHeight { //✓
-    return projectConstants.stabilizationHeight +
-        projectConstants.leanConcreteHeight +
-        projectConstants.insulationConcreteHeight +
-        projectConstants.foundationHeight +
-        _basementsHeight;
+    return projectConstants.stabilizationHeight
+      +
+      projectConstants.leanConcreteHeight
+      +
+      projectConstants.insulationConcreteHeight
+      +
+      projectConstants.foundationHeight
+      +
+      _allBasementsHeight
+    ;
   }
 
-  double get _excavationVolume {
-    return projectVariables.excavationArea * _excavationHeight;
+  double get _excavationVolume { //✓
+    final result = projectVariables.excavationArea * _excavationHeight;
+    return result;
   }
 
-  double get _basementsHeight { //✓
-    return _basementFloors
+  double get _allBasementsHeight { //✓
+    final result = _allBasementFloors
         .map((floor) => floor.heightWithSlab)
         .fold(0.0, (p, c) => p + c);
+    return result;
   }
 
-  double get _basementsHeightWithoutSlab {
-    return _basementFloors
+  double get _allBasementsHeightWithoutSlab { //✓
+    return _allBasementFloors
         .map((floor) => floor.heightWithSlab - floor.slabHeight)
         .fold(0.0, (p, c) => p + c);
   }
 
-  double get _basementsCurtainAreaWithoutSlab {
-    return projectVariables.basementCurtainLength * _basementsHeightWithoutSlab;
+  double get _basementsCurtainAreaWithoutSlab { //✓
+    return projectVariables.basementCurtainLength * _allBasementsHeightWithoutSlab;
   }
 
   double get _basementsOuterCurtainArea {
-    return _basementFloors
+    return _allBasementFloors
         .map((floor) => floor.perimeter * floor.heightWithSlab)
         .fold(0.0, (p, c) => p + c);
   }
 
-  double get _roughConstructionArea {
+  double get _roughConstructionArea { //✓
     double roughConstructionArea = 0;
     for (var floor in floors) {
       if (floor.no == 0) {
-        roughConstructionArea +=
-            floors.firstWhere((floor) => floor.no == -1).area;
+        roughConstructionArea += _topMostBasementFloor.area;
       } else {
         roughConstructionArea += floor.area;
       }
@@ -238,21 +196,24 @@ class RoughConstructionJobsGenerator extends JobsGenerator {
     return roughConstructionArea;
   }
 
-  double get _buildingHeightWithoutSlabs {
-    return floors
+  double get _buildingHeightWithoutSlabs { //✓
+    final result = floors
         .map((floor) => floor.heightWithSlab - floor.slabHeight)
         .fold(0.0, (p, c) => p + c);
+    return result;
   }
 
-  double get _coreCurtainAreaWithoutSlab {
-    return projectVariables.coreCurtainLength *
+  double get _coreCurtainAreaWithoutSlab { //✓
+    final result = projectVariables.coreCurtainLength *
         (_buildingHeightWithoutSlabs +
             projectVariables.elevationTowerHeightWithoutSlab);
+    return result;
   }
 
-  double get _curtainsExceeding1MeterAreaWithoutSlab {
-    return projectVariables.curtainsExceeding1MeterLength *
+  double get _curtainsExceeding1MeterAreaWithoutSlab { //✓
+    final result = projectVariables.curtainsExceeding1MeterLength *
         _buildingHeightWithoutSlabs;
+    return result;
   }
 
   double get _hollowSlabRoughConstructionArea {
@@ -288,7 +249,7 @@ class RoughConstructionJobsGenerator extends JobsGenerator {
     return _thinWallArea * projectConstants.thinWallThickness;
   }
 
-  double get _formWorkArea {
+  double get _formWorkArea { //✓
     return _roughConstructionArea +
         _coreCurtainAreaWithoutSlab +
         _curtainsExceeding1MeterAreaWithoutSlab +

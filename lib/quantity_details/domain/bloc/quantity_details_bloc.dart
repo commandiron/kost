@@ -25,10 +25,10 @@ class QuantityDetailsBloc
               landArea: 773.29, //✓
               landPerimeter: 116.91, //✓
               excavationArea: 660.41, //✓
-              excavationPerimeter: 108.90, //✓
-              coreCurtainLength: 21.14,
-              curtainsExceeding1MeterLength: 0,
-              basementCurtainLength: 108.90,
+              excavationPerimeter: 116.91, //✓
+              coreCurtainLength: 13.03, //✓
+              curtainsExceeding1MeterLength: 8.1, //✓
+              basementCurtainLength: 108.90, //✓
               columnsLess1MeterPerimeter: 24.8,
               elevationTowerArea: 27,
               elevationTowerHeightWithoutSlab: 3,

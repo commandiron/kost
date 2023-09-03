@@ -34,7 +34,7 @@ class ProjectConstants extends Equatable {
     this.stabilizationHeight = 0.30,
     this.hollowFillingThickness = 0.2,
     this.excavationAreaRockDensityConstant = ExcavationAreaRockDensityConstant.medium,
-    this.gravelTonForOneCubicMeter = 1.8,
+    this.gravelTonForOneCubicMeter = 1.5,
     this.concreteCubicMeterForOneSquareMeterFormWork = 0.35,
     this.rebarTonForOneCubicMeterConcrete = 0.16,
     this.hollowAreaForOneSquareMeterConstructionArea = 0.40,

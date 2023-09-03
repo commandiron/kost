@@ -17,32 +17,20 @@ class FacadeJobsGenerator extends JobsGenerator {
         quantityBuilder: () {
           return _totalFacadeArea;
         },
-        quantityExplanationBuilder: () {
-          return "Toplam cephe alanı: $_totalFacadeArea";
-        },
       ),
       Windows(
         quantityBuilder: () {
           return _totalWindowArea;
-        },
-        quantityExplanationBuilder: () {
-          return "Toplam pencere alanı: $_totalWindowArea";
         },
       ),
       FacadeRails(
         quantityBuilder: () {
           return _totalFacadeRailingLength;
         },
-        quantityExplanationBuilder: () {
-          return "Toplam cephe korkuluğu uzunluğu: $_totalFacadeRailingLength";
-        },
       ),
       FacadeSystem(
         quantityBuilder: () {
           return _totalFacadeArea;
-        },
-        quantityExplanationBuilder: () {
-          return "Toplam cephe alanı: $_totalFacadeArea";
         },
       )
     ];

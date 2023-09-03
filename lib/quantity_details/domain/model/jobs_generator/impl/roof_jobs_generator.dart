@@ -17,9 +17,6 @@ class RoofJobsGenerator extends JobsGenerator {
         quantityBuilder: () {
           return _topFloor.area;
         },
-        quantityExplanationBuilder: () {
-          return "En üst kat alanı: ${_topFloor.area}";
-        },
       )
     ];
   }

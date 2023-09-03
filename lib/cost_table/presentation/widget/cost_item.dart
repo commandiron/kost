@@ -113,16 +113,6 @@ class CostItem extends StatelessWidget {
                   Expanded(
                       child: Row(
                     children: [
-                      if (Responsive.isDesktop(context))
-                        Row(
-                          children: [
-                            Tooltip(
-                              message: cost.quantityExplanationText,
-                              child: const Icon(Icons.info_outlined),
-                            ),
-                            AppSpace.hM!,
-                          ],
-                        ),
                       Expanded(
                         flex: Responsive.value(context, 8, 4, 1),
                         child: QuantityTextField(

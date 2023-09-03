@@ -23,17 +23,11 @@ class GeneralExpensesJobsGenerator extends JobsGenerator {
         quantityBuilder: () {
           return projectVariables.landPerimeter;
         },
-        quantityExplanationBuilder: () {
-          return "Arsa çevresi: ${projectVariables.landPerimeter}";
-        },
       ),
       MobilizationDemobilization(
         quantityBuilder: () {
           //BURAYA BAK!!!!!!!!!!!!!!!!!!
           return 1;
-        },
-        quantityExplanationBuilder: () {
-          return "Götürü bedel";
         },
       ),
       Crane(
@@ -41,48 +35,30 @@ class GeneralExpensesJobsGenerator extends JobsGenerator {
           return _roughConstructionArea *
               projectConstants.craneHourForOneSquareMeterRoughConstructionArea;
         },
-        quantityExplanationBuilder: () {
-          return "Kaba inşaat alanı: $_roughConstructionArea x 1 metre kare kaba inşaat alanı için vinç çalışma saati: ${projectConstants.craneHourForOneSquareMeterRoughConstructionArea}";
-        },
       ),
       SiteSafety(
         quantityBuilder: () {
           return projectConstants.projectDurationMonth;
-        },
-        quantityExplanationBuilder: () {
-          return "Proje süresi: ${projectConstants.projectDurationMonth}";
         },
       ),
       SiteExpenses(
         quantityBuilder: () {
           return projectConstants.projectDurationMonth;
         },
-        quantityExplanationBuilder: () {
-          return "Proje süresi: ${projectConstants.projectDurationMonth}";
-        },
       ),
       Sergeant(
         quantityBuilder: () {
           return projectConstants.projectDurationMonth;
-        },
-        quantityExplanationBuilder: () {
-          return "Proje süresi: ${projectConstants.projectDurationMonth}";
         },
       ),
       SiteChief(
         quantityBuilder: () {
           return projectConstants.projectDurationMonth;
         },
-        quantityExplanationBuilder: () {
-          return "Proje süresi: ${projectConstants.projectDurationMonth}";
-        },
       ),
       ProjectsFeesPayments(
         quantityBuilder: () {
           return 1;
-        },
-        quantityExplanationBuilder: () {
-          return "Götürü bedel";
         },
       ),
     ];
