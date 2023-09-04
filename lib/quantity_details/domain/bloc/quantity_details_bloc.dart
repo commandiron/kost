@@ -32,9 +32,9 @@ class QuantityDetailsBloc
               coreCurtainLength: 13.03, //✓
               curtainsExceeding1MeterLength: 8.1, //✓
               basementCurtainLength: 108.90, //✓
-              columnsLess1MeterPerimeter: 24.8,
-              elevationTowerArea: 27,
-              elevationTowerHeightWithoutSlab: 3,
+              columnsLess1MeterPerimeter: 24.8, //✓
+              elevationTowerArea: 27, //✓
+              elevationTowerHeightWithoutSlab: 3, //✓
             ),
             floors: [
               ...Floor.duplicateFloors(
