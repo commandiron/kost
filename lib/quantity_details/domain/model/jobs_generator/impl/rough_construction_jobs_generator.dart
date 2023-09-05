@@ -132,7 +132,7 @@ class RoughConstructionJobsGenerator extends JobsGenerator {
     return result;
   }
 
-  double get _excavationHeight {
+  double get _excavationHeight { //✓
     return projectConstants.stabilizationHeight
       +
       projectConstants.leanConcreteHeight
@@ -150,7 +150,7 @@ class RoughConstructionJobsGenerator extends JobsGenerator {
     return result;
   }
 
-  double get _allBasementsHeight {
+  double get _allBasementsHeight { //✓
     final result = _allBasementFloors
         .map((floor) => floor.heightWithSlab)
         .fold(0.0, (p, c) => p + c);
