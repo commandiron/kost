@@ -116,7 +116,7 @@ class RoughConstructionJobsGenerator extends JobsGenerator {
     return result;
   }
 
-  Floor get _groundFloor {
+  Floor get _groundFloor { //✓
     final result = floors.firstWhere(
       (floor) => floor.no == 0,
       orElse: () => throw Exception("No ground floor"),
