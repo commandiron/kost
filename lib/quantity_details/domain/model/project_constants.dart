@@ -13,6 +13,7 @@ class ProjectConstants extends Equatable {
   final double hollowAreaForOneSquareMeterConstructionArea; //✓
   final double thickWallThickness; //✓
   final double thinWallThickness; //✓
+  final double commonDoorArea; //✓
   final double stairRiserHeight; //✓
   final double stairTreadDepth; //✓
   final double stairLength; //✓
@@ -38,6 +39,7 @@ class ProjectConstants extends Equatable {
     this.hollowAreaForOneSquareMeterConstructionArea = 0.40,
     this.thickWallThickness = 0.135,
     this.thinWallThickness = 0.085,
+    this.commonDoorArea = 2,
     this.stairRiserHeight = 0.18,
     this.stairTreadDepth = 0.26,
     this.stairLength = 1,
@@ -65,6 +67,7 @@ class ProjectConstants extends Equatable {
     hollowAreaForOneSquareMeterConstructionArea,
     thickWallThickness,
     thinWallThickness,
+    commonDoorArea,
     stairRiserHeight,
     stairTreadDepth,
     stairLength,
