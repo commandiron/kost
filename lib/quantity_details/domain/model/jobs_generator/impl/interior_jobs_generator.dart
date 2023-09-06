@@ -209,7 +209,7 @@ class InteriorJobsGenerator extends JobsGenerator {
     ];
   }
 
-  double get _totalPlasterArea {
+  double get _totalPlasterArea { //Burdan devam et.
     double result = 0;
     for (var floor in floors) {
       for (var floorSection in floor.floorSections) {
