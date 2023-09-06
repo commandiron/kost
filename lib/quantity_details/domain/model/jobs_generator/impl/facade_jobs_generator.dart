@@ -2,7 +2,7 @@ import '../../floor/floor.dart';
 import '../../../../../common/model/job.dart';
 import '../jobs_generator.dart';
 
-class FacadeJobsGenerator extends JobsGenerator {
+class FacadeJobsGenerator extends JobsGenerator { //✓
   FacadeJobsGenerator({
     super.name = "Cephe",
     required this.floors,
@@ -13,57 +13,63 @@ class FacadeJobsGenerator extends JobsGenerator {
   @override
   List<Job> createJobs() {
     return [
-      FacadeScaffolding(
+      FacadeScaffolding( //✓
         quantityBuilder: () {
           return _totalFacadeArea;
         },
       ),
-      Windows(
+      Windows( //✓
         quantityBuilder: () {
           return _totalWindowArea;
         },
       ),
-      FacadeRails(
+      FacadeRails( //✓
         quantityBuilder: () {
           return _totalFacadeRailingLength;
         },
       ),
-      FacadeSystem(
+      FacadeSystem( //✓
         quantityBuilder: () {
-          return _totalFacadeArea;
+          return _totalFacadeArea - _totalWindowArea;
         },
       )
     ];
   }
 
-  List<Floor> get _aboveBasementFloors {
+  List<Floor> get _aboveBasementFloors { //✓
     return floors.where((floor) => floor.no >= 0).toList();
   }
 
-  double get _totalFacadeArea {
-    return _aboveBasementFloors
-        .map((floor) => floor.perimeter * floor.heightWithSlab)
-        .fold(0.0, (p, c) => p + c);
+  double get _maximumPerimeterInAboveBasementFloors { //✓
+    final result = _aboveBasementFloors.map((e) => e.perimeter).reduce((current, next) => current > next ? current : next);
+    return result;
   }
 
-  double get _totalWindowArea {
-    double totalWindowArea = 0;
+  double get _totalFacadeArea { //✓
+    final result =  _aboveBasementFloors
+        .map((floor) => _maximumPerimeterInAboveBasementFloors * floor.heightWithSlab)
+        .fold(0.0, (p, c) => p + c);
+    return result;
+  }
+
+  double get _totalWindowArea { //✓
+    double result = 0;
     for (var floor in floors) {
       final windowAreas = floor.windows
           .map((window) => window.width * window.height * window.count);
-      totalWindowArea += windowAreas.fold(0.0, (p, c) => p + c);
+      result += windowAreas.fold(0.0, (p, c) => p + c);
     }
-    return totalWindowArea;
+    return result;
   }
 
-  double get _totalFacadeRailingLength {
-    double totalFacadeRailingLength = 0;
+  double get _totalFacadeRailingLength { //✓
+    double result = 0;
     for (var floor in floors) {
       final facadeRailingLengths = floor.windows
           .map((window) => window.hasRailing ? window.width * window.count : 0);
-      totalFacadeRailingLength +=
+      result +=
           facadeRailingLengths.fold(0.0, (p, c) => p + c);
     }
-    return totalFacadeRailingLength;
+    return result;
   }
 }

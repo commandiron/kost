@@ -200,17 +200,17 @@ class UnitPriceRepository {
 
     //Cepheci ✓
     UnitPrice(
-        category: UnitPriceCategory.sinterFlexFacade,
-        nameTr: "Sinterflex cephe",
-        amount: 1500,
+        category: UnitPriceCategory.sinterFlex4Facade,
+        nameTr: "4 cephe Sinterflex",
+        amount: 1935,
         currency: Currency.lira,
         unit: Unit.squareMeters,
         dateTime: DateTime(2023, 01),
     ),
     UnitPrice(
-        category: UnitPriceCategory.precastFacade,
-        nameTr: "Prekast 3 cephe",
-        amount: 120,
+        category: UnitPriceCategory.precast3FacadePlaster1Facade,
+        nameTr: "3 cephe Prekast - 1 cephe Sıva, Boya",
+        amount: 154.8,
         currency: Currency.dollar,
         unit: Unit.squareMeters,
         dateTime: DateTime(2023, 08),

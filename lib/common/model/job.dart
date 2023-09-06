@@ -288,8 +288,8 @@ class FacadeSystem extends Job {
     {
       super.nameTr = "Cephe kaplama sisteminin yapılması",
       super.mainCategory = MainCategory.facadeJobs,
-      super.enabledUnitPriceCategories = const [UnitPriceCategory.sinterFlexFacade, UnitPriceCategory.precastFacade],
-      super.selectedUnitPriceCategory = UnitPriceCategory.sinterFlexFacade,
+      super.enabledUnitPriceCategories = const [UnitPriceCategory.sinterFlex4Facade, UnitPriceCategory.precast3FacadePlaster1Facade],
+      super.selectedUnitPriceCategory = UnitPriceCategory.sinterFlex4Facade,
       required super.quantityBuilder,
       super.disable,
     }
