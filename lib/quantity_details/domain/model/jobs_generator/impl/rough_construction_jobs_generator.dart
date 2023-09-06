@@ -233,7 +233,7 @@ class RoughConstructionJobsGenerator extends JobsGenerator {
     return result;
   }
 
-  double get _thickWallArea { // Bunu tekrar projenin üstünden geç, pencereleri veya kapıları düşme.
+  double get _thickWallArea { //✓
     final result = floors
       .map(
         (floor) {
@@ -248,11 +248,11 @@ class RoughConstructionJobsGenerator extends JobsGenerator {
     return result;
   }
 
-  double get _thickWallVolume {
+  double get _thickWallVolume { //✓
     return _thickWallArea * projectConstants.thickWallThickness;
   }
 
-  double get _thinWallArea { // Bunu tekrar projenin üstünden geç, pencereleri veya kapıları düşme.
+  double get _thinWallArea { //✓
     final result = floors
       .map(
         (floor) {
@@ -269,7 +269,7 @@ class RoughConstructionJobsGenerator extends JobsGenerator {
     return result;
   }
 
-  double get _thinWallVolume {
+  double get _thinWallVolume { //✓
     return _thinWallArea * projectConstants.thinWallThickness;
   }
 }

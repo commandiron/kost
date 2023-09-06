@@ -45,7 +45,7 @@ class QuantityDetailsBloc
                   heightWithSlab: 3.3,
                   slabHeight: 0.3,
                   isCeilingSlabHollow: true,
-                  thickWallLength: 69.24,
+                  thickWallLength: 88.24,
                   thinWallLength: 49.54,
                   windows: [
                     Window(
@@ -101,7 +101,7 @@ class QuantityDetailsBloc
                 heightWithSlab: 3.3,
                 slabHeight: 0.3,
                 isCeilingSlabHollow: true,
-                thickWallLength: 65.71,
+                thickWallLength: 86.2,
                 thinWallLength: 15.5,
                 windows: [
                   Window(
