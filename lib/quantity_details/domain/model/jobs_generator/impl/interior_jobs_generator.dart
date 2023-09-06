@@ -210,20 +210,20 @@ class InteriorJobsGenerator extends JobsGenerator {
   }
 
   double get _totalPlasterArea {
-    double area = 0;
+    double result = 0;
     for (var floor in floors) {
       for (var floorSection in floor.floorSections) {
         for(var room in floorSection.rooms) {
           if (room.wallMaterial == WallMaterial.painting) {
-            area += (room.perimeter * (floor.heightWithSlab - floor.slabHeight));
+            result += (room.perimeter * (floor.heightWithSlab - floor.slabHeight));
           }
           if (room.ceilingMaterial == CeilingMaterial.plaster) {
-            area += room.area;
+            result += room.area;
           }
         }
       }
     }
-    return area;
+    return result;
   }
 
   double get _totalPaintingArea {

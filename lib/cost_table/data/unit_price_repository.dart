@@ -205,7 +205,7 @@ class UnitPriceRepository {
         amount: 1935,
         currency: Currency.lira,
         unit: Unit.squareMeters,
-        dateTime: DateTime(2023, 01),
+        dateTime: DateTime(2023, 08),
     ),
     UnitPrice(
         category: UnitPriceCategory.precast3FacadePlaster1Facade,
