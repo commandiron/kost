@@ -6,7 +6,7 @@ import '../../floor/floor.dart';
 import '../../../../../common/model/job.dart';
 import '../../jobs_generator/jobs_generator.dart';
 
-class RoughConstructionJobsGenerator extends JobsGenerator {
+class RoughConstructionJobsGenerator extends JobsGenerator { //✓
   RoughConstructionJobsGenerator({
     super.name = "Kaba İnşaat",
     required this.projectConstants,
