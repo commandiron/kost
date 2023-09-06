@@ -89,12 +89,12 @@ class RoughConstructionJobsGenerator extends JobsGenerator {
           return _basementsOuterCurtainArea;
         },
       ),
-      Wall( // Pencere veya kapıları düşmeden, tekrar proje üzerinden geç doğruysa tamam.
+      Wall( //✓
         quantityBuilder: () {
           return _thickWallVolume + _thinWallVolume;
         },
       ),
-      WallWorkmanShip( // Pencere veya kapıları düşmeden, tekrar proje üzerinden geç doğruysa tamam.
+      WallWorkmanShip( //✓
         quantityBuilder: () {
           return _thickWallArea + _thinWallArea;
         },
