@@ -201,6 +201,17 @@ class RoughConstructionJobsGenerator extends JobsGenerator {
     return result;
   }
 
+  double get _formWorkArea { //✓
+    return _roughConstructionArea +
+        _coreCurtainAreaWithoutSlab +
+        _curtainsExceeding1MeterAreaWithoutSlab +
+        _basementsCurtainAreaWithoutSlab;
+  }
+
+  double get _concreteVolume { //✓
+    return _formWorkArea * projectConstants.concreteCubicMeterForOneSquareMeterFormWork;
+  }
+
   double get _hollowSlabRoughConstructionArea { //✓
     double result = 0;
     _floorToCeilingAreaMap.forEach((floor, ceilingArea) {
@@ -260,16 +271,5 @@ class RoughConstructionJobsGenerator extends JobsGenerator {
 
   double get _thinWallVolume {
     return _thinWallArea * projectConstants.thinWallThickness;
-  }
-
-  double get _formWorkArea { //✓
-    return _roughConstructionArea +
-      _coreCurtainAreaWithoutSlab +
-      _curtainsExceeding1MeterAreaWithoutSlab +
-      _basementsCurtainAreaWithoutSlab;
-  }
-
-  double get _concreteVolume { //✓
-    return _formWorkArea * projectConstants.concreteCubicMeterForOneSquareMeterFormWork;
   }
 }
