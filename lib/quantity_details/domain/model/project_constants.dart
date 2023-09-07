@@ -19,7 +19,6 @@ class ProjectConstants extends Equatable {
   final double stairLength; //✓
   final double buildingEntranceDoorArea; //✓
   final double numberOfAirConditionerForOneApartment; //✓
-  final double numberOfWaterTank; //✓
   final double bathroomCabinetArea; //✓
   final double kitchenLength; //✓
   final double coatCabinetArea; //✓
@@ -46,7 +45,6 @@ class ProjectConstants extends Equatable {
     this.stairLength = 1,
     this.buildingEntranceDoorArea = 6,
     this.numberOfAirConditionerForOneApartment = 2,
-    this.numberOfWaterTank = 1,
     this.bathroomCabinetArea = 1,
     this.kitchenLength = 6,
     this.coatCabinetArea = 4,

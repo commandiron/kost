@@ -119,7 +119,7 @@ class InteriorJobsGenerator extends JobsGenerator {
       ),
       BathroomCabinet( //✓
         quantityBuilder: () {
-          return _numberOfToilet * projectConstants.bathroomCabinetArea;
+          return _numberOfWc * projectConstants.bathroomCabinetArea;
         },
       ),
       FloorPlinth( //✓
@@ -145,65 +145,64 @@ class InteriorJobsGenerator extends JobsGenerator {
       ),
       WaterTank( //✓
         quantityBuilder: () {
-          return projectConstants.numberOfWaterTank;
+          return 1;
         },
       ),
-      Elevation(
+      Elevation( //✓
         quantityBuilder: () {
           return (_allBasementFloors.length + 1 + _normalFloors.length).toDouble();
         },
         selectedUnitPriceCategory: UnitPriceCategory.elevation10PersonKone,
       ),
-      Elevation(
+      Elevation( //✓
         quantityBuilder: () {
           return (_allBasementFloors.length + 1 + _normalFloors.length).toDouble();
         },
         selectedUnitPriceCategory: UnitPriceCategory.elevation6PersonKone,
       ),
-      Sink(
+      Sink( //✓
         quantityBuilder: () {
-          return _numberOfToilet.toDouble();
+          return _numberOfWc + _numberOfBathroom;
         },
       ),
-      SinkBattery(
+      SinkBattery( //✓
         quantityBuilder: () {
-          return _numberOfToilet.toDouble();
+          return _numberOfWc + _numberOfBathroom;
         },
       ),
-      ConcealedCistern(
+      ConcealedCistern( //✓
         quantityBuilder: () {
-          return _numberOfToilet.toDouble();
+          return _numberOfWc + _numberOfBathroom;
         },
       ),
-      Shower(
+      Shower( //✓
         quantityBuilder: () {
-          return _bathroomNumber.toDouble();
+          return _numberOfBathroom;
         },
       ),
-      ShowerBattery(
+      ShowerBattery( //✓
         quantityBuilder: () {
-          return _bathroomNumber.toDouble();
+          return _numberOfBathroom;
         },
       ),
-      KitchenFaucetAndSink(
+      KitchenFaucetAndSink( //✓
         quantityBuilder: () {
-          return _numberOfKitchen.toDouble();
+          return _numberOfKitchen;
         },
       ),
-      ElectricalInfrastructure(
+      ElectricalInfrastructure( //✓
         quantityBuilder: () {
-          return _numberOfApartment.toDouble();
+          return _numberOfApartment;
         },
       ),
-      Generator(
+      Generator( //✓
         quantityBuilder: () {
-          //BURAYA BAK !!!!!!!!!!!!!!!!!!
           return 1;
         },
       ),
-      HouseholdAppliances(
+      HouseholdAppliances( // Setin içindekiler yazılabilir bak!!!
         quantityBuilder: () {
-          return _numberOfApartment.toDouble();
+          return _numberOfApartment;
         },
       ),
     ];
@@ -478,14 +477,12 @@ class InteriorJobsGenerator extends JobsGenerator {
     return result;
   }
 
-  double get _numberOfToilet { //✓
+  double get _numberOfWc { //✓
     double result = 0;
     for (var floor in floors) {
       for (var floorSection in floor.floorSections) {
         for (var room in floorSection.rooms) {
-          if (room is Bathroom ||
-              room is EscapeHallBathroom ||
-              room is Wc ||
+          if (room is Wc ||
               room is EscapeHallWc) {
             result++;
           }
@@ -525,21 +522,22 @@ class InteriorJobsGenerator extends JobsGenerator {
     return result;
   }
 
-  List<Floor> get _normalFloors {
-    return floors.where((floor) => floor.no > 0).toList();
+  List<Floor> get _normalFloors { //✓
+    final result = floors.where((floor) => floor.no > 0).toList();
+    return result;
   }
 
-  int get _bathroomNumber {
-    int number = 0;
+  double get _numberOfBathroom { //✓
+    double result = 0;
     for (var floor in floors) {
       for (var floorSection in floor.floorSections) {
         for (var room in floorSection.rooms) {
           if (room is Bathroom || room is EscapeHallBathroom) {
-            number++;
+            result++;
           }
         }
       }
     }
-    return number;
+    return result;
   }
 }

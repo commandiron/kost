@@ -574,7 +574,7 @@ class UnitPriceRepository {
         nameTr: "Aksa 160 Kva Jeneratör",
         amount: 16282,
         currency: Currency.euro,
-        unit: Unit.lumpSum,
+        unit: Unit.number,
         dateTime: DateTime(2023, 01)),
 
     //Kendin hesapla ✓
