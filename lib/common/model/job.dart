@@ -626,7 +626,7 @@ class Elevation extends Job {
     {
       super.nameTr = "Asansör",
       super.mainCategory = MainCategory.mechanicalJobs,
-      super.enabledUnitPriceCategories = const [UnitPriceCategory.elevation10PersonKone],
+      super.enabledUnitPriceCategories = const [UnitPriceCategory.elevation10PersonKone, UnitPriceCategory.elevation6PersonKone],
       super.selectedUnitPriceCategory = UnitPriceCategory.elevation10PersonKone,
       required super.quantityBuilder,
       super.disable,
