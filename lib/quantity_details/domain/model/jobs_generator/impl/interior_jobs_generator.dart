@@ -20,32 +20,32 @@ class InteriorJobsGenerator extends JobsGenerator {
   @override
   List<Job> createJobs() {
     return [
-      InteriorPlastering(
+      InteriorPlastering( //✓
         quantityBuilder: () {
           return _totalPlasterArea;
         },
       ),
-      InteriorPainting(
+      InteriorPainting( //✓
         quantityBuilder: () {
           return _totalPaintingArea;
         },
       ),
-      InteriorWaterproofing(
+      InteriorWaterproofing( //✓
         quantityBuilder: () {
           return _totalInteriorWetFloorArea;
         },
       ),
-      CeilingCovering(
+      CeilingCovering( //✓
         quantityBuilder: () {
           return _totalDryWallArea;
         },
       ),
-      CovingPlaster(
+      CovingPlaster( //✓
         quantityBuilder: () {
           return _totalCovingPlasterLength;
         },
       ),
-      Screeding(
+      Screeding( //✓
         quantityBuilder: () {
           return _totalScreedArea;
         },
@@ -209,7 +209,7 @@ class InteriorJobsGenerator extends JobsGenerator {
     ];
   }
 
-  double get _totalPlasterArea { //Burdan devam et.
+  double get _totalPlasterArea { //✓
     double result = 0;
     for (var floor in floors) {
       for (var floorSection in floor.floorSections) {
@@ -226,72 +226,72 @@ class InteriorJobsGenerator extends JobsGenerator {
     return result;
   }
 
-  double get _totalPaintingArea {
-    double area = 0;
+  double get _totalPaintingArea { //✓
+    double result = 0;
     for (var floor in floors) {
       for (var floorSection in floor.floorSections) {
         for(var room in floorSection.rooms) {
           if (room.wallMaterial == WallMaterial.painting) {
-            area += (room.perimeter * (floor.heightWithSlab - floor.slabHeight));
+            result += (room.perimeter * (floor.heightWithSlab - floor.slabHeight));
           }
           if (room.ceilingMaterial == CeilingMaterial.drywall ||
               room.ceilingMaterial == CeilingMaterial.plaster) {
-            area += room.area;
+            result += room.area;
           }
         }
       }
     }
-    return area;
+    return result;
   }
 
-  double get _totalInteriorWetFloorArea {
-    double area = 0;
+  double get _totalInteriorWetFloorArea { //✓
+    double result = 0;
     for (var floor in floors) {
       for (var floorSection in floor.floorSections) {
         for(var room in floorSection.rooms) {
           if (room.isFloorWet) {
-            area += room.area;
+            result += room.area;
           }
         }
       }
     }
-    return area;
+    return result;
   }
 
-  double get _totalDryWallArea {
-    double area = 0;
+  double get _totalDryWallArea { //✓
+    double result = 0;
     for (var floor in floors) {
       for (var floorSection in floor.floorSections) {
         for(var room in floorSection.rooms) {
           if (room.ceilingMaterial == CeilingMaterial.drywall) {
-            area += room.area;
+            result += room.area;
           }
         }
       }
     }
-    return area;
+    return result;
   }
 
-  double get _totalCovingPlasterLength {
-    double length = 0;
+  double get _totalCovingPlasterLength { //✓
+    double result = 0;
     for (var floor in floors) {
       for (var floorSection in floor.floorSections) {
         for(var room in floorSection.rooms) {
           if (room.hasCovingPlaster) {
-            length += room.perimeter;
+            result += room.perimeter;
           }
         }
       }
     }
-    return length;
+    return result;
   }
 
-  double get _totalScreedArea {
+  double get _totalScreedArea { //✓
     double area = 0;
     for (var floor in floors) {
       for (var floorSection in floor.floorSections) {
         for(var room in floorSection.rooms) {
-          if (room.hasScreed) {
+          if (room.floorMaterial == FloorMaterial.parquet || room.floorMaterial == FloorMaterial.ceramic) {
             area += room.area;
           }
         }

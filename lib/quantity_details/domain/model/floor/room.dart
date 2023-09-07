@@ -26,7 +26,6 @@ abstract class Room {
   final CeilingMaterial ceilingMaterial;
   final bool hasCovingPlaster;
   final bool hasFloorPlinth;
-  final bool hasScreed;
   final bool isFloorWet;
   late List<Door> doors;
 
@@ -38,7 +37,6 @@ abstract class Room {
     required this.ceilingMaterial,
     required this.hasCovingPlaster,
     required this.hasFloorPlinth,
-    required this.hasScreed,
     required this.isFloorWet,
     required this.doors,
   });
@@ -53,7 +51,6 @@ class Saloon extends Room {
     super.ceilingMaterial = CeilingMaterial.drywall,
     super.hasCovingPlaster = true,
     super.hasFloorPlinth = true,
-    super.hasScreed = true,
     super.isFloorWet = false,
     super.doors = const [Door.room, Door.room],
   });
@@ -68,7 +65,6 @@ class SaloonWithKitchen extends Room {
     super.ceilingMaterial = CeilingMaterial.drywall,
     super.hasCovingPlaster = true,
     super.hasFloorPlinth = true,
-    super.hasScreed = true,
     super.isFloorWet = false,
     super.doors = const [],
   });
@@ -83,7 +79,6 @@ class Kitchen extends Room {
     super.ceilingMaterial = CeilingMaterial.drywall,
     super.hasCovingPlaster = true,
     super.hasFloorPlinth = true,
-    super.hasScreed = true,
     super.isFloorWet = false,
     super.doors = const [Door.room],
   });
@@ -98,7 +93,6 @@ class NormalRoom extends Room {
     super.ceilingMaterial = CeilingMaterial.drywall,
     super.hasCovingPlaster = true,
     super.hasFloorPlinth = true,
-    super.hasScreed = true,
     super.isFloorWet = false,
     super.doors = const [Door.room],
   });
@@ -113,7 +107,6 @@ class Hall extends Room {
     super.ceilingMaterial = CeilingMaterial.drywall,
     super.hasCovingPlaster = true,
     super.hasFloorPlinth = true,
-    super.hasScreed = true,
     super.isFloorWet = false,
     super.doors = const [],
   });
@@ -128,7 +121,6 @@ class Wc extends Room {
     super.ceilingMaterial = CeilingMaterial.drywall,
     super.hasCovingPlaster = false,
     super.hasFloorPlinth = false,
-    super.hasScreed = true,
     super.isFloorWet = true,
     super.doors = const [Door.room],
   });
@@ -143,7 +135,6 @@ class EscapeHallWc extends Room {
     super.ceilingMaterial = CeilingMaterial.drywall,
     super.hasCovingPlaster = false,
     super.hasFloorPlinth = false,
-    super.hasScreed = true,
     super.isFloorWet = true,
     super.doors = const [
       Door.fire,
@@ -161,7 +152,6 @@ class Bathroom extends Room {
     super.ceilingMaterial = CeilingMaterial.drywall,
     super.hasCovingPlaster = false,
     super.hasFloorPlinth = false,
-    super.hasScreed = true,
     super.isFloorWet = true,
     super.doors = const [Door.room],
   });
@@ -176,7 +166,6 @@ class EscapeHallBathroom extends Room {
     super.ceilingMaterial = CeilingMaterial.drywall,
     super.hasCovingPlaster = false,
     super.hasFloorPlinth = false,
-    super.hasScreed = true,
     super.isFloorWet = true,
     super.doors = const [
       Door.fire,
@@ -194,7 +183,6 @@ class Balcony extends Room {
     super.ceilingMaterial = CeilingMaterial.plaster,
     super.hasCovingPlaster = false,
     super.hasFloorPlinth = false,
-    super.hasScreed = true,
     super.isFloorWet = true,
     super.doors = const [],
   });
@@ -209,7 +197,6 @@ class ApartmentFloorHall extends Room {
     super.ceilingMaterial = CeilingMaterial.drywall,
     super.hasCovingPlaster = false,
     super.hasFloorPlinth = false,
-    super.hasScreed = false,
     super.isFloorWet = false,
     super.doors = const [
       Door.buildingEntrance
@@ -226,7 +213,6 @@ class FloorHall extends Room {
     super.ceilingMaterial = CeilingMaterial.drywall,
     super.hasCovingPlaster = false,
     super.hasFloorPlinth = false,
-    super.hasScreed = false,
     super.isFloorWet = false,
     super.doors = const [],
   });
@@ -241,7 +227,6 @@ class FireEscapeHall extends Room {
     super.ceilingMaterial = CeilingMaterial.plaster,
     super.hasCovingPlaster = false,
     super.hasFloorPlinth = false,
-    super.hasScreed = false,
     super.isFloorWet = false,
     super.doors = const [
       Door.fire,
@@ -259,7 +244,6 @@ class BuildingHall extends Room {
     super.ceilingMaterial = CeilingMaterial.drywall,
     super.hasCovingPlaster = false,
     super.hasFloorPlinth = false,
-    super.hasScreed = false,
     super.isFloorWet = false,
     super.doors = const [Door.buildingEntrance],
   });
@@ -274,7 +258,6 @@ class ParkingArea extends Room {
     super.ceilingMaterial = CeilingMaterial.plaster,
     super.hasCovingPlaster = false,
     super.hasFloorPlinth = false,
-    super.hasScreed = false,
     super.isFloorWet = false,
     super.doors = const [],
   });
@@ -289,7 +272,6 @@ class TechnicalArea extends Room {
     super.ceilingMaterial = CeilingMaterial.plaster,
     super.hasCovingPlaster = false,
     super.hasFloorPlinth = false,
-    super.hasScreed = true,
     super.isFloorWet = false,
     super.doors = const [Door.fire],
   });
@@ -304,7 +286,6 @@ class ElevatorShaft extends Room {
     super.ceilingMaterial = CeilingMaterial.none,
     super.hasCovingPlaster = false,
     super.hasFloorPlinth = false,
-    super.hasScreed = false,
     super.isFloorWet = false,
     super.doors = const [],
   });
@@ -319,7 +300,6 @@ class Stairs extends Room {
     super.ceilingMaterial = CeilingMaterial.plaster,
     super.hasCovingPlaster = false,
     super.hasFloorPlinth = false,
-    super.hasScreed = false,
     super.isFloorWet = false,
     super.doors = const [],
   });
@@ -334,7 +314,6 @@ class Shaft extends Room {
     super.ceilingMaterial = CeilingMaterial.none,
     super.hasCovingPlaster = false,
     super.hasFloorPlinth = false,
-    super.hasScreed = false,
     super.isFloorWet = false,
     super.doors = const [],
   });
