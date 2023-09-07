@@ -67,37 +67,42 @@ class CostItem extends StatelessWidget {
                       style: AppTextStyle.responsiveB1(context),
                     )),
                   Expanded(
-                    child: TextButton(
-                      onPressed: () {
-                        showDialog(
-                          context: context,
-                          builder: (dialogContext) {
-                            return UnitPricesAlertDialog(
-                              unitPrices: cost.enabledUnitPrices,
-                              onUnitPriceSelect: (index) {
-                                context.read<CostTableBloc>().add(
-                                    ReplaceUnitPrice(
-                                        cost.jobId,
-                                        cost.enabledUnitPrices[index]
-                                            .id));
-                                Navigator.of(context).pop();
-                              },
-                            );
-                          },
-                        );
-                      },
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
+                    child: cost.enabledUnitPrices.length > 1
+                        ? TextButton(
+                            onPressed: () {
+                              showDialog(
+                                context: context,
+                                builder: (dialogContext) {
+                                  return UnitPricesAlertDialog(
+                                    unitPrices: cost.enabledUnitPrices,
+                                    onUnitPriceSelect: (index) {
+                                      context.read<CostTableBloc>().add(
+                                          ReplaceUnitPrice(
+                                              cost.jobId,
+                                              cost.enabledUnitPrices[index]
+                                                  .id));
+                                      Navigator.of(context).pop();
+                                    },
+                                  );
+                                },
+                              );
+                            },
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  cost.unitPriceNameText,
+                                  style: AppTextStyle.responsiveB1(context),
+                                  textAlign: TextAlign.center,
+                                ),
+                                const Icon(Icons.change_circle)
+                              ],
+                            ))
+                        : Text(
                             cost.unitPriceNameText,
-                            style: AppTextStyle.responsiveB1(context),
+                            style: AppTextStyle.responsiveH5(context),
                             textAlign: TextAlign.center,
                           ),
-                          const Icon(Icons.change_circle)
-                        ],
-                      )
-                    )
                   ),
                   Expanded(
                     child: Text(
