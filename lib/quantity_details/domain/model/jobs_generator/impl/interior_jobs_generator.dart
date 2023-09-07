@@ -83,97 +83,96 @@ class InteriorJobsGenerator extends JobsGenerator {
       ),
       SteelDoor( //✓
         quantityBuilder: () {
-          return _apartmentNumber.toDouble();
+          return _numberOfApartment;
         },
       ),
-      EntranceDoor(
+      EntranceDoor( //✓
         quantityBuilder: () {
-          return _buildingEntranceDoorNumber *
+          return _numberOfBuildingEntranceDoor *
               projectConstants.buildingEntranceDoorArea;
         },
       ),
-      FireDoor(
+      FireDoor( //✓
         quantityBuilder: () {
-          return _fireDoorNumber.toDouble();
+          return _numberOfFireDoor;
         },
       ),
-      WoodenDoor(
+      WoodenDoor( //✓
         quantityBuilder: () {
-          return _woodenDoorNumber.toDouble();
+          return _numberOfWoodenDoor;
         },
       ),
-      KitchenCupboard(
+      KitchenCupboard( //✓
         quantityBuilder: () {
-          return _kitchenNumber * projectConstants.kitchenLength * 2;
+          return _numberOfKitchen * projectConstants.kitchenLength * 2;
         },
       ),
-      KitchenCounter(
+      KitchenCounter( //✓
         quantityBuilder: () {
-          return _kitchenNumber * projectConstants.kitchenLength;
+          return _numberOfKitchen * projectConstants.kitchenLength;
         },
       ),
-      CoatCabinet(
+      CoatCabinet( //✓
         quantityBuilder: () {
-          return _apartmentNumber * projectConstants.coatCabinetArea;
+          return _numberOfApartment * projectConstants.coatCabinetArea;
         },
       ),
-      BathroomCabinet(
+      BathroomCabinet( //✓
         quantityBuilder: () {
-          return _toiletNumber * projectConstants.bathroomCabinetArea;
+          return _numberOfToilet * projectConstants.bathroomCabinetArea;
         },
       ),
-      FloorPlinth(
+      FloorPlinth( //✓
         quantityBuilder: () {
           return _totalFloorPlinthLength;
         },
       ),
-      MechanicalInfrastructure(
+      MechanicalInfrastructure( //✓
         quantityBuilder: () {
-          return _apartmentNumber.toDouble();
+          return _numberOfApartment;
         },
       ),
-      AirConditioner(
+      AirConditioner( //✓
         quantityBuilder: () {
-          return _apartmentNumber *
-              projectConstants.airConditionerNumberForOneApartment.toDouble();
+          return _numberOfApartment *
+              projectConstants.numberOfAirConditionerForOneApartment;
         },
       ),
-      Ventilation(
+      Ventilation( //✓
         quantityBuilder: () {
-          return _basementsArea;
+          return _allBasementsArea;
         },
       ),
-      WaterTank(
+      WaterTank( //✓
         quantityBuilder: () {
-          //BURAYA BAK!!!!!!!!!!!!!!!!
-          return 1;
+          return projectConstants.numberOfWaterTank;
         },
       ),
       Elevation(
         quantityBuilder: () {
-          return (_basementFloors.length + 1 + _normalFloors.length).toDouble();
+          return (_allBasementFloors.length + 1 + _normalFloors.length).toDouble();
         },
         selectedUnitPriceCategory: UnitPriceCategory.elevation10PersonKone,
       ),
       Elevation(
         quantityBuilder: () {
-          return (_basementFloors.length + 1 + _normalFloors.length).toDouble();
+          return (_allBasementFloors.length + 1 + _normalFloors.length).toDouble();
         },
         selectedUnitPriceCategory: UnitPriceCategory.elevation6PersonKone,
       ),
       Sink(
         quantityBuilder: () {
-          return _toiletNumber.toDouble();
+          return _numberOfToilet.toDouble();
         },
       ),
       SinkBattery(
         quantityBuilder: () {
-          return _toiletNumber.toDouble();
+          return _numberOfToilet.toDouble();
         },
       ),
       ConcealedCistern(
         quantityBuilder: () {
-          return _toiletNumber.toDouble();
+          return _numberOfToilet.toDouble();
         },
       ),
       Shower(
@@ -188,12 +187,12 @@ class InteriorJobsGenerator extends JobsGenerator {
       ),
       KitchenFaucetAndSink(
         quantityBuilder: () {
-          return _kitchenNumber.toDouble();
+          return _numberOfKitchen.toDouble();
         },
       ),
       ElectricalInfrastructure(
         quantityBuilder: () {
-          return _apartmentNumber.toDouble();
+          return _numberOfApartment.toDouble();
         },
       ),
       Generator(
@@ -204,7 +203,7 @@ class InteriorJobsGenerator extends JobsGenerator {
       ),
       HouseholdAppliances(
         quantityBuilder: () {
-          return _apartmentNumber.toDouble();
+          return _numberOfApartment.toDouble();
         },
       ),
     ];
@@ -405,8 +404,8 @@ class InteriorJobsGenerator extends JobsGenerator {
     return result;
   }
 
-  int get _apartmentNumber { //✓
-    int result = 0;
+  double get _numberOfApartment { //✓
+    double result = 0;
     for (var floor in floors) {
       for (var floorSection in floor.floorSections) {
         if(floorSection is Apartment) {
@@ -417,70 +416,70 @@ class InteriorJobsGenerator extends JobsGenerator {
     return result;
   }
 
-  int get _buildingEntranceDoorNumber {
-    int number = 0;
+  double get _numberOfBuildingEntranceDoor { //✓
+    double result = 0;
     for (var floor in floors) {
       for (var floorSection in floor.floorSections) {
         for(var room in floorSection.rooms) {
           for (var door in room.doors) {
             if (door == Door.buildingEntrance) {
-              number++;
+              result++;
             }
           }
         }
       }
     }
-    return number;
+    return result;
   }
 
-  int get _fireDoorNumber {
-    int number = 0;
+  double get _numberOfFireDoor { //✓
+    double result = 0;
     for (var floor in floors) {
       for (var floorSection in floor.floorSections) {
         for(var room in floorSection.rooms) {
           for (var door in room.doors) {
             if (door == Door.fire) {
-              number++;
+              result++;
             }
           }
         }
       }
     }
-    return number;
+    return result;
   }
 
-  int get _woodenDoorNumber {
-    int number = 0;
+  double get _numberOfWoodenDoor { //✓
+    double result = 0;
     for (var floor in floors) {
       for (var floorSection in floor.floorSections) {
         for(var room in floorSection.rooms) {
           for (var door in room.doors) {
             if (door == Door.room) {
-              number++;
+              result++;
             }
           }
         }
       }
     }
-    return number;
+    return result;
   }
 
-  int get _kitchenNumber {
-    int number = 0;
+  double get _numberOfKitchen { //✓
+    double result = 0;
     for (var floor in floors) {
       for (var floorSection in floor.floorSections) {
         for(var room in floorSection.rooms) {
           if (room is Kitchen || room is SaloonWithKitchen) {
-            number++;
+            result++;
           }
         }
       }
     }
-    return number;
+    return result;
   }
 
-  int get _toiletNumber {
-    int number = 0;
+  double get _numberOfToilet { //✓
+    double result = 0;
     for (var floor in floors) {
       for (var floorSection in floor.floorSections) {
         for (var room in floorSection.rooms) {
@@ -488,15 +487,15 @@ class InteriorJobsGenerator extends JobsGenerator {
               room is EscapeHallBathroom ||
               room is Wc ||
               room is EscapeHallWc) {
-            number++;
+            result++;
           }
         }
       }
     }
-    return number;
+    return result;
   }
 
-  double get _totalFloorPlinthLength {
+  double get _totalFloorPlinthLength { //✓
     double length = 0;
     for (var floor in floors) {
       for (var floorSection in floor.floorSections) {
@@ -510,19 +509,20 @@ class InteriorJobsGenerator extends JobsGenerator {
     return length;
   }
 
-  List<Floor> get _basementFloors {
-    final basementFloors = floors.where((element) => element.no < 0).toList();
-    if (basementFloors.isEmpty) {
+  List<Floor> get _allBasementFloors { //✓
+    final result = floors.where((floor) => floor.no < 0).toList();
+    if (result.isEmpty) {
       throw Exception("No basement floor");
     }
-    return basementFloors;
+    return result;
   }
 
-  double get _basementsArea {
-    return _basementFloors
-        .map((e) => e.area)
+  double get _allBasementsArea { //✓
+    final result = _allBasementFloors
+        .map((basementFloor) => basementFloor.area)
         .toList()
         .fold(0.0, (p, c) => p + c);
+    return result;
   }
 
   List<Floor> get _normalFloors {

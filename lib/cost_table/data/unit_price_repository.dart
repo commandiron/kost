@@ -514,7 +514,7 @@ class UnitPriceRepository {
         nameTr: "Esinoks 25 Ton Galvaniz",
         amount: 5500,
         currency: Currency.dollar,
-        unit: Unit.lumpSum,
+        unit: Unit.number,
         dateTime: DateTime(2023, 01),
     ),
 
