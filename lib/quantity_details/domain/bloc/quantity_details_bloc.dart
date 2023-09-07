@@ -8,9 +8,11 @@ import 'package:kost/quantity_details/domain/model/floor/floor_section.dart';
 import 'package:kost/quantity_details/domain/model/jobs_generator/impl/apartment_jobs_generator.dart';
 
 import '../model/floor/floor.dart';
+import '../model/floor/room/apartment_room.dart';
+import '../model/floor/room/common_area_room.dart';
 import '../model/project_constants.dart';
 import '../model/project_variables.dart';
-import '../model/floor/room.dart';
+import '../model/floor/room/room.dart';
 import '../model/floor/window.dart';
 
 class QuantityDetailsBloc
@@ -61,12 +63,12 @@ class QuantityDetailsBloc
                         ElevatorShaft(area: 9.5, perimeter: 12.6),
                         Stairs(area: 6.86, perimeter: 10.5),
                         Stairs(area: 14.73, perimeter: 15.5),
-                        FloorHall(area: 4.65, perimeter: 9.25,),
+                        BuildingFloorHall(area: 4.65, perimeter: 9.25,),
                       ]
                     ),
                     Apartment(
                       rooms: [
-                        Hall(area: 10.66, perimeter: 20.65),
+                        ApartmentHall(area: 10.66, perimeter: 20.65),
                         Saloon(area: 27.36, perimeter: 23.20),
                         Kitchen(area: 7.58, perimeter: 11.55),
                         NormalRoom(area: 7.45, perimeter: 10.95),
@@ -79,7 +81,7 @@ class QuantityDetailsBloc
                     ),
                     Apartment(
                       rooms: [
-                        Hall(area: 10.66, perimeter: 20.65),
+                        ApartmentHall(area: 10.66, perimeter: 20.65),
                         Saloon(area: 27.36, perimeter: 23.20),
                         Kitchen(area: 7.58, perimeter: 11.55),
                         NormalRoom(area: 7.45, perimeter: 10.95),
@@ -117,7 +119,7 @@ class QuantityDetailsBloc
                       ElevatorShaft(area: 9.5, perimeter: 12.6),
                       Stairs(area: 6.86, perimeter: 10.5),
                       Stairs(area: 14.73, perimeter: 15.5),
-                      ApartmentFloorHall(area: 4.65, perimeter: 9.25,),
+                      BuildingHall(area: 4.65, perimeter: 9.25,),
                     ]
                   ),
                   Apartment(
@@ -154,7 +156,7 @@ class QuantityDetailsBloc
                       ElevatorShaft(area: 9.5, perimeter: 12.6),
                       Stairs(area: 6.86, perimeter: 10.5),
                       Stairs(area: 14.73, perimeter: 15.5),
-                      FloorHall(area: 4.65, perimeter: 9.25, doors: [Door.fire]),
+                      BuildingFloorHall(area: 4.65, perimeter: 9.25, doors: [Door.fire]),
                       FireEscapeHall(area: 3.08, perimeter: 7.05),
                       ParkingArea(area: 500, perimeter: 120),
                       TechnicalArea(area: 7.10, perimeter: 10.7),

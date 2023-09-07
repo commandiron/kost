@@ -1,4 +1,4 @@
-import 'room.dart';
+import 'room/room.dart';
 
 abstract class FloorSection {
   final List<Room> rooms;

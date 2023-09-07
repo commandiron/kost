@@ -3,7 +3,8 @@ import 'package:kost/quantity_details/domain/model/floor/floor_section.dart';
 import '../../../../../common/model/unit_price/unit_price.dart';
 import '../../floor/floor.dart';
 import '../../../../../common/model/job.dart';
-import '../../floor/room.dart';
+import '../../floor/room/apartment_room.dart';
+import '../../floor/room/room.dart';
 import '../../project_constants.dart';
 import '../jobs_generator.dart';
 
@@ -50,27 +51,27 @@ class InteriorJobsGenerator extends JobsGenerator {
           return _totalScreedArea;
         },
       ),
-      Marble(
+      Marble( //✓
         quantityBuilder: () {
           return _totalMarbleArea;
         },
       ),
-      MarbleStep(
+      MarbleStep( //✓
         quantityBuilder: () {
           return _totalMarbleStepLength;
         },
       ),
-      MarbleWindowsill(
+      MarbleWindowsill( //✓
         quantityBuilder: () {
           return _totalWindowsillLength;
         },
       ),
-      StairRailings(
+      StairRailings( //✓
         quantityBuilder: () {
           return _totalStairRailingsLength;
         },
       ),
-      CeramicTile(
+      CeramicTile( //✓
         quantityBuilder: () {
           return _totalCeramicFloorArea + _totalCeramicWallArea;
         },
@@ -287,101 +288,107 @@ class InteriorJobsGenerator extends JobsGenerator {
   }
 
   double get _totalScreedArea { //✓
-    double area = 0;
+    double result = 0;
     for (var floor in floors) {
       for (var floorSection in floor.floorSections) {
         for(var room in floorSection.rooms) {
           if (room.floorMaterial == FloorMaterial.parquet || room.floorMaterial == FloorMaterial.ceramic) {
-            area += room.area;
+            result += room.area;
           }
         }
       }
     }
-    return area;
+    return result;
   }
 
-  double get _totalMarbleArea {
-    double area = 0;
+  double get _totalMarbleArea { //✓
+    double result = 0;
     for (var floor in floors) {
       for (var floorSection in floor.floorSections) {
         for(var room in floorSection.rooms) {
           if (room.floorMaterial == FloorMaterial.marble) {
-            area += room.area;
+            result += room.area;
+          }
+          if(room.floorMaterial == FloorMaterial.marbleStep) {
+            final singleStairArea = projectConstants.stairLength * projectConstants.stairTreadDepth;
+            final stepCount = floor.heightWithSlab / projectConstants.stairRiserHeight;
+            final totalStairArea = singleStairArea * stepCount;
+            final stairLandingArea = room.area - totalStairArea;
+            result += stairLandingArea;
           }
         }
       }
     }
-    return area;
+    return result;
   }
 
-  double get _totalMarbleStepLength {
-    double length = 0;
+  double get _totalMarbleStepLength { //✓
+    double result = 0;
     for (var floor in floors) {
       for (var floorSection in floor.floorSections) {
         for(var room in floorSection.rooms) {
           if (room.floorMaterial == FloorMaterial.marbleStep) {
-            final stepCount =
-                floor.heightWithSlab / projectConstants.stairRiserHeight;
-            length += (projectConstants.stairLength * stepCount);
+            final stepCount = floor.heightWithSlab / projectConstants.stairRiserHeight;
+            result += (projectConstants.stairLength * stepCount);
           }
         }
       }
     }
-    return length;
+    return result;
   }
 
-  double get _totalWindowsillLength {
-    double totalWindowsillLength = 0;
+  double get _totalWindowsillLength { //✓
+    double result = 0;
     for (var floor in floors) {
-      final windowsillLengths = floor.windows.map(
-          (window) => window.hasWindowsill ? window.width * window.count : 0);
-      totalWindowsillLength += windowsillLengths.fold(0.0, (p, c) => p + c);
+      final windowsillLengths = floor.windows.map((window) => window.hasWindowsill ? window.width * window.count : 0);
+      result += windowsillLengths.fold(0.0, (p, c) => p + c);
     }
-    return totalWindowsillLength;
+    return result;
   }
 
-  double get _totalStairRailingsLength {
-    double length = 0;
+  double get _totalStairRailingsLength { //✓
+    double result = 0;
     for (var floor in floors) {
       for (var floorSection in floor.floorSections) {
         for(var room in floorSection.rooms) {
           if (room.floorMaterial == FloorMaterial.marbleStep) {
-            final stepCount =
-                floor.heightWithSlab / projectConstants.stairRiserHeight;
-            length += stepCount * projectConstants.stairTreadDepth;
+            final stepCount = floor.heightWithSlab / projectConstants.stairRiserHeight;
+            result += stepCount * projectConstants.stairTreadDepth;
           }
         }
       }
     }
-    return length;
+    return result;
   }
 
-  double get _totalCeramicFloorArea {
-    double area = 0;
+  double get _totalCeramicFloorArea { //✓
+    double result = 0;
     for (var floor in floors) {
       for (var floorSection in floor.floorSections) {
         for(var room in floorSection.rooms) {
           if (room.floorMaterial == FloorMaterial.ceramic) {
-            area += room.area;
+            result += room.area;
           }
         }
       }
     }
-    return area;
+    return result;
   }
 
-  double get _totalCeramicWallArea {
-    double area = 0;
+  double get _totalCeramicWallArea { //✓
+    double result = 0;
     for (var floor in floors) {
       for (var floorSection in floor.floorSections) {
         for(var room in floorSection.rooms) {
           if (room.wallMaterial == WallMaterial.ceramic) {
-            area += room.perimeter * (floor.heightWithSlab - floor.slabHeight);
+            final wallArea = room.perimeter * (floor.heightWithSlab - floor.slabHeight);
+            final doorArea = (room.doors.length * projectConstants.commonDoorArea);
+            result += wallArea - doorArea;
           }
         }
       }
     }
-    return area;
+    return result;
   }
 
   double get _totalParquetFloorArea {
