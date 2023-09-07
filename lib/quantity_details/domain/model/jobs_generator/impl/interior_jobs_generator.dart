@@ -83,7 +83,7 @@ class InteriorJobsGenerator extends JobsGenerator {
       ),
       SteelDoor( //✓
         quantityBuilder: () {
-          return _steelDoorNumber.toDouble();
+          return _apartmentNumber.toDouble();
         },
       ),
       EntranceDoor(
@@ -405,7 +405,7 @@ class InteriorJobsGenerator extends JobsGenerator {
     return result;
   }
 
-  int get _steelDoorNumber {
+  int get _apartmentNumber { //✓
     int result = 0;
     for (var floor in floors) {
       for (var floorSection in floor.floorSections) {
@@ -477,10 +477,6 @@ class InteriorJobsGenerator extends JobsGenerator {
       }
     }
     return number;
-  }
-
-  int get _apartmentNumber {
-    return _steelDoorNumber;
   }
 
   int get _toiletNumber {
