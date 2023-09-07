@@ -76,12 +76,12 @@ class InteriorJobsGenerator extends JobsGenerator {
           return _totalCeramicFloorArea + _totalCeramicWallArea;
         },
       ),
-      ParquetTile(
+      ParquetTile( //✓
         quantityBuilder: () {
           return _totalParquetFloorArea;
         },
       ),
-      SteelDoor(
+      SteelDoor( //✓
         quantityBuilder: () {
           return _steelDoorNumber.toDouble();
         },
@@ -391,30 +391,30 @@ class InteriorJobsGenerator extends JobsGenerator {
     return result;
   }
 
-  double get _totalParquetFloorArea {
-    double area = 0;
+  double get _totalParquetFloorArea { //✓
+    double result = 0;
     for (var floor in floors) {
       for (var floorSection in floor.floorSections) {
         for(var room in floorSection.rooms) {
           if (room.floorMaterial == FloorMaterial.parquet) {
-            area += room.area;
+            result += room.area;
           }
         }
       }
     }
-    return area;
+    return result;
   }
 
   int get _steelDoorNumber {
-    int number = 0;
+    int result = 0;
     for (var floor in floors) {
       for (var floorSection in floor.floorSections) {
         if(floorSection is Apartment) {
-          number++;
+          result++;
         }
       }
     }
-    return number;
+    return result;
   }
 
   int get _buildingEntranceDoorNumber {
