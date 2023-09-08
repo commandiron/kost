@@ -119,7 +119,7 @@ class InteriorJobsGenerator extends JobsGenerator { //✓
       ),
       BathroomCabinet( //✓
         quantityBuilder: () {
-          return _numberOfWc * projectConstants.bathroomCabinetArea;
+          return (_numberOfWc + _numberOfBathroom) * projectConstants.bathroomCabinetArea;
         },
       ),
       FloorPlinth( //✓
