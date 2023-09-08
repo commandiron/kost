@@ -35,10 +35,16 @@ class LandscapeJobsGenerator extends JobsGenerator { //✓
         quantityBuilder: () {
           return _allBasementFloors.length + 1;
         },
+        disable: true
       ),
       AutomaticBarrier( //✓
         quantityBuilder: () {
           return projectConstants.automaticBarrierNumber;
+        },
+      ),
+      AutomaticShutter( //✓
+        quantityBuilder: () {
+          return projectConstants.automaticShutterNumber;
         },
       ),
     ];

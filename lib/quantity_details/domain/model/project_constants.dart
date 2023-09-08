@@ -24,6 +24,7 @@ class ProjectConstants extends Equatable {
   final double coatCabinetArea; //✓
   final double gardenOutdoorParkingAreaRate; //✓
   final double automaticBarrierNumber; //✓
+  final double automaticShutterNumber; //✓
   final double craneHourForOneSquareMeterRoughConstructionArea; //✓
 
   const ProjectConstants({
@@ -50,7 +51,8 @@ class ProjectConstants extends Equatable {
     this.coatCabinetArea = 4,
     this.gardenOutdoorParkingAreaRate = 0.50,
     this.automaticBarrierNumber = 1,
-    this.craneHourForOneSquareMeterRoughConstructionArea = 0.02,
+    this.automaticShutterNumber = 1,
+    this.craneHourForOneSquareMeterRoughConstructionArea = 0.025,
   });
 
   @override

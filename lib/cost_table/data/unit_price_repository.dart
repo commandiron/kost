@@ -363,6 +363,14 @@ class UnitPriceRepository {
         unit: Unit.number,
         dateTime: DateTime(2023, 08),
     ),
+    UnitPrice(
+      category: UnitPriceCategory.automaticShutter,
+      nameTr: "Otomatik Kepenk",
+      amount: 100000,
+      currency: Currency.lira,
+      unit: Unit.number,
+      dateTime: DateTime(2023, 08),
+    ),
 
     //Sıcak Demirci - Selçuk, İnternet ✓
     UnitPrice(
@@ -600,9 +608,9 @@ class UnitPriceRepository {
         unit: Unit.lumpSum,
         dateTime: DateTime(2023, 08)),
     UnitPrice(
-        category: UnitPriceCategory.crane15Ton,
-        nameTr: "15 Ton Vinç",
-        amount: 6500,
+        category: UnitPriceCategory.crane55Ton,
+        nameTr: "55 Ton Vinç",
+        amount: 3500,
         currency: Currency.lira,
         unit: Unit.hour,
         dateTime: DateTime(2023, 08)),

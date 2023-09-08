@@ -159,6 +159,7 @@ class InteriorJobsGenerator extends JobsGenerator { //✓
           return (_allBasementFloors.length + 1 + _normalFloors.length).toDouble();
         },
         selectedUnitPriceCategory: UnitPriceCategory.elevation6PersonKone,
+        disable: true
       ),
       Sink( //✓
         quantityBuilder: () {

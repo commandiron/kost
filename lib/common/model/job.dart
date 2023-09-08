@@ -49,6 +49,8 @@ abstract class Job {
   bool disable;
 }
 
+//HEPSİNİ JOB GENERATOR İÇİNE KOYUP DİSABLE ETMEK ÇOK DAHA MANTIKLI
+
 class Shoring extends Job {
   Shoring(
     {
@@ -803,6 +805,19 @@ class AutomaticBarrier extends Job {
   );
 }
 
+class AutomaticShutter extends Job {
+  AutomaticShutter(
+    {
+      super.nameTr = "Garaj Otomatik Kepenk",
+      super.mainCategory = MainCategory.landscapeJobs,
+      super.enabledUnitPriceCategories = const [UnitPriceCategory.automaticShutter],
+      super.selectedUnitPriceCategory = UnitPriceCategory.automaticShutter,
+      required super.quantityBuilder,
+      super.disable,
+    }
+  );
+}
+
 class EnclosingTheLand extends Job {
   EnclosingTheLand(
     {
@@ -834,8 +849,8 @@ class Crane extends Job {
     {
       super.nameTr = "Vinç",
       super.mainCategory = MainCategory.generalExpenses,
-      super.enabledUnitPriceCategories = const [UnitPriceCategory.crane15Ton],
-      super.selectedUnitPriceCategory = UnitPriceCategory.crane15Ton,
+      super.enabledUnitPriceCategories = const [UnitPriceCategory.crane55Ton],
+      super.selectedUnitPriceCategory = UnitPriceCategory.crane55Ton,
       required super.quantityBuilder,
       super.disable,
     }
