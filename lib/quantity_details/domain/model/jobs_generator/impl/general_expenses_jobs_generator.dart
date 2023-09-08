@@ -1,3 +1,5 @@
+import 'package:collection/collection.dart';
+
 import '../../floor/floor.dart';
 import '../../../../../common/model/job.dart';
 import '../../project_constants.dart';
@@ -19,44 +21,43 @@ class GeneralExpensesJobsGenerator extends JobsGenerator {
   @override
   List<Job> createJobs() {
     return [
-      EnclosingTheLand(
+      EnclosingTheLand( //✓
         quantityBuilder: () {
           return projectVariables.landPerimeter;
         },
       ),
-      MobilizationDemobilization(
+      MobilizationDemobilization( //✓
         quantityBuilder: () {
-          //BURAYA BAK!!!!!!!!!!!!!!!!!!
           return 1;
         },
       ),
       Crane(
-        quantityBuilder: () {
+        quantityBuilder: () { //✓
           return _roughConstructionArea *
               projectConstants.craneHourForOneSquareMeterRoughConstructionArea;
         },
       ),
-      SiteSafety(
+      SiteSafety( //✓
         quantityBuilder: () {
           return projectConstants.projectDurationMonth;
         },
       ),
-      SiteExpenses(
+      SiteExpenses( //✓
         quantityBuilder: () {
           return projectConstants.projectDurationMonth;
         },
       ),
-      Sergeant(
+      Sergeant( //✓
         quantityBuilder: () {
           return projectConstants.projectDurationMonth;
         },
       ),
-      SiteChief(
+      SiteChief( //✓
         quantityBuilder: () {
           return projectConstants.projectDurationMonth;
         },
       ),
-      ProjectsFeesPayments(
+      ProjectsFeesPayments( //✓
         quantityBuilder: () {
           return 1;
         },
@@ -64,25 +65,25 @@ class GeneralExpensesJobsGenerator extends JobsGenerator {
     ];
   }
 
-  Floor get _topFloor {
-    final topFloor = floors.reduce((current, next) {
-      return current.no > next.no ? current : next;
-    });
-    return topFloor;
+  Map<Floor, double> get _floorToCeilingAreaMap { //✓
+    Map<Floor, double> result = {};
+    for(var floor in floors) {
+      result.putIfAbsent(floor, () {
+        final ceilingArea = floors.firstWhereOrNull((e) => e.no == floor.no + 1)?.area ?? 0;
+        if(floor.area > ceilingArea) {
+          return floor.area;
+        }
+        return ceilingArea;
+      });
+    }
+    return result;
   }
 
-  double get _roughConstructionArea {
-    double roughConstructionArea = 0;
-    for (var floor in floors) {
-      if (floor.no == 0) {
-        roughConstructionArea +=
-            floors.firstWhere((floor) => floor.no == -1).area;
-      } else {
-        roughConstructionArea += floor.area;
-      }
-    }
-    roughConstructionArea += _topFloor.area;
-    roughConstructionArea += projectVariables.elevationTowerArea;
-    return roughConstructionArea;
+  double get _roughConstructionArea { //✓
+    double result = 0;
+    result += projectVariables.foundationArea;
+    result += _floorToCeilingAreaMap.values.fold(0.0, (p, c) => p + c);
+    result += projectVariables.elevationTowerArea;
+    return result;
   }
 }

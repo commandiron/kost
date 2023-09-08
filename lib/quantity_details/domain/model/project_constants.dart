@@ -23,7 +23,7 @@ class ProjectConstants extends Equatable {
   final double kitchenLength; //✓
   final double coatCabinetArea; //✓
   final double gardenOutdoorParkingAreaRate; //✓
-  final int automaticBarrierNumber; //✓
+  final double automaticBarrierNumber; //✓
   final double craneHourForOneSquareMeterRoughConstructionArea; //✓
 
   const ProjectConstants({

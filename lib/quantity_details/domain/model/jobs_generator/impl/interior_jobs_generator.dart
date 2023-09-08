@@ -8,7 +8,7 @@ import '../../floor/room/room.dart';
 import '../../project_constants.dart';
 import '../jobs_generator.dart';
 
-class InteriorJobsGenerator extends JobsGenerator {
+class InteriorJobsGenerator extends JobsGenerator { //✓
   InteriorJobsGenerator({
     super.name = "İç İmalatlar",
     required this.projectConstants,
@@ -200,7 +200,7 @@ class InteriorJobsGenerator extends JobsGenerator {
           return 1;
         },
       ),
-      HouseholdAppliances( // Setin içindekiler yazılabilir bak!!!
+      HouseholdAppliances( //✓
         quantityBuilder: () {
           return _numberOfApartment;
         },

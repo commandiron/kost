@@ -4,7 +4,7 @@ import '../../project_constants.dart';
 import '../../project_variables.dart';
 import '../jobs_generator.dart';
 
-class LandscapeJobsGenerator extends JobsGenerator {
+class LandscapeJobsGenerator extends JobsGenerator { //✓
   LandscapeJobsGenerator({
     super.name = "Peysaj",
     required this.projectConstants,
@@ -19,44 +19,44 @@ class LandscapeJobsGenerator extends JobsGenerator {
   @override
   List<Job> createJobs() {
     return [
-      LandScapeGarden(
+      LandScapeGarden( //✓
         quantityBuilder: () {
           return (projectVariables.landArea - _groundFloor.area) *
               projectConstants.gardenOutdoorParkingAreaRate;
         },
       ),
-      OutdoorParkingTile(
+      OutdoorParkingTile( //✓
         quantityBuilder: () {
           return (projectVariables.landArea - _groundFloor.area) *
               (1 - projectConstants.gardenOutdoorParkingAreaRate);
         },
       ),
-      CarLift(
+      CarLift( //✓
         quantityBuilder: () {
-          return _basementFloors.length + 1;
+          return _allBasementFloors.length + 1;
         },
       ),
-      AutomaticBarrier(
+      AutomaticBarrier( //✓
         quantityBuilder: () {
-          return projectConstants.automaticBarrierNumber.toDouble();
+          return projectConstants.automaticBarrierNumber;
         },
       ),
     ];
   }
 
-  Floor get _groundFloor {
-    final groundFloor = floors.firstWhere(
+  Floor get _groundFloor { //✓
+    final result = floors.firstWhere(
       (floor) => floor.no == 0,
       orElse: () => throw Exception("No ground floor"),
     );
-    return groundFloor;
+    return result;
   }
 
-  List<Floor> get _basementFloors {
-    final basementFloors = floors.where((element) => element.no < 0).toList();
-    if (basementFloors.isEmpty) {
+  List<Floor> get _allBasementFloors { //✓
+    final result = floors.where((floor) => floor.no < 0).toList();
+    if (result.isEmpty) {
       throw Exception("No basement floor");
     }
-    return basementFloors;
+    return result;
   }
 }

@@ -349,7 +349,7 @@ class UnitPriceRepository {
     ),
     UnitPrice(
         category: UnitPriceCategory.paddleBoxBuiltInOvenCookTopDishwasherFranke,
-        nameTr: "Franke Ankastre Beyaz Eşya Seti",
+        nameTr: "Franke Ankastre Beyaz Eşya (Davlumbaz, Fırın, Set Üstü Ocak, Bulaşık Makinesi)",
         amount: 8000 + 10000 + 7000 + 15000,
         currency: Currency.lira,
         unit: Unit.apartment,
