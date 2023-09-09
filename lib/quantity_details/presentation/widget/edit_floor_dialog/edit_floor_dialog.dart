@@ -129,7 +129,7 @@ class _EditFloorDialogState extends State<EditFloorDialog> {
               value: widget.floor.isCeilingSlabHollow,
               onChanged: (value) {
                 _isAnyChange = true;
-                _submittedFloor = _submittedFloor.copyWith(isSlabHollow: value);
+                _submittedFloor = _submittedFloor.copyWith(isCeilingSlabHollow: value);
               },
             ),
             FloorAttrTextField(
