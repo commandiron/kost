@@ -48,8 +48,8 @@ class FireEscapeHall extends CommonAreaRoom {
   });
 }
 
-class BuildingHall extends CommonAreaRoom {
-  BuildingHall({
+class BuildingEntranceHall extends CommonAreaRoom {
+  BuildingEntranceHall({
     required super.area,
     required super.perimeter,
     super.windows = const [],
