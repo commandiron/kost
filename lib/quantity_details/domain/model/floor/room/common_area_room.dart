@@ -55,7 +55,7 @@ class BuildingHall extends CommonAreaRoom {
     super.hasCovingPlaster = false,
     super.hasFloorPlinth = false,
     super.isFloorWet = false,
-    super.doors = const [Door.buildingEntrance],
+    super.doors = const [Door.buildingEntrance, Door.buildingEntrance,],
   });
 }
 
