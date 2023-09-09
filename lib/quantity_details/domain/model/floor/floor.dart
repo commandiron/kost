@@ -75,9 +75,9 @@ class Floor {
       throw (Exception("Basements or ground floor cannot be duplicate"));
     }
 
-    final List<Floor> duplicatedFloors = [];
+    final List<Floor> result = [];
     for (var i = floor.no; i <= count; i++) {
-      duplicatedFloors.add(Floor(
+      result.add(Floor(
         no: i,
         area: floor.area,
         perimeter: floor.perimeter,
@@ -90,7 +90,7 @@ class Floor {
         floorSections: floor.floorSections
       ));
     }
-    return duplicatedFloors;
+    return result;
   }
 }
 
