@@ -180,14 +180,12 @@ class QuantityDetailsBloc
       }
 
       if (event.floor!.no >= 17) {
-        emit(
-            state.copyWith(snackBarMessage: "Maksimum kat sayısına ulaşıldı."));
+        emit(state.copyWith(snackBarMessage: "Maksimum kat sayısına ulaşıldı."));
         return;
       }
 
       if (event.floor!.no <= -4) {
-        emit(state.copyWith(
-            snackBarMessage: "Maksimum bodrum kat sayısına ulaşıldı."));
+        emit(state.copyWith( snackBarMessage: "Maksimum bodrum kat sayısına ulaşıldı."));
         return;
       }
 
