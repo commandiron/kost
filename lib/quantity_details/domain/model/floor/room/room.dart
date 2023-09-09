@@ -1,3 +1,5 @@
+import 'package:kost/quantity_details/domain/model/floor/window.dart';
+
 enum FloorMaterial { none, parquet, ceramic, marble, marbleStep, epoxy }
 
 enum WallMaterial {
@@ -21,6 +23,7 @@ enum Door {
 abstract class Room {
   final double area;
   final double perimeter;
+  final List<Window> windows;
   final FloorMaterial floorMaterial;
   final WallMaterial wallMaterial;
   final CeilingMaterial ceilingMaterial;
@@ -32,6 +35,7 @@ abstract class Room {
   Room({
     required this.area,
     required this.perimeter,
+    required this.windows,
     required this.floorMaterial,
     required this.wallMaterial,
     required this.ceilingMaterial,

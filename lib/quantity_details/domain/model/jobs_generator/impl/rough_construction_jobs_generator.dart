@@ -239,8 +239,12 @@ class RoughConstructionJobsGenerator extends JobsGenerator { //✓
         (floor) {
           final wallArea = floor.thickWallLength * (floor.heightWithSlab - floor.slabHeight);
           double windowArea = 0;
-          for (var window in floor.windows) {
-            windowArea += (window.width * window.height * window.count);
+          for(var floorSection in floor.floorSections) {
+            for(var room in floorSection.rooms) {
+              for(var window in room.windows) {
+                windowArea += (window.width * window.height);
+              }
+            }
           }
           return wallArea - windowArea;
         }

@@ -339,8 +339,13 @@ class InteriorJobsGenerator extends JobsGenerator { //✓
   double get _totalWindowsillLength { //✓
     double result = 0;
     for (var floor in floors) {
-      final windowsillLengths = floor.windows.map((window) => window.hasWindowsill ? window.width * window.count : 0);
-      result += windowsillLengths.fold(0.0, (p, c) => p + c);
+      for(var floorSection in floor.floorSections) {
+        for(var room in floorSection.rooms) {
+          for(var window in room.windows) {
+            result += window.hasWindowsill ? window.width : 0;
+          }
+        }
+      }
     }
     return result;
   }

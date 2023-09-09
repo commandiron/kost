@@ -4,6 +4,7 @@ class ApartmentRoom extends Room {
   ApartmentRoom({
     required super.area,
     required super.perimeter,
+    required super.windows,
     required super.floorMaterial,
     required super.wallMaterial,
     required super.ceilingMaterial,
@@ -18,6 +19,7 @@ class Saloon extends ApartmentRoom {
   Saloon({
     required super.area,
     required super.perimeter,
+    required super.windows,
     super.floorMaterial = FloorMaterial.parquet,
     super.wallMaterial = WallMaterial.painting,
     super.ceilingMaterial = CeilingMaterial.drywall,
@@ -32,6 +34,7 @@ class SaloonWithKitchen extends ApartmentRoom {
   SaloonWithKitchen({
     required super.area,
     required super.perimeter,
+    required super.windows,
     super.floorMaterial = FloorMaterial.parquet,
     super.wallMaterial = WallMaterial.painting,
     super.ceilingMaterial = CeilingMaterial.drywall,
@@ -46,6 +49,7 @@ class Kitchen extends ApartmentRoom {
   Kitchen({
     required super.area,
     required super.perimeter,
+    required super.windows,
     super.floorMaterial = FloorMaterial.ceramic,
     super.wallMaterial = WallMaterial.painting,
     super.ceilingMaterial = CeilingMaterial.drywall,
@@ -60,6 +64,7 @@ class NormalRoom extends ApartmentRoom {
   NormalRoom({
     required super.area,
     required super.perimeter,
+    required super.windows,
     super.floorMaterial = FloorMaterial.parquet,
     super.wallMaterial = WallMaterial.painting,
     super.ceilingMaterial = CeilingMaterial.drywall,
@@ -74,6 +79,7 @@ class ApartmentHall extends ApartmentRoom {
   ApartmentHall({
     required super.area,
     required super.perimeter,
+    super.windows = const [],
     super.floorMaterial = FloorMaterial.ceramic,
     super.wallMaterial = WallMaterial.painting,
     super.ceilingMaterial = CeilingMaterial.drywall,
@@ -88,6 +94,7 @@ class Wc extends ApartmentRoom {
   Wc({
     required super.area,
     required super.perimeter,
+    required super.windows,
     super.floorMaterial = FloorMaterial.ceramic,
     super.wallMaterial = WallMaterial.ceramic,
     super.ceilingMaterial = CeilingMaterial.drywall,
@@ -102,6 +109,7 @@ class EscapeHallWc extends ApartmentRoom {
   EscapeHallWc({
     required super.area,
     required super.perimeter,
+    required super.windows,
     super.floorMaterial = FloorMaterial.ceramic,
     super.wallMaterial = WallMaterial.ceramic,
     super.ceilingMaterial = CeilingMaterial.drywall,
@@ -119,6 +127,7 @@ class Bathroom extends ApartmentRoom {
   Bathroom({
     required super.area,
     required super.perimeter,
+    required super.windows,
     super.floorMaterial = FloorMaterial.ceramic,
     super.wallMaterial = WallMaterial.ceramic,
     super.ceilingMaterial = CeilingMaterial.drywall,
@@ -133,6 +142,7 @@ class EscapeHallBathroom extends ApartmentRoom {
   EscapeHallBathroom({
     required super.area,
     required super.perimeter,
+    required super.windows,
     super.floorMaterial = FloorMaterial.ceramic,
     super.wallMaterial = WallMaterial.ceramic,
     super.ceilingMaterial = CeilingMaterial.drywall,
@@ -150,6 +160,7 @@ class Balcony extends ApartmentRoom {
   Balcony({
     required super.area,
     required super.perimeter,
+    super.windows = const [],
     super.floorMaterial = FloorMaterial.ceramic,
     super.wallMaterial = WallMaterial.painting,
     super.ceilingMaterial = CeilingMaterial.plaster,

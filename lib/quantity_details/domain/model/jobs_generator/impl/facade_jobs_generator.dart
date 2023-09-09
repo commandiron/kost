@@ -55,9 +55,13 @@ class FacadeJobsGenerator extends JobsGenerator { //✓
   double get _totalWindowArea { //✓
     double result = 0;
     for (var floor in floors) {
-      final windowAreas = floor.windows
-          .map((window) => window.width * window.height * window.count);
-      result += windowAreas.fold(0.0, (p, c) => p + c);
+      for(var floorSection in floor.floorSections) {
+        for(var room in floorSection.rooms) {
+          for(var window in room.windows) {
+            result += (window.width * window.height);
+          }
+        }
+      }
     }
     return result;
   }
@@ -65,10 +69,13 @@ class FacadeJobsGenerator extends JobsGenerator { //✓
   double get _totalFacadeRailingLength { //✓
     double result = 0;
     for (var floor in floors) {
-      final facadeRailingLengths = floor.windows
-          .map((window) => window.hasRailing ? window.width * window.count : 0);
-      result +=
-          facadeRailingLengths.fold(0.0, (p, c) => p + c);
+      for(var floorSection in floor.floorSections) {
+        for(var room in floorSection.rooms) {
+          for(var window in room.windows) {
+            result += window.hasRailing ? window.width : 0;
+          }
+        }
+      }
     }
     return result;
   }

@@ -4,6 +4,7 @@ class CommonAreaRoom extends Room {
   CommonAreaRoom({
     required super.area,
     required super.perimeter,
+    required super.windows,
     required super.floorMaterial,
     required super.wallMaterial,
     required super.ceilingMaterial,
@@ -18,6 +19,7 @@ class BuildingFloorHall extends CommonAreaRoom {
   BuildingFloorHall({
     required super.area,
     required super.perimeter,
+    super.windows = const [],
     super.floorMaterial = FloorMaterial.marble,
     super.wallMaterial = WallMaterial.painting,
     super.ceilingMaterial = CeilingMaterial.drywall,
@@ -32,6 +34,7 @@ class FireEscapeHall extends CommonAreaRoom {
   FireEscapeHall({
     required super.area,
     required super.perimeter,
+    super.windows = const [],
     super.floorMaterial = FloorMaterial.marble,
     super.wallMaterial = WallMaterial.painting,
     super.ceilingMaterial = CeilingMaterial.plaster,
@@ -49,6 +52,7 @@ class BuildingHall extends CommonAreaRoom {
   BuildingHall({
     required super.area,
     required super.perimeter,
+    super.windows = const [],
     super.floorMaterial = FloorMaterial.marble,
     super.wallMaterial = WallMaterial.painting,
     super.ceilingMaterial = CeilingMaterial.drywall,
@@ -63,6 +67,7 @@ class ParkingArea extends CommonAreaRoom {
   ParkingArea({
     required super.area,
     required super.perimeter,
+    super.windows = const [],
     super.floorMaterial = FloorMaterial.epoxy,
     super.wallMaterial = WallMaterial.painting,
     super.ceilingMaterial = CeilingMaterial.plaster,
@@ -77,6 +82,7 @@ class TechnicalArea extends CommonAreaRoom {
   TechnicalArea({
     required super.area,
     required super.perimeter,
+    super.windows = const [],
     super.floorMaterial = FloorMaterial.ceramic,
     super.wallMaterial = WallMaterial.painting,
     super.ceilingMaterial = CeilingMaterial.plaster,
@@ -91,6 +97,7 @@ class ElevatorShaft extends CommonAreaRoom {
   ElevatorShaft({
     required super.area,
     required super.perimeter,
+    super.windows = const [],
     super.floorMaterial = FloorMaterial.none,
     super.wallMaterial = WallMaterial.painting,
     super.ceilingMaterial = CeilingMaterial.none,
@@ -105,6 +112,7 @@ class Stairs extends CommonAreaRoom {
   Stairs({
     required super.area,
     required super.perimeter,
+    super.windows = const [],
     super.floorMaterial = FloorMaterial.marbleStep,
     super.wallMaterial = WallMaterial.painting,
     super.ceilingMaterial = CeilingMaterial.plaster,
@@ -119,6 +127,7 @@ class Shaft extends CommonAreaRoom {
   Shaft({
     required super.area,
     required super.perimeter,
+    super.windows = const [],
     super.floorMaterial = FloorMaterial.none,
     super.wallMaterial = WallMaterial.none,
     super.ceilingMaterial = CeilingMaterial.none,

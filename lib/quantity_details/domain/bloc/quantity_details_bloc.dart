@@ -49,14 +49,6 @@ class QuantityDetailsBloc
                   isCeilingSlabHollow: true,
                   thickWallLength: 88.24,
                   thinWallLength: 49.54,
-                  windows: [
-                    Window(
-                        width: 19,
-                        height: 2.5,
-                        hasRailing: true,
-                        hasWindowsill: true,
-                        count: 1),
-                  ],
                   floorSections: [
                     CommonArea(
                       rooms: [
@@ -69,26 +61,26 @@ class QuantityDetailsBloc
                     Apartment(
                       rooms: [
                         ApartmentHall(area: 10.66, perimeter: 20.65),
-                        Saloon(area: 27.36, perimeter: 23.20),
-                        Kitchen(area: 7.58, perimeter: 11.55),
-                        NormalRoom(area: 7.45, perimeter: 10.95),
-                        NormalRoom(area: 7.96, perimeter: 11.85),
-                        NormalRoom(area: 12.11, perimeter: 15.15),
-                        Bathroom(area: 4.87, perimeter: 9.05),
-                        EscapeHallBathroom(area: 3.08, perimeter: 7.05),
+                        Saloon(area: 27.36, perimeter: 23.20, windows: [Window(width: 19, height: 2.5,)]),
+                        Kitchen(area: 7.58, perimeter: 11.55, windows: []),
+                        NormalRoom(area: 7.45, perimeter: 10.95, windows: []),
+                        NormalRoom(area: 7.96, perimeter: 11.85, windows: []),
+                        NormalRoom(area: 12.11, perimeter: 15.15, windows: []),
+                        Bathroom(area: 4.87, perimeter: 9.05, windows: []),
+                        EscapeHallBathroom(area: 3.08, perimeter: 7.05, windows: []),
                         Balcony(area: 2.53, perimeter: 6.40),
                       ]
                     ),
                     Apartment(
                       rooms: [
                         ApartmentHall(area: 10.66, perimeter: 20.65),
-                        Saloon(area: 27.36, perimeter: 23.20),
-                        Kitchen(area: 7.58, perimeter: 11.55),
-                        NormalRoom(area: 7.45, perimeter: 10.95),
-                        NormalRoom(area: 7.96, perimeter: 11.85),
-                        NormalRoom(area: 12.11, perimeter: 15.15),
-                        Bathroom(area: 4.87, perimeter: 9.05),
-                        EscapeHallBathroom(area: 3.08, perimeter: 7.05),
+                        Saloon(area: 27.36, perimeter: 23.20, windows: []),
+                        Kitchen(area: 7.58, perimeter: 11.55, windows: []),
+                        NormalRoom(area: 7.45, perimeter: 10.95, windows: []),
+                        NormalRoom(area: 7.96, perimeter: 11.85, windows: []),
+                        NormalRoom(area: 12.11, perimeter: 15.15, windows: []),
+                        Bathroom(area: 4.87, perimeter: 9.05, windows: []),
+                        EscapeHallBathroom(area: 3.08, perimeter: 7.05, windows: []),
                         Balcony(area: 2.53, perimeter: 6.40),
                       ]
                     )
@@ -105,14 +97,6 @@ class QuantityDetailsBloc
                 isCeilingSlabHollow: true,
                 thickWallLength: 86.2,
                 thinWallLength: 15.5,
-                windows: [
-                  Window(
-                      width: 17.4,
-                      height: 2.5,
-                      hasRailing: true,
-                      hasWindowsill: true,
-                      count: 1),
-                ],
                 floorSections: [
                   CommonArea(
                     rooms: [
@@ -124,18 +108,18 @@ class QuantityDetailsBloc
                   ),
                   Apartment(
                     rooms: [
-                      SaloonWithKitchen(area: 28.06, perimeter: 30.95,),
-                      NormalRoom(area: 12.93, perimeter: 18.6),
-                      Bathroom(area: 4.74, perimeter: 8.75),
-                      EscapeHallBathroom(area: 3.37, perimeter: 7.35),
+                      SaloonWithKitchen(area: 28.06, perimeter: 30.95, windows: [Window(width: 17.4, height: 2.5,)]),
+                      NormalRoom(area: 12.93, perimeter: 18.6, windows: []),
+                      Bathroom(area: 4.74, perimeter: 8.75, windows: []),
+                      EscapeHallBathroom(area: 3.37, perimeter: 7.35, windows: []),
                     ]
                   ),
                   Apartment(
                     rooms: [
-                      SaloonWithKitchen(area: 28.06, perimeter: 30.95,),
-                      NormalRoom(area: 12.93, perimeter: 18.6),
-                      Bathroom(area: 4.74, perimeter: 8.75),
-                      EscapeHallBathroom(area: 3.37, perimeter: 7.35),
+                      SaloonWithKitchen(area: 28.06, perimeter: 30.95, windows: []),
+                      NormalRoom(area: 12.93, perimeter: 18.6, windows: []),
+                      Bathroom(area: 4.74, perimeter: 8.75, windows: []),
+                      EscapeHallBathroom(area: 3.37, perimeter: 7.35, windows: []),
                     ]
                   )
                 ],
@@ -149,7 +133,6 @@ class QuantityDetailsBloc
                 isCeilingSlabHollow: false,
                 thickWallLength: 50,
                 thinWallLength: 0,
-                windows: [],
                 floorSections: [
                   CommonArea(
                     rooms: [

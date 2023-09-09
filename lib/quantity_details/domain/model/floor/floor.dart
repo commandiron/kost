@@ -1,5 +1,3 @@
-import 'package:kost/quantity_details/domain/model/floor/window.dart';
-
 import 'floor_section.dart';
 
 class InitialFloor extends Floor {
@@ -13,7 +11,6 @@ class InitialFloor extends Floor {
       super.thickWallLength = 0,
       super.thinWallLength = 0,
       super.isCeilingSlabHollow = true,
-      super.windows = const [],
       super.floorSections = const []
     }
   );
@@ -28,7 +25,6 @@ class Floor {
   final bool isCeilingSlabHollow;
   final double thickWallLength;
   final double thinWallLength;
-  final List<Window> windows;
   final List<FloorSection> floorSections;
 
 
@@ -41,7 +37,6 @@ class Floor {
       required this.isCeilingSlabHollow,
       required this.thickWallLength,
       required this.thinWallLength,
-      required this.windows,
       required this.floorSections});
 
   Floor copyWith({
@@ -53,7 +48,6 @@ class Floor {
     final bool? isCeilingSlabHollow,
     final double? thickWallLength,
     final double? thinWallLength,
-    final List<Window>? windows,
     final List<FloorSection>? floorSections,
   }) {
     return Floor(
@@ -65,7 +59,6 @@ class Floor {
       isCeilingSlabHollow: isCeilingSlabHollow ?? this.isCeilingSlabHollow,
       thickWallLength: thickWallLength ?? this.thickWallLength,
       thinWallLength: thinWallLength ?? this.thinWallLength,
-      windows: windows ?? this.windows,
       floorSections: floorSections ?? this.floorSections
     );
   }
@@ -86,7 +79,6 @@ class Floor {
         isCeilingSlabHollow: floor.isCeilingSlabHollow,
         thickWallLength: floor.thickWallLength,
         thinWallLength: floor.thinWallLength,
-        windows: floor.windows,
         floorSections: floor.floorSections
       ));
     }
