@@ -125,7 +125,7 @@ class _EditFloorDialogState extends State<EditFloorDialog> {
                   _submittedFloor = _submittedFloor.copyWith(slabHeight: value.toNumber());
                 }),
             FloorAttrCheckBox(
-              title: "Döşeme tipi Asmolen:",
+              title: "Tavan Döşeme tipi Asmolen:",
               value: widget.floor.isCeilingSlabHollow,
               onChanged: (value) {
                 _isAnyChange = true;
