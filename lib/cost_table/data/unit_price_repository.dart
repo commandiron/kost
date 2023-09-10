@@ -1,6 +1,7 @@
 import '../../common/model/currency.dart';
 import '../../common/model/unit_price/unit.dart';
 import '../../common/model/unit_price/unit_price.dart';
+import '../../common/model/unit_price/unit_price_category.dart';
 
 class UnitPriceRepository {
 

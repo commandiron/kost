@@ -1,6 +1,6 @@
 import 'package:kost/quantity_details/domain/model/floor/floor_section.dart';
 
-import '../../../../../common/model/unit_price/unit_price.dart';
+import '../../../../../common/model/unit_price/unit_price_category.dart';
 import '../../floor/floor.dart';
 import '../../../../../common/model/job.dart';
 import '../../floor/room/apartment_room.dart';

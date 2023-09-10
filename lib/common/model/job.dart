@@ -1,5 +1,5 @@
+import 'package:kost/common/model/unit_price/unit_price_category.dart';
 import 'package:uuid/uuid.dart';
-import 'unit_price/unit_price.dart';
 
 enum MainCategory {
   excavationJobs,
@@ -48,8 +48,6 @@ abstract class Job {
   double Function() quantityBuilder;
   bool disable;
 }
-
-//HEPSİNİ JOB GENERATOR İÇİNE KOYUP DİSABLE ETMEK ÇOK DAHA MANTIKLI
 
 class Shoring extends Job {
   Shoring(
