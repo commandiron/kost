@@ -587,7 +587,7 @@ class AirConditioner extends Job {
     {
       super.nameTr = "Mekanik Altyapı İşleri",
       super.mainCategory = MainCategory.mechanicalJobs,
-      super.enabledUnitPriceCategories = const [UnitPriceCategory.airConditionerArcelik, UnitPriceCategory.vrfMultiSplitMitshubishiElectric],
+      super.enabledUnitPriceCategories = const [UnitPriceCategory.airConditionerArcelik, UnitPriceCategory.vrfMultiSplitMitsubishiElectric],
       super.selectedUnitPriceCategory = UnitPriceCategory.airConditionerArcelik,
       required super.quantityBuilder,
       super.disable,

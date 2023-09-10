@@ -446,7 +446,7 @@ class UnitPriceRepository {
       dateTime: DateTime(2023, 08),
     ),
     UnitPrice(
-        category: UnitPriceCategory.vrfMultiSplitMitshubishiElectric,
+        category: UnitPriceCategory.vrfMultiSplitMitsubishiElectric,
         amount: 800,
         currency: Currency.euro,
         unit: Unit.number,
