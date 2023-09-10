@@ -1,4 +1,4 @@
-import 'package:kost/common/model/unit.dart';
+import 'package:kost/common/model/unit_price_category/unit.dart';
 
 enum UnitPriceCategory {
   shutCrete(Unit.squareMeters,),

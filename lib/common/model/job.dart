@@ -1,4 +1,4 @@
-import 'package:kost/common/model/unit_price_category.dart';
+import 'package:kost/common/model/unit_price_category/unit_price_category.dart';
 import 'package:uuid/uuid.dart';
 
 enum MainCategory {

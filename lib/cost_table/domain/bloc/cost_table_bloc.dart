@@ -1,14 +1,14 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kost/common/bloc/bloc_state.dart';
-import 'package:kost/common/model/unit_price_category.dart';
-import 'package:kost/cost_table/data/unit_price_repository.dart';
+import 'package:kost/common/model/unit_price_category/unit_price_category.dart';
+import 'package:kost/data/unit_price_repository.dart';
 import 'package:kost/common/extension/formatted_number.dart';
-import 'package:kost/cost_table/domain/model/currency.dart';
 import 'package:kost/cost_table/domain/model/cost.dart';
-import 'package:kost/common/model/unit.dart';
+import 'package:kost/common/model/unit_price_category/unit.dart';
 
 import '../../../common/model/job.dart';
-import '../model/unit_price.dart';
+import '../model/currency_rates.dart';
+import '../../../common/model/unit_price.dart';
 import 'cost_table_event.dart';
 import 'cost_table_state.dart';
 
@@ -144,11 +144,11 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
         : formattedAmount;
 
     final fixedPriceTRY = job.quantityBuilder.call() != 0
-        ? unitPrice.fixedAmount * unitPrice.currency.toLiraRate(currencyRates)
+        ? unitPrice.fixedAmount * currencyRates.getLiraRate(unitPrice.currency)
         : 0;
     final priceTRY = unitPrice.amount *
         job.quantityBuilder.call() *
-        unitPrice.currency.toLiraRate(currencyRates);
+        currencyRates.getLiraRate(unitPrice.currency);
     final totalPriceTRY = fixedPriceTRY + priceTRY;
 
     return Cost(
