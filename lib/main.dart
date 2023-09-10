@@ -28,9 +28,8 @@ class MyApp extends StatelessWidget {
   }
 }
 
-
-//MODEL EXPLANATION
-//We have two main model; Job and UnitPrice classes.
-//Job class creates on quantity_details feature package.
-//UnitPrice class creates on data package.
-//This two class merges in Cost class in cost_table package.
+// MODEL EXPLANATION
+// In our project, we have two main classes: "Job" and "UnitPrice"
+// The "Job" class is created within the "quantity_details" feature package and typically represents tasks and quantities.
+// The "UnitPrice" class is created in the "data" package and is related to current prices.
+// These two classes are merged within the "Cost" class in the "cost_table" package for cost calculations and ui.
