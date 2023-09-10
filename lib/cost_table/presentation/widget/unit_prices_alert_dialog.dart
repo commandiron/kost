@@ -3,7 +3,7 @@ import 'package:intl/intl.dart';
 import 'package:kost/common/config/app_padding.dart';
 import 'package:kost/common/model/unit_price_category.dart';
 import 'package:kost/cost_table/domain/model/currency.dart';
-import 'package:kost/cost_table/domain/model/unit.dart';
+import 'package:kost/common/model/unit.dart';
 import '../../domain/model/unit_price.dart';
 
 class UnitPricesAlertDialog extends StatelessWidget {
@@ -39,7 +39,7 @@ class UnitPricesAlertDialog extends StatelessWidget {
                               .currency
                               .symbol),
                           const Text("/"),
-                          Text(unitPrices[index].unit.symbol),
+                          Text(unitPrices[index].category.unit.symbol),
                         ],
                       ),
                       Text(DateFormat("MM.yyyy").format(unitPrices[index].dateTime)),

@@ -1,5 +1,4 @@
 import '../domain/model/currency.dart';
-import '../domain/model/unit.dart';
 import '../domain/model/unit_price.dart';
 import '../../common/model/unit_price_category.dart';
 
@@ -14,7 +13,6 @@ class UnitPriceRepository {
         amount: 2700,
         fixedAmount: 30000,
         currency: Currency.lira,
-        unit: Unit.squareMeters,
         dateTime: DateTime(2023, 08),
     ),
 
@@ -23,21 +21,18 @@ class UnitPriceRepository {
         category: UnitPriceCategory.excavation,
         amount: 450,
         currency: Currency.lira,
-        unit: Unit.cubicMeters,
         dateTime: DateTime(2023, 08),
     ),
     UnitPrice(
         category: UnitPriceCategory.breaker,
         amount: 2000,
         currency: Currency.lira,
-        unit: Unit.hour,
         dateTime: DateTime(2023, 08)
     ),
     UnitPrice(
       category: UnitPriceCategory.foundationStabilizationGravel,
       amount: 330,
       currency: Currency.lira,
-      unit: Unit.ton,
       dateTime: DateTime(2023, 08),
     ),
 
@@ -46,7 +41,6 @@ class UnitPriceRepository {
         category: UnitPriceCategory.reinforcedConcreteWorkmanshipWithPlywood,
         amount: 800,
         currency: Currency.lira,
-        unit: Unit.squareMeters,
         dateTime: DateTime(2023, 07)
     ),
 
@@ -55,28 +49,24 @@ class UnitPriceRepository {
         category: UnitPriceCategory.c16Concrete,
         amount: 2150,
         currency: Currency.lira,
-        unit: Unit.cubicMeters,
         dateTime: DateTime(2023, 08),
     ),
     UnitPrice(
         category: UnitPriceCategory.c30Concrete,
         amount: 2250,
         currency: Currency.lira,
-        unit: Unit.cubicMeters,
         dateTime: DateTime(2023, 08),
     ),
     UnitPrice(
         category: UnitPriceCategory.c35Concrete,
         amount: 2300,
         currency: Currency.lira,
-        unit: Unit.cubicMeters,
         dateTime: DateTime(2023, 08),
     ),
     UnitPrice(
         category: UnitPriceCategory.c40Concrete,
         amount: 2400,
         currency: Currency.lira,
-        unit: Unit.cubicMeters,
         dateTime: DateTime(2023, 08),
     ),
 
@@ -85,7 +75,6 @@ class UnitPriceRepository {
         category: UnitPriceCategory.s420Steel,
         amount: 19000/1.18,
         currency: Currency.lira,
-        unit: Unit.ton,
         dateTime: DateTime(2023, 08),
     ),
 
@@ -94,35 +83,30 @@ class UnitPriceRepository {
         category: UnitPriceCategory.proofBitumenMembrane,
         amount: 9,
         currency: Currency.dollar,
-        unit: Unit.squareMeters,
         dateTime: DateTime(2023, 08),
     ),
     UnitPrice(
         category: UnitPriceCategory.bitumenSliding,
         amount: 8,
         currency: Currency.euro,
-        unit: Unit.squareMeters,
         dateTime: DateTime(2023, 08),
     ),
     UnitPrice(
         category: UnitPriceCategory.cementSliding,
         amount: 6.5,
         currency: Currency.euro,
-        unit: Unit.squareMeters,
         dateTime: DateTime(2023, 08),
     ),
     UnitPrice(
         category: UnitPriceCategory.cementBasedFlexInsulation,
         amount: 7.5,
         currency: Currency.euro,
-        unit: Unit.squareMeters,
         dateTime: DateTime(2023, 08),
     ),
     UnitPrice(
         category: UnitPriceCategory.drainPlate,
         amount: 1.15,
         currency: Currency.euro,
-        unit: Unit.squareMeters,
         dateTime: DateTime(2023, 08),
     ),
 
@@ -131,14 +115,12 @@ class UnitPriceRepository {
         category: UnitPriceCategory.eps14Dns,
         amount: 960,
         currency: Currency.lira,
-        unit: Unit.cubicMeters,
         dateTime: DateTime(2023, 08),
     ),
     UnitPrice(
         category: UnitPriceCategory.aeratedConcreteYtong,
         amount: 1500,
         currency: Currency.lira,
-        unit: Unit.cubicMeters,
         dateTime: DateTime(2023, 08),
     ),
 
@@ -147,7 +129,6 @@ class UnitPriceRepository {
         category: UnitPriceCategory.aeratedConcreteLabor,
         amount: 80,
         currency: Currency.lira,
-        unit: Unit.squareMeters,
         dateTime: DateTime(2023, 08),
     ),
 
@@ -156,7 +137,6 @@ class UnitPriceRepository {
         category: UnitPriceCategory.steelConstructionBraasRoof,
         amount: 3000,
         currency: Currency.lira,
-        unit: Unit.squareMeters,
         dateTime: DateTime(2023, 01),
     ),
 
@@ -165,7 +145,6 @@ class UnitPriceRepository {
         category: UnitPriceCategory.steelScaffolding,
         amount: 208,
         currency: Currency.lira,
-        unit: Unit.squareMeters,
         dateTime: DateTime(2023, 08),
     ),
 
@@ -174,7 +153,6 @@ class UnitPriceRepository {
         category: UnitPriceCategory.windowJoineryRehau,
         amount: 300,
         currency: Currency.euro,
-        unit: Unit.squareMeters,
         dateTime: DateTime(2023, 01),
     ),
 
@@ -183,14 +161,12 @@ class UnitPriceRepository {
         category: UnitPriceCategory.sinterFlex4Facade,
         amount: 1935,
         currency: Currency.lira,
-        unit: Unit.squareMeters,
         dateTime: DateTime(2023, 08),
     ),
     UnitPrice(
         category: UnitPriceCategory.precast3FacadePlaster1Facade,
         amount: 154.8,
         currency: Currency.dollar,
-        unit: Unit.squareMeters,
         dateTime: DateTime(2023, 08),
     ),
 
@@ -199,7 +175,6 @@ class UnitPriceRepository {
         category: UnitPriceCategory.plaster,
         amount: 175,
         currency: Currency.lira,
-        unit: Unit.squareMeters,
         dateTime: DateTime(2023, 08),
     ),
 
@@ -208,7 +183,6 @@ class UnitPriceRepository {
         category: UnitPriceCategory.painting,
         amount: 130,
         currency: Currency.lira,
-        unit: Unit.squareMeters,
         dateTime: DateTime(2023, 08),
     ),
 
@@ -217,14 +191,12 @@ class UnitPriceRepository {
         category: UnitPriceCategory.drywall,
         amount: 250,
         currency: Currency.lira,
-        unit: Unit.squareMeters,
         dateTime: DateTime(2023, 08),
     ),
     UnitPrice(
         category: UnitPriceCategory.covingPlaster,
         amount: 75,
         currency: Currency.lira,
-        unit: Unit.meter,
         dateTime: DateTime(2023, 08),
     ),
 
@@ -233,7 +205,6 @@ class UnitPriceRepository {
         category: UnitPriceCategory.screed300Doses,
         amount: 156,
         currency: Currency.lira,
-        unit: Unit.squareMeters,
         dateTime: DateTime(2023, 01),
     ),
 
@@ -242,28 +213,24 @@ class UnitPriceRepository {
         category: UnitPriceCategory.marbleFloorBilecik,
         amount: 1200,
         currency: Currency.lira,
-        unit: Unit.squareMeters,
         dateTime: DateTime(2023, 08),
     ),
     UnitPrice(
         category: UnitPriceCategory.marbleStepBilecik,
         amount: 1000,
         currency: Currency.lira,
-        unit: Unit.meter,
         dateTime: DateTime(2023, 08),
     ),
     UnitPrice(
         category: UnitPriceCategory.marbleWindowsillBilecik,
         amount: 1000,
         currency: Currency.lira,
-        unit: Unit.meter,
         dateTime: DateTime(2023, 08),
     ),
     UnitPrice(
         category: UnitPriceCategory.quartzCountertopCimstone,
         amount: 4000,
         currency: Currency.lira,
-        unit: Unit.meter,
         dateTime: DateTime(2023, 08),
     ),
 
@@ -272,63 +239,54 @@ class UnitPriceRepository {
         category: UnitPriceCategory.ceramicTileVitraVersus,
         amount: 500,
         currency: Currency.lira,
-        unit: Unit.squareMeters,
         dateTime: DateTime(2023, 08),
     ),
     UnitPrice(
         category: UnitPriceCategory.sinkVitra,
         amount: 2000,
         currency: Currency.lira,
-        unit: Unit.number,
         dateTime: DateTime(2023, 08),
     ),
     UnitPrice(
         category: UnitPriceCategory.sinkBatteryVitra,
         amount: 1500,
         currency: Currency.lira,
-        unit: Unit.number,
         dateTime: DateTime(2023, 08),
     ),
     UnitPrice(
         category: UnitPriceCategory.concealedCisternVitra,
         amount: 3500,
         currency: Currency.lira,
-        unit: Unit.number,
         dateTime: DateTime(2023, 08),
     ),
     UnitPrice(
         category: UnitPriceCategory.showerBatteryVitra,
         amount: 2000,
         currency: Currency.lira,
-        unit: Unit.number,
         dateTime: DateTime(2023, 08),
     ),
     UnitPrice(
         category: UnitPriceCategory.kitchenFaucetAndSinkFranke,
         amount: 12500,
         currency: Currency.lira,
-        unit: Unit.number,
         dateTime: DateTime(2023, 08),
     ),
     UnitPrice(
         category: UnitPriceCategory.paddleBoxBuiltInOvenCookTopDishwasherFranke,
         amount: 8000 + 10000 + 7000 + 15000,
         currency: Currency.lira,
-        unit: Unit.apartment,
         dateTime: DateTime(2023, 08),
     ),
     UnitPrice(
         category: UnitPriceCategory.automaticBarrier,
         amount: 35000,
         currency: Currency.lira,
-        unit: Unit.number,
         dateTime: DateTime(2023, 08),
     ),
     UnitPrice(
       category: UnitPriceCategory.automaticShutter,
       amount: 100000,
       currency: Currency.lira,
-      unit: Unit.number,
       dateTime: DateTime(2023, 08),
     ),
 
@@ -337,21 +295,18 @@ class UnitPriceRepository {
         category: UnitPriceCategory.wroughtIronRailing,
         amount: 4500,
         currency: Currency.lira,
-        unit: Unit.meter,
         dateTime: DateTime(2023, 08),
     ),
     UnitPrice(
         category: UnitPriceCategory.aluminumRailing,
         amount: 1000,
         currency: Currency.lira,
-        unit: Unit.meter,
         dateTime: DateTime(2023, 08),
     ),
     UnitPrice(
         category: UnitPriceCategory.trapezoidalSheetCurtain,
         amount: 1000,
         currency: Currency.lira,
-        unit: Unit.meter,
         dateTime: DateTime(2023, 08),
     ),
 
@@ -360,7 +315,6 @@ class UnitPriceRepository {
         category: UnitPriceCategory.laminatedSerifoglu,
         amount: 52,
         currency: Currency.euro,
-        unit: Unit.squareMeters,
         dateTime: DateTime(2023, 08),
     ),
 
@@ -369,21 +323,18 @@ class UnitPriceRepository {
         category: UnitPriceCategory.steelDoorKale,
         amount: 29400,
         currency: Currency.lira,
-        unit: Unit.number,
         dateTime: DateTime(2023, 08),
     ),
     UnitPrice(
         category: UnitPriceCategory.entranceDoor,
         amount: 14250,
         currency: Currency.lira,
-        unit: Unit.squareMeters,
         dateTime: DateTime(2023, 08),
     ),
     UnitPrice(
         category: UnitPriceCategory.ironFireDoor,
         amount: 4950,
         currency: Currency.lira,
-        unit: Unit.number,
         dateTime: DateTime(2023, 08),
     ),
 
@@ -392,7 +343,6 @@ class UnitPriceRepository {
         category: UnitPriceCategory.lacqueredDoorArtella,
         amount: 8000,
         currency: Currency.lira,
-        unit: Unit.number,
         dateTime: DateTime(2023, 01),
     ),
 
@@ -401,14 +351,12 @@ class UnitPriceRepository {
         category: UnitPriceCategory.shinyLacqueredKitchenCupboardAster,
         amount: 500,
         currency: Currency.euro,
-        unit: Unit.meter,
         dateTime: DateTime(2023, 08),
     ),
     UnitPrice(
         category: UnitPriceCategory.matteLacqueredKitchenCupboardAster,
         amount: 435,
         currency: Currency.euro,
-        unit: Unit.meter,
         dateTime: DateTime(2023, 08),
     ),
 
@@ -417,14 +365,12 @@ class UnitPriceRepository {
         category: UnitPriceCategory.lacqueredCabinet,
         amount: 5000,
         currency: Currency.lira,
-        unit: Unit.squareMeters,
         dateTime: DateTime(2023, 01),
     ),
     UnitPrice(
         category: UnitPriceCategory.lacqueredFloorPlinth,
         amount: 100,
         currency: Currency.lira,
-        unit: Unit.meter,
         dateTime: DateTime(2023, 01),
     ),
 
@@ -433,7 +379,6 @@ class UnitPriceRepository {
         category: UnitPriceCategory.mechanicalInfrastructure,
         amount: 120000,
         currency: Currency.lira,
-        unit: Unit.apartment,
         dateTime: DateTime(2023, 08),
     ),
 
@@ -442,21 +387,18 @@ class UnitPriceRepository {
       category: UnitPriceCategory.airConditionerArcelik,
       amount: 15000,
       currency: Currency.lira,
-      unit: Unit.number,
       dateTime: DateTime(2023, 08),
     ),
     UnitPrice(
         category: UnitPriceCategory.vrfMultiSplitMitsubishiElectric,
         amount: 800,
         currency: Currency.euro,
-        unit: Unit.number,
         dateTime: DateTime(2023, 08),
     ),
     UnitPrice(
         category: UnitPriceCategory.ventilation,
         amount: 10,
         currency: Currency.dollar,
-        unit: Unit.squareMeters,
         dateTime: DateTime(2023, 08),
     ),
 
@@ -465,7 +407,6 @@ class UnitPriceRepository {
         category: UnitPriceCategory.galvanize25TonWaterTankEsinoks,
         amount: 5500,
         currency: Currency.dollar,
-        unit: Unit.number,
         dateTime: DateTime(2023, 01),
     ),
 
@@ -475,7 +416,6 @@ class UnitPriceRepository {
         fixedAmount: 30000,
         amount: 1000,
         currency: Currency.euro,
-        unit: Unit.stop,
         dateTime: DateTime(2023, 08),
     ),
     UnitPrice(
@@ -483,7 +423,6 @@ class UnitPriceRepository {
         fixedAmount: 20000,
         amount: 1000,
         currency: Currency.euro,
-        unit: Unit.stop,
         dateTime: DateTime(2023, 08),
     ),
 
@@ -493,7 +432,6 @@ class UnitPriceRepository {
         fixedAmount: 30000,
         amount: 5000,
         currency: Currency.euro,
-        unit: Unit.stop,
         dateTime: DateTime(2023, 08),
     ),
 
@@ -502,7 +440,6 @@ class UnitPriceRepository {
         category: UnitPriceCategory.showerHuppe100x100,
         amount: 18000,
         currency: Currency.lira,
-        unit: Unit.number,
         dateTime: DateTime(2023, 08)
     ),
 
@@ -511,7 +448,6 @@ class UnitPriceRepository {
         category: UnitPriceCategory.electricalInfrastructure,
         amount: 140000,
         currency: Currency.lira,
-        unit: Unit.apartment,
         dateTime: DateTime(2023, 08)),
 
     //Jeneratör - Aksa (kontrol et Kenan'a sor)
@@ -519,7 +455,6 @@ class UnitPriceRepository {
         category: UnitPriceCategory.generatorAksa160,
         amount: 16282,
         currency: Currency.euro,
-        unit: Unit.number,
         dateTime: DateTime(2023, 01)),
 
     //Kendin hesapla ✓
@@ -527,55 +462,46 @@ class UnitPriceRepository {
         category: UnitPriceCategory.averageGarden,
         amount: 3000,
         currency: Currency.lira,
-        unit: Unit.squareMeters,
         dateTime: DateTime(2023, 08)),
     UnitPrice(
         category: UnitPriceCategory.interlockingPavingStone,
         amount: 400,
         currency: Currency.lira,
-        unit: Unit.squareMeters,
         dateTime: DateTime(2023, 08)),
     UnitPrice(
         category: UnitPriceCategory.mobilizationDemobilization,
         amount: 220000,
         currency: Currency.lira,
-        unit: Unit.lumpSum,
         dateTime: DateTime(2023, 08)),
     UnitPrice(
         category: UnitPriceCategory.crane55Ton,
         amount: 3500,
         currency: Currency.lira,
-        unit: Unit.hour,
         dateTime: DateTime(2023, 08)),
     UnitPrice(
         category: UnitPriceCategory.siteSafety,
         amount: 15000,
         currency: Currency.lira,
-        unit: Unit.month,
         dateTime: DateTime(2023, 08)),
     UnitPrice(
         category: UnitPriceCategory.siteExpenses,
         amount: 12000,
         currency: Currency.lira,
-        unit: Unit.month,
         dateTime: DateTime(2023, 08)),
     UnitPrice(
         category: UnitPriceCategory.sergeantGrossWage,
         amount: 30000,
         currency: Currency.lira,
-        unit: Unit.month,
         dateTime: DateTime(2023, 08)),
     UnitPrice(
         category: UnitPriceCategory.siteChiefGrossWage,
         amount: 60000,
         currency: Currency.lira,
-        unit: Unit.month,
         dateTime: DateTime(2023, 08)),
     UnitPrice(
         category: UnitPriceCategory.projectsFeesPayments,
         amount: 1000000,
         currency: Currency.lira,
-        unit: Unit.lumpSum,
         dateTime: DateTime(2023, 08)),
   ];
 

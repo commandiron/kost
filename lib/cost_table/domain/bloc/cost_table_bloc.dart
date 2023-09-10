@@ -5,7 +5,7 @@ import 'package:kost/cost_table/data/unit_price_repository.dart';
 import 'package:kost/common/extension/formatted_number.dart';
 import 'package:kost/cost_table/domain/model/currency.dart';
 import 'package:kost/cost_table/domain/model/cost.dart';
-import 'package:kost/cost_table/domain/model/unit.dart';
+import 'package:kost/common/model/unit.dart';
 
 import '../../../common/model/job.dart';
 import '../model/unit_price.dart';
@@ -137,7 +137,7 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
     final formattedFixedAmount =
         unitPrice.fixedAmount.toFormattedText(unit: unitPrice.currency.symbol);
     final formattedAmount = unitPrice.amount.toFormattedText(
-        unit: "${unitPrice.currency.symbol}/${unitPrice.unit.symbol}");
+        unit: "${unitPrice.currency.symbol}/${unitPrice.category.unit.symbol}");
 
     final unitAmountText = unitPrice.fixedAmount != 0
         ? "$formattedFixedAmount + $formattedAmount"
@@ -159,7 +159,7 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
         unitPriceNameText: unitPrice.category.nameTr,
         unitPriceAmountText: unitAmountText,
         quantityText: job.quantityBuilder.call().toFormattedText(),
-        quantityUnitText: unitPrice.unit.symbol,
+        quantityUnitText: unitPrice.category.unit.symbol,
         totalPriceTRY: totalPriceTRY,
         formattedTotalPriceTRY: totalPriceTRY.toFormattedText(unit: "TL"));
   }
