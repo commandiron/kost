@@ -1,4 +1,4 @@
-import 'package:kost/common/model/unit_price/unit_price.dart';
+import 'package:kost/cost_table/domain/model/unit_price.dart';
 
 import '../../../common/model/job.dart';
 

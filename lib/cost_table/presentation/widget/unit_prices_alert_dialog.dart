@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:kost/common/config/app_padding.dart';
-import 'package:kost/common/model/currency.dart';
-import 'package:kost/common/model/unit_price/unit.dart';
-import '../../../common/model/unit_price/unit_price.dart';
+import 'package:kost/common/model/unit_price_category.dart';
+import 'package:kost/cost_table/domain/model/currency.dart';
+import 'package:kost/cost_table/domain/model/unit.dart';
+import '../../domain/model/unit_price.dart';
 
 class UnitPricesAlertDialog extends StatelessWidget {
   const UnitPricesAlertDialog({Key? key, required this.unitPrices, required this.onUnitPriceSelect,}) : super(key: key);
@@ -29,7 +30,7 @@ class UnitPricesAlertDialog extends StatelessWidget {
                   },
                   child: Column(
                     children: [
-                      Text(unitPrices[index].nameTr),
+                      Text(unitPrices[index].category.nameTr),
                       Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [

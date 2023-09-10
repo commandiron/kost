@@ -1,13 +1,14 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kost/common/bloc/bloc_state.dart';
+import 'package:kost/common/model/unit_price_category.dart';
 import 'package:kost/cost_table/data/unit_price_repository.dart';
 import 'package:kost/common/extension/formatted_number.dart';
-import 'package:kost/common/model/currency.dart';
+import 'package:kost/cost_table/domain/model/currency.dart';
 import 'package:kost/cost_table/domain/model/cost.dart';
-import 'package:kost/common/model/unit_price/unit.dart';
+import 'package:kost/cost_table/domain/model/unit.dart';
 
 import '../../../common/model/job.dart';
-import '../../../common/model/unit_price/unit_price.dart';
+import '../model/unit_price.dart';
 import 'cost_table_event.dart';
 import 'cost_table_state.dart';
 
@@ -155,7 +156,7 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
         jobId: job.id,
         jobName: job.nameTr,
         enabledUnitPrices: enabledUnitPrices,
-        unitPriceNameText: unitPrice.nameTr,
+        unitPriceNameText: unitPrice.category.nameTr,
         unitPriceAmountText: unitAmountText,
         quantityText: job.quantityBuilder.call().toFormattedText(),
         quantityUnitText: unitPrice.unit.symbol,

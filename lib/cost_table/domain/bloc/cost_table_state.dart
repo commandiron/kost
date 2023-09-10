@@ -1,9 +1,9 @@
 import 'package:equatable/equatable.dart';
 import 'package:kost/common/bloc/bloc_state.dart';
-import 'package:kost/common/model/currency.dart';
+import 'package:kost/cost_table/domain/model/currency.dart';
 import '../../../common/model/job.dart';
 import '../model/cost.dart';
-import '../../../common/model/unit_price/unit_price.dart';
+import '../model/unit_price.dart';
 
 class CostTableState extends Equatable {
   final BlocState blocState;

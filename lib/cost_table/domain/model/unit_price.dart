@@ -1,12 +1,11 @@
-import 'package:kost/common/model/unit_price/unit.dart';
-import 'package:kost/common/model/unit_price/unit_price_category.dart';
+import 'package:kost/cost_table/domain/model/unit.dart';
+import 'package:kost/common/model/unit_price_category.dart';
 import 'package:uuid/uuid.dart';
-import '../currency.dart';
+import 'currency.dart';
 
 class UnitPrice {
   String id = const Uuid().v4();
   UnitPriceCategory category;
-  String nameTr;
   double amount;
   double fixedAmount;
   Currency currency;
@@ -16,7 +15,6 @@ class UnitPrice {
   UnitPrice(
     {
       required this.category,
-      required this.nameTr,
       required this.amount,
       this.fixedAmount = 0,
       required this.currency,
