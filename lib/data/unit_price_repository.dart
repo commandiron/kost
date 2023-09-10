@@ -1,5 +1,5 @@
 import '../common/model/unit_price.dart';
-import '../common/model/unit_price_category/unit_price_category.dart';
+import '../common/model/unit_price_category.dart';
 
 class UnitPriceRepository {
 

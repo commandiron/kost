@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:kost/common/config/app_padding.dart';
-import 'package:kost/common/model/unit_price_category/unit_price_category.dart';
-import 'package:kost/common/model/unit_price_category/unit.dart';
+import 'package:kost/common/model/unit_price_category.dart';
 import '../../../common/model/unit_price.dart';
 
 class UnitPricesAlertDialog extends StatelessWidget {

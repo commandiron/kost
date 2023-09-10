@@ -1,10 +1,9 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kost/common/bloc/bloc_state.dart';
-import 'package:kost/common/model/unit_price_category/unit_price_category.dart';
+import 'package:kost/common/model/unit_price_category.dart';
 import 'package:kost/data/unit_price_repository.dart';
 import 'package:kost/common/extension/formatted_number.dart';
 import 'package:kost/cost_table/domain/model/cost.dart';
-import 'package:kost/common/model/unit_price_category/unit.dart';
 
 import '../../../common/model/job.dart';
 import '../model/currency_rates.dart';

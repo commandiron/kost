@@ -1,5 +1,25 @@
-import 'package:kost/common/model/unit_price_category/unit_price_category.dart';
+import 'package:kost/common/model/unit_price_category.dart';
 import 'package:uuid/uuid.dart';
+
+abstract class Job {
+  Job({
+    required this.nameTr,
+    required this.mainCategory,
+    required this.enabledUnitPriceCategories,
+    required this.selectedUnitPriceCategory,
+    this.selectedUnitPriceId,
+    required this.quantityBuilder,
+    this.disable = false,
+  });
+  String id = const Uuid().v4();
+  final String nameTr;
+  final MainCategory mainCategory;
+  List<UnitPriceCategory> enabledUnitPriceCategories;
+  UnitPriceCategory selectedUnitPriceCategory;
+  String? selectedUnitPriceId;
+  double Function() quantityBuilder;
+  bool disable;
+}
 
 enum MainCategory {
   excavationJobs,
@@ -27,26 +47,6 @@ extension MainCategoryExtension on MainCategory {
     MainCategory.generalExpenses => "Genel Giderler"
   };
   }
-}
-
-abstract class Job {
-  Job({
-    required this.nameTr,
-    required this.mainCategory,
-    required this.enabledUnitPriceCategories,
-    required this.selectedUnitPriceCategory,
-    this.selectedUnitPriceId,
-    required this.quantityBuilder,
-    this.disable = false,
-  });
-  String id = const Uuid().v4();
-  final String nameTr;
-  final MainCategory mainCategory;
-  List<UnitPriceCategory> enabledUnitPriceCategories;
-  UnitPriceCategory selectedUnitPriceCategory;
-  String? selectedUnitPriceId;
-  double Function() quantityBuilder;
-  bool disable;
 }
 
 class Shoring extends Job {
