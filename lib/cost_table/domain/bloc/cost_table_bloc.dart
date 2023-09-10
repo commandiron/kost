@@ -18,7 +18,7 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
               blocState: Initial(),
               tableName: "Apartman Maliyeti",
               jobs: const [],
-              unitPricePool: const [],
+              unitPrices: const [],
               currencyRates: ManualCurrencyRates(),
               costs: const [],
               categoryVisibilities: const {},
@@ -36,12 +36,12 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
         return;
       }
 
-      final unitPricePool = _fetchUnitPricePool();
+      final unitPrices = _fetchUnitPrices();
       //Fetch currency rates
       emit(state.copyWith(
         tableName: event.tableName,
         jobs: event.jobs,
-        unitPricePool: unitPricePool,
+        unitPrices: unitPrices,
       ));
 
       _refreshCostTable(emit);
@@ -80,7 +80,7 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
 
   final UnitPriceRepository _unitPriceRepository = UnitPriceRepository();
 
-  List<UnitPrice> _fetchUnitPricePool() {
+  List<UnitPrice> _fetchUnitPrices() {
     return _unitPriceRepository.getAllUnitPrices();
   }
 
@@ -100,7 +100,7 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
     for (var job in jobs) {
       final cost = _jobToCost(
           job: job,
-          unitPricePool: state.unitPricePool,
+          unitPrices: state.unitPrices,
           currencyRates: state.currencyRates);
       if (cost != null) {
         costs.add(cost);
@@ -111,25 +111,25 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
 
   Cost? _jobToCost(
       {required Job job,
-      required List<UnitPrice> unitPricePool,
+      required List<UnitPrice> unitPrices,
       required CurrencyRates currencyRates}) {
     if (job.disable) {
       return null;
     }
 
-    final enabledUnitPrices = unitPricePool
+    final enabledUnitPrices = unitPrices
         .where((unitPrice) =>
             job.enabledUnitPriceCategories.contains(unitPrice.category))
         .toList();
 
     final UnitPrice? unitPrice;
     if (job.selectedUnitPriceId != null) {
-      unitPrice = unitPricePool
+      unitPrice = unitPrices
           .firstWhere((unitPrice) => unitPrice.id == job.selectedUnitPriceId);
     } else {
-      final unitPrices = unitPricePool.where(
+      final selectedUnitPrices = unitPrices.where(
           (unitPrice) => unitPrice.category == job.selectedUnitPriceCategory);
-      unitPrice = unitPrices.reduce((current, next) =>
+      unitPrice = selectedUnitPrices.reduce((current, next) =>
           current.dateTime.isAfter(next.dateTime) ? current : next);
     }
 

@@ -9,7 +9,7 @@ class CostTableState extends Equatable {
   final BlocState blocState;
   final String tableName;
   final List<Job> jobs;
-  final List<UnitPrice> unitPricePool;
+  final List<UnitPrice> unitPrices;
   final CurrencyRates currencyRates;
   final List<Cost> costs;
   final Map<MainCategory, bool> categoryVisibilities;
@@ -20,7 +20,7 @@ class CostTableState extends Equatable {
     required this.blocState,
     required this.tableName,
     required this.jobs,
-    required this.unitPricePool,
+    required this.unitPrices,
     required this.currencyRates,
     required this.costs,
     required this.categoryVisibilities,
@@ -32,7 +32,7 @@ class CostTableState extends Equatable {
     BlocState? blocState,
     String? tableName,
     List<Job>? jobs,
-    List<UnitPrice>? unitPricePool,
+    List<UnitPrice>? unitPrices,
     CurrencyRates? currencyRates,
     List<Cost>? costs,
     Map<MainCategory, bool>? categoryVisibilities,
@@ -43,7 +43,7 @@ class CostTableState extends Equatable {
       blocState: blocState ?? this.blocState,
       tableName: tableName ?? this.tableName,
       jobs: jobs ?? this.jobs,
-      unitPricePool: unitPricePool ?? this.unitPricePool,
+      unitPrices: unitPrices ?? this.unitPrices,
       currencyRates: currencyRates ?? this.currencyRates,
       costs: costs ?? this.costs,
       categoryVisibilities: categoryVisibilities ?? this.categoryVisibilities,
@@ -57,7 +57,7 @@ class CostTableState extends Equatable {
     blocState,
     tableName,
     jobs,
-    unitPricePool,
+    unitPrices,
     currencyRates,
     costs.hashCode,
     categoryVisibilities.hashCode,
