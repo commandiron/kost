@@ -64,7 +64,7 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
     on<ReplaceUnitPrice>((event, emit) {
       state.jobs
           .firstWhere((element) => element.id == event.jobId)
-          .selectedUnitPriceId = event.selectedUnitPriceId;
+          .replacedUnitPriceId = event.replacedUnitPriceId;
       _refreshCostTable(emit);
     });
     on<DeleteJob>((event, emit) async {
@@ -123,10 +123,10 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
         .toList();
 
     final UnitPrice? unitPrice;
-    if (job.selectedUnitPriceId != null) {
-      final selectedUnitPrice = unitPrices
-          .firstWhere((unitPrice) => unitPrice.id == job.selectedUnitPriceId);
-      unitPrice = selectedUnitPrice;
+    if (job.replacedUnitPriceId != null) {
+      final replacedUnitPrice = unitPrices
+          .firstWhere((unitPrice) => unitPrice.id == job.replacedUnitPriceId);
+      unitPrice = replacedUnitPrice;
     } else {
       final unitPricesInCategory = unitPrices.where(
         (unitPrice) => unitPrice.category == job.selectedUnitPriceCategory);

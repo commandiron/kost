@@ -7,7 +7,7 @@ abstract class Job {
     required this.mainCategory,
     required this.enabledUnitPriceCategories,
     required this.selectedUnitPriceCategory,
-    this.selectedUnitPriceId,
+    this.replacedUnitPriceId,
     required this.quantityBuilder,
     this.disable = false,
   });
@@ -16,7 +16,7 @@ abstract class Job {
   final MainCategory mainCategory;
   List<UnitPriceCategory> enabledUnitPriceCategories;
   UnitPriceCategory selectedUnitPriceCategory;
-  String? selectedUnitPriceId;
+  String? replacedUnitPriceId;
   double Function() quantityBuilder;
   bool disable;
 }
