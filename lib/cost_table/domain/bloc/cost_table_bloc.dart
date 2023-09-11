@@ -129,9 +129,9 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
       unitPrice = selectedUnitPrice;
     } else {
       final unitPricesInCategory = unitPrices.where(
-          (unitPrice) => unitPrice.category == job.selectedUnitPriceCategory);
+        (unitPrice) => unitPrice.category == job.selectedUnitPriceCategory);
       final lastDatedUnitPrice = unitPricesInCategory.reduce((current, next) =>
-      current.dateTime.isAfter(next.dateTime) ? current : next);
+        current.dateTime.isAfter(next.dateTime) ? current : next);
       unitPrice = lastDatedUnitPrice;
     }
 
