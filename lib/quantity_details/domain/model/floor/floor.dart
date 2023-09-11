@@ -48,7 +48,7 @@ class Floor {
     final bool? isCeilingSlabHollow,
     final double? thickWallLength,
     final double? thinWallLength,
-    final List<FloorSection>? floorSections,
+    final List<FloorSection>? sections,
   }) {
     return Floor(
       no: no ?? this.no,
@@ -59,7 +59,7 @@ class Floor {
       isCeilingSlabHollow: isCeilingSlabHollow ?? this.isCeilingSlabHollow,
       thickWallLength: thickWallLength ?? this.thickWallLength,
       thinWallLength: thinWallLength ?? this.thinWallLength,
-      sections: floorSections ?? this.sections
+      sections: sections ?? this.sections
     );
   }
 
