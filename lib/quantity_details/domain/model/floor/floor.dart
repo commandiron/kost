@@ -11,7 +11,7 @@ class InitialFloor extends Floor {
       super.thickWallLength = 0,
       super.thinWallLength = 0,
       super.isCeilingSlabHollow = true,
-      super.floorSections = const []
+      super.sections = const []
     }
   );
 }
@@ -25,7 +25,7 @@ class Floor {
   final bool isCeilingSlabHollow;
   final double thickWallLength;
   final double thinWallLength;
-  final List<FloorSection> floorSections;
+  final List<FloorSection> sections;
 
 
   Floor(
@@ -37,7 +37,7 @@ class Floor {
       required this.isCeilingSlabHollow,
       required this.thickWallLength,
       required this.thinWallLength,
-      required this.floorSections});
+      required this.sections});
 
   Floor copyWith({
     int? no,
@@ -59,7 +59,7 @@ class Floor {
       isCeilingSlabHollow: isCeilingSlabHollow ?? this.isCeilingSlabHollow,
       thickWallLength: thickWallLength ?? this.thickWallLength,
       thinWallLength: thinWallLength ?? this.thinWallLength,
-      floorSections: floorSections ?? this.floorSections
+      sections: floorSections ?? this.sections
     );
   }
 
@@ -79,7 +79,7 @@ class Floor {
         isCeilingSlabHollow: floor.isCeilingSlabHollow,
         thickWallLength: floor.thickWallLength,
         thinWallLength: floor.thinWallLength,
-        floorSections: floor.floorSections
+        sections: floor.sections
       ));
     }
     return result;

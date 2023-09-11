@@ -212,7 +212,7 @@ class InteriorJobsGenerator extends JobsGenerator { //✓
   double get _totalPlasterArea { //✓
     double result = 0;
     for (var floor in floors) {
-      for (var floorSection in floor.floorSections) {
+      for (var floorSection in floor.sections) {
         for(var room in floorSection.rooms) {
           if (room.wallMaterial == WallMaterial.painting) {
             result += (room.perimeter * (floor.heightWithSlab - floor.slabHeight));
@@ -229,7 +229,7 @@ class InteriorJobsGenerator extends JobsGenerator { //✓
   double get _totalPaintingArea { //✓
     double result = 0;
     for (var floor in floors) {
-      for (var floorSection in floor.floorSections) {
+      for (var floorSection in floor.sections) {
         for(var room in floorSection.rooms) {
           if (room.wallMaterial == WallMaterial.painting) {
             result += (room.perimeter * (floor.heightWithSlab - floor.slabHeight));
@@ -247,7 +247,7 @@ class InteriorJobsGenerator extends JobsGenerator { //✓
   double get _totalInteriorWetFloorArea { //✓
     double result = 0;
     for (var floor in floors) {
-      for (var floorSection in floor.floorSections) {
+      for (var floorSection in floor.sections) {
         for(var room in floorSection.rooms) {
           if (room.isFloorWet) {
             result += room.area;
@@ -261,7 +261,7 @@ class InteriorJobsGenerator extends JobsGenerator { //✓
   double get _totalDryWallArea { //✓
     double result = 0;
     for (var floor in floors) {
-      for (var floorSection in floor.floorSections) {
+      for (var floorSection in floor.sections) {
         for(var room in floorSection.rooms) {
           if (room.ceilingMaterial == CeilingMaterial.drywall) {
             result += room.area;
@@ -275,7 +275,7 @@ class InteriorJobsGenerator extends JobsGenerator { //✓
   double get _totalCovingPlasterLength { //✓
     double result = 0;
     for (var floor in floors) {
-      for (var floorSection in floor.floorSections) {
+      for (var floorSection in floor.sections) {
         for(var room in floorSection.rooms) {
           if (room.hasCovingPlaster) {
             result += room.perimeter;
@@ -289,7 +289,7 @@ class InteriorJobsGenerator extends JobsGenerator { //✓
   double get _totalScreedArea { //✓
     double result = 0;
     for (var floor in floors) {
-      for (var floorSection in floor.floorSections) {
+      for (var floorSection in floor.sections) {
         for(var room in floorSection.rooms) {
           if (room.floorMaterial == FloorMaterial.parquet || room.floorMaterial == FloorMaterial.ceramic) {
             result += room.area;
@@ -303,7 +303,7 @@ class InteriorJobsGenerator extends JobsGenerator { //✓
   double get _totalMarbleArea { //✓
     double result = 0;
     for (var floor in floors) {
-      for (var floorSection in floor.floorSections) {
+      for (var floorSection in floor.sections) {
         for(var room in floorSection.rooms) {
           if (room.floorMaterial == FloorMaterial.marble) {
             result += room.area;
@@ -324,7 +324,7 @@ class InteriorJobsGenerator extends JobsGenerator { //✓
   double get _totalMarbleStepLength { //✓
     double result = 0;
     for (var floor in floors) {
-      for (var floorSection in floor.floorSections) {
+      for (var floorSection in floor.sections) {
         for(var room in floorSection.rooms) {
           if (room.floorMaterial == FloorMaterial.marbleStep) {
             final stepCount = floor.heightWithSlab / projectConstants.stairRiserHeight;
@@ -339,7 +339,7 @@ class InteriorJobsGenerator extends JobsGenerator { //✓
   double get _totalWindowsillLength { //✓
     double result = 0;
     for (var floor in floors) {
-      for(var floorSection in floor.floorSections) {
+      for(var floorSection in floor.sections) {
         for(var room in floorSection.rooms) {
           for(var window in room.windows) {
             result += window.hasWindowsill ? window.width : 0;
@@ -353,7 +353,7 @@ class InteriorJobsGenerator extends JobsGenerator { //✓
   double get _totalStairRailingsLength { //✓
     double result = 0;
     for (var floor in floors) {
-      for (var floorSection in floor.floorSections) {
+      for (var floorSection in floor.sections) {
         for(var room in floorSection.rooms) {
           if (room.floorMaterial == FloorMaterial.marbleStep) {
             final stepCount = floor.heightWithSlab / projectConstants.stairRiserHeight;
@@ -368,7 +368,7 @@ class InteriorJobsGenerator extends JobsGenerator { //✓
   double get _totalCeramicFloorArea { //✓
     double result = 0;
     for (var floor in floors) {
-      for (var floorSection in floor.floorSections) {
+      for (var floorSection in floor.sections) {
         for(var room in floorSection.rooms) {
           if (room.floorMaterial == FloorMaterial.ceramic) {
             result += room.area;
@@ -382,7 +382,7 @@ class InteriorJobsGenerator extends JobsGenerator { //✓
   double get _totalCeramicWallArea { //✓
     double result = 0;
     for (var floor in floors) {
-      for (var floorSection in floor.floorSections) {
+      for (var floorSection in floor.sections) {
         for(var room in floorSection.rooms) {
           if (room.wallMaterial == WallMaterial.ceramic) {
             final wallArea = room.perimeter * (floor.heightWithSlab - floor.slabHeight);
@@ -398,7 +398,7 @@ class InteriorJobsGenerator extends JobsGenerator { //✓
   double get _totalParquetFloorArea { //✓
     double result = 0;
     for (var floor in floors) {
-      for (var floorSection in floor.floorSections) {
+      for (var floorSection in floor.sections) {
         for(var room in floorSection.rooms) {
           if (room.floorMaterial == FloorMaterial.parquet) {
             result += room.area;
@@ -412,7 +412,7 @@ class InteriorJobsGenerator extends JobsGenerator { //✓
   double get _numberOfApartment { //✓
     double result = 0;
     for (var floor in floors) {
-      for (var floorSection in floor.floorSections) {
+      for (var floorSection in floor.sections) {
         if(floorSection is Apartment) {
           result++;
         }
@@ -424,7 +424,7 @@ class InteriorJobsGenerator extends JobsGenerator { //✓
   double get _numberOfBuildingEntranceDoor { //✓
     double result = 0;
     for (var floor in floors) {
-      for (var floorSection in floor.floorSections) {
+      for (var floorSection in floor.sections) {
         for(var room in floorSection.rooms) {
           for (var door in room.doors) {
             if (door == Door.buildingEntrance) {
@@ -440,7 +440,7 @@ class InteriorJobsGenerator extends JobsGenerator { //✓
   double get _numberOfFireDoor { //✓
     double result = 0;
     for (var floor in floors) {
-      for (var floorSection in floor.floorSections) {
+      for (var floorSection in floor.sections) {
         for(var room in floorSection.rooms) {
           for (var door in room.doors) {
             if (door == Door.fire) {
@@ -456,7 +456,7 @@ class InteriorJobsGenerator extends JobsGenerator { //✓
   double get _numberOfWoodenDoor { //✓
     double result = 0;
     for (var floor in floors) {
-      for (var floorSection in floor.floorSections) {
+      for (var floorSection in floor.sections) {
         for(var room in floorSection.rooms) {
           for (var door in room.doors) {
             if (door == Door.room) {
@@ -472,7 +472,7 @@ class InteriorJobsGenerator extends JobsGenerator { //✓
   double get _numberOfKitchen { //✓
     double result = 0;
     for (var floor in floors) {
-      for (var floorSection in floor.floorSections) {
+      for (var floorSection in floor.sections) {
         for(var room in floorSection.rooms) {
           if (room is Kitchen || room is SaloonWithKitchen) {
             result++;
@@ -486,7 +486,7 @@ class InteriorJobsGenerator extends JobsGenerator { //✓
   double get _numberOfWc { //✓
     double result = 0;
     for (var floor in floors) {
-      for (var floorSection in floor.floorSections) {
+      for (var floorSection in floor.sections) {
         for (var room in floorSection.rooms) {
           if (room is Wc ||
               room is EscapeHallWc) {
@@ -501,7 +501,7 @@ class InteriorJobsGenerator extends JobsGenerator { //✓
   double get _totalFloorPlinthLength { //✓
     double length = 0;
     for (var floor in floors) {
-      for (var floorSection in floor.floorSections) {
+      for (var floorSection in floor.sections) {
         for (var room in floorSection.rooms) {
           if (room.hasFloorPlinth) {
             length += room.perimeter;
@@ -536,7 +536,7 @@ class InteriorJobsGenerator extends JobsGenerator { //✓
   double get _numberOfBathroom { //✓
     double result = 0;
     for (var floor in floors) {
-      for (var floorSection in floor.floorSections) {
+      for (var floorSection in floor.sections) {
         for (var room in floorSection.rooms) {
           if (room is Bathroom || room is EscapeHallBathroom) {
             result++;

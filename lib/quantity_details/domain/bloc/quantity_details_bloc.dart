@@ -49,7 +49,7 @@ class QuantityDetailsBloc
                   isCeilingSlabHollow: true,
                   thickWallLength: 88.24,
                   thinWallLength: 49.54,
-                  floorSections: [
+                  sections: [
                     CommonArea(
                       rooms: [
                         ElevatorShaft(area: 9.5, perimeter: 12.6),
@@ -97,7 +97,7 @@ class QuantityDetailsBloc
                 isCeilingSlabHollow: true,
                 thickWallLength: 86.2,
                 thinWallLength: 15.5,
-                floorSections: [
+                sections: [
                   CommonArea(
                     rooms: [
                       ElevatorShaft(area: 9.5, perimeter: 12.6),
@@ -133,7 +133,7 @@ class QuantityDetailsBloc
                 isCeilingSlabHollow: false,
                 thickWallLength: 50,
                 thinWallLength: 0,
-                floorSections: [
+                sections: [
                   CommonArea(
                     rooms: [
                       ElevatorShaft(area: 9.5, perimeter: 12.6),

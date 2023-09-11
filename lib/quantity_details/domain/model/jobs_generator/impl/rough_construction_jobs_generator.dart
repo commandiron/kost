@@ -239,7 +239,7 @@ class RoughConstructionJobsGenerator extends JobsGenerator { //✓
         (floor) {
           final wallArea = floor.thickWallLength * (floor.heightWithSlab - floor.slabHeight);
           double windowArea = 0;
-          for(var floorSection in floor.floorSections) {
+          for(var floorSection in floor.sections) {
             for(var room in floorSection.rooms) {
               for(var window in room.windows) {
                 windowArea += (window.width * window.height);
@@ -262,7 +262,7 @@ class RoughConstructionJobsGenerator extends JobsGenerator { //✓
         (floor) {
           final wallArea = floor.thinWallLength * (floor.heightWithSlab - floor.slabHeight);
           double doorArea = 0;
-          for (var floorSection in floor.floorSections) {
+          for (var floorSection in floor.sections) {
             for (var room in floorSection.rooms) {
               doorArea += room.doors.length * projectConstants.commonDoorArea;
             }

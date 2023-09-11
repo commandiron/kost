@@ -55,7 +55,7 @@ class FacadeJobsGenerator extends JobsGenerator { //✓
   double get _totalWindowArea { //✓
     double result = 0;
     for (var floor in floors) {
-      for(var floorSection in floor.floorSections) {
+      for(var floorSection in floor.sections) {
         for(var room in floorSection.rooms) {
           for(var window in room.windows) {
             result += (window.width * window.height);
@@ -69,7 +69,7 @@ class FacadeJobsGenerator extends JobsGenerator { //✓
   double get _totalFacadeRailingLength { //✓
     double result = 0;
     for (var floor in floors) {
-      for(var floorSection in floor.floorSections) {
+      for(var floorSection in floor.sections) {
         for(var room in floorSection.rooms) {
           for(var window in room.windows) {
             result += window.hasRailing ? window.width : 0;
