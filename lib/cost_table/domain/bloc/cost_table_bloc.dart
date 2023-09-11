@@ -98,7 +98,7 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
   List<Cost> _createCosts(List<Job> jobs) {
     final List<Cost> costs = [];
     for (var job in jobs) {
-      final cost = _jobToCost(
+      final cost = _createCost(
           job: job,
           unitPrices: state.unitPrices,
           currencyRates: state.currencyRates);
@@ -109,7 +109,7 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
     return costs;
   }
 
-  Cost? _jobToCost(
+  Cost? _createCost(
       {required Job job,
       required List<UnitPrice> unitPrices,
       required CurrencyRates currencyRates}) {
