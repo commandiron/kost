@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:kost/common/config/app_padding.dart';
 import 'package:kost/common/config/app_text_style.dart';
 import 'package:kost/common/extension/formatted_number.dart';
+import 'package:kost/quantity_details/domain/model/floor/floor_section.dart';
+import 'package:kost/quantity_details/presentation/widget/edit_floor_dialog/edit_floor_sub_title.dart';
 
 import '../../../domain/model/floor/floor.dart';
 import 'floor_attr_check_box.dart';
@@ -150,9 +152,71 @@ class _EditFloorDialogState extends State<EditFloorDialog> {
                   _isAnyChange = true;
                   _submittedFloor = _submittedFloor.copyWith(thinWallLength: value.toNumber());
                 }),
+            SectionViewer(floorSections: widget.floor.sections),
           ],
         ),
       ),
     );
   }
 }
+
+class SectionViewer extends StatelessWidget {
+  const SectionViewer({Key? key, required this.floorSections}) : super(key: key);
+
+  final List<FloorSection> floorSections;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const EditFloorSubTitle(text: "Kat Bölümleri"),
+        SizedBox(
+          width: 600,
+          height: 100,
+          child: ListView.builder(
+            scrollDirection: Axis.horizontal,
+            itemCount: floorSections.length,
+            itemBuilder: (context, index) {
+              return Row(
+                children: [
+                  if(index == 0)
+                    AspectRatio(
+                      aspectRatio: 1,
+                      child: Padding(
+                        padding: AppPadding.allS!,
+                        child: Container(
+                          width: 100,
+                          alignment: Alignment.center,
+                          child: IconButton(onPressed: () {
+
+                          }, icon: const Icon(Icons.add)),
+                        ),
+                      ),
+                    ),
+                  AspectRatio(
+                    aspectRatio: 1,
+                    child: Padding(
+                      padding: AppPadding.allS!,
+                      child: Container(
+                        width: 100,
+                        color: Colors.grey,
+                        alignment: Alignment.center,
+                        child: Text(
+                          floorSections[index].nameTr,
+                          style: AppTextStyle.b2,
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              );
+            },
+          ),
+        ),
+      ],
+    );
+  }
+}
+

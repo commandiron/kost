@@ -1,17 +1,19 @@
 import 'room/room.dart';
 
 abstract class FloorSection {
+  final String nameTr;
   final List<Room> rooms;
 
   FloorSection(
-    {required this.rooms}
+
+    {required this.nameTr, required this.rooms}
   );
 }
 
 class CommonArea extends FloorSection {
-  CommonArea({required super.rooms});
+  CommonArea({super.nameTr = "Ortak Alan", required super.rooms});
 }
 
 class Apartment extends FloorSection {
-  Apartment({required super.rooms});
+  Apartment({super.nameTr = "Daire", required super.rooms});
 }
