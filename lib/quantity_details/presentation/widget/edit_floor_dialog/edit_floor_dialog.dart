@@ -188,9 +188,12 @@ class SectionViewer extends StatelessWidget {
                         child: Container(
                           width: 100,
                           alignment: Alignment.center,
-                          child: IconButton(onPressed: () {
+                          child: CircleAvatar(
+                            backgroundColor: Theme.of(context).colorScheme.primary,
+                            child: IconButton(onPressed: () {
 
-                          }, icon: const Icon(Icons.add)),
+                            }, icon: const Icon(Icons.add)),
+                          ),
                         ),
                       ),
                     ),
@@ -200,11 +203,18 @@ class SectionViewer extends StatelessWidget {
                       padding: AppPadding.allS!,
                       child: Container(
                         width: 100,
-                        color: Colors.grey,
                         alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                          color: Theme.of(context).colorScheme.primary,
+                          borderRadius: const BorderRadius.all(
+                            Radius.circular(16)
+                          ),
+                        ),
                         child: Text(
                           floorSections[index].nameTr,
-                          style: AppTextStyle.b2,
+                          style: AppTextStyle.b2.copyWith(
+                            color: Theme.of(context).colorScheme.onPrimary,
+                          ),
                           textAlign: TextAlign.center,
                         ),
                       ),

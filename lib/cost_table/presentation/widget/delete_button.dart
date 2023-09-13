@@ -22,9 +22,9 @@ class DeleteButton extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(name, style: AppTextStyle.b1!.copyWith(color: Theme.of(context).colorScheme.primary),),
+                  Text(name, style: AppTextStyle.b1.copyWith(color: Theme.of(context).colorScheme.primary),),
                   AppSpace.vS!,
-                  Text("pozunu silmek istediğinize emin misiniz?", style: AppTextStyle.b1!,),
+                  Text("pozunu silmek istediğinize emin misiniz?", style: AppTextStyle.b1,),
                 ],
               ),
               actions: [
