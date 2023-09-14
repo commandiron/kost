@@ -28,6 +28,7 @@ class MyApp extends StatelessWidget {
   }
 }
 
+
 // MODEL EXPLANATION
 // In our project, we have two main classes: "Job" and "UnitPrice"
 // The "Job" class is created within the "quantity_details" feature package and typically represents tasks and quantities.
