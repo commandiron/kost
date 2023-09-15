@@ -1,4 +1,4 @@
-import 'package:kost/floor_viewer/domain/model/floor/window.dart';
+import 'package:kost/apartment_details/domain/model/floor/window.dart';
 
 enum FloorMaterial { none, parquet, ceramic, marble, marbleStep, epoxy }
 

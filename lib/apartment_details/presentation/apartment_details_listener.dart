@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:kost/floor_viewer/domain/bloc/floor_viewer_event.dart';
+import 'package:kost/apartment_details/domain/bloc/apartment_details_event.dart';
 
 import '../../common/bloc/bloc_state.dart';
 import '../../cost_table/presentation/cost_table_screen.dart';
-import '../domain/bloc/floor_viewer_bloc.dart';
-import '../domain/bloc/floor_viewer_state.dart';
+import '../domain/bloc/apartment_details_bloc.dart';
+import '../domain/bloc/apartment_details_state.dart';
 
-class FloorViewerListener extends StatelessWidget {
-  const FloorViewerListener({super.key, required this.child});
+class ApartmentDetailsListener extends StatelessWidget {
+  const ApartmentDetailsListener({super.key, required this.child});
   final Widget child;
   @override
   Widget build(BuildContext context) {
     return MultiBlocListener(listeners: [
-      BlocListener<FloorViewerBloc, FloorViewerState>(
+      BlocListener<ApartmentDetailsBloc, ApartmentDetailsState>(
         listenWhen: (previous, current) => previous.blocState != current.blocState,
         listener: (context, state) {
           final blocState = state.blocState;
@@ -26,7 +26,7 @@ class FloorViewerListener extends StatelessWidget {
           }
         },
       ),
-      BlocListener<FloorViewerBloc, FloorViewerState>(
+      BlocListener<ApartmentDetailsBloc, ApartmentDetailsState>(
         listenWhen: (previous, current) =>
             current.snackBarMessage.isNotEmpty &&
             previous.snackBarMessage != current.snackBarMessage,
@@ -35,7 +35,7 @@ class FloorViewerListener extends StatelessWidget {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(content: Text(state.snackBarMessage)),
           );
-          context.read<FloorViewerBloc>().add(const ClearSnackbarMessage());
+          context.read<ApartmentDetailsBloc>().add(const ClearSnackbarMessage());
         },
       ),
     ], child: child);

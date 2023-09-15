@@ -1,21 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:kost/floor_viewer/presentation/edit_floor_view.dart';
-import 'package:kost/floor_viewer/presentation/widget/edit_floor_dialog/edit_floor_dialog.dart';
-import 'package:kost/floor_viewer/presentation/widget/floor_viewer.dart';
+import 'package:kost/apartment_details/presentation/views/edit_floor_view.dart';
+import 'package:kost/apartment_details/presentation/widget/edit_floor_dialog/edit_floor_dialog.dart';
+import 'package:kost/apartment_details/presentation/widget/floor_viewer.dart';
 
-import '../../common/config/app_space.dart';
-import '../../common/config/app_text_style.dart';
-import '../domain/bloc/floor_viewer_bloc.dart';
-import '../domain/bloc/floor_viewer_event.dart';
-import '../domain/bloc/floor_viewer_state.dart';
-import '../domain/model/floor/floor.dart';
+import '../../../common/config/app_space.dart';
+import '../../../common/config/app_text_style.dart';
+import '../../../common/widget/are_you_sure_dialog.dart';
+import '../../domain/bloc/apartment_details_bloc.dart';
+import '../../domain/bloc/apartment_details_event.dart';
+import '../../domain/bloc/apartment_details_state.dart';
+import '../../domain/model/floor/floor.dart';
 
 class FloorViewerView extends StatelessWidget {
   const FloorViewerView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<FloorViewerBloc, FloorViewerState>(
+    return BlocBuilder<ApartmentDetailsBloc, ApartmentDetailsState>(
       builder: (context, state) {
         return Scaffold(
           appBar: AppBar(
@@ -23,7 +24,7 @@ class FloorViewerView extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: ElevatedButton(
-                  onPressed: () => context.read<FloorViewerBloc>().add(const CalculateCost()),
+                  onPressed: () => context.read<ApartmentDetailsBloc>().add(const CalculateCost()),
                   child: const Text("Hesapla"),
                 ),
               )
@@ -56,7 +57,7 @@ class FloorViewerView extends StatelessWidget {
                             return EditFloorDialog(
                               floor: InitialFloor(no: newFloorNo),
                               onSubmit: (Floor? submittedFloor) {
-                                context.read<FloorViewerBloc>().add(AddFloor(submittedFloor));
+                                context.read<ApartmentDetailsBloc>().add(AddFloor(submittedFloor));
                                 Navigator.of(context).pop();
                               },
                             );
@@ -68,7 +69,7 @@ class FloorViewerView extends StatelessWidget {
                           context,
                           MaterialPageRoute(
                               builder: (_) => BlocProvider.value(
-                                value: BlocProvider.of<FloorViewerBloc>(context),
+                                value: BlocProvider.of<ApartmentDetailsBloc>(context),
                                 child: EditFloorView(floor: floor,),
                               ),
                           )
@@ -87,13 +88,13 @@ class FloorViewerView extends StatelessWidget {
                         //             false;
                         //         if (context.mounted) {
                         //           if (result) {
-                        //             context.read<FloorViewerBloc>().add(DeleteFloor(floor));
+                        //             context.read<ApartmentDetailsBloc>().add(DeleteFloor(floor));
                         //             Navigator.of(context).pop();
                         //           }
                         //         }
                         //       },
                         //       onSubmit: (Floor? submittedFloor) {
-                        //         context.read<FloorViewerBloc>().add(EditFloor(submittedFloor));
+                        //         context.read<ApartmentDetailsBloc>().add(EditFloor(submittedFloor));
                         //         Navigator.of(context).pop();
                         //       },
                         //     );

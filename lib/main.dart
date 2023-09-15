@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kost/cost_table/presentation/cost_table_screen.dart';
-import 'package:kost/floor_viewer/presentation/floor_viewer_screen.dart';
+import 'package:kost/apartment_details/presentation/apartment_details_screen.dart';
 
 import 'common/config/app_config.dart';
 
@@ -18,16 +18,15 @@ class MyApp extends StatelessWidget {
     return SafeArea(
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        initialRoute: FloorViewerScreen.route,
+        initialRoute: ApartmentDetailsScreen.route,
         routes: {
-          FloorViewerScreen.route : (context) => const FloorViewerScreen(),
+          ApartmentDetailsScreen.route : (context) => const ApartmentDetailsScreen(),
           CostTableScreen.route : (context) => const CostTableScreen(),
         },
       ),
     );
   }
 }
-
 
 // MODEL EXPLANATION
 // In our project, we have two main classes: "Job" and "UnitPrice"

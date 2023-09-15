@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../common/bloc/bloc_state.dart';
 
-import '../../floor_viewer/presentation/floor_viewer_screen.dart';
+import '../../apartment_details/presentation/apartment_details_screen.dart';
 import '../domain/bloc/cost_table_bloc.dart';
 import '../domain/bloc/cost_table_state.dart';
 
@@ -18,7 +18,7 @@ class CostTableListener extends StatelessWidget {
         final blocState = state.blocState;
         if (blocState is Error) {
           Navigator.of(context)
-              .pushReplacementNamed(FloorViewerScreen.route);
+              .pushReplacementNamed(ApartmentDetailsScreen.route);
         }
       },
       child: child,

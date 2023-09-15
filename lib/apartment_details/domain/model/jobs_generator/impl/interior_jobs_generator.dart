@@ -1,4 +1,4 @@
-import 'package:kost/floor_viewer/domain/model/floor/floor_section.dart';
+import 'package:kost/apartment_details/domain/model/floor/floor_section.dart';
 
 import '../../../../../common/model/unit_price_category.dart';
 import '../../floor/floor.dart';

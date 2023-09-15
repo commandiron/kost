@@ -1,6 +1,6 @@
 import 'package:collection/collection.dart';
-import 'package:kost/floor_viewer/domain/model/project_constants.dart';
-import 'package:kost/floor_viewer/domain/model/project_variables.dart';
+import 'package:kost/apartment_details/domain/model/project_constants.dart';
+import 'package:kost/apartment_details/domain/model/project_variables.dart';
 
 import '../../floor/floor.dart';
 import '../../../../../common/model/job.dart';

@@ -2,10 +2,10 @@ import 'package:collection/collection.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kost/common/bloc/bloc_state.dart';
 import 'package:kost/cost_table/presentation/cost_table_screen.dart';
-import 'package:kost/floor_viewer/domain/bloc/floor_viewer_event.dart';
-import 'package:kost/floor_viewer/domain/bloc/floor_viewer_state.dart';
-import 'package:kost/floor_viewer/domain/model/floor/floor_section.dart';
-import 'package:kost/floor_viewer/domain/model/jobs_generator/impl/apartment_jobs_generator.dart';
+import 'package:kost/apartment_details/domain/bloc/apartment_details_event.dart';
+import 'package:kost/apartment_details/domain/bloc/apartment_details_state.dart';
+import 'package:kost/apartment_details/domain/model/floor/floor_section.dart';
+import 'package:kost/apartment_details/domain/model/jobs_generator/impl/apartment_jobs_generator.dart';
 
 import '../model/floor/floor.dart';
 import '../model/floor/room/apartment_room.dart';
@@ -15,11 +15,11 @@ import '../model/project_variables.dart';
 import '../model/floor/room/room.dart';
 import '../model/floor/window.dart';
 
-class FloorViewerBloc
-    extends Bloc<FloorViewerEvent, FloorViewerState> {
-  FloorViewerBloc()
+class ApartmentDetailsBloc
+    extends Bloc<ApartmentDetailsEvent, ApartmentDetailsState> {
+  ApartmentDetailsBloc()
       : super(
-          FloorViewerState(
+          ApartmentDetailsState(
             blocState: Initial(),
             snackBarMessage: "",
             projectConstants: const ProjectConstants(),
@@ -153,7 +153,7 @@ class FloorViewerBloc
             ],
           ),
         ) {
-    on<InitFloorViewerBloc>((event, emit) {
+    on<InitApartmentDetailsBloc>((event, emit) {
       emit(state.copyWith(floors: getSortedFloors(state.floors)));
     });
     on<AddFloor>((event, emit) {

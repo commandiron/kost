@@ -1,4 +1,4 @@
-import 'package:kost/floor_viewer/domain/model/floor/room/room.dart';
+import 'package:kost/apartment_details/domain/model/floor/room/room.dart';
 
 class CommonAreaRoom extends Room {
   CommonAreaRoom({

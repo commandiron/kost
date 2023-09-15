@@ -1,7 +1,7 @@
 import 'package:kost/common/model/job.dart';
-import 'package:kost/floor_viewer/domain/model/jobs_generator/impl/roof_jobs_generator.dart';
-import 'package:kost/floor_viewer/domain/model/jobs_generator/impl/rough_construction_jobs_generator.dart';
-import 'package:kost/floor_viewer/domain/model/jobs_generator/jobs_generator.dart';
+import 'package:kost/apartment_details/domain/model/jobs_generator/impl/roof_jobs_generator.dart';
+import 'package:kost/apartment_details/domain/model/jobs_generator/impl/rough_construction_jobs_generator.dart';
+import 'package:kost/apartment_details/domain/model/jobs_generator/jobs_generator.dart';
 
 import '../../floor/floor.dart';
 import '../../project_constants.dart';

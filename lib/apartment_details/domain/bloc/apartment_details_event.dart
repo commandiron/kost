@@ -2,46 +2,46 @@ import 'package:equatable/equatable.dart';
 
 import '../model/floor/floor.dart';
 
-abstract class FloorViewerEvent extends Equatable {
-  const FloorViewerEvent();
+abstract class ApartmentDetailsEvent extends Equatable {
+  const ApartmentDetailsEvent();
   @override
   List<Object?> get props => [];
 }
 
-class InitFloorViewerBloc extends FloorViewerEvent {
-  const InitFloorViewerBloc();
+class InitApartmentDetailsBloc extends ApartmentDetailsEvent {
+  const InitApartmentDetailsBloc();
   @override
   List<Object?> get props => [];
 }
 
-class AddFloor extends FloorViewerEvent {
+class AddFloor extends ApartmentDetailsEvent {
   final Floor? floor;
   const AddFloor(this.floor);
   @override
   List<Object?> get props => [floor];
 }
 
-class DeleteFloor extends FloorViewerEvent {
+class DeleteFloor extends ApartmentDetailsEvent {
   final Floor floor;
   const DeleteFloor(this.floor);
   @override
   List<Object?> get props => [floor];
 }
 
-class EditFloor extends FloorViewerEvent {
+class EditFloor extends ApartmentDetailsEvent {
   final Floor? floor;
   const EditFloor(this.floor);
   @override
   List<Object?> get props => [floor];
 }
 
-class ClearSnackbarMessage extends FloorViewerEvent {
+class ClearSnackbarMessage extends ApartmentDetailsEvent {
   const ClearSnackbarMessage();
   @override
   List<Object?> get props => [];
 }
 
-class CalculateCost extends FloorViewerEvent {
+class CalculateCost extends ApartmentDetailsEvent {
   const CalculateCost();
   @override
   List<Object?> get props => [];

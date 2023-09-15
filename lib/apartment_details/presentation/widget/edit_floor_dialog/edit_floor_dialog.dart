@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:kost/common/config/app_padding.dart';
 import 'package:kost/common/config/app_text_style.dart';
 import 'package:kost/common/extension/formatted_number.dart';
-import 'package:kost/floor_viewer/domain/model/floor/floor_section.dart';
-import 'package:kost/floor_viewer/presentation/widget/edit_floor_dialog/edit_floor_sub_title.dart';
+import 'package:kost/apartment_details/domain/model/floor/floor_section.dart';
+import 'package:kost/apartment_details/presentation/widget/edit_floor_dialog/edit_floor_sub_title.dart';
 
 import '../../../domain/model/floor/floor.dart';
 import 'floor_attr_check_box.dart';
