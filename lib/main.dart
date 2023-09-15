@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kost/cost_table/presentation/cost_table_screen.dart';
-import 'package:kost/quantity_details/edit_floor/presentation/edit_floor_screen.dart';
-import 'package:kost/quantity_details/floor_viewer/presentation/floor_viewer_screen.dart';
+import 'package:kost/floor_viewer/presentation/floor_viewer_screen.dart';
 
 import 'common/config/app_config.dart';
 
@@ -22,7 +21,6 @@ class MyApp extends StatelessWidget {
         initialRoute: FloorViewerScreen.route,
         routes: {
           FloorViewerScreen.route : (context) => const FloorViewerScreen(),
-          EditFloorScreen.route : (context) => const EditFloorScreen(),
           CostTableScreen.route : (context) => const CostTableScreen(),
         },
       ),

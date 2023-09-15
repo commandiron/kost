@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../common/bloc/bloc_state.dart';
 
-import '../../quantity_details/floor_viewer/presentation/floor_viewer_screen.dart';
+import '../../floor_viewer/presentation/floor_viewer_screen.dart';
 import '../domain/bloc/cost_table_bloc.dart';
 import '../domain/bloc/cost_table_state.dart';
 
