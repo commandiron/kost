@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kost/quantity_details/edit_floor/domain/edit_floor_event.dart';
 import 'package:kost/quantity_details/edit_floor/presentation/edit_floor_view.dart';
+import 'package:kost/quantity_details/floor_viewer/domain/bloc/floor_viewer_bloc.dart';
 
 import '../../floor_viewer/domain/model/floor/floor.dart';
 import '../domain/edit_floor_bloc.dart';
@@ -21,8 +22,8 @@ class EditFloorScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final arguments = ModalRoute.of(context)!.settings.arguments as EditFloorArguments?;
-    return BlocProvider(
-      create: (context) => EditFloorBloc()..add(InitEditFloorBloc(arguments?.floor ?? InitialFloor())),
+    return BlocProvider<FloorViewerBloc>.value(
+      value: BlocProvider.of<FloorViewerBloc>(context),
       child: const EditFloorView()
     );
   }
