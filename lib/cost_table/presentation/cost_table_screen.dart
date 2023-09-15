@@ -26,8 +26,7 @@ class CostTableScreen extends StatelessWidget {
     final arguments =
         ModalRoute.of(context)!.settings.arguments as CostTableArguments?;
     return BlocProvider(
-      create: (context) =>
-          CostTableBloc()..add(Init(arguments?.tableName, arguments?.jobs)),
+      create: (context) => CostTableBloc()..add(InitCostTableBloc(arguments?.tableName, arguments?.jobs)),
       child: const CostTableListener(
         child: CostTableView(),
       ),

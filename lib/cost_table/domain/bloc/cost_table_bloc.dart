@@ -25,7 +25,7 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
               formattedSubTotalsTRY: const {},
               formattedGrandTotalTRY: ""),
         ) {
-    on<Init>((event, emit) async {
+    on<InitCostTableBloc>((event, emit) async {
       emit(state.copyWith(blocState: Loading()));
 
       await Future.delayed(const Duration(seconds: 1)); //Fake delay

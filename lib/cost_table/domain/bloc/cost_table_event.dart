@@ -8,10 +8,10 @@ abstract class CostTableEvent extends Equatable {
   List<Object?> get props => [];
 }
 
-class Init extends CostTableEvent {
+class InitCostTableBloc extends CostTableEvent {
   final String? tableName;
   final List<Job>? jobs;
-  const Init(this.tableName, this.jobs);
+  const InitCostTableBloc(this.tableName, this.jobs);
   @override
   List<Object?> get props => [tableName, jobs];
 }
