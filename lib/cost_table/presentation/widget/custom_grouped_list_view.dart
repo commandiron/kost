@@ -21,6 +21,8 @@ class CostsListView extends StatelessWidget {
   final Map<MainCategory, String> formattedSubTotalsTRY;
   final Map<MainCategory, bool> categoryVisibilities;
 
+  static const double costSeparatorHeight = 80;
+
   @override
   Widget build(BuildContext context) {
     if (!categoryVisibilities.values.any((value) => value)) {
@@ -28,19 +30,28 @@ class CostsListView extends StatelessWidget {
         itemCount: formattedSubTotalsTRY.keys.length,
         itemBuilder: (context, index) {
           return CostSeparator(
-              mainCategory:
-                  costs.map((e) => e.mainCategory).toSet().toList()[index],
-              formattedSubTotalsTRY: formattedSubTotalsTRY);
+            height: costSeparatorHeight,
+            mainCategory: costs.map((e) => e.mainCategory).toSet().toList()[index],
+            formattedSubTotalsTRY: formattedSubTotalsTRY,
+          );
         },
       );
     }
+
     return GroupedListView<Cost, MainCategory>(
+      controller: ScrollController(
+        initialScrollOffset: categoryVisibilities.values.where((element) => element).length == 1
+          ? categoryVisibilities.entries.toList().indexWhere((entry) => entry.value) * costSeparatorHeight
+          : 0
+      ),
       elements: costs,
       groupBy: (cost) => cost.mainCategory,
       groupSeparatorBuilder: (MainCategory mainCategory) {
         return CostSeparator(
-            mainCategory: mainCategory,
-            formattedSubTotalsTRY: formattedSubTotalsTRY);
+          height: costSeparatorHeight,
+          mainCategory: mainCategory,
+          formattedSubTotalsTRY: formattedSubTotalsTRY
+        );
       },
       sort: false,
       indexedItemBuilder: (context, cost, index) {

@@ -10,8 +10,9 @@ import '../../domain/bloc/cost_table_event.dart';
 import 'main_category_title.dart';
 
 class CostSeparator extends StatelessWidget {
-  const CostSeparator({Key? key, required this.mainCategory, required this.formattedSubTotalsTRY}) : super(key: key);
+  const CostSeparator({Key? key, required this.height, required this.mainCategory, required this.formattedSubTotalsTRY,}) : super(key: key);
 
+  final double height;
   final MainCategory mainCategory;
   final Map<MainCategory, String> formattedSubTotalsTRY;
 
@@ -21,7 +22,7 @@ class CostSeparator extends StatelessWidget {
     return InkWell(
       onTap: () => context.read<CostTableBloc>().add(ExpandCollapseMainCategory(mainCategory)),
       child: Container(
-        height: 80,
+        height: height,
         padding: Responsive.value(context, AppPadding.hS , AppPadding.hM, AppPadding.hM),
         decoration: BoxDecoration(
             border: visible ? null : Border.all()
