@@ -1,21 +1,17 @@
 import 'package:flutter/material.dart';
 
-class AreYouSureDialog extends StatelessWidget {
-  const AreYouSureDialog(
-      {super.key, required this.frontTitle, this.onDeclinePressed, this.onApprovePressed,});
+class ApproveDialog extends StatelessWidget {
+  const ApproveDialog(
+      {super.key, required this.title, this.onDeclinePressed, this.onApprovePressed,});
 
-  final String frontTitle;
+  final String title;
   final void Function()? onDeclinePressed;
   final void Function()? onApprovePressed;
 
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      content: Text(
-        frontTitle.isEmpty 
-        ? "Emin misiniz?"
-        : "$frontTitle emin misiniz?"
-      ),
+      content: Text(title),
       actions: [
         ElevatedButton(
           onPressed: onDeclinePressed,
@@ -30,12 +26,12 @@ class AreYouSureDialog extends StatelessWidget {
   }
 }
 
-Future<bool?> showAreYouSureDialog(BuildContext context, {String frontTitle = ""}) {
+Future<bool?> showApproveDialog(BuildContext context, {String title = ""}) {
   return showDialog<bool?>(
     context: context,
     builder: (_) {
-      return AreYouSureDialog(
-        frontTitle: frontTitle,
+      return ApproveDialog(
+        title: title,
         onDeclinePressed: () {
           Navigator.of(context).pop(false);
         },
