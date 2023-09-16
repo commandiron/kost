@@ -17,7 +17,7 @@ class EditFloorView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "${floor.floorName} Detayları",
+          floor is InitialFloor ? "Yeni Kat Ekle (${floor.floorName})" : "${floor.floorName} Detayları",
           style: AppTextStyle.responsiveH4(context).copyWith(color: Theme.of(context).colorScheme.onPrimary),
         ),
         centerTitle: true,
@@ -27,23 +27,37 @@ class EditFloorView extends StatelessWidget {
           },
         ),
         actions: [
-          IconButton(
-            onPressed: () async {
-              final result = await showAreYouSureDialog(
-                context,
-                frontTitle: "Silmek istediğinize",
-              ) ?? false;
-              if (context.mounted) {
-                if (result) {
-                  context.read<ApartmentDetailsBloc>().add(DeleteFloor(floor));
-                  Navigator.of(context).pop();
-                }
-              }
-            },
-            icon: const Icon(
-              Icons.delete,
+          if(floor is InitialFloor)
+            IconButton(
+              onPressed: () async {
+                final result = await showAreYouSureDialog(
+                  context,
+                  frontTitle: "Eklemek istediğinize",
+                ) ?? false;
+              },
+              color: Colors.greenAccent,
+              icon: Icon(
+                Icons.check,
+              ),
             ),
-          ),
+          if(floor is! InitialFloor)
+            IconButton(
+              onPressed: () async {
+                final result = await showAreYouSureDialog(
+                  context,
+                  frontTitle: "Silmek istediğinize",
+                ) ?? false;
+                if (context.mounted) {
+                  if (result) {
+                    context.read<ApartmentDetailsBloc>().add(DeleteFloor(floor));
+                    Navigator.of(context).pop();
+                  }
+                }
+              },
+              icon: const Icon(
+                Icons.delete,
+              ),
+            ),
         ],
       ),
       body: Container(
