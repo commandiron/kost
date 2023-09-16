@@ -46,15 +46,15 @@ class _EditFloorViewState extends State<EditFloorView> {
           onPressed: () async {
             if(!_isAnyChange) {
               Navigator.pop(context);
-            } else {
-              final result = await showApproveDialog(
-                context,
-                title: "Değişiklikleri kaydetmediniz! Geri dönmek istediğinize emin misiniz?",
-              ) ?? false;
-              if (context.mounted) {
-                if (result) {
-                  Navigator.pop(context);
-                }
+              return;
+            }
+            final result = await showApproveDialog(
+              context,
+              title: "Değişiklikleri kaydetmediniz! Geri dönmek istediğinize emin misiniz?",
+            ) ?? false;
+            if (context.mounted) {
+              if (result) {
+                Navigator.pop(context);
               }
             }
           },
