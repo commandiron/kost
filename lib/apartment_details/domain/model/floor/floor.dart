@@ -84,6 +84,8 @@ class Floor {
     }
     return result;
   }
+
+
 }
 
 extension FloorExtension on Floor {
@@ -113,5 +115,32 @@ extension FloorExtension on Floor {
       17 => "17. Kat",
       _ => throw Exception("Maximum number of floors exceeded")
     };
+  }
+}
+
+class FloorValidation {
+  FloorValidation(
+    {
+      required this.message,
+      required this.result,
+    }
+  );
+  final String message;
+  final bool result;
+
+  static FloorValidation validate(Floor? floor) {
+    if (floor == null) {
+      return FloorValidation(message: "Deşiklik yapılmadı.", result: false);
+    }
+    if (floor.no >= 17) {
+      return FloorValidation(message: "Maksimum kat sayısına ulaşıldı.", result: false);
+    }
+    if (floor.no <= -4) {
+      return FloorValidation(message: "Maksimum bodrum kat sayısına ulaşıldı.", result: false);
+    }
+    if(floor.area == 0) {
+      return FloorValidation(message: "Alan'ı hatalı girdiniz.", result: false);
+    }
+    return FloorValidation(message: "", result: true);
   }
 }
