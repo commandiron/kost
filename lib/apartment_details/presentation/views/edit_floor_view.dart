@@ -48,12 +48,15 @@ class _EditFloorViewState extends State<EditFloorView> {
               Navigator.pop(context);
               return;
             }
-            final result = await showApproveDialog(
+            final result = await showCancelableApproveDialog(
               context,
-              title: "Değişiklikleri kaydetmediniz! Geri dönmek istediğinize emin misiniz?",
-            ) ?? false;
+              title: "Geri dönmeden önce değişiklikleri kaydetmek ister misiniz?",
+            );
             if (context.mounted) {
-              if (result) {
+              if(result != null) {
+                if (result) {
+                  context.read<ApartmentDetailsBloc>().add(EditFloor(_editedFloor));
+                }
                 Navigator.pop(context);
               }
             }
