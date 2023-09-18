@@ -35,7 +35,7 @@ class ApartmentDetailsListener extends StatelessWidget {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(content: Text(state.snackBarMessage)),
           );
-          context.read<ApartmentDetailsBloc>().add(const ClearSnackbarMessage());
+          context.read<ApartmentDetailsBloc>().add(const ClearSnackBarMessage());
         },
       ),
     ], child: child);

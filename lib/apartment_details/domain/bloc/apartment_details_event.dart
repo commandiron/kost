@@ -21,13 +21,6 @@ class AddFloor extends ApartmentDetailsEvent {
   List<Object?> get props => [floor];
 }
 
-class DeleteFloor extends ApartmentDetailsEvent {
-  final Floor floor;
-  const DeleteFloor(this.floor);
-  @override
-  List<Object?> get props => [floor];
-}
-
 class EditFloor extends ApartmentDetailsEvent {
   final Floor? floor;
   const EditFloor(this.floor);
@@ -35,8 +28,15 @@ class EditFloor extends ApartmentDetailsEvent {
   List<Object?> get props => [floor];
 }
 
-class ClearSnackbarMessage extends ApartmentDetailsEvent {
-  const ClearSnackbarMessage();
+class DeleteFloor extends ApartmentDetailsEvent {
+  final Floor floor;
+  const DeleteFloor(this.floor);
+  @override
+  List<Object?> get props => [floor];
+}
+
+class ClearSnackBarMessage extends ApartmentDetailsEvent {
+  const ClearSnackBarMessage();
   @override
   List<Object?> get props => [];
 }

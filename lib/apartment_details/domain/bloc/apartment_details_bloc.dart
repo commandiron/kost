@@ -157,18 +157,9 @@ class ApartmentDetailsBloc
       emit(state.copyWith(floors: getSortedFloors(state.floors)));
     });
     on<AddFloor>((event, emit) {
-      if (event.floor == null) {
-        emit(state.copyWith(snackBarMessage: "Deşiklik yapılmadı."));
-        return;
-      }
-
-      if (event.floor!.no >= 17) {
-        emit(state.copyWith(snackBarMessage: "Maksimum kat sayısına ulaşıldı."));
-        return;
-      }
-
-      if (event.floor!.no <= -4) {
-        emit(state.copyWith( snackBarMessage: "Maksimum bodrum kat sayısına ulaşıldı."));
+      final floorValidation = validateFloor(event.floor);
+      if(!floorValidation.result) {
+        emit(state.copyWith(snackBarMessage: floorValidation.message));
         return;
       }
 
@@ -179,6 +170,25 @@ class ApartmentDetailsBloc
       emit(state.copyWith(
         snackBarMessage: "${event.floor!.floorName} Eklendi.",
         floors: getSortedFloors(floors),
+      ));
+    });
+    on<EditFloor>((event, emit) {
+      final floorValidation = validateFloor(event.floor);
+      if(!floorValidation.result) {
+        emit(state.copyWith(snackBarMessage: floorValidation.message));
+        return;
+      }
+
+      final floors = state.floors;
+
+      final floorIndex =
+      floors.indexWhere((element) => element.no == event.floor!.no);
+
+      floors[floorIndex] = event.floor!;
+
+      emit(state.copyWith(
+        snackBarMessage: "${event.floor!.floorName} Değiştirildi.",
+        floors: floors,
       ));
     });
     on<DeleteFloor>((event, emit) {
@@ -214,25 +224,7 @@ class ApartmentDetailsBloc
         floors: floors,
       ));
     });
-    on<EditFloor>((event, emit) {
-      if (event.floor == null) {
-        emit(state.copyWith(snackBarMessage: "Deşiklik yapılmadı."));
-        return;
-      }
-
-      final floors = state.floors;
-
-      final floorIndex =
-          floors.indexWhere((element) => element.no == event.floor!.no);
-
-      floors[floorIndex] = event.floor!;
-
-      emit(state.copyWith(
-        snackBarMessage: "${event.floor!.floorName} Değiştirildi.",
-        floors: floors,
-      ));
-    });
-    on<ClearSnackbarMessage>((event, emit) {
+    on<ClearSnackBarMessage>((event, emit) {
       emit(state.copyWith(snackBarMessage: ""));
     });
     on<CalculateCost>((event, emit) {
@@ -257,4 +249,31 @@ class ApartmentDetailsBloc
   List<Floor> getSortedFloors(List<Floor> floors) {
     return floors.sorted((a, b) => a.no.compareTo(b.no)).reversed.toList();
   }
+
+  FloorValidation validateFloor(Floor? floor) {
+    if (floor == null) {
+      return FloorValidation(message: "Deşiklik yapılmadı.", result: false);
+    }
+    if (floor.no >= 17) {
+      return FloorValidation(message: "Maksimum kat sayısına ulaşıldı.", result: false);
+    }
+    if (floor.no <= -4) {
+      return FloorValidation(message: "Maksimum bodrum kat sayısına ulaşıldı.", result: false);
+    }
+    if(floor.area == 0) {
+      return FloorValidation(message: "Alan'ı hatalı girdiniz.", result: false);
+    }
+    return FloorValidation(message: "", result: true);
+  }
+}
+
+class FloorValidation {
+  FloorValidation(
+    {
+      required this.message,
+      required this.result,
+    }
+  );
+  final String message;
+  final bool result;
 }
