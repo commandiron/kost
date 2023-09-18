@@ -53,12 +53,17 @@ class _EditFloorViewState extends State<EditFloorView> {
               title: "Geri dönmeden önce değişiklikleri kaydetmek ister misiniz?",
             );
             if (context.mounted) {
-              if(result != null) {
-                if (result) {
+              if(result == null) {
+                return;
+              }
+              if (result) {
+                if(widget.floor is InitialFloor) {
+                  context.read<ApartmentDetailsBloc>().add(AddFloor(_editedFloor));
+                } else {
                   context.read<ApartmentDetailsBloc>().add(EditFloor(_editedFloor));
                 }
-                Navigator.pop(context);
               }
+              Navigator.pop(context);
             }
           },
         ),

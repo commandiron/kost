@@ -157,9 +157,13 @@ class ApartmentDetailsBloc
       emit(state.copyWith(floors: getSortedFloors(state.floors)));
     });
     on<AddFloor>((event, emit) {
-      final floorValidation = FloorValidation.validate(event.floor);
-      if(!floorValidation.result) {
-        emit(state.copyWith(snackBarMessage: floorValidation.message));
+      if(event.floor == null) {
+        emit(state.copyWith(snackBarMessage: "Değişiklik yapılmadı"));
+      }
+
+      final floorValidationMessage = event.floor!.validate();
+      if(floorValidationMessage.isNotEmpty) {
+        emit(state.copyWith(snackBarMessage: floorValidationMessage));
         return;
       }
 
@@ -173,9 +177,13 @@ class ApartmentDetailsBloc
       ));
     });
     on<EditFloor>((event, emit) {
-      final floorValidation = FloorValidation.validate(event.floor);
-      if(!floorValidation.result) {
-        emit(state.copyWith(snackBarMessage: floorValidation.message));
+      if(event.floor == null) {
+        emit(state.copyWith(snackBarMessage: "Değişiklik yapılmadı"));
+      }
+
+      final floorValidationMessage = event.floor!.validate();
+      if(floorValidationMessage.isNotEmpty) {
+        emit(state.copyWith(snackBarMessage: floorValidationMessage));
         return;
       }
 

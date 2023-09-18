@@ -84,8 +84,6 @@ class Floor {
     }
     return result;
   }
-
-
 }
 
 extension FloorExtension on Floor {
@@ -118,8 +116,23 @@ extension FloorExtension on Floor {
   }
 }
 
-class FloorValidation {
-  FloorValidation(
+extension FloorValidatorExtension on Floor {
+  String validate() {
+    if (no >= 17) {
+      return "Maksimum kat sayısına ulaşıldı.";
+    }
+    if (no <= -4) {
+      return "Maksimum bodrum kat sayısına ulaşıldı.";
+    }
+    if(area == 0) {
+      return "Alan'ı hatalı girdiniz.";
+    }
+    return "";
+  }
+}
+
+class FloorValidator {
+  FloorValidator(
     {
       required this.message,
       required this.result,
@@ -128,19 +141,19 @@ class FloorValidation {
   final String message;
   final bool result;
 
-  static FloorValidation validate(Floor? floor) {
+  static FloorValidator validate(Floor? floor) {
     if (floor == null) {
-      return FloorValidation(message: "Deşiklik yapılmadı.", result: false);
+      return FloorValidator(message: "Deşiklik yapılmadı.", result: false);
     }
     if (floor.no >= 17) {
-      return FloorValidation(message: "Maksimum kat sayısına ulaşıldı.", result: false);
+      return FloorValidator(message: "Maksimum kat sayısına ulaşıldı.", result: false);
     }
     if (floor.no <= -4) {
-      return FloorValidation(message: "Maksimum bodrum kat sayısına ulaşıldı.", result: false);
+      return FloorValidator(message: "Maksimum bodrum kat sayısına ulaşıldı.", result: false);
     }
     if(floor.area == 0) {
-      return FloorValidation(message: "Alan'ı hatalı girdiniz.", result: false);
+      return FloorValidator(message: "Alan'ı hatalı girdiniz.", result: false);
     }
-    return FloorValidation(message: "", result: true);
+    return FloorValidator(message: "", result: true);
   }
 }
