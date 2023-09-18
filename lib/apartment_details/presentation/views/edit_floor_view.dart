@@ -74,7 +74,10 @@ class _EditFloorViewState extends State<EditFloorView> {
                 final result = await showApproveDialog(
                   context,
                   title: "Silmek istediğinize emin misiniz?",
-                ) ?? false;
+                );
+                if(result == null) {
+                  return;
+                }
                 if (context.mounted) {
                   if (result) {
                     context.read<ApartmentDetailsBloc>().add(DeleteFloor(widget.floor));
@@ -92,7 +95,10 @@ class _EditFloorViewState extends State<EditFloorView> {
                 final result = await showApproveDialog(
                   context,
                   title: "Değişiklikleri kaydetmek istediğinize emin misiniz?",
-                ) ?? false;
+                );
+                if(result == null) {
+                  return;
+                }
                 if (context.mounted) {
                   if (result) {
                     if(_isAnyChange) {
@@ -114,7 +120,10 @@ class _EditFloorViewState extends State<EditFloorView> {
                 final result = await showApproveDialog(
                   context,
                   title: "Eklemek istediğinize emin misiniz?",
-                ) ?? false;
+                );
+                if(result == null) {
+                  return;
+                }
                 if (context.mounted) {
                   if (result) {
                     if(_isAnyChange) {
