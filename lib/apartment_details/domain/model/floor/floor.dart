@@ -130,30 +130,3 @@ extension FloorValidatorExtension on Floor {
     return "";
   }
 }
-
-class FloorValidator {
-  FloorValidator(
-    {
-      required this.message,
-      required this.result,
-    }
-  );
-  final String message;
-  final bool result;
-
-  static FloorValidator validate(Floor? floor) {
-    if (floor == null) {
-      return FloorValidator(message: "Deşiklik yapılmadı.", result: false);
-    }
-    if (floor.no >= 17) {
-      return FloorValidator(message: "Maksimum kat sayısına ulaşıldı.", result: false);
-    }
-    if (floor.no <= -4) {
-      return FloorValidator(message: "Maksimum bodrum kat sayısına ulaşıldı.", result: false);
-    }
-    if(floor.area == 0) {
-      return FloorValidator(message: "Alan'ı hatalı girdiniz.", result: false);
-    }
-    return FloorValidator(message: "", result: true);
-  }
-}
