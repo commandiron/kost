@@ -5,6 +5,7 @@ import 'package:kost/apartment_details/presentation/widget/floor_viewer.dart';
 
 import '../../../common/config/app_space.dart';
 import '../../../common/config/app_text_style.dart';
+import '../../../common/animation/page_transition/slide_page_route_builder.dart';
 import '../../domain/bloc/apartment_details_bloc.dart';
 import '../../domain/bloc/apartment_details_event.dart';
 import '../../domain/bloc/apartment_details_state.dart';
@@ -62,11 +63,11 @@ class FloorViewerView extends StatelessWidget {
                       onClickFloor: (Floor floor) async {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(
-                              builder: (_) => BlocProvider.value(
-                                value: BlocProvider.of<ApartmentDetailsBloc>(context),
-                                child: EditFloorView(floor: floor,),
-                              ),
+                          SlidingPageRouteBuilder(
+                            page: BlocProvider.value(
+                              value: BlocProvider.of<ApartmentDetailsBloc>(context),
+                              child: EditFloorView(floor: floor,),
+                            ),
                           )
                         );
                       },

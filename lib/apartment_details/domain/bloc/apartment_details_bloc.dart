@@ -159,6 +159,7 @@ class ApartmentDetailsBloc
     on<AddFloor>((event, emit) {
       if(event.floor == null) {
         emit(state.copyWith(snackBarMessage: "Değişiklik yapılmadı"));
+        return;
       }
 
       final floorValidationMessage = event.floor!.validate();
@@ -179,6 +180,7 @@ class ApartmentDetailsBloc
     on<EditFloor>((event, emit) {
       if(event.floor == null) {
         emit(state.copyWith(snackBarMessage: "Değişiklik yapılmadı"));
+        return;
       }
 
       final floorValidationMessage = event.floor!.validate();
