@@ -19,26 +19,25 @@ class ApartmentDetailsBloc
         snackBarMessage: "",
         projectConstants: const ProjectConstants(),
         projectVariables: const ProjectVariables(
-          landArea: 773.29, //✓
-          landPerimeter: 116.91, //✓
-          foundationArea: 660.41, //✓
-          foundationPerimeter: 108.90, //✓
+          landArea: 1500, //✓
+          landPerimeter: 80, //✓
+          foundationArea: 377, //✓
+          foundationPerimeter: 78.3, //✓
           foundationHeight: 1, //✓
-          excavationArea: 773.29, //✓
-          excavationPerimeter: 116.91, //✓
-          coreCurtainLength: 13.03, //✓
-          curtainsExceeding1MeterLength: 8.1, //✓
-          basementCurtainLength: 108.90, //✓
-          columnsLess1MeterPerimeter: 24.8, //✓
-          elevationTowerArea: 27, //✓
+          excavationArea: 465, //✓
+          excavationPerimeter: 86.3, //✓
+          coreCurtainLength: 15, //✓
+          curtainsExceeding1MeterLength: 10, //✓
+          basementCurtainLength: 0, //✓
+          columnsLess1MeterPerimeter: 16, //✓
+          elevationTowerArea: 17.5, //✓
           elevationTowerHeightWithoutSlab: 3, //✓
         ),
-        floors: const [],
+        floors: Floor.selviliApt1Blok,
       ),
     ) {
     on<InitApartmentDetailsBloc>((event, emit) {
-      final floors = Floor.selviliApt1Blok;
-      emit(state.copyWith(floors: getSortedFloors(floors)));
+      emit(state.copyWith(floors: getSortedFloors(state.floors)));
     });
     on<AddFloor>((event, emit) {
       if(event.floor == null) {

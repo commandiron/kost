@@ -28,7 +28,7 @@ class ProjectConstants extends Equatable {
   final double craneHourForOneSquareMeterRoughConstructionArea; //✓
 
   const ProjectConstants({
-    this.projectDurationMonth = 14,
+    this.projectDurationMonth = 18,
     this.insulationConcreteHeight = 0.05,
     this.leanConcreteHeight = 0.10,
     this.stabilizationHeight = 0.30,

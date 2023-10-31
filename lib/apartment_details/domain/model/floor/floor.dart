@@ -95,16 +95,44 @@ class Floor {
     ...duplicateFloors(
       Floor(
         no: 1,
-        area: 394.36,
-        perimeter: 92.3,
+        area: 501.6,
+        perimeter: 90.3,
         heightWithSlab: 3.3,
         slabHeight: 0.3,
         isCeilingSlabHollow: true,
-        thickWallLength: 112,
-        thinWallLength: 76.5,
-        sections: [],
+        thickWallLength: 130.57,
+        thinWallLength: 131.30,
+        sections: [
+          CommonArea(
+            rooms: [
+              BuildingFloorHall(area: 9, perimeter: 15),
+              ElevatorShaft(area: 4, perimeter: 8),
+              Stairs(area: 6.45, perimeter: 10.3),
+            ]
+          ),
+          Apartment(
+            rooms: [
+              ApartmentHall(area: 13, perimeter: 15.2),
+              ApartmentHall(area: 7, perimeter: 14.2),
+              Saloon(area: 70, perimeter: 36, windows: [Window(width: 8, height: 2.5)]),
+              Kitchen(area: 20, perimeter: 18, windows: [Window(width: 1.5, height: 2.5)]),
+              NormalRoom(area: 10.45, perimeter: 13.10, windows: [Window(width: 1.5, height: 2.5)]),
+              NormalRoom(area: 6, perimeter: 10, windows: []),
+              NormalRoom(area: 15, perimeter: 16, windows: [Window(width: 1.5, height: 2.5)]),
+              NormalRoom(area: 16.25, perimeter: 16.5, windows: [Window(width: 1.5, height: 2.5)]),
+              NormalRoom(area: 25, perimeter: 20.1, windows: [Window(width: 2, height: 2.5)]),
+              Wc(area: 3.75, perimeter: 8.5, windows: []),
+              Bathroom(area: 3.25, perimeter: 7.3, windows: []),
+              Bathroom(area: 7, perimeter: 10.6, windows: []),
+              Bathroom(area: 7, perimeter: 10.6, windows: []),
+              Balcony(area: 8, perimeter: 12),
+              Balcony(area: 3, perimeter: 7.6),
+              Balcony(area: 3, perimeter: 6.8),
+            ]
+          )
+        ],
       ),
-      count: 2
+      count: 3
     ),
     Floor(
       no: 0,
@@ -131,7 +159,9 @@ class Floor {
         ),
         CommonArea(
           rooms: [
-            BuildingEntranceHall(area: 41.13, perimeter: 38.60)
+            BuildingEntranceHall(area: 41.13, perimeter: 38.60),
+            ElevatorShaft(area: 4, perimeter: 8),
+            Stairs(area: 6.45, perimeter: 10.3),
           ]
         ),
         Apartment(
