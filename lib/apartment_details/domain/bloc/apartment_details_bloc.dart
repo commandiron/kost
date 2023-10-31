@@ -13,29 +13,29 @@ import '../model/project_variables.dart';
 class ApartmentDetailsBloc
     extends Bloc<ApartmentDetailsEvent, ApartmentDetailsState> {
   ApartmentDetailsBloc()
-      : super(
-          ApartmentDetailsState(
-            blocState: Initial(),
-            snackBarMessage: "",
-            projectConstants: const ProjectConstants(),
-            projectVariables: const ProjectVariables(
-              landArea: 773.29, //✓
-              landPerimeter: 116.91, //✓
-              foundationArea: 660.41, //✓
-              foundationPerimeter: 108.90, //✓
-              foundationHeight: 1, //✓
-              excavationArea: 773.29, //✓
-              excavationPerimeter: 116.91, //✓
-              coreCurtainLength: 13.03, //✓
-              curtainsExceeding1MeterLength: 8.1, //✓
-              basementCurtainLength: 108.90, //✓
-              columnsLess1MeterPerimeter: 24.8, //✓
-              elevationTowerArea: 27, //✓
-              elevationTowerHeightWithoutSlab: 3, //✓
-            ),
-            floors: const [],
-          ),
-        ) {
+    : super(
+      ApartmentDetailsState(
+        blocState: Initial(),
+        snackBarMessage: "",
+        projectConstants: const ProjectConstants(),
+        projectVariables: const ProjectVariables(
+          landArea: 773.29, //✓
+          landPerimeter: 116.91, //✓
+          foundationArea: 660.41, //✓
+          foundationPerimeter: 108.90, //✓
+          foundationHeight: 1, //✓
+          excavationArea: 773.29, //✓
+          excavationPerimeter: 116.91, //✓
+          coreCurtainLength: 13.03, //✓
+          curtainsExceeding1MeterLength: 8.1, //✓
+          basementCurtainLength: 108.90, //✓
+          columnsLess1MeterPerimeter: 24.8, //✓
+          elevationTowerArea: 27, //✓
+          elevationTowerHeightWithoutSlab: 3, //✓
+        ),
+        floors: const [],
+      ),
+    ) {
     on<InitApartmentDetailsBloc>((event, emit) {
       final floors = Floor.selviliApt1Blok;
       emit(state.copyWith(floors: getSortedFloors(floors)));
