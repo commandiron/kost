@@ -216,6 +216,26 @@ class Floor {
       thickWallLength: 112,
       thinWallLength: 76.5,
       sections: [
+        Apartment(
+          rooms: [
+            Saloon(area: 51.93, perimeter: 30, windows: [Window(width: 7, height: 2.5)]),
+            Kitchen(area: 17, perimeter: 16.7, windows: [Window(width: 2, height: 2.5)]),
+            ApartmentHall(area: 19, perimeter: 20.70),
+            ApartmentHall(area: 4.68, perimeter: 10.20),
+            NormalRoom(area: 17.5, perimeter: 17, windows: [Window(width: 2, height: 2.5)]),
+            NormalRoom(area: 25.9, perimeter: 22.3, windows: [Window(width: 3, height: 2.5)]),
+            Bathroom(area: 5.1, perimeter: 9.40, windows: []),
+            Bathroom(area: 6.30, perimeter: 10.20, windows: []),
+            Balcony(area: 9, perimeter: 12.8),
+
+            Saloon(area: 42, perimeter: 29.60 , windows: [Window(width: 2, height: 2.5)]),
+            NormalRoom(area: 17.5, perimeter: 17, windows: [Window(width: 2, height: 2.5)]),
+            NormalRoom(area: 28.3, perimeter: 23.50, windows: [Window(width: 3, height: 2.5)]),
+            ApartmentHall(area: 4.68, perimeter: 10.20),
+            Bathroom(area: 5.1, perimeter: 9.40, windows: []),
+            Bathroom(area: 6.30, perimeter: 10.20, windows: []),
+          ]
+        ),
         CommonArea(
           rooms: [
             BuildingEntranceHall(area: 41.13, perimeter: 38.60)
@@ -240,7 +260,7 @@ class Floor {
             Bathroom(area: 5.1, perimeter: 9.40, windows: []),
             Bathroom(area: 6.30, perimeter: 10.20, windows: []),
           ]
-        )
+        ),
 
       ],
     ),
