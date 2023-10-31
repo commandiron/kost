@@ -65,6 +65,26 @@ class Project {
           thickWallLength: 130.57,
           thinWallLength: 131.30,
           sections: [
+            Apartment(
+              rooms: [
+                ApartmentHall(area: 13, perimeter: 15.2),
+                ApartmentHall(area: 7, perimeter: 14.2),
+                Saloon(area: 70, perimeter: 36, windows: [Window(width: 8, height: 2.5)]),
+                Kitchen(area: 20, perimeter: 18, windows: [Window(width: 1.5, height: 2.5)]),
+                NormalRoom(area: 10.45, perimeter: 13.10, windows: [Window(width: 1.5, height: 2.5)]),
+                NormalRoom(area: 6, perimeter: 10, windows: []),
+                NormalRoom(area: 15, perimeter: 16, windows: [Window(width: 1.5, height: 2.5)]),
+                NormalRoom(area: 16.25, perimeter: 16.5, windows: [Window(width: 1.5, height: 2.5)]),
+                NormalRoom(area: 25, perimeter: 20.1, windows: [Window(width: 2, height: 2.5)]),
+                Wc(area: 3.75, perimeter: 8.5, windows: []),
+                Bathroom(area: 3.25, perimeter: 7.3, windows: []),
+                Bathroom(area: 7, perimeter: 10.6, windows: []),
+                Bathroom(area: 7, perimeter: 10.6, windows: []),
+                Balcony(area: 8, perimeter: 12),
+                Balcony(area: 3, perimeter: 7.6),
+                Balcony(area: 3, perimeter: 6.8),
+              ]
+            ),
             CommonArea(
               rooms: [
                 BuildingFloorHall(area: 9, perimeter: 15),
@@ -91,7 +111,7 @@ class Project {
                 Balcony(area: 3, perimeter: 7.6),
                 Balcony(area: 3, perimeter: 6.8),
               ]
-            )
+            ),
           ],
         ),
         count: 3
