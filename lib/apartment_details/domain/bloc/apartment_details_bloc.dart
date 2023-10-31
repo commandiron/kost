@@ -1,5 +1,5 @@
-import 'package:collection/collection.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:kost/apartment_details/domain/model/project.dart';
 import 'package:kost/common/bloc/bloc_state.dart';
 import 'package:kost/cost_table/presentation/cost_table_screen.dart';
 import 'package:kost/apartment_details/domain/bloc/apartment_details_event.dart';
@@ -7,8 +7,6 @@ import 'package:kost/apartment_details/domain/bloc/apartment_details_state.dart'
 import 'package:kost/apartment_details/domain/model/jobs_generator/impl/apartment_jobs_generator.dart';
 
 import '../model/floor/floor.dart';
-import '../model/project_constants.dart';
-import '../model/project_variables.dart';
 
 class ApartmentDetailsBloc
     extends Bloc<ApartmentDetailsEvent, ApartmentDetailsState> {
@@ -17,27 +15,11 @@ class ApartmentDetailsBloc
       ApartmentDetailsState(
         blocState: Initial(),
         snackBarMessage: "",
-        projectConstants: const ProjectConstants(),
-        projectVariables: const ProjectVariables(
-          landArea: 1500,
-          landPerimeter: 80,
-          foundationArea: 377,
-          foundationPerimeter: 78.3,
-          foundationHeight: 1,
-          excavationArea: 465,
-          excavationPerimeter: 86.3,
-          coreCurtainLength: 15,
-          curtainsExceeding1MeterLength: 10,
-          basementCurtainLength: 0,
-          columnsLess1MeterPerimeter: 16,
-          elevationTowerArea: 17.5,
-          elevationTowerHeightWithoutSlab: 3,
-        ),
-        floors: Floor.selviliApt1Blok,
+        project: Project.selviliApt1Blok,
       ),
     ) {
     on<InitApartmentDetailsBloc>((event, emit) {
-      emit(state.copyWith(floors: getSortedFloors(state.floors)));
+
     });
     on<AddFloor>((event, emit) {
       if(event.floor == null) {
@@ -51,13 +33,13 @@ class ApartmentDetailsBloc
         return;
       }
 
-      List<Floor> floors = state.floors;
+      List<Floor> floors = state.project.floors;
 
       floors.add(event.floor!);
 
       emit(state.copyWith(
         snackBarMessage: "${event.floor!.floorName} Eklendi.",
-        floors: getSortedFloors(floors),
+        project: state.project.copyWith(floors: floors),
       ));
     });
     on<EditFloor>((event, emit) {
@@ -72,7 +54,7 @@ class ApartmentDetailsBloc
         return;
       }
 
-      final floors = state.floors;
+      final floors = state.project.floors;
 
       final floorIndex =
       floors.indexWhere((element) => element.no == event.floor!.no);
@@ -81,12 +63,12 @@ class ApartmentDetailsBloc
 
       emit(state.copyWith(
         snackBarMessage: "${event.floor!.floorName} Değiştirildi.",
-        floors: floors,
+        project: state.project.copyWith(floors: floors),
       ));
     });
     on<DeleteFloor>((event, emit) {
       final basementFloorsCount =
-          state.floors.where((element) => element.no < 0).length;
+          state.project.floors.where((element) => element.no < 0).length;
       if (event.floor.no == -1 && basementFloorsCount == 1) {
         emit(state.copyWith(snackBarMessage: "İlk bodrum kat silinemez"));
         return;
@@ -96,7 +78,7 @@ class ApartmentDetailsBloc
         return;
       }
 
-      final floors = state.floors;
+      final floors = state.project.floors;
 
       floors.remove(event.floor);
 
@@ -114,7 +96,7 @@ class ApartmentDetailsBloc
 
       emit(state.copyWith(
         snackBarMessage: "${event.floor.floorName} Silindi.",
-        floors: floors,
+        project: state.project.copyWith(floors: floors),
       ));
     });
     on<ClearSnackBarMessage>((event, emit) {
@@ -122,9 +104,9 @@ class ApartmentDetailsBloc
     });
     on<CalculateCost>((event, emit) {
       final apartmentJobsGenerator = ApartmentJobsGenerator(
-        projectConstants: state.projectConstants,
-        projectVariables: state.projectVariables,
-        floors: state.floors,
+        projectConstants: state.project.projectConstants,
+        projectVariables: state.project.projectVariables,
+        floors: state.project.floors,
       );
       emit(
         state.copyWith(
@@ -137,10 +119,6 @@ class ApartmentDetailsBloc
         ),
       );
     });
-  }
-
-  List<Floor> getSortedFloors(List<Floor> floors) {
-    return floors.sorted((a, b) => a.no.compareTo(b.no)).reversed.toList();
   }
 }
 

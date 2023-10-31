@@ -48,7 +48,7 @@ class FloorViewerView extends StatelessWidget {
                     FloorViewer(
                       width: MediaQuery.of(context).size.width / 1.2,
                       height: MediaQuery.of(context).size.height / 1.6,
-                      floors: state.floors,
+                      floors: state.project.floors,
                       onAddFloor: (int newFloorNo) {
                         Navigator.push(
                             context,
