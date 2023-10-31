@@ -59,5 +59,4 @@ class ApartmentJobsGenerator extends JobsGenerator {
       ...generalExpensesJobsGenerator.createJobs()
     ];
   }
-
 }
