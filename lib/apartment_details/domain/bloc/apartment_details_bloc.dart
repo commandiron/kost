@@ -19,19 +19,19 @@ class ApartmentDetailsBloc
         snackBarMessage: "",
         projectConstants: const ProjectConstants(),
         projectVariables: const ProjectVariables(
-          landArea: 1500, //✓
-          landPerimeter: 80, //✓
-          foundationArea: 377, //✓
-          foundationPerimeter: 78.3, //✓
-          foundationHeight: 1, //✓
-          excavationArea: 465, //✓
-          excavationPerimeter: 86.3, //✓
-          coreCurtainLength: 15, //✓
-          curtainsExceeding1MeterLength: 10, //✓
-          basementCurtainLength: 0, //✓
-          columnsLess1MeterPerimeter: 16, //✓
-          elevationTowerArea: 17.5, //✓
-          elevationTowerHeightWithoutSlab: 3, //✓
+          landArea: 1500,
+          landPerimeter: 80,
+          foundationArea: 377,
+          foundationPerimeter: 78.3,
+          foundationHeight: 1,
+          excavationArea: 465,
+          excavationPerimeter: 86.3,
+          coreCurtainLength: 15,
+          curtainsExceeding1MeterLength: 10,
+          basementCurtainLength: 0,
+          columnsLess1MeterPerimeter: 16,
+          elevationTowerArea: 17.5,
+          elevationTowerHeightWithoutSlab: 3,
         ),
         floors: Floor.selviliApt1Blok,
       ),
