@@ -31,7 +31,6 @@ class Floor {
   final double thinWallLength;
   final List<FloorSection> sections;
 
-
   Floor(
       {required this.no,
       required this.area,
