@@ -36,16 +36,16 @@ enum MainCategory {
 extension MainCategoryExtension on MainCategory {
   String get nameTr {
     return switch (this) {
-    MainCategory.excavationJobs => "Hafriyat İşleri",
-    MainCategory.roughConstructionJobs => "Kaba Yapı İşleri",
-    MainCategory.roofJobs => "Çatı İşleri",
-    MainCategory.facadeJobs => "Cephe İşleri",
-    MainCategory.interiorJobs => "İç İmalatlar",
-    MainCategory.mechanicalJobs => "Mekanik Tesisat",
-    MainCategory.electricalJobs => "Elektrik Tesisat ",
-    MainCategory.landscapeJobs => "Peysaj İşleri",
-    MainCategory.generalExpenses => "Genel Giderler"
-  };
+      MainCategory.excavationJobs => "Hafriyat İşleri",
+      MainCategory.roughConstructionJobs => "Kaba Yapı İşleri",
+      MainCategory.roofJobs => "Çatı İşleri",
+      MainCategory.facadeJobs => "Cephe İşleri",
+      MainCategory.interiorJobs => "İç İmalatlar",
+      MainCategory.mechanicalJobs => "Mekanik Tesisat",
+      MainCategory.electricalJobs => "Elektrik Tesisat ",
+      MainCategory.landscapeJobs => "Peysaj İşleri",
+      MainCategory.generalExpenses => "Genel Giderler"
+    };
   }
 }
 
