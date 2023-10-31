@@ -206,6 +206,20 @@ class Floor {
   ];
 
   static List<Floor> selviliApt1Blok = [
+    ...duplicateFloors(
+      Floor(
+        no: 1,
+        area: 394.36,
+        perimeter: 92.3,
+        heightWithSlab: 3.3,
+        slabHeight: 0.3,
+        isCeilingSlabHollow: true,
+        thickWallLength: 112,
+        thinWallLength: 76.5,
+        sections: [],
+      ),
+      count: 2
+    ),
     Floor(
       no: 0,
       area: 394.36,
@@ -227,13 +241,6 @@ class Floor {
             Bathroom(area: 5.1, perimeter: 9.40, windows: []),
             Bathroom(area: 6.30, perimeter: 10.20, windows: []),
             Balcony(area: 9, perimeter: 12.8),
-
-            Saloon(area: 42, perimeter: 29.60 , windows: [Window(width: 2, height: 2.5)]),
-            NormalRoom(area: 17.5, perimeter: 17, windows: [Window(width: 2, height: 2.5)]),
-            NormalRoom(area: 28.3, perimeter: 23.50, windows: [Window(width: 3, height: 2.5)]),
-            ApartmentHall(area: 4.68, perimeter: 10.20),
-            Bathroom(area: 5.1, perimeter: 9.40, windows: []),
-            Bathroom(area: 6.30, perimeter: 10.20, windows: []),
           ]
         ),
         CommonArea(
@@ -252,13 +259,6 @@ class Floor {
             Bathroom(area: 5.1, perimeter: 9.40, windows: []),
             Bathroom(area: 6.30, perimeter: 10.20, windows: []),
             Balcony(area: 9, perimeter: 12.8),
-
-            Saloon(area: 42, perimeter: 29.60 , windows: [Window(width: 2, height: 2.5)]),
-            NormalRoom(area: 17.5, perimeter: 17, windows: [Window(width: 2, height: 2.5)]),
-            NormalRoom(area: 28.3, perimeter: 23.50, windows: [Window(width: 3, height: 2.5)]),
-            ApartmentHall(area: 4.68, perimeter: 10.20),
-            Bathroom(area: 5.1, perimeter: 9.40, windows: []),
-            Bathroom(area: 6.30, perimeter: 10.20, windows: []),
           ]
         ),
 
@@ -274,6 +274,26 @@ class Floor {
       thickWallLength: 127.16,
       thinWallLength: 73.63,
       sections: [
+        Apartment(
+          rooms: [
+            Saloon(area: 42, perimeter: 29.60 , windows: [Window(width: 2, height: 2.5)]),
+            NormalRoom(area: 17.5, perimeter: 17, windows: [Window(width: 2, height: 2.5)]),
+            NormalRoom(area: 28.3, perimeter: 23.50, windows: [Window(width: 3, height: 2.5)]),
+            ApartmentHall(area: 4.68, perimeter: 10.20),
+            Bathroom(area: 5.1, perimeter: 9.40, windows: []),
+            Bathroom(area: 6.30, perimeter: 10.20, windows: []),
+          ]
+        ),
+        Apartment(
+          rooms: [
+            Saloon(area: 42, perimeter: 29.60 , windows: [Window(width: 2, height: 2.5)]),
+            NormalRoom(area: 17.5, perimeter: 17, windows: [Window(width: 2, height: 2.5)]),
+            NormalRoom(area: 28.3, perimeter: 23.50, windows: [Window(width: 3, height: 2.5)]),
+            ApartmentHall(area: 4.68, perimeter: 10.20),
+            Bathroom(area: 5.1, perimeter: 9.40, windows: []),
+            Bathroom(area: 6.30, perimeter: 10.20, windows: []),
+          ]
+        ),
         CommonArea(
           rooms: [
             BuildingFloorHall(area: 36.8, perimeter: 36.5),
