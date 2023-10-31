@@ -3,9 +3,7 @@ import 'package:kost/apartment_details/domain/model/jobs_generator/impl/roof_job
 import 'package:kost/apartment_details/domain/model/jobs_generator/impl/rough_construction_jobs_generator.dart';
 import 'package:kost/apartment_details/domain/model/jobs_generator/jobs_generator.dart';
 
-import '../../floor/floor.dart';
-import '../../project_constants.dart';
-import '../../project_variables.dart';
+import '../../project.dart';
 import 'facade_jobs_generator.dart';
 import 'general_expenses_jobs_generator.dart';
 import 'interior_jobs_generator.dart';
@@ -14,47 +12,42 @@ import 'landscape_jobs_generator.dart';
 class ApartmentJobsGenerator extends JobsGenerator {
   ApartmentJobsGenerator({
     super.name = "Apartman",
-    required this.projectConstants,
-    required this.projectVariables,
-    required this.floors,
+    required this.project,
   });
 
-  final ProjectConstants projectConstants;
-  final ProjectVariables projectVariables;
-  final List<Floor> floors;
-
+  final Project project;
 
   @override
   List<Job> createJobs() {
     final roughConstructionJobsGenerator = RoughConstructionJobsGenerator(
-      projectConstants: projectConstants,
-      projectVariables: projectVariables,
-      floors: floors,
+      projectConstants: project.projectConstants,
+      projectVariables: project.projectVariables,
+      floors: project.floors,
     );
 
     final roofJobsGenerator = RoofJobsGenerator(
-      floors: floors,
+      floors: project.floors,
     );
 
     final facadeJobsGenerator = FacadeJobsGenerator(
-      floors: floors,
+      floors: project.floors,
     );
 
     final interiorJobsGenerator = InteriorJobsGenerator(
-      projectConstants: projectConstants,
-      floors: floors,
+      projectConstants: project.projectConstants,
+      floors: project.floors,
     );
 
     final landscapeJobsGenerator = LandscapeJobsGenerator(
-      projectConstants: projectConstants,
-      projectVariables: projectVariables,
-      floors: floors,
+      projectConstants: project.projectConstants,
+      projectVariables: project.projectVariables,
+      floors: project.floors,
     );
 
     final generalExpensesJobsGenerator = GeneralExpensesJobsGenerator(
-      projectConstants: projectConstants,
-      projectVariables: projectVariables,
-      floors: floors,
+      projectConstants: project.projectConstants,
+      projectVariables: project.projectVariables,
+      floors: project.floors,
     );
 
     return [

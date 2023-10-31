@@ -109,11 +109,7 @@ class ApartmentDetailsBloc
       emit(state.copyWith(snackBarMessage: ""));
     });
     on<CalculateCost>((event, emit) {
-      final apartmentJobsGenerator = ApartmentJobsGenerator(
-        projectConstants: state.project.projectConstants,
-        projectVariables: state.project.projectVariables,
-        floors: state.project.floors,
-      );
+      final apartmentJobsGenerator = ApartmentJobsGenerator(project: state.project);
       emit(
         state.copyWith(
           blocState: Completed(

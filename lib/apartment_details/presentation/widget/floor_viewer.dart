@@ -42,8 +42,6 @@ class FloorViewer extends StatelessWidget {
       floorHeight = height / floors.length;
     }
 
-    print(bottomMostBasementFloor?.area);
-
     return Column(
       children: [
         IconButton(
