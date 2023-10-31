@@ -1,5 +1,4 @@
 import 'package:collection/collection.dart';
-import 'package:kost/apartment_details/domain/model/floor/window.dart';
 import 'package:kost/apartment_details/domain/model/project_constants.dart';
 import 'package:kost/apartment_details/domain/model/project_variables.dart';
 
@@ -7,6 +6,7 @@ import 'floor/floor.dart';
 import 'floor/floor_section.dart';
 import 'floor/room/apartment_room.dart';
 import 'floor/room/common_area_room.dart';
+import 'floor/room/room.dart';
 
 class Project {
   final ProjectConstants projectConstants;
@@ -66,7 +66,7 @@ class Project {
           thinWallLength: 131.30,
           sections: [
             Apartment(
-              rooms: [
+              apartmentAreaRooms: [
                 ApartmentHall(area: 13, perimeter: 15.2),
                 ApartmentHall(area: 7, perimeter: 14.2),
                 Saloon(area: 70, perimeter: 36, windows: [Window(width: 8, height: 2.5)]),
@@ -86,14 +86,14 @@ class Project {
               ]
             ),
             CommonArea(
-              rooms: [
+              commonAreaRooms: [
                 BuildingFloorHall(area: 9, perimeter: 15),
                 ElevatorShaft(area: 4, perimeter: 8),
                 Stairs(area: 6.45, perimeter: 10.3),
               ]
             ),
             Apartment(
-              rooms: [
+              apartmentAreaRooms: [
                 ApartmentHall(area: 13, perimeter: 15.2),
                 ApartmentHall(area: 7, perimeter: 14.2),
                 Saloon(area: 70, perimeter: 36, windows: [Window(width: 8, height: 2.5)]),
@@ -127,7 +127,7 @@ class Project {
         thinWallLength: 76.5,
         sections: [
           Apartment(
-            rooms: [
+            apartmentAreaRooms: [
               Saloon(area: 51.93, perimeter: 30, windows: [Window(width: 7, height: 2.5)]),
               Kitchen(area: 17, perimeter: 16.7, windows: [Window(width: 2, height: 2.5)]),
               ApartmentHall(area: 19, perimeter: 20.70),
@@ -140,14 +140,14 @@ class Project {
             ]
           ),
           CommonArea(
-            rooms: [
+            commonAreaRooms: [
               BuildingEntranceHall(area: 41.13, perimeter: 38.60),
               ElevatorShaft(area: 4, perimeter: 8),
               Stairs(area: 6.45, perimeter: 10.3),
             ]
           ),
           Apartment(
-            rooms: [
+            apartmentAreaRooms: [
               Saloon(area: 51.93, perimeter: 30, windows: [Window(width: 7, height: 2.5)]),
               Kitchen(area: 17, perimeter: 16.7, windows: [Window(width: 2, height: 2.5)]),
               ApartmentHall(area: 19, perimeter: 20.70),
@@ -173,7 +173,7 @@ class Project {
         thinWallLength: 73.63,
         sections: [
           Apartment(
-            rooms: [
+            apartmentAreaRooms: [
               Saloon(area: 42, perimeter: 29.60 , windows: [Window(width: 2, height: 2.5)]),
               NormalRoom(area: 17.5, perimeter: 17, windows: [Window(width: 2, height: 2.5)]),
               NormalRoom(area: 28.3, perimeter: 23.50, windows: [Window(width: 3, height: 2.5)]),
@@ -183,7 +183,7 @@ class Project {
             ]
           ),
           Apartment(
-            rooms: [
+            apartmentAreaRooms: [
               Saloon(area: 42, perimeter: 29.60 , windows: [Window(width: 2, height: 2.5)]),
               NormalRoom(area: 17.5, perimeter: 17, windows: [Window(width: 2, height: 2.5)]),
               NormalRoom(area: 28.3, perimeter: 23.50, windows: [Window(width: 3, height: 2.5)]),
@@ -193,7 +193,7 @@ class Project {
             ]
           ),
           CommonArea(
-            rooms: [
+            commonAreaRooms: [
               BuildingFloorHall(area: 36.8, perimeter: 36.5),
               ElevatorShaft(area: 4, perimeter: 8),
               Stairs(area: 6.45, perimeter: 10.3),

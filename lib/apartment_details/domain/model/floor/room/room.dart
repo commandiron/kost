@@ -1,25 +1,3 @@
-import 'package:kost/apartment_details/domain/model/floor/window.dart';
-
-enum FloorMaterial { none, parquet, ceramic, marble, marbleStep, epoxy }
-
-enum WallMaterial {
-  none,
-  painting,
-  ceramic,
-}
-
-enum CeilingMaterial {
-  none,
-  plaster,
-  drywall,
-}
-
-enum Door {
-  buildingEntrance,
-  room,
-  fire,
-}
-
 abstract class Room {
   final double area;
   final double perimeter;
@@ -45,3 +23,47 @@ abstract class Room {
     required this.doors,
   });
 }
+
+class Window {
+  final double width;
+  final double height;
+  final bool hasRailing;
+  final bool hasWindowsill;
+
+  Window(
+    {
+      required this.width,
+      required this.height,
+      this.hasRailing = true,
+      this.hasWindowsill = true,
+    }
+  );
+}
+
+enum FloorMaterial {
+  none,
+  parquet,
+  ceramic,
+  marble,
+  marbleStep,
+  epoxy
+}
+
+enum WallMaterial {
+  none,
+  painting,
+  ceramic,
+}
+
+enum CeilingMaterial {
+  none,
+  plaster,
+  drywall,
+}
+
+enum Door {
+  buildingEntrance,
+  room,
+  fire,
+}
+
