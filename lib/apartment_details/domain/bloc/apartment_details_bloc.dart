@@ -1,5 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kost/apartment_details/domain/model/project.dart';
+import 'package:kost/apartment_details/domain/model/project_constants.dart';
+import 'package:kost/apartment_details/domain/model/project_variables.dart';
 import 'package:kost/common/bloc/bloc_state.dart';
 import 'package:kost/cost_table/presentation/cost_table_screen.dart';
 import 'package:kost/apartment_details/domain/bloc/apartment_details_event.dart';
@@ -15,11 +17,19 @@ class ApartmentDetailsBloc
       ApartmentDetailsState(
         blocState: Initial(),
         snackBarMessage: "",
-        project: Project.selviliApt1Blok,
+        project: Project(
+          projectConstants: const ProjectConstants(),
+          projectVariables: const ProjectVariables(),
+          floors: const []
+        ),
       ),
     ) {
     on<InitApartmentDetailsBloc>((event, emit) {
-
+      emit(
+        state.copyWith(
+          project: Project.selviliApt1Blok
+        )
+      );
     });
     on<AddFloor>((event, emit) {
       if(event.floor == null) {

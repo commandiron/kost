@@ -23,12 +23,26 @@ class FloorViewer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    Floor? bottomMostBasementFloor;
+    double widthPerArea = 1;
+    double floorHeight = 60;
+
     final basementFloors = floors.where((element) => element.no < 0).toList();
-    final bottomMostBasementFloor = basementFloors.reduce((current, next) {
-      return current.no < next.no ? current : next;
-    });
-    final double widthPerArea = width / bottomMostBasementFloor.area;
-    final double floorHeight = height / floors.length;
+
+    if(basementFloors.isNotEmpty) {
+      if(basementFloors.length > 1) {
+        bottomMostBasementFloor = basementFloors.reduce((current, next) {
+          return current.no < next.no ? current : next;
+        });
+      } else {
+        bottomMostBasementFloor = basementFloors[0];
+      }
+      widthPerArea = width / bottomMostBasementFloor.area;
+      floorHeight = height / floors.length;
+    }
+
+    print(bottomMostBasementFloor?.area);
 
     return Column(
       children: [
