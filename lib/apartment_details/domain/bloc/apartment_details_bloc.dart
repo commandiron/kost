@@ -25,11 +25,7 @@ class ApartmentDetailsBloc
       ),
     ) {
     on<InitApartmentDetailsBloc>((event, emit) {
-      emit(
-        state.copyWith(
-          project: Project.selviliApt1Blok
-        )
-      );
+      emit(state.copyWith(project: Project.selviliApt1Blok));
     });
     on<AddFloor>((event, emit) {
       if(event.floor == null) {
