@@ -13,18 +13,19 @@ import 'cost_table_state.dart';
 
 class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
   CostTableBloc()
-      : super(
-          CostTableState(
-              blocState: Initial(),
-              tableName: "Apartman Maliyeti",
-              jobs: const [],
-              unitPrices: const [],
-              currencyRates: ManualCurrencyRates(),
-              costs: const [],
-              categoryVisibilities: const {},
-              formattedSubTotalsTRY: const {},
-              formattedGrandTotalTRY: ""),
-        ) {
+    : super(
+      CostTableState(
+        blocState: Initial(),
+        tableName: "Apartman Maliyeti",
+        jobs: const [],
+        unitPrices: const [],
+        currencyRates: ManualCurrencyRates(),
+        costs: const [],
+        categoryVisibilities: const {},
+        formattedSubTotalsTRY: const {},
+        formattedGrandTotalTRY: ""
+      ),
+    ) {
     on<InitCostTableBloc>((event, emit) async {
       emit(state.copyWith(blocState: Loading()));
 
