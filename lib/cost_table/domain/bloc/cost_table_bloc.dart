@@ -73,14 +73,25 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
       final font = await rootBundle.load("fonts/roboto/Roboto-Medium.ttf");
       final fontData = font.buffer.asUint8List(font.offsetInBytes,font.lengthInBytes);
 
-      final PdfDocument document = PdfDocument();
+      final headerStyle = PdfGridRowStyle(
+        backgroundBrush: PdfBrushes.ghostWhite,
+        textBrush: PdfBrushes.black,
+        font: PdfTrueTypeFont(fontData, 8)
+      );
+
+      final gridStyle = PdfGridStyle(
+        cellPadding: PdfPaddings(left: 2, right: 3, top: 4, bottom: 5),
+        backgroundBrush: PdfBrushes.white,
+        textBrush: PdfBrushes.black,
+        font: PdfTrueTypeFont(fontData, 6)
+      );
 
       PdfGrid grid = PdfGrid();
-
+      grid.style = gridStyle;
       grid.columns.add(count: 5);
-      grid.headers.add(1);
 
-      PdfGridRow header = grid.headers[0];
+      final header = grid.rows.add();
+      header.style = headerStyle;
       header.cells[0].value = "İşlerin Tanımı";
       header.cells[1].value = "Malzeme / Marka / Model / İşlem";
       header.cells[2].value = "Birim Fiyat";
@@ -88,52 +99,34 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
       header.cells[4].value = "Toplam Fiyat";
 
       MainCategory lastMainCategory = MainCategory.excavationJobs;
-      PdfGridRow row = grid.rows.add();
-      row.cells[0].value = lastMainCategory.nameTr;
+      final categoryRow = grid.rows.add();
+      categoryRow.style = headerStyle;
+      categoryRow.cells[0].value = lastMainCategory.nameTr;
 
       for (var cost in state.costs) {
 
         if(lastMainCategory != cost.mainCategory) {
-          PdfGridRow row = grid.rows.add();
-          row.style = PdfGridRowStyle(
-            backgroundBrush: PdfBrushes.ghostWhite,
-            textBrush: PdfBrushes.black,
-            font: PdfTrueTypeFont(fontData, 8)
-          );
-          row.cells[0].value = cost.mainCategory.nameTr;
+          final categoryRow = grid.rows.add();
+          categoryRow.style = headerStyle;
+          categoryRow.cells[0].value = cost.mainCategory.nameTr;
         }
 
-        PdfGridRow row = grid.rows.add();
-        row.cells[0].value = cost.jobName;
-        row.cells[1].value = cost.unitPriceNameText;
-        row.cells[2].value = cost.unitPriceAmountText;
-        row.cells[3].value = cost.quantityText + cost.quantityUnitText;
-        row.cells[4].value = cost.formattedTotalPriceTRY;
+        final costRow = grid.rows.add();
+        costRow.cells[0].value = cost.jobName;
+        costRow.cells[1].value = cost.unitPriceNameText;
+        costRow.cells[2].value = cost.unitPriceAmountText;
+        costRow.cells[3].value = "${cost.quantityText} ${cost.quantityUnitText}";
+        costRow.cells[4].value = cost.formattedTotalPriceTRY;
 
         lastMainCategory = cost.mainCategory;
       }
 
-
-
-      header.style = PdfGridRowStyle(
-        backgroundBrush: PdfBrushes.ghostWhite,
-        textBrush: PdfBrushes.black,
-        font: PdfTrueTypeFont(fontData, 8)
-      );
-
-      grid.style = PdfGridStyle(
-        cellPadding: PdfPaddings(left: 2, right: 3, top: 4, bottom: 5),
-        backgroundBrush: PdfBrushes.white,
-        textBrush: PdfBrushes.black,
-        font: PdfTrueTypeFont(fontData, 6)
-      );
-
+      //Create Pdf
+      final PdfDocument document = PdfDocument();
       final PdfPage page = document.pages.add();
-
       grid.draw(page: page, bounds: const Rect.fromLTWH(0, 0, 0, 0));
-
       List<int> bytes = document.saveSync();
-      createPdf(state.tableName, bytes);
+      downloadPdf(state.tableName, bytes);
       document.dispose();
     });
     on<ReplaceUnitPrice>((event, emit) {
@@ -286,7 +279,7 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
     return formattedGrandTotalTRY;
   }
 
-  void createPdf(String name, List<int> bytes) {
+  void downloadPdf(String name, List<int> bytes) {
     js.context['pdfData'] = base64.encode(bytes);
     js.context['filename'] = '$name.pdf';
     Timer.run(() {
