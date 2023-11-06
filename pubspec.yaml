@@ -17,6 +17,7 @@ dependencies:
   intl: ^0.18.1
   grouped_list: ^5.1.2
   uuid: ^3.0.7
+  syncfusion_flutter_pdf: ^23.1.43
 
 dev_dependencies:
   flutter_test:

@@ -29,6 +29,12 @@ class ExpandCollapseAllMainCategory extends CostTableEvent {
   List<Object?> get props => [];
 }
 
+class ExportAsPdf extends CostTableEvent {
+  const ExportAsPdf();
+  @override
+  List<Object?> get props => [];
+}
+
 class ReplaceUnitPrice extends CostTableEvent {
   final String jobId;
   final String replacedUnitPriceId;

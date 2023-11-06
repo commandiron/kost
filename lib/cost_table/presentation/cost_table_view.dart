@@ -51,6 +51,13 @@ class CostTableView extends StatelessWidget {
                         .any((visible) => visible)
                     ? "Collapse All"
                     : "Expand All")),
+            AppSpace.vM!,
+            ElevatedButton(
+                onPressed: () => context
+                    .read<CostTableBloc>()
+                    .add(const ExportAsPdf()),
+                child: Text("ExportAsPdf")),
+            AppSpace.vM!,
             Expanded(
               child: CostsListView(
                 costs: state.costs,

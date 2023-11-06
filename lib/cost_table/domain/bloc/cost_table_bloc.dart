@@ -1,9 +1,14 @@
+import 'dart:async';
+import 'dart:convert';
+import 'dart:js' as js;
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kost/common/bloc/bloc_state.dart';
 import 'package:kost/common/model/unit_price_category.dart';
 import 'package:kost/data/unit_price_repository.dart';
 import 'package:kost/common/extension/formatted_number.dart';
 import 'package:kost/cost_table/domain/model/cost.dart';
+import 'package:syncfusion_flutter_pdf/pdf.dart';
 
 import '../../../common/model/job.dart';
 import '../model/currency_rates.dart';
@@ -61,6 +66,14 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
         categoryVisibilities.updateAll((key, value) => value = true);
       }
       emit(state.copyWith(categoryVisibilities: Map.of(categoryVisibilities)));
+    });
+    on<ExportAsPdf>((event, emit) async {
+      final PdfDocument document = PdfDocument();
+      final PdfPage page = document.pages.add();
+      page.graphics.drawString("test", PdfStandardFont(PdfFontFamily.helvetica, 12));
+      List<int> bytes = document.saveSync();
+      createPdf(bytes);
+      document.dispose();
     });
     on<ReplaceUnitPrice>((event, emit) {
       state.jobs
@@ -210,5 +223,13 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
     final grandTotal = _calculateGrandTotal(costs);
     final formattedGrandTotalTRY = grandTotal.toFormattedText(unit: "TL");
     return formattedGrandTotalTRY;
+  }
+
+  void createPdf(List<int> bytes) {
+    js.context['pdfData'] = base64.encode(bytes);
+    js.context['filename'] = 'Output.pdf';
+    Timer.run(() {
+      js.context.callMethod('download');
+    });
   }
 }
