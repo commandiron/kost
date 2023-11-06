@@ -1,7 +1,8 @@
 import 'dart:async';
 import 'dart:convert';
-import 'dart:js' as js;
+import 'package:universal_html/js.dart' as js;
 
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kost/common/bloc/bloc_state.dart';
 import 'package:kost/common/model/unit_price_category.dart';
@@ -68,11 +69,71 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
       emit(state.copyWith(categoryVisibilities: Map.of(categoryVisibilities)));
     });
     on<ExportAsPdf>((event, emit) async {
+
+      final font = await rootBundle.load("fonts/roboto/Roboto-Medium.ttf");
+      final fontData = font.buffer.asUint8List(font.offsetInBytes,font.lengthInBytes);
+
       final PdfDocument document = PdfDocument();
+
+      PdfGrid grid = PdfGrid();
+
+      grid.columns.add(count: 5);
+      grid.headers.add(1);
+
+      PdfGridRow header = grid.headers[0];
+      header.cells[0].value = "İşlerin Tanımı";
+      header.cells[1].value = "Malzeme / Marka / Model / İşlem";
+      header.cells[2].value = "Birim Fiyat";
+      header.cells[3].value = "Miktar";
+      header.cells[4].value = "Toplam Fiyat";
+
+      MainCategory lastMainCategory = MainCategory.excavationJobs;
+      PdfGridRow row = grid.rows.add();
+      row.cells[0].value = lastMainCategory.nameTr;
+
+      for (var cost in state.costs) {
+
+        if(lastMainCategory != cost.mainCategory) {
+          PdfGridRow row = grid.rows.add();
+          row.style = PdfGridRowStyle(
+            backgroundBrush: PdfBrushes.ghostWhite,
+            textBrush: PdfBrushes.black,
+            font: PdfTrueTypeFont(fontData, 8)
+          );
+          row.cells[0].value = cost.mainCategory.nameTr;
+        }
+
+        PdfGridRow row = grid.rows.add();
+        row.cells[0].value = cost.jobName;
+        row.cells[1].value = cost.unitPriceNameText;
+        row.cells[2].value = cost.unitPriceAmountText;
+        row.cells[3].value = cost.quantityText + cost.quantityUnitText;
+        row.cells[4].value = cost.formattedTotalPriceTRY;
+
+        lastMainCategory = cost.mainCategory;
+      }
+
+
+
+      header.style = PdfGridRowStyle(
+        backgroundBrush: PdfBrushes.ghostWhite,
+        textBrush: PdfBrushes.black,
+        font: PdfTrueTypeFont(fontData, 8)
+      );
+
+      grid.style = PdfGridStyle(
+        cellPadding: PdfPaddings(left: 2, right: 3, top: 4, bottom: 5),
+        backgroundBrush: PdfBrushes.white,
+        textBrush: PdfBrushes.black,
+        font: PdfTrueTypeFont(fontData, 6)
+      );
+
       final PdfPage page = document.pages.add();
-      page.graphics.drawString("test", PdfStandardFont(PdfFontFamily.helvetica, 12));
+
+      grid.draw(page: page, bounds: const Rect.fromLTWH(0, 0, 0, 0));
+
       List<int> bytes = document.saveSync();
-      createPdf(bytes);
+      createPdf(state.tableName, bytes);
       document.dispose();
     });
     on<ReplaceUnitPrice>((event, emit) {
@@ -225,9 +286,9 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
     return formattedGrandTotalTRY;
   }
 
-  void createPdf(List<int> bytes) {
+  void createPdf(String name, List<int> bytes) {
     js.context['pdfData'] = base64.encode(bytes);
-    js.context['filename'] = 'Output.pdf';
+    js.context['filename'] = '$name.pdf';
     Timer.run(() {
       js.context.callMethod('download');
     });

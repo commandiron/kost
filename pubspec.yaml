@@ -17,6 +17,7 @@ dependencies:
   intl: ^0.18.1
   grouped_list: ^5.1.2
   uuid: ^3.0.7
+  universal_html: ^2.2.4
   syncfusion_flutter_pdf: ^23.1.43
 
 dev_dependencies:
@@ -26,3 +27,35 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  fonts:
+    - family: Roboto
+      fonts:
+        - asset: fonts/roboto/Roboto-Black.ttf
+          weight: 900
+        - asset: fonts/roboto/Roboto-BlackItalic.ttf
+          style: italic
+          weight: 900
+        - asset: fonts/roboto/Roboto-Bold.ttf
+          weight: 700
+        - asset: fonts/roboto/Roboto-BoldItalic.ttf
+          style: italic
+          weight: 700
+        - asset: fonts/roboto/Roboto-Italic.ttf
+          style: italic
+        - asset: fonts/roboto/Roboto-Medium.ttf
+          weight: 500
+        - asset: fonts/roboto/Roboto-MediumItalic.ttf
+          weight: 500
+          style: italic
+        - asset: fonts/roboto/Roboto-Regular.ttf
+          weight: 400
+        - asset: fonts/roboto/Roboto-Light.ttf
+          weight: 300
+        - asset: fonts/roboto/Roboto-LightItalic.ttf
+          style: italic
+          weight: 300
+        - asset: fonts/roboto/Roboto-Thin.ttf
+          weight: 100
+        - asset: fonts/roboto/Roboto-ThinItalic.ttf
+          style: italic
+          weight: 100
