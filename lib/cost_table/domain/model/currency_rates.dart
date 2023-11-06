@@ -1,7 +1,7 @@
 import 'package:kost/common/model/unit_price.dart';
 
 class ManualCurrencyRates extends CurrencyRates {
-  ManualCurrencyRates({super.usdTry = 27, super.eurTry = 29.72});
+  ManualCurrencyRates({super.usdTry = 28.44, super.eurTry = 30.54});
 }
 
 abstract class CurrencyRates {
