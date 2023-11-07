@@ -126,6 +126,16 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
         font: PdfTrueTypeFont(fontData, 6),
       );
 
+      PdfGridCellStyle grandTotalCellStyle = PdfGridCellStyle(
+        format: PdfStringFormat(
+          lineAlignment: PdfVerticalAlignment.middle,
+        ),
+        cellPadding: PdfPaddings(left: 4, right: 4, top: 4, bottom: 4),
+        backgroundBrush: PdfSolidBrush(PdfColor(255, 235, 59)),
+        textBrush: PdfBrushes.black,
+        font: PdfTrueTypeFont(fontData, 8),
+      );
+
       PdfTextElement textElement = PdfTextElement(
         text: state.tableName,
         font: PdfTrueTypeFont(fontData, 16),
@@ -181,6 +191,13 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
 
         index++;
         mainCategory = cost.mainCategory;
+      }
+
+      final grandTotalRow = grid.rows.add();
+      grandTotalRow.cells[4].value = "Genel Toplam (KDV hariç)";
+      grandTotalRow.cells[5].value = state.formattedGrandTotalTRY;
+      for (int i = 0; i < grid.columns.count; i++) {
+        grandTotalRow.cells[i].style = grandTotalCellStyle;
       }
 
       //Create Pdf
