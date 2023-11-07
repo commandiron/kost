@@ -126,13 +126,18 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
         font: PdfTrueTypeFont(fontData, 6),
       );
 
-
+      PdfTextElement textElement = PdfTextElement(
+        text: state.tableName,
+        font: PdfTrueTypeFont(fontData, 16),
+        format: PdfStringFormat(
+          alignment: PdfTextAlignment.center,
+        )
+      );
 
       PdfGrid grid = PdfGrid();
       grid.columns.add(count: 6);
-      grid.columns[0].width = 20;
+      grid.columns[0].width = 26;
 
-      //Header
       final header = grid.rows.add();
       header.cells[1].value = "Poz";
       header.cells[1].value = "İşlerin Tanımı";
@@ -181,7 +186,12 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
       //Create Pdf
       final PdfDocument document = PdfDocument();
       final PdfPage page = document.pages.add();
-      grid.draw(page: page, bounds: const Rect.fromLTWH(0, 0, 0, 0));
+
+      //Draw
+      textElement.draw(page: page, bounds: Rect.fromLTWH(0, 0, page.getClientSize().width, 0))!;
+      grid.draw(page: page, bounds: const Rect.fromLTWH(0, 30, 0, 0));
+
+      //Download
       List<int> bytes = document.saveSync();
       downloadPdf(state.tableName, bytes);
       document.dispose();
