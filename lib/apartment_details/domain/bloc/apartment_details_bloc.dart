@@ -18,6 +18,7 @@ class ApartmentDetailsBloc
         blocState: Initial(),
         snackBarMessage: "",
         project: Project(
+          name: "",
           projectConstants: const ProjectConstants(),
           projectVariables: const ProjectVariables(),
           floors: const []
@@ -114,7 +115,7 @@ class ApartmentDetailsBloc
         state.copyWith(
           blocState: Completed(
             data: CostTableArguments(
-              tableName: "${apartmentJobsGenerator.name} Maliyeti",
+              tableName: "${state.project.name} Maliyet",
               jobs: apartmentJobsGenerator.createJobs(),
             ),
           ),

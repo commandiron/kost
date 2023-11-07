@@ -9,12 +9,14 @@ import 'floor/room/common_area_room.dart';
 import 'floor/room/room.dart';
 
 class Project {
+  final String name;
   final ProjectConstants projectConstants;
   final ProjectVariables projectVariables;
   List<Floor> floors;
 
   Project(
     {
+      required this.name,
       required this.projectConstants,
       required this.projectVariables,
       required this.floors
@@ -24,11 +26,13 @@ class Project {
   }
 
   Project copyWith({
+    String? name,
     ProjectConstants? projectConstants,
     ProjectVariables? projectVariables,
     List<Floor>? floors,
   }) {
     return Project(
+      name: name ?? this.name,
       projectConstants: projectConstants ?? this.projectConstants,
       projectVariables: projectVariables ?? this.projectVariables,
       floors: floors ?? this.floors,
@@ -37,6 +41,7 @@ class Project {
 
 
   static Project selviliApt1Blok = Project(
+    name: "Selvili 1 Blok",
     projectConstants: const ProjectConstants(),
     projectVariables: const ProjectVariables(
       landArea: 1500,
