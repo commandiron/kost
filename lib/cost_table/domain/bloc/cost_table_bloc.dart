@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+import 'package:collection/collection.dart';
 import 'package:universal_html/js.dart' as js;
 
 import 'package:flutter/services.dart';
@@ -74,13 +75,19 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
       final fontData = font.buffer.asUint8List(font.offsetInBytes,font.lengthInBytes);
 
       final headerStyle = PdfGridRowStyle(
-        backgroundBrush: PdfBrushes.ghostWhite,
-        textBrush: PdfBrushes.black,
+        backgroundBrush: PdfSolidBrush(PdfColor(59, 59, 59)),
+        textBrush: PdfBrushes.white,
+        font: PdfTrueTypeFont(fontData, 8)
+      );
+
+      final categoryStyle = PdfGridRowStyle(
+        backgroundBrush: PdfSolidBrush(PdfColor(59, 59, 59)),
+        textBrush: PdfBrushes.white,
         font: PdfTrueTypeFont(fontData, 8)
       );
 
       final gridStyle = PdfGridStyle(
-        cellPadding: PdfPaddings(left: 2, right: 3, top: 4, bottom: 5),
+        cellPadding: PdfPaddings(left: 4, right: 4, top: 4, bottom: 4),
         backgroundBrush: PdfBrushes.white,
         textBrush: PdfBrushes.black,
         font: PdfTrueTypeFont(fontData, 6)
@@ -88,37 +95,43 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
 
       PdfGrid grid = PdfGrid();
       grid.style = gridStyle;
-      grid.columns.add(count: 5);
+      grid.columns.add(count: 6);
+      grid.columns[0].width = 20;
 
       final header = grid.rows.add();
       header.style = headerStyle;
-      header.cells[0].value = "İşlerin Tanımı";
-      header.cells[1].value = "Malzeme / Marka / Model / İşlem";
-      header.cells[2].value = "Birim Fiyat";
-      header.cells[3].value = "Miktar";
-      header.cells[4].value = "Toplam Fiyat";
+      header.cells[1].value = "Poz";
+      header.cells[1].value = "İşlerin Tanımı";
+      header.cells[2].value = "Malzeme / Marka / Model / İşlem";
+      header.cells[3].value = "Birim Fiyat";
+      header.cells[4].value = "Miktar";
+      header.cells[5].value = "Toplam Fiyat";
 
-      MainCategory lastMainCategory = MainCategory.excavationJobs;
-      final categoryRow = grid.rows.add();
-      categoryRow.style = headerStyle;
-      categoryRow.cells[0].value = lastMainCategory.nameTr;
-
+      MainCategory? mainCategory;
+      String id = "";
+      int index = 0;
       for (var cost in state.costs) {
 
-        if(lastMainCategory != cost.mainCategory) {
+        if(mainCategory != cost.mainCategory) {
+          id = cost.mainCategory.id;
+          index = 1;
+
           final categoryRow = grid.rows.add();
-          categoryRow.style = headerStyle;
-          categoryRow.cells[0].value = cost.mainCategory.nameTr;
+          categoryRow.style = categoryStyle;
+          categoryRow.cells[0].value = cost.mainCategory.id;
+          categoryRow.cells[1].value = cost.mainCategory.nameTr;
         }
 
         final costRow = grid.rows.add();
-        costRow.cells[0].value = cost.jobName;
-        costRow.cells[1].value = cost.unitPriceNameText;
-        costRow.cells[2].value = cost.unitPriceAmountText;
-        costRow.cells[3].value = "${cost.quantityText} ${cost.quantityUnitText}";
-        costRow.cells[4].value = cost.formattedTotalPriceTRY;
+        costRow.cells[0].value = id + index.toString();
+        costRow.cells[1].value = cost.jobName;
+        costRow.cells[2].value = cost.unitPriceNameText;
+        costRow.cells[3].value = cost.unitPriceAmountText;
+        costRow.cells[4].value = "${cost.quantityText} ${cost.quantityUnitText}";
+        costRow.cells[5].value = cost.formattedTotalPriceTRY;
 
-        lastMainCategory = cost.mainCategory;
+        index++;
+        mainCategory = cost.mainCategory;
       }
 
       //Create Pdf
@@ -280,10 +293,10 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
   }
 
   void downloadPdf(String name, List<int> bytes) {
-    js.context['pdfData'] = base64.encode(bytes);
-    js.context['filename'] = '$name.pdf';
+    js.context["pdfData"] = base64.encode(bytes);
+    js.context["filename"] = "$name.pdf";
     Timer.run(() {
-      js.context.callMethod('download');
+      js.context.callMethod("download");
     });
   }
 }
