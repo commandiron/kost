@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:convert';
-import 'package:collection/collection.dart';
 import 'package:universal_html/js.dart' as js;
 
 import 'package:flutter/services.dart';
@@ -74,38 +73,76 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
       final font = await rootBundle.load("fonts/roboto/Roboto-Medium.ttf");
       final fontData = font.buffer.asUint8List(font.offsetInBytes,font.lengthInBytes);
 
-      final headerStyle = PdfGridRowStyle(
+      PdfGridCellStyle headerCellStyle = PdfGridCellStyle(
+        format: PdfStringFormat(
+          alignment: PdfTextAlignment.center,
+          lineAlignment: PdfVerticalAlignment.middle,
+        ),
+        cellPadding: PdfPaddings(left: 4, right: 4, top: 4, bottom: 4),
         backgroundBrush: PdfSolidBrush(PdfColor(59, 59, 59)),
         textBrush: PdfBrushes.white,
-        font: PdfTrueTypeFont(fontData, 8)
+        font: PdfTrueTypeFont(fontData, 6),
       );
 
-      final categoryStyle = PdfGridRowStyle(
+      PdfGridCellStyle categoryIdCellStyle = PdfGridCellStyle(
+        format: PdfStringFormat(
+          alignment: PdfTextAlignment.center,
+          lineAlignment: PdfVerticalAlignment.middle,
+        ),
+        cellPadding: PdfPaddings(left: 4, right: 4, top: 4, bottom: 4),
         backgroundBrush: PdfSolidBrush(PdfColor(59, 59, 59)),
         textBrush: PdfBrushes.white,
-        font: PdfTrueTypeFont(fontData, 8)
+        font: PdfTrueTypeFont(fontData, 8),
       );
 
-      final gridStyle = PdfGridStyle(
+      PdfGridCellStyle categoryNameCellStyle = PdfGridCellStyle(
+        format: PdfStringFormat(
+          lineAlignment: PdfVerticalAlignment.middle,
+        ),
+        cellPadding: PdfPaddings(left: 4, right: 4, top: 4, bottom: 4),
+        backgroundBrush: PdfSolidBrush(PdfColor(59, 59, 59)),
+        textBrush: PdfBrushes.white,
+        font: PdfTrueTypeFont(fontData, 8),
+      );
+
+      PdfGridCellStyle rowIdCellStyle = PdfGridCellStyle(
+        format: PdfStringFormat(
+          alignment: PdfTextAlignment.center,
+          lineAlignment: PdfVerticalAlignment.middle,
+        ),
         cellPadding: PdfPaddings(left: 4, right: 4, top: 4, bottom: 4),
         backgroundBrush: PdfBrushes.white,
         textBrush: PdfBrushes.black,
-        font: PdfTrueTypeFont(fontData, 6)
+        font: PdfTrueTypeFont(fontData, 6),
       );
 
+      PdfGridCellStyle rowCellStyle = PdfGridCellStyle(
+        format: PdfStringFormat(
+          lineAlignment: PdfVerticalAlignment.middle,
+        ),
+        cellPadding: PdfPaddings(left: 4, right: 4, top: 4, bottom: 4),
+        backgroundBrush: PdfBrushes.white,
+        textBrush: PdfBrushes.black,
+        font: PdfTrueTypeFont(fontData, 6),
+      );
+
+
+
       PdfGrid grid = PdfGrid();
-      grid.style = gridStyle;
       grid.columns.add(count: 6);
       grid.columns[0].width = 20;
 
+      //Header
       final header = grid.rows.add();
-      header.style = headerStyle;
       header.cells[1].value = "Poz";
       header.cells[1].value = "İşlerin Tanımı";
       header.cells[2].value = "Malzeme / Marka / Model / İşlem";
       header.cells[3].value = "Birim Fiyat";
       header.cells[4].value = "Miktar";
       header.cells[5].value = "Toplam Fiyat";
+      for (int i = 0; i < grid.columns.count; i++) {
+        header.cells[i].style = headerCellStyle;
+      }
 
       MainCategory? mainCategory;
       String id = "";
@@ -117,9 +154,12 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
           index = 1;
 
           final categoryRow = grid.rows.add();
-          categoryRow.style = categoryStyle;
           categoryRow.cells[0].value = cost.mainCategory.id;
           categoryRow.cells[1].value = cost.mainCategory.nameTr;
+          for (int i = 0; i < grid.columns.count; i++) {
+            categoryRow.cells[i].style = categoryNameCellStyle;
+          }
+          categoryRow.cells[0].style = categoryIdCellStyle;
         }
 
         final costRow = grid.rows.add();
@@ -129,6 +169,10 @@ class CostTableBloc extends Bloc<CostTableEvent, CostTableState> {
         costRow.cells[3].value = cost.unitPriceAmountText;
         costRow.cells[4].value = "${cost.quantityText} ${cost.quantityUnitText}";
         costRow.cells[5].value = cost.formattedTotalPriceTRY;
+        for (int i = 0; i < grid.columns.count; i++) {
+          costRow.cells[i].style = rowCellStyle;
+        }
+        costRow.cells[0].style = rowIdCellStyle;
 
         index++;
         mainCategory = cost.mainCategory;
