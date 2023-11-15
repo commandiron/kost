@@ -1,4 +1,5 @@
 abstract class Room {
+  final String name;
   final double area;
   final double perimeter;
   final List<Window> windows;
@@ -11,6 +12,7 @@ abstract class Room {
   late List<Door> doors;
 
   Room({
+    required this.name,
     required this.area,
     required this.perimeter,
     required this.windows,

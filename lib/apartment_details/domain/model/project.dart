@@ -234,7 +234,63 @@ class Project {
         elevationTowerHeightWithoutSlab: 3,
       ),
       floors: [
+        Floor(
+          no: -1,
+          area: 221.72,
+          perimeter: 64.70,
+          heightWithSlab: 3.0,
+          slabHeight: 0.15,
+          isCeilingSlabHollow: false,
+          thickWallLength: 42.85,
+          thinWallLength: 0,
+          sections: [
+            CommonArea(
+              commonAreaRooms: [
+                ElevatorShaft(area: 4.1, perimeter: 8.1),
+                Stairs(area: 8.03, perimeter: 11.4),
+                Stairs(area: 3.95, perimeter: 9.9),
+                Stairs(area: 3.95, perimeter: 9.9),
+                BuildingFloorHall(area: 14.53, perimeter: 23.2),
+                TechnicalArea(area: 4.8, perimeter: 9.2),
+                TechnicalArea(area: 4.8, perimeter: 9.2),
+                TechnicalArea(area: 6.9, perimeter: 10.9),
+                TechnicalArea(area: 29.60, perimeter: 22.8),
+                TechnicalArea(area: 43.92, perimeter: 29.5),
+                CommonAreaRoom(
+                  name: "Dükkan Deposu",
+                  area: 22.22,
+                  perimeter: 20.9,
+                  windows: [],
+                  floorMaterial: FloorMaterial.ceramic,
+                  wallMaterial: WallMaterial.painting,
+                  ceilingMaterial: CeilingMaterial.drywall,
+                  hasCovingPlaster: false,
+                  hasFloorPlinth: false,
+                  isFloorWet: false,
+                  doors: [
+                    Door.fire
+                  ]
+                ),
+                CommonAreaRoom(
+                  name: "Dükkan Deposu",
+                  area: 45.98,
+                  perimeter: 35.30,
+                  windows: [],
+                  floorMaterial: FloorMaterial.ceramic,
+                  wallMaterial: WallMaterial.painting,
+                  ceilingMaterial: CeilingMaterial.drywall,
+                  hasCovingPlaster: false,
+                  hasFloorPlinth: false,
+                  isFloorWet: false,
+                  doors: [
+                    Door.fire
+                  ]
+                ),
+              ]
+            )
 
+          ]
+        )
       ]
   );
 }

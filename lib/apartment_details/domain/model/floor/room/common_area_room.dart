@@ -2,6 +2,7 @@ import 'package:kost/apartment_details/domain/model/floor/room/room.dart';
 
 class CommonAreaRoom extends Room {
   CommonAreaRoom({
+    super.name = "",
     required super.area,
     required super.perimeter,
     required super.windows,
