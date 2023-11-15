@@ -214,4 +214,27 @@ class Project {
       ),
     ],
   );
+
+  static Project orelApt = Project(
+      name: "Oren Apartmanı",
+      projectConstants: const ProjectConstants(),
+      projectVariables: const ProjectVariables(
+        landArea: 866.59,
+        landPerimeter: 124.45,
+        foundationArea: 221.72,
+        foundationPerimeter: 64.70,
+        foundationHeight: 1,
+        excavationArea: 295.22,
+        excavationPerimeter: 72.7,
+        coreCurtainLength: 16.13,
+        curtainsExceeding1MeterLength: 4.5,
+        basementCurtainLength: 64.7,
+        columnsLess1MeterPerimeter: 11.28,
+        elevationTowerArea: 23.94,
+        elevationTowerHeightWithoutSlab: 3,
+      ),
+      floors: [
+
+      ]
+  );
 }
