@@ -255,12 +255,123 @@ class Project {
               ),
               Apartment(
                 apartmentAreaRooms: [
-
+                  Saloon(
+                    area: 43.44, 
+                    perimeter: 28, 
+                    windows: [
+                      Window(width: 3, height: 2.5),
+                      Window(width: 1, height: 2.5),
+                      Window(width: 3.5, height: 2.5),
+                    ]
+                  ),
+                  Kitchen(area: 13.6, perimeter: 14.8, windows: [Window(width: 1.5, height: 2.5)]),
+                  ApartmentHall(area: 10.07, perimeter: 16.6),
+                  ApartmentHall(area: 5.17, perimeter: 11.6),
+                  NormalRoom(
+                    area: 8.5,
+                    perimeter: 11.8,
+                    windows: [
+                      Window(width: 1.2, height: 2.5)
+                    ]
+                  ),
+                  NormalRoom(
+                    area: 12.4,
+                    perimeter: 14.2,
+                    windows: [
+                      Window(width: 1.5, height: 2.5)
+                    ]
+                  ),
+                  NormalRoom(
+                    area: 10,
+                    perimeter: 13,
+                    windows: [
+                      Window(width: 1.5, height: 2.5)
+                    ]
+                  ),
+                  NormalRoom(
+                    area: 23.5,
+                    perimeter: 22.5,
+                    windows: [
+                      Window(width: 2, height: 2.5)
+                    ]
+                  ),
+                  Bathroom(
+                    area: 3.22,
+                    perimeter: 7.4,
+                    windows: []
+                  ),
+                  Bathroom(
+                    area: 6.32,
+                    perimeter: 10.1,
+                    windows: []
+                  ),
+                  Balcony(
+                    area: 4.6,
+                    perimeter: 8.8
+                  )
                 ]
-              )
+              ),
+              Apartment(
+                  apartmentAreaRooms: [
+                    Saloon(
+                        area: 43.44,
+                        perimeter: 28,
+                        windows: [
+                          Window(width: 3, height: 2.5),
+                          Window(width: 1, height: 2.5),
+                          Window(width: 3.5, height: 2.5),
+                        ]
+                    ),
+                    Kitchen(area: 13.6, perimeter: 14.8, windows: [Window(width: 1.5, height: 2.5)]),
+                    ApartmentHall(area: 10.07, perimeter: 16.6),
+                    ApartmentHall(area: 5.17, perimeter: 11.6),
+                    NormalRoom(
+                        area: 8.5,
+                        perimeter: 11.8,
+                        windows: [
+                          Window(width: 1.2, height: 2.5)
+                        ]
+                    ),
+                    NormalRoom(
+                        area: 12.4,
+                        perimeter: 14.2,
+                        windows: [
+                          Window(width: 1.5, height: 2.5)
+                        ]
+                    ),
+                    NormalRoom(
+                        area: 10,
+                        perimeter: 13,
+                        windows: [
+                          Window(width: 1.5, height: 2.5)
+                        ]
+                    ),
+                    NormalRoom(
+                        area: 23.5,
+                        perimeter: 22.5,
+                        windows: [
+                          Window(width: 2, height: 2.5)
+                        ]
+                    ),
+                    Bathroom(
+                        area: 3.22,
+                        perimeter: 7.4,
+                        windows: []
+                    ),
+                    Bathroom(
+                        area: 6.32,
+                        perimeter: 10.1,
+                        windows: []
+                    ),
+                    Balcony(
+                        area: 4.6,
+                        perimeter: 8.8
+                    )
+                  ]
+              ),
             ]
           ),
-          count: 1
+          count: 9
         ),
         Floor(
           no: 0,
