@@ -226,7 +226,7 @@ class Project {
         foundationHeight: 1,
         excavationArea: 295.22,
         excavationPerimeter: 72.7,
-        coreCurtainLength: 16.13,
+        coreCurtainLength: 17.57,
         curtainsExceeding1MeterLength: 4.5,
         basementCurtainLength: 64.7,
         columnsLess1MeterPerimeter: 11.28,
@@ -234,6 +234,34 @@ class Project {
         elevationTowerHeightWithoutSlab: 3,
       ),
       floors: [
+        ...Floor.duplicateFloors(
+          Floor(
+            no: 1,
+            area: 325.52,
+            perimeter: 76.7,
+            heightWithSlab: 3.3,
+            slabHeight: 0.3,
+            isCeilingSlabHollow: true,
+            thickWallLength: 105,
+            thinWallLength: 82.38,
+            sections: [
+              CommonArea(
+                commonAreaRooms: [
+                  ElevatorShaft(area: 4.1, perimeter: 8.1),
+                  Shaft(area: 1.27, perimeter: 6.1),
+                  Stairs(area: 8.03, perimeter: 11.4),
+                  BuildingFloorHall(area: 4.12, perimeter: 8.5)
+                ]
+              ),
+              Apartment(
+                apartmentAreaRooms: [
+
+                ]
+              )
+            ]
+          ),
+          count: 1
+        ),
         Floor(
           no: 0,
           area: 217.97,
@@ -251,7 +279,7 @@ class Project {
                 Stairs(area: 8.03, perimeter: 11.4),
                 Stairs(area: 3.95, perimeter: 9.9),
                 Stairs(area: 3.95, perimeter: 9.9),
-                BuildingFloorHall(area: 14.03, perimeter: 18.70),
+                BuildingEntranceHall(area: 14.03, perimeter: 18.70),
                 CommonAreaRoom(
                   name: "Dükkan 1",
                   area: 38.10,

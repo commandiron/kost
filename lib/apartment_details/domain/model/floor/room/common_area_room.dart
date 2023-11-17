@@ -2,7 +2,7 @@ import 'package:kost/apartment_details/domain/model/floor/room/room.dart';
 
 class CommonAreaRoom extends Room {
   CommonAreaRoom({
-    super.name = "",
+    required super.name,
     required super.area,
     required super.perimeter,
     required super.windows,
@@ -18,6 +18,7 @@ class CommonAreaRoom extends Room {
 
 class BuildingFloorHall extends CommonAreaRoom {
   BuildingFloorHall({
+    super.name = "Kat Holü",
     required super.area,
     required super.perimeter,
     super.windows = const [],
@@ -33,6 +34,7 @@ class BuildingFloorHall extends CommonAreaRoom {
 
 class FireEscapeHall extends CommonAreaRoom {
   FireEscapeHall({
+    super.name = "Yangın Kaçış Holü",
     required super.area,
     required super.perimeter,
     super.windows = const [],
@@ -51,6 +53,7 @@ class FireEscapeHall extends CommonAreaRoom {
 
 class BuildingEntranceHall extends CommonAreaRoom {
   BuildingEntranceHall({
+    super.name = "Apartman Giriş Holü",
     required super.area,
     required super.perimeter,
     super.windows = const [],
@@ -66,6 +69,7 @@ class BuildingEntranceHall extends CommonAreaRoom {
 
 class ParkingArea extends CommonAreaRoom {
   ParkingArea({
+    super.name = "Otopark Alanı",
     required super.area,
     required super.perimeter,
     super.windows = const [],
@@ -81,6 +85,7 @@ class ParkingArea extends CommonAreaRoom {
 
 class TechnicalArea extends CommonAreaRoom {
   TechnicalArea({
+    super.name = "Teknik Hacim",
     required super.area,
     required super.perimeter,
     super.windows = const [],
@@ -94,23 +99,9 @@ class TechnicalArea extends CommonAreaRoom {
   });
 }
 
-class ElevatorShaft extends CommonAreaRoom {
-  ElevatorShaft({
-    required super.area,
-    required super.perimeter,
-    super.windows = const [],
-    super.floorMaterial = FloorMaterial.none,
-    super.wallMaterial = WallMaterial.painting,
-    super.ceilingMaterial = CeilingMaterial.none,
-    super.hasCovingPlaster = false,
-    super.hasFloorPlinth = false,
-    super.isFloorWet = false,
-    super.doors = const [],
-  });
-}
-
 class Stairs extends CommonAreaRoom {
   Stairs({
+    super.name = "Merdiven",
     required super.area,
     required super.perimeter,
     super.windows = const [],
@@ -124,8 +115,25 @@ class Stairs extends CommonAreaRoom {
   });
 }
 
+class ElevatorShaft extends CommonAreaRoom {
+  ElevatorShaft({
+    super.name = "Asansör Şaftı",
+    required super.area,
+    required super.perimeter,
+    super.windows = const [],
+    super.floorMaterial = FloorMaterial.none,
+    super.wallMaterial = WallMaterial.painting,
+    super.ceilingMaterial = CeilingMaterial.none,
+    super.hasCovingPlaster = false,
+    super.hasFloorPlinth = false,
+    super.isFloorWet = false,
+    super.doors = const [],
+  });
+}
+
 class Shaft extends CommonAreaRoom {
   Shaft({
+    super.name = "Şaft",
     required super.area,
     required super.perimeter,
     super.windows = const [],

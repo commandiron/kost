@@ -2,7 +2,7 @@ import 'package:kost/apartment_details/domain/model/floor/room/room.dart';
 
 class ApartmentRoom extends Room {
   ApartmentRoom({
-    super.name = "",
+    required super.name,
     required super.area,
     required super.perimeter,
     required super.windows,
@@ -18,6 +18,7 @@ class ApartmentRoom extends Room {
 
 class Saloon extends ApartmentRoom {
   Saloon({
+    super.name = "Salon",
     required super.area,
     required super.perimeter,
     required super.windows,
@@ -33,6 +34,7 @@ class Saloon extends ApartmentRoom {
 
 class SaloonWithKitchen extends ApartmentRoom {
   SaloonWithKitchen({
+    super.name = "Açık Mutfaklı Salon",
     required super.area,
     required super.perimeter,
     required super.windows,
@@ -48,6 +50,7 @@ class SaloonWithKitchen extends ApartmentRoom {
 
 class Kitchen extends ApartmentRoom {
   Kitchen({
+    super.name = "Mutfak",
     required super.area,
     required super.perimeter,
     required super.windows,
@@ -63,6 +66,7 @@ class Kitchen extends ApartmentRoom {
 
 class NormalRoom extends ApartmentRoom {
   NormalRoom({
+    super.name = "Oda",
     required super.area,
     required super.perimeter,
     required super.windows,
@@ -78,6 +82,7 @@ class NormalRoom extends ApartmentRoom {
 
 class ApartmentHall extends ApartmentRoom {
   ApartmentHall({
+    super.name = "Antre - Koridor",
     required super.area,
     required super.perimeter,
     super.windows = const [],
@@ -93,6 +98,7 @@ class ApartmentHall extends ApartmentRoom {
 
 class Wc extends ApartmentRoom {
   Wc({
+    super.name = "Tuvalet",
     required super.area,
     required super.perimeter,
     required super.windows,
@@ -108,6 +114,7 @@ class Wc extends ApartmentRoom {
 
 class EscapeHallWc extends ApartmentRoom {
   EscapeHallWc({
+    super.name = "Yangın Kaçış Holü Tuvalet",
     required super.area,
     required super.perimeter,
     required super.windows,
@@ -126,6 +133,7 @@ class EscapeHallWc extends ApartmentRoom {
 
 class Bathroom extends ApartmentRoom {
   Bathroom({
+    super.name = "Banyo",
     required super.area,
     required super.perimeter,
     required super.windows,
@@ -141,6 +149,7 @@ class Bathroom extends ApartmentRoom {
 
 class EscapeHallBathroom extends ApartmentRoom {
   EscapeHallBathroom({
+    super.name = "Yangın Kaçış Holü Banyo",
     required super.area,
     required super.perimeter,
     required super.windows,
@@ -159,6 +168,7 @@ class EscapeHallBathroom extends ApartmentRoom {
 
 class Balcony extends ApartmentRoom {
   Balcony({
+    super.name = "Balkon",
     required super.area,
     required super.perimeter,
     super.windows = const [],
