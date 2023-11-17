@@ -216,7 +216,7 @@ class Project {
   );
 
   static Project orelApt = Project(
-      name: "Oren Apartmanı",
+      name: "Orel Apartmanı",
       projectConstants: const ProjectConstants(),
       projectVariables: const ProjectVariables(
         landArea: 866.59,
@@ -235,6 +235,103 @@ class Project {
       ),
       floors: [
         Floor(
+          no: 0,
+          area: 217.97,
+          perimeter: 66.70,
+          heightWithSlab: 4,
+          slabHeight: 0.3,
+          isCeilingSlabHollow: true,
+          thickWallLength: 104.04,
+          thinWallLength: 0,
+          sections: [
+            CommonArea(
+              commonAreaRooms: [
+                ElevatorShaft(area: 4.1, perimeter: 8.1),
+                Shaft(area: 1.27, perimeter: 6.1),
+                Stairs(area: 8.03, perimeter: 11.4),
+                Stairs(area: 3.95, perimeter: 9.9),
+                Stairs(area: 3.95, perimeter: 9.9),
+                BuildingFloorHall(area: 14.03, perimeter: 18.70),
+                CommonAreaRoom(
+                  name: "Dükkan 1",
+                  area: 38.10,
+                  perimeter: 27.6,
+                  windows: [
+                    Window(width: 4.25, height: 3),
+                  ],
+                  floorMaterial: FloorMaterial.ceramic,
+                  wallMaterial: WallMaterial.painting,
+                  ceilingMaterial: CeilingMaterial.drywall,
+                  hasCovingPlaster: false,
+                  hasFloorPlinth: false,
+                  isFloorWet: false,
+                  doors: []
+                ),
+                CommonAreaRoom(
+                  name: "Dükkan 2",
+                  area: 49.1,
+                  perimeter: 35.9,
+                  windows: [
+                    Window(width: 4.25, height: 3),
+                  ],
+                  floorMaterial: FloorMaterial.ceramic,
+                  wallMaterial: WallMaterial.painting,
+                  ceilingMaterial: CeilingMaterial.drywall,
+                  hasCovingPlaster: false,
+                  hasFloorPlinth: false,
+                  isFloorWet: false,
+                  doors: []
+                ),
+                CommonAreaRoom(
+                  name: "Dükkan 3",
+                  area: 27.36,
+                  perimeter: 25.40,
+                  windows: [
+                    Window(width: 2.5, height: 3),
+                  ],
+                  floorMaterial: FloorMaterial.ceramic,
+                  wallMaterial: WallMaterial.painting,
+                  ceilingMaterial: CeilingMaterial.drywall,
+                  hasCovingPlaster: false,
+                  hasFloorPlinth: false,
+                  isFloorWet: false,
+                  doors: []
+                ),
+                CommonAreaRoom(
+                  name: "Dükkan 4",
+                  area: 27.36,
+                  perimeter: 25.40,
+                  windows: [
+                    Window(width: 2.5, height: 3),
+                  ],
+                  floorMaterial: FloorMaterial.ceramic,
+                  wallMaterial: WallMaterial.painting,
+                  ceilingMaterial: CeilingMaterial.drywall,
+                  hasCovingPlaster: false,
+                  hasFloorPlinth: false,
+                  isFloorWet: false,
+                  doors: []
+                ),
+                CommonAreaRoom(
+                  name: "Dükkan 5",
+                  area: 25.77,
+                  perimeter: 23,
+                  windows: [
+                    Window(width: 2.5, height: 3),
+                  ],
+                  floorMaterial: FloorMaterial.ceramic,
+                  wallMaterial: WallMaterial.painting,
+                  ceilingMaterial: CeilingMaterial.drywall,
+                  hasCovingPlaster: false,
+                  hasFloorPlinth: false,
+                  isFloorWet: false,
+                  doors: []
+                ),
+              ]
+            )
+          ]
+        ),
+        Floor(
           no: -1,
           area: 221.72,
           perimeter: 64.70,
@@ -247,6 +344,7 @@ class Project {
             CommonArea(
               commonAreaRooms: [
                 ElevatorShaft(area: 4.1, perimeter: 8.1),
+                Shaft(area: 1.27, perimeter: 6.1),
                 Stairs(area: 8.03, perimeter: 11.4),
                 Stairs(area: 3.95, perimeter: 9.9),
                 Stairs(area: 3.95, perimeter: 9.9),
@@ -257,7 +355,7 @@ class Project {
                 TechnicalArea(area: 29.60, perimeter: 22.8),
                 TechnicalArea(area: 43.92, perimeter: 29.5),
                 CommonAreaRoom(
-                  name: "Dükkan Deposu",
+                  name: "Dükkan Deposu 1",
                   area: 22.22,
                   perimeter: 20.9,
                   windows: [],
@@ -272,7 +370,7 @@ class Project {
                   ]
                 ),
                 CommonAreaRoom(
-                  name: "Dükkan Deposu",
+                  name: "Dükkan Deposu 2",
                   area: 45.98,
                   perimeter: 35.30,
                   windows: [],
