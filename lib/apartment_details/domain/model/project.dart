@@ -371,7 +371,7 @@ class Project {
               ),
             ]
           ),
-          count: 9
+          count: 4
         ),
         Floor(
           no: 0,

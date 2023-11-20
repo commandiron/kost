@@ -38,7 +38,7 @@ class FloorViewer extends StatelessWidget {
       } else {
         bottomMostBasementFloor = basementFloors[0];
       }
-      widthPerArea = width / bottomMostBasementFloor.area;
+      widthPerArea = width / bottomMostBasementFloor.area / 2;
       floorHeight = height / floors.length;
     }
 
