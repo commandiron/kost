@@ -54,7 +54,7 @@ class ProjectConstants extends Equatable {
     this.automaticBarrierNumber = 1,
     this.automaticShutterNumber = 1,
     this.hasCarLift = false,
-    this.craneHourForOneSquareMeterRoughConstructionArea = 0.025,
+    this.craneHourForOneSquareMeterRoughConstructionArea = 0.035,
   });
 
   @override
