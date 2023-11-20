@@ -117,6 +117,12 @@ class UnitPriceRepository {
         dateTime: DateTime(2023, 08),
     ),
     UnitPrice(
+      category: UnitPriceCategory.eps14Dns,
+      amount: 1230,
+      currency: Currency.lira,
+      dateTime: DateTime(2023, 11),
+    ),
+    UnitPrice(
         category: UnitPriceCategory.aeratedConcreteYtong,
         amount: 1500,
         currency: Currency.lira,
@@ -129,6 +135,12 @@ class UnitPriceRepository {
         amount: 80,
         currency: Currency.lira,
         dateTime: DateTime(2023, 08),
+    ),
+    UnitPrice(
+        category: UnitPriceCategory.aeratedConcreteLabor,
+        amount: 120,
+        currency: Currency.lira,
+        dateTime: DateTime(2023, 11),
     ),
 
     //Çatıcı - Aydın (Fiyat zaten çalışıyor şu an)
