@@ -33,9 +33,8 @@ class LandscapeJobsGenerator extends JobsGenerator { //✓
       ),
       CarLift( //✓
         quantityBuilder: () {
-          return _allBasementFloors.length + 1;
+          return projectConstants.hasCarLift ? _allBasementFloors.length + 1 : 0;
         },
-        disable: true
       ),
       AutomaticBarrier( //✓
         quantityBuilder: () {

@@ -25,6 +25,7 @@ class ProjectConstants extends Equatable {
   final double gardenOutdoorParkingAreaRate; //✓
   final double automaticBarrierNumber; //✓
   final double automaticShutterNumber; //✓
+  final bool hasCarLift;
   final double craneHourForOneSquareMeterRoughConstructionArea; //✓
 
   const ProjectConstants({
@@ -52,6 +53,7 @@ class ProjectConstants extends Equatable {
     this.gardenOutdoorParkingAreaRate = 0.50,
     this.automaticBarrierNumber = 1,
     this.automaticShutterNumber = 1,
+    this.hasCarLift = false,
     this.craneHourForOneSquareMeterRoughConstructionArea = 0.025,
   });
 

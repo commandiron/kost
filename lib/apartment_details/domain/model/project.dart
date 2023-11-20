@@ -217,7 +217,9 @@ class Project {
 
   static Project orelApt = Project(
       name: "Orel Apartmanı",
-      projectConstants: const ProjectConstants(),
+      projectConstants: const ProjectConstants(
+        automaticShutterNumber: 0
+      ),
       projectVariables: const ProjectVariables(
         landArea: 866.59,
         landPerimeter: 124.45,
