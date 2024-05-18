@@ -218,6 +218,12 @@ class UnitPriceRepository {
         currency: Currency.lira,
         dateTime: DateTime(2023, 01),
     ),
+    UnitPrice(
+      category: UnitPriceCategory.screed300Doses,
+      amount: 90, //SADECE İŞÇİLİK
+      currency: Currency.lira,
+      dateTime: DateTime(2024, 05),
+    ),
 
     //Mermerci - Osman ✓
     UnitPrice(

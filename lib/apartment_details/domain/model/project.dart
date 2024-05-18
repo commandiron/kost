@@ -216,7 +216,7 @@ class Project {
   );
 
   static Project orelApt = Project(
-      name: "Orel Apartmanı",
+      name: "Apartman",
       projectConstants: const ProjectConstants(
         automaticShutterNumber: 0
       ),
@@ -373,7 +373,7 @@ class Project {
               ),
             ]
           ),
-          count: 4
+          count: 10
         ),
         Floor(
           no: 0,
